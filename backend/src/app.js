@@ -96,7 +96,9 @@ app.use("/api/analytics", require("./modules/admin/routes/analytics.routes"));
 // Public storefront (no auth)
 app.use("/api/public", require("./modules/public/routes/index"));
 
-// FCM Token registration (public / optional auth)
+// FCM Token registration (public / optional auth - works with or without /api)
+app.use("/v1/fcm-tokens", require("./modules/public/routes/fcmToken.routes"));
+app.use("/fcm-tokens", require("./modules/public/routes/fcmToken.routes"));
 app.use("/api/v1/fcm-tokens", require("./modules/public/routes/fcmToken.routes"));
 app.use("/api/fcm-tokens", require("./modules/public/routes/fcmToken.routes"));
 
