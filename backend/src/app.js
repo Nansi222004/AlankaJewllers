@@ -19,6 +19,8 @@ const defaultAllowedOrigins = [
   "http://localhost:5175",
   "https://sands-ornaments-ten.vercel.app",
   "https://sandsjewels.com",
+  "https://alankar-jewellers.com",
+  "https://www.alankar-jewellers.com",
 ];
 
 const configuredAllowedOrigins = process.env.CLIENT_URL
