@@ -2,6 +2,7 @@ const Notification = require("../../../models/Notification");
 const mongoose = require("mongoose");
 const { success, error } = require("../../../utils/apiResponse");
 const socketEmitter = require("../../../services/socketEmitter");
+const { broadcastNotification: pushBroadcast } = require("../../../services/notificationService");
 
 exports.getNotifications = async (req, res) => {
   try {
@@ -122,6 +123,11 @@ exports.broadcastNotification = async (req, res) => {
     });
 
     socketEmitter.emitBroadcastNotification(notification);
+
+    // Asynchronously send FCM push notification to all registered web and mobile tokens
+    pushBroadcast(safeTitle, safeMessage, safeType, safeLink).catch((err) => {
+      console.error("[Broadcast Push Notification Error]:", err?.message || err);
+    });
 
     return success(res, { notification }, "Notification broadcasted successfully", 201);
   } catch (err) { return error(res, err.message); }

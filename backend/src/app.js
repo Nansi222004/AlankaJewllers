@@ -96,6 +96,10 @@ app.use("/api/analytics", require("./modules/admin/routes/analytics.routes"));
 // Public storefront (no auth)
 app.use("/api/public", require("./modules/public/routes/index"));
 
+// FCM Token registration (public / optional auth)
+app.use("/api/v1/fcm-tokens", require("./modules/public/routes/fcmToken.routes"));
+app.use("/api/fcm-tokens", require("./modules/public/routes/fcmToken.routes"));
+
 // ── Courier Webhooks (no auth – verified by secret inside controllers) ───────
 app.post(
   "/api/webhooks/shiprocket",

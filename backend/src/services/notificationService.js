@@ -50,7 +50,15 @@ const broadcastNotification = async (title, message, type = "GENERAL", link = ""
       return acc;
     }, []);
 
-    const uniqueTokens = [...new Set(allTokens)].filter(t => t);
+    let deviceTokens = [];
+    try {
+      const DeviceToken = require("../models/DeviceToken");
+      deviceTokens = await DeviceToken.find().distinct("token");
+    } catch (e) {
+      console.warn("[Notification] Could not load DeviceToken:", e.message);
+    }
+
+    const uniqueTokens = [...new Set([...allTokens, ...deviceTokens])].filter(t => t);
     
     if (uniqueTokens.length > 0) {
       // FCM allows up to 500 tokens per multicast message
