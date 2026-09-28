@@ -20,9 +20,9 @@ exports.saveToken = async (req, res) => {
     }
 
     const token = rawToken.trim();
-    const platform = ["android", "ios"].includes(String(rawPlatform).toLowerCase())
-      ? String(rawPlatform).toLowerCase()
-      : "web";
+    const normalizedPlatform = String(rawPlatform).toLowerCase().trim();
+    const isMobile = ["mobile", "android", "ios"].includes(normalizedPlatform);
+    const platform = isMobile ? normalizedPlatform : "web";
 
     let userId = null;
 
@@ -55,7 +55,7 @@ exports.saveToken = async (req, res) => {
     if (userId) {
       const user = await User.findById(userId);
       if (user) {
-        const tokenField = platform === "web" ? "fcmTokens" : "fcmTokenMobile";
+        const tokenField = isMobile ? "fcmTokenMobile" : "fcmTokens";
         if (!user[tokenField]) user[tokenField] = [];
         if (!user[tokenField].includes(token)) {
           user[tokenField].push(token);

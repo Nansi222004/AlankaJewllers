@@ -11,7 +11,7 @@ const deviceTokenSchema = new mongoose.Schema(
     },
     platform: {
       type: String,
-      enum: ["web", "android", "ios", "unknown"],
+      enum: ["web", "mobile", "android", "ios", "unknown"],
       default: "web",
     },
     userId: {
