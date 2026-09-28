@@ -819,7 +819,9 @@ const Shop = () => {
         if (isUnrelatedProduct(p)) return false;
         return matchesRequestedMetal(p, normalizedMetal);
       });
-      if (normalizedMetal === "diamond") {
+      if (normalizedMetal === "gems" || normalizedMetal === "gemstone" || normalizedMetal === "gemstones") {
+        title = "Precious Gemstones Collection";
+      } else if (normalizedMetal === "diamond") {
         const dLow = String(diamondTypeQuery || "").toLowerCase();
         if (dLow === "natural") {
           title = "Natural Diamonds Collection";
@@ -1024,6 +1026,12 @@ const Shop = () => {
           product.categorySlug,
           product.settingMetal,
           product.material,
+          product.gemstone,
+          product.gemstones,
+          product.stone,
+          product.stoneType,
+          product.gemstoneType,
+          product.specifications,
           ...tagsList,
           ...variantNames,
         ]

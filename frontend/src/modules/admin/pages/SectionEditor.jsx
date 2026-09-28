@@ -205,11 +205,13 @@ const SectionEditor = () => {
             return <ShopByDiamondEditor sectionData={sectionData} onSave={handleSave} defaultSection={defaultSection} />;
         }
 
-        if ((sectionData.sectionKey || id) === 'diamond-trust-markers' && pageKey === 'diamond-collection') {
+        if (((sectionData.sectionKey || id) === 'diamond-trust-markers' && pageKey === 'diamond-collection') ||
+            ((sectionData.sectionKey || id) === 'gems-trust-markers' && pageKey === 'gems-collection')) {
             return <DiamondTrustMarkersEditor sectionData={sectionData} onSave={handleSave} defaultItems={defaultItems} />;
         }
 
-        if ((sectionData.sectionKey || id) === 'diamond-products-listing' && pageKey === 'diamond-collection') {
+        if (((sectionData.sectionKey || id) === 'diamond-products-listing' && pageKey === 'diamond-collection') ||
+            ((sectionData.sectionKey || id) === 'gems-products-listing' && pageKey === 'gems-collection')) {
             return <GoldFeaturedProductsEditor sectionData={sectionData} onSave={handleSave} defaultSection={defaultSection} />;
         }
 

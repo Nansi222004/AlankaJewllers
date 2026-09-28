@@ -34,7 +34,7 @@ const homepageSectionSchema = new mongoose.Schema({
   sectionId: { type: String, required: true, unique: true, index: true },
   pageKey: {
     type: String,
-    enum: ["home", "shop-men", "shop-women", "shop-family", "gold-collection", "diamond-collection"],
+    enum: ["home", "shop-men", "shop-women", "shop-family", "gold-collection", "diamond-collection", "gems-collection"],
     default: "home",
     index: true
   },

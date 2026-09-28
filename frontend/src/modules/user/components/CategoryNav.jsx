@@ -82,10 +82,11 @@ const CategoryNav = ({ showMetalToggle = true }) => {
         const params = new URLSearchParams(location.search);
         const metalParam = String(params.get('metal') || '').trim().toLowerCase();
         const karatParam = String(params.get('karat') || params.get('purity') || '').trim();
+        const isGemsRoute = location.pathname.startsWith('/gems') || metalParam === 'gems' || metalParam === 'gemstone' || metalParam === 'gemstones';
         const isDiamondRoute = location.pathname.startsWith('/diamond') || metalParam === 'diamond';
         const isGoldRoute = location.pathname.startsWith('/gold') || metalParam === 'gold' || (!metalParam && Boolean(karatParam));
 
-        const desiredMetal = isDiamondRoute ? 'diamond' : (isGoldRoute ? 'gold' : 'silver');
+        const desiredMetal = isGemsRoute ? 'gems' : (isDiamondRoute ? 'diamond' : (isGoldRoute ? 'gold' : 'silver'));
 
         if (desiredMetal && desiredMetal !== activeMetal) {
             updateActiveMetal(desiredMetal);
@@ -192,26 +193,26 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                     </ul>
                 </div>
 
-                {/* Gold / Silver / Diamond 3-Option Selector — Balanced, Aligned & Responsive */}
+                {/* Gold / Silver / Diamond / Gems 4-Option Selector — Balanced, Aligned & Responsive */}
                 {showMetalToggle && (
                     <div className="flex justify-center pb-1.5 pt-0.5 px-2 relative">
-                        <div className="p-0.5 md:p-1 w-[600px] max-w-full rounded-full border border-[#E8E0D2] flex items-center bg-white shadow-[0_2px_12px_rgba(23,23,23,0.06)] relative">
+                        <div className="p-0.5 md:p-1 w-[680px] max-w-full rounded-full border border-[#E8E0D2] flex items-center bg-white shadow-[0_2px_12px_rgba(23,23,23,0.06)] relative">
                             {/* Animated Background Pill */}
                             <div className="absolute inset-0.5 md:inset-1 flex" style={{ zIndex: 0 }}>
                                 <motion.div
                                     layout
                                     initial={false}
                                     animate={{
-                                        x: activeMetal === 'gold' ? '0%' : (activeMetal === 'silver' ? '100%' : '200%'),
+                                        x: activeMetal === 'gold' ? '0%' : (activeMetal === 'silver' ? '100%' : (activeMetal === 'diamond' ? '200%' : '300%')),
                                         background: activeMetal === 'gold'
                                             ? 'linear-gradient(135deg, #C6A04A, #E5CC85)'
-                                            : (activeMetal === 'silver' ? '#171717' : 'linear-gradient(135deg, #171717, #2A3644, #C6A04A)'),
+                                            : (activeMetal === 'silver' ? '#171717' : (activeMetal === 'diamond' ? 'linear-gradient(135deg, #171717, #2A3644, #C6A04A)' : 'linear-gradient(135deg, #171717, #231F20, #C6A04A)')),
                                         boxShadow: activeMetal === 'gold'
                                             ? '0 4px 14px rgba(198,160,74,0.3)'
                                             : '0 4px 14px rgba(23,23,23,0.25)'
                                     }}
                                     transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-                                    className="w-1/3 h-full rounded-full"
+                                    className="w-1/4 h-full rounded-full"
                                 />
                             </div>
 
@@ -221,7 +222,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('gold');
                                     navigate('/gold-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-2 sm:px-4 md:px-6 rounded-full text-[10.5px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? 'text-[#171717]' : 'text-[#77716A] hover:text-[#171717]'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? 'text-[#171717]' : 'text-[#77716A] hover:text-[#171717]'}`}
                             >
                                 Gold
                             </button>
@@ -230,9 +231,9 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                             <button
                                 onClick={() => {
                                     updateActiveMetal('silver');
-                                    navigate('/');
+                                    navigate('/silver-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-2 sm:px-4 md:px-6 rounded-full text-[10.5px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
                             >
                                 Silver
                             </button>
@@ -243,9 +244,20 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('diamond');
                                     navigate('/diamond-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-2 sm:px-4 md:px-6 rounded-full text-[10.5px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
                             >
                                 Diamond
+                            </button>
+
+                            {/* Option 4: Gems */}
+                            <button
+                                onClick={() => {
+                                    updateActiveMetal('gems');
+                                    navigate('/gems-collection');
+                                }}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gems' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
+                            >
+                                Gems
                             </button>
                         </div>
                     </div>

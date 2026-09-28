@@ -43,6 +43,9 @@ const BestStylesSection = ({ sectionData = null }) => {
             if (isGoldSection || activeMetal === 'gold') {
                 return matchesRequestedMetal(product, 'gold');
             }
+            if (activeMetal === 'gems') {
+                return matchesRequestedMetal(product, 'gems');
+            }
             if (activeMetal === 'diamond') {
                 return matchesRequestedMetal(product, 'diamond');
             }

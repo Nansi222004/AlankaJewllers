@@ -95,6 +95,7 @@ const Notifications = lazy(() => import('./modules/user/pages/Notifications'));
 const DynamicPage = lazy(() => import('./modules/user/pages/DynamicPage'));
 const GoldJewelleryPage = lazy(() => import('./modules/user/pages/GoldJewelleryPage'));
 const DiamondJewelleryPage = lazy(() => import('./modules/user/pages/DiamondJewelleryPage'));
+const GemsJewelleryPage = lazy(() => import('./modules/user/pages/GemsJewelleryPage'));
 const UserReturnsPage = lazy(() => import('./modules/user/pages/ReturnsPage'));
 const UserReturnDetailPage = lazy(() => import('./modules/user/pages/ReturnDetailPage'));
 const UserReturnRequestPage = lazy(() => import('./modules/user/pages/ReturnRequestPage'));
@@ -173,7 +174,7 @@ const AppContent = () => {
 
   const isAdminPath = location.pathname.startsWith('/admin');
   const isLoginPath = location.pathname === '/login' || location.pathname === '/signup';
-  const showMetalToggle = location.pathname === '/' || location.pathname === '/gold-collection' || location.pathname === '/diamond-collection';
+  const showMetalToggle = location.pathname === '/' || location.pathname === '/silver-collection' || location.pathname === '/gold-collection' || location.pathname === '/diamond-collection' || location.pathname === '/gems-collection';
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-[#FAF8F5]">
@@ -234,8 +235,10 @@ const AppContent = () => {
           <Route path="/category/family/:recipient" element={<FamilyRecipientProductsPage />} />
           <Route path="/category/family/collection/:collectionId" element={<FamilyCollectionProductsPage />} />
           <Route path="/category/:category" element={<Shop />} />
+          <Route path="/silver-collection" element={<Home />} />
           <Route path="/gold-collection" element={<GoldJewelleryPage />} />
           <Route path="/diamond-collection" element={<DiamondJewelleryPage />} />
+          <Route path="/gems-collection" element={<GemsJewelleryPage />} />
           <Route path="/collection/bond/:bondId" element={<BondCollectionPage />} />
           <Route path="/collection/best-styles" element={<BestStylesPage />} />
           <Route path="/collections" element={<JewelleryCollectionsPage />} />

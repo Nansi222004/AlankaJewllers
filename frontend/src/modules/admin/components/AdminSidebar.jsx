@@ -817,6 +817,7 @@ const AdminSidebar = () => {
                 { label: "Shop for Family", pageKey: "shop-family" },
                 { label: "Gold Collection", pageKey: "gold-collection" },
                 { label: "Diamond Collection", pageKey: "diamond-collection" },
+                { label: "Gems Collection", pageKey: "gems-collection" },
               ].map((item) => {
                 const href = `/admin/sections?pageKey=${item.pageKey}`;
                 const isActiveItem =

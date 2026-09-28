@@ -99,6 +99,7 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
             title: 'Shop by Metal',
             items: [
                 { name: 'Diamond Collection', path: '/diamond-collection' },
+                { name: 'Gems Collection', path: '/gems-collection' },
                 { name: '925 Silver', path: '/shop?metal=silver&silver_type=sterling' },
                 { name: 'Pure Gold',  path: '/shop?metal=gold&karat=24' },
             ]

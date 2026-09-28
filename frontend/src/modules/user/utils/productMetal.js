@@ -114,7 +114,96 @@ export const matchesGoldTone = (product = {}, tone = '') => {
     return true;
 };
 
+export const VALID_GEMSTONES = [
+    'emerald', 'ruby', 'sapphire', 'pearl', 'amethyst', 'garnet',
+    'topaz', 'opal', 'citrine', 'moissanite', 'aquamarine', 'tanzanite',
+    'tourmaline', 'peridot', 'turquoise', 'agate', 'onyx', 'zircon',
+    'spinel', 'alexandrite', 'jade', 'coral', 'quartz'
+];
+
+export const isGemProduct = (product = {}) => {
+    if (isUnrelatedProduct(product)) return false;
+
+    const name = String(product?.name || '').toLowerCase();
+    const material = String(product?.material || product?.metal || '').toLowerCase();
+    const specs = String(product?.specifications || '').toLowerCase();
+    const desc = String(product?.description || '').toLowerCase();
+    const category = String(product?.category?.name || product?.categorySlug || product?.category || '').toLowerCase();
+
+    // Explicit exclusions per brand integrity requirements:
+    // Do NOT classify a product as Gems simply because it contains Kundan, artificial stones, AD, or is plated alloy without genuine gemstones
+    const isKundan = /kundan/i.test(name) || /kundan/i.test(material) || /kundan/i.test(category);
+    const isArtificial = /\b(artificial|imitation|synthetic\s*stone|ad\s*stone|american\s*diamond|cz|cubic\s*zirconia)\b/i.test(name + ' ' + specs + ' ' + desc);
+    const isPlatedWithoutGems = (material.includes('plated') || material.includes('alloy')) && !product?.gemstone && !product?.gemstoneType;
+
+    if (isKundan || isArtificial || isPlatedWithoutGems) {
+        return false;
+    }
+
+    // 1. Explicit verified gemstone field at product level
+    const directGemstone = String(
+        product?.gemstone ||
+        product?.gemstones ||
+        product?.gemstoneType ||
+        product?.stoneType ||
+        product?.attributes?.gemstone ||
+        product?.attributes?.stone ||
+        ''
+    ).trim().toLowerCase();
+
+    if (directGemstone && directGemstone !== 'none' && directGemstone !== 'no' && !/artificial|synthetic/i.test(directGemstone)) {
+        return true;
+    }
+
+    // 2. Explicit verified gemstone at variant level
+    const variants = Array.isArray(product?.variants) ? product.variants : [];
+    const hasVariantGem = variants.some((v) => {
+        const vGem = String(v?.gemstone || v?.gemstones || v?.gemstoneType || v?.stoneType || v?.diamondSpecs?.gemstone || '').trim().toLowerCase();
+        return vGem && vGem !== 'none' && !/artificial|synthetic/i.test(vGem);
+    });
+    if (hasVariantGem) return true;
+
+    // 3. Category explicitly classified as gems / gemstone
+    if (category === 'gems' || category === 'gemstone' || category === 'gemstones' || category.startsWith('gem-') || category.startsWith('gemstone-')) {
+        return true;
+    }
+
+    // 4. Material explicitly classified as genuine gemstone
+    if (material === 'gemstone' || material === 'gems' || material === 'precious stones') {
+        return true;
+    }
+
+    return false;
+};
+
+export const getGemstoneType = (product = {}) => {
+    if (!product) return null;
+    const directGemstone = String(
+        product?.gemstone ||
+        product?.gemstones ||
+        product?.gemstoneType ||
+        product?.stoneType ||
+        product?.attributes?.gemstone ||
+        ''
+    ).trim().toLowerCase();
+
+    if (directGemstone && directGemstone !== 'none') {
+        const found = VALID_GEMSTONES.find((g) => directGemstone.includes(g));
+        if (found) return found;
+        return directGemstone;
+    }
+
+    const name = String(product?.name || '').toLowerCase();
+    for (const gem of VALID_GEMSTONES) {
+        const reg = new RegExp(`\\b${gem}\\b`, 'i');
+        if (reg.test(name)) return gem;
+    }
+
+    return null;
+};
+
 export const getNormalizedProductMetal = (product = {}) => {
+    if (isGemProduct(product)) return 'gems';
     if (isDiamondProduct(product)) return 'diamond';
     if (isGoldProduct(product)) return 'gold';
     if (isSilverProduct(product)) return 'silver';
@@ -130,6 +219,10 @@ export const matchesRequestedMetal = (product = {}, requestedMetal = '') => {
     const material = String(product?.material || product?.metal || '').trim().toLowerCase();
     const name = String(product?.name || '').trim().toLowerCase();
     const settingMetal = String(product?.settingMetal || '').trim().toLowerCase();
+
+    if (normalizedRequest === 'gems' || normalizedRequest === 'gemstone' || normalizedRequest === 'gemstones') {
+        return isGemProduct(product);
+    }
 
     if (normalizedRequest === 'diamond') {
         return (

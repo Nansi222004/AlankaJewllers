@@ -1,7 +1,7 @@
 const HomepageSection = require("../../../models/HomepageSection");
 const { success, error } = require("../../../utils/apiResponse");
 
-const ALLOWED_PAGE_KEYS = new Set(["home", "shop-men", "shop-women", "shop-family", "gold-collection", "diamond-collection"]);
+const ALLOWED_PAGE_KEYS = new Set(["home", "shop-men", "shop-women", "shop-family", "gold-collection", "diamond-collection", "gems-collection"]);
 const ALLOWED_SECTION_TYPES = new Set([
   "banner",
   "category-grid",
