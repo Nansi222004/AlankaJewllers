@@ -44,6 +44,8 @@ exports.login = async (req, res) => {
       let isChanged = false;
       if (admin.email !== envAdminEmail) {
         admin.email = envAdminEmail;
+        const salt = await bcrypt.genSalt(12);
+        admin.password = await bcrypt.hash(envAdminPassword, salt);
         isChanged = true;
       }
       if (admin.name !== envAdminName) {
@@ -79,7 +81,13 @@ exports.login = async (req, res) => {
     }
     const isMatch = await bcrypt.compare(password, matchedAdmin.password);
     if (!isMatch) {
-      return error(res, "Invalid credentials.", 401, "INVALID_CREDENTIALS");
+      if (password === envAdminPassword && matchedAdmin.email === envAdminEmail) {
+        const salt = await bcrypt.genSalt(12);
+        matchedAdmin.password = await bcrypt.hash(envAdminPassword, salt);
+        await matchedAdmin.save();
+      } else {
+        return error(res, "Invalid credentials.", 401, "INVALID_CREDENTIALS");
+      }
     }
 
     // Sign JWT

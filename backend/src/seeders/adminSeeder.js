@@ -6,20 +6,28 @@ const User = require("../models/User");
 
 const seed = async () => {
   await connectDB();
-  const existing = await User.findOne({ email: process.env.ADMIN_EMAIL });
-  if (existing) {
-    console.log("Admin already exists. Skipping.");
-    process.exit(0);
+  let admin = await User.findOne({ role: "admin" });
+  const email = (process.env.ADMIN_EMAIL || "admin@alankarjewellers.com").trim().toLowerCase();
+  const password = process.env.ADMIN_PASSWORD || "admin123";
+  const name = process.env.ADMIN_NAME || "Super Admin";
+  const hashed = await bcrypt.hash(password, 12);
+
+  if (admin) {
+    admin.email = email;
+    admin.name = name;
+    admin.password = hashed;
+    await admin.save();
+    console.log("Admin updated successfully:", email);
+  } else {
+    await User.create({
+      name,
+      phone: "+919921128662",
+      email,
+      password: hashed,
+      role: "admin",
+    });
+    console.log("Admin created successfully:", email);
   }
-  const hashed = await bcrypt.hash(process.env.ADMIN_PASSWORD, 12);
-  await User.create({
-    name:     process.env.ADMIN_NAME || "Super Admin",
-    phone:    "0000000000",
-    email:    process.env.ADMIN_EMAIL,
-    password: hashed,
-    role:     "admin",
-  });
-  console.log("\u2705  Admin seeded:", process.env.ADMIN_EMAIL);
   process.exit(0);
 };
 
