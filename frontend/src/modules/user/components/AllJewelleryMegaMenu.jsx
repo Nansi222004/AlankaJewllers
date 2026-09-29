@@ -27,8 +27,8 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
 
     const silverPurities = [
         // Shop.jsx expects `metal=silver` + `silver_type=fine|sterling`
-        { id: '925', name: 'STERLING SILVER', sub: '925 HALLMARKED', image: puritySterling, path: '/shop?metal=silver&silver_type=sterling' },
-        { id: 'fine', name: 'FINE SILVER', sub: 'PURE & SIMPLE', image: purityFine, path: '/shop?metal=silver&silver_type=fine' },
+        { id: '925', name: '925 SILVER', sub: '925 HALLMARKED', image: puritySterling, path: '/shop?metal=silver&silver_type=sterling' },
+        { id: 'fine', name: 'SILVER', sub: 'PURE & SIMPLE', image: purityFine, path: '/shop?metal=silver&silver_type=fine' },
     ];
 
     return (
@@ -89,7 +89,7 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
                                     <div className="absolute inset-y-0 left-5 sm:left-8 flex flex-col justify-center text-white">
                                         <h2 className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight mb-0.5 sm:mb-1">SILVER COLLECTION</h2>
-                                        <p className="text-[10px] sm:text-[11px] font-medium opacity-80 tracking-widest uppercase">925 Sterling • Fine Silver</p>
+                                        <p className="text-[10px] sm:text-[11px] font-medium opacity-80 tracking-widest uppercase">925 Silver • Silver</p>
                                     </div>
                                     <div className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:bg-white/40 transition-all">
                                         <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />

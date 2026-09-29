@@ -21,7 +21,6 @@ import GoldTestimonials from "../components/GoldTestimonials";
 import CuratedForEveryBond from "../components/CuratedForEveryBond";
 import GoldCuratedShowcase from "../components/GoldCuratedShowcase";
 import GoldExclusiveLaunch from "../components/GoldExclusiveLaunch";
-import GoldLifestyleGrid from "../components/GoldLifestyleGrid";
 import GoldLuxuryWithinReach from "../components/GoldLuxuryWithinReach";
 import GoldDirectProducts from "../components/GoldDirectProducts";
 import GoldTrustStrip from "../components/GoldTrustStrip";
@@ -251,7 +250,6 @@ const GoldJewelleryPage = () => {
       <GoldTestimonials sectionData={sectionMap["gold-testimonials"]} />
       <CuratedForEveryBond sectionData={sectionMap["gold-curated-bond"]} />
       <GoldCuratedShowcase sectionData={sectionMap["gold-curated-showcase"]} />
-      <GoldLifestyleGrid sectionData={sectionMap["gold-lifestyle-grid"]} />
       <GoldTrustStrip />
       <GoldDirectProducts sectionData={sectionMap["gold-products-listing"]} />
     </div>

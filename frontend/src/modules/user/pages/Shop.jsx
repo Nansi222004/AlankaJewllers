@@ -16,9 +16,17 @@ import {
   ArrowLeft,
   ArrowUpDown,
   Search,
+  X,
 } from "lucide-react";
-import HorizontalFilters from "../components/HorizontalFilters";
+import HorizontalFilters, {
+  GOLD_TONE_OPTIONS,
+  SILVER_TYPE_OPTIONS,
+  DIAMOND_TYPE_OPTIONS,
+} from "../components/HorizontalFilters";
 import CategoryHeroBanner from "../components/CategoryHeroBanner";
+import whiteImg from "@assets/gold_color_white.png";
+import roseImg from "@assets/gold_color_rose.png";
+import yellowImg from "@assets/gold_color_yellow.png";
 import { useRef } from "react";
 
 const useDragScroll = () => {
@@ -213,19 +221,19 @@ const Shop = () => {
   const queryParams = new URLSearchParams(location.search);
   const isComingSoonQuery = queryParams.get("status") === "coming-soon";
   const sourceQuery = queryParams.get("source");
-  const priceMaxQuery = queryParams.get("price_max"); // upper bound — e.g. price_max=3000
-  const priceMinQuery = queryParams.get("price_min"); // lower bound — e.g. price_min=1500
+  const priceMaxQuery = queryParams.get("price_max") || queryParams.get("maxPrice") || queryParams.get("priceMax"); // upper bound — e.g. price_max=50000
+  const priceMinQuery = queryParams.get("price_min") || queryParams.get("minPrice") || queryParams.get("priceMin"); // lower bound — e.g. price_min=1500
   const productsQuery = queryParams.get("products");
   const limitQuery = queryParams.get("limit");
   const sortQuery = queryParams.get("sort");
   const searchQuery = queryParams.get("search");
   const karatQuery = queryParams.get("karat");
-  const silverTypeQuery = queryParams.get("silver_type");
+  const silverTypeQuery = queryParams.get("silver_type") || queryParams.get("silverType");
   // Backwards compatibility for older links (e.g. All Type mega menu used `purity`)
   const purityQuery = queryParams.get("purity");
   const toneQuery = queryParams.get("tone") || queryParams.get("settingMetal");
   const stoneQuery = queryParams.get("stone");
-  const diamondTypeQuery = queryParams.get("diamondType");
+  const diamondTypeQuery = queryParams.get("diamondType") || queryParams.get("diamond_type");
   const availabilityQuery = queryParams.get("availability");
   const inStockQuery = queryParams.get("inStock");
   const isMenFlow = sourceQuery === "men";
@@ -345,6 +353,7 @@ const Shop = () => {
       ...(purityParam ? { purity: purityParam } : {}),
       ...(effectiveKarat ? { karat: effectiveKarat } : {}),
       ...(silverTypeQuery ? { silver_type: silverTypeQuery } : {}),
+      ...(diamondTypeQuery ? { diamondType: diamondTypeQuery } : {}),
       ...(stoneParam ? { stone: stoneParam } : {}),
       ...(availabilityParam ? { availability: availabilityParam } : {}),
       ...(resolvedTags ? { tags: resolvedTags } : {}),
@@ -840,15 +849,15 @@ const Shop = () => {
           title = "Gold Collection";
         }
       } else if (normalizedMetal === "gold" && effectiveKarat) {
-        title = `${effectiveKarat}K Gold`;
+        title = `${effectiveKarat} Ct Gold`;
       } else if (
         normalizedMetal === "silver" &&
         effectiveSilverType
       ) {
         title =
-          effectiveSilverType === "sterling"
-            ? "925 Sterling Silver"
-            : "Fine Silver";
+          effectiveSilverType === "sterling" || effectiveSilverType === "925"
+            ? "925 Silver"
+            : "Silver";
       }
     } else if (activeCategory || category) {
       const currentCat =
@@ -961,6 +970,14 @@ const Shop = () => {
     if (sortQuery === "random") {
       title = selectedCategory !== "All" ? selectedCategory : "Curated For You";
     }
+    const numPriceMax = priceMaxQuery
+      ? Number(String(priceMaxQuery).replace(/[^0-9]/g, ""))
+      : null;
+    const numPriceMin = priceMinQuery
+      ? Number(String(priceMinQuery).replace(/[^0-9]/g, ""))
+      : null;
+    const isUnder50k = numPriceMax === 50000 && (!numPriceMin || numPriceMin <= 0) && (!metalQuery || metalQuery === "All");
+
     if (searchQuery) {
       title = `Search: ${searchQuery}`;
     } else if (selectedCategory !== "All") {
@@ -969,6 +986,10 @@ const Shop = () => {
       title = "Just Arrived";
     } else if (filterTrending && path === "/shop") {
       title = "Trending Now";
+    } else if (isUnder50k) {
+      title = "Jewellery Under ₹50K";
+    } else if (numPriceMax && Number.isFinite(numPriceMax) && !metalQuery) {
+      title = `Jewellery Under ₹${numPriceMax.toLocaleString("en-IN")}`;
     }
 
     if (pageTitle !== title) {
@@ -1061,10 +1082,16 @@ const Shop = () => {
       : null;
 
     if (urlPriceMax && Number.isFinite(urlPriceMax) && urlPriceMax > 0) {
-      result = result.filter((p) => getProductPrice(p) <= urlPriceMax);
+      result = result.filter((p) => {
+        const price = getProductPrice(p);
+        return price > 0 && price <= urlPriceMax;
+      });
     } else {
       // Fall back to local slider state
-      result = result.filter((p) => getProductPrice(p) <= priceRange);
+      result = result.filter((p) => {
+        const price = getProductPrice(p);
+        return price > 0 && price <= priceRange;
+      });
     }
     if (urlPriceMin && Number.isFinite(urlPriceMin) && urlPriceMin > 0) {
       result = result.filter((p) => getProductPrice(p) >= urlPriceMin);
@@ -1283,11 +1310,40 @@ const Shop = () => {
   };
 
   const handleMetalChange = (val) => {
+    const isClearing = val === "All" || !val;
+    const nextMetal = isClearing ? null : val.toLowerCase();
     updateShopQuery({
-      metal: val === "All" ? null : val.toLowerCase(),
-      karat: null,
+      metal: nextMetal,
+      tone: null,
       silver_type: null,
+      silverType: null,
+      diamondType: null,
+      diamond_type: null,
+      karat: null,
       purity: null,
+    });
+  };
+
+  const handleToneChange = (val) => {
+    updateShopQuery({
+      metal: "gold",
+      tone: val === "All" || !val ? null : val,
+    });
+  };
+
+  const handleSilverTypeChange = (val) => {
+    updateShopQuery({
+      metal: "silver",
+      silver_type: val === "All" || !val ? null : val,
+      silverType: null,
+    });
+  };
+
+  const handleDiamondTypeChange = (val) => {
+    updateShopQuery({
+      metal: "diamond",
+      diamondType: val === "All" || !val ? null : val,
+      diamond_type: null,
     });
   };
 
@@ -1296,6 +1352,7 @@ const Shop = () => {
       purity: val === "All" ? null : val,
       karat: null,
       silver_type: null,
+      silverType: null,
     });
   };
 
@@ -1303,6 +1360,7 @@ const Shop = () => {
     updateShopQuery({
       stone: val === "All" ? null : val,
       diamondType: null,
+      diamond_type: null,
     });
   };
 
@@ -1311,10 +1369,6 @@ const Shop = () => {
       availability: val === "All" ? null : val,
       inStock: null,
     });
-  };
-
-  const handleDiamondTypeChange = (val) => {
-    updateShopQuery({ diamondType: val === "All" ? null : val });
   };
 
   const handleTagsChange = (val) => {
@@ -1385,10 +1439,10 @@ const Shop = () => {
               <h1 className="text-base md:text-xl font-serif font-bold text-[#141211] leading-tight truncate tracking-wide">
                 {pageTitle}
               </h1>
-              {searchQuery && (
+              {(searchQuery || priceMaxQuery || priceMinQuery) && (
                 <p className="text-[11px] md:text-xs text-stone-500 font-medium tracking-wide mt-0.5">
                   {isServerProductsLoading ? (
-                    "Searching designs..."
+                    "Loading designs..."
                   ) : (
                     `${serverPagination?.total ?? productsToRender.length} ${
                       (serverPagination?.total ?? productsToRender.length) === 1
@@ -1429,6 +1483,12 @@ const Shop = () => {
               queryParams.get("metal")?.slice(1) || "All"
             }
             onMetalChange={handleMetalChange}
+            tone={toneQuery || "All"}
+            onToneChange={handleToneChange}
+            silverType={silverTypeQuery || "All"}
+            onSilverTypeChange={handleSilverTypeChange}
+            diamondType={diamondTypeQuery || "All"}
+            onDiamondTypeChange={handleDiamondTypeChange}
             purity={purityQuery || karatQuery || silverTypeQuery || "All"}
             onPurityChange={handlePurityChange}
             stone={stoneQuery || diamondTypeQuery || "All"}
@@ -1452,6 +1512,144 @@ const Shop = () => {
             onSortChange={handleSortChange}
             clearAll={clearAllFilters}
           />
+
+          {/* Mobile Active Filter Chips */}
+          {Boolean(
+            (selectedCategory && selectedCategory !== "All") ||
+            queryParams.get("metal") ||
+            toneQuery ||
+            silverTypeQuery ||
+            diamondTypeQuery ||
+            (purityQuery && purityQuery !== "All") ||
+            (stoneQuery && stoneQuery !== "All") ||
+            priceRange < 50000 ||
+            queryParams.get("source") ||
+            (queryParams.get("tags") && queryParams.get("tags").length > 0) ||
+            availabilityQuery
+          ) && (
+            <div className="flex md:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-2 px-3 border-t border-stone-100 bg-[#FAF8F5]/90">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 shrink-0">
+                Active:
+              </span>
+
+              {/* Jewellery Type Chip */}
+              {queryParams.get("metal") && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                  <span>Jewellery Type: <strong className="capitalize">{queryParams.get("metal")}</strong></span>
+                  <button
+                    onClick={() => handleMetalChange("All")}
+                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    title="Remove Jewellery Type filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {/* Gold Colour Chip */}
+              {queryParams.get("metal")?.toLowerCase() === "gold" && toneQuery && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                  <span
+                    className="w-2.5 h-2.5 rounded-full inline-block shrink-0"
+                    style={{
+                      backgroundColor:
+                        toneQuery === "rose-gold"
+                          ? "#FB7185"
+                          : toneQuery === "white-gold"
+                            ? "#94A3B8"
+                            : "#EAB308",
+                    }}
+                  />
+                  <span>Gold Colour: <strong className="capitalize">{toneQuery.replace("-", " ")}</strong></span>
+                  <button
+                    onClick={() => handleToneChange(null)}
+                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    title="Remove Gold Colour filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {/* Silver Type Chip */}
+              {queryParams.get("metal")?.toLowerCase() === "silver" && silverTypeQuery && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                  <span
+                    className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-stone-300"
+                    style={{
+                      backgroundColor:
+                        SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.swatchColor || "#CBD5E1"
+                    }}
+                  />
+                  <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.label || silverTypeQuery}</strong></span>
+                  <button
+                    onClick={() => handleSilverTypeChange(null)}
+                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    title="Remove Silver Type filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {/* Diamond Type Chip */}
+              {queryParams.get("metal")?.toLowerCase() === "diamond" && diamondTypeQuery && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                  <span
+                    className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-sky-300"
+                    style={{
+                      backgroundColor:
+                        DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondTypeQuery.toLowerCase() || (d.value === 'lab_grown' && (diamondTypeQuery.toLowerCase() === 'lab-grown' || diamondTypeQuery.toLowerCase() === 'labgrown')))?.swatchColor || "#BAE6FD"
+                    }}
+                  />
+                  <span>Diamond Type: <strong>{DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondTypeQuery.toLowerCase() || (d.value === 'lab_grown' && (diamondTypeQuery.toLowerCase() === 'lab-grown' || diamondTypeQuery.toLowerCase() === 'labgrown')))?.label || diamondTypeQuery}</strong></span>
+                  <button
+                    onClick={() => handleDiamondTypeChange(null)}
+                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    title="Remove Diamond Type filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {/* Product Type Chip */}
+              {selectedCategory && selectedCategory !== "All" && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                  <span>Product Type: <strong>{selectedCategory}</strong></span>
+                  <button
+                    onClick={() => handleCategoryChange("All")}
+                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    title="Remove Product Type filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {/* Purity Chip */}
+              {Boolean(purityQuery && purityQuery !== "All") && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                  <span>Purity: <strong>{['24', '22', '18', '14'].includes(String(purityQuery)) ? `${purityQuery} Ct Gold` : purityQuery === '925' ? '925 Silver' : purityQuery === 'fine' ? 'Fine Silver' : purityQuery}</strong></span>
+                  <button
+                    onClick={() => handlePurityChange("All")}
+                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    title="Remove Purity filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {/* Clear All */}
+              <button
+                onClick={clearAllFilters}
+                className="text-[10px] font-bold text-[#C59B27] hover:underline uppercase tracking-wider shrink-0 ml-1"
+              >
+                Clear All
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Product Grid */}
@@ -1685,8 +1883,167 @@ const Shop = () => {
             ref={sidebarScroll.ref}
             className={`p-6 flex-1 overflow-y-auto space-y-10 custom-scrollbar overscroll-contain ${sidebarScroll.isDragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
           >
-            {/* 1. Product Type Filter */}
+            {/* 1. Jewellery Type Filter */}
             <section>
+              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+                Jewellery Type
+              </h4>
+              <div className="grid grid-cols-5 gap-1 mb-3">
+                {[
+                  { id: "All", label: "All" },
+                  { id: "gold", label: "Gold" },
+                  { id: "silver", label: "Silver" },
+                  { id: "diamond", label: "Diamond" },
+                  { id: "gems", label: "Gems" },
+                ].map((m) => {
+                  const currentMetal = queryParams.get("metal")?.toLowerCase();
+                  const isActive = m.id === "All" ? !currentMetal : currentMetal === m.id;
+                  return (
+                    <button
+                      key={m.id}
+                      onClick={() => handleMetalChange(m.id)}
+                      className={`py-2 px-1 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${
+                        isActive
+                          ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
+                      }`}
+                    >
+                      {m.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Gold Tone Sub-Accordion (When Gold is selected) */}
+              {queryParams.get("metal")?.toLowerCase() === "gold" && (
+                <div className="mt-3 p-3 bg-[#FAF8F5] border border-[#E8DFD0] rounded-xl space-y-2 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-[#E8DFD0]/60">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C827A]">
+                      Gold Colour
+                    </span>
+                    {toneQuery && (
+                      <button
+                        onClick={() => handleToneChange(null)}
+                        className="text-[10px] font-bold text-[#C59B27] hover:underline"
+                      >
+                        Reset Colour
+                      </button>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    {GOLD_TONE_OPTIONS.map((t) => {
+                      const isToneActive = t.value === "all"
+                        ? !toneQuery || toneQuery === "All"
+                        : toneQuery?.toLowerCase() === t.value || (t.value === "gold" && toneQuery === "yellow-gold");
+
+                      return (
+                        <button
+                          key={t.value}
+                          onClick={() => handleToneChange(t.value === "all" ? null : t.value)}
+                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
+                            isToneActive
+                              ? "bg-white border-[#C59B27] text-[#141211] font-bold shadow-2xs"
+                              : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
+                          }`}
+                        >
+                          {t.image ? (
+                            <img src={t.image} alt={t.label} className="w-4 h-4 rounded-full object-cover border border-[#E8DFD0] shrink-0" />
+                          ) : (
+                            <span className="w-3.5 h-3.5 rounded-full border border-stone-300 shrink-0" style={{ backgroundColor: t.swatchColor }} />
+                          )}
+                          <span className="text-[11px] leading-tight truncate">{t.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Silver Type Sub-Accordion (When Silver is selected) */}
+              {queryParams.get("metal")?.toLowerCase() === "silver" && (
+                <div className="mt-3 p-3 bg-[#FAF8F5] border border-[#E8DFD0] rounded-xl space-y-2 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-[#E8DFD0]/60">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C827A]">
+                      Silver Type
+                    </span>
+                    {silverTypeQuery && (
+                      <button
+                        onClick={() => handleSilverTypeChange(null)}
+                        className="text-[10px] font-bold text-[#C59B27] hover:underline"
+                      >
+                        Reset Type
+                      </button>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    {SILVER_TYPE_OPTIONS.map((s) => {
+                      const isSilverActive = s.value === "all"
+                        ? !silverTypeQuery || silverTypeQuery === "All"
+                        : silverTypeQuery?.toLowerCase() === s.value || (s.value === "925" && (silverTypeQuery?.toLowerCase() === "sterling" || silverTypeQuery?.toLowerCase() === "925-silver"));
+
+                      return (
+                        <button
+                          key={s.value}
+                          onClick={() => handleSilverTypeChange(s.value === "all" ? null : s.value)}
+                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
+                            isSilverActive
+                              ? "bg-white border-[#C59B27] text-[#141211] font-bold shadow-2xs"
+                              : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
+                          }`}
+                        >
+                          <span className="w-3.5 h-3.5 rounded-full border border-stone-300 shrink-0" style={{ backgroundColor: s.swatchColor }} />
+                          <span className="text-[11px] leading-tight truncate">{s.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Diamond Type Sub-Accordion (When Diamond is selected) */}
+              {queryParams.get("metal")?.toLowerCase() === "diamond" && (
+                <div className="mt-3 p-3 bg-[#FAF8F5] border border-[#E8DFD0] rounded-xl space-y-2 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-[#E8DFD0]/60">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C827A]">
+                      Diamond Type
+                    </span>
+                    {diamondTypeQuery && (
+                      <button
+                        onClick={() => handleDiamondTypeChange(null)}
+                        className="text-[10px] font-bold text-[#C59B27] hover:underline"
+                      >
+                        Reset Type
+                      </button>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    {DIAMOND_TYPE_OPTIONS.map((d) => {
+                      const isDiamondActive = d.value === "all"
+                        ? !diamondTypeQuery || diamondTypeQuery === "All"
+                        : diamondTypeQuery?.toLowerCase() === d.value || (d.value === "lab_grown" && (diamondTypeQuery?.toLowerCase() === "lab-grown" || diamondTypeQuery?.toLowerCase() === "labgrown"));
+
+                      return (
+                        <button
+                          key={d.value}
+                          onClick={() => handleDiamondTypeChange(d.value === "all" ? null : d.value)}
+                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
+                            isDiamondActive
+                              ? "bg-white border-[#C59B27] text-[#141211] font-bold shadow-2xs"
+                              : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
+                          }`}
+                        >
+                          <span className="w-3.5 h-3.5 rounded-full border border-sky-300 shrink-0" style={{ backgroundColor: d.swatchColor }} />
+                          <span className="text-[11px] leading-tight truncate">{d.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* 2. Product Type Filter */}
+            <section className="pt-6 border-t border-stone-100">
               <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
                 Product Type
               </h4>
@@ -1729,36 +2086,6 @@ const Shop = () => {
               </div>
             </section>
 
-            {/* 2. Metal / Material Filter */}
-            <section className="pt-6 border-t border-stone-100">
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
-                Metal / Material
-              </h4>
-              <div className="grid grid-cols-4 gap-1.5">
-                {[
-                  { id: "All", label: "All" },
-                  { id: "gold", label: "Gold" },
-                  { id: "silver", label: "Silver" },
-                  { id: "diamond", label: "Diamond" },
-                ].map((m) => {
-                  const currentMetal = queryParams.get("metal")?.toLowerCase();
-                  const isActive = m.id === "All" ? !currentMetal : currentMetal === m.id;
-                  return (
-                    <button
-                      key={m.id}
-                      onClick={() => handleMetalChange(m.id)}
-                      className={`py-2.5 px-2 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${isActive
-                          ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
-                        }`}
-                    >
-                      {m.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
-
             {/* 3. Purity Filter */}
             <section className="pt-6 border-t border-stone-100">
               <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
@@ -1769,26 +2096,25 @@ const Shop = () => {
                   const activeMetal = (queryParams.get("metal") || "").toLowerCase();
                   let options = [
                     { label: "All", value: "All" },
-                    { label: "925 Sterling Silver", value: "925" },
-                    { label: "24K Gold", value: "24" },
-                    { label: "22K Gold", value: "22" },
-                    { label: "18K Gold", value: "18" },
-                    { label: "14K Gold", value: "14" },
+                    { label: "925 Silver", value: "925" },
+                    { label: "24 Ct Gold", value: "24" },
+                    { label: "22 Ct Gold", value: "22" },
+                    { label: "18 Ct Gold", value: "18" },
+                    { label: "14 Ct Gold", value: "14" },
                   ];
                   if (activeMetal === "silver") {
                     options = [
                       { label: "All", value: "All" },
-                      { label: "925 Sterling Silver", value: "925" },
+                      { label: "925 Silver", value: "925" },
                       { label: "Fine Silver", value: "fine" },
-                      { label: "800 Silver", value: "800" },
                     ];
                   } else if (activeMetal === "gold") {
                     options = [
                       { label: "All", value: "All" },
-                      { label: "24K Gold", value: "24" },
-                      { label: "22K Gold", value: "22" },
-                      { label: "18K Gold", value: "18" },
-                      { label: "14K Gold", value: "14" },
+                      { label: "24 Ct Gold", value: "24" },
+                      { label: "22 Ct Gold", value: "22" },
+                      { label: "18 Ct Gold", value: "18" },
+                      { label: "14 Ct Gold", value: "14" },
                     ];
                   } else if (activeMetal === "diamond") {
                     options = [

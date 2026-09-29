@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, Heart, ShoppingCart, User, Users, Menu, X, ChevronDown, ChevronRight, Bell, Sparkles, Coins, Gem, Droplet, LifeBuoy, Sun, Hexagon, Gift, MoreHorizontal, ShoppingBag, Info, Landmark } from 'lucide-react';
+import { Search, Heart, ShoppingCart, User, Users, Menu, X, ChevronDown, ChevronRight, Bell, Sparkles, Coins, Gem, Droplet, LifeBuoy, Sun, Hexagon, Gift, MoreHorizontal, ShoppingBag, Info, Landmark, Tag } from 'lucide-react';
 import { useShop } from '../../../context/ShopContext';
 import { useNotification } from '../../../context/NotificationContext';
 import defaultLogo from '@/assets/Alankar jewllers.png';
@@ -46,6 +46,15 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showMobileSearch, setShowMobileSearch] = useState(false);
     const [expandedSections, setExpandedSections] = useState({});
+    const [isMobileGiftingOpen, setIsMobileGiftingOpen] = useState(false);
+
+    const isUnder50kActive = useMemo(() => {
+        if (location.pathname !== '/shop') return false;
+        const params = new URLSearchParams(location.search);
+        const pMax = params.get('price_max') || params.get('maxPrice') || params.get('priceMax');
+        const pMin = params.get('price_min') || params.get('minPrice') || params.get('priceMin');
+        return Number(pMax) === 50000 && (!pMin || Number(pMin) <= 0);
+    }, [location.pathname, location.search]);
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
@@ -760,48 +769,146 @@ const Navbar = () => {
                                         { label: 'Rings', path: '/shop?category=rings', icon: LifeBuoy },
                                         { label: 'Daily Wear', path: '/shop?category=daily-wear', icon: Sun },
                                         { label: 'Wedding', path: '/shop?category=wedding', icon: Heart },
-                                        { label: 'Gifts for Him', path: '/category/men', icon: Gift },
-                                        { label: 'Gifts for Her', path: '/category/women', icon: Gift },
-                                        { label: 'Gifts for Family', path: '/category/family', icon: Users },
+                                        {
+                                            label: 'Gifting',
+                                            icon: Gift,
+                                            isDropdown: true,
+                                            children: [
+                                                { label: 'Gift for Her', subtitle: "Timeless pieces she'll cherish", path: '/category/women' },
+                                                { label: 'Gift for Him', subtitle: 'Thoughtful jewellery for him', path: '/category/men' },
+                                                { label: 'Gift for Family', subtitle: 'Celebrate every family occasion', path: '/category/family' },
+                                            ]
+                                        },
+                                        {
+                                            label: 'Jewellery Under ₹50K',
+                                            path: '/shop?price_max=50000',
+                                            icon: Tag,
+                                            isUnder50k: true
+                                        },
                                         { label: 'About Us', path: '/about', icon: Info }
-                                    ].map((item, index) => (
-                                        <Link
-                                            key={index}
-                                            to={item.path}
-                                            onClick={() => {
-                                                setIsMenuOpen(false);
-                                                if (item.label === 'Gold' || item.label === 'Bullions') updateActiveMetal('gold');
-                                                if (item.label === 'Silver') updateActiveMetal('silver');
-                                                if (item.label === 'Diamond') updateActiveMetal('diamond');
-                                                if (item.label === 'Gems') updateActiveMetal('gems');
-                                            }}
-                                            className={`flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group border-b border-[#E8DFD0] last:border-0 relative overflow-hidden ${item.label === 'Gold' ? 'bg-gradient-to-r from-amber-50 to-white hover:from-amber-100 border-amber-200' :
+                                    ].map((item, index) => {
+                                        if (item.isDropdown) {
+                                            const isGiftingActive = location.pathname.startsWith('/category/men') ||
+                                                location.pathname.startsWith('/category/women') ||
+                                                location.pathname.startsWith('/category/family') ||
+                                                location.pathname.startsWith('/gift');
+
+                                            return (
+                                                <div key={index} className="border-b border-[#E8DFD0] last:border-0">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setIsMobileGiftingOpen((prev) => !prev)}
+                                                        className={`w-full flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group relative overflow-hidden ${
+                                                            isGiftingActive
+                                                                ? 'bg-gradient-to-r from-amber-50 to-white text-[#C59B27] border border-amber-200'
+                                                                : 'text-gray-800 hover:bg-white hover:text-[#C59B27]'
+                                                        }`}
+                                                    >
+                                                        <div className="flex items-center gap-5 relative z-10">
+                                                            <item.icon className={`w-5 h-5 transition-colors ${
+                                                                isGiftingActive ? 'text-[#C59B27]' : 'text-gray-600 group-hover:text-[#C59B27]'
+                                                            }`} strokeWidth={1.5} />
+                                                            <span className={`text-[15px] tracking-wide ${
+                                                                isGiftingActive ? 'text-[#C59B27] font-bold' : 'font-medium text-gray-800 group-hover:font-semibold group-hover:text-[#C59B27]'
+                                                            }`}>
+                                                                {item.label}
+                                                            </span>
+                                                        </div>
+                                                        <ChevronDown
+                                                            className={`w-4 h-4 text-gray-900 group-hover:text-[#C59B27] transition-transform duration-300 relative z-10 ${
+                                                                isMobileGiftingOpen ? 'rotate-180 text-[#C59B27]' : ''
+                                                            }`}
+                                                            strokeWidth={2.5}
+                                                        />
+                                                    </button>
+
+                                                    <AnimatePresence>
+                                                        {isMobileGiftingOpen && (
+                                                            <motion.div
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: 'auto', opacity: 1 }}
+                                                                exit={{ height: 0, opacity: 0 }}
+                                                                className="overflow-hidden pl-12 pr-2 pb-2 space-y-1"
+                                                            >
+                                                                {item.children.map((child, cIdx) => {
+                                                                    const isChildActive = location.pathname === child.path;
+                                                                    return (
+                                                                        <Link
+                                                                            key={cIdx}
+                                                                            to={child.path}
+                                                                            onClick={() => setIsMenuOpen(false)}
+                                                                            className={`block p-2.5 rounded-lg transition-colors ${
+                                                                                isChildActive ? 'bg-[#FAF5ED] text-[#C59B27]' : 'hover:bg-gray-50 text-gray-700'
+                                                                            }`}
+                                                                        >
+                                                                            <div className="text-[13.5px] font-semibold flex items-center justify-between">
+                                                                                <span>{child.label}</span>
+                                                                                <ChevronRight className="w-3.5 h-3.5 text-[#C59B27]" />
+                                                                            </div>
+                                                                            <p className="text-[11px] text-[#8C827A] mt-0.5 font-normal">
+                                                                                {child.subtitle}
+                                                                            </p>
+                                                                        </Link>
+                                                                    );
+                                                                })}
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </div>
+                                            );
+                                        }
+
+                                        const isItemActiveUnder50k = item.isUnder50k && isUnder50kActive;
+
+                                        return (
+                                            <Link
+                                                key={index}
+                                                to={item.path}
+                                                onClick={() => {
+                                                    setIsMenuOpen(false);
+                                                    if (item.label === 'Gold' || item.label === 'Bullions') updateActiveMetal('gold');
+                                                    if (item.label === 'Silver') updateActiveMetal('silver');
+                                                    if (item.label === 'Diamond') updateActiveMetal('diamond');
+                                                    if (item.label === 'Gems') updateActiveMetal('gems');
+                                                }}
+                                                className={`flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group border-b border-[#E8DFD0] last:border-0 relative overflow-hidden ${
+                                                    item.label === 'Gold' ? 'bg-gradient-to-r from-amber-50 to-white hover:from-amber-100 border-amber-200' :
                                                     item.label === 'Silver' ? 'bg-gradient-to-r from-slate-50 to-white hover:from-slate-100 border-slate-200' :
                                                     item.label === 'Diamond' ? 'bg-gradient-to-r from-sky-50/70 via-[#FAFBFD] to-white hover:from-sky-100/70 border-sky-200' :
                                                     item.label === 'Gems' ? 'bg-gradient-to-r from-emerald-50/70 via-[#FAFBFD] to-white hover:from-emerald-100/70 border-emerald-200' :
                                                     item.label === 'Bullions' ? 'bg-gradient-to-r from-[#FAF8F5] via-white to-amber-50/50 hover:from-amber-100/60 border-amber-200/80' :
+                                                    isItemActiveUnder50k ? 'bg-gradient-to-r from-amber-50 to-white text-[#C59B27] border border-amber-200' :
                                                         'text-gray-800 hover:bg-white hover:text-[#C59B27]'
                                                 }`}
-                                        >
-                                            <div className="flex items-center gap-5 relative z-10">
-                                                <item.icon className={`w-5 h-5 transition-colors ${item.label === 'Gold' ? 'text-amber-500 group-hover:text-amber-600 animate-pulse' :
+                                            >
+                                                <div className="flex items-center gap-5 relative z-10">
+                                                    <item.icon className={`w-5 h-5 transition-colors ${
+                                                        item.label === 'Gold' ? 'text-amber-500 group-hover:text-amber-600 animate-pulse' :
                                                         item.label === 'Silver' ? 'text-slate-400 group-hover:text-slate-600 animate-pulse' :
                                                         item.label === 'Diamond' ? 'text-sky-600 group-hover:text-sky-700 animate-pulse' :
                                                         item.label === 'Gems' ? 'text-emerald-600 group-hover:text-emerald-700 animate-pulse' :
                                                         item.label === 'Bullions' ? 'text-[#C59B27] group-hover:text-[#141211]' :
+                                                        isItemActiveUnder50k ? 'text-[#C59B27]' :
                                                             'text-gray-600 group-hover:text-[#C59B27]'
                                                     }`} strokeWidth={1.5} />
-                                                <span className={`text-[15px] tracking-wide ${item.label === 'Gold' ? 'text-amber-700 font-bold group-hover:text-amber-800' :
+                                                    <span className={`text-[15px] tracking-wide ${
+                                                        item.label === 'Gold' ? 'text-amber-700 font-bold group-hover:text-amber-800' :
                                                         item.label === 'Silver' ? 'text-slate-600 font-bold group-hover:text-slate-800' :
                                                         item.label === 'Diamond' ? 'text-stone-900 font-bold group-hover:text-[#C6A04A]' :
                                                         item.label === 'Gems' ? 'text-stone-900 font-bold group-hover:text-emerald-700' :
                                                         item.label === 'Bullions' ? 'text-[#141211] font-bold group-hover:text-[#C59B27]' :
+                                                        isItemActiveUnder50k ? 'text-[#C59B27] font-bold' :
                                                             'font-medium text-gray-800 group-hover:font-semibold group-hover:text-[#C59B27]'
-                                                    }`}>{item.label}</span>
-                                            </div>
-                                            <ChevronRight className="w-4 h-4 text-gray-900 group-hover:text-[#C59B27] transition-colors relative z-10" strokeWidth={2.5} />
-                                        </Link>
-                                    ))}
+                                                    }`}>
+                                                        {item.isUnder50k ? 'JEWELLERY UNDER ₹50K' : item.label}
+                                                    </span>
+                                                </div>
+                                                <ChevronRight className={`w-4 h-4 transition-colors relative z-10 ${
+                                                    isItemActiveUnder50k ? 'text-[#C59B27]' : 'text-gray-900 group-hover:text-[#C59B27]'
+                                                }`} strokeWidth={2.5} />
+                                            </Link>
+                                        );
+                                    })}
                                 </nav>
                             </motion.div>
                         </>

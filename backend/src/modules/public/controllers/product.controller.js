@@ -28,8 +28,9 @@ const normalizeGoldKarat = (value) => {
 const normalizeSilverTier = (value) => {
   const normalized = String(value || "").trim().toLowerCase();
   if (!normalized) return "";
-  if (normalized === "sterling" || normalized === "925" || normalized.includes("sterling")) return "sterling";
-  if (normalized === "fine" || normalized.includes("fine")) return "fine";
+  if (normalized === "sterling" || normalized === "925" || normalized.includes("sterling") || normalized.includes("925")) return "sterling";
+  if (normalized === "fine" || normalized.includes("fine") || normalized === "999") return "fine";
+  if (normalized === "800" || normalized.includes("800")) return "800";
   return "";
 };
 
@@ -103,9 +104,22 @@ exports.getProducts = async (req, res) => {
 
     // 3. Price Range Filter (matches any variant price)
     if (effectiveMinPrice || effectiveMaxPrice) {
-      query["variants.price"] = {};
-      if (effectiveMinPrice) query["variants.price"].$gte = Number(effectiveMinPrice);
-      if (effectiveMaxPrice) query["variants.price"].$lte = Number(effectiveMaxPrice);
+      const minPrice = effectiveMinPrice ? Number(effectiveMinPrice) : null;
+      const maxPrice = effectiveMaxPrice ? Number(effectiveMaxPrice) : null;
+
+      const priceCondition = {};
+      if (minPrice && minPrice > 0) {
+        priceCondition.$gte = minPrice;
+      } else {
+        // Exclude ₹0, missing or negative prices when a price filter is applied
+        priceCondition.$gt = 0;
+      }
+      if (maxPrice && maxPrice > 0) {
+        priceCondition.$lte = maxPrice;
+      }
+      andFilters.push({
+        variants: { $elemMatch: { price: priceCondition } }
+      });
     }
 
     // Exclude unrelated categories (e.g. bags, clutches, potlis) unless explicitly searched for
@@ -153,12 +167,15 @@ exports.getProducts = async (req, res) => {
       }
     }
 
-    // 3.1 Metal + purity filters
+    // 3.1 Metal + purity + tone + silver_type + diamondType filters
+    const rawSilverType = silver_type || req.query.silverType || "";
+    const rawDiamondType = diamondType || req.query.diamond_type || "";
+
     // Backwards-compat: older links may pass karat/silver_type without metal.
-    // In that case, infer metal from the purity param to avoid silently returning all products.
-    const effectivePurity = purity || karat || silver_type;
+    // In that case, infer metal from the purity/type param to avoid silently returning all products.
+    const effectivePurity = purity || karat || rawSilverType;
     const inferredMetal = !metal
-      ? (karat ? "gold" : (silver_type ? "silver" : ""))
+      ? (karat ? "gold" : (rawSilverType ? "silver" : (rawDiamondType ? "diamond" : (tone || settingMetal ? "gold" : ""))))
       : "";
 
     const effectiveMetal = metal || inferredMetal;
@@ -181,6 +198,24 @@ exports.getProducts = async (req, res) => {
             { name: { $not: { $regex: "plated|alloy|imitation|oxydis|oxidi", $options: "i" } } }
           ]
         });
+
+        // Specific Diamond Origin Filter (Natural vs Lab-Grown)
+        const effectiveDiamondOrigin = String(rawDiamondType || "").trim().toLowerCase();
+        if (effectiveDiamondOrigin === "natural") {
+          andFilters.push({
+            $or: [
+              { diamondType: "natural" },
+              { "variants.diamondType": "natural" }
+            ]
+          });
+        } else if (effectiveDiamondOrigin === "lab_grown" || effectiveDiamondOrigin === "lab-grown" || effectiveDiamondOrigin === "labgrown") {
+          andFilters.push({
+            $or: [
+              { diamondType: "lab_grown" },
+              { "variants.diamondType": "lab_grown" }
+            ]
+          });
+        }
 
         if (effectivePurity) {
           andFilters.push({
@@ -289,6 +324,17 @@ exports.getProducts = async (req, res) => {
             ]
           });
         }
+      } else if (normalized === "gems" || normalized === "gemstone" || normalized === "gemstones") {
+        andFilters.push({
+          $or: [
+            { gemstone: { $exists: true, $nin: [null, "", "none"] } },
+            { gemstones: { $exists: true, $nin: [null, "", "none"] } },
+            { gemstoneType: { $exists: true, $nin: [null, "", "none"] } },
+            { material: { $regex: "gem|gemstone|emerald|ruby|sapphire|pearl|topaz|amethyst", $options: "i" } },
+            { categorySlug: { $regex: "gem", $options: "i" } },
+            { category: { $regex: "gem", $options: "i" } }
+          ]
+        });
       }
     } else if (effectivePurity) {
       // General purity filter when metal is not strictly filtered
@@ -315,7 +361,7 @@ exports.getProducts = async (req, res) => {
     }
 
     // 3.3 Stone / Diamond Type Filter
-    const effectiveStone = stone || diamondType;
+    const effectiveStone = stone || diamondType || req.query.diamond_type;
     if (effectiveStone && effectiveStone !== "All" && effectiveStone !== "all") {
       const requested = String(effectiveStone).trim().toLowerCase();
       if (requested === "none") {

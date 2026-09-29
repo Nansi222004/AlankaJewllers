@@ -5,7 +5,7 @@ import { useShop } from '../../../context/ShopContext';
 import AllJewelleryMegaMenu from './AllJewelleryMegaMenu';
 import AllJewelleryMenu from './CategoryNavComponents/AllJewelleryMenu';
 import BullionsMenu from './CategoryNavComponents/BullionsMenu';
-import FamilyMegaMenu from './FamilyMegaMenu';
+import GiftingMegaMenu from './GiftingMegaMenu';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CategoryNav = ({ showMetalToggle = true }) => {
@@ -24,9 +24,8 @@ const CategoryNav = ({ showMetalToggle = true }) => {
         { id: 'cat', name: 'Shop by Category', path: '/collections', hasChevron: true },
         { id: 'all', name: 'All Jewellery', path: '/shop', hasChevron: true },
         { id: 'bullions', name: 'Bullions', path: '/shop?metal=gold&karat=24', hasChevron: true },
-        { id: 'him', name: 'Gifts for Him', path: '/category/men', hasChevron: false },
-        { id: 'her', name: 'Gifts for Her', path: '/category/women', hasChevron: false },
-        { id: 'family', name: 'Gifts for Family', path: '/category/family', hasChevron: false },
+        { id: 'gifting', name: 'Gifting', path: '/category/women', hasChevron: true },
+        { id: 'under50k', name: 'Jewellery Under ₹50K', path: '/shop?price_max=50000', hasChevron: false },
         { id: 'exclusive', name: 'Exclusive', fullSuffix: ' Collections', path: '/shop?search=exclusive', hasChevron: false },
         { id: 'more', name: 'More', fullSuffix: ' at Alankar Jewellers', path: '/about', hasChevron: false },
     ];
@@ -47,7 +46,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
         const spaceBelow = Math.max(260, Math.floor(viewportHeight - rect.bottom - margin));
 
         // Desired target width for each menu type
-        const targetWidth = hoveredItem === 'cat' ? 920 : (hoveredItem === 'all' ? 820 : (hoveredItem === 'bullions' ? 620 : 500));
+        const targetWidth = hoveredItem === 'cat' ? 920 : (hoveredItem === 'all' ? 820 : (hoveredItem === 'bullions' ? 620 : (hoveredItem === 'gifting' ? 680 : 500)));
         const maxWidth = Math.min(targetWidth, viewportWidth - margin * 2);
 
         // Calculate horizontal offset so menu never extends beyond right or left viewport edges
@@ -65,6 +64,27 @@ const CategoryNav = ({ showMetalToggle = true }) => {
             maxWidth
         });
     }, [hoveredItem]);
+
+    const isItemActive = (item) => {
+        if (item.id === 'under50k') {
+            const params = new URLSearchParams(location.search);
+            const pMax = params.get('price_max') || params.get('maxPrice') || params.get('priceMax');
+            const pMin = params.get('price_min') || params.get('minPrice') || params.get('priceMin');
+            return location.pathname === '/shop' && Number(pMax) === 50000 && (!pMin || Number(pMin) <= 0);
+        }
+        if (item.id === 'gifting') {
+            return (
+                location.pathname.startsWith('/category/men') ||
+                location.pathname.startsWith('/category/women') ||
+                location.pathname.startsWith('/category/family') ||
+                location.pathname.startsWith('/gift-for-him') ||
+                location.pathname.startsWith('/gift-for-her') ||
+                location.pathname.startsWith('/gift-for-family') ||
+                location.pathname.startsWith('/gift')
+            );
+        }
+        return false;
+    };
 
     useEffect(() => {
         updateMenuPlacement();
@@ -103,93 +123,109 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                 {/* Navigation Links - Responsive without left-clipping on any screen */}
                 <div className={`w-full ${hoveredItem ? 'overflow-visible' : 'overflow-x-auto lg:overflow-visible'} category-nav-scroll scroll-smooth py-1 flex items-center`}>
                     <ul
-                        className="flex items-center w-max min-w-full justify-start lg:justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-7 xl:gap-9 2xl:gap-12 flex-nowrap py-1 px-1 sm:px-2"
+                        className="flex items-center w-max min-w-full justify-start lg:justify-center gap-3 sm:gap-4 md:gap-4 lg:gap-5 xl:gap-7 2xl:gap-10 flex-nowrap py-1 px-1 sm:px-2"
                         style={{ justifyContent: 'safe center' }}
                     >
-                        {navItems.map((item) => (
-                            <li
-                                key={item.id}
-                                ref={(el) => { itemRefs.current[item.id] = el; }}
-                                onMouseEnter={() => {
-                                    // 'Shop by Category', 'All Jewellery', and 'Bullions' show dropdowns on hover
-                                    if (item.id === 'cat' || item.id === 'all' || item.id === 'bullions') {
-                                        setHoveredItem(item.id);
-                                    } else {
-                                        setHoveredItem(null);
-                                    }
-                                }}
-                                onMouseLeave={() => setHoveredItem(null)}
-                                className="relative py-1 shrink-0"
-                            >
-                                <Link
-                                    to={item.path}
-                                    onClick={(e) => {
-                                        if (item.hasChevron && window.innerWidth < 1024) {
-                                            e.preventDefault();
-                                            setHoveredItem(hoveredItem === item.id ? null : item.id);
+                        {navItems.map((item) => {
+                            const active = isItemActive(item);
+                            return (
+                                <li
+                                    key={item.id}
+                                    ref={(el) => { itemRefs.current[item.id] = el; }}
+                                    onMouseEnter={() => {
+                                        // 'Shop by Category', 'All Jewellery', 'Bullions', and 'Gifting' show dropdowns on hover
+                                        if (item.id === 'cat' || item.id === 'all' || item.id === 'bullions' || item.id === 'gifting') {
+                                            setHoveredItem(item.id);
+                                        } else {
+                                            setHoveredItem(null);
                                         }
                                     }}
-                                    className="text-[10.5px] sm:text-[11px] md:text-[11.5px] lg:text-[12px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-tight sm:tracking-normal xl:tracking-[0.04em] font-sans text-[#242424] hover:text-[#C6A04A] flex items-center gap-0.5 sm:gap-1 transition-all duration-200 whitespace-nowrap"
+                                    onMouseLeave={() => setHoveredItem(null)}
+                                    className="relative py-1 shrink-0"
                                 >
-                                    <span>{item.name}</span>
-                                    {item.fullSuffix && <span className="hidden 2xl:inline">{item.fullSuffix}</span>}
-                                    {item.hasChevron && (
-                                        <ChevronDown
-                                            className={`w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#77716A] shrink-0 transition-transform duration-300 ${
-                                                hoveredItem === item.id ? 'rotate-180 text-[#C6A04A]' : ''
-                                            }`}
-                                        />
-                                    )}
-                                </Link>
+                                    <Link
+                                        to={item.path}
+                                        onClick={(e) => {
+                                            if (item.id === 'gifting') {
+                                                e.preventDefault();
+                                                setHoveredItem(hoveredItem === item.id ? null : item.id);
+                                                return;
+                                            }
+                                            if (item.hasChevron && window.innerWidth < 1024) {
+                                                e.preventDefault();
+                                                setHoveredItem(hoveredItem === item.id ? null : item.id);
+                                            }
+                                        }}
+                                        className={`text-[10.5px] sm:text-[11px] md:text-[11.5px] lg:text-[12px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-tight sm:tracking-normal xl:tracking-[0.04em] font-sans flex items-center gap-0.5 sm:gap-1 transition-all duration-200 whitespace-nowrap ${
+                                            active || hoveredItem === item.id ? 'text-[#C6A04A]' : 'text-[#242424] hover:text-[#C6A04A]'
+                                        }`}
+                                    >
+                                        <span>{item.name}</span>
+                                        {item.fullSuffix && <span className="hidden 2xl:inline">{item.fullSuffix}</span>}
+                                        {item.hasChevron && (
+                                            <ChevronDown
+                                                className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-300 ${
+                                                    hoveredItem === item.id ? 'rotate-180 text-[#C6A04A]' : (active ? 'text-[#C6A04A]' : 'text-[#77716A]')
+                                                }`}
+                                            />
+                                        )}
+                                    </Link>
 
-                                {/* Dropdowns Mapping */}
-                                <AnimatePresence>
-                                    {hoveredItem === item.id && (
-                                        <div 
-                                            className="absolute top-full pt-2 z-[110]"
-                                            style={{
-                                                left: `${menuPlacement.shiftX || 0}px`
-                                            }}
-                                            data-lenis-prevent
-                                        >
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 5 }}
-                                                className="bg-white shadow-[0_20px_45px_rgba(23,23,23,0.12)] border border-[#E8E0D2] overflow-hidden rounded-b-2xl max-w-[calc(100vw-2rem)]"
+                                    {/* Dropdowns Mapping */}
+                                    <AnimatePresence>
+                                        {hoveredItem === item.id && (
+                                            <div 
+                                                className="absolute top-full pt-2 z-[110]"
                                                 style={{
-                                                    maxHeight: `${menuPlacement.availableHeight}px`
+                                                    left: `${menuPlacement.shiftX || 0}px`
                                                 }}
                                                 data-lenis-prevent
                                             >
-                                                {item.id === 'cat' && (
-                                                    <AllJewelleryMenu 
-                                                        resetMenu={resetMenu} 
-                                                        availableHeight={menuPlacement.availableHeight}
-                                                        maxWidth={menuPlacement.maxWidth}
-                                                    />
-                                                )}
-                                                {item.id === 'all' && (
-                                                    <AllJewelleryMegaMenu 
-                                                        resetMenu={resetMenu} 
-                                                        availableHeight={menuPlacement.availableHeight}
-                                                        maxWidth={menuPlacement.maxWidth}
-                                                    />
-                                                )}
-                                                {item.id === 'bullions' && (
-                                                    <BullionsMenu 
-                                                        resetMenu={resetMenu} 
-                                                        availableHeight={menuPlacement.availableHeight}
-                                                        maxWidth={menuPlacement.maxWidth}
-                                                    />
-                                                )}
-                                                {item.id === 'family' && <FamilyMegaMenu resetMenu={resetMenu} />}
-                                            </motion.div>
-                                        </div>
-                                    )}
-                                </AnimatePresence>
-                            </li>
-                        ))}
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 5 }}
+                                                    className="bg-white shadow-[0_20px_45px_rgba(23,23,23,0.12)] border border-[#E8E0D2] overflow-hidden rounded-b-2xl max-w-[calc(100vw-2rem)]"
+                                                    style={{
+                                                        maxHeight: `${menuPlacement.availableHeight}px`
+                                                    }}
+                                                    data-lenis-prevent
+                                                >
+                                                    {item.id === 'cat' && (
+                                                        <AllJewelleryMenu 
+                                                            resetMenu={resetMenu} 
+                                                            availableHeight={menuPlacement.availableHeight}
+                                                            maxWidth={menuPlacement.maxWidth}
+                                                        />
+                                                    )}
+                                                    {item.id === 'all' && (
+                                                        <AllJewelleryMegaMenu 
+                                                            resetMenu={resetMenu} 
+                                                            availableHeight={menuPlacement.availableHeight}
+                                                            maxWidth={menuPlacement.maxWidth}
+                                                        />
+                                                    )}
+                                                    {item.id === 'bullions' && (
+                                                        <BullionsMenu 
+                                                            resetMenu={resetMenu} 
+                                                            availableHeight={menuPlacement.availableHeight}
+                                                            maxWidth={menuPlacement.maxWidth}
+                                                        />
+                                                    )}
+                                                    {item.id === 'gifting' && (
+                                                        <GiftingMegaMenu 
+                                                            resetMenu={resetMenu} 
+                                                            availableHeight={menuPlacement.availableHeight}
+                                                            maxWidth={menuPlacement.maxWidth}
+                                                        />
+                                                    )}
+                                                </motion.div>
+                                            </div>
+                                        )}
+                                    </AnimatePresence>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
 
