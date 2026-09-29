@@ -110,9 +110,9 @@ const BestStylesSection = ({ sectionData = null }) => {
                         {sectionSubtitle ? (
                             <p className="text-[10px] md:text-[11px] font-lato font-bold uppercase tracking-[0.25em] text-gray-400 mb-2">{sectionSubtitle}</p>
                         ) : null}
-                        <Link to={ctaPath} className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-[#C59B27] hover:text-[#A07810] transition-all flex items-center gap-1.5 group">
+                        <Link to={ctaPath} className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-brand-champagne hover:text-[#A07810] transition-all flex items-center gap-1.5 group">
                             {ctaLabel}
-                            <div className="w-3.5 h-3.5 rounded-full bg-[#C59B27]/10 flex items-center justify-center group-hover:bg-[#C59B27] group-hover:text-[#141211] transition-all">
+                            <div className="w-3.5 h-3.5 rounded-full bg-brand-champagne/10 flex items-center justify-center group-hover:bg-brand-champagne group-hover:text-brand-espresso transition-all">
                                 <ChevronRight className="w-2 h-2" />
                             </div>
                         </Link>

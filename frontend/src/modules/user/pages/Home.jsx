@@ -62,7 +62,7 @@ const Home = () => {
     }
 
     return (
-        <div className="bg-white font-body text-stone-900 relative selection:bg-[#C6A04A] selection:text-[#171717]">
+        <div className="bg-white font-body text-stone-900 relative selection:bg-brand-champagne selection:text-brand-espresso">
             {isHomepageCmsError && (
                 <div className="mx-auto max-w-[1450px] px-4 pt-4">
                     <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] text-amber-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">

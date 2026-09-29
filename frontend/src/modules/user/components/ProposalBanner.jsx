@@ -50,37 +50,37 @@ const ProposalBanner = () => {
     const bannerLink = bannerItem?.path || '/shop';
 
     return (
-        <section className="w-full bg-[#141211] border-y border-[#C59B27]/20 relative overflow-hidden">
+        <section className="w-full bg-brand-plum border-y border-brand-champagne/20 relative overflow-hidden">
             {/* Background Gradient Mesh */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#141211] via-[#1C1917] to-[#141211] opacity-95"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-plum via-brand-plum to-brand-plum opacity-95"></div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="flex flex-col md:flex-row items-center justify-between py-8 md:py-16 gap-8">
 
                     {/* Visual Section - Left Side */}
                     <div className="w-full md:w-1/2 relative group md:pt-10">
-                        <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-[#C59B27]/30">
+                        <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-brand-champagne/30">
                             <img
                                 src={bannerImage}
                                 alt="Proposal Ring"
                                 className="w-full h-[250px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-1000"
                             />
                             {/* Inner Glow */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-[#141211]/60 to-transparent pointer-events-none"></div>
+                            <div className="absolute inset-0 bg-gradient-to-tr from-brand-plum/60 to-transparent pointer-events-none"></div>
                         </div>
                         {/* Decorative Circle */}
-                        <div className="absolute -z-10 top-0 -left-12 w-64 h-64 bg-[#C59B27] opacity-15 blur-[100px] rounded-full"></div>
+                        <div className="absolute -z-10 top-0 -left-12 w-64 h-64 bg-brand-champagne opacity-15 blur-[100px] rounded-full"></div>
                     </div>
 
                     {/* Content Section - Right Side */}
                     <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
-                        <div className="inline-block px-4 py-1.5 bg-[#C59B27]/10 border border-[#C59B27]/40 rounded-full mb-2 backdrop-blur-sm">
-                            <span className="text-[#E8D198] text-xs md:text-sm font-serif tracking-[0.3em] uppercase">The Diamond Story</span>
+                        <div className="inline-block px-4 py-1.5 bg-brand-champagne/10 border border-brand-champagne/40 rounded-full mb-2 backdrop-blur-sm">
+                            <span className="text-brand-champagne-light text-xs md:text-sm font-serif tracking-[0.3em] uppercase">The Diamond Story</span>
                         </div>
 
                         <h2 className="font-display text-4xl md:text-7xl text-white leading-[1.1] tracking-tight">
                             {sectionData?.label || "Discover Your Unique Story in Diamonds"}
-                            <span className="block italic font-serif font-light text-[#E8D198] text-3xl md:text-5xl mt-2">Timeless Elegance</span>
+                            <span className="block italic font-serif font-light text-brand-champagne-light text-3xl md:text-5xl mt-2">Timeless Elegance</span>
                         </h2>
 
                         <p className="text-gray-300 font-serif text-lg md:text-xl max-w-lg mx-auto md:mx-0 leading-relaxed italic">
@@ -90,7 +90,7 @@ const ProposalBanner = () => {
                         <div className="pt-4">
                             <Link
                                 to={bannerLink}
-                                className="inline-flex items-center gap-3 bg-[#C59B27] text-[#141211] px-8 py-4 rounded-full font-bold hover:bg-[#D4AF37] transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(0,0,0,0.4)] group"
+                                className="inline-flex items-center gap-3 bg-brand-champagne text-brand-espresso px-8 py-4 rounded-full font-bold hover:bg-[#D4AF37] transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(0,0,0,0.4)] group"
                             >
                                 <span className="tracking-wide">Explore Collection</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

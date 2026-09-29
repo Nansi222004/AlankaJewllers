@@ -98,7 +98,7 @@ const NewLaunchSection = () => {
 
     return (
         <section 
-            className="pt-6 pb-2 md:pt-8 md:pb-3 bg-[#141211] border-y border-[#C59B27]/20 relative overflow-hidden"
+            className="pt-6 pb-2 md:pt-8 md:pb-3 bg-brand-plum border-y border-brand-champagne/20 relative overflow-hidden"
             style={{
                 '--radius': `${radius}px`,
                 '--cardW': `${cardWidth}px`,
@@ -152,10 +152,10 @@ const NewLaunchSection = () => {
                     viewport={{ once: true }}
                     className="relative flex flex-col items-center justify-center text-center"
                 >
-                    <div className="inline-block bg-[#C59B27]/10 border border-[#C59B27]/30 text-[#E8D198] px-4 py-0.5 font-serif tracking-[0.2em] text-[9px] uppercase rounded-full shadow-sm mb-2 md:mb-3">
+                    <div className="inline-block bg-brand-champagne/10 border border-brand-champagne/30 text-brand-champagne-light px-4 py-0.5 font-serif tracking-[0.2em] text-[9px] uppercase rounded-full shadow-sm mb-2 md:mb-3">
                         {sectionData?.settings?.badge || sectionData?.settings?.subtitle || sectionData?.subtitle || "New Launch"}
                     </div>
-                    <h3 className="font-serif text-[#FAF8F5] text-2xl md:text-4xl font-light tracking-tight uppercase drop-shadow-sm">
+                    <h3 className="font-serif text-brand-pearl text-2xl md:text-4xl font-light tracking-tight uppercase drop-shadow-sm">
                         {sectionData?.settings?.title || sectionData?.label || "Limited Edition"}
                     </h3>
                 </motion.div>
@@ -177,9 +177,9 @@ const NewLaunchSection = () => {
                                         transform: `rotateY(${angle}deg) translateZ(var(--radius))`,
                                     }}
                                 >
-                                    <Link to={itemPath} className="block w-full h-full relative isolate rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer bg-[#1C1917] border border-[#C59B27]/20">
+                                    <Link to={itemPath} className="block w-full h-full relative isolate rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer bg-brand-plum border border-brand-champagne/20">
                                         {/* Image */}
-                                        <div className="absolute inset-0 bg-[#1C1917]">
+                                        <div className="absolute inset-0 bg-brand-plum">
                                             <img
                                                 src={item.image}
                                                 alt={itemLabel}
@@ -192,22 +192,22 @@ const NewLaunchSection = () => {
 
                                         {/* Text Section overlay at bottom */}
                                         <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5 flex flex-col items-center justify-end text-center z-10">
-                                            <h4 className="font-serif font-medium text-base md:text-xl text-[#FAF8F5] tracking-[0.15em] mb-1.5 md:mb-2 drop-shadow-lg uppercase">
+                                            <h4 className="font-serif font-medium text-base md:text-xl text-brand-pearl tracking-[0.15em] mb-1.5 md:mb-2 drop-shadow-lg uppercase">
                                                 {itemLabel}
                                             </h4>
                                             
                                             {/* Discover/Animated Arrow */}
-                                            <div className="flex items-center gap-2 text-[#E8D198] transition-all duration-500">
-                                                <div className="h-[1px] w-4 bg-[#C59B27]/40 group-hover:w-6 transition-all"></div>
+                                            <div className="flex items-center gap-2 text-brand-champagne-light transition-all duration-500">
+                                                <div className="h-[1px] w-4 bg-brand-champagne/40 group-hover:w-6 transition-all"></div>
                                                 <span className="text-[9px] font-bold uppercase tracking-[0.35em] drop-shadow-md">
                                                     {item.ctaLabel || item.buttonText || 'EXPLORE'}
                                                 </span>
-                                                <div className="h-[1px] w-4 bg-[#C59B27]/40 group-hover:w-6 transition-all"></div>
+                                                <div className="h-[1px] w-4 bg-brand-champagne/40 group-hover:w-6 transition-all"></div>
                                             </div>
                                         </div>
 
                                         {/* Border Glow on Hover */}
-                                        <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#C59B27]/50 rounded-2xl md:rounded-3xl transition-colors duration-500 pointer-events-none"></div>
+                                        <div className="absolute inset-0 border-2 border-transparent group-hover:border-brand-champagne/50 rounded-2xl md:rounded-3xl transition-colors duration-500 pointer-events-none"></div>
                                     </Link>
                                 </div>
                             );

@@ -47,12 +47,12 @@ const RecentlyViewed = () => {
         <div className="mt-8 px-4 max-w-7xl mx-auto mb-20">
             <div className="flex items-end justify-between mb-10">
                 <div className="flex flex-col">
-                    <span className="text-[9px] font-bold text-[#C59B27] uppercase tracking-[0.4em] mb-2">Continue Exploring</span>
+                    <span className="text-[9px] font-bold text-brand-champagne uppercase tracking-[0.4em] mb-2">Continue Exploring</span>
                     <h2 className="text-2xl md:text-3xl font-display font-bold text-stone-900 tracking-tight">Recently Viewed</h2>
                 </div>
                 <button
                     onClick={() => navigate('/shop')}
-                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-stone-400 hover:text-[#C59B27] transition-colors group"
+                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-stone-400 hover:text-brand-champagne transition-colors group"
                 >
                     View All Designs <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -72,7 +72,7 @@ const RecentlyViewed = () => {
                         }}
                         className="w-[100px] md:w-[140px] shrink-0 group cursor-pointer snap-start"
                     >
-                        <div className="aspect-square rounded-[1rem] md:rounded-[1.5rem] overflow-hidden bg-[#FAF8F5] border border-stone-200/70 relative shadow-sm group-hover:shadow-xl transition-all duration-700">
+                        <div className="aspect-square rounded-[1rem] md:rounded-[1.5rem] overflow-hidden bg-brand-pearl border border-stone-200/70 relative shadow-sm group-hover:shadow-xl transition-all duration-700">
                             <img
                                 src={item.image}
                                 alt={item.name}
@@ -83,16 +83,16 @@ const RecentlyViewed = () => {
                             {/* Quick Action Overlay */}
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-[2px]">
                                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
-                                    <Sparkles className="w-4 h-4 text-[#C59B27]" />
+                                    <Sparkles className="w-4 h-4 text-brand-champagne" />
                                 </div>
                             </div>
                         </div>
 
                         <div className="mt-4 px-2">
-                            <h3 className="text-[10px] md:text-xs font-bold text-stone-900 uppercase tracking-widest line-clamp-1 group-hover:text-[#C59B27] transition-colors">
+                            <h3 className="text-[10px] md:text-xs font-bold text-stone-900 uppercase tracking-widest line-clamp-1 group-hover:text-brand-champagne transition-colors">
                                 {item.name}
                             </h3>
-                            <p className="text-[10px] md:text-sm font-bold text-[#141211] mt-1">
+                            <p className="text-[10px] md:text-sm font-bold text-brand-espresso mt-1">
                                 {formatCurrency(item.price)}
                             </p>
                         </div>
@@ -109,7 +109,7 @@ const RecentlyViewed = () => {
                             onClick={() => scrollToDot(idx)}
                             className={`transition-all duration-300 rounded-full ${
                                 activeIndex === idx 
-                                ? 'w-6 h-1.5 bg-[#C59B27]' 
+                                ? 'w-6 h-1.5 bg-brand-champagne' 
                                 : 'w-1.5 h-1.5 bg-stone-200 hover:bg-stone-400'
                             }`}
                             aria-label={`Go to item ${idx + 1}`}

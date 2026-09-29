@@ -44,7 +44,7 @@ const BestStylesPage = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/20" />
                     <div className="absolute bottom-6 md:bottom-12 left-6 md:left-14">
-                        <p className="text-[#E8D198] text-[10px] md:text-[16px] font-bold uppercase tracking-[0.5em] mb-2">
+                        <p className="text-brand-champagne-light text-[10px] md:text-[16px] font-bold uppercase tracking-[0.5em] mb-2">
                             PREMIUM SELECTION
                         </p>
                     </div>
@@ -52,7 +52,7 @@ const BestStylesPage = () => {
 
                 <div 
                     className="relative w-[40%] md:w-[35%] h-full flex flex-col items-center justify-center p-6 text-white"
-                    style={{ background: 'linear-gradient(135deg, #1C1917 0%, #141211 100%)' }}
+                    style={{ background: 'linear-gradient(135deg, #4A3638 0%, #332827 100%)' }}
                 >
                     <div className="absolute top-6 right-6 text-white/5 text-[50px] select-none">✦</div>
                     <div className="text-center">
@@ -62,10 +62,10 @@ const BestStylesPage = () => {
                         <p className="text-white/60 text-[8px] md:text-[12px] uppercase tracking-[0.2em] mb-6">
                             Luxury Crafted for Minimalists
                         </p>
-                        <div className="h-px w-16 bg-[#C59B27] mx-auto mb-8" />
+                        <div className="h-px w-16 bg-brand-champagne mx-auto mb-8" />
                         
                         <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 md:p-8 border border-white/10">
-                            <h2 className="text-[24px] md:text-[40px] font-black text-[#E8D198] leading-none mb-2">
+                            <h2 className="text-[24px] md:text-[40px] font-black text-brand-champagne-light leading-none mb-2">
                                 UPTO 50% OFF
                             </h2>
                             <p className="text-white/40 text-[7px] md:text-[10px] uppercase tracking-widest mb-6">
@@ -75,7 +75,7 @@ const BestStylesPage = () => {
                                 onClick={() => navigate('/shop')}
                                 onMouseEnter={() => setShopNowHover(true)}
                                 onMouseLeave={() => setShopNowHover(false)}
-                                className="bg-white text-[#141211] px-8 py-3 rounded-full text-[9px] md:text-[12px] font-bold uppercase tracking-widest hover:bg-[#C59B27] hover:text-[#141211] transition-all flex items-center gap-2 mx-auto"
+                                className="bg-white text-brand-espresso px-8 py-3 rounded-full text-[9px] md:text-[12px] font-bold uppercase tracking-widest hover:bg-brand-champagne hover:text-brand-espresso transition-all flex items-center gap-2 mx-auto"
                             >
                                 Shop All
                                 <ArrowRight className={`w-4 h-4 transition-transform ${shopNowHover ? 'translate-x-1' : ''}`} />
@@ -95,7 +95,7 @@ const BestStylesPage = () => {
                     <div className="flex items-center gap-4">
                         <span className="text-gray-900 font-bold text-sm tracking-widest uppercase">{filteredProducts.length} Items</span>
                         <div className="h-10 w-px bg-gray-200 hidden md:block" />
-                        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-400 hover:text-black transition-all group font-bold uppercase tracking-widest text-[10px]">
+                        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-400 hover:text-brand-espresso transition-all group font-bold uppercase tracking-widest text-[10px]">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                             Back
                         </button>

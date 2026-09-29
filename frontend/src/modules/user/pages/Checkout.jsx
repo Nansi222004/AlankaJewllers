@@ -310,8 +310,8 @@ const Checkout = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl animate-in fade-in duration-700 bg-white min-h-screen">
-            <h1 className="text-2xl md:text-4xl font-display font-bold text-black mb-8 md:mb-12 text-center uppercase tracking-widest">
+        <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl animate-in fade-in duration-700 bg-brand-pearl text-brand-espresso min-h-screen">
+            <h1 className="text-2xl md:text-4xl font-display font-bold text-brand-espresso mb-8 md:mb-12 text-center uppercase tracking-widest">
                 Checkout
             </h1>
 

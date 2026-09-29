@@ -72,7 +72,7 @@ const GoldLuxuryWithinReach = ({ sectionData = null }) => {
         <section className="w-full py-6 bg-[#F8FFF9] overflow-hidden">
             <div className="max-w-[1450px] mx-auto px-6">
                 <div className="text-center mb-6">
-                    <h2 className="text-xl md:text-2xl font-serif text-black">{sectionTitle}</h2>
+                    <h2 className="text-xl md:text-2xl font-serif text-brand-espresso">{sectionTitle}</h2>
                 </div>
 
                 <motion.div
@@ -96,7 +96,7 @@ const GoldLuxuryWithinReach = ({ sectionData = null }) => {
                              </div>
                         </div>
                         <div className="mt-2 md:mt-3">
-                            <div className="bg-white/90 hover:bg-white text-black px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-all">
+                            <div className="bg-white/90 hover:bg-white text-brand-espresso px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-all">
                                 Shop Now <ArrowRight size={12} />
                             </div>
                         </div>

@@ -61,22 +61,22 @@ const BrandPromises = () => {
         : FALLBACK_PROMISES;
 
     return (
-        <section className="py-12 md:py-20 bg-[#FAF8F5] relative overflow-hidden border-t border-[#E8DFD0]/70">
+        <section className="py-12 md:py-20 bg-brand-pearl relative overflow-hidden border-t border-brand-border/70">
             <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
                 {/* Header */}
                 <div className="text-center mb-10 md:mb-16">
-                    <div className="inline-flex items-center gap-2 mb-2 text-[#C59B27] text-[10px] uppercase font-bold tracking-[0.3em]">
+                    <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
                         <Sparkles className="w-3.5 h-3.5" />
                         <span>The Alankar Jewellers Touch</span>
                     </div>
-                    <h2 className="font-serif text-2xl md:text-4xl text-[#141211] font-normal tracking-tight">
+                    <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
                         {sectionData?.label || 'Our Commitments'}
                     </h2>
-                    <div className="w-12 h-[1px] bg-[#C59B27] mx-auto mt-4" />
+                    <div className="w-12 h-[1px] bg-brand-champagne mx-auto mt-4" />
                 </div>
 
                 {/* ── EDITORIAL COLUMN PILLARS WITH VERTICAL DIVIDERS ── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E8DFD0] border-y border-[#E8DFD0] py-6 md:py-10 bg-white/60 rounded-3xl shadow-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-brand-border border-y border-brand-border py-6 md:py-10 bg-white/60 rounded-3xl shadow-xs">
                     {promises.map((item, index) => {
                         const Icon = iconMap[item.iconKey] || Gem;
 
@@ -90,18 +90,18 @@ const BrandPromises = () => {
                                 className="flex flex-col items-center text-center p-6 md:p-8 group cursor-default"
                             >
                                 {/* Delicate Gold Ring Icon Emblem */}
-                                <div className="w-14 h-14 rounded-full bg-white border border-[#C59B27]/40 shadow-xs flex items-center justify-center text-[#C59B27] mb-5 group-hover:scale-110 group-hover:border-[#C59B27] group-hover:bg-[#141211] group-hover:text-[#E8D198] transition-all duration-500">
+                                <div className="w-14 h-14 rounded-full bg-white border border-brand-champagne/40 shadow-xs flex items-center justify-center text-brand-champagne mb-5 group-hover:scale-110 group-hover:border-brand-champagne group-hover:bg-brand-plum group-hover:text-brand-champagne-light transition-all duration-500">
                                     <Icon strokeWidth={1.5} className="w-6 h-6 transition-transform duration-500" />
                                 </div>
 
                                 {/* Typography */}
                                 <div className="space-y-1.5">
                                     {item.subtitle && (
-                                        <span className="text-[9px] font-sans font-bold uppercase tracking-[0.25em] text-[#8C6A12] block">
+                                        <span className="text-[9px] font-sans font-bold uppercase tracking-[0.25em] text-brand-champagne block">
                                             {item.subtitle}
                                         </span>
                                     )}
-                                    <h3 className="font-serif text-base md:text-lg font-medium text-[#141211] tracking-tight">
+                                    <h3 className="font-serif text-base md:text-lg font-medium text-brand-espresso tracking-tight">
                                         {item.title}
                                     </h3>
                                     {item.desc && (

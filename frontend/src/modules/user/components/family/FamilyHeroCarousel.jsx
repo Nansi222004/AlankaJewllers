@@ -108,9 +108,9 @@ const FamilyHeroCarousel = ({ sectionData }) => {
                 />
 
                 {/* Dark & Elegant Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#141211]/90 via-[#141211]/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-plum/90 via-brand-plum/50 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute inset-0 bg-[#C59B27]/5 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-brand-champagne/5 mix-blend-overlay" />
 
                 {/* Content Overlay */}
                 <div className="relative h-full container mx-auto px-2 md:px-20 flex flex-col justify-center items-start text-left">
@@ -120,13 +120,13 @@ const FamilyHeroCarousel = ({ sectionData }) => {
                         transition={{ duration: 0.8, delay: 0.3 }}
                         className="max-w-xl"
                     >
-                        <span className="inline-block text-[4px] sm:text-[6px] md:text-[10px] text-[#E8D198] tracking-[0.3em] md:tracking-[0.4em] uppercase mb-0 md:mb-4 font-bold border-l-[1px] md:border-l-2 border-[#C59B27]/60 pl-1 md:pl-3">
+                        <span className="inline-block text-[4px] sm:text-[6px] md:text-[10px] text-brand-champagne-light tracking-[0.3em] md:tracking-[0.4em] uppercase mb-0 md:mb-4 font-bold border-l-[1px] md:border-l-2 border-brand-champagne/60 pl-1 md:pl-3">
                             {activeSlide.tag}
                         </span>
 
                         <h1 className="text-sm sm:text-2xl md:text-6xl font-serif text-white tracking-tight font-light leading-none md:leading-[1.1] mb-0.5 md:mb-2 drop-shadow-lg">
                             {activeSlide.title}<br />
-                            <span className="italic text-[#E8D198]">
+                            <span className="italic text-brand-champagne-light">
                                 {activeSlide.titleItalic}
                             </span>
                         </h1>
@@ -140,7 +140,7 @@ const FamilyHeroCarousel = ({ sectionData }) => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => navigate(activeSlide.path)}
-                                className="px-1.5 py-0.5 md:px-8 md:py-3 bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 text-[4px] sm:text-[6px] md:text-[10px] font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] rounded-none hover:bg-[#C59B27] hover:text-[#141211] hover:border-[#C59B27] transition-all shadow-2xl flex items-center gap-1 md:gap-3 backdrop-blur-sm"
+                                className="px-1.5 py-0.5 md:px-8 md:py-3 bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 text-[4px] sm:text-[6px] md:text-[10px] font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] rounded-none hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all shadow-2xl flex items-center gap-1 md:gap-3 backdrop-blur-sm"
                             >
                                 <ShoppingBag className="w-[6px] h-[6px] md:w-3.5 md:h-3.5" />
                                 {activeSlide.ctaLabel}

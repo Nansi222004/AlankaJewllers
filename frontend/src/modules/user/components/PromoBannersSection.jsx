@@ -27,12 +27,12 @@ const PromoBannersSection = () => {
                                 <div className="absolute inset-0 bg-black/5" />
 
                                 <div className="absolute top-5 left-6">
-                                    <h3 className="text-xl md:text-2xl font-serif italic text-[#141211]">
+                                    <h3 className="text-xl md:text-2xl font-serif italic text-brand-espresso">
                                         Fresh Arrivals
                                     </h3>
                                 </div>
                                 <div className="absolute bottom-5 left-6">
-                                    <span className="bg-[#C59B27] text-white px-5 py-1.5 rounded-none text-[9px] font-bold uppercase tracking-widest shadow-sm">
+                                    <span className="bg-brand-champagne text-white px-5 py-1.5 rounded-none text-[9px] font-bold uppercase tracking-widest shadow-sm">
                                         Explore now
                                     </span>
                                 </div>
@@ -40,7 +40,7 @@ const PromoBannersSection = () => {
                         </Link>
 
                         {/* 2. Bottom-Left */}
-                        <Link to="/shop?metal=silver" className="relative group block h-full overflow-hidden rounded-none shadow-sm bg-[#FAF8F5]">
+                        <Link to="/shop?metal=silver" className="relative group block h-full overflow-hidden rounded-none shadow-sm bg-brand-pearl">
                             <motion.div whileHover={{ scale: 1.02 }} className="w-full h-full relative">
                                 <img
                                     src={imgBottomLeft}
@@ -63,10 +63,10 @@ const PromoBannersSection = () => {
                         <motion.div
                             whileHover={{ scale: 1.02 }}
                             className="w-full h-full relative overflow-hidden"
-                            style={{ background: 'linear-gradient(135deg, #FAF8F5 0%, #E8DFD0 100%)' }}
+                            style={{ background: 'linear-gradient(135deg, #FBF8F7 0%, #E9DEDA 100%)' }}
                         >
                             <div className="absolute top-6 left-8 z-10">
-                                <h3 className="text-3xl md:text-4xl font-serif italic text-[#141211]">Bestsellers</h3>
+                                <h3 className="text-3xl md:text-4xl font-serif italic text-brand-espresso">Bestsellers</h3>
                                 <p className="text-stone-600 text-xs md:text-sm">most loved silver picks</p>
                             </div>
 
@@ -81,13 +81,13 @@ const PromoBannersSection = () => {
 
                             {/* Center Branding Overlay - Scaled Down */}
                             <div className="absolute bottom-[28%] left-1/2 -translate-x-1/2 z-20">
-                                <div className="bg-white/95 backdrop-blur-md px-6 py-2 rounded-none shadow-md border border-[#E8DFD0]">
-                                    <span className="text-[#141211] font-black text-sm tracking-[0.35em]">Alankar JEWELLERS</span>
+                                <div className="bg-white/95 backdrop-blur-md px-6 py-2 rounded-none shadow-md border border-brand-border">
+                                    <span className="text-brand-espresso font-black text-sm tracking-[0.35em]">Alankar JEWELLERS</span>
                                 </div>
                             </div>
 
                             <div className="absolute bottom-6 right-8 z-10">
-                                <span className="bg-white text-black text-[9px] font-bold uppercase tracking-widest px-6 py-2.5 rounded-none shadow-sm">
+                                <span className="bg-white text-brand-espresso text-[9px] font-bold uppercase tracking-widest px-6 py-2.5 rounded-none shadow-sm">
                                     Shop now
                                 </span>
                             </div>

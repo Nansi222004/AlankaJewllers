@@ -50,7 +50,7 @@ const AnnouncementBar = () => {
     }, []);
 
     return (
-        <div className="bg-[#141211] text-[#FAF8F5] border-b border-[#C59B27]/25 overflow-hidden py-1 relative z-[60]">
+        <div className="bg-brand-plum text-brand-white border-b border-brand-champagne/25 overflow-hidden py-1 relative z-[60]">
             <div className="flex animate-marquee whitespace-nowrap">
                 {[...Array(10)].map((_, i) => (
                     <div key={i} className="flex items-center gap-6 md:gap-12 pr-6 md:pr-12">
@@ -62,10 +62,10 @@ const AnnouncementBar = () => {
                                     ) : (
                                         (() => {
                                             const IconComponent = iconMap[item.icon] || Tag;
-                                            return <IconComponent className="w-3.5 h-3.5 text-[#E8D198]" />;
+                                            return <IconComponent className="w-3.5 h-3.5 text-brand-champagne-light" />;
                                         })()
                                     )}
-                                    <span className="text-[10px] font-medium uppercase tracking-widest text-[#FAF8F5]/90">{item.text}</span>
+                                    <span className="text-[10px] font-medium uppercase tracking-widest text-brand-white/90">{item.text}</span>
                                 </div>
                             );
                         })}

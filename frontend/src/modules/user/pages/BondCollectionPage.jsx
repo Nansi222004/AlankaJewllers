@@ -136,7 +136,7 @@ const BondCollectionPage = () => {
                             <button 
                                 onMouseEnter={() => setShopNowHover(true)}
                                 onMouseLeave={() => setShopNowHover(false)}
-                                className="inline-flex items-center gap-2 bg-white text-black text-[8px] md:text-[12px] font-black uppercase tracking-widest px-4 md:px-6 py-2 md:py-3 rounded-full hover:bg-opacity-90 transition-all"
+                                className="inline-flex items-center gap-2 bg-white text-brand-espresso text-[8px] md:text-[12px] font-black uppercase tracking-widest px-4 md:px-6 py-2 md:py-3 rounded-full hover:bg-opacity-90 transition-all"
                             >
                                 Shop All
                                 <ArrowRight className={`w-3 h-3 transition-all ${shopNowHover ? 'translate-x-1' : ''}`} />
@@ -153,7 +153,7 @@ const BondCollectionPage = () => {
                         <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">Curated Designs</h2>
                         <p className="text-gray-400 text-sm mt-1 uppercase tracking-widest font-medium">Filtered for {bondId}</p>
                     </div>
-                    <Link to="/shop" className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-all">
+                    <Link to="/shop" className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-brand-espresso transition-all">
                         View All
                     </Link>
                 </div>

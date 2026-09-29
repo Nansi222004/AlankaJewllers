@@ -52,11 +52,11 @@ const DiamondCategoryShowcase = ({ sectionData }) => {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-[#171717] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
-                        <Gem className="w-3.5 h-3.5 text-[#C6A04A]" />
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
+                        <Gem className="w-3.5 h-3.5 text-brand-champagne" />
                         <span>{badge}</span>
                     </div>
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#171717] font-normal tracking-tight mb-3">
+                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight mb-3">
                         {title}
                     </h2>
                     <p className="text-xs sm:text-sm text-stone-500 font-light max-w-lg mx-auto leading-relaxed">
@@ -70,7 +70,7 @@ const DiamondCategoryShowcase = ({ sectionData }) => {
                         <Link
                             key={cat.id}
                             to={cat.path}
-                            className="group relative bg-[#FAFBFD] rounded-2xl overflow-hidden border border-stone-200/80 hover:border-[#C6A04A] shadow-xs hover:shadow-[0_16px_36px_rgba(23,23,23,0.08)] transition-all duration-400 flex flex-col justify-between"
+                            className="group relative bg-[#FAFBFD] rounded-2xl overflow-hidden border border-stone-200/80 hover:border-brand-champagne shadow-xs hover:shadow-[0_16px_36px_rgba(51,40,39,0.08)] transition-all duration-400 flex flex-col justify-between"
                         >
                             {/* Image Box */}
                             <div className="relative aspect-square w-full overflow-hidden bg-white p-6 flex items-center justify-center">
@@ -81,21 +81,21 @@ const DiamondCategoryShowcase = ({ sectionData }) => {
                                     className="max-h-[85%] max-w-[85%] object-contain transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 border border-stone-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-xs">
-                                    <Sparkles className="w-3 h-3 text-[#C6A04A]" />
+                                    <Sparkles className="w-3 h-3 text-brand-champagne" />
                                 </div>
                             </div>
 
                             {/* Caption Footer */}
                             <div className="p-4 bg-white border-t border-stone-100 flex items-center justify-between">
                                 <div>
-                                    <h3 className="font-serif text-sm sm:text-base font-medium text-[#171717] group-hover:text-[#C6A04A] transition-colors line-clamp-1">
+                                    <h3 className="font-serif text-sm sm:text-base font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors line-clamp-1">
                                         {cat.name}
                                     </h3>
                                     <p className="text-[10px] sm:text-[11px] font-sans text-stone-400 tracking-wider uppercase mt-0.5">
                                         {cat.tag}
                                     </p>
                                 </div>
-                                <div className="w-6 h-6 rounded-full bg-stone-50 group-hover:bg-[#171717] group-hover:text-white flex items-center justify-center transition-colors shrink-0 ml-2">
+                                <div className="w-6 h-6 rounded-full bg-stone-50 group-hover:bg-brand-plum group-hover:text-white flex items-center justify-center transition-colors shrink-0 ml-2">
                                     <ChevronRight className="w-3 h-3 text-stone-400 group-hover:text-white transition-transform group-hover:translate-x-0.5" />
                                 </div>
                             </div>

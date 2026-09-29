@@ -58,17 +58,17 @@ const ChitChatSection = () => {
     };
 
     return (
-        <section className="py-10 md:py-14 bg-[#141211] relative overflow-hidden">
+        <section className="py-10 md:py-14 bg-brand-plum relative overflow-hidden">
             {/* Subtle Background Lighting */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#1C1917] rounded-full blur-[100px] opacity-40 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#C59B27] rounded-full blur-[120px] opacity-10 -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-plum rounded-full blur-[100px] opacity-40 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-champagne rounded-full blur-[120px] opacity-10 -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-[1000px]">
                 <div className="mx-auto bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
                     <div className="flex flex-col md:flex-row">
 
                         {/* Text Content Side (Slimmer & Elegant) */}
-                        <div className="w-full md:w-5/12 p-6 md:p-10 bg-[#1C1917] relative flex flex-col justify-center">
+                        <div className="w-full md:w-5/12 p-6 md:p-10 bg-brand-plum relative flex flex-col justify-center">
                             <div className="mb-4">
                                 <img
                                     src={logo}
@@ -104,27 +104,27 @@ const ChitChatSection = () => {
                                 {/* Name & Email side-by-side to save height */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                                     <div>
-                                        <label htmlFor="name" className="block text-[10px] font-bold text-[#C59B27] uppercase tracking-[0.2em] mb-1.5">Name</label>
+                                        <label htmlFor="name" className="block text-[10px] font-bold text-brand-champagne uppercase tracking-[0.2em] mb-1.5">Name</label>
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-2.5 bg-[#FAF8F5] border border-gray-200 rounded-md focus:bg-white focus:border-[#C59B27] focus:ring-1 focus:ring-[#C59B27]/20 transition-all outline-none text-[#111] placeholder-gray-400 text-sm"
+                                            className="w-full px-4 py-2.5 bg-brand-pearl border border-gray-200 rounded-md focus:bg-white focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne/20 transition-all outline-none text-[#111] placeholder-gray-400 text-sm"
                                             placeholder="Your Name"
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="email" className="block text-[10px] font-bold text-[#C59B27] uppercase tracking-[0.2em] mb-1.5">Email</label>
+                                        <label htmlFor="email" className="block text-[10px] font-bold text-brand-champagne uppercase tracking-[0.2em] mb-1.5">Email</label>
                                         <input
                                             type="email"
                                             id="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full px-4 py-2.5 bg-[#FAF8F5] border border-gray-200 rounded-md focus:bg-white focus:border-[#C59B27] focus:ring-1 focus:ring-[#C59B27]/20 transition-all outline-none text-[#111] placeholder-gray-400 text-sm"
+                                            className="w-full px-4 py-2.5 bg-brand-pearl border border-gray-200 rounded-md focus:bg-white focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne/20 transition-all outline-none text-[#111] placeholder-gray-400 text-sm"
                                             placeholder="your@email.com"
                                             required
                                         />
@@ -132,14 +132,14 @@ const ChitChatSection = () => {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="message" className="block text-[10px] font-bold text-[#C59B27] uppercase tracking-[0.2em] mb-1.5">Message</label>
+                                    <label htmlFor="message" className="block text-[10px] font-bold text-brand-champagne uppercase tracking-[0.2em] mb-1.5">Message</label>
                                     <textarea
                                         id="message"
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
                                         rows="2"
-                                        className="w-full px-4 py-3 bg-[#FAF8F5] border border-gray-200 rounded-md focus:bg-white focus:border-[#C59B27] focus:ring-1 focus:ring-[#C59B27]/20 transition-all outline-none text-[#111] placeholder-gray-400 resize-none text-sm leading-relaxed"
+                                        className="w-full px-4 py-3 bg-brand-pearl border border-gray-200 rounded-md focus:bg-white focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne/20 transition-all outline-none text-[#111] placeholder-gray-400 resize-none text-sm leading-relaxed"
                                         placeholder="How can we help you today?"
                                         required
                                     ></textarea>
@@ -148,10 +148,10 @@ const ChitChatSection = () => {
                                 <button
                                     type="submit"
                                     disabled={submitting}
-                                    className="w-full bg-[#141211] text-white font-semibold tracking-wider text-sm py-3 rounded-md hover:bg-[#1C1917] hover:text-[#E8D198] transition-all flex items-center justify-center gap-2 group mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                    className="w-full bg-brand-plum text-white font-semibold tracking-wider text-sm py-3 rounded-md hover:bg-brand-plum hover:text-brand-champagne-light transition-all flex items-center justify-center gap-2 group mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
                                     <span>{submitting ? 'Sending...' : submitLabel}</span>
-                                    <Send className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#C59B27]" />
+                                    <Send className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-brand-champagne" />
                                 </button>
                             </form>
                         </div>

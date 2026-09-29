@@ -76,11 +76,11 @@ const FamilyCuratedCollections = ({ sectionData }) => {
                 
                 {/* Section Header */}
                 <div className="text-center mb-5 md:mb-8 flex flex-col items-center">
-                    <span className="text-[9px] md:text-xs font-bold uppercase tracking-[0.4em] md:tracking-[0.5em] text-[#C59B27] mb-1 md:mb-2 font-sans">Handpicked Selections</span>
-                    <h2 className="text-xl md:text-4xl font-serif text-[#141211] tracking-tight">
+                    <span className="text-[9px] md:text-xs font-bold uppercase tracking-[0.4em] md:tracking-[0.5em] text-brand-champagne mb-1 md:mb-2 font-sans">Handpicked Selections</span>
+                    <h2 className="text-xl md:text-4xl font-serif text-brand-espresso tracking-tight">
                         Curated <span className="italic font-light">Collections</span>
                     </h2>
-                    <div className="w-8 h-[1px] bg-[#C59B27]/40 mt-2 md:mt-4" />
+                    <div className="w-8 h-[1px] bg-brand-champagne/40 mt-2 md:mt-4" />
                 </div>
 
                 {/* Collections Grid - EXACTLY matching Product Card Layout */}
@@ -96,7 +96,7 @@ const FamilyCuratedCollections = ({ sectionData }) => {
                         >
                             <Link to={item.path} className="flex flex-col h-full">
                                 {/* Image Container - Aspect Square */}
-                                <div className="relative aspect-square overflow-hidden bg-[#FAF8F5] mb-3">
+                                <div className="relative aspect-square overflow-hidden bg-brand-pearl mb-3">
                                     <img 
                                         src={item.image} 
                                         alt={item.title} 
@@ -104,7 +104,7 @@ const FamilyCuratedCollections = ({ sectionData }) => {
                                     />
                                     
                                     {/* Bestseller Badge */}
-                                    <div className="absolute top-0 left-0 bg-[#141211] text-[#E8D198] border-b border-r border-[#C59B27]/30 text-[9px] font-bold px-2 py-1 z-10 uppercase tracking-widest">
+                                    <div className="absolute top-0 left-0 bg-brand-plum text-brand-champagne-light border-b border-r border-brand-champagne/30 text-[9px] font-bold px-2 py-1 z-10 uppercase tracking-widest">
                                         Collection
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@ const FamilyCuratedCollections = ({ sectionData }) => {
                                 {/* Content Below */}
                                 <div className="flex flex-col flex-1 px-0">
                                     <div className="h-[30px] md:h-[40px] mb-1 md:mb-2">
-                                        <h3 className="text-[10px] md:text-[12px] text-stone-800 line-clamp-2 h-auto md:h-[34px] group-hover:text-[#C59B27] transition-colors uppercase tracking-tight font-medium overflow-hidden">
+                                        <h3 className="text-[10px] md:text-[12px] text-stone-800 line-clamp-2 h-auto md:h-[34px] group-hover:text-brand-champagne transition-colors uppercase tracking-tight font-medium overflow-hidden">
                                             {item.title}
                                         </h3>
                                     </div>
@@ -125,7 +125,7 @@ const FamilyCuratedCollections = ({ sectionData }) => {
                                     
                                     {/* Call to Action */}
                                     <div className="mt-auto">
-                                        <div className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/30 font-bold text-[8px] md:text-[11px] py-1.5 md:py-2.5 rounded-none hover:bg-[#C59B27] hover:text-[#141211] transition-all duration-300 uppercase tracking-widest text-center shadow-sm">
+                                        <div className="w-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/30 font-bold text-[8px] md:text-[11px] py-1.5 md:py-2.5 rounded-none hover:bg-brand-champagne hover:text-brand-espresso transition-all duration-300 uppercase tracking-widest text-center shadow-sm">
                                             Browse Collection
                                         </div>
                                     </div>

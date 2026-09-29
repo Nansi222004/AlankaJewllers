@@ -13,17 +13,17 @@ const DiamondConsultationBanner = ({ sectionData }) => {
     return (
         <section className="py-16 md:py-24 bg-[#0E1217] text-white relative overflow-hidden">
             {/* Subtle luxury ambient glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#C6A04A]/10 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-champagne/10 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                 {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C6A04A]/30 bg-[#171E26] text-[#C6A04A] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-6 shadow-sm">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-champagne/30 bg-[#171E26] text-brand-champagne text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-6 shadow-sm">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{badge}</span>
                 </div>
 
                 {/* Title */}
-                <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl text-[#FAF8F5] font-normal tracking-tight max-w-3xl mx-auto leading-tight mb-4">
+                <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl text-brand-pearl font-normal tracking-tight max-w-3xl mx-auto leading-tight mb-4">
                     {title}
                 </h2>
 
@@ -35,15 +35,15 @@ const DiamondConsultationBanner = ({ sectionData }) => {
                 {/* Trust Points */}
                 <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-stone-400 font-medium mb-10">
                     <div className="flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4 text-[#C6A04A]" />
+                        <ShieldCheck className="w-4 h-4 text-brand-champagne" />
                         <span>Certified Solitaire Sourcing</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4 text-[#C6A04A]" />
+                        <ShieldCheck className="w-4 h-4 text-brand-champagne" />
                         <span>Custom 3D CAD Mockup</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4 text-[#C6A04A]" />
+                        <ShieldCheck className="w-4 h-4 text-brand-champagne" />
                         <span>Complimentary Laser Engraving</span>
                     </div>
                 </div>

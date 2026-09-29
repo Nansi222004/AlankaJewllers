@@ -91,7 +91,7 @@ const WomenPromoBanners = ({ sectionData }) => {
                                 
                                 {/* Refined Interactive CTA */}
                                 <div className="flex items-center gap-3">
-                                    <div className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-black shadow-lg group-hover:w-28 transition-all duration-500 overflow-hidden relative">
+                                    <div className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-brand-espresso shadow-lg group-hover:w-28 transition-all duration-500 overflow-hidden relative">
                                         <div className="absolute left-1/2 -translate-x-1/2 group-hover:left-4 group-hover:translate-x-0 transition-all duration-500">
                                             <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
                                         </div>

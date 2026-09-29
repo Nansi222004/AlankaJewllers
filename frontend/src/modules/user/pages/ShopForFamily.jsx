@@ -92,7 +92,7 @@ const ShopForFamily = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen text-black font-sans overflow-x-hidden">
+    <div className="bg-white min-h-screen text-brand-espresso font-sans overflow-x-hidden">
       {/* 1. Hero Section */}
       <FamilyHeroCarousel sectionData={sectionMap["hero-banners"]} />
 

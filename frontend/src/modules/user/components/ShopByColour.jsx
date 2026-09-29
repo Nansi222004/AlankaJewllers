@@ -112,7 +112,7 @@ const ShopByColour = () => {
                                     </div>
 
                                     <div className="absolute top-0 left-5 z-20">
-                                        <div className={`${item.badgeBg} backdrop-blur-sm px-3 py-1 rounded-b-xl flex items-center gap-1 shadow-sm border-x border-b border-black/5`}>
+                                        <div className={`${item.badgeBg} backdrop-blur-sm px-3 py-1 rounded-b-xl flex items-center gap-1 shadow-sm border-x border-b border-brand-espresso/5`}>
                                             <span className="text-[8px] md:text-[10px] font-bold text-gray-800 tracking-tight whitespace-nowrap">
                                                 {item.tag}
                                             </span>
@@ -121,12 +121,12 @@ const ShopByColour = () => {
 
                                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-30">
                                         <div className="w-14 h-14 md:w-[64px] md:h-[64px] rounded-full bg-white p-1.5 shadow-[0_8px_25px_rgba(0,0,0,0.1)] flex items-center justify-center">
-                                            <div className={`w-full h-full rounded-full ${item.color} shadow-inner shadow-black/20`} />
+                                            <div className={`w-full h-full rounded-full ${item.color} shadow-inner shadow-brand-espresso/20`} />
                                         </div>
                                     </div>
                                 </div>
 
-                                <h3 className="text-[15px] md:text-[18px] font-bold text-gray-900 tracking-tight text-center group-hover:text-black transition-colors">
+                                <h3 className="text-[15px] md:text-[18px] font-bold text-gray-900 tracking-tight text-center group-hover:text-brand-espresso transition-colors">
                                     {item.name}
                                 </h3>
                             </Link>

@@ -23,11 +23,11 @@ const ProductInfo = ({
             <div className="bg-white border-y border-gray-100 p-6 md:p-12 flex flex-col items-center text-center">
                 {/* Header: Title & Rating */}
                 <div className="max-w-4xl mx-auto mb-6">
-                    <h1 className="text-2xl md:text-4xl font-sans font-bold text-black mb-4 tracking-tight uppercase">
+                    <h1 className="text-2xl md:text-4xl font-sans font-bold text-brand-espresso mb-4 tracking-tight uppercase">
                         {product.name}
                     </h1>
                     <div className="flex flex-wrap items-center justify-center gap-3">
-                        <div className="flex items-center text-[#C59B27] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8DFD0]">
+                        <div className="flex items-center text-brand-champagne bg-brand-pearl px-3 py-1 rounded-full border border-brand-border">
                             <div className="flex gap-0.5">
                                 {[...Array(5)].map((_, i) => (
                                     <Star key={i} className={`w-3 h-3 ${i < Math.round(averageRating) ? 'fill-current' : 'text-stone-300'} `} />
@@ -50,20 +50,22 @@ const ProductInfo = ({
                 <div className="mb-8">
                     <div className="flex items-baseline justify-center gap-3">
                         <span className="text-3xl md:text-5xl font-serif font-bold text-stone-900 tracking-tight">
-                            {formatCurrency(variantPrice)}
+                            {Number(variantPrice) > 0 ? formatCurrency(variantPrice) : 'Price on Request'}
                         </span>
-                        {variantMrp > variantPrice && (
+                        {Number(variantPrice) > 0 && variantMrp > variantPrice && (
                             <div className="flex items-center gap-2">
                                 <span className="text-base md:text-lg text-stone-400 line-through font-medium">
                                     {formatCurrency(variantMrp)}
                                 </span>
-                                <span className="text-[9px] font-bold text-[#141211] uppercase tracking-widest bg-[#E8D198] px-2 py-0.5 rounded-full">
+                                <span className="text-[9px] font-bold text-brand-espresso uppercase tracking-widest bg-brand-champagne-light px-2 py-0.5 rounded-full">
                                     -{variantDiscount}%
                                 </span>
                             </div>
                         )}
                     </div>
-                    <p className="text-[9px] text-stone-400 font-bold uppercase tracking-[0.2em] mt-1">Inclusive of all taxes</p>
+                    <p className="text-[9px] text-stone-400 font-bold uppercase tracking-[0.2em] mt-1">
+                        {Number(variantPrice) > 0 ? 'Inclusive of all taxes' : 'Contact us for current pricing'}
+                    </p>
                 </div>
 
                 {/* Variant & Action Section - Tightened */}
@@ -80,8 +82,8 @@ const ProductInfo = ({
                                             type="button"
                                             onClick={() => setSelectedVariantId(variantId)}
                                             className={`px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest border transition-all duration-300 ${isSelected
-                                                ? 'border-[#C59B27] bg-[#141211] text-[#E8D198] shadow-md'
-                                                : 'border-stone-200 text-stone-600 hover:border-[#C59B27]/60 bg-stone-50/50'
+                                                ? 'border-brand-champagne bg-brand-blush text-brand-plum shadow-md'
+                                                : 'border-stone-200 text-stone-600 hover:border-brand-champagne/60 bg-stone-50/50'
                                                 }`}
                                         >
                                             {variant.name}
@@ -98,14 +100,14 @@ const ProductInfo = ({
                             onClick={handleAddToCart}
                             disabled={!canAddToCart}
                             className={`w-full max-w-md py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 relative overflow-hidden group shadow-lg ${canAddToCart
-                                    ? 'bg-[#141211] hover:bg-[#1C1917] text-[#E8D198] border border-[#C59B27]/50 hover:border-[#C59B27] hover:-translate-y-0.5'
+                                    ? 'bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne hover:-translate-y-0.5'
                                     : 'bg-stone-100 text-stone-400 cursor-not-allowed border border-stone-200'
                                 }`}
                         >
                             <span className="relative z-10 flex items-center justify-center gap-3">
                                 {canAddToCart ? (
                                     <>
-                                        <ShoppingBag className="w-4 h-4 text-[#C59B27]" />
+                                        <ShoppingBag className="w-4 h-4 text-brand-champagne" />
                                         Add to Bag
                                     </>
                                 ) : 'Out of Stock'}
@@ -115,12 +117,12 @@ const ProductInfo = ({
                         <div className="flex items-center justify-center gap-6 mt-2">
                             <button 
                                 onClick={() => setIsSizeGuideOpen(true)}
-                                className="text-[9px] font-bold text-[#C59B27] uppercase tracking-[0.2em] hover:underline flex items-center gap-1.5 transition-all active:scale-95"
+                                className="text-[9px] font-bold text-brand-plum uppercase tracking-[0.2em] hover:text-brand-champagne hover:underline flex items-center gap-1.5 transition-all active:scale-95"
                             >
                                 <Ruler size={12} /> Find Your Size
                             </button>
                             <div className="h-3 w-[1px] bg-stone-200" />
-                            <button className="text-[9px] font-bold text-stone-500 uppercase tracking-[0.2em] hover:text-[#C59B27] transition-all">
+                            <button className="text-[9px] font-bold text-stone-500 uppercase tracking-[0.2em] hover:text-brand-champagne transition-all">
                                 Shipping Policy
                             </button>
                         </div>

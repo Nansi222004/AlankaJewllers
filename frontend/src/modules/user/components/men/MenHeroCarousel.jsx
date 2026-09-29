@@ -189,7 +189,7 @@ const MenHeroCarousel = ({ sectionData }) => {
                         >
                             <Link
                                 to={resolvedSlides[current].link}
-                                className="px-2 py-0.5 md:px-12 md:py-3 bg-white text-black text-[5px] md:text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-100 transition-colors inline-block"
+                                className="px-2 py-0.5 md:px-12 md:py-3 bg-white text-brand-espresso text-[5px] md:text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-100 transition-colors inline-block"
                             >
                                 {resolvedSlides[current].cta}
                             </Link>

@@ -76,8 +76,8 @@ const WomenPriceRange = ({ sectionData }) => {
                     className="flex flex-col items-center mb-2.5 md:mb-5"
                 >
                     <span
-                        className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] uppercase mb-1 inline-block px-3 py-0.5 md:py-1 rounded-full bg-[#C59B27]/10"
-                        style={{ color: '#C59B27' }}
+                        className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] uppercase mb-1 inline-block px-3 py-0.5 md:py-1 rounded-full bg-brand-champagne/10"
+                        style={{ color: '#B8956A' }}
                     >
                         Luxury within Reach
                     </span>
@@ -100,11 +100,11 @@ const WomenPriceRange = ({ sectionData }) => {
                                 <div
                                     className="relative flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-700 ease-[0.22, 1, 0.36, 1] group-hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.5)]"
                                     style={{
-                                        background: 'linear-gradient(135deg, #1C1917 0%, #141211 50%, #0A0908 100%)',
+                                        background: 'linear-gradient(135deg, #4A3638 0%, #332827 50%, #0A0908 100%)',
                                         borderRadius: '16px',
                                         padding: idx === 1 ? 'clamp(12px, 3.8vw, 40px) 18px' : 'clamp(10px, 3.1vw, 30px) 14px',
                                         minHeight: idx === 1 ? 'clamp(72px, 16vw, 170px)' : 'clamp(60px, 12.5vw, 132px)',
-                                        border: '1px solid rgba(197, 155, 39, 0.2)'
+                                        border: '1px solid rgba(184,149,106, 0.2)'
                                     }}
                                 >
                                     <div
@@ -119,7 +119,7 @@ const WomenPriceRange = ({ sectionData }) => {
                                     <div
                                         className="absolute inset-x-0 top-0 h-28 md:h-40 opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none"
                                         style={{
-                                            background: 'radial-gradient(circle at 50% 0%, #C59B27 0%, transparent 70%)'
+                                            background: 'radial-gradient(circle at 50% 0%, #B8956A 0%, transparent 70%)'
                                         }}
                                     />
 
@@ -146,7 +146,7 @@ const WomenPriceRange = ({ sectionData }) => {
 
                                         <div className="h-0 group-hover:h-6 overflow-hidden transition-all duration-500 opacity-0 group-hover:opacity-100 mt-1.5 md:mt-2">
                                             <p
-                                                className="text-[#E8D198] font-bold tracking-[0.15em] whitespace-nowrap"
+                                                className="text-brand-champagne-light font-bold tracking-[0.15em] whitespace-nowrap"
                                                 style={{ fontSize: idx === 1 ? 'clamp(8px, 1vw, 10px)' : 'clamp(7px, 0.85vw, 9px)' }}
                                             >
                                                 {item.tagline}
@@ -155,7 +155,7 @@ const WomenPriceRange = ({ sectionData }) => {
                                     </div>
 
                                     <div className="absolute inset-0 rounded-[16px] pointer-events-none border border-white/0 group-hover:border-white/10 transition-all duration-500" />
-                                    <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#C59B27] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 w-0 group-hover:w-full mx-auto" />
+                                    <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-brand-champagne to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 w-0 group-hover:w-full mx-auto" />
                                 </div>
                             </Link>
                         </motion.div>

@@ -157,7 +157,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                             }
                                         }}
                                         className={`text-[10.5px] sm:text-[11px] md:text-[11.5px] lg:text-[12px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-tight sm:tracking-normal xl:tracking-[0.04em] font-sans flex items-center gap-0.5 sm:gap-1 transition-all duration-200 whitespace-nowrap ${
-                                            active || hoveredItem === item.id ? 'text-[#C6A04A]' : 'text-[#242424] hover:text-[#C6A04A]'
+                                            active || hoveredItem === item.id ? 'text-brand-champagne' : 'text-brand-espresso hover:text-brand-champagne'
                                         }`}
                                     >
                                         <span>{item.name}</span>
@@ -165,7 +165,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                         {item.hasChevron && (
                                             <ChevronDown
                                                 className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-300 ${
-                                                    hoveredItem === item.id ? 'rotate-180 text-[#C6A04A]' : (active ? 'text-[#C6A04A]' : 'text-[#77716A]')
+                                                    hoveredItem === item.id ? 'rotate-180 text-brand-champagne' : (active ? 'text-brand-champagne' : 'text-brand-taupe')
                                                 }`}
                                             />
                                         )}
@@ -185,7 +185,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     exit={{ opacity: 0, y: 5 }}
-                                                    className="bg-white shadow-[0_20px_45px_rgba(23,23,23,0.12)] border border-[#E8E0D2] overflow-hidden rounded-b-2xl max-w-[calc(100vw-2rem)]"
+                                                    className="bg-white shadow-[0_20px_45px_rgba(51,40,39,0.12)] border border-brand-border overflow-hidden rounded-b-2xl max-w-[calc(100vw-2rem)]"
                                                     style={{
                                                         maxHeight: `${menuPlacement.availableHeight}px`
                                                     }}
@@ -232,7 +232,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                 {/* Gold / Silver / Diamond / Gems 4-Option Selector — Balanced, Aligned & Responsive */}
                 {showMetalToggle && (
                     <div className="flex justify-center pb-1.5 pt-0.5 px-2 relative">
-                        <div className="p-0.5 md:p-1 w-[680px] max-w-full rounded-full border border-[#E8E0D2] flex items-center bg-white shadow-[0_2px_12px_rgba(23,23,23,0.06)] relative">
+                        <div className="p-0.5 md:p-1 w-full sm:w-[680px] max-w-full rounded-full border border-brand-border flex items-center bg-white shadow-[0_2px_12px_rgba(51,40,39,0.06)] relative">
                             {/* Animated Background Pill */}
                             <div className="absolute inset-0.5 md:inset-1 flex" style={{ zIndex: 0 }}>
                                 <motion.div
@@ -241,11 +241,11 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     animate={{
                                         x: activeMetal === 'gold' ? '0%' : (activeMetal === 'silver' ? '100%' : (activeMetal === 'diamond' ? '200%' : '300%')),
                                         background: activeMetal === 'gold'
-                                            ? 'linear-gradient(135deg, #C6A04A, #E5CC85)'
-                                            : (activeMetal === 'silver' ? '#171717' : (activeMetal === 'diamond' ? 'linear-gradient(135deg, #171717, #2A3644, #C6A04A)' : 'linear-gradient(135deg, #171717, #231F20, #C6A04A)')),
+                                            ? 'linear-gradient(135deg, #B8956A, #D8C3A5)'
+                                            : (activeMetal === 'silver' ? '#766866' : (activeMetal === 'diamond' ? '#4A3638' : '#D9B8B6')),
                                         boxShadow: activeMetal === 'gold'
-                                            ? '0 4px 14px rgba(198,160,74,0.3)'
-                                            : '0 4px 14px rgba(23,23,23,0.25)'
+                                            ? '0 4px 14px rgba(184,149,106,0.22)'
+                                            : '0 4px 14px rgba(51,40,39,0.25)'
                                     }}
                                     transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                                     className="w-1/4 h-full rounded-full"
@@ -258,7 +258,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('gold');
                                     navigate('/gold-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? 'text-[#171717]' : 'text-[#77716A] hover:text-[#171717]'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? 'text-brand-espresso' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Gold
                             </button>
@@ -269,7 +269,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('silver');
                                     navigate('/silver-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? 'text-white' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Silver
                             </button>
@@ -280,7 +280,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('diamond');
                                     navigate('/diamond-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? 'text-white' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Diamond
                             </button>
@@ -291,7 +291,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('gems');
                                     navigate('/gems-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gems' ? 'text-white' : 'text-[#77716A] hover:text-[#171717]'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gems' ? 'text-brand-plum' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Gems
                             </button>

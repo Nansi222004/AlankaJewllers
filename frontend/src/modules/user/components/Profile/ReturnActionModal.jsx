@@ -75,7 +75,7 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                     </button>
 
                     <div className="flex-1">
-                        <h3 className="text-lg font-serif font-bold text-black capitalize">Request {type}</h3>
+                        <h3 className="text-lg font-serif font-bold text-brand-espresso capitalize">Request {type}</h3>
                         <p className="text-[10px] text-gray-400 mt-0.5">Order #{orderDisplayShort}</p>
                     </div>
 
@@ -89,15 +89,15 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                 <div className="p-4 md:p-6 overflow-y-auto flex-1 space-y-4 md:space-y-5">
                     {/* Step 1: Select Items */}
                     <div>
-                        <h4 className="text-xs font-bold text-[#141211] uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <span className="w-4 h-4 bg-[#141211] text-[#E8D198] rounded-full flex items-center justify-center text-[9px]">1</span>
+                        <h4 className="text-xs font-bold text-brand-espresso uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <span className="w-4 h-4 bg-brand-plum text-brand-champagne-light rounded-full flex items-center justify-center text-[9px]">1</span>
                             Select Items
                         </h4>
                         <div className="space-y-2">
                             {safeItems.map((item) => (
-                                <div key={item._id || item.id} onClick={() => handleToggleItem(item._id || item.id)} className={`flex items-center gap-3 p-2 rounded-lg border cursor-pointer transition-all ${selectedItems.includes(item._id || item.id) ? 'border-[#C59B27] bg-[#FAF8F5]' : 'border-gray-100 hover:border-gray-200'}`}>
-                                    <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${selectedItems.includes(item._id || item.id) ? 'bg-[#141211] border-[#141211]' : 'border-gray-300'}`}>
-                                        {selectedItems.includes(item._id || item.id) && <Check className="w-2.5 h-2.5 text-[#E8D198]" />}
+                                <div key={item._id || item.id} onClick={() => handleToggleItem(item._id || item.id)} className={`flex items-center gap-3 p-2 rounded-lg border cursor-pointer transition-all ${selectedItems.includes(item._id || item.id) ? 'border-brand-champagne bg-brand-pearl' : 'border-gray-100 hover:border-gray-200'}`}>
+                                    <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${selectedItems.includes(item._id || item.id) ? 'bg-brand-plum border-brand-espresso' : 'border-gray-300'}`}>
+                                        {selectedItems.includes(item._id || item.id) && <Check className="w-2.5 h-2.5 text-brand-champagne-light" />}
                                     </div>
                                     <ProductThumb
                                         src={item.image}
@@ -107,7 +107,7 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                                         fallbackIconClassName="w-3 h-3"
                                     />
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-xs font-bold text-black line-clamp-1">{item.name}</p>
+                                        <p className="text-xs font-bold text-brand-espresso line-clamp-1">{item.name}</p>
                                         <p className="text-[10px] text-gray-500">{formatCurrency(item.price)}</p>
                                     </div>
                                 </div>
@@ -117,12 +117,12 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
 
                     {/* Step 2: Reason */}
                     <div>
-                        <h4 className="text-xs font-bold text-[#141211] uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <span className="w-4 h-4 bg-[#141211] text-[#E8D198] rounded-full flex items-center justify-center text-[9px]">2</span>
+                        <h4 className="text-xs font-bold text-brand-espresso uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <span className="w-4 h-4 bg-brand-plum text-brand-champagne-light rounded-full flex items-center justify-center text-[9px]">2</span>
                             Reason
                         </h4>
                         <select
-                            className="w-full p-2.5 rounded-lg border border-gray-200 text-xs focus:outline-none focus:border-[#C59B27] bg-white font-medium text-gray-700"
+                            className="w-full p-2.5 rounded-lg border border-gray-200 text-xs focus:outline-none focus:border-brand-champagne bg-white font-medium text-gray-700"
                             value={reason}
                             onChange={(e) => setReason(e.target.value)}
                         >
@@ -138,16 +138,16 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                     {/* Step 3: Resolution (Conditional) */}
                     {type === 'return' && (
                         <div>
-                            <h4 className="text-xs font-bold text-[#141211] uppercase tracking-wider mb-2 flex items-center gap-2">
-                                <span className="w-4 h-4 bg-[#141211] text-[#E8D198] rounded-full flex items-center justify-center text-[9px]">3</span>
+                            <h4 className="text-xs font-bold text-brand-espresso uppercase tracking-wider mb-2 flex items-center gap-2">
+                                <span className="w-4 h-4 bg-brand-plum text-brand-champagne-light rounded-full flex items-center justify-center text-[9px]">3</span>
                                 Refund Method
                             </h4>
                             <div className="grid grid-cols-2 gap-2">
-                                <button type="button" onClick={() => setResolution('refund')} className={`p-3 rounded-lg border text-left text-xs font-bold transition-all ${resolution === 'refund' ? 'border-[#141211] bg-[#141211] text-white' : 'border-gray-200 text-gray-700'}`}>
+                                <button type="button" onClick={() => setResolution('refund')} className={`p-3 rounded-lg border text-left text-xs font-bold transition-all ${resolution === 'refund' ? 'border-brand-espresso bg-brand-plum text-white' : 'border-gray-200 text-gray-700'}`}>
                                     Original Payment
                                     <div className="text-[9px] font-normal opacity-70 mt-0.5">5-7 Business Days</div>
                                 </button>
-                                <button type="button" onClick={() => setResolution('credit')} className={`p-3 rounded-lg border text-left text-xs font-bold transition-all ${resolution === 'credit' ? 'border-[#141211] bg-[#141211] text-white' : 'border-gray-200 text-gray-700'}`}>
+                                <button type="button" onClick={() => setResolution('credit')} className={`p-3 rounded-lg border text-left text-xs font-bold transition-all ${resolution === 'credit' ? 'border-brand-espresso bg-brand-plum text-white' : 'border-gray-200 text-gray-700'}`}>
                                     Alankar Jewellers Store Credit
                                     <div className="text-[9px] font-normal opacity-70 mt-0.5">Instant Credit</div>
                                 </button>
@@ -157,12 +157,12 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
 
                     {type === 'exchange' && (
                         <div>
-                            <h4 className="text-xs font-bold text-[#141211] uppercase tracking-wider mb-2 flex items-center gap-2">
-                                <span className="w-4 h-4 bg-[#141211] text-[#E8D198] rounded-full flex items-center justify-center text-[9px]">3</span>
+                            <h4 className="text-xs font-bold text-brand-espresso uppercase tracking-wider mb-2 flex items-center gap-2">
+                                <span className="w-4 h-4 bg-brand-plum text-brand-champagne-light rounded-full flex items-center justify-center text-[9px]">3</span>
                                 Exchange For
                             </h4>
                             <div className="space-y-2">
-                                <div className="p-3 rounded-lg bg-[#FAF8F5] border border-[#E8DFD0] text-[10px] text-[#141211] leading-relaxed mb-2">
+                                <div className="p-3 rounded-lg bg-brand-pearl border border-brand-border text-[10px] text-brand-espresso leading-relaxed mb-2">
                                     We will arrange a pickup. Please specify what you want in exchange (e.g., Different Size).
                                 </div>
                                 <div>
@@ -170,7 +170,7 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                                     <input
                                         type="text"
                                         placeholder="e.g. Size 7, Rose Gold Chain"
-                                        className="w-full p-2.5 rounded-lg border border-gray-200 text-xs focus:outline-none focus:border-[#C59B27]"
+                                        className="w-full p-2.5 rounded-lg border border-gray-200 text-xs focus:outline-none focus:border-brand-champagne"
                                     />
                                 </div>
                             </div>
@@ -195,11 +195,11 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                     <button
                         onClick={handleSubmit}
                         disabled={selectedItems.length === 0 || !reason}
-                        className="w-full bg-[#141211] text-white py-3 rounded-xl font-bold uppercase tracking-widest shadow-lg shadow-black/20 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#1C1917] hover:text-[#E8D198] transition-all text-xs"
+                        className="w-full bg-brand-plum text-white py-3 rounded-xl font-bold uppercase tracking-widest shadow-lg shadow-brand-espresso/20 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-plum hover:text-brand-champagne-light transition-all text-xs"
                     >
                         Confirm {type} Request
                     </button>
-                    <button onClick={onClose} className="w-full text-gray-500 font-bold text-[10px] uppercase tracking-widest mt-3 hover:text-[#141211] transition-colors">Cancel</button>
+                    <button onClick={onClose} className="w-full text-gray-500 font-bold text-[10px] uppercase tracking-widest mt-3 hover:text-brand-espresso transition-colors">Cancel</button>
                 </div>
             </div>
         </div>

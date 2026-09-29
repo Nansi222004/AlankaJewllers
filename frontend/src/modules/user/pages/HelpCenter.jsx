@@ -50,7 +50,7 @@ const SupportForm = ({ onCancel, initialOrder = '' }) => {
 
     return (
         <div className="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-100 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h2 className="text-xl md:text-2xl font-display font-bold text-black mb-4 md:mb-6">Create Support Ticket</h2>
+            <h2 className="text-xl md:text-2xl font-display font-bold text-brand-espresso mb-4 md:mb-6">Create Support Ticket</h2>
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div>
@@ -61,7 +61,7 @@ const SupportForm = ({ onCancel, initialOrder = '' }) => {
                             placeholder="Brief description of issue"
                             value={formData.subject}
                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-brand-espresso focus:ring-1 focus:ring-black transition-all"
                         />
                     </div>
                     <div>
@@ -71,7 +71,7 @@ const SupportForm = ({ onCancel, initialOrder = '' }) => {
                             placeholder="e.g. 1735123456"
                             value={formData.orderId}
                             onChange={(e) => setFormData({ ...formData, orderId: e.target.value })}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                            className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-brand-espresso focus:ring-1 focus:ring-black transition-all"
                         />
                     </div>
                 </div>
@@ -80,7 +80,7 @@ const SupportForm = ({ onCancel, initialOrder = '' }) => {
                     <select
                         value={formData.category}
                         onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-brand-espresso focus:ring-1 focus:ring-black transition-all"
                     >
                         <option value="General Inquiry">General Enquiry</option>
                         <option value="Order Tracking">Order Tracking</option>
@@ -97,15 +97,15 @@ const SupportForm = ({ onCancel, initialOrder = '' }) => {
                         placeholder="Please describe your problem in detail..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-black focus:ring-1 focus:ring-black resize-none transition-all"
+                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 md:px-4 md:py-3 text-sm md:text-base text-gray-900 focus:outline-none focus:border-brand-espresso focus:ring-1 focus:ring-black resize-none transition-all"
                     ></textarea>
                 </div>
                 <div className="flex gap-3 md:gap-4">
                     <button
                         type="submit"
-                        className="flex-grow bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 py-3 md:py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#1C1917] transition-all shadow-sm text-sm md:text-base"
+                        className="flex-grow bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 py-3 md:py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-brand-plum transition-all shadow-sm text-sm md:text-base"
                     >
-                        <Send className="w-4 h-4 text-[#C59B27]" />
+                        <Send className="w-4 h-4 text-brand-champagne" />
                         Submit Request
                     </button>
                     <button
@@ -213,12 +213,12 @@ const HelpCenter = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white font-body pb-10 md:pb-20 selection:bg-[#C59B27] selection:text-[#141211]">
+        <div className="min-h-screen bg-white font-body pb-10 md:pb-20 selection:bg-brand-champagne selection:text-brand-espresso">
             {/* Back Button */}
             <div className="container mx-auto px-4 pt-4 mb-2">
                 <button
                     onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 text-stone-800 hover:text-[#C59B27] transition-all group font-bold uppercase tracking-widest text-[10px]"
+                    className="flex items-center gap-2 text-stone-800 hover:text-brand-champagne transition-all group font-bold uppercase tracking-widest text-[10px]"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                     Back
@@ -227,12 +227,12 @@ const HelpCenter = () => {
             {/* Hero Section */}
             <div className="bg-white border-b border-stone-200 py-6 md:py-10 px-4 relative overflow-hidden">
                 {/* Decorative */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[#C59B27]/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#C59B27]/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-brand-champagne/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-champagne/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
 
                 <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <span className="text-[#C59B27] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 block">Support Center</span>
-                    <h1 className="text-2xl md:text-4xl font-serif font-bold mb-4 text-[#141211]">How can we help you?</h1>
+                    <span className="text-brand-champagne text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 block">Support Center</span>
+                    <h1 className="text-2xl md:text-4xl font-serif font-bold mb-4 text-brand-espresso">How can we help you?</h1>
                     <div className="relative max-w-xl mx-auto">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-4 h-4" />
                         <input
@@ -240,7 +240,7 @@ const HelpCenter = () => {
                             placeholder="Search for topics, questions..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-stone-50 border border-stone-200 text-[#141211] rounded-full py-2.5 px-10 md:py-3 md:px-12 text-sm focus:outline-none focus:ring-2 focus:ring-[#C59B27]/30 focus:border-[#C59B27] shadow-sm transition-all"
+                            className="w-full bg-stone-50 border border-stone-200 text-brand-espresso rounded-full py-2.5 px-10 md:py-3 md:px-12 text-sm focus:outline-none focus:ring-2 focus:ring-brand-champagne/30 focus:border-brand-champagne shadow-sm transition-all"
                         />
                     </div>
                 </div>
@@ -256,12 +256,12 @@ const HelpCenter = () => {
                                 setActiveCategory(cat.id);
                                 setView('home');
                             }}
-                            className={`bg-white p-3 md:p-6 rounded-2xl shadow-sm border transition-all text-left group hover:shadow-lg hover:-translate-y-1 ${activeCategory === cat.id && view === 'home' ? 'border-black ring-1 ring-black' : 'border-gray-100'}`}
+                            className={`bg-white p-3 md:p-6 rounded-2xl shadow-sm border transition-all text-left group hover:shadow-lg hover:-translate-y-1 ${activeCategory === cat.id && view === 'home' ? 'border-brand-espresso ring-1 ring-black' : 'border-gray-100'}`}
                         >
-                            <div className={`w-8 h-8 md:w-10 md:h-10 rounded-xl flex items-center justify-center mb-2 md:mb-4 transition-colors ${activeCategory === cat.id && view === 'home' ? 'bg-[#141211] text-[#E8D198]' : 'bg-gray-50 text-black group-hover:bg-[#FAF8F5] group-hover:text-[#C59B27]'}`}>
+                            <div className={`w-8 h-8 md:w-10 md:h-10 rounded-xl flex items-center justify-center mb-2 md:mb-4 transition-colors ${activeCategory === cat.id && view === 'home' ? 'bg-brand-plum text-brand-champagne-light' : 'bg-gray-50 text-brand-espresso group-hover:bg-brand-pearl group-hover:text-brand-champagne'}`}>
                                 {cat.icon}
                             </div>
-                            <h3 className="text-sm md:text-base font-bold text-black mb-1 font-display">{cat.title}</h3>
+                            <h3 className="text-sm md:text-base font-bold text-brand-espresso mb-1 font-display">{cat.title}</h3>
                             <p className="text-xs text-gray-500 leading-relaxed hidden md:block font-serif">{cat.description}</p>
                         </button>
                     ))}
@@ -273,9 +273,9 @@ const HelpCenter = () => {
                         {view === 'home' ? (
                             <div className="animate-in fade-in slide-in-from-left-4 duration-500">
                                 <div className="flex justify-between items-center mb-4 md:mb-6">
-                                    <h2 className="text-lg md:text-xl font-display font-bold text-black">Frequently Asked Questions</h2>
+                                    <h2 className="text-lg md:text-xl font-display font-bold text-brand-espresso">Frequently Asked Questions</h2>
                                     {activeCategory !== 'all' && (
-                                        <button onClick={() => setActiveCategory('all')} className="text-gray-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-black transition-colors">Clear Filter</button>
+                                        <button onClick={() => setActiveCategory('all')} className="text-gray-500 text-xs md:text-sm font-bold uppercase tracking-widest hover:text-brand-espresso transition-colors">Clear Filter</button>
                                     )}
                                 </div>
                                 <div className="space-y-3 md:space-y-4">
@@ -284,7 +284,7 @@ const HelpCenter = () => {
                                             <div key={idx} className="bg-white rounded-2xl border border-gray-100 overflow-hidden transition-all hover:bg-gray-50/50 hover:border-gray-200">
                                                 <details className="group">
                                                     <summary className="flex items-center justify-between p-4 md:p-6 cursor-pointer list-none">
-                                                        <h4 className="text-sm md:text-base font-bold text-black pr-4">{faq.question}</h4>
+                                                        <h4 className="text-sm md:text-base font-bold text-brand-espresso pr-4">{faq.question}</h4>
                                                         <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-gray-400 transition-transform group-open:rotate-90" />
                                                     </summary>
                                                     <div className="px-4 pb-4 md:px-6 md:pb-6 text-xs md:text-sm text-gray-600 leading-relaxed animate-in fade-in slide-in-from-top-2 font-serif">
@@ -315,7 +315,7 @@ const HelpCenter = () => {
                     {/* Support Sidebar */}
                     <div className="space-y-6 md:space-y-8">
                         {/* Contact Card */}
-                        <div className="bg-black text-white p-6 md:p-8 rounded-3xl shadow-xl relative overflow-hidden">
+                        <div className="bg-brand-plum text-white p-6 md:p-8 rounded-3xl shadow-xl relative overflow-hidden">
                             <div className="relative z-10">
                                 <h3 className="text-xl md:text-2xl font-display font-bold mb-2 md:mb-4">Still need help?</h3>
                                 <p className="text-white/80 mb-6 md:mb-8 text-xs md:text-sm leading-relaxed font-serif">Our support team is available from 10 AM to 7 PM to help you.</p>
@@ -326,9 +326,9 @@ const HelpCenter = () => {
                                             if (!user) return showNotification("Please login to contact support.");
                                             setView('contact');
                                         }}
-                                        className="w-full bg-white text-[#141211] py-3 md:py-4 rounded-xl font-bold flex items-center justify-center gap-2 md:gap-3 hover:bg-[#FAF8F5] hover:text-[#C59B27] transition-all shadow-lg active:scale-95 text-sm md:text-base"
+                                        className="w-full bg-white text-brand-espresso py-3 md:py-4 rounded-xl font-bold flex items-center justify-center gap-2 md:gap-3 hover:bg-brand-pearl hover:text-brand-champagne transition-all shadow-lg active:scale-95 text-sm md:text-base"
                                     >
-                                        <MessageCircle className="w-4 h-4 md:w-5 md:h-5 text-[#C59B27]" />
+                                        <MessageCircle className="w-4 h-4 md:w-5 md:h-5 text-brand-champagne" />
                                         Contact Support
                                     </button>
 
@@ -354,14 +354,14 @@ const HelpCenter = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#C59B27]/10 rounded-full blur-3xl"></div>
+                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-champagne/10 rounded-full blur-3xl"></div>
                         </div>
 
                         {/* Order Help Card */}
                         {user && orders.length > 0 && (
                             <div className="bg-white p-6 md:p-8 rounded-3xl border border-stone-200 shadow-sm">
-                                <h3 className="text-base md:text-lg font-bold text-[#141211] mb-4 md:mb-6 flex items-center gap-2 font-serif">
-                                    <Clock className="w-4 h-4 md:w-5 md:h-5 text-[#C59B27]" />
+                                <h3 className="text-base md:text-lg font-bold text-brand-espresso mb-4 md:mb-6 flex items-center gap-2 font-serif">
+                                    <Clock className="w-4 h-4 md:w-5 md:h-5 text-brand-champagne" />
                                     Recent Orders
                                 </h3>
                                 <div className="space-y-4">
@@ -369,18 +369,18 @@ const HelpCenter = () => {
                                         <div
                                             key={order.id}
                                             onClick={() => handleNeedHelpWithOrder(order.id)}
-                                            className="p-3 md:p-4 rounded-xl bg-stone-50 border border-stone-100 group cursor-pointer hover:border-[#C59B27] transition-colors"
+                                            className="p-3 md:p-4 rounded-xl bg-stone-50 border border-stone-100 group cursor-pointer hover:border-brand-champagne transition-colors"
                                         >
                                             <div className="flex justify-between items-start mb-1">
-                                                <span className="text-xs font-bold text-[#141211]">#{order.id.split('-')[1]}</span>
+                                                <span className="text-xs font-bold text-brand-espresso">#{order.id.split('-')[1]}</span>
                                                 <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">{new Date(order.date).toLocaleDateString()}</span>
                                             </div>
                                             <p className="text-[10px] md:text-xs text-stone-600 line-clamp-1 mb-2 md:mb-3">{order.items[0].name}</p>
-                                            <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-[#C59B27] group-hover:underline group-hover:text-[#141211]">Need help?</button>
+                                            <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-brand-champagne group-hover:underline group-hover:text-brand-espresso">Need help?</button>
                                         </div>
                                     ))}
                                 </div>
-                                <Link to="/profile/orders" className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-4 md:mt-6 block text-center hover:text-black transition-colors">View all orders</Link>
+                                <Link to="/profile/orders" className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-4 md:mt-6 block text-center hover:text-brand-espresso transition-colors">View all orders</Link>
                             </div>
                         )}
                     </div>

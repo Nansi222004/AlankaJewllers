@@ -191,20 +191,20 @@ const Profile = () => {
     };
 
     return (
-        <div className="bg-white min-h-screen w-full">
+        <div className="bg-brand-pearl min-h-screen w-full text-brand-espresso">
             <div className="container mx-auto px-4 py-3 md:py-8 min-h-[60vh]">
                 {/* General Back Button */}
                 <div className="mb-4 md:mb-6">
                     <button
                         onClick={() => navigate(-1)}
-                        className="flex items-center gap-2 text-stone-600 hover:text-[#C59B27] transition-all group font-bold uppercase tracking-widest text-[10px]"
+                        className="flex items-center gap-2 text-stone-600 hover:text-brand-champagne transition-all group font-bold uppercase tracking-widest text-[10px]"
                     >
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         Back
                     </button>
                 </div>
 
-                <h1 className={`${tabParam ? 'hidden md:block' : 'block'} text-xl md:text-3xl font-serif font-bold text-[#141211] mb-4 md:mb-8 text-center md:text-left`}>My Account</h1>
+                <h1 className={`${tabParam ? 'hidden md:block' : 'block'} text-xl md:text-3xl font-serif font-bold text-brand-espresso mb-4 md:mb-8 text-center md:text-left`}>My Account</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                     <ProfileSidebar 

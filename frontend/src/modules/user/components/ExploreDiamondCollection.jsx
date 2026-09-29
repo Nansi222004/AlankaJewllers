@@ -133,10 +133,10 @@ const DiamondProductCard = ({ product }) => {
     return (
         <div
             onClick={handleOpen}
-            className="group/card relative w-full flex flex-col bg-white overflow-hidden rounded-2xl sm:rounded-3xl border border-[#EAE3D6] hover:border-[#C59B27] transition-all duration-400 hover:shadow-[0_14px_36px_rgba(197,155,39,0.12)] cursor-pointer transform hover:-translate-y-1"
+            className="group/card relative w-full flex flex-col bg-white overflow-hidden rounded-2xl sm:rounded-3xl border border-[#EAE3D6] hover:border-brand-champagne transition-all duration-400 hover:shadow-[0_14px_36px_rgba(184,149,106,0.12)] cursor-pointer transform hover:-translate-y-1"
         >
             {/* Visual Area with smooth 1.05 hover zoom */}
-            <div className="relative aspect-square w-full overflow-hidden bg-[#FAF7F0] border-b border-[#EAE3D6]">
+            <div className="relative aspect-square w-full overflow-hidden bg-brand-pearl border-b border-[#EAE3D6]">
                 <img
                     src={imgSrc}
                     alt={product.name}
@@ -151,12 +151,12 @@ const DiamondProductCard = ({ product }) => {
 
                 {/* Diamond Origin Badge */}
                 <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 z-10 flex flex-col gap-1">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE3D6] text-[#141211] text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-2xs">
-                        <Sparkles className="w-2.5 h-2.5 text-[#C59B27]" />
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE3D6] text-brand-espresso text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-2xs">
+                        <Sparkles className="w-2.5 h-2.5 text-brand-champagne" />
                         <span>{diamondOrigin}</span>
                     </span>
                     {hasDiscount && discountPercent > 0 && (
-                        <span className="self-start px-2 py-0.5 rounded-md bg-[#C59B27] text-[#141211] text-[9px] font-black uppercase tracking-wider shadow-2xs">
+                        <span className="self-start px-2 py-0.5 rounded-md bg-brand-champagne text-brand-espresso text-[9px] font-black uppercase tracking-wider shadow-2xs">
                             {discountPercent}% Off
                         </span>
                     )}
@@ -168,7 +168,7 @@ const DiamondProductCard = ({ product }) => {
                         type="button"
                         onClick={handleOpen}
                         aria-label="View Details"
-                        className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE3D6] text-[#141211] hover:text-[#C59B27] hover:border-[#C59B27] flex items-center justify-center shadow-xs cursor-pointer"
+                        className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE3D6] text-brand-espresso hover:text-brand-champagne hover:border-brand-champagne flex items-center justify-center shadow-xs cursor-pointer"
                     >
                         <Eye className="w-3.5 h-3.5" />
                     </button>
@@ -180,7 +180,7 @@ const DiamondProductCard = ({ product }) => {
                 <div>
                     {/* Category or Diamond Specs Subhead */}
                     <div className="flex items-center justify-between mb-1.5 min-h-[16px]">
-                        <span className="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.16em] text-[#C59B27] truncate">
+                        <span className="text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-[0.16em] text-brand-champagne truncate">
                             {product.category?.name || product.category || 'Diamond Atelier'}
                         </span>
                         {diamondSpecs && (
@@ -191,7 +191,7 @@ const DiamondProductCard = ({ product }) => {
                     </div>
 
                     {/* Product Name */}
-                    <h3 className="font-serif text-sm sm:text-base font-medium text-[#141211] group-hover/card:text-[#C59B27] transition-colors leading-snug line-clamp-1 mb-2.5">
+                    <h3 className="font-serif text-sm sm:text-base font-medium text-brand-espresso group-hover/card:text-brand-champagne transition-colors leading-snug line-clamp-1 mb-2.5">
                         {product.name}
                     </h3>
                 </div>
@@ -199,7 +199,7 @@ const DiamondProductCard = ({ product }) => {
                 <div>
                     {/* Price Block */}
                     <div className="flex items-baseline gap-2 mb-3">
-                        <span className="text-base sm:text-lg font-bold text-[#141211] font-sans tracking-tight">
+                        <span className="text-base sm:text-lg font-bold text-brand-espresso font-sans tracking-tight">
                             {formatCurrency(effectivePrice)}
                         </span>
                         {hasDiscount && (
@@ -213,7 +213,7 @@ const DiamondProductCard = ({ product }) => {
                     <button
                         type="button"
                         onClick={handleOpen}
-                        className="w-full py-2 sm:py-2.5 px-4 rounded-xl sm:rounded-2xl bg-[#141211] text-[#FAF8F5] group-hover/card:bg-[#C59B27] group-hover/card:text-[#141211] font-sans font-semibold text-[10px] sm:text-xs uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-1.5 shadow-xs cursor-pointer border border-[#141211] group-hover/card:border-[#C59B27]"
+                        className="w-full py-2 sm:py-2.5 px-4 rounded-xl sm:rounded-2xl bg-brand-plum text-brand-pearl group-hover/card:bg-brand-champagne group-hover/card:text-brand-espresso font-sans font-semibold text-[10px] sm:text-xs uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-1.5 shadow-xs cursor-pointer border border-brand-espresso group-hover/card:border-brand-champagne"
                     >
                         <span>View Details</span>
                         <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/card:translate-x-1" />
@@ -325,11 +325,11 @@ const ExploreDiamondCollection = ({
                 <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
                     {/* Top Diamond Emblem */}
                     <div className="flex items-center justify-center gap-3 mb-2.5">
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-[#C59B27]/70" />
-                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C59B27]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-brand-champagne/70" />
+                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-brand-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                             <polygon points="6 3 18 3 22 9 12 22 2 9" />
                         </svg>
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-[#C59B27]/70" />
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-brand-champagne/70" />
                     </div>
 
                     {/* Eyebrow */}
@@ -338,7 +338,7 @@ const ExploreDiamondCollection = ({
                     </span>
 
                     {/* Main Title */}
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#141211] font-normal tracking-tight leading-tight mb-3">
+                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-brand-espresso font-normal tracking-tight leading-tight mb-3">
                         {title}
                     </h2>
 
@@ -361,8 +361,8 @@ const ExploreDiamondCollection = ({
                                     onClick={() => setSelectedCategory(tab.id)}
                                     className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
                                         isActive
-                                            ? 'bg-[#141211] text-white shadow-xs scale-[1.02]'
-                                            : 'bg-white text-stone-700 hover:text-[#141211] hover:border-[#C59B27] border border-[#EAE3D6]'
+                                            ? 'bg-brand-plum text-white shadow-xs scale-[1.02]'
+                                            : 'bg-white text-stone-700 hover:text-brand-espresso hover:border-brand-champagne border border-[#EAE3D6]'
                                     }`}
                                 >
                                     {tab.label}
@@ -380,7 +380,7 @@ const ExploreDiamondCollection = ({
                                 <select
                                     value={selectedType}
                                     onChange={(e) => setSelectedType(e.target.value)}
-                                    className="bg-transparent text-xs font-semibold text-[#141211] outline-none cursor-pointer"
+                                    className="bg-transparent text-xs font-semibold text-brand-espresso outline-none cursor-pointer"
                                 >
                                     {TYPE_FILTERS.map((t) => (
                                         <option key={t.id} value={t.id}>{t.label}</option>
@@ -394,7 +394,7 @@ const ExploreDiamondCollection = ({
                                 <select
                                     value={selectedPrice}
                                     onChange={(e) => setSelectedPrice(e.target.value)}
-                                    className="bg-transparent text-xs font-semibold text-[#141211] outline-none cursor-pointer"
+                                    className="bg-transparent text-xs font-semibold text-brand-espresso outline-none cursor-pointer"
                                 >
                                     {PRICE_TIERS.map((tier) => (
                                         <option key={tier.id} value={tier.id}>{tier.label}</option>
@@ -404,7 +404,7 @@ const ExploreDiamondCollection = ({
 
                             {/* Active Shape Chip */}
                             {selectedShape && (
-                                <div className="inline-flex items-center gap-1.5 bg-[#141211] text-white px-3 py-1.5 rounded-xl text-xs font-semibold">
+                                <div className="inline-flex items-center gap-1.5 bg-brand-plum text-white px-3 py-1.5 rounded-xl text-xs font-semibold">
                                     <span className="capitalize">{selectedShape} Cut</span>
                                     <button
                                         type="button"
@@ -427,7 +427,7 @@ const ExploreDiamondCollection = ({
                                 <button
                                     type="button"
                                     onClick={resetAllFilters}
-                                    className="inline-flex items-center gap-1 text-[#C59B27] hover:underline font-bold uppercase text-[11px] tracking-wider cursor-pointer"
+                                    className="inline-flex items-center gap-1 text-brand-champagne hover:underline font-bold uppercase text-[11px] tracking-wider cursor-pointer"
                                 >
                                     <RotateCcw className="w-3 h-3" />
                                     <span>Reset</span>
@@ -439,7 +439,7 @@ const ExploreDiamondCollection = ({
                                 <select
                                     value={sortBy}
                                     onChange={(e) => setSortBy(e.target.value)}
-                                    className="bg-transparent text-xs font-semibold text-[#141211] outline-none cursor-pointer pr-1"
+                                    className="bg-transparent text-xs font-semibold text-brand-espresso outline-none cursor-pointer pr-1"
                                 >
                                     <option value="featured">Featured Creations</option>
                                     <option value="price-low">Price: Low to High</option>
@@ -463,10 +463,10 @@ const ExploreDiamondCollection = ({
                     </div>
                 ) : (
                     <div className="py-16 sm:py-20 px-6 max-w-xl mx-auto text-center bg-white/80 backdrop-blur-xs rounded-3xl border border-[#EAE3D6] shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
-                        <div className="w-16 h-16 rounded-2xl bg-[#FAF8F4] border border-[#EAE3D6] flex items-center justify-center mx-auto mb-4 text-[#C59B27] shadow-2xs">
+                        <div className="w-16 h-16 rounded-2xl bg-[#FAF8F4] border border-[#EAE3D6] flex items-center justify-center mx-auto mb-4 text-brand-champagne shadow-2xs">
                             <Gem className="w-8 h-8" />
                         </div>
-                        <h3 className="font-serif text-xl sm:text-2xl text-[#141211] font-medium mb-2">
+                        <h3 className="font-serif text-xl sm:text-2xl text-brand-espresso font-medium mb-2">
                             No Diamond Designs Found
                         </h3>
                         <p className="text-xs sm:text-sm text-[#786E64] font-light leading-relaxed mb-6 max-w-md mx-auto">
@@ -479,14 +479,14 @@ const ExploreDiamondCollection = ({
                                 <button
                                     type="button"
                                     onClick={resetAllFilters}
-                                    className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#EAE3D6] text-[#141211] hover:border-[#C59B27] hover:text-[#C59B27] transition-all cursor-pointer shadow-2xs"
+                                    className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#EAE3D6] text-brand-espresso hover:border-brand-champagne hover:text-brand-champagne transition-all cursor-pointer shadow-2xs"
                                 >
                                     Reset Filters
                                 </button>
                             )}
                             <Link
                                 to="/shop?metal=diamond"
-                                className="inline-flex items-center gap-2 bg-[#141211] text-white hover:bg-[#C59B27] hover:text-[#141211] px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+                                className="inline-flex items-center gap-2 bg-brand-plum text-white hover:bg-brand-champagne hover:text-brand-espresso px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
                             >
                                 <span>Browse Full Store Catalogue</span>
                                 <ArrowRight className="w-3.5 h-3.5" />

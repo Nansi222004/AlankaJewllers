@@ -18,8 +18,8 @@ const AddressesTab = ({
     return (
         <div className="space-y-6 md:space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex justify-between items-center mb-4 md:mb-6">
-                <h2 className="text-xl md:text-2xl font-serif font-bold text-[#141211] tracking-wide">My Addresses</h2>
-                <button onClick={() => showAddressForm ? navigate('/profile/addresses') : navigate('/profile/addresses/add')} className="bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-4 py-2 md:px-6 md:py-2.5 rounded-lg text-sm font-bold hover:bg-[#1C1917] transition-all flex items-center gap-2">
+                <h2 className="text-xl md:text-2xl font-serif font-bold text-brand-espresso tracking-wide">My Addresses</h2>
+                <button onClick={() => showAddressForm ? navigate('/profile/addresses') : navigate('/profile/addresses/add')} className="bg-brand-plum text-white border border-brand-plum px-4 py-2 md:px-6 md:py-2.5 rounded-lg text-sm font-bold hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all flex items-center gap-2">
                     <Plus className="w-4 h-4" />
                     {showAddressForm ? 'Cancel' : 'Add New'}
                 </button>
@@ -27,7 +27,7 @@ const AddressesTab = ({
 
             {/* Mobile Add Address Form - Full Screen Overlay Style */}
             {showAddressForm && (
-                <div className="md:hidden fixed inset-0 z-[200] bg-[#FDFBF7] flex flex-col animate-in slide-in-from-bottom duration-300">
+                <div className="md:hidden fixed inset-0 z-[200] bg-brand-pearl flex flex-col animate-in slide-in-from-bottom duration-300">
                     <div className="bg-white p-4 shadow-sm flex items-center gap-4 sticky top-0 z-10">
                         <button onClick={() => navigate('/profile/addresses')} className="text-[#3E2723]"><ArrowLeft className="w-5 h-5" /></button>
                         <h2 className="text-lg font-display font-bold text-[#3E2723]">Add New Address</h2>
@@ -74,15 +74,15 @@ const AddressesTab = ({
 
             {/* Desktop Add Address Form - With Validation */}
             {showAddressForm && (
-                <form onSubmit={handleAddAddress} className="hidden md:grid bg-white p-8 rounded-2xl shadow-sm grid-cols-2 gap-4 border border-[#E8DFD0] animate-in fade-in duration-300">
-                    <input placeholder="Name" value={newAddress.name} onChange={e => setNewAddress({ ...newAddress, name: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-[#C59B27] transition-colors" required />
-                    <input placeholder="Phone" value={newAddress.phone} onChange={e => setNewAddress({ ...newAddress, phone: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-[#C59B27] transition-colors" required />
-                    <input placeholder="Flat, House no., Building, Company, Apartment" value={newAddress.flatNo} onChange={e => setNewAddress({ ...newAddress, flatNo: e.target.value })} className="col-span-2 w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-[#C59B27] transition-colors" required />
-                    <input placeholder="Area, Street, Sector, Village" value={newAddress.area} onChange={e => setNewAddress({ ...newAddress, area: e.target.value })} className="col-span-2 w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-[#C59B27] transition-colors" required />
-                    <input placeholder="City" value={newAddress.city} onChange={e => setNewAddress({ ...newAddress, city: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-[#C59B27] transition-colors" required />
-                    <input placeholder="State" value={newAddress.state} onChange={e => setNewAddress({ ...newAddress, state: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-[#C59B27] transition-colors" required />
-                    <input placeholder="Pincode" value={newAddress.pincode} onChange={e => setNewAddress({ ...newAddress, pincode: e.target.value })} className="col-span-2 w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-[#C59B27] transition-colors" required />
-                    <button type="submit" className="col-span-2 bg-[#141211] text-white py-3 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#1C1917] hover:text-[#E8D198] transition-all mt-2">Save Address</button>
+                <form onSubmit={handleAddAddress} className="hidden md:grid bg-white p-8 rounded-2xl shadow-sm grid-cols-2 gap-4 border border-brand-border animate-in fade-in duration-300">
+                    <input placeholder="Name" value={newAddress.name} onChange={e => setNewAddress({ ...newAddress, name: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-brand-champagne transition-colors" required />
+                    <input placeholder="Phone" value={newAddress.phone} onChange={e => setNewAddress({ ...newAddress, phone: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-brand-champagne transition-colors" required />
+                    <input placeholder="Flat, House no., Building, Company, Apartment" value={newAddress.flatNo} onChange={e => setNewAddress({ ...newAddress, flatNo: e.target.value })} className="col-span-2 w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-brand-champagne transition-colors" required />
+                    <input placeholder="Area, Street, Sector, Village" value={newAddress.area} onChange={e => setNewAddress({ ...newAddress, area: e.target.value })} className="col-span-2 w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-brand-champagne transition-colors" required />
+                    <input placeholder="City" value={newAddress.city} onChange={e => setNewAddress({ ...newAddress, city: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-brand-champagne transition-colors" required />
+                    <input placeholder="State" value={newAddress.state} onChange={e => setNewAddress({ ...newAddress, state: e.target.value })} className="w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-brand-champagne transition-colors" required />
+                    <input placeholder="Pincode" value={newAddress.pincode} onChange={e => setNewAddress({ ...newAddress, pincode: e.target.value })} className="col-span-2 w-full bg-gray-50 border border-gray-100 p-3 rounded-lg text-sm focus:outline-none focus:border-brand-champagne transition-colors" required />
+                    <button type="submit" className="col-span-2 bg-brand-plum text-white border border-brand-plum py-3 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all mt-2">Save Address</button>
                 </form>
             )}
 
@@ -91,7 +91,7 @@ const AddressesTab = ({
                 <div className="fixed inset-0 bg-black/50 z-[300] flex items-end md:items-center justify-center p-4 animate-in fade-in duration-200">
                     <div className="bg-white w-full md:w-[90%] md:max-w-md rounded-t-2xl md:rounded-2xl shadow-xl p-6 space-y-4 animate-in slide-in-from-bottom-5 md:slide-in-from-center duration-300">
                         <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-lg md:text-xl font-bold text-black">{selectedAddress.type} Address</h3>
+                            <h3 className="text-lg md:text-xl font-bold text-brand-espresso">{selectedAddress.type} Address</h3>
                             <button onClick={() => setSelectedAddress(null)} className="p-2 hover:bg-gray-100 rounded-lg transition-all">
                                 <X className="w-5 h-5" />
                             </button>
@@ -100,33 +100,33 @@ const AddressesTab = ({
                         <div className="space-y-3 border-t border-gray-200 pt-4">
                             <div>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Name</p>
-                                <p className="text-sm md:text-base font-semibold text-black">{selectedAddress.name}</p>
+                                <p className="text-sm md:text-base font-semibold text-brand-espresso">{selectedAddress.name}</p>
                             </div>
                             <div>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Phone</p>
-                                <p className="text-sm md:text-base font-semibold text-black">{selectedAddress.phone || 'N/A'}</p>
+                                <p className="text-sm md:text-base font-semibold text-brand-espresso">{selectedAddress.phone || 'N/A'}</p>
                             </div>
                             <div>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Flat / House / Building</p>
-                                <p className="text-sm md:text-base font-semibold text-black">{selectedAddress.flatNo}</p>
+                                <p className="text-sm md:text-base font-semibold text-brand-espresso">{selectedAddress.flatNo}</p>
                             </div>
                             <div>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Area / Street / Sector</p>
-                                <p className="text-sm md:text-base font-semibold text-black">{selectedAddress.area}</p>
+                                <p className="text-sm md:text-base font-semibold text-brand-espresso">{selectedAddress.area}</p>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">City</p>
-                                    <p className="text-sm md:text-base font-semibold text-black">{selectedAddress.city}</p>
+                                    <p className="text-sm md:text-base font-semibold text-brand-espresso">{selectedAddress.city}</p>
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">State</p>
-                                    <p className="text-sm md:text-base font-semibold text-black">{selectedAddress.state}</p>
+                                    <p className="text-sm md:text-base font-semibold text-brand-espresso">{selectedAddress.state}</p>
                                 </div>
                             </div>
                             <div>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Pincode</p>
-                                <p className="text-sm md:text-base font-semibold text-black">{selectedAddress.pincode}</p>
+                                <p className="text-sm md:text-base font-semibold text-brand-espresso">{selectedAddress.pincode}</p>
                             </div>
                         </div>
 
@@ -137,7 +137,7 @@ const AddressesTab = ({
                                         setDefaultAddress(selectedAddress.id || selectedAddress._id);
                                         setSelectedAddress(null);
                                     }}
-                                    className="flex-1 bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 py-2.5 rounded-lg font-bold text-sm uppercase hover:bg-[#1C1917] transition-all active:scale-95"
+                                    className="flex-1 bg-brand-plum text-white border border-brand-plum py-2.5 rounded-lg font-bold text-sm uppercase hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all active:scale-95"
                                 >
                                     Set as Default
                                 </button>
@@ -157,11 +157,11 @@ const AddressesTab = ({
             )}
 
             {safeAddresses.length === 0 ? (
-                <div className="text-center py-12 bg-[#FAF8F5] rounded-2xl border border-[#C59B27]/30">
+                <div className="text-center py-12 bg-brand-pearl rounded-2xl border border-brand-champagne/30">
                     <p className="text-stone-500 text-sm mb-4">No addresses added yet</p>
                     <button
                         onClick={() => navigate('/profile/addresses/add')}
-                        className="bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-6 py-2.5 rounded-lg font-bold text-sm uppercase hover:bg-[#1C1917] transition-all active:scale-95"
+                        className="bg-brand-plum text-white border border-brand-plum px-6 py-2.5 rounded-lg font-bold text-sm uppercase hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all active:scale-95"
                     >
                         Add Your First Address
                     </button>
@@ -174,10 +174,10 @@ const AddressesTab = ({
                         <div
                             key={addressId}
                             onClick={() => setSelectedAddress(addr)}
-                            className="bg-[#FAF8F5] p-4 md:p-6 rounded-2xl shadow-sm relative border border-[#C59B27]/30 transition-all hover:shadow-md cursor-pointer hover:bg-amber-50/40 active:scale-95"
+                            className="bg-brand-pearl p-4 md:p-6 rounded-2xl shadow-sm relative border border-brand-champagne/30 transition-all hover:shadow-md cursor-pointer hover:bg-amber-50/40 active:scale-95"
                         >
                             <div className="flex justify-between mb-2">
-                                <span className="text-[9px] md:text-[10px] font-bold uppercase py-1 px-2 bg-white rounded text-[#141211] tracking-wider shadow-sm border border-stone-200">{addr.type}</span>
+                                <span className="text-[9px] md:text-[10px] font-bold uppercase py-1 px-2 bg-white rounded text-brand-espresso tracking-wider shadow-sm border border-stone-200">{addr.type}</span>
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -188,12 +188,12 @@ const AddressesTab = ({
                                     <Trash2 className="w-4 h-4" />
                                 </button>
                             </div>
-                            <h4 className="font-bold text-sm md:text-base text-[#141211] mb-1">{addr.name}</h4>
+                            <h4 className="font-bold text-sm md:text-base text-brand-espresso mb-1">{addr.name}</h4>
                             <p className="text-xs md:text-sm text-stone-500 leading-relaxed mb-3">
                                 {[addr.flatNo, addr.area, addr.city].filter(Boolean).join(', ')}
                                 {addr.pincode ? ` - ${addr.pincode}` : ''}
                             </p>
-                            <p className="text-[10px] text-[#C59B27] font-bold cursor-pointer hover:underline">View Full Address →</p>
+                            <p className="text-[10px] text-brand-champagne font-bold cursor-pointer hover:underline">View Full Address →</p>
                         </div>
                     );
                 })}

@@ -100,10 +100,10 @@ const FamilyPricePoints = ({ sectionData }) => {
         <section className="bg-white py-4 md:py-8">
             <div className="container mx-auto px-4 max-w-6xl">
                 <div className="text-center mb-6">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#C59B27]">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-champagne">
                         {sectionAccent}
                     </span>
-                    <h2 className="mt-1 font-serif text-2xl text-[#141211]">
+                    <h2 className="mt-1 font-serif text-2xl text-brand-espresso">
                         {sectionTitle}
                     </h2>
                 </div>
@@ -120,7 +120,7 @@ const FamilyPricePoints = ({ sectionData }) => {
                         >
                             <Link
                                 to={point.link}
-                                className="block relative overflow-hidden rounded-2xl md:rounded-[32px] border border-[#E8DFD0] bg-white hover:shadow-2xl hover:shadow-[#C59B27]/10 hover:border-[#C59B27]/40 transition-all duration-500"
+                                className="block relative overflow-hidden rounded-2xl md:rounded-[32px] border border-brand-border bg-white hover:shadow-2xl hover:shadow-brand-champagne/10 hover:border-brand-champagne/40 transition-all duration-500"
                             >
                                 <div className="aspect-square relative overflow-hidden">
                                     <img
@@ -132,7 +132,7 @@ const FamilyPricePoints = ({ sectionData }) => {
                                 </div>
 
                                 <div className="p-3 md:p-6 text-center">
-                                    <h3 className="font-serif text-[13px] md:text-xl text-[#141211] group-hover:text-[#C59B27] transition-colors tracking-tight font-medium">
+                                    <h3 className="font-serif text-[13px] md:text-xl text-brand-espresso group-hover:text-brand-champagne transition-colors tracking-tight font-medium">
                                         {point.title}
                                     </h3>
                                     <p className="hidden md:block mt-1.5 text-[11px] text-stone-500 font-medium leading-relaxed">

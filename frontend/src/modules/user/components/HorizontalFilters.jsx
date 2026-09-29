@@ -310,14 +310,14 @@ const HorizontalFilters = ({
                                     onClick={() => toggleDropdown(group.id)}
                                     className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border transition-all text-[12px] uppercase font-bold tracking-wider whitespace-nowrap ${
                                         activeDropdown === group.id || isGroupActive
-                                            ? 'border-[#C59B27] bg-[#FAF8F5] text-[#141211] shadow-2xs font-extrabold'
-                                            : 'border-stone-200 hover:border-[#C59B27] text-stone-700 font-semibold'
+                                            ? 'border-brand-champagne bg-brand-rosewater text-brand-plum shadow-2xs font-extrabold'
+                                            : 'border-stone-200 hover:border-brand-champagne text-stone-700 font-semibold'
                                     }`}
                                 >
                                     <span>
                                         {isGroupActive && group.displayValue ? `${group.label}: ${group.displayValue}` : group.label}
                                     </span>
-                                    <ChevronDown className={`w-3.5 h-3.5 text-stone-500 transition-transform duration-300 ${activeDropdown === group.id ? 'rotate-180 text-[#C59B27]' : ''}`} />
+                                    <ChevronDown className={`w-3.5 h-3.5 text-stone-500 transition-transform duration-300 ${activeDropdown === group.id ? 'rotate-180 text-brand-champagne' : ''}`} />
                                 </button>
 
                                 <AnimatePresence>
@@ -335,13 +335,13 @@ const HorizontalFilters = ({
                                                     : group.id === 'metal'
                                                         ? ((hoveredMetal || ['gold', 'silver', 'diamond'].includes(metal.toLowerCase())) ? 'w-auto' : 'w-48')
                                                         : 'w-56'
-                                            } bg-white border border-[#C59B27]/40 rounded-xl shadow-2xl z-[110] custom-scrollbar overscroll-contain overflow-hidden ${dropdownScroll.isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}`}
+                                            } bg-white border border-brand-champagne/40 rounded-xl shadow-2xl z-[110] custom-scrollbar overscroll-contain overflow-hidden ${dropdownScroll.isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}`}
                                         >
                                             {group.isSlider ? (
                                                 <div className="px-5 py-4 w-full">
                                                     <div className="flex justify-between text-xs text-stone-700 font-bold mb-4 tracking-wide">
                                                         <span>₹0</span>
-                                                        <span className="text-[#C59B27]">₹{group.current >= group.max ? `${group.max.toLocaleString()}+` : group.current.toLocaleString()}</span>
+                                                        <span className="text-brand-plum">₹{group.current >= group.max ? `${group.max.toLocaleString()}+` : group.current.toLocaleString()}</span>
                                                     </div>
                                                     <input
                                                         type="range"
@@ -350,7 +350,7 @@ const HorizontalFilters = ({
                                                         step={group.step}
                                                         value={group.current}
                                                         onChange={(e) => group.onChange(Number(e.target.value))}
-                                                        className="w-full h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-[#C59B27]"
+                                                        className="w-full h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-brand-champagne"
                                                     />
                                                     <div className="flex justify-between items-center mt-5">
                                                         <button 
@@ -361,7 +361,7 @@ const HorizontalFilters = ({
                                                         </button>
                                                         <button 
                                                             onClick={() => setActiveDropdown(null)}
-                                                            className="px-4 py-1.5 bg-[#141211] hover:bg-[#1C1917] text-[#E8D198] border border-[#C59B27]/40 text-[11px] font-bold uppercase tracking-widest rounded-full transition-colors shadow-sm"
+                                                            className="px-4 py-1.5 bg-brand-plum hover:bg-brand-champagne hover:text-brand-espresso text-white border border-brand-plum hover:border-brand-champagne text-[11px] font-bold uppercase tracking-widest rounded-full transition-colors shadow-sm"
                                                         >
                                                             Apply
                                                         </button>
@@ -403,15 +403,15 @@ const HorizontalFilters = ({
                                                                                     setActiveDropdown(null);
                                                                                 }
                                                                             }}
-                                                                            className={`w-full text-left px-3.5 py-2 text-[12.5px] hover:bg-[#FAF8F5] transition-colors flex items-center justify-between group ${
-                                                                                isSelected ? 'text-[#141211] font-bold bg-[#FAF8F5]' : 'text-stone-600'
+                                                                            className={`w-full text-left px-3.5 py-2 text-[12.5px] hover:bg-brand-pearl transition-colors flex items-center justify-between group ${
+                                                                                isSelected ? 'text-brand-espresso font-bold bg-brand-pearl' : 'text-stone-600'
                                                                             }`}
                                                                         >
                                                                             <span>{option}</span>
                                                                             <div className="flex items-center gap-1">
-                                                                                {isSelected && !isExpandable && <Check className="w-3.5 h-3.5 text-[#C59B27]" />}
+                                                                                {isSelected && !isExpandable && <Check className="w-3.5 h-3.5 text-brand-champagne" />}
                                                                                 {isExpandable && (
-                                                                                    <ChevronRight className={`w-3.5 h-3.5 transition-colors ${isSubpanelActive ? 'text-[#C59B27]' : 'text-stone-300'}`} />
+                                                                                    <ChevronRight className={`w-3.5 h-3.5 transition-colors ${isSubpanelActive ? 'text-brand-champagne' : 'text-stone-300'}`} />
                                                                                 )}
                                                                             </div>
                                                                         </button>
@@ -426,8 +426,8 @@ const HorizontalFilters = ({
                                                                 const changeHandler = activeSecondary === 'gold' ? onToneChange : activeSecondary === 'silver' ? onSilverTypeChange : onDiamondTypeChange;
 
                                                                 return (
-                                                                    <div className="w-52 py-1.5 bg-[#FAF8F5]/60 flex flex-col shrink-0 animate-in fade-in duration-150">
-                                                                        <div className="px-3.5 py-1 text-[10px] font-bold uppercase tracking-widest text-[#8C827A] border-b border-stone-100 mb-1">
+                                                                    <div className="w-52 py-1.5 bg-brand-pearl/60 flex flex-col shrink-0 animate-in fade-in duration-150">
+                                                                        <div className="px-3.5 py-1 text-[10px] font-bold uppercase tracking-widest text-brand-taupe border-b border-stone-100 mb-1">
                                                                             {cfg.panelTitle}
                                                                         </div>
                                                                         {cfg.options.map((opt) => {
@@ -450,12 +450,12 @@ const HorizontalFilters = ({
                                                                                         setActiveDropdown(null);
                                                                                     }}
                                                                                     className={`w-full text-left px-3.5 py-1.5 text-[12px] hover:bg-white transition-colors flex items-center justify-between group ${
-                                                                                        isOptSelected ? 'text-[#141211] font-bold bg-white shadow-2xs' : 'text-stone-600'
+                                                                                        isOptSelected ? 'text-brand-espresso font-bold bg-white shadow-2xs' : 'text-stone-600'
                                                                                     }`}
                                                                                 >
                                                                                     <div className="flex items-center gap-2 min-w-0">
                                                                                         {opt.image ? (
-                                                                                            <div className="w-4 h-4 rounded-full overflow-hidden border border-[#E8DFD0] shrink-0 shadow-2xs">
+                                                                                            <div className="w-4 h-4 rounded-full overflow-hidden border border-brand-border shrink-0 shadow-2xs">
                                                                                                 <img src={opt.image} alt={opt.label} className="w-full h-full object-cover" />
                                                                                             </div>
                                                                                         ) : (
@@ -466,7 +466,7 @@ const HorizontalFilters = ({
                                                                                         )}
                                                                                         <span className="truncate">{opt.label}</span>
                                                                                     </div>
-                                                                                    {isOptSelected && <Check className="w-3.5 h-3.5 text-[#C59B27] shrink-0" />}
+                                                                                    {isOptSelected && <Check className="w-3.5 h-3.5 text-brand-champagne shrink-0" />}
                                                                                 </button>
                                                                             );
                                                                         })}
@@ -492,12 +492,12 @@ const HorizontalFilters = ({
                                                                     group.onChange(val);
                                                                     if (!group.isMulti) setActiveDropdown(null);
                                                                 }}
-                                                                className={`w-full text-left px-4 py-2 text-[12.5px] hover:bg-[#FAF8F5] transition-colors flex items-center justify-between group ${
-                                                                    isSelected ? 'text-[#141211] font-bold bg-[#FAF8F5]' : 'text-stone-600'
+                                                                className={`w-full text-left px-4 py-2 text-[12.5px] hover:bg-brand-pearl transition-colors flex items-center justify-between group ${
+                                                                    isSelected ? 'text-brand-espresso font-bold bg-brand-pearl' : 'text-stone-600'
                                                                 }`}
                                                             >
                                                                 <span>{label}</span>
-                                                                {isSelected && <Check className="w-4 h-4 text-[#C59B27]" />}
+                                                                {isSelected && <Check className="w-4 h-4 text-brand-champagne" />}
                                                             </button>
                                                         );
                                                     })}
@@ -514,7 +514,7 @@ const HorizontalFilters = ({
                     {hasActiveFilters && (
                         <button
                             onClick={clearAll}
-                            className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-[#C59B27] hover:bg-amber-500/10 rounded-full transition-colors ml-1 shrink-0 uppercase tracking-wider"
+                            className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-brand-plum hover:bg-brand-rosewater rounded-full transition-colors ml-1 shrink-0 uppercase tracking-wider"
                         >
                             <X className="w-3.5 h-3.5" />
                             Clear All
@@ -528,7 +528,7 @@ const HorizontalFilters = ({
                     <select 
                         value={sortBy}
                         onChange={(e) => onSortChange(e.target.value)}
-                        className="bg-transparent text-[12px] font-bold text-stone-800 outline-none cursor-pointer border-b border-transparent hover:border-[#C59B27] transition-all uppercase"
+                        className="bg-transparent text-[12px] font-bold text-stone-800 outline-none cursor-pointer border-b border-transparent hover:border-brand-champagne transition-all uppercase"
                     >
                         <option value="New Arrival">New Arrival</option>
                         <option value="Discount">Discount</option>
@@ -544,16 +544,13 @@ const HorizontalFilters = ({
                     
                     {/* Jewellery Type Chip */}
                     {metal && metal !== 'All' && !isCollectionLocked && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span>Jewellery Type: <strong className="capitalize">{metal}</strong></span>
                             <button
                                 onClick={() => {
                                     onMetalChange('All');
-                                    if (onToneChange) onToneChange(null);
-                                    if (onSilverTypeChange) onSilverTypeChange(null);
-                                    if (onDiamondTypeChange) onDiamondTypeChange(null);
                                 }}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Jewellery Type filter"
                             >
                                 <X className="w-3 h-3" />
@@ -563,7 +560,7 @@ const HorizontalFilters = ({
 
                     {/* Gold Colour Chip (removable independently) */}
                     {metal?.toLowerCase() === 'gold' && tone && tone !== 'All' && tone !== 'all' && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span 
                                 className="w-2.5 h-2.5 rounded-full inline-block shrink-0 shadow-2xs"
                                 style={{
@@ -573,7 +570,7 @@ const HorizontalFilters = ({
                             <span>Gold Colour: <strong>{GOLD_TONE_OPTIONS.find(t => t.value.toLowerCase() === tone.toLowerCase())?.label || tone}</strong></span>
                             <button
                                 onClick={() => onToneChange && onToneChange(null)}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Gold Colour filter"
                             >
                                 <X className="w-3 h-3" />
@@ -583,7 +580,7 @@ const HorizontalFilters = ({
 
                     {/* Silver Type Chip (removable independently) */}
                     {metal?.toLowerCase() === 'silver' && silverType && silverType !== 'All' && silverType !== 'all' && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span 
                                 className="w-2.5 h-2.5 rounded-full inline-block shrink-0 shadow-2xs border border-stone-300"
                                 style={{
@@ -593,7 +590,7 @@ const HorizontalFilters = ({
                             <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverType.toLowerCase() || (s.value === '925' && (silverType.toLowerCase() === 'sterling' || silverType.toLowerCase() === '925-silver')))?.label || silverType}</strong></span>
                             <button
                                 onClick={() => onSilverTypeChange && onSilverTypeChange(null)}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Silver Type filter"
                             >
                                 <X className="w-3 h-3" />
@@ -603,7 +600,7 @@ const HorizontalFilters = ({
 
                     {/* Diamond Type Chip (removable independently) */}
                     {metal?.toLowerCase() === 'diamond' && diamondType && diamondType !== 'All' && diamondType !== 'all' && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span 
                                 className="w-2.5 h-2.5 rounded-full inline-block shrink-0 shadow-2xs border border-sky-300"
                                 style={{
@@ -613,7 +610,7 @@ const HorizontalFilters = ({
                             <span>Diamond Type: <strong>{DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondType.toLowerCase() || (d.value === 'lab_grown' && (diamondType.toLowerCase() === 'lab-grown' || diamondType.toLowerCase() === 'labgrown')))?.label || diamondType}</strong></span>
                             <button
                                 onClick={() => onDiamondTypeChange && onDiamondTypeChange(null)}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Diamond Type filter"
                             >
                                 <X className="w-3 h-3" />
@@ -623,11 +620,11 @@ const HorizontalFilters = ({
 
                     {/* Product Type Chip */}
                     {selectedCategory && selectedCategory !== 'All' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span>Product Type: <strong>{selectedCategory}</strong></span>
                             <button
                                 onClick={() => onCategoryChange('All')}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Product Type filter"
                             >
                                 <X className="w-3 h-3" />
@@ -637,11 +634,11 @@ const HorizontalFilters = ({
 
                     {/* Purity Chip */}
                     {purity && purity !== 'All' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span>Purity: <strong>{purityDisplayLabel}</strong></span>
                             <button
                                 onClick={() => onPurityChange('All')}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Purity filter"
                             >
                                 <X className="w-3 h-3" />
@@ -651,11 +648,11 @@ const HorizontalFilters = ({
 
                     {/* Stones Chip */}
                     {stone && stone !== 'All' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span>Stones: <strong>{stoneDisplayLabel}</strong></span>
                             <button
                                 onClick={() => onStonesChange('All')}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Stones filter"
                             >
                                 <X className="w-3 h-3" />
@@ -665,11 +662,11 @@ const HorizontalFilters = ({
 
                     {/* Price Chip */}
                     {priceRange < 50000 && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span>Price: <strong>Under ₹{priceRange.toLocaleString()}</strong></span>
                             <button
                                 onClick={() => onPriceChange(50000)}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Reset Price filter"
                             >
                                 <X className="w-3 h-3" />
@@ -679,11 +676,11 @@ const HorizontalFilters = ({
 
                     {/* Shop For Chip */}
                     {audience && audience !== 'All' && audience !== 'all' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span>Shop For: <strong>{audience.charAt(0).toUpperCase() + audience.slice(1)}</strong></span>
                             <button
                                 onClick={() => onAudienceChange('all')}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Shop For filter"
                             >
                                 <X className="w-3 h-3" />
@@ -700,11 +697,11 @@ const HorizontalFilters = ({
                             isPremium: 'Premium'
                         }[t] || t;
                         return (
-                            <span key={t} className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                            <span key={t} className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                                 <span>Style: <strong>{tagLabel}</strong></span>
                                 <button
                                     onClick={() => onTagsChange(t)}
-                                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                    className="hover:text-brand-champagne p-0.5 rounded-full"
                                     title={`Remove ${tagLabel}`}
                                 >
                                     <X className="w-3 h-3" />
@@ -715,11 +712,11 @@ const HorizontalFilters = ({
 
                     {/* Availability Chip */}
                     {availability && availability !== 'All' && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF8F5] border border-[#C59B27]/40 text-[#141211] text-[11px] font-medium shadow-2xs">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-pearl border border-brand-champagne/40 text-brand-espresso text-[11px] font-medium shadow-2xs">
                             <span>Availability: <strong>{availabilityDisplayLabel}</strong></span>
                             <button
                                 onClick={() => onAvailabilityChange('All')}
-                                className="hover:text-[#C59B27] p-0.5 rounded-full"
+                                className="hover:text-brand-champagne p-0.5 rounded-full"
                                 title="Remove Availability filter"
                             >
                                 <X className="w-3 h-3" />

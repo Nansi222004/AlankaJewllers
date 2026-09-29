@@ -98,7 +98,7 @@ const SupportChatPanel = () => {
                 src={att.url}
                 controls
                 preload="none"
-                className="max-h-40 rounded-lg border border-gray-200 bg-black"
+                className="max-h-40 rounded-lg border border-gray-200 bg-brand-plum"
               />
             ) : (
               <img
@@ -215,7 +215,7 @@ const SupportChatPanel = () => {
           className="fixed right-0 md:right-6 z-[10000] w-full shadow-2xl overflow-hidden bottom-0 md:bottom-[11.5rem] md:w-[380px] h-full md:h-[550px] md:max-h-[calc(100vh-13.5rem)] bg-white md:rounded-3xl border border-gray-100 flex flex-col"
         >
           {/* Header */}
-          <div className="bg-[#141211] text-[#FAF8F5] border-b border-[#C59B27]/20 px-6 py-4 flex items-center justify-between shrink-0">
+          <div className="bg-brand-plum text-brand-pearl border-b border-brand-champagne/20 px-6 py-4 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3">
               {view !== "list" && (
                 <button
@@ -230,16 +230,16 @@ const SupportChatPanel = () => {
                   <ChevronLeft className="w-5 h-5" />
                 </button>
               )}
-              <div className="w-10 h-10 rounded-full bg-[#C59B27]/15 border border-[#C59B27]/30 flex items-center justify-center">
-                <Headphones className="w-5 h-5 text-[#E8D198]" />
+              <div className="w-10 h-10 rounded-full bg-brand-champagne/15 border border-brand-champagne/30 flex items-center justify-center">
+                <Headphones className="w-5 h-5 text-brand-champagne-light" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-sm tracking-wide text-[#FAF8F5]">
+                <h3 className="font-display font-bold text-sm tracking-wide text-brand-pearl">
                   Alankar Jewellers Support
                 </h3>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="text-[10px] text-[#E8D198] font-medium">
+                  <span className="text-[10px] text-brand-champagne-light font-medium">
                     Support Online
                   </span>
                 </div>
@@ -272,7 +272,7 @@ const SupportChatPanel = () => {
                         setActiveTicketId(null);
                         setView("list");
                       }}
-                      className="p-1 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-black transition-colors"
+                      className="p-1 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-brand-espresso transition-colors"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
@@ -318,7 +318,7 @@ const SupportChatPanel = () => {
                           <div
                             className={`px-4 py-2.5 rounded-2xl text-xs font-medium shadow-sm border ${isAdmin
                                 ? "bg-white text-gray-800 rounded-tl-none border-gray-200/50"
-                                : "bg-[#141211] text-[#FAF8F5] rounded-tr-none border-[#C59B27]/30"
+                                : "bg-brand-plum text-brand-pearl rounded-tr-none border-brand-champagne/30"
                               }`}
                           >
                             {reply.text}
@@ -363,7 +363,7 @@ const SupportChatPanel = () => {
                         <div className="bg-white border-t border-gray-100 px-4 py-2 flex items-center gap-3">
                           <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Uploading: {uploadProgress}%</span>
                           <div className="flex-grow h-1 bg-gray-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-[#C59B27] transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
+                            <div className="h-full bg-brand-champagne transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
                           </div>
                         </div>
                       )}
@@ -384,12 +384,12 @@ const SupportChatPanel = () => {
                           placeholder="Type message..."
                           value={replyText}
                           onChange={(e) => setReplyText(e.target.value)}
-                          className="flex-grow bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#C59B27] transition-all"
+                          className="flex-grow bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-xs text-gray-900 focus:outline-none focus:border-brand-champagne transition-all"
                         />
                         <button
                           type="submit"
                           disabled={!replyText.trim() && stagedAttachments.length === 0}
-                          className="w-8 h-8 rounded-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 flex items-center justify-center hover:bg-[#1C1917] hover:border-[#C59B27] disabled:opacity-40 transition-all shrink-0 cursor-pointer"
+                          className="w-8 h-8 rounded-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 flex items-center justify-center hover:bg-brand-plum hover:border-brand-champagne disabled:opacity-40 transition-all shrink-0 cursor-pointer"
                         >
                           <Send className="w-3.5 h-3.5" />
                         </button>
@@ -416,7 +416,7 @@ const SupportChatPanel = () => {
                   <div className="p-4 shrink-0">
                     <button
                       onClick={() => setView("create")}
-                      className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 py-3 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#1C1917] hover:border-[#C59B27] hover:text-[#FAF8F5] transition-all shadow-sm text-xs cursor-pointer"
+                      className="w-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 py-3 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-brand-plum hover:border-brand-champagne hover:text-brand-pearl transition-all shadow-sm text-xs cursor-pointer"
                     >
                       <Plus className="w-4 h-4" />
                       Create Support Request
@@ -430,7 +430,7 @@ const SupportChatPanel = () => {
 
                     {isLoading ? (
                       <div className="flex justify-center items-center py-10">
-                        <span className="w-6 h-6 border-2 border-gray-200 border-t-[#C59B27] rounded-full animate-spin"></span>
+                        <span className="w-6 h-6 border-2 border-gray-200 border-t-brand-champagne rounded-full animate-spin"></span>
                       </div>
                     ) : tickets.length > 0 ? (
                       tickets.map((t) => (
@@ -440,7 +440,7 @@ const SupportChatPanel = () => {
                             setActiveTicketId(t._id);
                             setView("chat");
                           }}
-                          className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:border-[#C59B27] transition-all cursor-pointer group flex flex-col gap-2"
+                          className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:border-brand-champagne transition-all cursor-pointer group flex flex-col gap-2"
                         >
                           <div className="flex justify-between items-start">
                             <span
@@ -452,7 +452,7 @@ const SupportChatPanel = () => {
                               #{t.ticketId}
                             </span>
                           </div>
-                          <h4 className="text-xs font-bold text-gray-900 group-hover:text-[#C59B27] transition-colors line-clamp-1">
+                          <h4 className="text-xs font-bold text-gray-900 group-hover:text-brand-champagne transition-colors line-clamp-1">
                             {t.subject}
                           </h4>
                           <p className="text-[10px] text-gray-400 font-medium line-clamp-1">
@@ -492,7 +492,7 @@ const SupportChatPanel = () => {
                   <div className="bg-white border-b border-gray-100 px-4 py-3.5 flex items-center gap-2 shrink-0">
                     <button
                       onClick={() => setView("list")}
-                      className="p-1 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-black transition-colors"
+                      className="p-1 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-brand-espresso transition-colors"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
@@ -515,7 +515,7 @@ const SupportChatPanel = () => {
                         placeholder="What do you need help with?"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
-                        className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#C59B27] transition-all"
+                        className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-brand-champagne transition-all"
                       />
                     </div>
 
@@ -526,7 +526,7 @@ const SupportChatPanel = () => {
                       <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#C59B27] transition-all"
+                        className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-brand-champagne transition-all"
                       >
                         {categories.map((c) => (
                           <option key={c} value={c}>
@@ -546,7 +546,7 @@ const SupportChatPanel = () => {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         rows={6}
-                        className="w-full flex-grow bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-[#C59B27] resize-none transition-all"
+                        className="w-full flex-grow bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-brand-champagne resize-none transition-all"
                       />
                     </div>
 
@@ -581,7 +581,7 @@ const SupportChatPanel = () => {
                         <div className="flex items-center gap-3">
                           <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Uploading: {uploadProgress}%</span>
                           <div className="flex-grow h-1 bg-gray-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-[#C59B27] transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
+                            <div className="h-full bg-brand-champagne transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
                           </div>
                         </div>
                       )}
@@ -590,7 +590,7 @@ const SupportChatPanel = () => {
                         type="button"
                         disabled={isUploading}
                         onClick={() => fileInputRef.current?.click()}
-                        className="px-3 py-1.5 border border-dashed border-gray-300 hover:border-[#C59B27] hover:text-[#C59B27] rounded-lg text-[10px] font-bold text-gray-500 flex items-center gap-1.5 transition-all cursor-pointer w-max"
+                        className="px-3 py-1.5 border border-dashed border-gray-300 hover:border-brand-champagne hover:text-brand-champagne rounded-lg text-[10px] font-bold text-gray-500 flex items-center gap-1.5 transition-all cursor-pointer w-max"
                       >
                         <Paperclip className="w-3.5 h-3.5" />
                         Add Photo/Video
@@ -600,7 +600,7 @@ const SupportChatPanel = () => {
                     <button
                       type="submit"
                       disabled={isUploading}
-                      className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 hover:bg-[#1C1917] hover:border-[#C59B27] py-3 rounded-xl font-bold transition-all shadow-sm text-xs cursor-pointer mt-auto shrink-0 disabled:opacity-50"
+                      className="w-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 hover:bg-brand-plum hover:border-brand-champagne py-3 rounded-xl font-bold transition-all shadow-sm text-xs cursor-pointer mt-auto shrink-0 disabled:opacity-50"
                     >
                       Submit Request
                     </button>

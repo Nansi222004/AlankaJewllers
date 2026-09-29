@@ -88,7 +88,7 @@ const GEMSTONE_GUIDE_ITEMS = [
   {
     name: "Natural Pearl",
     color: "from-amber-950/90 to-stone-900",
-    accent: "#E5CC85",
+    accent: "#D8C3A5",
     description: "Organic treasures of timeless grace, offering a warm iridescent lustre and luminous glow.",
   },
 ];
@@ -207,8 +207,8 @@ const GemsJewelleryPage = () => {
     return (
       <div className="bg-white min-h-screen flex items-center justify-center px-6 py-14">
         <div className="max-w-xl w-full bg-white border border-stone-200 rounded-3xl p-8 shadow-sm text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-[#171717] text-[10px] font-bold uppercase tracking-[0.25em] mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#C6A04A]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-brand-espresso text-[10px] font-bold uppercase tracking-[0.25em] mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
             <span>Precious Gemstones</span>
           </div>
           <h1 className="mt-2 text-2xl font-serif font-medium text-stone-900">
@@ -220,7 +220,7 @@ const GemsJewelleryPage = () => {
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-6 inline-flex items-center justify-center rounded-xl bg-[#171717] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-[#C6A04A] hover:text-[#171717] transition-all cursor-pointer shadow-sm"
+            className="mt-6 inline-flex items-center justify-center rounded-xl bg-brand-plum px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-brand-champagne hover:text-brand-espresso transition-all cursor-pointer shadow-sm"
           >
             Retry
           </button>
@@ -230,24 +230,24 @@ const GemsJewelleryPage = () => {
   }
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen font-sans text-stone-900 selection:bg-[#C6A04A] selection:text-[#171717] overflow-x-hidden">
+    <div className="bg-brand-pearl min-h-screen font-sans text-stone-900 selection:bg-brand-champagne selection:text-brand-espresso overflow-x-hidden">
       {/* 1. Dedicated Luxury Gems Hero Section */}
       <PromoSlider externalSlides={heroSlides} autoplayInterval={autoplayMs} />
 
       {/* 2. Collection Product Showcase / Grid */}
       <section id="gems-grid" className="py-14 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#E8E0D2] bg-white text-[#C6A04A] text-[10.5px] font-bold uppercase tracking-[0.25em] mb-3 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#C6A04A]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-brand-border bg-white text-brand-champagne text-[10.5px] font-bold uppercase tracking-[0.25em] mb-3 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
             <span>Precious Gemstones</span>
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl text-[#141211] tracking-tight font-normal">
+          <h2 className="font-serif text-3xl md:text-4xl text-brand-espresso tracking-tight font-normal">
             The Gems Edit
           </h2>
           <p className="mt-3 text-stone-600 text-sm md:text-base font-light leading-relaxed">
             Handcrafted fine jewellery celebrating rare emeralds, rubies, sapphires, and precious stones, meticulously set to elevate every moment.
           </p>
-          <div className="w-12 h-[1px] bg-[#C59B27] mx-auto mt-6 opacity-60" />
+          <div className="w-12 h-[1px] bg-brand-champagne mx-auto mt-6 opacity-60" />
         </div>
 
         {/* Dynamic Category Filter Pills (ONLY displayed if matching product inventory exists) */}
@@ -257,8 +257,8 @@ const GemsJewelleryPage = () => {
               onClick={() => setSelectedGemType("all")}
               className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
                 selectedGemType === "all"
-                  ? "bg-[#171717] text-white shadow-sm"
-                  : "bg-white text-stone-600 border border-[#E8E0D2] hover:border-[#C6A04A] hover:text-[#171717]"
+                  ? "bg-brand-plum text-white shadow-sm"
+                  : "bg-white text-stone-600 border border-brand-border hover:border-brand-champagne hover:text-brand-espresso"
               }`}
             >
               All Gems ({gemProducts.length})
@@ -269,8 +269,8 @@ const GemsJewelleryPage = () => {
                 onClick={() => setSelectedGemType(type)}
                 className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider capitalize transition-all duration-200 ${
                   selectedGemType === type
-                    ? "bg-[#171717] text-white shadow-sm"
-                    : "bg-white text-stone-600 border border-[#E8E0D2] hover:border-[#C6A04A] hover:text-[#171717]"
+                    ? "bg-brand-plum text-white shadow-sm"
+                    : "bg-white text-stone-600 border border-brand-border hover:border-brand-champagne hover:text-brand-espresso"
                 }`}
               >
                 {type}
@@ -288,20 +288,20 @@ const GemsJewelleryPage = () => {
           </div>
         ) : (
           /* Premium Empty State */
-          <div className="bg-white rounded-3xl border border-[#E8E0D2] p-8 sm:p-14 text-center max-w-3xl mx-auto shadow-[0_4px_24px_rgba(23,23,23,0.03)] relative overflow-hidden">
+          <div className="bg-white rounded-3xl border border-brand-border p-8 sm:p-14 text-center max-w-3xl mx-auto shadow-[0_4px_24px_rgba(51,40,39,0.03)] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-amber-50 to-transparent rounded-bl-full pointer-events-none opacity-60" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-emerald-50 to-transparent rounded-tr-full pointer-events-none opacity-40" />
 
             <div className="relative z-10">
-              <div className="w-16 h-16 rounded-full bg-[#FAF8F5] border border-[#E8E0D2] flex items-center justify-center mx-auto mb-6 shadow-xs">
-                <Gem className="w-7 h-7 text-[#C6A04A]" />
+              <div className="w-16 h-16 rounded-full bg-brand-pearl border border-brand-border flex items-center justify-center mx-auto mb-6 shadow-xs">
+                <Gem className="w-7 h-7 text-brand-champagne" />
               </div>
 
-              <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#C6A04A] mb-2">
+              <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-champagne mb-2">
                 Atelier Curation
               </div>
 
-              <h3 className="font-serif text-2xl sm:text-3xl text-[#141211] font-medium tracking-tight mb-4">
+              <h3 className="font-serif text-2xl sm:text-3xl text-brand-espresso font-medium tracking-tight mb-4">
                 Gems Collection Coming Soon
               </h3>
 
@@ -312,7 +312,7 @@ const GemsJewelleryPage = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   to="/shop"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#171717] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#C6A04A] hover:text-[#171717] transition-all duration-300 shadow-sm"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-brand-plum text-white text-xs font-bold uppercase tracking-widest hover:bg-brand-champagne hover:text-brand-espresso transition-all duration-300 shadow-sm"
                 >
                   <span>Explore All Jewellery</span>
                   <ArrowRight className="w-4 h-4" />
@@ -322,7 +322,7 @@ const GemsJewelleryPage = () => {
                   href="https://wa.me/919876543210?text=Hello%20Alankar%20Jewellers,%20I'm%20interested%20in%20custom%20gemstone%20jewellery."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#E8E0D2] text-[#171717] text-xs font-bold uppercase tracking-widest hover:border-[#C6A04A] transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white border border-brand-border text-brand-espresso text-xs font-bold uppercase tracking-widest hover:border-brand-champagne transition-all duration-300"
                 >
                   <MessageCircle className="w-4 h-4 text-emerald-600" />
                   <span>Custom Gem Inquiries</span>
@@ -330,12 +330,12 @@ const GemsJewelleryPage = () => {
               </div>
 
               {/* Quick links to existing fine jewellery collections */}
-              <div className="mt-12 pt-8 border-t border-[#E8E0D2] grid grid-cols-3 gap-3 max-w-md mx-auto">
+              <div className="mt-12 pt-8 border-t border-brand-border grid grid-cols-3 gap-3 max-w-md mx-auto">
                 <Link
                   to="/gold-collection"
-                  className="p-3 rounded-2xl bg-[#FAF8F5] hover:bg-amber-50/70 border border-[#E8E0D2] transition-colors text-center group"
+                  className="p-3 rounded-2xl bg-brand-pearl hover:bg-amber-50/70 border border-brand-border transition-colors text-center group"
                 >
-                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#171717] group-hover:text-[#C6A04A]">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-brand-espresso group-hover:text-brand-champagne">
                     Gold
                   </span>
                   <span className="text-[10px] text-stone-500">22K & 18K Pure</span>
@@ -343,9 +343,9 @@ const GemsJewelleryPage = () => {
 
                 <Link
                   to="/silver-collection"
-                  className="p-3 rounded-2xl bg-[#FAF8F5] hover:bg-slate-50 border border-[#E8E0D2] transition-colors text-center group"
+                  className="p-3 rounded-2xl bg-brand-pearl hover:bg-slate-50 border border-brand-border transition-colors text-center group"
                 >
-                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#171717] group-hover:text-[#C6A04A]">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-brand-espresso group-hover:text-brand-champagne">
                     Silver
                   </span>
                   <span className="text-[10px] text-stone-500">925 Sterling</span>
@@ -353,9 +353,9 @@ const GemsJewelleryPage = () => {
 
                 <Link
                   to="/diamond-collection"
-                  className="p-3 rounded-2xl bg-[#FAF8F5] hover:bg-sky-50/70 border border-[#E8E0D2] transition-colors text-center group"
+                  className="p-3 rounded-2xl bg-brand-pearl hover:bg-sky-50/70 border border-brand-border transition-colors text-center group"
                 >
-                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#171717] group-hover:text-[#C6A04A]">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-brand-espresso group-hover:text-brand-champagne">
                     Diamond
                   </span>
                   <span className="text-[10px] text-stone-500">Certified Brilliance</span>
@@ -367,13 +367,13 @@ const GemsJewelleryPage = () => {
       </section>
 
       {/* 3. The World of Precious Gemstones / Educational Pillar Strip */}
-      <section className="py-16 md:py-20 bg-white border-y border-[#E8E0D2] px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 bg-white border-y border-brand-border px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[10.5px] font-bold uppercase tracking-[0.25em] text-[#C6A04A]">
+            <span className="text-[10.5px] font-bold uppercase tracking-[0.25em] text-brand-champagne">
               Atelier Heritage
             </span>
-            <h2 className="font-serif text-2xl md:text-3xl text-[#141211] mt-2 font-normal">
+            <h2 className="font-serif text-2xl md:text-3xl text-brand-espresso mt-2 font-normal">
               The Spectrum of Precious Gems
             </h2>
             <p className="mt-3 text-stone-600 text-sm font-light">
@@ -385,7 +385,7 @@ const GemsJewelleryPage = () => {
             {GEMSTONE_GUIDE_ITEMS.map((item, index) => (
               <div
                 key={index}
-                className="bg-[#FAF8F5] rounded-2xl p-6 border border-[#E8E0D2] hover:border-[#C6A04A]/60 hover:shadow-md transition-all duration-300 relative overflow-hidden group"
+                className="bg-brand-pearl rounded-2xl p-6 border border-brand-border hover:border-brand-champagne/60 hover:shadow-md transition-all duration-300 relative overflow-hidden group"
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center mb-4 text-white font-bold shadow-xs"
@@ -393,7 +393,7 @@ const GemsJewelleryPage = () => {
                 >
                   <Gem className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-[#141211] mb-2 group-hover:text-[#C6A04A] transition-colors">
+                <h3 className="font-serif text-lg font-medium text-brand-espresso mb-2 group-hover:text-brand-champagne transition-colors">
                   {item.name}
                 </h3>
                 <p className="text-xs text-stone-600 leading-relaxed font-light">
@@ -408,10 +408,10 @@ const GemsJewelleryPage = () => {
       {/* 4. Gemstone Trust & Certification Strip */}
       <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[10.5px] font-bold uppercase tracking-[0.25em] text-[#C6A04A]">
+          <span className="text-[10.5px] font-bold uppercase tracking-[0.25em] text-brand-champagne">
             The Alankar Guarantee
           </span>
-          <h2 className="font-serif text-2xl md:text-3xl text-[#141211] mt-2 font-normal">
+          <h2 className="font-serif text-2xl md:text-3xl text-brand-espresso mt-2 font-normal">
             Certified Gemological Trust
           </h2>
           <p className="mt-3 text-stone-600 text-sm font-light">
@@ -425,15 +425,15 @@ const GemsJewelleryPage = () => {
             return (
               <div
                 key={badge.id}
-                className="bg-white rounded-2xl p-6 border border-[#E8E0D2] text-center shadow-xs hover:-translate-y-1 transition-all duration-300"
+                className="bg-white rounded-2xl p-6 border border-brand-border text-center shadow-xs hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#E8E0D2] flex items-center justify-center mx-auto mb-4 text-[#C6A04A]">
+                <div className="w-12 h-12 rounded-full bg-brand-pearl border border-brand-border flex items-center justify-center mx-auto mb-4 text-brand-champagne">
                   <IconComponent className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif text-base font-medium text-[#141211] mb-1">
+                <h3 className="font-serif text-base font-medium text-brand-espresso mb-1">
                   {badge.title}
                 </h3>
-                <div className="text-xs font-semibold text-[#C6A04A] uppercase tracking-wider mb-2">
+                <div className="text-xs font-semibold text-brand-champagne uppercase tracking-wider mb-2">
                   {badge.subtitle}
                 </div>
                 {badge.description && (
@@ -449,12 +449,12 @@ const GemsJewelleryPage = () => {
 
       {/* 5. Bespoke Gemstone Concierge Banner */}
       <section className="pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="bg-gradient-to-br from-[#171717] via-[#221D1E] to-[#171717] rounded-3xl p-8 sm:p-12 text-white text-center relative overflow-hidden shadow-xl border border-stone-800">
+        <div className="bg-gradient-to-br from-brand-plum via-[#221D1E] to-brand-plum rounded-3xl p-8 sm:p-12 text-white text-center relative overflow-hidden shadow-xl border border-stone-800">
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#E5CC85] block mb-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-champagne-light block mb-3">
               Private Atelier Service
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight mb-4">
@@ -467,7 +467,7 @@ const GemsJewelleryPage = () => {
               href="https://wa.me/919876543210?text=Hello%20Alankar%20Jewellers,%20I'd%20like%20to%20inquire%20about%20a%20bespoke%20gemstone%20jewellery%20design."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#C6A04A] to-[#E5CC85] text-[#171717] text-xs font-bold uppercase tracking-widest hover:opacity-95 transition-all shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-champagne to-brand-champagne-light text-brand-espresso text-xs font-bold uppercase tracking-widest hover:opacity-95 transition-all shadow-lg"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Chat on WhatsApp</span>

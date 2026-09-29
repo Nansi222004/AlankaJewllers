@@ -78,7 +78,7 @@ const WomenCategoriesGrid = ({ sectionData }) => {
                         >
                             <Link
                                 to={item.path}
-                                className="relative block aspect-[3.5/5] rounded-[20px] md:rounded-[24px] overflow-hidden bg-white border-[0.5px] border-black/10 transition-all duration-700 group-hover:-translate-y-4 shadow-lg group-hover:shadow-2xl"
+                                className="relative block aspect-[3.5/5] rounded-[20px] md:rounded-[24px] overflow-hidden bg-white border-[0.5px] border-brand-espresso/10 transition-all duration-700 group-hover:-translate-y-4 shadow-lg group-hover:shadow-2xl"
                             >
                                 <img
                                     src={item.image}

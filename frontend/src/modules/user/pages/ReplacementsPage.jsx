@@ -36,15 +36,15 @@ const ReplacementsPage = () => {
 
     if (safeReplacements.length === 0) {
         return (
-            <div className="bg-[#FAF8F5] min-h-screen py-12 flex flex-col items-center justify-center text-center px-4">
+            <div className="bg-brand-pearl min-h-screen py-12 flex flex-col items-center justify-center text-center px-4">
                 <div className="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mb-6 text-stone-400">
                     <RefreshCw size={32} />
                 </div>
-                <h2 className="text-2xl font-black text-[#141211] mb-2">No Replacements Yet</h2>
+                <h2 className="text-2xl font-black text-brand-espresso mb-2">No Replacements Yet</h2>
                 <p className="text-stone-500 mb-8 max-w-sm">
                     You have not raised any replacement requests yet.
                 </p>
-                <Link to="/profile/orders" className="bg-[#141211] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#1C1917] hover:text-[#E8D198] transition-all shadow-lg hover:shadow-xl active:scale-95">
+                <Link to="/profile/orders" className="bg-brand-plum text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-plum hover:text-brand-champagne-light transition-all shadow-lg hover:shadow-xl active:scale-95">
                     Go To My Orders
                 </Link>
             </div>
@@ -52,7 +52,7 @@ const ReplacementsPage = () => {
     }
 
     return (
-        <div className="bg-[#FAF8F5] min-h-screen py-4 md:py-12">
+        <div className="bg-brand-pearl min-h-screen py-4 md:py-12">
             <div className="container mx-auto px-3 md:px-12">
                 <div className="flex items-center gap-2 md:gap-4 mb-6 md:mb-10">
                     <button onClick={() => navigate('/profile/orders')} className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors text-footerBg/70">

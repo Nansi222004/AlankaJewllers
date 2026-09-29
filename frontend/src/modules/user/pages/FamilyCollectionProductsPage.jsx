@@ -241,7 +241,7 @@ const FamilyCollectionProductsPage = () => {
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#141211] px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white hover:bg-[#1C1917] hover:text-[#E8D198] transition-all"
+            className="mt-6 inline-flex items-center justify-center rounded-lg bg-brand-plum px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white hover:bg-brand-plum hover:text-brand-champagne-light transition-all"
           >
             Retry
           </button>
@@ -251,14 +251,14 @@ const FamilyCollectionProductsPage = () => {
   }
 
   return (
-    <div className="bg-white min-h-screen text-black font-sans overflow-x-hidden">
-      <div className="border-b border-[#E8DFD0] bg-[#FAF8F5]">
+    <div className="bg-white min-h-screen text-brand-espresso font-sans overflow-x-hidden">
+      <div className="border-b border-brand-border bg-brand-pearl">
         <div className="container mx-auto px-4 md:px-8 py-4 md:py-6 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.35em] text-[#C59B27]">
+            <p className="text-[10px] font-black uppercase tracking-[0.35em] text-brand-champagne">
               Family Gift Picks
             </p>
-            <h1 className="mt-1 font-serif text-2xl md:text-4xl text-[#141211]">
+            <h1 className="mt-1 font-serif text-2xl md:text-4xl text-brand-espresso">
               {meta.title}
             </h1>
             <p className="mt-1 text-sm text-stone-500">{meta.subtitle}</p>
@@ -266,7 +266,7 @@ const FamilyCollectionProductsPage = () => {
 
           <Link
             to="/category/family"
-            className="inline-flex items-center justify-center rounded-full border border-[#E8DFD0] bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#141211] transition-colors hover:bg-[#FAF8F5] hover:border-[#C59B27] hover:text-[#C59B27]"
+            className="inline-flex items-center justify-center rounded-full border border-brand-border bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-brand-espresso transition-colors hover:bg-brand-pearl hover:border-brand-champagne hover:text-brand-champagne"
           >
             Back to Family
           </Link>

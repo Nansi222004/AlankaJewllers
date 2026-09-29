@@ -45,7 +45,7 @@ export const DEFAULT_GOLD_TONES = [
         path: '/shop?metal=gold&tone=gold',
         swatchBorder: 'border-amber-400',
         swatchGlint: 'from-amber-200/60 to-white/90',
-        accentColor: '#C59B27'
+        accentColor: '#B8956A'
     }
 ];
 
@@ -126,11 +126,11 @@ const GoldShopByColourPanel = ({
     // Horizontal layout for mobile & tablet screens
     if (layout === 'horizontal') {
         return (
-            <div className={`w-full max-w-full overflow-hidden bg-[#FAF8F5] rounded-2xl border border-[#E8DFD0] p-3 sm:p-5 ${className}`}>
-                <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-[#E8DFD0]/60 min-w-0">
+            <div className={`w-full max-w-full overflow-hidden bg-brand-pearl rounded-2xl border border-brand-border p-3 sm:p-5 ${className}`}>
+                <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-brand-border/60 min-w-0">
                     <div className="flex items-center gap-1.5 shrink-0">
-                        <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
-                        <span className="font-serif text-sm sm:text-base font-medium text-[#141211]">
+                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
+                        <span className="font-serif text-sm sm:text-base font-medium text-brand-espresso">
                             {title}
                         </span>
                     </div>
@@ -144,9 +144,9 @@ const GoldShopByColourPanel = ({
                         <Link
                             key={tone.id || tone.itemId}
                             to={tone.path}
-                            className="group flex flex-col items-center text-center p-2 sm:p-3 rounded-xl bg-white border border-[#E8DFD0] hover:border-[#C59B27] hover:shadow-xs transition-all duration-300 min-h-[44px] min-w-0 w-full"
+                            className="group flex flex-col items-center text-center p-2 sm:p-3 rounded-xl bg-white border border-brand-border hover:border-brand-champagne hover:shadow-xs transition-all duration-300 min-h-[44px] min-w-0 w-full"
                         >
-                            <div className={`relative w-11 h-11 sm:w-14 sm:h-14 rounded-full p-0.5 bg-gradient-to-tr from-white to-stone-100 border-2 ${tone.swatchBorder} group-hover:border-[#C59B27] shadow-xs overflow-hidden mb-1.5 transition-transform duration-300 group-hover:scale-105 shrink-0`}>
+                            <div className={`relative w-11 h-11 sm:w-14 sm:h-14 rounded-full p-0.5 bg-gradient-to-tr from-white to-stone-100 border-2 ${tone.swatchBorder} group-hover:border-brand-champagne shadow-xs overflow-hidden mb-1.5 transition-transform duration-300 group-hover:scale-105 shrink-0`}>
                                 <img
                                     src={tone.image}
                                     alt={tone.name}
@@ -155,7 +155,7 @@ const GoldShopByColourPanel = ({
                                 />
                                 <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/35 via-transparent to-transparent pointer-events-none" />
                             </div>
-                            <span className="font-serif text-[11px] sm:text-xs md:text-sm font-medium text-[#141211] group-hover:text-[#C59B27] transition-colors leading-tight text-center w-full break-words min-h-[26px] flex items-center justify-center">
+                            <span className="font-serif text-[11px] sm:text-xs md:text-sm font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors leading-tight text-center w-full break-words min-h-[26px] flex items-center justify-center">
                                 {tone.name}
                             </span>
                             <span className="text-[9px] text-stone-400 font-sans hidden sm:block line-clamp-1 mt-0.5 tracking-wider uppercase w-full truncate">
@@ -171,15 +171,15 @@ const GoldShopByColourPanel = ({
     // Default: 'panel' for desktop side-by-side layout in Gold Collection Grid
     return (
         <div
-            className={`h-full flex flex-col justify-between bg-[#FAF8F5] rounded-3xl border border-[#E8DFD0] hover:border-[#C59B27]/80 p-6 lg:p-7 shadow-xs hover:shadow-[0_16px_36px_rgba(20,18,17,0.06)] transition-all duration-500 ${className}`}
+            className={`h-full flex flex-col justify-between bg-brand-pearl rounded-3xl border border-brand-border hover:border-brand-champagne/80 p-6 lg:p-7 shadow-xs hover:shadow-[0_16px_36px_rgba(51,40,39,0.06)] transition-all duration-500 ${className}`}
         >
             {/* Header */}
             <div>
-                <div className="inline-flex items-center gap-1.5 mb-2 text-[#C59B27] text-[10px] uppercase font-bold tracking-[0.25em]">
+                <div className="inline-flex items-center gap-1.5 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.25em]">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{badge}</span>
                 </div>
-                <h3 className="font-serif text-xl lg:text-2xl text-[#141211] font-medium tracking-tight mb-1">
+                <h3 className="font-serif text-xl lg:text-2xl text-brand-espresso font-medium tracking-tight mb-1">
                     {title}
                 </h3>
                 <p className="text-stone-500 text-xs font-sans mb-6">
@@ -192,11 +192,11 @@ const GoldShopByColourPanel = ({
                         <Link
                             key={tone.id || tone.itemId}
                             to={tone.path}
-                            className="group flex items-center justify-between p-3 lg:p-3.5 rounded-2xl bg-white border border-[#E8DFD0] hover:border-[#C59B27] hover:shadow-[0_8px_20px_rgba(20,18,17,0.06)] transition-all duration-300"
+                            className="group flex items-center justify-between p-3 lg:p-3.5 rounded-2xl bg-white border border-brand-border hover:border-brand-champagne hover:shadow-[0_8px_20px_rgba(51,40,39,0.06)] transition-all duration-300"
                         >
                             <div className="flex items-center gap-3.5 min-w-0">
                                 {/* Swatch / Thumbnail Circle with metallic tone rim */}
-                                <div className={`relative w-12 h-12 lg:w-13 lg:h-13 rounded-full shrink-0 p-0.5 bg-gradient-to-tr from-white to-stone-100 border-2 ${tone.swatchBorder} group-hover:border-[#C59B27] shadow-xs overflow-hidden transition-transform duration-500 group-hover:scale-108`}>
+                                <div className={`relative w-12 h-12 lg:w-13 lg:h-13 rounded-full shrink-0 p-0.5 bg-gradient-to-tr from-white to-stone-100 border-2 ${tone.swatchBorder} group-hover:border-brand-champagne shadow-xs overflow-hidden transition-transform duration-500 group-hover:scale-108`}>
                                     <img
                                         src={tone.image}
                                         alt={tone.name}
@@ -209,7 +209,7 @@ const GoldShopByColourPanel = ({
 
                                 {/* Label & Tagline */}
                                 <div className="min-w-0">
-                                    <h4 className="font-serif text-sm lg:text-[15px] font-medium text-[#141211] group-hover:text-[#C59B27] transition-colors line-clamp-1">
+                                    <h4 className="font-serif text-sm lg:text-[15px] font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors line-clamp-1">
                                         {tone.name}
                                     </h4>
                                     <span className="text-[10px] uppercase font-sans tracking-[0.14em] text-stone-400 group-hover:text-stone-600 transition-colors line-clamp-1">
@@ -219,8 +219,8 @@ const GoldShopByColourPanel = ({
                             </div>
 
                             {/* Chevron Action */}
-                            <div className="w-7 h-7 rounded-full bg-stone-50 group-hover:bg-[#141211] flex items-center justify-center shrink-0 ml-2 transition-all duration-300">
-                                <ChevronRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-[#E8D198] transition-transform duration-300 group-hover:translate-x-0.5" />
+                            <div className="w-7 h-7 rounded-full bg-stone-50 group-hover:bg-brand-plum flex items-center justify-center shrink-0 ml-2 transition-all duration-300">
+                                <ChevronRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-brand-champagne-light transition-transform duration-300 group-hover:translate-x-0.5" />
                             </div>
                         </Link>
                     ))}
@@ -228,16 +228,16 @@ const GoldShopByColourPanel = ({
             </div>
 
             {/* Bottom Atelier Link / Assurance */}
-            <div className="pt-6 mt-6 border-t border-[#E8DFD0]/70 flex items-center justify-between">
+            <div className="pt-6 mt-6 border-t border-brand-border/70 flex items-center justify-between">
                 <div className="flex items-center gap-1.5 text-stone-500">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#C59B27]" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-brand-champagne" />
                     <span className="text-[11px] font-serif italic">
                         18K & 22K Certified Artistry
                     </span>
                 </div>
                 <Link
                     to="/shop?metal=gold"
-                    className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-[#C59B27] hover:text-[#141211] transition-colors"
+                    className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-brand-champagne hover:text-brand-espresso transition-colors"
                 >
                     <span>All Gold</span>
                     <ChevronRight className="w-3 h-3" />

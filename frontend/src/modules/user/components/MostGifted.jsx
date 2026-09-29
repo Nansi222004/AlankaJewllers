@@ -81,7 +81,7 @@ const MostGifted = () => {
                             ease: "easeInOut",
                             delay: i * 2
                         }}
-                        className="absolute w-64 h-64 bg-[#C59B27]/10 blur-[100px] rounded-full"
+                        className="absolute w-64 h-64 bg-brand-champagne/10 blur-[100px] rounded-full"
                         style={{
                             left: `${Math.random() * 80}%`,
                             top: `${Math.random() * 80}%`
@@ -110,13 +110,13 @@ const MostGifted = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
 
                         <div className="absolute inset-0 flex flex-col justify-end p-8 z-30 pb-12">
-                            <span className="text-[#C59B27] text-[10px] font-bold tracking-[0.4em] uppercase mb-2 block">{heroItem.tag}</span>
+                            <span className="text-brand-champagne text-[10px] font-bold tracking-[0.4em] uppercase mb-2 block">{heroItem.tag}</span>
                             <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-6 leading-tight uppercase tracking-wider">
                                 {heroItem.label}
                             </h2>
                             <Link
                                 to="/shop?sort=most-sold"
-                                className="inline-flex items-center gap-3 bg-[#FAF8F5] text-[#141211] border border-[#C59B27]/40 px-6 py-3 rounded-none hover:bg-[#141211] hover:text-[#E8D198] hover:border-[#C59B27] transition-all duration-500 w-fit text-[10px] font-bold tracking-widest uppercase shadow-lg"
+                                className="inline-flex items-center gap-3 bg-brand-pearl text-brand-espresso border border-brand-champagne/40 px-6 py-3 rounded-none hover:bg-brand-plum hover:text-brand-champagne-light hover:border-brand-champagne transition-all duration-500 w-fit text-[10px] font-bold tracking-widest uppercase shadow-lg"
                             >
                                 {heroItem.ctaLabel}
                                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -131,7 +131,7 @@ const MostGifted = () => {
                                 <h2 className="text-[20px] md:text-[24px] font-sans font-medium text-gray-900 tracking-tight">
                                     Our Most Gifted
                                 </h2>
-                                <Link to="/shop?sort=most-sold" className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#C59B27] hover:underline transition-all">
+                                <Link to="/shop?sort=most-sold" className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-champagne hover:underline transition-all">
                                     View All Gifts
                                 </Link>
                             </div>

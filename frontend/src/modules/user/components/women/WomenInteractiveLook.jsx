@@ -90,14 +90,14 @@ const WomenInteractiveLook = () => {
         };
         addToCart(product);
         toast.success(`${item.productName} added to bag!`, {
-            style: { background: '#141211', color: '#E8D198', fontSize: '12px', fontWeight: 'bold' },
+            style: { background: '#332827', color: '#D8C3A5', fontSize: '12px', fontWeight: 'bold' },
             icon: '✨'
         });
         setTimeout(() => navigate('/cart'), 800);
     };
 
     return (
-        <section className="pt-0 pb-6 md:pb-8 px-6 md:px-12 bg-[#FAF8F5] overflow-hidden border-t-4 border-[#C59B27]">
+        <section className="pt-0 pb-6 md:pb-8 px-6 md:px-12 bg-brand-pearl overflow-hidden border-t-4 border-brand-champagne">
             <div className="max-w-7xl mx-auto">
 
                 <div className="flex flex-col lg:flex-row gap-16 items-start">
@@ -113,20 +113,20 @@ const WomenInteractiveLook = () => {
                                     exit={{ opacity: 0, x: -30 }}
                                     className="bg-white p-8 rounded-[2rem] shadow-2xl border border-stone-200/70"
                                 >
-                                    <div className="text-[10px] font-bold text-[#C59B27] uppercase tracking-[0.2em] mb-2">{h.purity}</div>
+                                    <div className="text-[10px] font-bold text-brand-champagne uppercase tracking-[0.2em] mb-2">{h.purity}</div>
                                     <h3 className="text-2xl font-serif text-stone-900 mb-1">{h.productName}</h3>
-                                    <div className="text-3xl font-bold text-[#141211] mb-6">₹{h.price}</div>
+                                    <div className="text-3xl font-bold text-brand-espresso mb-6">₹{h.price}</div>
                                     
                                     <div className="flex flex-col gap-3">
                                         <button
                                             onClick={() => handleQuickAdd(h)}
-                                            className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 py-4 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-[#C59B27] hover:text-[#141211] hover:border-[#C59B27] transition-all shadow-lg"
+                                            className="w-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 py-4 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all shadow-lg"
                                         >
                                             <ShoppingBag className="w-4 h-4" /> Add to Bag
                                         </button>
                                         <button
                                             onClick={() => navigate(buildWomenShopPath({ category: h.category }))}
-                                            className="w-full bg-white text-stone-900 py-3 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-[#FAF8F5] hover:border-[#C59B27] hover:text-[#C59B27] transition-all border border-stone-300"
+                                            className="w-full bg-white text-stone-900 py-3 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-brand-pearl hover:border-brand-champagne hover:text-brand-champagne transition-all border border-stone-300"
                                         >
                                             <ChevronRight className="w-4 h-4" /> View All {h.name}
                                         </button>
@@ -197,16 +197,16 @@ const WomenInteractiveLook = () => {
                                             marginRight: h.labelX < 0 ? 20 : -20
                                         }}
                                     >
-                                        <span className={`font-bold text-sm md:text-base tracking-wide transition-colors duration-300 ${activeId === h.id ? 'text-[#C59B27]' : 'text-zinc-800'} group-hover/label:text-white`}>
+                                        <span className={`font-bold text-sm md:text-base tracking-wide transition-colors duration-300 ${activeId === h.id ? 'text-brand-champagne' : 'text-zinc-800'} group-hover/label:text-white`}>
                                             {h.name}
                                         </span>
-                                        <ChevronRight className={`w-4 h-4 transition-all duration-300 ${activeId === h.id ? 'text-[#C59B27]' : 'text-zinc-400'} group-hover/label:translate-x-1 group-hover/label:text-[#C59B27]`} />
+                                        <ChevronRight className={`w-4 h-4 transition-all duration-300 ${activeId === h.id ? 'text-brand-champagne' : 'text-zinc-400'} group-hover/label:translate-x-1 group-hover/label:text-brand-champagne`} />
                                         
                                         {/* Active Indicator Underline */}
                                         {activeId === h.id && (
                                             <motion.div 
                                                 layoutId="activeIndicator"
-                                                className="absolute bottom-0 left-0 right-0 h-1 bg-[#C59B27] rounded-full"
+                                                className="absolute bottom-0 left-0 right-0 h-1 bg-brand-champagne rounded-full"
                                             />
                                         )}
                                     </motion.button>

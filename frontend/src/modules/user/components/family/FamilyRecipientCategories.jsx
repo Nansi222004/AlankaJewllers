@@ -95,15 +95,15 @@ const FamilyRecipientCategories = ({ selectedRecipient = 'all', onSelectRecipien
                         viewport={{ once: true }}
                         className="flex flex-col items-center"
                     >
-                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-[#C59B27] mb-2 bg-[#FAF8F5] border border-[#C59B27]/30 px-3 py-1 rounded-full">{eyebrow}</span>
-                        <h2 className="text-2xl md:text-4xl font-serif text-[#141211] tracking-tight flex flex-col md:flex-row items-center gap-2">
+                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-brand-champagne mb-2 bg-brand-pearl border border-brand-champagne/30 px-3 py-1 rounded-full">{eyebrow}</span>
+                        <h2 className="text-2xl md:text-4xl font-serif text-brand-espresso tracking-tight flex flex-col md:flex-row items-center gap-2">
                             {titlePrefix}
-                            {titleHighlight && <span className="italic font-light text-[#C59B27]">{titleHighlight}</span>}
+                            {titleHighlight && <span className="italic font-light text-brand-champagne">{titleHighlight}</span>}
                         </h2>
                         <p className="max-w-xl text-[10px] md:text-xs text-stone-500 mt-2">
                             {settings.subtitle || 'Explore curated gifting jewellery designed for every bond.'}
                         </p>
-                        <div className="w-10 h-[1px] bg-[#C59B27]/40 mt-4" />
+                        <div className="w-10 h-[1px] bg-brand-champagne/40 mt-4" />
                     </motion.div>
                 </div>
 
@@ -122,7 +122,7 @@ const FamilyRecipientCategories = ({ selectedRecipient = 'all', onSelectRecipien
                                 onClick={() => handleClick(recipient.id)}
                                 className={`group relative block aspect-square rounded-2xl overflow-hidden text-left transition-all duration-500 ${
                                     isActive
-                                        ? 'ring-2 ring-[#C59B27] shadow-lg'
+                                        ? 'ring-2 ring-brand-champagne shadow-lg'
                                         : 'shadow-md hover:-translate-y-1 hover:shadow-xl'
                                 }`}
                             >

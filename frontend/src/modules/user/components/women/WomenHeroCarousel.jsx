@@ -137,7 +137,7 @@ const WomenHeroCarousel = ({ sectionData }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate(slide.path)}
-                className="px-1.5 py-0.5 md:px-8 md:py-4 bg-white text-black text-[4px] sm:text-[6px] md:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] rounded-none hover:bg-black hover:text-white transition-all shadow-2xl flex items-center gap-1 md:gap-3 group"
+                className="px-1.5 py-0.5 md:px-8 md:py-4 bg-white text-brand-espresso text-[4px] sm:text-[6px] md:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] rounded-none hover:bg-brand-plum hover:text-white transition-all shadow-2xl flex items-center gap-1 md:gap-3 group"
               >
                 <ShoppingBag className="w-[6px] h-[6px] md:w-4 md:h-4" />
                 {slide.cta}

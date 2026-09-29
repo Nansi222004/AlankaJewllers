@@ -76,7 +76,7 @@ const PriceRangeShowcase = () => {
                     <h2 className="font-sans text-2xl md:text-3xl text-[#111111] font-semibold mb-3 tracking-wide uppercase">
                         {sectionData?.label || 'LUXURY IN RANGE'}
                     </h2>
-                    <div className="w-12 h-1 bg-[#C59B27] mx-auto rounded-full"></div>
+                    <div className="w-12 h-1 bg-brand-champagne mx-auto rounded-full"></div>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-[1600px] mx-auto">
@@ -113,7 +113,7 @@ const PriceRangeShowcase = () => {
                                         />
                                         
                                         {/* Bestseller Badge */}
-                                        <div className="absolute top-0 left-0 bg-[#141211] text-[#E8D198] border-b border-r border-[#C59B27]/40 text-[9px] font-bold px-2 py-1 z-10 uppercase tracking-widest">
+                                        <div className="absolute top-0 left-0 bg-brand-plum text-brand-champagne-light border-b border-r border-brand-champagne/40 text-[9px] font-bold px-2 py-1 z-10 uppercase tracking-widest">
                                             Bestseller
                                         </div>
 
@@ -155,7 +155,7 @@ const PriceRangeShowcase = () => {
                                         
                                         {/* Action Button */}
                                         <div className="mt-1 md:mt-2 w-full">
-                                            <div className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/30 font-bold text-[9px] md:text-[11px] py-1.5 md:py-2 rounded-none group-hover/card:bg-[#C59B27] group-hover/card:text-[#141211] transition-all duration-300 uppercase tracking-[0.15em] text-center shadow-lg">
+                                            <div className="w-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/30 font-bold text-[9px] md:text-[11px] py-1.5 md:py-2 rounded-none group-hover/card:bg-brand-champagne group-hover/card:text-brand-espresso transition-all duration-300 uppercase tracking-[0.15em] text-center shadow-lg">
                                                 Shop Now
                                             </div>
                                         </div>

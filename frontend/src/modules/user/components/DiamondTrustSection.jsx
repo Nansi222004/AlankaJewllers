@@ -129,11 +129,11 @@ const DiamondTrustSection = ({ sectionData }) => {
                 <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
                     {/* Top Diamond Emblem */}
                     <div className="flex items-center justify-center gap-3 mb-2.5">
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-[#C59B27]/70" />
-                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C59B27]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-brand-champagne/70" />
+                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-brand-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                             <polygon points="6 3 18 3 22 9 12 22 2 9" />
                         </svg>
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-[#C59B27]/70" />
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-brand-champagne/70" />
                     </div>
 
                     {/* Badge */}
@@ -142,7 +142,7 @@ const DiamondTrustSection = ({ sectionData }) => {
                     </span>
 
                     {/* Main Title */}
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#141211] font-normal tracking-tight leading-tight mb-2.5">
+                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight leading-tight mb-2.5">
                         {title}
                     </h2>
 
@@ -160,7 +160,7 @@ const DiamondTrustSection = ({ sectionData }) => {
                         return (
                             <div
                                 key={card.key}
-                                className="group relative bg-white rounded-2xl sm:rounded-3xl border border-[#EBE3D5] p-3.5 sm:p-4 pb-5 sm:pb-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(197,155,39,0.14)] hover:border-[#C59B27]/70 hover:-translate-y-1.5 transition-all duration-400 flex flex-col justify-between h-full select-none"
+                                className="group relative bg-white rounded-2xl sm:rounded-3xl border border-[#EBE3D5] p-3.5 sm:p-4 pb-5 sm:pb-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(184,149,106,0.14)] hover:border-brand-champagne/70 hover:-translate-y-1.5 transition-all duration-400 flex flex-col justify-between h-full select-none"
                             >
                                 <div>
                                     {/* 1. Image Container with Zoom-on-Hover */}
@@ -186,14 +186,14 @@ const DiamondTrustSection = ({ sectionData }) => {
                                         </div>
 
                                         {/* Floating Gold Icon Badge */}
-                                        <div className="absolute bottom-2.5 right-2.5 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/95 backdrop-blur-md border border-[#EBE3D5] text-[#C59B27] flex items-center justify-center shadow-md group-hover:bg-[#C59B27] group-hover:text-white transition-all duration-300 group-hover:scale-105">
+                                        <div className="absolute bottom-2.5 right-2.5 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/95 backdrop-blur-md border border-[#EBE3D5] text-brand-champagne flex items-center justify-center shadow-md group-hover:bg-brand-champagne group-hover:text-white transition-all duration-300 group-hover:scale-105">
                                             <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300" />
                                         </div>
                                     </div>
 
                                     {/* 2. Text Content */}
                                     <div className="px-1 sm:px-1.5">
-                                        <h3 className="font-serif text-base sm:text-[17px] font-bold text-[#141211] group-hover:text-[#9E7820] transition-colors leading-snug tracking-tight mb-1">
+                                        <h3 className="font-serif text-base sm:text-[17px] font-bold text-brand-espresso group-hover:text-brand-champagne transition-colors leading-snug tracking-tight mb-1">
                                             {card.title}
                                         </h3>
                                         <h4 className="font-serif italic text-xs sm:text-[13px] text-[#8C7A68] mb-2 leading-tight">
@@ -207,7 +207,7 @@ const DiamondTrustSection = ({ sectionData }) => {
 
                                 {/* 3. Decorative Bottom Gold Accent Line */}
                                 <div className="px-1 sm:px-1.5 pt-4 mt-auto">
-                                    <div className="w-8 h-[1.5px] bg-[#C59B27]/40 rounded-full group-hover:w-16 group-hover:bg-[#C59B27] transition-all duration-300" />
+                                    <div className="w-8 h-[1.5px] bg-brand-champagne/40 rounded-full group-hover:w-16 group-hover:bg-brand-champagne transition-all duration-300" />
                                 </div>
                             </div>
                         );

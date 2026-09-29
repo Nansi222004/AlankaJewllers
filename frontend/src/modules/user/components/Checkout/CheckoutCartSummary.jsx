@@ -32,8 +32,8 @@ const CheckoutCartSummary = ({
 }) => {
     return (
         <div className="lg:col-span-1">
-            <div className="bg-[#FDFBF7] p-6 md:p-8 rounded-2xl border border-[#E8DFD0] sticky top-24 shadow-sm">
-                <h2 className="font-display font-bold text-xl text-black mb-6 uppercase tracking-widest border-b border-[#E8DFD0] pb-4">Order Summary</h2>
+            <div className="bg-brand-pearl p-6 md:p-8 rounded-2xl border border-brand-border sticky top-24 shadow-sm">
+                <h2 className="font-display font-bold text-xl text-brand-espresso mb-6 uppercase tracking-widest border-b border-brand-border pb-4">Order Summary</h2>
 
                 {/* Mini Cart in Summary */}
                 <div className="max-h-60 overflow-y-auto mb-6 pr-2 space-y-5 custom-scrollbar">
@@ -43,17 +43,17 @@ const CheckoutCartSummary = ({
                                 {item.image ? (
                                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center bg-[#FAF8F5] text-[#A8A29E] text-[8px] font-bold uppercase tracking-[0.2em] text-center px-1">
+                                    <div className="w-full h-full flex items-center justify-center bg-brand-pearl text-[#A8A29E] text-[8px] font-bold uppercase tracking-[0.2em] text-center px-1">
                                         No Image
                                     </div>
                                 )}
                             </div>
                             <div className="flex-1">
-                                <p className="text-sm font-bold text-black line-clamp-2 font-display uppercase tracking-wide text-[11px]">{item.name}</p>
+                                <p className="text-sm font-bold text-brand-espresso line-clamp-2 font-display uppercase tracking-wide text-[11px]">{item.name}</p>
                                 <p className="text-xs text-gray-500 mt-1 font-serif">Qty: {item.quantity || 1}</p>
-                                <p className="text-sm font-bold text-black mt-1">{currencyText(item.price * (item.quantity || 1))}</p>
+                                <p className="text-sm font-bold text-brand-espresso mt-1">{currencyText(item.price * (item.quantity || 1))}</p>
                                 {item.giftWrap && (
-                                    <p className="text-[10px] text-[#C59B27] mt-1 flex items-center gap-1 font-sans">
+                                    <p className="text-[10px] text-brand-champagne mt-1 flex items-center gap-1 font-sans">
                                         🎁 Gift wrapped {item.giftMessage ? `("${item.giftMessage}")` : ''}
                                     </p>
                                 )}
@@ -66,22 +66,22 @@ const CheckoutCartSummary = ({
                     {!appliedCoupon ? (
                         <div
                             onClick={() => setShowCouponModal(true)}
-                            className="bg-gray-50 border-2 border-dashed border-[#E8DFD0] p-4 rounded-xl flex items-center justify-between group cursor-pointer hover:border-[#C59B27] transition-colors"
+                            className="bg-gray-50 border-2 border-dashed border-brand-border p-4 rounded-xl flex items-center justify-between group cursor-pointer hover:border-brand-champagne transition-colors"
                         >
                             <div className="flex items-center gap-3">
-                                <Gift className="w-4 h-4 text-[#C59B27]" />
-                                <span className="text-xs font-bold text-black uppercase tracking-wider">Apply Coupon</span>
+                                <Gift className="w-4 h-4 text-brand-champagne" />
+                                <span className="text-xs font-bold text-brand-espresso uppercase tracking-wider">Apply Coupon</span>
                             </div>
                             <ArrowRight className="w-4 h-4 text-gray-300 group-hover:translate-x-1 transition-transform" />
                         </div>
                     ) : (
-                        <div className="bg-[#E8DFD0]/20 border border-[#E8DFD0] p-4 rounded-xl flex items-center justify-between">
+                        <div className="bg-brand-border/20 border border-brand-border p-4 rounded-xl flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="bg-[#C59B27] p-1.5 rounded text-white">
+                                <div className="bg-brand-champagne p-1.5 rounded text-white">
                                     <Tag className="w-3.5 h-3.5" />
                                 </div>
                                 <div>
-                                    <p className="text-xs font-bold text-black uppercase tracking-wider">{appliedCoupon.code}</p>
+                                    <p className="text-xs font-bold text-brand-espresso uppercase tracking-wider">{appliedCoupon.code}</p>
                                     <p className="text-[10px] text-gray-500">{currencyText(parseFloat(discount).toFixed(0))} saved</p>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@ const CheckoutCartSummary = ({
                 {/* Gift Card */}
                 <div className="mb-4">
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                        <Gift className="w-3.5 h-3.5 text-[#C59B27]" />
+                        <Gift className="w-3.5 h-3.5 text-brand-champagne" />
                         Gift Card
                     </p>
 
@@ -125,26 +125,26 @@ const CheckoutCartSummary = ({
                             value={giftCardInput}
                             onChange={(e) => setGiftCardInput(e.target.value.toUpperCase())}
                             onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleApplyGiftCard(); } }}
-                            className="flex-1 border border-gray-200 rounded-lg px-4 py-2 outline-none focus:border-black font-mono text-xs uppercase placeholder:normal-case placeholder:font-sans placeholder:text-gray-400"
+                            className="flex-1 border border-gray-200 rounded-lg px-4 py-2 outline-none focus:border-brand-espresso font-mono text-xs uppercase placeholder:normal-case placeholder:font-sans placeholder:text-gray-400"
                         />
                         <button
                             type="button"
                             onClick={handleApplyGiftCard}
                             disabled={giftCardLoading || !giftCardInput.trim()}
-                            className="bg-black text-white px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-[#C59B27] transition-colors disabled:opacity-50"
+                            className="bg-brand-plum text-white px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-brand-champagne transition-colors disabled:opacity-50"
                         >
                             {giftCardLoading ? "..." : "Apply"}
                         </button>
                     </div>
                 </div>
 
-                <div className="space-y-3 text-sm text-gray-600 mb-6 pt-4 border-t border-[#E8DFD0]">
+                <div className="space-y-3 text-sm text-gray-600 mb-6 pt-4 border-t border-brand-border">
                     <div className="flex justify-between items-center">
                         <span className="font-serif">Subtotal</span>
-                        <span className="text-black font-bold font-sans">{currencyText(subtotal)}</span>
+                        <span className="text-brand-espresso font-bold font-sans">{currencyText(subtotal)}</span>
                     </div>
                     {giftWrapCharge > 0 && (
-                        <div className="flex justify-between items-center text-[#C59B27]">
+                        <div className="flex justify-between items-center text-brand-champagne">
                             <span className="font-serif">Gift Wrapping</span>
                             <span className="font-bold font-sans">{currencyText(giftWrapCharge)}</span>
                         </div>
@@ -160,7 +160,7 @@ const CheckoutCartSummary = ({
                         </div>
                     )}
                     {appliedCoupon && (
-                        <div className="flex justify-between items-center text-[#C59B27]">
+                        <div className="flex justify-between items-center text-brand-champagne">
                             <span className="font-serif">Coupon Discount</span>
                             <span className="font-bold font-sans">- {currencyText(parseFloat(discount).toFixed(0))}</span>
                         </div>
@@ -173,7 +173,7 @@ const CheckoutCartSummary = ({
                     )}
                 </div>
 
-                <div className="border-t border-[#E8DFD0] pt-6 mb-6">
+                <div className="border-t border-brand-border pt-6 mb-6">
                     <div className="flex justify-between items-end">
                         <div className="flex flex-col">
                             <span className="text-[10px] text-gray-400 font-black uppercase tracking-[0.15em] mb-1">Final Amount</span>
@@ -187,7 +187,7 @@ const CheckoutCartSummary = ({
                 </div>
 
                 <div className="bg-white p-4 rounded-xl text-xs text-gray-500 mb-6 flex gap-3 border border-gray-100 shadow-sm">
-                    <ShieldCheck className="w-5 h-5 text-[#C59B27] flex-shrink-0" />
+                    <ShieldCheck className="w-5 h-5 text-brand-champagne flex-shrink-0" />
                     <p className="font-serif leading-relaxed">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
                 </div>
 
@@ -195,7 +195,7 @@ const CheckoutCartSummary = ({
                     form="checkout-form"
                     type="submit"
                     disabled={loading}
-                    className={`w-full bg-[#E8DFD0] text-black py-4 rounded-xl font-bold hover:bg-[#C59B27] hover:text-white transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-lg uppercase tracking-widest text-sm ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
+                    className={`w-full bg-brand-border text-brand-espresso py-4 rounded-xl font-bold hover:bg-brand-champagne hover:text-white transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-lg uppercase tracking-widest text-sm ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
                 >
                     {loading ? (
                         <span className="flex items-center gap-2">
@@ -230,12 +230,12 @@ const CheckoutCartSummary = ({
                                     placeholder="Enter Coupon Code"
                                     value={couponCode}
                                     onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                                    className="flex-1 border border-gray-200 rounded-lg px-4 py-2.5 outline-none focus:border-black font-medium uppercase placeholder:normal-case text-xs"
+                                    className="flex-1 border border-gray-200 rounded-lg px-4 py-2.5 outline-none focus:border-brand-espresso font-medium uppercase placeholder:normal-case text-xs"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => handleApplyCouponValidated({ code: couponCode })}
-                                    className="bg-black text-white px-4 sm:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-[#C59B27] transition-colors"
+                                    className="bg-brand-plum text-white px-4 sm:px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-brand-champagne transition-colors"
                                 >
                                     Apply
                                 </button>
@@ -248,21 +248,21 @@ const CheckoutCartSummary = ({
                                     {availableCoupons.map((coupon, idx) => (
                                         <div
                                             key={idx}
-                                            className="border border-gray-200 rounded-xl p-3 sm:p-4 hover:border-[#C59B27] transition-all group relative overflow-hidden"
+                                            className="border border-gray-200 rounded-xl p-3 sm:p-4 hover:border-brand-champagne transition-all group relative overflow-hidden"
                                         >
                                             <div className="flex justify-between items-center gap-2 mb-2">
-                                                <div className="bg-[#E8DFD0]/30 px-2 sm:px-3 py-1 rounded border border-[#E8DFD0] text-[#C59B27] font-bold text-[10px] sm:text-xs uppercase tracking-wider truncate max-w-[140px] sm:max-w-none">
+                                                <div className="bg-brand-border/30 px-2 sm:px-3 py-1 rounded border border-brand-border text-brand-champagne font-bold text-[10px] sm:text-xs uppercase tracking-wider truncate max-w-[140px] sm:max-w-none">
                                                     {coupon.code}
                                                 </div>
                                                 <button
                                                     type="button"
                                                     onClick={() => handleApplyCouponValidated(coupon)}
-                                                    className="text-black font-bold text-[11px] sm:text-xs uppercase tracking-wider hover:text-[#C59B27] transition-colors shrink-0 py-1 px-2 hover:bg-gray-50 rounded"
+                                                    className="text-brand-espresso font-bold text-[11px] sm:text-xs uppercase tracking-wider hover:text-brand-champagne transition-colors shrink-0 py-1 px-2 hover:bg-gray-50 rounded"
                                                 >
                                                     Apply
                                                 </button>
                                             </div>
-                                            <p className="text-xs sm:text-sm font-bold text-black mb-0.5">Save {currencyText(typeof coupon.amount === 'number' ? coupon.amount.toFixed(0) : coupon.amount || coupon.value || 0)}</p>
+                                            <p className="text-xs sm:text-sm font-bold text-brand-espresso mb-0.5">Save {currencyText(typeof coupon.amount === 'number' ? coupon.amount.toFixed(0) : coupon.amount || coupon.value || 0)}</p>
                                             <p className="text-[10px] sm:text-xs text-gray-500 font-serif">{couponSummary(coupon)}</p>
                                         </div>
                                     ))}

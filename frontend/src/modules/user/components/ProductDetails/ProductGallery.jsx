@@ -90,8 +90,8 @@ const ProductGallery = ({ product, selectedVariant, galleryImages, primaryImage,
                         key={idx}
                         className={`w-20 h-20 md:w-24 md:h-24 flex-shrink-0 rounded-2xl border-2 overflow-hidden bg-white transition-all duration-300 ${
                             selectedImage === img
-                                ? 'border-[#C59B27] shadow-md scale-105 shadow-[#C59B27]/20 ring-1 ring-[#C59B27]/40'
-                                : 'border-stone-200 hover:border-[#C59B27]/50 opacity-70 hover:opacity-100 hover:scale-[1.02]'
+                                ? 'border-brand-champagne shadow-md scale-105 shadow-brand-champagne/20 ring-1 ring-brand-champagne/40'
+                                : 'border-stone-200 hover:border-brand-champagne/50 opacity-70 hover:opacity-100 hover:scale-[1.02]'
                         }`}
                         onClick={() => handleImageClick(img)}
                     >

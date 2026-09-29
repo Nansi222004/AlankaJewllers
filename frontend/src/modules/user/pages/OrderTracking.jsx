@@ -69,8 +69,8 @@ const OrderTracking = () => {
     if (!order) {
         return (
             <div className="min-h-screen pt-32 pb-12 px-4 flex flex-col items-center justify-center bg-white">
-                <h2 className="text-2xl font-serif text-[#141211] mb-4">Order Not Found</h2>
-                <Link to="/profile/orders" className="text-[#141211] underline hover:text-[#C59B27] font-medium">Back to Orders</Link>
+                <h2 className="text-2xl font-serif text-brand-espresso mb-4">Order Not Found</h2>
+                <Link to="/profile/orders" className="text-brand-espresso underline hover:text-brand-champagne font-medium">Back to Orders</Link>
             </div>
         );
     }
@@ -147,21 +147,21 @@ const OrderTracking = () => {
                 <div key={index} className="flex gap-4 md:gap-6 relative pb-8 last:pb-0">
                     {/* Connecting Line */}
                     {index !== steps.length - 1 && (
-                        <div className={`absolute left-[5px] md:left-[11px] top-4 md:top-6 bottom-0 w-0.5 z-0 transition-colors duration-500 ${step.completed && steps[index + 1]?.completed ? 'bg-[#C59B27]' : 'bg-stone-200'}`}></div>
+                        <div className={`absolute left-[5px] md:left-[11px] top-4 md:top-6 bottom-0 w-0.5 z-0 transition-colors duration-500 ${step.completed && steps[index + 1]?.completed ? 'bg-brand-champagne' : 'bg-stone-200'}`}></div>
                     )}
 
                     {/* Dot/Icon */}
                     <div className="relative z-10 flex-shrink-0 mt-0.5 md:mt-1">
-                        <div className={`w-3 h-3 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-500 ${step.completed ? 'bg-[#141211] text-[#E8D198] border border-[#C59B27]/50 md:shadow-md' : 'bg-stone-200'} ${step.current ? 'ring-4 ring-[#C59B27]/20 scale-110' : ''}`}>
+                        <div className={`w-3 h-3 md:w-6 md:h-6 rounded-full flex items-center justify-center transition-all duration-500 ${step.completed ? 'bg-brand-plum text-brand-champagne-light border border-brand-champagne/50 md:shadow-md' : 'bg-stone-200'} ${step.current ? 'ring-4 ring-brand-champagne/20 scale-110' : ''}`}>
                             <span className="hidden md:block">
-                                {step.completed && <Check className="w-3.5 h-3.5 text-[#E8D198]" />}
+                                {step.completed && <Check className="w-3.5 h-3.5 text-brand-champagne-light" />}
                             </span>
                         </div>
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 -mt-1 md:mt-0">
-                        <h4 className={`text-xs md:text-lg font-serif font-bold transition-colors duration-500 ${step.completed || step.current ? 'text-[#141211]' : 'text-stone-400'}`}>
+                        <h4 className={`text-xs md:text-lg font-serif font-bold transition-colors duration-500 ${step.completed || step.current ? 'text-brand-espresso' : 'text-stone-400'}`}>
                             {step.status}
                         </h4>
                         {step.date && <p className="text-[10px] md:text-sm text-stone-500 font-medium mt-0.5 md:mt-1">{step.date}</p>}
@@ -173,24 +173,24 @@ const OrderTracking = () => {
 
     // --- SUMMARY VIEW ---
     return (
-        <div className="min-h-screen bg-white font-sans pt-0 md:pt-12 pb-12 selection:bg-[#C59B27] selection:text-[#141211]">
+        <div className="min-h-screen bg-white font-sans pt-0 md:pt-12 pb-12 selection:bg-brand-champagne selection:text-brand-espresso">
             <div className="md:hidden bg-white shadow-sm p-4 sticky top-0 z-20 flex items-center gap-4">
-                <Link to={backTarget} className="p-2 -ml-2 text-[#141211]">
+                <Link to={backTarget} className="p-2 -ml-2 text-brand-espresso">
                     <ArrowLeft className="w-5 h-5" />
                 </Link>
-                <h1 className="text-lg font-bold font-serif text-[#141211]">Order #{(order.displayId || order.orderId || order.id || '').toString().replace('ORD-', '')}</h1>
+                <h1 className="text-lg font-bold font-serif text-brand-espresso">Order #{(order.displayId || order.orderId || order.id || '').toString().replace('ORD-', '')}</h1>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-0">
                 <div className="hidden md:block mb-6">
-                    <Link to={backTarget} className="inline-flex items-center text-sm font-medium text-stone-500 hover:text-[#C59B27] transition-colors group uppercase tracking-widest font-bold text-[10px]">
+                    <Link to={backTarget} className="inline-flex items-center text-sm font-medium text-stone-500 hover:text-brand-champagne transition-colors group uppercase tracking-widest font-bold text-[10px]">
                         <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                         {isReturnView ? 'Back to Order Journey' : 'Back to Orders'}
                     </Link>
                 </div>
 
-                <h2 className="text-xl md:text-2xl font-serif font-bold text-[#141211] mb-6 flex items-center gap-2">
-                    <Clock className="w-5 h-5 md:w-6 md:h-6 text-[#C59B27]" />
+                <h2 className="text-xl md:text-2xl font-serif font-bold text-brand-espresso mb-6 flex items-center gap-2">
+                    <Clock className="w-5 h-5 md:w-6 md:h-6 text-brand-champagne" />
                     Order Journey
                 </h2>
 
@@ -206,7 +206,7 @@ const OrderTracking = () => {
                                             <Check className="w-3.5 h-3.5" />
                                         </div>
                                     ) : (
-                                        <div className="bg-amber-50 text-[#C59B27] p-1.5 rounded-full">
+                                        <div className="bg-amber-50 text-brand-champagne p-1.5 rounded-full">
                                             <RefreshCw className="w-3.5 h-3.5 animate-spin" />
                                         </div>
                                     )}
@@ -214,7 +214,7 @@ const OrderTracking = () => {
                                         <span className="text-[9px] md:text-[10px] font-bold text-stone-400 uppercase tracking-widest block">
                                             {returnRequest.type === 'exchange' ? 'Exchange Request' : 'Return Request'}
                                         </span>
-                                        <h3 className="text-xs md:text-sm font-bold text-[#141211] mt-0.5">{currentReturnStatus.status}</h3>
+                                        <h3 className="text-xs md:text-sm font-bold text-brand-espresso mt-0.5">{currentReturnStatus.status}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@ const OrderTracking = () => {
                                     ))}
 
                                     <div className="flex flex-col justify-center pl-1">
-                                        <p className="text-xs font-bold text-[#141211]">ID: {returnRequest.id}</p>
+                                        <p className="text-xs font-bold text-brand-espresso">ID: {returnRequest.id}</p>
                                         <p className="text-[10px] text-stone-500 mt-0.5 capitalize">
                                             {returnRequest.type} request • {returnRequest.status}
                                         </p>
@@ -242,7 +242,7 @@ const OrderTracking = () => {
 
                                 {/* Inline Return Timeline */}
                                 <div className="border-t border-stone-100 pt-5">
-                                    <h4 className="text-[10px] font-bold text-[#C59B27] uppercase tracking-widest mb-4">Return Journey</h4>
+                                    <h4 className="text-[10px] font-bold text-brand-champagne uppercase tracking-widest mb-4">Return Journey</h4>
                                     <RenderTimeline steps={returnSteps} />
                                 </div>
                             </div>
@@ -257,15 +257,15 @@ const OrderTracking = () => {
                         <div className="p-3 md:p-5 border-b border-stone-100 bg-stone-50 flex justify-between items-center">
                             <div>
                                 <span className="text-[9px] md:text-[10px] font-bold text-stone-400 uppercase tracking-widest block">Original Delivery</span>
-                                <h3 className="text-xs md:text-sm font-bold text-[#141211] mt-0.5">{currentDeliveryStatus.status}</h3>
+                                <h3 className="text-xs md:text-sm font-bold text-brand-espresso mt-0.5">{currentDeliveryStatus.status}</h3>
                             </div>
                             <Link
                                 to={`/order-invoice/${order.id || order._id}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E8DFD0] bg-white text-[#3E2723] hover:border-[#C59B27] hover:bg-[#FAF8F5] text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-brand-border bg-white text-[#3E2723] hover:border-brand-champagne hover:bg-brand-pearl text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
                             >
-                                <FileText className="w-3.5 h-3.5 text-[#C59B27]" />
+                                <FileText className="w-3.5 h-3.5 text-brand-champagne" />
                                 Tax Invoice
                             </Link>
                         </div>
@@ -283,14 +283,14 @@ const OrderTracking = () => {
                                     </div>
                                 ))}
                                 <div className="flex flex-col justify-center pl-1">
-                                    <p className="text-xs font-bold text-[#141211]">{order.items.length} Items</p>
+                                    <p className="text-xs font-bold text-brand-espresso">{order.items.length} Items</p>
                                     <p className="text-[10px] text-stone-500 mt-0.5">Total: {formatCurrency(order.total)}</p>
                                 </div>
                             </div>
 
                             {/* Inline Original Delivery Timeline */}
                             <div className="border-t border-stone-100 pt-5">
-                                <h4 className="text-[10px] font-bold text-[#C59B27] uppercase tracking-widest mb-4">Delivery Journey</h4>
+                                <h4 className="text-[10px] font-bold text-brand-champagne uppercase tracking-widest mb-4">Delivery Journey</h4>
                                 <RenderTimeline steps={deliverySteps} />
                             </div>
                         </div>

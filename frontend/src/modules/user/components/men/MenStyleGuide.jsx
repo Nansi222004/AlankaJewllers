@@ -105,7 +105,7 @@ const MenStyleGuide = ({ sectionData }) => {
                             </div>
 
                             {/* Image Part */}
-                            <div className="relative flex-grow overflow-hidden bg-black rounded-b-xl shadow-lg aspect-[0.88/1] md:aspect-[0.85/1] min-h-[220px] md:min-h-0">
+                            <div className="relative flex-grow overflow-hidden bg-brand-plum rounded-b-xl shadow-lg aspect-[0.88/1] md:aspect-[0.85/1] min-h-[220px] md:min-h-0">
                                 {/* Grayscale Base Image */}
                                 <img
                                     src={style.image}

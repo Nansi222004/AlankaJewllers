@@ -138,8 +138,8 @@ const DiamondJewelleryPage = () => {
     return (
       <div className="bg-white min-h-screen flex items-center justify-center px-6 py-14">
         <div className="max-w-xl w-full bg-white border border-stone-200 rounded-3xl p-8 shadow-sm text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-[#171717] text-[10px] font-bold uppercase tracking-[0.25em] mb-3">
-            <Gem className="w-3.5 h-3.5 text-[#C6A04A]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-brand-espresso text-[10px] font-bold uppercase tracking-[0.25em] mb-3">
+            <Gem className="w-3.5 h-3.5 text-brand-champagne" />
             <span>Diamond Atelier</span>
           </div>
           <h1 className="mt-2 text-2xl font-serif font-medium text-stone-900">
@@ -151,7 +151,7 @@ const DiamondJewelleryPage = () => {
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-6 inline-flex items-center justify-center rounded-xl bg-[#171717] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-[#C6A04A] hover:text-[#171717] transition-all cursor-pointer shadow-sm"
+            className="mt-6 inline-flex items-center justify-center rounded-xl bg-brand-plum px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-brand-champagne hover:text-brand-espresso transition-all cursor-pointer shadow-sm"
           >
             Retry
           </button>
@@ -167,7 +167,7 @@ const DiamondJewelleryPage = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen font-body text-stone-900 selection:bg-[#C6A04A] selection:text-[#171717]">
+    <div className="bg-white min-h-screen font-body text-stone-900 selection:bg-brand-champagne selection:text-brand-espresso">
       {/* 1. Dynamic Hero Banner Slider */}
       {isSectionActive("hero-banners-diamond") && (
         <PromoSlider externalSlides={heroSlides} autoplayInterval={autoplayMs} />

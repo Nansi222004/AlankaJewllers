@@ -21,3 +21,20 @@ test/
 archive/
 backend/archive/
 **/archive/
+
+# QA test artifacts, browser profiles, and screenshots
+.qa*
+.qa-*/
+.qa-screenshots/
+qa-*/
+*.qa*
+**/.qa*
+**/.qa-*
+**/.qa-screenshots/
+*.tmp
+**/*.tmp
+
+# Node dependencies & logs
+node_modules/
+**/node_modules/
+*.log

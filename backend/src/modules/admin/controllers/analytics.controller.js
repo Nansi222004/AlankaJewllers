@@ -24,9 +24,10 @@ exports.trackEvent = async (req, res) => {
       return error(res, "Missing tracking data", 400);
     }
 
-    // 1. Upsert Visitor
-    let visitor = await Visitor.findOne({ visitorId });
-    if (!visitor && visitorInfo) {
+    // 1. Upsert Visitor atomically. Several providers can emit page events at
+    // the same time, so a find-then-create sequence can race on visitorId.
+    const visitorOnInsert = { visitorId };
+    if (visitorInfo) {
       // Geo Lookup
       const geoip = require('geoip-lite');
       const rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
@@ -49,8 +50,7 @@ exports.trackEvent = async (req, res) => {
         geo = fallbackGeoList[index];
       }
 
-      visitor = await Visitor.create({
-        visitorId,
+      Object.assign(visitorOnInsert, {
         ...visitorInfo,
         device: { ...visitorInfo.device, type: getDeviceType(req.headers['user-agent']) },
         ip: clientIp,
@@ -60,9 +60,27 @@ exports.trackEvent = async (req, res) => {
           city: geo.city
         }
       });
-    } else if (visitor) {
-      visitor.lastVisit = new Date();
-      await visitor.save();
+    }
+
+    let visitor;
+    try {
+      visitor = await Visitor.findOneAndUpdate(
+        { visitorId },
+        {
+          $setOnInsert: visitorOnInsert,
+          $set: { lastVisit: new Date() },
+        },
+        { upsert: true, new: true, setDefaultsOnInsert: true, runValidators: true },
+      );
+    } catch (visitorError) {
+      // A competing first event may win the unique-key race between MongoDB's
+      // match and insert phases. Treat that as an existing visitor, not a 500.
+      if (visitorError?.code !== 11000) throw visitorError;
+      visitor = await Visitor.findOneAndUpdate(
+        { visitorId },
+        { $set: { lastVisit: new Date() } },
+        { new: true },
+      );
     }
 
     // 2. Heartbeat / Session Management

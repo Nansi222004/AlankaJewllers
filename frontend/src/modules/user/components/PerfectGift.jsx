@@ -102,7 +102,7 @@ const PerfectGift = () => {
     });
 
     return (
-        <section className="pt-2 pb-6 md:pt-4 md:pb-20 bg-white text-black overflow-hidden font-sans border-b border-gray-100">
+        <section className="pt-2 pb-6 md:pt-4 md:pb-20 bg-white text-brand-espresso overflow-hidden font-sans border-b border-gray-100">
             <div className="container mx-auto px-4">
                 
                 {/* Section Title */}
@@ -151,7 +151,7 @@ const PerfectGift = () => {
                                 {giftSettings.subtitle || 'Handpicked for the perfect moment'}
                             </p>
                         </div>
-                        <Link to="/shop" className="text-[10px] font-bold uppercase tracking-wider text-[#C59B27] hover:text-[#141211] transition-all border-b border-transparent hover:border-[#141211]">
+                        <Link to="/shop" className="text-[10px] font-bold uppercase tracking-wider text-brand-champagne hover:text-brand-espresso transition-all border-b border-transparent hover:border-brand-espresso">
                             {giftSettings.ctaLabel || 'View All'}
                         </Link>
                     </div>

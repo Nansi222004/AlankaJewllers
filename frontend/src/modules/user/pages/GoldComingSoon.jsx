@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const GoldComingSoon = () => {
     return (
-        <div className="min-h-[80vh] flex items-center justify-center bg-[#FDFBF7] px-4 py-20 relative overflow-hidden">
+        <div className="min-h-[80vh] flex items-center justify-center bg-brand-pearl px-4 py-20 relative overflow-hidden">
             {/* Background Decorative Elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-[100px] -mr-48 -mt-48" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#AA8C2C]/5 rounded-full blur-[100px] -ml-48 -mb-48" />
@@ -40,7 +40,7 @@ const GoldComingSoon = () => {
                             transition={{ delay: 0.1 }}
                         >
                             <h4 className="text-[#AA8C2C] font-black uppercase tracking-[0.4em] text-xs mb-4">The Grand Unveil</h4>
-                            <h1 className="text-5xl md:text-7xl font-display font-bold text-black leading-tight">
+                            <h1 className="text-5xl md:text-7xl font-display font-bold text-brand-espresso leading-tight">
                                 Alankar JEWELLERS <span className="text-[#D4AF37]">GOLD</span> <br />COLLECTION
                             </h1>
                         </motion.div>
@@ -84,7 +84,7 @@ const GoldComingSoon = () => {
                         <button className="px-10 py-4 bg-[#AA8C2C] text-white rounded-full text-xs font-black uppercase tracking-widest shadow-2xl shadow-[#AA8C2C]/30 hover:bg-[#8B7324] transition-all group flex items-center gap-3">
                             Notify Me Arrival <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                         </button>
-                        <Link to="/shop" className="text-xs font-black uppercase tracking-widest text-gray-400 hover:text-black transition-colors border-b-2 border-transparent hover:border-black pb-1">
+                        <Link to="/shop" className="text-xs font-black uppercase tracking-widest text-gray-400 hover:text-brand-espresso transition-colors border-b-2 border-transparent hover:border-brand-espresso pb-1">
                             Explore Silver Collection
                         </Link>
                     </motion.div>

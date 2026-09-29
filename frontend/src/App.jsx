@@ -177,7 +177,7 @@ const AppContent = () => {
   const showMetalToggle = location.pathname === '/' || location.pathname === '/silver-collection' || location.pathname === '/gold-collection' || location.pathname === '/diamond-collection' || location.pathname === '/gems-collection';
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-[#FAF8F5]">
+    <div className="min-h-screen flex flex-col font-sans text-brand-espresso bg-brand-pearl">
       {!isAdminPath && !isLoginPath && (
         <>
           <div 

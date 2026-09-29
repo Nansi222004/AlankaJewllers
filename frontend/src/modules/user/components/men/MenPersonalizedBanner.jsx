@@ -33,7 +33,7 @@ const MenPersonalizedBanner = ({ sectionData }) => {
     }, [sectionData]);
 
     return (
-        <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-[#141211] py-0 overflow-hidden">
+        <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-brand-plum py-0 overflow-hidden">
             <motion.div 
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -64,7 +64,7 @@ const MenPersonalizedBanner = ({ sectionData }) => {
                             <h2 className="text-3xl md:text-6xl font-display text-white leading-none mb-3 md:mb-4" style={{ fontFamily: "'Cinzel', serif", fontWeight: 700 }}>
                                 {resolvedItem.name}
                             </h2>
-                            <p className="text-xs md:text-lg text-[#E8D198] font-light tracking-[0.15em] uppercase mb-5 md:mb-7">
+                            <p className="text-xs md:text-lg text-brand-champagne-light font-light tracking-[0.15em] uppercase mb-5 md:mb-7">
                                 {resolvedItem.subtitle}
                             </p>
                             
@@ -75,7 +75,7 @@ const MenPersonalizedBanner = ({ sectionData }) => {
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="bg-[#C59B27] text-[#141211] hover:bg-[#D4AF37] px-8 md:px-11 py-3 md:py-4 rounded-full font-bold text-[11px] md:text-base tracking-[0.2em] uppercase shadow-2xl transition-all border border-white/30"
+                                    className="bg-brand-champagne text-brand-espresso hover:bg-[#D4AF37] px-8 md:px-11 py-3 md:py-4 rounded-full font-bold text-[11px] md:text-base tracking-[0.2em] uppercase shadow-2xl transition-all border border-white/30"
                                 >
                                     {resolvedItem.ctaLabel}
                                 </motion.div>

@@ -65,7 +65,7 @@ const TrustMarkers = () => {
     ];
 
     return (
-        <section className="w-full bg-[#FAF8F5] py-4 md:py-5 border-b border-[#E8DFD0]/80">
+        <section className="w-full bg-brand-pearl py-4 md:py-5 border-b border-brand-border/80">
             <div className="container mx-auto px-4 max-w-[1400px]">
                 <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-10 gap-y-2.5">
                     {markers.map((marker, index) => (
@@ -77,13 +77,13 @@ const TrustMarkers = () => {
                             transition={{ duration: 0.4, delay: index * 0.05 }}
                             className="flex items-center gap-2 cursor-default group"
                         >
-                            <span className="w-1.5 h-1.5 rotate-45 bg-[#C59B27] shrink-0 opacity-80 group-hover:scale-125 transition-transform" />
-                            <span className="text-[#141211] text-[11px] sm:text-xs md:text-[13px] font-sans tracking-wide">
-                                <strong className="font-semibold text-[#141211]">{marker.bold}</strong>{" "}
+                            <span className="w-1.5 h-1.5 rotate-45 bg-brand-champagne shrink-0 opacity-80 group-hover:scale-125 transition-transform" />
+                            <span className="text-brand-espresso text-[11px] sm:text-xs md:text-[13px] font-sans tracking-wide">
+                                <strong className="font-semibold text-brand-espresso">{marker.bold}</strong>{" "}
                                 <span className="font-light text-stone-600">{marker.normal}</span>
                             </span>
                             {index < markers.length - 1 && (
-                                <div className="hidden lg:block w-px h-3 bg-[#E8DFD0] ml-6" />
+                                <div className="hidden lg:block w-px h-3 bg-brand-border ml-6" />
                             )}
                         </motion.div>
                     ))}

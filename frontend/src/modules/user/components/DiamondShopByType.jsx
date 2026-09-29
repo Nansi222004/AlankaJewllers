@@ -63,11 +63,11 @@ const DiamondShopByType = ({ sectionData }) => {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-white text-[#171717] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
-                        <Sparkles className="w-3.5 h-3.5 text-[#C6A04A]" />
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-white text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
+                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
                         <span>{badge}</span>
                     </div>
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#171717] font-normal tracking-tight mb-3">
+                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight mb-3">
                         {title}
                     </h2>
                     <p className="text-xs sm:text-sm text-stone-500 font-light max-w-xl mx-auto leading-relaxed">
@@ -82,7 +82,7 @@ const DiamondShopByType = ({ sectionData }) => {
                         return (
                             <div
                                 key={item.id}
-                                className="group relative bg-white rounded-3xl border border-stone-200/80 hover:border-[#C6A04A]/60 shadow-xs hover:shadow-[0_20px_45px_rgba(23,23,23,0.08)] transition-all duration-500 flex flex-col justify-between overflow-hidden"
+                                className="group relative bg-white rounded-3xl border border-stone-200/80 hover:border-brand-champagne/60 shadow-xs hover:shadow-[0_20px_45px_rgba(51,40,39,0.08)] transition-all duration-500 flex flex-col justify-between overflow-hidden"
                             >
                                 <div className="p-6 sm:p-8 md:p-10 flex-1 flex flex-col justify-between">
                                     <div>
@@ -90,7 +90,7 @@ const DiamondShopByType = ({ sectionData }) => {
                                         <div className="flex items-center justify-between gap-3 mb-4">
                                             <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                                                 isNatural
-                                                    ? 'bg-[#FAF6ED] text-[#C6A04A] border border-[#E8DFC8]'
+                                                    ? 'bg-[#FAF6ED] text-brand-champagne border border-[#E8DFC8]'
                                                     : 'bg-sky-50 text-sky-800 border border-sky-200/60'
                                             }`}>
                                                 {isNatural ? <Gem className="w-3 h-3" /> : <Leaf className="w-3 h-3" />}
@@ -102,7 +102,7 @@ const DiamondShopByType = ({ sectionData }) => {
                                         </div>
 
                                         {/* Title & Description */}
-                                        <h3 className="font-serif text-2xl sm:text-3xl text-[#171717] font-medium tracking-tight mb-3">
+                                        <h3 className="font-serif text-2xl sm:text-3xl text-brand-espresso font-medium tracking-tight mb-3">
                                             {item.name}
                                         </h3>
                                         <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-light mb-6">
@@ -113,8 +113,8 @@ const DiamondShopByType = ({ sectionData }) => {
                                         <ul className="space-y-2.5 mb-8">
                                             {item.features.map((feat, fIdx) => (
                                                 <li key={fIdx} className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                                                    <div className="w-4 h-4 rounded-full bg-[#FAF6ED] border border-[#C6A04A]/40 flex items-center justify-center shrink-0">
-                                                        <ShieldCheck className="w-2.5 h-2.5 text-[#C6A04A]" />
+                                                    <div className="w-4 h-4 rounded-full bg-[#FAF6ED] border border-brand-champagne/40 flex items-center justify-center shrink-0">
+                                                        <ShieldCheck className="w-2.5 h-2.5 text-brand-champagne" />
                                                     </div>
                                                     <span>{feat}</span>
                                                 </li>
@@ -138,7 +138,7 @@ const DiamondShopByType = ({ sectionData }) => {
                                         to={item.path}
                                         className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-xs ${
                                             isNatural
-                                                ? 'bg-[#171717] text-white hover:bg-[#C6A04A] hover:text-[#171717]'
+                                                ? 'bg-brand-plum text-white hover:bg-brand-champagne hover:text-brand-espresso'
                                                 : 'bg-stone-900 text-white hover:bg-sky-900'
                                         }`}
                                     >

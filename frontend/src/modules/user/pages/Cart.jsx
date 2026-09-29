@@ -61,16 +61,16 @@ const Cart = () => {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="max-w-md w-full text-center space-y-8 bg-white p-12 rounded-[2.5rem] shadow-xl shadow-[#C59B27]/5 border border-gray-100"
+                    className="max-w-md w-full text-center space-y-8 bg-white p-12 rounded-[2.5rem] shadow-xl shadow-brand-champagne/5 border border-gray-100"
                 >
                     <div className="relative inline-block">
-                        <div className="w-24 h-24 bg-[#FAF8F5] rounded-full flex items-center justify-center border border-[#E8DFD0] shadow-inner">
-                            <ShoppingBag className="w-10 h-10 text-[#C59B27]" strokeWidth={1.5} />
+                        <div className="w-24 h-24 bg-brand-pearl rounded-full flex items-center justify-center border border-brand-border shadow-inner">
+                            <ShoppingBag className="w-10 h-10 text-brand-champagne" strokeWidth={1.5} />
                         </div>
                         <motion.div
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ repeat: Infinity, duration: 2 }}
-                            className="absolute -top-1 -right-1 w-6 h-6 bg-[#C59B27] rounded-full border-4 border-white"
+                            className="absolute -top-1 -right-1 w-6 h-6 bg-brand-champagne rounded-full border-4 border-white"
                         />
                     </div>
                     <div className="space-y-3">
@@ -81,9 +81,9 @@ const Cart = () => {
                     </div>
                     <Link
                         to="/shop"
-                        className="inline-flex items-center gap-3 bg-[#141211] text-[#E8D198] border border-[#C59B27]/50 hover:bg-[#1C1917] px-10 py-4 rounded-full transition-all duration-300 font-bold uppercase tracking-[0.2em] text-xs shadow-lg active:scale-95"
+                        className="inline-flex items-center gap-3 bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne px-10 py-4 rounded-full transition-all duration-300 font-bold uppercase tracking-[0.2em] text-xs shadow-lg active:scale-95"
                     >
-                        <ArrowLeft className="w-4 h-4 text-[#C59B27]" /> Start Shopping
+                        <ArrowLeft className="w-4 h-4 text-brand-champagne" /> Start Shopping
                     </Link>
                 </motion.div>
             </div>
@@ -91,13 +91,13 @@ const Cart = () => {
     }
 
     return (
-        <div className="bg-[#F9FAFB] min-h-screen pb-24 font-sans">
+        <div className="bg-brand-pearl min-h-screen pb-24 font-sans text-brand-espresso">
             {/* Header */}
             <div className="bg-white border-b border-gray-100 mb-8 sticky top-0 z-10">
                 <div className="container mx-auto px-4 py-4 md:py-6 max-w-7xl flex items-center justify-between">
                     <button
                         onClick={() => navigate(-1)}
-                        className="flex items-center gap-2 text-gray-400 hover:text-[#C59B27] transition-all group font-bold uppercase tracking-widest text-[10px]"
+                        className="flex items-center gap-2 text-gray-400 hover:text-brand-champagne transition-all group font-bold uppercase tracking-widest text-[10px]"
                     >
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         Back
@@ -119,7 +119,7 @@ const Cart = () => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
-                                    className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden relative"
+                                    className="bg-white rounded-2xl border border-brand-border-soft shadow-sm overflow-hidden relative"
                                 >
                                     <button
                                         onClick={() => removeFromCart(item.id, variantKey(item))}
@@ -142,7 +142,7 @@ const Cart = () => {
                                         <div className="flex-grow space-y-2">
                                             <div className="pr-6">
                                                 <Link to={`/product/${item.id}`}>
-                                                    <h3 className="text-sm md:text-base font-medium text-gray-900 leading-tight hover:text-[#C59B27] transition-colors line-clamp-2">{item.name}</h3>
+                                                    <h3 className="text-sm md:text-base font-medium text-gray-900 leading-tight hover:text-brand-champagne transition-colors line-clamp-2">{item.name}</h3>
                                                 </Link>
                                                 {variantLabel(item) && (
                                                     <p className="text-[10px] font-normal text-gray-500 uppercase tracking-wide mt-0.5">{variantLabel(item)}</p>
@@ -171,7 +171,7 @@ const Cart = () => {
                                                     </span>
                                                     <button
                                                         onClick={() => updateQuantity(item.id, 1, variantKey(item))}
-                                                        className="w-6 h-6 shrink-0 flex items-center justify-center rounded bg-[#C59B27] text-white hover:bg-[#141211] shadow-sm transition-all"
+                                                        className="w-6 h-6 shrink-0 flex items-center justify-center rounded bg-brand-champagne text-white hover:bg-brand-plum shadow-sm transition-all"
                                                     >
                                                         <Plus className="w-3 h-3" strokeWidth={2.5} />
                                                     </button>
@@ -186,7 +186,7 @@ const Cart = () => {
                                     </div>
 
                                     {/* Trust Banner */}
-                                    <div className="bg-[#FAF8F5] border-t border-[#E8DFD0] flex divide-x divide-[#E8DFD0] py-2.5 px-3">
+                                    <div className="bg-brand-pearl border-t border-brand-border flex divide-x divide-brand-border py-2.5 px-3">
                                         <div className="flex-1 text-center text-[9px] font-normal text-gray-500 uppercase tracking-[0.1em]">{warrantyLabel}</div>
                                         <div className="flex-1 text-center text-[9px] font-normal text-gray-500 uppercase tracking-[0.1em]">{platingLabel}</div>
                                         <div className="flex-1 text-center text-[9px] font-normal text-gray-500 uppercase tracking-[0.1em]">{returnLabel}</div>
@@ -200,10 +200,10 @@ const Cart = () => {
                                                 id={`gift-${item.id}-${variantKey(item)}`}
                                                 checked={item.giftWrap || false}
                                                 onChange={() => toggleGiftWrap(item.id, variantKey(item))}
-                                                className="w-4 h-4 rounded accent-[#C59B27] border-gray-200 cursor-pointer"
+                                                className="w-4 h-4 rounded accent-brand-champagne border-gray-200 cursor-pointer"
                                             />
                                             <label htmlFor={`gift-${item.id}-${variantKey(item)}`} className="text-xs text-gray-600 flex items-center gap-1 cursor-pointer font-normal">
-                                                Add <span className="text-[#C59B27]">gift wrap</span> & message (+ ₹50)
+                                                Add <span className="text-brand-champagne">gift wrap</span> & message (+ ₹50)
                                             </label>
                                             {item.giftWrap && (
                                                 <span className="text-[10px] font-normal text-[#2DB37E] ml-auto flex items-center gap-1">
@@ -224,7 +224,7 @@ const Cart = () => {
                                                     onChange={(e) => updateGiftMessage(item.id, variantKey(item), e.target.value)}
                                                     maxLength={200}
                                                     rows={2}
-                                                    className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#C59B27]/10 resize-none"
+                                                    className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-2 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-champagne/10 resize-none"
                                                 />
                                                 <div className="flex justify-between items-center text-[9px] text-gray-400 px-1">
                                                     <span>Gift card note attached</span>
@@ -240,7 +240,7 @@ const Cart = () => {
 
                     {/* Summary Section */}
                     <div className="w-full lg:w-[400px] shrink-0">
-                        <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-lg shadow-black/5 sticky top-28 space-y-4">
+                        <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-lg shadow-brand-espresso/5 sticky top-28 space-y-4">
                             <h2 className="text-base font-medium text-gray-800">Order Summary</h2>
 
                             <div className="space-y-2.5 pt-1">
@@ -282,7 +282,7 @@ const Cart = () => {
                                                                         </div>
                                                                     )}
                                                                     {giftWrapCharge > 0 && (
-                                                                        <div className="flex justify-between text-[#C59B27]">
+                                                                        <div className="flex justify-between text-brand-champagne">
                                                                             <span>Gift Wrap</span>
                                                                             <span>+ {currencyText(giftWrapCharge)}</span>
                                                                         </div>
@@ -313,7 +313,7 @@ const Cart = () => {
                                         <div className="flex flex-col items-end text-right gap-0.5">
                                             {giftWrapCharge > 0 && <p className="text-[8px] text-[#2DB37E] font-normal">Gift wrap: +{currencyText(giftWrapCharge)}</p>}
                                             {shipping > 0 && <p className="text-[8px] text-gray-400 font-normal">Shipping: +{currencyText(shipping)}</p>}
-                                            {discount > 0 && <p className="text-[8px] text-[#C59B27] font-normal">Discount: -{currencyText(discount)}</p>}
+                                            {discount > 0 && <p className="text-[8px] text-brand-plum font-normal">Discount: -{currencyText(discount)}</p>}
                                         </div>
                                     )}
                                 </div>
@@ -338,7 +338,7 @@ const Cart = () => {
                                         {availableCoupons.slice(0, 3).map((coupon) => (
                                             <div key={coupon.code} className="flex items-center justify-between p-2.5 bg-white hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0 group cursor-pointer" onClick={() => handleApplyCoupon(coupon.code)}>
                                                 <div className="flex items-center gap-2 min-w-0">
-                                                    <div className="w-8 h-8 rounded-full bg-[#FAF8F5] flex items-center justify-center text-[#C59B27] shrink-0 border border-[#E8DFD0]">
+                                                    <div className="w-8 h-8 rounded-full bg-brand-pearl flex items-center justify-center text-brand-champagne shrink-0 border border-brand-border">
                                                         <Tag className="w-3 h-3" />
                                                     </div>
                                                     <div className="min-w-0">
@@ -346,12 +346,12 @@ const Cart = () => {
                                                         <p className="text-[8px] text-gray-400 truncate font-normal">{coupon.description || couponSaveText(coupon)}</p>
                                                     </div>
                                                 </div>
-                                                <ChevronDown className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#C59B27] transition-colors shrink-0" />
+                                                <ChevronDown className="w-3.5 h-3.5 text-gray-300 group-hover:text-brand-champagne transition-colors shrink-0" />
                                             </div>
                                         ))}
                                         <button
                                             onClick={() => setShowCouponModal(true)}
-                                            className="w-full py-2 text-[9px] font-normal text-gray-400 hover:text-[#C59B27] transition-colors bg-gray-50/50 uppercase tracking-[0.08em]"
+                                            className="w-full py-2 text-[9px] font-normal text-gray-400 hover:text-brand-champagne transition-colors bg-gray-50/50 uppercase tracking-[0.08em]"
                                         >
                                             View All Offers
                                         </button>
@@ -360,12 +360,12 @@ const Cart = () => {
                             </div>
 
                             {appliedCoupon && (
-                                <div className="bg-[#FAF8F5] border border-[#E8DFD0] p-3 rounded-lg flex items-center justify-between gap-2">
+                                <div className="bg-brand-pearl border border-brand-border p-3 rounded-lg flex items-center justify-between gap-2">
                                     <div className="flex items-center gap-2 min-w-0">
-                                        <Tag className="w-3.5 h-3.5 text-[#C59B27] shrink-0" />
+                                        <Tag className="w-3.5 h-3.5 text-brand-champagne shrink-0" />
                                         <div className="min-w-0">
-                                            <p className="text-[10px] font-medium text-[#C59B27] uppercase tracking-wide truncate">{appliedCoupon.code}</p>
-                                            <p className="text-[9px] text-[#C59B27] font-normal">{currencyText(discount)} Discount</p>
+                                            <p className="text-[10px] font-medium text-brand-plum uppercase tracking-wide truncate">{appliedCoupon.code}</p>
+                                            <p className="text-[9px] text-brand-plum font-normal">{currencyText(discount)} Discount</p>
                                         </div>
                                     </div>
                                     <button onClick={clearAppliedCoupon} className="text-[9px] font-normal text-gray-400 hover:text-red-500 uppercase tracking-[0.08em] shrink-0">Remove</button>
@@ -377,9 +377,9 @@ const Cart = () => {
 
                                 <Link
                                     to="/checkout"
-                                    className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/50 hover:bg-[#1C1917] hover:border-[#C59B27] py-3.5 rounded-xl font-bold uppercase tracking-[0.15em] text-[11px] transition-all flex items-center justify-center gap-2 shadow-lg shadow-black/20 active:scale-95"
+                                    className="w-full bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne py-3.5 rounded-xl font-bold uppercase tracking-[0.15em] text-[11px] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-espresso/20 active:scale-95"
                                 >
-                                    <Lock className="w-3.5 h-3.5 text-[#C59B27]" />
+                                    <Lock className="w-3.5 h-3.5 text-brand-champagne" />
                                     Checkout
                                 </Link>
 

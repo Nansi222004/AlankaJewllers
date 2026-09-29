@@ -168,8 +168,8 @@ const PromoSlider = ({ externalSlides, autoplayInterval }) => {
                                     className="text-white flex flex-col items-start text-left"
                                 >
                                     <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-4">
-                                        <div className="w-4 md:w-8 h-[1px] md:h-[2px] bg-[#C59B27]"></div>
-                                        <span className="text-[8px] sm:text-[10px] md:text-sm text-[#E8D198] font-bold uppercase tracking-[0.3em]">
+                                        <div className="w-4 md:w-8 h-[1px] md:h-[2px] bg-brand-champagne"></div>
+                                        <span className="text-[8px] sm:text-[10px] md:text-sm text-brand-champagne-light font-bold uppercase tracking-[0.3em]">
                                             {slide.tag}
                                         </span>
                                     </div>
@@ -184,7 +184,7 @@ const PromoSlider = ({ externalSlides, autoplayInterval }) => {
 
                                     <Link
                                         to={slide.link}
-                                        className="relative group inline-flex items-center justify-center bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 hover:bg-[#C59B27] hover:text-[#141211] hover:border-[#C59B27] font-bold text-[8px] sm:text-xs md:text-sm uppercase tracking-[0.2em] px-4 py-1.5 md:px-12 md:py-4 transition-all duration-300 overflow-hidden shadow-xl"
+                                        className="relative group inline-flex items-center justify-center bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne font-bold text-[8px] sm:text-xs md:text-sm uppercase tracking-[0.2em] px-4 py-1.5 md:px-12 md:py-4 transition-all duration-300 overflow-hidden shadow-xl"
                                     >
                                         <span className="relative z-10">{slide.ctaLabel || 'Shop Collection'}</span>
                                     </Link>

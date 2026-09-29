@@ -107,10 +107,10 @@ const GiftCardsPage = () => {
   };
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen">
+    <div className="bg-brand-pearl min-h-screen">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-white border-b border-gray-100 py-16 md:py-24">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#FAF8F5] to-transparent opacity-50" />
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand-pearl to-transparent opacity-50" />
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -119,16 +119,16 @@ const GiftCardsPage = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <div className="inline-flex items-center gap-2 bg-[#C59B27]/10 px-4 py-2 rounded-full border border-[#C59B27]/20">
-                <Sparkles className="w-4 h-4 text-[#C59B27]" />
-                <span className="text-[10px] font-bold text-[#C59B27] uppercase tracking-[0.2em]">
+              <div className="inline-flex items-center gap-2 bg-brand-champagne/10 px-4 py-2 rounded-full border border-brand-champagne/20">
+                <Sparkles className="w-4 h-4 text-brand-champagne" />
+                <span className="text-[10px] font-bold text-brand-champagne uppercase tracking-[0.2em]">
                   The Perfect Surprise
                 </span>
               </div>
 
               <h1 className="text-4xl md:text-6xl font-display font-semibold text-gray-900 leading-tight tracking-tight">
                 Give the gift of <br />
-                <span className="text-[#C59B27] font-bold">
+                <span className="text-brand-champagne font-bold">
                   Infinite Choice
                 </span>
               </h1>
@@ -175,12 +175,12 @@ const GiftCardsPage = () => {
               transition={{ duration: 1, ease: "easeOut" }}
               className="relative"
             >
-              <div className="absolute -inset-4 bg-[#C59B27]/10 blur-3xl rounded-full" />
+              <div className="absolute -inset-4 bg-brand-champagne/10 blur-3xl rounded-full" />
               <img
                 src={giftCardMockup}
                 alt="Alankar Jewellers Gift Card"
                 onError={(e) => handleImageError(e, giftCardMockup)}
-                className="relative z-10 w-full max-w-lg mx-auto rounded-[2rem] shadow-2xl shadow-black/10 transform hover:scale-[1.02] transition-transform duration-700 object-cover"
+                className="relative z-10 w-full max-w-lg mx-auto rounded-[2rem] shadow-2xl shadow-brand-espresso/10 transform hover:scale-[1.02] transition-transform duration-700 object-cover"
               />
 
               {/* Floating Badges */}
@@ -198,7 +198,7 @@ const GiftCardsPage = () => {
                     <Lock className="w-5 h-5 text-emerald-500" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-black">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-espresso">
                       Secure
                     </span>
                     <span className="text-[9px] text-gray-400 font-medium">
@@ -237,12 +237,12 @@ const GiftCardsPage = () => {
                       setIsCustomAmount(false);
                     }}
                     className={`py-6 rounded-2xl border-2 transition-all duration-300 flex flex-col items-center gap-1 ${!isCustomAmount && selectedAmount === amt
-                        ? "border-[#C59B27] bg-[#C59B27]/5 shadow-md scale-[1.02]"
+                        ? "border-brand-champagne bg-brand-champagne/5 shadow-md scale-[1.02]"
                         : "border-white bg-white hover:border-gray-200"
                       }`}
                   >
                     <span
-                      className={`text-2xl font-semibold tracking-tight ${!isCustomAmount && selectedAmount === amt ? "text-[#C59B27]" : "text-gray-900"}`}
+                      className={`text-2xl font-semibold tracking-tight ${!isCustomAmount && selectedAmount === amt ? "text-brand-champagne" : "text-gray-900"}`}
                     >
                       ₹{amt.toLocaleString("en-IN")}
                     </span>
@@ -254,18 +254,18 @@ const GiftCardsPage = () => {
                 <button
                   onClick={() => setIsCustomAmount(true)}
                   className={`py-6 rounded-2xl border-2 transition-all duration-300 flex flex-col items-center justify-center gap-1 ${isCustomAmount
-                      ? "border-[#C59B27] bg-[#C59B27]/5 shadow-md scale-[1.02]"
+                      ? "border-brand-champagne bg-brand-champagne/5 shadow-md scale-[1.02]"
                       : "border-white bg-white hover:border-gray-200"
                     }`}
                 >
                   <span
-                    className={`text-[11px] font-bold uppercase tracking-widest ${isCustomAmount ? "text-[#C59B27]" : "text-gray-400"}`}
+                    className={`text-[11px] font-bold uppercase tracking-widest ${isCustomAmount ? "text-brand-champagne" : "text-gray-400"}`}
                   >
                     Custom
                   </span>
                   {isCustomAmount ? (
-                    <div className="mt-2 flex items-center border-b border-[#C59B27]">
-                      <span className="text-xl font-semibold text-[#C59B27]">
+                    <div className="mt-2 flex items-center border-b border-brand-champagne">
+                      <span className="text-xl font-semibold text-brand-champagne">
                         ₹
                       </span>
                       <input
@@ -273,7 +273,7 @@ const GiftCardsPage = () => {
                         autoFocus
                         value={customAmount}
                         onChange={(e) => setCustomAmount(e.target.value)}
-                        className="w-24 bg-transparent border-none text-xl font-semibold text-[#C59B27] focus:ring-0 p-1"
+                        className="w-24 bg-transparent border-none text-xl font-semibold text-brand-champagne focus:ring-0 p-1"
                         placeholder="500+"
                       />
                     </div>
@@ -309,7 +309,7 @@ const GiftCardsPage = () => {
                       value={formData.recipientName}
                       onChange={handleFormChange}
                       placeholder="Who is this for?"
-                      className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-[#C59B27]/20 transition-all font-medium"
+                      className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-brand-champagne/20 transition-all font-medium"
                     />
                   </div>
                   <div className="space-y-2">
@@ -322,7 +322,7 @@ const GiftCardsPage = () => {
                       value={formData.recipientEmail}
                       onChange={handleFormChange}
                       placeholder="Where should we send it?"
-                      className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-[#C59B27]/20 transition-all font-medium"
+                      className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-brand-champagne/20 transition-all font-medium"
                     />
                   </div>
                 </div>
@@ -336,7 +336,7 @@ const GiftCardsPage = () => {
                     value={formData.senderName}
                     onChange={handleFormChange}
                     placeholder="From whom?"
-                    className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-[#C59B27]/20 transition-all font-medium"
+                    className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-brand-champagne/20 transition-all font-medium"
                   />
                 </div>
                 <div className="space-y-2">
@@ -349,7 +349,7 @@ const GiftCardsPage = () => {
                     onChange={handleFormChange}
                     rows={4}
                     placeholder="Write a heartfelt note..."
-                    className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-[#C59B27]/20 transition-all font-medium resize-none"
+                    className="w-full bg-gray-50 border-none rounded-xl py-4 px-6 text-sm focus:ring-2 focus:ring-brand-champagne/20 transition-all font-medium resize-none"
                   />
                 </div>
               </div>
@@ -359,12 +359,12 @@ const GiftCardsPage = () => {
           {/* Right: Summary & Action */}
           <div className="lg:col-span-5">
             <div className="sticky top-32 space-y-8">
-              <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-2xl shadow-black/5 space-y-8 overflow-hidden relative">
+              <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-2xl shadow-brand-espresso/5 space-y-8 overflow-hidden relative">
                 {/* Design Accent */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#C59B27]/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-champagne/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl" />
 
                 <div className="text-center space-y-2 relative z-10">
-                  <span className="text-[10px] font-bold text-[#C59B27] uppercase tracking-[0.4em]">
+                  <span className="text-[10px] font-bold text-brand-champagne uppercase tracking-[0.4em]">
                     Order Summary
                   </span>
                   <h4 className="text-xl font-semibold text-gray-900 tracking-tight">
@@ -401,7 +401,7 @@ const GiftCardsPage = () => {
                       <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
                         Total to Pay
                       </span>
-                      <span className="text-4xl font-semibold text-[#C59B27] tracking-tighter">
+                      <span className="text-4xl font-semibold text-brand-champagne tracking-tighter">
                         ₹{finalAmount.toLocaleString("en-IN")}
                       </span>
                     </div>
@@ -409,9 +409,9 @@ const GiftCardsPage = () => {
 
                   <button
                     onClick={handleBuyNow}
-                    className="w-full bg-[#141211] text-white py-5 rounded-2xl font-semibold uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-xl shadow-black/20 hover:bg-[#1C1917] hover:text-[#E8D198] hover:-translate-y-1 transition-all active:scale-95 group"
+                    className="w-full bg-brand-plum text-white py-5 rounded-2xl font-semibold uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-xl shadow-brand-espresso/20 hover:bg-brand-plum hover:text-brand-champagne-light hover:-translate-y-1 transition-all active:scale-95 group"
                   >
-                    <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-[#C59B27]" />
+                    <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-brand-champagne" />
                     Add to Bag
                   </button>
 
@@ -429,7 +429,7 @@ const GiftCardsPage = () => {
                     <Clock className="w-6 h-6 text-gray-400" />
                   </div>
                   <div>
-                    <h5 className="text-[11px] font-bold uppercase tracking-widest text-black">
+                    <h5 className="text-[11px] font-bold uppercase tracking-widest text-brand-espresso">
                       Instant Delivery
                     </h5>
                     <p className="text-[10px] text-gray-400 font-medium">
@@ -442,7 +442,7 @@ const GiftCardsPage = () => {
                     <Check className="w-6 h-6 text-gray-400" />
                   </div>
                   <div>
-                    <h5 className="text-[11px] font-bold uppercase tracking-widest text-black">
+                    <h5 className="text-[11px] font-bold uppercase tracking-widest text-brand-espresso">
                       Redeemable Site-wide
                     </h5>
                     <p className="text-[10px] text-gray-400 font-medium">
@@ -453,13 +453,13 @@ const GiftCardsPage = () => {
               </div>
 
               {/* Check Balance Card */}
-              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-xl shadow-black/5 space-y-6">
+              <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-xl shadow-brand-espresso/5 space-y-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#C59B27]/10 flex items-center justify-center">
-                    <Gift className="w-5 h-5 text-[#C59B27]" />
+                  <div className="w-10 h-10 rounded-xl bg-brand-champagne/10 flex items-center justify-center">
+                    <Gift className="w-5 h-5 text-brand-champagne" />
                   </div>
                   <div className="text-left">
-                    <h5 className="text-[11px] font-bold uppercase tracking-widest text-black">
+                    <h5 className="text-[11px] font-bold uppercase tracking-widest text-brand-espresso">
                       Check Gift Card Balance
                     </h5>
                     <p className="text-[10px] text-gray-400 font-medium">
@@ -482,13 +482,13 @@ const GiftCardsPage = () => {
                           handleCheckBalance();
                         }
                       }}
-                      className="flex-1 bg-gray-50 border border-gray-200 rounded-xl py-3 px-4 text-xs font-mono outline-none focus:ring-2 focus:ring-[#C59B27]/20 focus:bg-white focus:border-[#C59B27] transition-all uppercase placeholder:normal-case placeholder:font-sans"
+                      className="flex-1 bg-gray-50 border border-gray-200 rounded-xl py-3 px-4 text-xs font-mono outline-none focus:ring-2 focus:ring-brand-champagne/20 focus:bg-white focus:border-brand-champagne transition-all uppercase placeholder:normal-case placeholder:font-sans"
                     />
                     <button
                       type="button"
                       onClick={handleCheckBalance}
                       disabled={checkingBalance || !balanceCode.trim()}
-                      className="bg-[#141211] text-white px-5 rounded-xl font-semibold text-xs uppercase tracking-wider hover:bg-[#C59B27] transition-colors disabled:opacity-50"
+                      className="bg-brand-plum text-white px-5 rounded-xl font-semibold text-xs uppercase tracking-wider hover:bg-brand-champagne transition-colors disabled:opacity-50"
                     >
                       {checkingBalance ? "..." : "Check"}
                     </button>
@@ -552,10 +552,10 @@ const GiftCardsPage = () => {
       <div className="bg-white py-24 border-t border-gray-100">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
-            <span className="text-[10px] font-bold text-[#C59B27] uppercase tracking-[0.4em]">
+            <span className="text-[10px] font-bold text-brand-champagne uppercase tracking-[0.4em]">
               Simple Steps
             </span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-black">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-espresso">
               How Alankar Jewellers Gift Cards Work
             </h2>
             <p className="text-gray-500 font-medium">
@@ -579,10 +579,10 @@ const GiftCardsPage = () => {
               },
             ].map((step, i) => (
               <div key={i} className="text-center space-y-6">
-                <div className="w-16 h-16 rounded-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/30 flex items-center justify-center text-2xl font-black mx-auto shadow-xl shadow-black/20">
+                <div className="w-16 h-16 rounded-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/30 flex items-center justify-center text-2xl font-black mx-auto shadow-xl shadow-brand-espresso/20">
                   {i + 1}
                 </div>
-                <h4 className="text-xl font-bold text-black">{step.title}</h4>
+                <h4 className="text-xl font-bold text-brand-espresso">{step.title}</h4>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   {step.desc}
                 </p>
@@ -596,7 +596,7 @@ const GiftCardsPage = () => {
       <div className="container mx-auto px-6 md:px-12 py-24">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="flex flex-col items-center text-center space-y-4">
-            <h2 className="text-3xl font-display font-bold text-black tracking-tight">
+            <h2 className="text-3xl font-display font-bold text-brand-espresso tracking-tight">
               Frequently Asked Questions
             </h2>
           </div>
@@ -624,7 +624,7 @@ const GiftCardsPage = () => {
                 key={i}
                 className="bg-white rounded-2xl p-8 border border-gray-100"
               >
-                <h5 className="text-lg font-bold text-black mb-3">{faq.q}</h5>
+                <h5 className="text-lg font-bold text-brand-espresso mb-3">{faq.q}</h5>
                 <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
               </div>
             ))}

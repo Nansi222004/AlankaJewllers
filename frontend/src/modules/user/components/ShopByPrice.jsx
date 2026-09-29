@@ -46,7 +46,7 @@ const ShopByPrice = () => {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block bg-gradient-to-r from-[#C59B27] to-[#DFB750] text-[#141211] px-3.5 py-1 text-[9px] md:text-[10px] font-bold tracking-[0.35em] uppercase mb-2 md:mb-2.5 rounded-full shadow-xs"
+                        className="inline-block bg-gradient-to-r from-brand-champagne to-[#DFB750] text-brand-espresso px-3.5 py-1 text-[9px] md:text-[10px] font-bold tracking-[0.35em] uppercase mb-2 md:mb-2.5 rounded-full shadow-xs"
                     >
                         GIFT THE EXCELLENCE
                     </motion.span>
@@ -57,9 +57,9 @@ const ShopByPrice = () => {
                         transition={{ delay: 0.1 }}
                         className="text-2xl md:text-4xl font-serif text-stone-950 tracking-tight leading-none mb-3 md:mb-4"
                     >
-                        Luxury <span className="italic font-light text-[#C59B27]">within Reach</span>
+                        Luxury <span className="italic font-light text-brand-champagne">within Reach</span>
                     </motion.h2>
-                    <div className="w-12 h-[2px] bg-[#C59B27] rounded-full" />
+                    <div className="w-12 h-[2px] bg-brand-champagne rounded-full" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-[1100px] mx-auto">
@@ -83,7 +83,7 @@ const ShopByPrice = () => {
                             />
 
                             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
-                            <div className="absolute inset-0 bg-[#C59B27]/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-brand-champagne/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-700" />
 
                             <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center">
                                 <div className="transform transition-transform duration-700 group-hover:translate-x-2">

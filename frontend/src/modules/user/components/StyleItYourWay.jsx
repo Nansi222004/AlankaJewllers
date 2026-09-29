@@ -156,8 +156,8 @@ const StyleItYourWay = () => {
                 {/* Centered Header */}
                 <div className="flex flex-col items-center text-center mb-6">
                     <div className="flex flex-col items-center">
-                        <span className="text-[#C59B27] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-1 block">Curated For You</span>
-                        <h3 className="font-display text-2xl md:text-3xl text-[#141211]">
+                        <span className="text-brand-champagne text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-1 block">Curated For You</span>
+                        <h3 className="font-display text-2xl md:text-3xl text-brand-espresso">
                             {sectionData?.label || "Style It Your Way"}
                         </h3>
                     </div>
@@ -195,7 +195,7 @@ const StyleItYourWay = () => {
 
                                     {/* Content Area - Left Aligned */}
                                     <div className="absolute inset-0 flex flex-col justify-center items-start p-4 md:p-10 z-20 w-[80%] md:w-[70%]">
-                                        <span className="text-[#E8D198] text-[8px] md:text-[10px] font-bold tracking-[0.2em] uppercase mb-1 md:mb-2 drop-shadow-md bg-white/10 px-2 md:px-3 py-1 rounded-full backdrop-blur-md border border-white/20">
+                                        <span className="text-brand-champagne-light text-[8px] md:text-[10px] font-bold tracking-[0.2em] uppercase mb-1 md:mb-2 drop-shadow-md bg-white/10 px-2 md:px-3 py-1 rounded-full backdrop-blur-md border border-white/20">
                                             {detail.subtitle}
                                         </span>
                                         <h3 className="font-display text-xl md:text-4xl text-white mb-1 md:mb-3 leading-tight drop-shadow-lg">
@@ -210,7 +210,7 @@ const StyleItYourWay = () => {
                                     {detail.thumbnails.slice(0, 3).map((thumb, idx) => (
                                         <div
                                             key={idx}
-                                            className="w-[28%] aspect-square md:w-28 md:h-28 bg-white rounded-xl md:rounded-[1.5rem] shadow-[0_10px_35px_rgba(0,0,0,0.15)] flex items-center justify-center border-2 md:border-[3px] border-[#C59B27] overflow-hidden"
+                                            className="w-[28%] aspect-square md:w-28 md:h-28 bg-white rounded-xl md:rounded-[1.5rem] shadow-[0_10px_35px_rgba(0,0,0,0.15)] flex items-center justify-center border-2 md:border-[3px] border-brand-champagne overflow-hidden"
                                         >
                                             <img src={thumb} alt="Product" className="w-full h-full object-cover" />
                                         </div>
@@ -229,7 +229,7 @@ const StyleItYourWay = () => {
                                     onClick={() => scrollToDot(idx)}
                                     className={`transition-all duration-300 rounded-full ${
                                         activeIndex === idx 
-                                        ? 'w-6 h-1.5 bg-[#C59B27]' 
+                                        ? 'w-6 h-1.5 bg-brand-champagne' 
                                         : 'w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400'
                                     }`}
                                     aria-label={`Go to item ${idx + 1}`}

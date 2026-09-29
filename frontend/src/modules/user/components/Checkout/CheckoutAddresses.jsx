@@ -18,8 +18,8 @@ const CheckoutAddresses = ({
     return (
         <div className="bg-white p-0 md:p-6 rounded-2xl md:border md:border-gray-100 md:shadow-sm">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-lg md:text-xl font-bold text-black flex items-center gap-3 font-display uppercase tracking-wide">
-                    <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center text-sm font-bold">1</span>
+                <h2 className="text-lg md:text-xl font-bold text-brand-espresso flex items-center gap-3 font-display uppercase tracking-wide">
+                    <span className="w-8 h-8 rounded-full bg-brand-plum text-white flex items-center justify-center text-sm font-bold">1</span>
                     Shipping Details
                 </h2>
             </div>
@@ -48,18 +48,18 @@ const CheckoutAddresses = ({
                                     setAddressSelection('saved');
                                     setSelectedSavedAddressId(addr._id);
                                 }}
-                                className={`p-5 rounded-xl border-2 cursor-pointer transition-all relative ${selectedSavedAddressId === addr._id ? 'border-black bg-gray-50' : 'border-gray-100 hover:border-black/30'}`}
+                                className={`p-5 rounded-xl border-2 cursor-pointer transition-all relative ${selectedSavedAddressId === addr._id ? 'border-brand-espresso bg-gray-50' : 'border-gray-100 hover:border-brand-espresso/30'}`}
                             >
                                 <div className="flex justify-between mb-3">
                                     <div className="flex gap-2">
                                         <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-stone-200 text-stone-900 rounded-sm">{addr.type}</span>
                                         {defaultAddressId === addr._id && (
-                                            <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-[#C59B27] text-[#141211] rounded-sm">Default</span>
+                                            <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-brand-champagne text-brand-espresso rounded-sm">Default</span>
                                         )}
                                     </div>
-                                    {(selectedSavedAddressId === addr._id) && <div className="bg-black text-white rounded-full p-0.5"><Check className="w-3 h-3" /></div>}
+                                    {(selectedSavedAddressId === addr._id) && <div className="bg-brand-plum text-white rounded-full p-0.5"><Check className="w-3 h-3" /></div>}
                                 </div>
-                                <p className="font-bold text-black text-sm mb-1">{addr.name}</p>
+                                <p className="font-bold text-brand-espresso text-sm mb-1">{addr.name}</p>
                                 <p className="text-xs text-gray-500 leading-relaxed font-serif">{addr.flatNo}, {addr.area}, {addr.city}</p>
                                 <p className="text-xs text-gray-500 font-serif">{addr.pincode}</p>
                             </div>
@@ -81,10 +81,10 @@ const CheckoutAddresses = ({
                                 setAddressSelection('new');
                                 setSelectedSavedAddressId(null);
                             }}
-                            className={`p-5 rounded-xl border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-all hover:bg-gray-50 min-h-[140px] ${addressSelection === 'new' ? 'border-black bg-gray-50' : 'border-gray-200 text-gray-400'}`}
+                            className={`p-5 rounded-xl border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-all hover:bg-gray-50 min-h-[140px] ${addressSelection === 'new' ? 'border-brand-espresso bg-gray-50' : 'border-gray-200 text-gray-400'}`}
                         >
-                            <Plus className="w-6 h-6 mb-2 text-[#C59B27]" />
-                            <span className="text-xs font-bold uppercase tracking-widest text-black">New Address</span>
+                            <Plus className="w-6 h-6 mb-2 text-brand-champagne" />
+                            <span className="text-xs font-bold uppercase tracking-widest text-brand-espresso">New Address</span>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ const CheckoutAddresses = ({
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
                 <div className="space-y-1.5">
@@ -115,7 +115,7 @@ const CheckoutAddresses = ({
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
 
@@ -127,7 +127,7 @@ const CheckoutAddresses = ({
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
                 <div className="space-y-1.5">
@@ -138,7 +138,7 @@ const CheckoutAddresses = ({
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
 
@@ -150,7 +150,7 @@ const CheckoutAddresses = ({
                         name="flatNo"
                         value={formData.flatNo}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
                 <div className="space-y-1.5">
@@ -161,7 +161,7 @@ const CheckoutAddresses = ({
                         name="area"
                         value={formData.area}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
 
@@ -173,7 +173,7 @@ const CheckoutAddresses = ({
                         name="city"
                         value={formData.city}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
                 <div className="space-y-1.5">
@@ -184,7 +184,7 @@ const CheckoutAddresses = ({
                         name="district"
                         value={formData.district}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
                 <div className="space-y-1.5">
@@ -195,7 +195,7 @@ const CheckoutAddresses = ({
                         name="state"
                         value={formData.state}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
                 <div className="space-y-1.5">
@@ -212,7 +212,7 @@ const CheckoutAddresses = ({
                             e.target.value = val;
                             handleInputChange(e);
                         }}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 focus:border-brand-espresso focus:ring-1 focus:ring-black outline-none transition-all text-sm bg-white"
                     />
                 </div>
                 {(addressSelection === 'new' || addresses.length === 0) && (
@@ -223,7 +223,7 @@ const CheckoutAddresses = ({
                                 id="save-address"
                                 checked={saveNewAddress}
                                 onChange={(e) => setSaveNewAddress(e.target.checked)}
-                                className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-300 shadow-sm checked:border-black checked:bg-black focus:outline-none"
+                                className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-300 shadow-sm checked:border-brand-espresso checked:bg-brand-plum focus:outline-none"
                             />
                             <Check
                                 className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100"

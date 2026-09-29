@@ -47,19 +47,19 @@ const MobileBottomNav = () => {
                                 to={item.path}
                                 className={({ isActive }) =>
                                     `flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors relative ${
-                                        isActive ? 'text-[#C59B27]' : 'text-stone-500 hover:text-stone-900'
+                                        isActive ? 'text-brand-plum' : 'text-brand-taupe hover:text-brand-espresso'
                                     }`
                                 }
                             >
                                 {({ isActive }) => (
                                     <>
                                         {isActive && (
-                                            <motion.div layoutId="nav-indicator" className="absolute -top-1 w-1.5 h-1.5 bg-[#C59B27] rounded-full" />
+                                            <motion.div layoutId="nav-indicator" className="absolute -top-1 w-1.5 h-1.5 bg-brand-champagne rounded-full" />
                                         )}
                                         <div className="relative">
                                             <item.icon className={`w-5 h-5 transition-transform duration-300 ${isActive ? 'fill-current scale-110' : 'scale-100'}`} strokeWidth={isActive ? 2.5 : 2} />
                                             {item.badge > 0 && (
-                                                <span className="absolute -top-1 -right-1 flex items-center justify-center rounded-full text-[#141211] font-bold" style={{ width: 14, height: 14, fontSize: 8, background: 'linear-gradient(135deg, #E8D198, #C59B27)' }}>
+                                                <span className="absolute -top-1 -right-1 flex items-center justify-center rounded-full text-brand-espresso font-bold" style={{ width: 14, height: 14, fontSize: 8, background: 'linear-gradient(135deg, #D8C3A5, #B8956A)' }}>
                                                     {item.badge}
                                                 </span>
                                             )}
@@ -78,12 +78,12 @@ const MobileBottomNav = () => {
                         <NavLink
                             to="/shop"
                             className={({ isActive }) =>
-                                `absolute -top-6 flex items-center justify-center w-14 h-14 rounded-full shadow-[0_4px_18px_rgba(197,155,39,0.35)] transition-transform active:scale-95 border border-[#C59B27]/40 ${
-                                    isActive ? 'bg-[#141211] scale-105' : 'bg-[#1C1917]'
+                                `absolute -top-6 flex items-center justify-center w-14 h-14 rounded-full shadow-[0_4px_18px_rgba(184,149,106,0.35)] transition-transform active:scale-95 border border-brand-champagne/40 ${
+                                    isActive ? 'bg-brand-plum scale-105' : 'bg-brand-plum'
                                 }`
                             }
                         >
-                            <ShoppingBag className="w-6 h-6 text-[#E8D198]" strokeWidth={2.5} />
+                            <ShoppingBag className="w-6 h-6 text-brand-champagne-light" strokeWidth={2.5} />
                         </NavLink>
                     </div>
 
@@ -95,19 +95,19 @@ const MobileBottomNav = () => {
                                 to={item.path}
                                 className={({ isActive }) =>
                                     `flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors relative ${
-                                        isActive ? 'text-[#C59B27]' : 'text-stone-500 hover:text-stone-900'
+                                        isActive ? 'text-brand-plum' : 'text-brand-taupe hover:text-brand-espresso'
                                     }`
                                 }
                             >
                                 {({ isActive }) => (
                                     <>
                                         {isActive && (
-                                            <motion.div layoutId="nav-indicator" className="absolute -top-1 w-1.5 h-1.5 bg-[#C59B27] rounded-full" />
+                                            <motion.div layoutId="nav-indicator" className="absolute -top-1 w-1.5 h-1.5 bg-brand-champagne rounded-full" />
                                         )}
                                         <div className="relative">
                                             <item.icon className={`w-5 h-5 transition-transform duration-300 ${isActive ? 'fill-current scale-110' : 'scale-100'}`} strokeWidth={isActive ? 2.5 : 2} />
                                             {item.badge > 0 && (
-                                                <span className="absolute -top-1 -right-1 flex items-center justify-center rounded-full text-[#141211] font-bold" style={{ width: 14, height: 14, fontSize: 8, background: 'linear-gradient(135deg, #E8D198, #C59B27)' }}>
+                                                <span className="absolute -top-1 -right-1 flex items-center justify-center rounded-full text-brand-espresso font-bold" style={{ width: 14, height: 14, fontSize: 8, background: 'linear-gradient(135deg, #D8C3A5, #B8956A)' }}>
                                                     {item.badge}
                                                 </span>
                                             )}

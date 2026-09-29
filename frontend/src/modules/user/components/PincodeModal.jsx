@@ -77,7 +77,7 @@ const PincodeModal = () => {
                     className="relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden"
                 >
                     {/* Header */}
-                    <div className="bg-[#141211] border-b border-[#C59B27]/30 px-8 py-10 text-white relative">
+                    <div className="bg-brand-plum border-b border-brand-champagne/30 px-8 py-10 text-white relative">
                         <button 
                             onClick={() => setIsPincodeModalOpen(false)}
                             className="absolute top-6 right-6 p-2 hover:bg-white/10 text-stone-400 hover:text-white rounded-full transition-colors"
@@ -86,12 +86,12 @@ const PincodeModal = () => {
                         </button>
                         
                         <div className="flex items-center gap-4 mb-2">
-                            <div className="bg-[#C59B27]/15 border border-[#C59B27]/40 p-3 rounded-2xl text-[#E8D198]">
+                            <div className="bg-brand-champagne/15 border border-brand-champagne/40 p-3 rounded-2xl text-brand-champagne-light">
                                 <MapPin className="w-8 h-8" />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-serif font-bold text-[#FAF8F5]">Set Delivery Location</h2>
-                                <p className="text-[#C59B27]/80 text-xs tracking-wider uppercase">Enter your pincode to check serviceability</p>
+                                <h2 className="text-2xl font-serif font-bold text-brand-pearl">Set Delivery Location</h2>
+                                <p className="text-brand-champagne/80 text-xs tracking-wider uppercase">Enter your pincode to check serviceability</p>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ const PincodeModal = () => {
                                         maxLength={6}
                                         value={tempPincode}
                                         onChange={(e) => setTempPincode(e.target.value.replace(/\D/g, ''))}
-                                        className="w-full bg-stone-50 border-2 border-stone-200 rounded-2xl py-4 px-6 text-lg font-bold tracking-widest text-[#141211] focus:outline-none focus:border-[#C59B27] focus:bg-white transition-all"
+                                        className="w-full bg-stone-50 border-2 border-stone-200 rounded-2xl py-4 px-6 text-lg font-bold tracking-widest text-brand-espresso focus:outline-none focus:border-brand-champagne focus:bg-white transition-all"
                                         placeholder="000000"
                                     />
                                     <button 
@@ -116,7 +116,7 @@ const PincodeModal = () => {
                                         disabled={tempPincode.length !== 6 || isValidating}
                                         className={`absolute right-2 top-2 bottom-2 px-6 rounded-xl font-bold text-xs uppercase tracking-widest transition-all ${
                                             tempPincode.length === 6 && !isValidating
-                                            ? 'bg-[#141211] text-[#E8D198] border border-[#C59B27]/50 shadow-md hover:bg-[#1C1917] active:translate-y-0'
+                                            ? 'bg-brand-plum text-brand-champagne-light border border-brand-champagne/50 shadow-md hover:bg-brand-plum active:translate-y-0'
                                             : 'bg-stone-200 text-stone-400 cursor-not-allowed'
                                         }`}
                                     >
@@ -135,9 +135,9 @@ const PincodeModal = () => {
                             {/* Use Current Location */}
                             <button
                                 onClick={handleUseCurrentLocation}
-                                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl border border-[#C59B27]/40 text-[#141211] bg-amber-500/5 font-bold hover:bg-[#C59B27]/10 transition-all active:scale-95"
+                                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl border border-brand-champagne/40 text-brand-espresso bg-amber-500/5 font-bold hover:bg-brand-champagne/10 transition-all active:scale-95"
                             >
-                                <Navigation className="w-4 h-4 text-[#C59B27]" />
+                                <Navigation className="w-4 h-4 text-brand-champagne" />
                                 <span className="text-sm font-semibold tracking-wide">Use Current Location</span>
                             </button>
 
@@ -154,7 +154,7 @@ const PincodeModal = () => {
                                                 setIsPincodeModalOpen(false);
                                                 toast.success(`Welcome to ${city.name}!`);
                                             }}
-                                            className="px-3 py-2 rounded-xl border border-stone-200 text-[11px] font-semibold text-stone-700 hover:border-[#C59B27] hover:text-[#C59B27] hover:bg-amber-50/50 transition-all text-center"
+                                            className="px-3 py-2 rounded-xl border border-stone-200 text-[11px] font-semibold text-stone-700 hover:border-brand-champagne hover:text-brand-champagne hover:bg-amber-50/50 transition-all text-center"
                                         >
                                             {city.name}
                                         </button>
@@ -166,7 +166,7 @@ const PincodeModal = () => {
                     
                     {/* Footer Warning */}
                     <div className="px-8 py-5 bg-stone-50 border-t border-stone-100 flex items-center gap-3">
-                        <AlertCircle className="w-4 h-4 text-[#C59B27]" />
+                        <AlertCircle className="w-4 h-4 text-brand-champagne" />
                         <p className="text-[10px] text-stone-500 font-medium">Delivery times and availability may vary based on your selected location.</p>
                     </div>
                 </motion.div>

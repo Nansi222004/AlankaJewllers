@@ -234,7 +234,7 @@ const MenFeaturedProducts = ({ sectionData }) => {
                                             e.stopPropagation();
                                             handleAddToCart(product);
                                         }}
-                                        className="w-full py-2 md:py-3 rounded-md font-bold text-[11px] md:text-[14px] bg-[#141211] text-white hover:bg-[#1C1917] hover:text-[#E8D198] transition-all duration-300 transform active:scale-95"
+                                        className="w-full py-2 md:py-3 rounded-md font-bold text-[11px] md:text-[14px] bg-brand-plum text-white hover:bg-brand-plum hover:text-brand-champagne-light transition-all duration-300 transform active:scale-95"
                                         type="button"
                                     >
                                         {Array.isArray(product.variants) && product.variants.length > 1 ? 'Choose options' : 'Add to Cart'}

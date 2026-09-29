@@ -104,11 +104,11 @@ const matchesCategory = (product = {}, categoryId = '') => {
     return categoryTokens.has(target);
 };
 
-const GOLD = '#C59B27';
-const OBSIDIAN = '#141211';
-const GOLD_LIGHT = '#FAF8F5';
-const PINK = '#C59B27';
-const PINK_BG = '#FAF8F5';
+const GOLD = '#B8956A';
+const OBSIDIAN = '#332827';
+const GOLD_LIGHT = '#FBF8F7';
+const PINK = '#B8956A';
+const PINK_BG = '#FBF8F7';
 
 const WomenProductsListing = ({ sectionData = null }) => {
     const navigate = useNavigate();
@@ -170,7 +170,7 @@ const WomenProductsListing = ({ sectionData = null }) => {
     const handleAddToCart = (product) => {
         addToCart(product);
         toast.success(`${product.name || 'Product'} added to your bag!`, {
-            style: { background: OBSIDIAN, color: '#FAF8F5', fontSize: '12px' },
+            style: { background: OBSIDIAN, color: '#FBF8F7', fontSize: '12px' },
             icon: '✨'
         });
         setTimeout(() => navigate('/cart'), 800);
@@ -184,7 +184,7 @@ const WomenProductsListing = ({ sectionData = null }) => {
     });
 
     return (
-        <section className="py-6 md:py-10 bg-[#FAF8F5]">
+        <section className="py-6 md:py-10 bg-brand-pearl">
             <div className="container mx-auto px-4 md:px-8 max-w-[1500px]">
                 <div className="text-center mb-6 md:mb-8">
                     <motion.div
@@ -192,10 +192,10 @@ const WomenProductsListing = ({ sectionData = null }) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4 border border-[#C59B27]/40 bg-[#C59B27]/10"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4 border border-brand-champagne/40 bg-brand-champagne/10"
                     >
-                        <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
-                        <span className="text-xs font-black uppercase tracking-widest text-[#C59B27]">For Her</span>
+                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
+                        <span className="text-xs font-black uppercase tracking-widest text-brand-champagne">For Her</span>
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -206,7 +206,7 @@ const WomenProductsListing = ({ sectionData = null }) => {
                     >
                         {resolvedSettings.title}
                     </motion.h2>
-                    <div className="w-20 h-1 mx-auto rounded-full bg-[#C59B27]" />
+                    <div className="w-20 h-1 mx-auto rounded-full bg-brand-champagne" />
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
@@ -270,7 +270,7 @@ const WomenProductsListing = ({ sectionData = null }) => {
                                             e.stopPropagation();
                                             handleAddToCart(product);
                                         }}
-                                        className="w-full py-2.5 rounded-md font-bold text-[11px] md:text-[13px] text-[#FAF8F5] bg-[#141211] hover:bg-[#C59B27] hover:text-[#141211] border border-[#C59B27]/30 transition-all duration-300 transform active:scale-95 shadow-sm"
+                                        className="w-full py-2.5 rounded-md font-bold text-[11px] md:text-[13px] text-brand-pearl bg-brand-plum hover:bg-brand-champagne hover:text-brand-espresso border border-brand-champagne/30 transition-all duration-300 transform active:scale-95 shadow-sm"
                                         type="button"
                                     >
                                         {Array.isArray(product.variants) && product.variants.length > 1 ? 'Choose options' : 'Add to Cart'}
@@ -287,7 +287,7 @@ const WomenProductsListing = ({ sectionData = null }) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         onClick={() => navigate(ctaPath)}
-                        className="px-12 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-all shadow-lg hover:shadow-xl text-[#141211] bg-[#C59B27] hover:bg-[#D4AF37]"
+                        className="px-12 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-all shadow-lg hover:shadow-xl text-brand-espresso bg-brand-champagne hover:bg-[#D4AF37]"
                         type="button"
                     >
                         {resolvedSettings.ctaLabel}

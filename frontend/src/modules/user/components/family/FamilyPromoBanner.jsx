@@ -47,7 +47,7 @@ const FamilyPromoBanner = ({ sectionData }) => {
                         viewport={{ once: true }}
                         className="flex flex-col items-center"
                     >
-                        <span className="text-[#E8D198] text-[10px] md:text-sm font-bold tracking-[0.4em] uppercase mb-2 md:mb-4 drop-shadow-md">
+                        <span className="text-brand-champagne-light text-[10px] md:text-sm font-bold tracking-[0.4em] uppercase mb-2 md:mb-4 drop-shadow-md">
                             {banner.name}
                         </span>
                         
@@ -55,7 +55,7 @@ const FamilyPromoBanner = ({ sectionData }) => {
                             {banner.label}
                         </h2>
 
-                        <div className="w-12 md:w-20 h-[1px] bg-[#C59B27]/60 mb-3 md:mb-6" />
+                        <div className="w-12 md:w-20 h-[1px] bg-brand-champagne/60 mb-3 md:mb-6" />
 
                         <p className="text-white/90 text-xs sm:text-lg md:text-xl font-light tracking-[0.05em] drop-shadow-lg italic max-w-lg leading-relaxed">
                             {`"${banner.subtitle}"`}
@@ -64,8 +64,8 @@ const FamilyPromoBanner = ({ sectionData }) => {
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#C59B27]/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#C59B27]/40 to-transparent" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-champagne/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-champagne/40 to-transparent" />
             </div>
         </section>
     );

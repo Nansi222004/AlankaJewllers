@@ -30,6 +30,10 @@ coverage
 tests/
 test/
 archive/
+.qa*
+.qa-*/
+.qa-screenshots/
+*.tmp
 
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt

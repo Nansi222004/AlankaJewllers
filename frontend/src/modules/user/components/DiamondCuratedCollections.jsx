@@ -94,7 +94,7 @@ const CuratedEditCard = ({ item, fallbackItem, index }) => {
     return (
         <Link
             to={targetPath}
-            className="group relative flex flex-col bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200/80 hover:border-[#C6A04A]/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_35px_rgba(198,160,74,0.14)] transition-all duration-500 transform hover:-translate-y-1.5 focus:outline-hidden"
+            className="group relative flex flex-col bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200/80 hover:border-brand-champagne/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_35px_rgba(198,160,74,0.14)] transition-all duration-500 transform hover:-translate-y-1.5 focus:outline-hidden"
         >
             {/* Image Container with zoom-on-hover */}
             <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-stone-100">
@@ -110,13 +110,13 @@ const CuratedEditCard = ({ item, fallbackItem, index }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Glassmorphic Badge Pill */}
-                <div className="absolute top-3 sm:top-3.5 left-3 sm:left-3.5 z-10 inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-white/70 text-[#171717] text-[10px] sm:text-[11px] font-bold tracking-wider uppercase shadow-xs group-hover:border-[#C6A04A]/60 transition-colors">
-                    <Tag className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#C6A04A]" />
+                <div className="absolute top-3 sm:top-3.5 left-3 sm:left-3.5 z-10 inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-white/70 text-brand-espresso text-[10px] sm:text-[11px] font-bold tracking-wider uppercase shadow-xs group-hover:border-brand-champagne/60 transition-colors">
+                    <Tag className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-brand-champagne" />
                     <span>{badgeText}</span>
                 </div>
 
                 {/* Floating Quick-Action Circle */}
-                <div className="absolute top-3 sm:top-3.5 right-3 sm:right-3.5 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-white/70 flex items-center justify-center text-[#171717] group-hover:bg-[#C6A04A] group-hover:text-white group-hover:border-[#C6A04A] transition-all duration-300 shadow-xs">
+                <div className="absolute top-3 sm:top-3.5 right-3 sm:right-3.5 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-white/70 flex items-center justify-center text-brand-espresso group-hover:bg-brand-champagne group-hover:text-white group-hover:border-brand-champagne transition-all duration-300 shadow-xs">
                     <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
             </div>
@@ -124,7 +124,7 @@ const CuratedEditCard = ({ item, fallbackItem, index }) => {
             {/* Content Container */}
             <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between bg-white">
                 <div>
-                    <h3 className="font-serif text-lg sm:text-xl font-medium text-[#171717] group-hover:text-[#C6A04A] transition-colors duration-300 leading-snug mb-2">
+                    <h3 className="font-serif text-lg sm:text-xl font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors duration-300 leading-snug mb-2">
                         {title}
                     </h3>
                     <p className="text-xs sm:text-[13px] text-stone-500 font-light leading-relaxed line-clamp-2 mb-4 sm:mb-5">
@@ -134,7 +134,7 @@ const CuratedEditCard = ({ item, fallbackItem, index }) => {
 
                 {/* CTA Footer with Animated Arrow */}
                 <div className="pt-3.5 sm:pt-4 border-t border-stone-100 flex items-center justify-between">
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#171717] group-hover:text-[#C6A04A] transition-colors duration-300 inline-flex items-center gap-2">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-brand-espresso group-hover:text-brand-champagne transition-colors duration-300 inline-flex items-center gap-2">
                         <span>Explore Edit</span>
                         <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
                     </span>
@@ -162,11 +162,11 @@ const DiamondCuratedCollections = ({ sectionData }) => {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-white text-[#171717] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-2.5 shadow-2xs">
-                        <Sparkles className="w-3.5 h-3.5 text-[#C6A04A]" />
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-white text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-2.5 shadow-2xs">
+                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
                         <span>{badge}</span>
                     </div>
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#171717] font-normal tracking-tight mb-2.5">
+                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight mb-2.5">
                         {title}
                     </h2>
                     <p className="text-xs sm:text-sm text-stone-500 font-light leading-relaxed">

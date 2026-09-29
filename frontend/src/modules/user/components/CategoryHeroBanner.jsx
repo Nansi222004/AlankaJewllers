@@ -9,7 +9,7 @@ const CategoryHeroBanner = ({ category }) => {
 
     return (
         <section className="mb-6 md:mb-10">
-            <div className="relative overflow-hidden rounded-3xl border border-[#E8DFD0] bg-[#FAF8F5] shadow-sm">
+            <div className="relative overflow-hidden rounded-3xl border border-brand-border bg-brand-pearl shadow-sm">
                 {image ? (
                     <div className="relative h-[170px] md:h-[260px]">
                         <img
@@ -37,7 +37,7 @@ const CategoryHeroBanner = ({ category }) => {
                 ) : (
                     <div className="px-5 py-6 md:px-10 md:py-10">
                         {title && (
-                            <h2 className="text-black text-2xl md:text-4xl font-serif font-medium tracking-tight">
+                            <h2 className="text-brand-espresso text-2xl md:text-4xl font-serif font-medium tracking-tight">
                                 {title}
                             </h2>
                         )}

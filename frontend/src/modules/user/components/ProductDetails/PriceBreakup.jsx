@@ -34,9 +34,9 @@ const PriceBreakup = ({
                         ))}
                     </tbody>
                     <tfoot>
-                        <tr className="bg-[#FAF8F5] border-t-2 border-[#C59B27]/40">
+                        <tr className="bg-brand-pearl border-t-2 border-brand-champagne/40">
                             <td colSpan="2" className="px-3 md:px-5 py-3.5 text-[10px] md:text-[11px] font-bold text-stone-900 uppercase tracking-[0.2em]">Total Price</td>
-                            <td className="px-3 md:px-5 py-3.5 text-sm md:text-base font-bold text-[#C59B27] text-right">{formatCurrency(pricingBreakdown.finalPrice || variantPrice || 0)}</td>
+                            <td className="px-3 md:px-5 py-3.5 text-sm md:text-base font-bold text-brand-champagne text-right">{formatCurrency(pricingBreakdown.finalPrice || variantPrice || 0)}</td>
                         </tr>
                     </tfoot>
                 </table>

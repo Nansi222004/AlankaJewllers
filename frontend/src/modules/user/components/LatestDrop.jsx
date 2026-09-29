@@ -39,14 +39,14 @@ const LatestDrop = () => {
             <div className="container mx-auto px-4 max-w-[1450px]">
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex flex-col">
-                        <span className="text-[#C59B27] font-sans tracking-[0.3em] font-bold text-[10px] uppercase mb-1">
+                        <span className="text-brand-champagne font-sans tracking-[0.3em] font-bold text-[10px] uppercase mb-1">
                             Fresh Arrivals
                         </span>
                         <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4">
                             <h2 className="text-[20px] md:text-[24px] font-sans font-medium text-gray-900 tracking-tight">
                                 {sectionData?.label || "Latest Drop"}
                             </h2>
-                            <Link to="/new-arrivals" className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#C59B27] hover:text-[#141211] transition-all">
+                            <Link to="/new-arrivals" className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-champagne hover:text-brand-espresso transition-all">
                                 View All Collection
                             </Link>
                         </div>

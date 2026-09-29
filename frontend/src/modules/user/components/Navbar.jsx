@@ -178,17 +178,17 @@ const Navbar = () => {
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.18 }}
                     onMouseDown={(e) => e.preventDefault()}
-                    className={`absolute top-full left-0 right-0 mt-2 bg-white border border-[#E8DFD0] rounded-2xl shadow-2xl z-[300] overflow-hidden max-h-[440px] flex flex-col ${isMobile ? 'mx-3' : ''}`}
+                    className={`absolute top-full left-0 right-0 mt-2 bg-white border border-brand-border rounded-2xl shadow-2xl z-[300] overflow-hidden max-h-[440px] flex flex-col ${isMobile ? 'mx-3' : ''}`}
                 >
                     {isSearching ? (
                         <div className="p-8 text-center flex flex-col items-center justify-center">
-                            <div className="w-6 h-6 border-2 border-[#C59B27] border-t-transparent rounded-full animate-spin mb-2" />
+                            <div className="w-6 h-6 border-2 border-brand-champagne border-t-transparent rounded-full animate-spin mb-2" />
                             <span className="text-[10px] font-bold text-[#706760] uppercase tracking-widest">Searching products...</span>
                         </div>
                     ) : searchResults.length > 0 ? (
                         <div className="p-2 flex flex-col overflow-y-auto">
                             <div className="px-3 py-1.5 flex items-center justify-between border-b border-stone-100 mb-1">
-                                <span className="text-[9px] font-bold text-[#8C6A12] uppercase tracking-[0.2em]">Suggested Products</span>
+                                <span className="text-[9px] font-bold text-brand-plum uppercase tracking-[0.2em]">Suggested Products</span>
                                 <span className="text-[10px] text-stone-400 font-sans">{searchResults.length} matches</span>
                             </div>
                             <div className="flex flex-col divide-y divide-stone-100">
@@ -208,7 +208,7 @@ const Navbar = () => {
                                                 setShowResults(false);
                                                 setShowMobileSearch(false);
                                             }}
-                                            className="flex items-center gap-3.5 p-2.5 hover:bg-[#FAF8F5] rounded-xl cursor-pointer transition-colors group"
+                                            className="flex items-center gap-3.5 p-2.5 hover:bg-brand-pearl rounded-xl cursor-pointer transition-colors group"
                                         >
                                             <div className="w-12 h-12 rounded-lg overflow-hidden bg-stone-50 border border-stone-100 flex-shrink-0">
                                                 <img
@@ -219,11 +219,11 @@ const Navbar = () => {
                                                 />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <h4 className="text-[12px] font-serif font-medium text-stone-900 group-hover:text-[#C59B27] truncate transition-colors leading-snug">
+                                                <h4 className="text-[12px] font-serif font-medium text-stone-900 group-hover:text-brand-champagne truncate transition-colors leading-snug">
                                                     {product.name}
                                                 </h4>
                                                 <div className="flex items-center gap-2 mt-1 flex-wrap">
-                                                    <span className="text-[11px] font-bold text-[#C59B27] font-sans">
+                                                    <span className="text-[11px] font-bold text-brand-plum font-sans">
                                                         {prodPrice > 0 ? formatCurrency(prodPrice) : 'Price on Request'}
                                                     </span>
                                                     {prodCat && (
@@ -232,7 +232,7 @@ const Navbar = () => {
                                                         </span>
                                                     )}
                                                     {prodMat && (
-                                                        <span className="text-[8.5px] px-1.5 py-0.5 bg-[#FAF7F0] text-stone-600 rounded font-sans tracking-tight border border-[#E8DFD0]">
+                                                        <span className="text-[8.5px] px-1.5 py-0.5 bg-brand-pearl text-stone-600 rounded font-sans tracking-tight border border-brand-border">
                                                             {prodMat}
                                                         </span>
                                                     )}
@@ -244,10 +244,10 @@ const Navbar = () => {
                             </div>
                             <button
                                 onClick={submitSearch}
-                                className="w-full mt-2 py-2.5 bg-[#FAF8F5] hover:bg-[#F5EFEB] text-[10px] font-bold text-[#706760] hover:text-[#1C1917] uppercase tracking-widest transition-colors rounded-xl border border-[#E8DFD0] flex items-center justify-center gap-2"
+                                className="w-full mt-2 py-2.5 bg-brand-pearl hover:bg-[#F5EFEB] text-[10px] font-bold text-[#706760] hover:text-brand-espresso uppercase tracking-widest transition-colors rounded-xl border border-brand-border flex items-center justify-center gap-2"
                             >
                                 <span>View all results for "{searchTerm.trim()}"</span>
-                                <Search className="w-3 h-3 text-[#C59B27]" />
+                                <Search className="w-3 h-3 text-brand-champagne" />
                             </button>
                         </div>
                     ) : (
@@ -284,10 +284,10 @@ const Navbar = () => {
                                 }}
                             />
                             <div className="flex flex-col">
-                                <span className="font-serif text-lg font-bold tracking-wider text-[#171717] leading-tight uppercase">
+                                <span className="font-serif text-lg font-bold tracking-wider text-brand-espresso leading-tight uppercase">
                                     {currentStoreName}
                                 </span>
-                                <span className="text-[9px] font-medium tracking-[0.2em] text-[#C6A04A] uppercase">
+                                <span className="text-[9px] font-medium tracking-[0.2em] text-brand-plum uppercase">
                                     {currentTagline}
                                 </span>
                             </div>
@@ -295,10 +295,10 @@ const Navbar = () => {
 
                         <div
                             onClick={() => setIsPincodeModalOpen(true)}
-                            className="flex items-center gap-2.5 px-3.5 h-[46px] rounded-xl cursor-pointer transition-all duration-200 group border border-[#E8E0D2] bg-[#FAF7F0] hover:border-[#C6A04A] hover:bg-white"
+                            className="flex items-center gap-2.5 px-3.5 h-[46px] rounded-xl cursor-pointer transition-all duration-200 group border border-brand-border bg-brand-pearl hover:border-brand-champagne hover:bg-white"
                         >
                             <div
-                                className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-[#171717] text-[#C6A04A] group-hover:bg-[#C6A04A] group-hover:text-[#171717] transition-colors"
+                                className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-brand-plum text-brand-champagne group-hover:bg-brand-champagne group-hover:text-brand-espresso transition-colors"
                             >
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 3H16V17H1V3Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -308,12 +308,12 @@ const Navbar = () => {
                                 </svg>
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[10px] font-semibold text-[#A88338] uppercase tracking-[0.08em] leading-tight">Where to Deliver?</span>
+                                <span className="text-[10px] font-semibold text-brand-plum uppercase tracking-[0.08em] leading-tight">Where to Deliver?</span>
                                 <div className="flex items-center gap-1 mt-0.5">
-                                    <span className="text-[12px] font-bold text-[#171717] font-sans">
+                                    <span className="text-[12px] font-bold text-brand-espresso font-sans">
                                         {pincode ? `Deliver to ${pincode}` : 'Enter Pincode'}
                                     </span>
-                                    <ChevronDown className="w-3 h-3 text-[#C6A04A]" />
+                                    <ChevronDown className="w-3 h-3 text-brand-champagne" />
                                 </div>
                             </div>
                         </div>
@@ -333,11 +333,11 @@ const Navbar = () => {
                                 onKeyDown={handleSearchKeyDown}
                                 onBlur={() => setTimeout(() => setShowResults(false), 200)}
                                 onFocus={() => setShowResults(true)}
-                                className="w-full bg-[#FAF7F0] border border-[#E8E0D2] rounded-xl py-2 pl-4 pr-12 text-sm text-[#242424] placeholder:text-[#77716A] focus:outline-none focus:border-[#C6A04A] focus:bg-white focus:ring-2 focus:ring-[#C6A04A]/10 transition-all shadow-xs"
+                                className="w-full bg-brand-pearl border border-brand-border rounded-xl py-2 pl-4 pr-12 text-sm text-brand-espresso placeholder:text-brand-taupe focus:outline-none focus:border-brand-champagne focus:bg-white focus:ring-2 focus:ring-brand-champagne/10 transition-all shadow-xs"
                             />
                             <button
                                 onClick={submitSearch}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#C6A04A] hover:text-[#171717] transition-colors"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-champagne hover:text-brand-espresso transition-colors"
                             >
                                 <Search className="w-[18px] h-[18px]" strokeWidth={2.2} />
                             </button>
@@ -363,13 +363,13 @@ const Navbar = () => {
                                             className="absolute inset-0 rounded-2xl"
                                             initial={{ opacity: 0 }}
                                             whileHover={{ opacity: 1 }}
-                                            style={{ background: 'rgba(198, 160, 74, 0.08)' }}
+                                            style={{ background: 'rgba(217, 184, 182, 0.20)' }}
                                         />
                                         {/* Icon chip */}
                                         <motion.div
                                             className="w-7.5 h-7.5 rounded-xl flex items-center justify-center relative z-10"
-                                            style={{ background: isActive ? '#171717' : 'rgba(0,0,0,0.04)' }}
-                                            whileHover={!isActive ? { background: '#171717', scale: 1.08 } : {}}
+                                            style={{ background: isActive ? '#F1DFDE' : '#F7EFEE' }}
+                                            whileHover={!isActive ? { background: '#F1DFDE', scale: 1.08 } : {}}
                                             transition={{ duration: 0.22 }}
                                         >
                                             <motion.div
@@ -377,19 +377,19 @@ const Navbar = () => {
                                                 transition={{ duration: 0.5, delay: 0.1 }}
                                                 whileHover={{ rotate: [0, -10, 10, -6, 0] }}
                                             >
-                                                <User className="w-[17px] h-[17px]" style={{ color: isActive ? '#C6A04A' : '#77716A' }} strokeWidth={2.1} />
+                                                <User className="w-[17px] h-[17px]" style={{ color: isActive ? '#4A3638' : '#766866' }} strokeWidth={2.1} />
                                             </motion.div>
                                         </motion.div>
                                         {/* Label */}
                                         <motion.span
-                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#C6A04A' : '#77716A', position: 'relative', zIndex: 10 }}
-                                            whileHover={{ color: '#C6A04A' }}
+                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#4A3638' : '#766866', position: 'relative', zIndex: 10 }}
+                                            whileHover={{ color: '#4A3638' }}
                                         >ACCOUNT</motion.span>
                                         {/* Active dot */}
                                         {isActive && (
                                             <motion.div
                                                 initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
-                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 16, height: 2, borderRadius: 2, background: '#C6A04A', zIndex: 10 }}
+                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 16, height: 2, borderRadius: 2, background: '#B8956A', zIndex: 10 }}
                                             />
                                         )}
                                     </Link>
@@ -406,12 +406,12 @@ const Navbar = () => {
                                         style={{ minWidth: 64, height: 48 }}
                                     >
                                         <motion.div className="absolute inset-0 rounded-2xl" initial={{ opacity: 0 }} whileHover={{ opacity: 1 }}
-                                            style={{ background: 'rgba(198, 160, 74, 0.08)' }}
+                                            style={{ background: 'rgba(217, 184, 182, 0.20)' }}
                                         />
                                         <motion.div
                                             className="w-7.5 h-7.5 rounded-xl flex items-center justify-center relative z-10"
-                                            style={{ background: isActive ? '#171717' : 'rgba(0,0,0,0.04)' }}
-                                            whileHover={!isActive ? { background: '#171717', scale: 1.08 } : {}}
+                                            style={{ background: isActive ? '#F1DFDE' : '#F7EFEE' }}
+                                            whileHover={!isActive ? { background: '#F1DFDE', scale: 1.08 } : {}}
                                             transition={{ duration: 0.22 }}
                                         >
                                             {/* Badge */}
@@ -420,7 +420,7 @@ const Navbar = () => {
                                                     initial={{ scale: 0 }} animate={{ scale: 1 }}
                                                     transition={{ type: 'spring', stiffness: 500, damping: 20 }}
                                                     className="absolute -top-1.5 -right-1.5 text-white flex items-center justify-center rounded-full z-20"
-                                                    style={{ width: 15, height: 15, fontSize: 8, fontWeight: 800, background: '#C6A04A' }}
+                                                    style={{ width: 15, height: 15, fontSize: 8, fontWeight: 800, background: '#4A3638' }}
                                                 >{wishlist.length}</motion.span>
                                             )}
                                             <motion.div
@@ -429,18 +429,18 @@ const Navbar = () => {
                                             >
                                                 <Heart
                                                     className="w-[17px] h-[17px]"
-                                                    style={{ color: isActive ? '#C6A04A' : '#77716A' }}
+                                                    style={{ color: isActive ? '#4A3638' : '#766866' }}
                                                     strokeWidth={2.1}
                                                 />
                                             </motion.div>
                                         </motion.div>
                                         <motion.span
-                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#C6A04A' : '#77716A', position: 'relative', zIndex: 10 }}
-                                            whileHover={{ color: '#C6A04A' }}
+                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#4A3638' : '#766866', position: 'relative', zIndex: 10 }}
+                                            whileHover={{ color: '#4A3638' }}
                                         >WISHLIST</motion.span>
                                         {isActive && (
                                             <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
-                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 20, height: 2, borderRadius: 2, background: '#C6A04A', zIndex: 10 }}
+                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 20, height: 2, borderRadius: 2, background: '#B8956A', zIndex: 10 }}
                                             />
                                         )}
                                     </Link>
@@ -457,12 +457,12 @@ const Navbar = () => {
                                         style={{ minWidth: 58, height: 48 }}
                                     >
                                         <motion.div className="absolute inset-0 rounded-2xl" initial={{ opacity: 0 }} whileHover={{ opacity: 1 }}
-                                            style={{ background: 'rgba(198, 160, 74, 0.08)' }}
+                                            style={{ background: 'rgba(217, 184, 182, 0.20)' }}
                                         />
                                         <motion.div
                                             className="w-7.5 h-7.5 rounded-xl flex items-center justify-center relative z-10"
-                                            style={{ background: isActive ? '#171717' : 'rgba(0,0,0,0.04)' }}
-                                            whileHover={!isActive ? { background: '#171717', scale: 1.08 } : {}}
+                                            style={{ background: isActive ? '#F1DFDE' : '#F7EFEE' }}
+                                            whileHover={!isActive ? { background: '#F1DFDE', scale: 1.08 } : {}}
                                             transition={{ duration: 0.22 }}
                                         >
                                             {/* Unread badge */}
@@ -471,7 +471,7 @@ const Navbar = () => {
                                                     initial={{ scale: 0 }} animate={{ scale: [1, 1.2, 1] }}
                                                     transition={{ repeat: Infinity, repeatDelay: 3, duration: 0.4 }}
                                                     className="absolute -top-1.5 -right-1.5 text-white flex items-center justify-center rounded-full z-20"
-                                                    style={{ width: 15, height: 15, fontSize: 8, fontWeight: 800, background: '#C6A04A' }}
+                                                    style={{ width: 15, height: 15, fontSize: 8, fontWeight: 800, background: '#4A3638' }}
                                                 >{unreadCount}</motion.span>
                                             )}
                                             {/* Bell shake on hover */}
@@ -479,16 +479,16 @@ const Navbar = () => {
                                                 whileHover={{ rotate: [0, -18, 18, -12, 12, -6, 6, 0], transformOrigin: 'top center' }}
                                                 transition={{ duration: 0.55, ease: 'easeInOut' }}
                                             >
-                                                <Bell className="w-[17px] h-[17px]" style={{ color: isActive ? '#C6A04A' : '#77716A' }} strokeWidth={2.1} />
+                                                <Bell className="w-[17px] h-[17px]" style={{ color: isActive ? '#4A3638' : '#766866' }} strokeWidth={2.1} />
                                             </motion.div>
                                         </motion.div>
                                         <motion.span
-                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#C6A04A' : '#77716A', position: 'relative', zIndex: 10 }}
-                                            whileHover={{ color: '#C6A04A' }}
+                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#4A3638' : '#766866', position: 'relative', zIndex: 10 }}
+                                            whileHover={{ color: '#4A3638' }}
                                         >INBOX</motion.span>
                                         {isActive && (
                                             <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
-                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 14, height: 2, borderRadius: 2, background: '#C6A04A', zIndex: 10 }}
+                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 14, height: 2, borderRadius: 2, background: '#B8956A', zIndex: 10 }}
                                             />
                                         )}
                                     </Link>
@@ -505,12 +505,12 @@ const Navbar = () => {
                                         style={{ minWidth: 58, height: 48 }}
                                     >
                                         <motion.div className="absolute inset-0 rounded-2xl" initial={{ opacity: 0 }} whileHover={{ opacity: 1 }}
-                                            style={{ background: 'rgba(198, 160, 74, 0.08)' }}
+                                            style={{ background: 'rgba(217, 184, 182, 0.20)' }}
                                         />
                                         <motion.div
                                             className="w-7.5 h-7.5 rounded-xl flex items-center justify-center relative z-10"
-                                            style={{ background: isActive ? '#171717' : 'rgba(0,0,0,0.04)' }}
-                                            whileHover={!isActive ? { background: '#171717', scale: 1.08 } : {}}
+                                            style={{ background: isActive ? '#F1DFDE' : '#F7EFEE' }}
+                                            whileHover={!isActive ? { background: '#F1DFDE', scale: 1.08 } : {}}
                                             transition={{ duration: 0.22 }}
                                         >
                                             {cart?.length > 0 && (
@@ -518,7 +518,7 @@ const Navbar = () => {
                                                     initial={{ scale: 0 }} animate={{ scale: 1 }}
                                                     transition={{ type: 'spring', stiffness: 500, damping: 20 }}
                                                     className="absolute -top-1.5 -right-1.5 text-white flex items-center justify-center rounded-full z-20"
-                                                    style={{ width: 15, height: 15, fontSize: 8, fontWeight: 800, background: '#C6A04A' }}
+                                                    style={{ width: 15, height: 15, fontSize: 8, fontWeight: 800, background: '#4A3638' }}
                                                 >{cart.length}</motion.span>
                                             )}
                                             {/* Cart bounce on hover */}
@@ -526,16 +526,16 @@ const Navbar = () => {
                                                 whileHover={{ x: [0, -3, 3, -2, 2, 0], y: [0, -2, 0] }}
                                                 transition={{ duration: 0.45, ease: 'easeInOut' }}
                                             >
-                                                <ShoppingCart className="w-[17px] h-[17px]" style={{ color: isActive ? '#C6A04A' : '#77716A' }} strokeWidth={2.1} />
+                                                <ShoppingCart className="w-[17px] h-[17px]" style={{ color: isActive ? '#4A3638' : '#766866' }} strokeWidth={2.1} />
                                             </motion.div>
                                         </motion.div>
                                         <motion.span
-                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#C6A04A' : '#77716A', position: 'relative', zIndex: 10 }}
-                                            whileHover={{ color: '#C6A04A' }}
+                                            style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: "'Inter',sans-serif", color: isActive ? '#4A3638' : '#766866', position: 'relative', zIndex: 10 }}
+                                            whileHover={{ color: '#4A3638' }}
                                         >CART</motion.span>
                                         {isActive && (
                                             <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
-                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 14, height: 2, borderRadius: 2, background: '#C6A04A', zIndex: 10 }}
+                                                style={{ position: 'absolute', bottom: 4, left: '50%', transform: 'translateX(-50%)', width: 14, height: 2, borderRadius: 2, background: '#B8956A', zIndex: 10 }}
                                             />
                                         )}
                                     </Link>
@@ -574,7 +574,7 @@ const Navbar = () => {
                                     e.currentTarget.src = defaultLogo;
                                 }}
                             />
-                            <span className="font-serif text-base font-bold tracking-wider text-[#141211] uppercase">
+                            <span className="font-serif text-base font-bold tracking-wider text-brand-espresso uppercase">
                                 {currentStoreName}
                             </span>
                         </Link>
@@ -593,7 +593,7 @@ const Navbar = () => {
                             onClick={() => setShowMobileSearch(!showMobileSearch)}
                             className="relative p-1.5 rounded-lg transition-colors"
                             style={{
-                                background: showMobileSearch ? 'rgba(156,61,80,0.08)' : 'rgba(0,0,0,0.04)',
+                                background: showMobileSearch ? 'rgba(241,223,222,0.75)' : '#F7EFEE',
                             }}
                         >
                             <motion.div
@@ -601,26 +601,26 @@ const Navbar = () => {
                                 transition={{ duration: 0.25 }}
                             >
                                 {showMobileSearch
-                                    ? <X className="w-4.5 h-4.5" style={{ color: '#9C3D50' }} strokeWidth={2.2} />
-                                    : <Search className="w-4.5 h-4.5" style={{ color: '#2C2C2C' }} strokeWidth={2} />}
+                                    ? <X className="w-4.5 h-4.5" style={{ color: '#4A3638' }} strokeWidth={2.2} />
+                                    : <Search className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />}
                             </motion.div>
                         </motion.button>
 
                         {/* Wishlist (tablet+) */}
                         <motion.div whileTap={{ scale: 0.82 }} className="hidden sm:block">
-                            <Link to="/wishlist" className="relative p-1.5 rounded-lg block" style={{ background: 'rgba(0,0,0,0.04)' }}>
-                                <Heart className="w-4.5 h-4.5" style={{ color: '#2C2C2C' }} strokeWidth={2} />
+                            <Link to="/wishlist" className="relative p-1.5 rounded-lg block" style={{ background: '#F7EFEE' }}>
+                                <Heart className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />
                             </Link>
                         </motion.div>
 
                         {/* Bell */}
                         <motion.div whileTap={{ scale: 0.82 }} className="relative">
-                            <Link to="/notifications" className="relative p-1.5 rounded-lg block" style={{ background: 'rgba(0,0,0,0.04)' }}>
-                                <Bell className="w-4.5 h-4.5" style={{ color: '#2C2C2C' }} strokeWidth={2} />
+                            <Link to="/notifications" className="relative p-1.5 rounded-lg block" style={{ background: '#F7EFEE' }}>
+                                <Bell className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />
                                 {unreadCount > 0 && (
                                     <span
                                         className="absolute -top-0.5 -right-0.5 text-white flex items-center justify-center rounded-full animate-pulse"
-                                        style={{ width: 13, height: 13, fontSize: 7, fontWeight: 800, background: 'linear-gradient(135deg,#E84393,#C0184C)' }}
+                                        style={{ width: 13, height: 13, fontSize: 7, fontWeight: 800, background: '#4A3638' }}
                                     >
                                         {unreadCount}
                                     </span>
@@ -630,12 +630,12 @@ const Navbar = () => {
 
                         {/* Cart */}
                         <motion.div whileTap={{ scale: 0.82 }} className="relative">
-                            <Link to="/cart" className="relative p-1.5 rounded-lg block" style={{ background: 'rgba(0,0,0,0.04)' }}>
-                                <ShoppingCart className="w-4.5 h-4.5" style={{ color: '#2C2C2C' }} strokeWidth={2} />
+                            <Link to="/cart" className="relative p-1.5 rounded-lg block" style={{ background: '#F7EFEE' }}>
+                                <ShoppingCart className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />
                                 {cart?.length > 0 && (
                                     <span
                                         className="absolute -top-0.5 -right-0.5 text-white flex items-center justify-center rounded-full"
-                                        style={{ width: 13, height: 13, fontSize: 7, fontWeight: 800, background: 'linear-gradient(135deg,#E84393,#C0184C)' }}
+                                        style={{ width: 13, height: 13, fontSize: 7, fontWeight: 800, background: '#4A3638' }}
                                     >
                                         {cart.length}
                                     </span>
@@ -648,9 +648,9 @@ const Navbar = () => {
                             whileTap={{ scale: 0.82 }}
                             onClick={() => setIsMenuOpen(true)}
                             className="p-1.5 rounded-lg"
-                            style={{ background: 'rgba(0,0,0,0.04)' }}
+                            style={{ background: '#F7EFEE' }}
                         >
-                            <Menu className="w-4.5 h-4.5" style={{ color: '#2C2C2C' }} strokeWidth={2} />
+                            <Menu className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />
                         </motion.button>
                     </motion.div>
                 </div>
@@ -686,21 +686,21 @@ const Navbar = () => {
                                     onFocus={() => setShowResults(true)}
                                     style={{
                                         width: '100%',
-                                        background: '#F7F7F7',
-                                        border: '1.5px solid #E8D5DA',
+                                        background: '#FBF8F7',
+                                        border: '1.5px solid #E9DEDA',
                                         borderRadius: 12,
                                         padding: '10px 44px 10px 16px',
                                         fontSize: 14,
                                         fontFamily: "'Inter', sans-serif",
                                         fontWeight: 400,
-                                        color: '#1A1A1A',
+                                        color: '#332827',
                                         outline: 'none',
                                     }}
                                 />
                                 <button
                                     onClick={submitSearch}
                                     className="absolute right-7 top-1/2 -translate-y-1/2"
-                                    style={{ color: '#C59B27' }}
+                                    style={{ color: '#B8956A' }}
                                 >
                                     <Search className="w-[17px] h-[17px]" strokeWidth={2.2} />
                                 </button>
@@ -724,7 +724,7 @@ const Navbar = () => {
                             <motion.div
                                 initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }}
                                 transition={{ type: 'tween', duration: 0.3 }}
-                                className="fixed top-0 left-0 h-full w-full bg-[#FAF8F5] z-[9999] flex flex-col"
+                                className="fixed top-0 left-0 h-full w-full bg-brand-pearl z-[9999] flex flex-col"
                             >
                                 {/* Top Header */}
                                 <div className="flex justify-end items-center px-6 pt-6 pb-4">
@@ -735,22 +735,22 @@ const Navbar = () => {
 
                                 {/* Banner/Coupon */}
                                 <div className="px-5 mb-6 mt-2">
-                                    <div className="relative bg-white border border-[#E8DFD0] rounded-lg p-5 flex items-center justify-between shadow-sm">
+                                    <div className="relative bg-white border border-brand-border rounded-lg p-5 flex items-center justify-between shadow-sm">
                                         {/* Ticket Cutouts */}
-                                        <div className="absolute left-[-8px] top-1/2 -translate-y-1/2 w-4 h-4 bg-[#FAF8F5] rounded-full border-r border-[#E8DFD0]"></div>
-                                        <div className="absolute right-[-8px] top-1/2 -translate-y-1/2 w-4 h-4 bg-[#FAF8F5] rounded-full border-l border-[#E8DFD0]"></div>
+                                        <div className="absolute left-[-8px] top-1/2 -translate-y-1/2 w-4 h-4 bg-brand-pearl rounded-full border-r border-brand-border"></div>
+                                        <div className="absolute right-[-8px] top-1/2 -translate-y-1/2 w-4 h-4 bg-brand-pearl rounded-full border-l border-brand-border"></div>
 
                                         <div className="flex items-center gap-5 w-full">
                                             <div className="flex-shrink-0 relative">
-                                                <ShoppingBag className="w-10 h-10 text-[#C59B27] opacity-80" strokeWidth={1.2} />
-                                                <ShoppingBag className="w-7 h-7 text-[#1C1917] absolute -bottom-1 -right-2 bg-white" strokeWidth={1.5} />
+                                                <ShoppingBag className="w-10 h-10 text-brand-champagne opacity-80" strokeWidth={1.2} />
+                                                <ShoppingBag className="w-7 h-7 text-brand-espresso absolute -bottom-1 -right-2 bg-white" strokeWidth={1.5} />
                                             </div>
                                             <div className="flex-1">
-                                                <h3 className="text-[17px] font-serif font-bold text-[#1C1917] leading-tight mb-2 tracking-wide">Welcome to Alankar Jewellers</h3>
+                                                <h3 className="text-[17px] font-serif font-bold text-brand-espresso leading-tight mb-2 tracking-wide">Welcome to Alankar Jewellers</h3>
                                                 <div className="flex items-center gap-2">
-                                                    <Link to="/login" className="text-[11px] font-bold text-[#C59B27] hover:underline uppercase tracking-wider" onClick={() => setIsMenuOpen(false)}>LOGIN</Link>
+                                                    <Link to="/login" className="text-[11px] font-bold text-brand-champagne hover:underline uppercase tracking-wider" onClick={() => setIsMenuOpen(false)}>LOGIN</Link>
                                                     <span className="text-gray-300">|</span>
-                                                    <Link to="/login" className="text-[11px] font-bold text-[#C59B27] hover:underline uppercase tracking-wider" onClick={() => setIsMenuOpen(false)}>SIGN UP</Link>
+                                                    <Link to="/login" className="text-[11px] font-bold text-brand-champagne hover:underline uppercase tracking-wider" onClick={() => setIsMenuOpen(false)}>SIGN UP</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -794,29 +794,29 @@ const Navbar = () => {
                                                 location.pathname.startsWith('/gift');
 
                                             return (
-                                                <div key={index} className="border-b border-[#E8DFD0] last:border-0">
+                                                <div key={index} className="border-b border-brand-border last:border-0">
                                                     <button
                                                         type="button"
                                                         onClick={() => setIsMobileGiftingOpen((prev) => !prev)}
                                                         className={`w-full flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group relative overflow-hidden ${
                                                             isGiftingActive
-                                                                ? 'bg-gradient-to-r from-amber-50 to-white text-[#C59B27] border border-amber-200'
-                                                                : 'text-gray-800 hover:bg-white hover:text-[#C59B27]'
+                                                                ? 'bg-gradient-to-r from-amber-50 to-white text-brand-champagne border border-amber-200'
+                                                                : 'text-gray-800 hover:bg-white hover:text-brand-champagne'
                                                         }`}
                                                     >
                                                         <div className="flex items-center gap-5 relative z-10">
                                                             <item.icon className={`w-5 h-5 transition-colors ${
-                                                                isGiftingActive ? 'text-[#C59B27]' : 'text-gray-600 group-hover:text-[#C59B27]'
+                                                                isGiftingActive ? 'text-brand-champagne' : 'text-gray-600 group-hover:text-brand-champagne'
                                                             }`} strokeWidth={1.5} />
                                                             <span className={`text-[15px] tracking-wide ${
-                                                                isGiftingActive ? 'text-[#C59B27] font-bold' : 'font-medium text-gray-800 group-hover:font-semibold group-hover:text-[#C59B27]'
+                                                                isGiftingActive ? 'text-brand-champagne font-bold' : 'font-medium text-gray-800 group-hover:font-semibold group-hover:text-brand-champagne'
                                                             }`}>
                                                                 {item.label}
                                                             </span>
                                                         </div>
                                                         <ChevronDown
-                                                            className={`w-4 h-4 text-gray-900 group-hover:text-[#C59B27] transition-transform duration-300 relative z-10 ${
-                                                                isMobileGiftingOpen ? 'rotate-180 text-[#C59B27]' : ''
+                                                            className={`w-4 h-4 text-gray-900 group-hover:text-brand-champagne transition-transform duration-300 relative z-10 ${
+                                                                isMobileGiftingOpen ? 'rotate-180 text-brand-champagne' : ''
                                                             }`}
                                                             strokeWidth={2.5}
                                                         />
@@ -838,12 +838,12 @@ const Navbar = () => {
                                                                             to={child.path}
                                                                             onClick={() => setIsMenuOpen(false)}
                                                                             className={`block p-2.5 rounded-lg transition-colors ${
-                                                                                isChildActive ? 'bg-[#FAF5ED] text-[#C59B27]' : 'hover:bg-gray-50 text-gray-700'
+                                                                                isChildActive ? 'bg-[#FAF5ED] text-brand-champagne' : 'hover:bg-gray-50 text-gray-700'
                                                                             }`}
                                                                         >
                                                                             <div className="text-[13.5px] font-semibold flex items-center justify-between">
                                                                                 <span>{child.label}</span>
-                                                                                <ChevronRight className="w-3.5 h-3.5 text-[#C59B27]" />
+                                                                                <ChevronRight className="w-3.5 h-3.5 text-brand-champagne" />
                                                                             </div>
                                                                             <p className="text-[11px] text-[#8C827A] mt-0.5 font-normal">
                                                                                 {child.subtitle}
@@ -871,14 +871,14 @@ const Navbar = () => {
                                                     if (item.label === 'Diamond') updateActiveMetal('diamond');
                                                     if (item.label === 'Gems') updateActiveMetal('gems');
                                                 }}
-                                                className={`flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group border-b border-[#E8DFD0] last:border-0 relative overflow-hidden ${
+                                                className={`flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group border-b border-brand-border last:border-0 relative overflow-hidden ${
                                                     item.label === 'Gold' ? 'bg-gradient-to-r from-amber-50 to-white hover:from-amber-100 border-amber-200' :
                                                     item.label === 'Silver' ? 'bg-gradient-to-r from-slate-50 to-white hover:from-slate-100 border-slate-200' :
                                                     item.label === 'Diamond' ? 'bg-gradient-to-r from-sky-50/70 via-[#FAFBFD] to-white hover:from-sky-100/70 border-sky-200' :
                                                     item.label === 'Gems' ? 'bg-gradient-to-r from-emerald-50/70 via-[#FAFBFD] to-white hover:from-emerald-100/70 border-emerald-200' :
-                                                    item.label === 'Bullions' ? 'bg-gradient-to-r from-[#FAF8F5] via-white to-amber-50/50 hover:from-amber-100/60 border-amber-200/80' :
-                                                    isItemActiveUnder50k ? 'bg-gradient-to-r from-amber-50 to-white text-[#C59B27] border border-amber-200' :
-                                                        'text-gray-800 hover:bg-white hover:text-[#C59B27]'
+                                                    item.label === 'Bullions' ? 'bg-gradient-to-r from-brand-pearl via-white to-amber-50/50 hover:from-amber-100/60 border-amber-200/80' :
+                                                    isItemActiveUnder50k ? 'bg-gradient-to-r from-amber-50 to-white text-brand-champagne border border-amber-200' :
+                                                        'text-gray-800 hover:bg-white hover:text-brand-champagne'
                                                 }`}
                                             >
                                                 <div className="flex items-center gap-5 relative z-10">
@@ -887,24 +887,24 @@ const Navbar = () => {
                                                         item.label === 'Silver' ? 'text-slate-400 group-hover:text-slate-600 animate-pulse' :
                                                         item.label === 'Diamond' ? 'text-sky-600 group-hover:text-sky-700 animate-pulse' :
                                                         item.label === 'Gems' ? 'text-emerald-600 group-hover:text-emerald-700 animate-pulse' :
-                                                        item.label === 'Bullions' ? 'text-[#C59B27] group-hover:text-[#141211]' :
-                                                        isItemActiveUnder50k ? 'text-[#C59B27]' :
-                                                            'text-gray-600 group-hover:text-[#C59B27]'
+                                                        item.label === 'Bullions' ? 'text-brand-champagne group-hover:text-brand-espresso' :
+                                                        isItemActiveUnder50k ? 'text-brand-champagne' :
+                                                            'text-gray-600 group-hover:text-brand-champagne'
                                                     }`} strokeWidth={1.5} />
                                                     <span className={`text-[15px] tracking-wide ${
                                                         item.label === 'Gold' ? 'text-amber-700 font-bold group-hover:text-amber-800' :
                                                         item.label === 'Silver' ? 'text-slate-600 font-bold group-hover:text-slate-800' :
-                                                        item.label === 'Diamond' ? 'text-stone-900 font-bold group-hover:text-[#C6A04A]' :
+                                                        item.label === 'Diamond' ? 'text-stone-900 font-bold group-hover:text-brand-champagne' :
                                                         item.label === 'Gems' ? 'text-stone-900 font-bold group-hover:text-emerald-700' :
-                                                        item.label === 'Bullions' ? 'text-[#141211] font-bold group-hover:text-[#C59B27]' :
-                                                        isItemActiveUnder50k ? 'text-[#C59B27] font-bold' :
-                                                            'font-medium text-gray-800 group-hover:font-semibold group-hover:text-[#C59B27]'
+                                                        item.label === 'Bullions' ? 'text-brand-espresso font-bold group-hover:text-brand-champagne' :
+                                                        isItemActiveUnder50k ? 'text-brand-champagne font-bold' :
+                                                            'font-medium text-gray-800 group-hover:font-semibold group-hover:text-brand-champagne'
                                                     }`}>
                                                         {item.isUnder50k ? 'JEWELLERY UNDER ₹50K' : item.label}
                                                     </span>
                                                 </div>
                                                 <ChevronRight className={`w-4 h-4 transition-colors relative z-10 ${
-                                                    isItemActiveUnder50k ? 'text-[#C59B27]' : 'text-gray-900 group-hover:text-[#C59B27]'
+                                                    isItemActiveUnder50k ? 'text-brand-champagne' : 'text-gray-900 group-hover:text-brand-champagne'
                                                 }`} strokeWidth={2.5} />
                                             </Link>
                                         );

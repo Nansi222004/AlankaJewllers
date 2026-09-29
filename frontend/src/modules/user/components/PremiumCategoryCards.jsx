@@ -60,7 +60,7 @@ const PremiumCategoryCards = () => {
                         initial={{ opacity: 0, y: 8 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5 }}
-                        className="text-[10px] md:text-[11px] font-bold tracking-[0.35em] text-[#C59B27] uppercase mb-2 block"
+                        className="text-[10px] md:text-[11px] font-bold tracking-[0.35em] text-brand-champagne uppercase mb-2 block"
                     >
                         GIFT THE EXCELLENCE
                     </motion.span>
@@ -71,14 +71,14 @@ const PremiumCategoryCards = () => {
                         transition={{ duration: 0.5, delay: 0.08 }}
                         className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-serif text-stone-900 tracking-tight leading-tight mb-2.5"
                     >
-                        Shop by <span className="italic font-light text-[#C59B27]">Recipient</span>
+                        Shop by <span className="italic font-light text-brand-champagne">Recipient</span>
                     </motion.h2>
 
                     <motion.div
                         initial={{ opacity: 0, scaleX: 0 }}
                         animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
                         transition={{ duration: 0.5, delay: 0.15 }}
-                        className="w-10 h-[1.5px] bg-[#C59B27] rounded-full"
+                        className="w-10 h-[1.5px] bg-brand-champagne rounded-full"
                     />
                 </div>
 
@@ -91,7 +91,7 @@ const PremiumCategoryCards = () => {
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.1 }}
                         onClick={() => navigate(FOR_HER_DATA.path)}
-                        className="w-full lg:w-[62%] relative rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer group bg-stone-900 border border-stone-200/70 hover:border-[#C59B27]/60 shadow-sm hover:shadow-xl transition-all duration-500 h-[380px] sm:h-[430px] md:h-[460px] lg:h-[510px] flex flex-col justify-between p-5 md:p-7"
+                        className="w-full lg:w-[62%] relative rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer group bg-stone-900 border border-stone-200/70 hover:border-brand-champagne/60 shadow-sm hover:shadow-xl transition-all duration-500 h-[380px] sm:h-[430px] md:h-[460px] lg:h-[510px] flex flex-col justify-between p-5 md:p-7"
                     >
                         {/* Background Image */}
                         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -104,13 +104,13 @@ const PremiumCategoryCards = () => {
                             />
                             {/* Cinematic Gradient Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/30 to-transparent opacity-95 transition-opacity duration-500 group-hover:opacity-90" />
-                            <div className="absolute inset-0 bg-[#C59B27]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+                            <div className="absolute inset-0 bg-brand-champagne/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
                         </div>
 
                         {/* Top Bar: Floating Glass Badge */}
                         <div className="relative z-10 flex items-center justify-between w-full">
-                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-[#FAF8F5] text-[9px] md:text-[10px] font-medium tracking-[0.22em] uppercase shadow-sm">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27]" />
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-brand-pearl text-[9px] md:text-[10px] font-medium tracking-[0.22em] uppercase shadow-sm">
+                                <span className="w-1.5 h-1.5 rounded-full bg-brand-champagne" />
                                 <span>{FOR_HER_DATA.badge}</span>
                             </div>
                         </div>
@@ -133,7 +133,7 @@ const PremiumCategoryCards = () => {
                                         e.stopPropagation();
                                         navigate(FOR_HER_DATA.path);
                                     }}
-                                    className="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-white text-stone-900 hover:bg-[#C59B27] hover:text-white text-[10.5px] md:text-xs font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-sm group-hover:shadow-md group/btn"
+                                    className="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-white text-stone-900 hover:bg-brand-champagne hover:text-white text-[10.5px] md:text-xs font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-sm group-hover:shadow-md group/btn"
                                 >
                                     <span>{FOR_HER_DATA.cta}</span>
                                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -149,7 +149,7 @@ const PremiumCategoryCards = () => {
                                                 e.stopPropagation();
                                                 navigate(chip.path);
                                             }}
-                                            className="px-3 py-1 text-[11px] font-sans tracking-wide rounded-full border border-white/25 hover:border-[#C59B27] bg-black/25 hover:bg-black/45 text-stone-200 hover:text-[#C59B27] backdrop-blur-xs transition-all duration-300 cursor-pointer"
+                                            className="px-3 py-1 text-[11px] font-sans tracking-wide rounded-full border border-white/25 hover:border-brand-champagne bg-black/25 hover:bg-black/45 text-stone-200 hover:text-brand-champagne backdrop-blur-xs transition-all duration-300 cursor-pointer"
                                         >
                                             {chip.label}
                                         </button>
@@ -168,7 +168,7 @@ const PremiumCategoryCards = () => {
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             onClick={() => navigate(FOR_HIM_DATA.path)}
-                            className="relative rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer group bg-stone-900 border border-stone-200/70 hover:border-[#C59B27]/60 shadow-sm hover:shadow-xl transition-all duration-500 flex-1 min-h-[260px] sm:min-h-[280px] lg:min-h-[300px] flex flex-col justify-between p-5"
+                            className="relative rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer group bg-stone-900 border border-stone-200/70 hover:border-brand-champagne/60 shadow-sm hover:shadow-xl transition-all duration-500 flex-1 min-h-[260px] sm:min-h-[280px] lg:min-h-[300px] flex flex-col justify-between p-5"
                         >
                             {/* Background Image */}
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -181,13 +181,13 @@ const PremiumCategoryCards = () => {
                                 />
                                 {/* Cinematic Gradient Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/35 to-stone-950/10 opacity-95 transition-opacity duration-500 group-hover:opacity-90" />
-                                <div className="absolute inset-0 bg-[#C59B27]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+                                <div className="absolute inset-0 bg-brand-champagne/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
                             </div>
 
                             {/* Top Bar: Floating Glass Badge */}
                             <div className="relative z-10 flex items-center justify-between w-full">
-                                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-[#FAF8F5] text-[9px] md:text-[9.5px] font-medium tracking-[0.22em] uppercase shadow-sm">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27]" />
+                                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-brand-pearl text-[9px] md:text-[9.5px] font-medium tracking-[0.22em] uppercase shadow-sm">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-brand-champagne" />
                                     <span>{FOR_HIM_DATA.badge}</span>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@ const PremiumCategoryCards = () => {
                                             e.stopPropagation();
                                             navigate(FOR_HIM_DATA.path);
                                         }}
-                                        className="inline-flex items-center gap-2 px-3.5 py-1.5 md:px-4 md:py-2 rounded-full bg-white text-stone-900 hover:bg-[#C59B27] hover:text-white text-[10.5px] md:text-[11px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-sm group-hover:shadow-md group/btn"
+                                        className="inline-flex items-center gap-2 px-3.5 py-1.5 md:px-4 md:py-2 rounded-full bg-white text-stone-900 hover:bg-brand-champagne hover:text-white text-[10.5px] md:text-[11px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 shadow-sm group-hover:shadow-md group/btn"
                                     >
                                         <span>{FOR_HIM_DATA.cta}</span>
                                         <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -226,7 +226,7 @@ const PremiumCategoryCards = () => {
                                                     e.stopPropagation();
                                                     navigate(chip.path);
                                                 }}
-                                                className="px-2.5 py-0.5 text-[10.5px] font-sans tracking-wide rounded-full border border-white/25 hover:border-[#C59B27] bg-black/25 hover:bg-black/45 text-stone-200 hover:text-[#C59B27] backdrop-blur-xs transition-all duration-300 cursor-pointer"
+                                                className="px-2.5 py-0.5 text-[10.5px] font-sans tracking-wide rounded-full border border-white/25 hover:border-brand-champagne bg-black/25 hover:bg-black/45 text-stone-200 hover:text-brand-champagne backdrop-blur-xs transition-all duration-300 cursor-pointer"
                                             >
                                                 {chip.label}
                                             </button>
@@ -242,7 +242,7 @@ const PremiumCategoryCards = () => {
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6, delay: 0.25 }}
                             onClick={() => navigate(GIFTING_DATA.path)}
-                            className="relative rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer group bg-stone-950 border border-stone-200/70 hover:border-[#C59B27]/60 shadow-sm hover:shadow-xl transition-all duration-500 h-[150px] lg:h-[180px] flex flex-col justify-between p-4 md:p-5"
+                            className="relative rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer group bg-stone-950 border border-stone-200/70 hover:border-brand-champagne/60 shadow-sm hover:shadow-xl transition-all duration-500 h-[150px] lg:h-[180px] flex flex-col justify-between p-4 md:p-5"
                         >
                             {/* Background Image */}
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -255,13 +255,13 @@ const PremiumCategoryCards = () => {
                                 />
                                 {/* Rich Editorial Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/75 to-stone-950/40 opacity-95 transition-opacity duration-500 group-hover:opacity-90" />
-                                <div className="absolute inset-0 bg-[#C59B27]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+                                <div className="absolute inset-0 bg-brand-champagne/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
                             </div>
 
                             {/* Top Badge */}
                             <div className="relative z-10 flex items-center justify-between">
-                                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[#C59B27] text-[8.5px] md:text-[9px] font-semibold tracking-[0.2em] uppercase">
-                                    <Sparkles className="w-2.5 h-2.5 text-[#C59B27]" />
+                                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-brand-champagne text-[8.5px] md:text-[9px] font-semibold tracking-[0.2em] uppercase">
+                                    <Sparkles className="w-2.5 h-2.5 text-brand-champagne" />
                                     <span>{GIFTING_DATA.badge}</span>
                                 </div>
                             </div>
@@ -275,7 +275,7 @@ const PremiumCategoryCards = () => {
                                     {GIFTING_DATA.description}
                                 </p>
 
-                                <div className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold tracking-[0.14em] uppercase text-white group-hover:text-[#C59B27] transition-colors">
+                                <div className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold tracking-[0.14em] uppercase text-white group-hover:text-brand-champagne transition-colors">
                                     <span>{GIFTING_DATA.cta}</span>
                                     <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
                                 </div>

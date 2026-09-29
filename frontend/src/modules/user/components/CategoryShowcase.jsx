@@ -55,11 +55,11 @@ const CategoryShowcase = () => {
 
                 {/* Refined Header */}
                 <div className="text-center mb-12 md:mb-16">
-                    <h2 className="font-serif text-3xl md:text-5xl text-[#141211] mb-4 tracking-tight">Shop by Category</h2>
+                    <h2 className="font-serif text-3xl md:text-5xl text-brand-espresso mb-4 tracking-tight">Shop by Category</h2>
                     <p className="text-stone-500 text-sm md:text-base max-w-2xl mx-auto font-light leading-relaxed">
                         Discover our handcrafted jewellery masterpieces, each piece telling a unique story of timeless elegance.
                     </p>
-                    <div className="w-12 h-[1px] bg-[#C59B27] mx-auto mt-6 opacity-60"></div>
+                    <div className="w-12 h-[1px] bg-brand-champagne mx-auto mt-6 opacity-60"></div>
                 </div>
 
                 {/* Redesigned Card Grid */}
@@ -76,7 +76,7 @@ const CategoryShowcase = () => {
                                 {/* Card Body */}
                                 <div className="relative aspect-square mb-4 transition-all duration-700">
                                     {/* Image with Custom Shape */}
-                                    <div className="w-full h-full rounded-[2rem] overflow-hidden border border-stone-200/60 shadow-sm relative group-hover:shadow-[0_20px_40px_rgba(197,155,39,0.15)] group-hover:-translate-y-2 transition-all duration-500">
+                                    <div className="w-full h-full rounded-[2rem] overflow-hidden border border-stone-200/60 shadow-sm relative group-hover:shadow-[0_20px_40px_rgba(184,149,106,0.15)] group-hover:-translate-y-2 transition-all duration-500">
                                         <img
                                             src={cat.image}
                                             alt={cat.name}
@@ -84,7 +84,7 @@ const CategoryShowcase = () => {
                                         />
                                         
                                         {/* Subtle Hover Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#141211]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-brand-plum/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                         
                                         {/* Premium Inside Border */}
                                         <div className="absolute inset-0 border-0 group-hover:border-[8px] border-white/10 transition-all duration-500 rounded-[2rem] pointer-events-none" />
@@ -92,14 +92,14 @@ const CategoryShowcase = () => {
 
                                     {/* Quick Explore Button Hidden/Revealed */}
                                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 z-20">
-                                        <span className="bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl whitespace-nowrap">
+                                        <span className="bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl whitespace-nowrap">
                                             Explore
                                         </span>
                                     </div>
                                 </div>
 
                                 {/* Professional Text */}
-                                <h3 className="font-serif text-base md:text-lg text-stone-900 group-hover:text-[#C59B27] transition-colors duration-300 tracking-wide font-medium">
+                                <h3 className="font-serif text-base md:text-lg text-stone-900 group-hover:text-brand-champagne transition-colors duration-300 tracking-wide font-medium">
                                     {cat.name}
                                 </h3>
                             </Link>

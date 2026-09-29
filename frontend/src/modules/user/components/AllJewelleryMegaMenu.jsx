@@ -47,7 +47,7 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
                 onWheel={(e) => e.stopPropagation()}
                 style={{
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#C59B27 transparent',
+                    scrollbarColor: '#B8956A transparent',
                 }}
             >
                 <AnimatePresence mode="wait">
@@ -59,7 +59,7 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
                             exit={{ opacity: 0, x: -20 }}
                             className="p-4 sm:p-5 lg:p-6"
                         >
-                            <h3 className="text-[#C59B27] text-[10.5px] sm:text-[11px] font-black uppercase tracking-[0.25em] mb-3 sm:mb-4">
+                            <h3 className="text-brand-champagne text-[10.5px] sm:text-[11px] font-black uppercase tracking-[0.25em] mb-3 sm:mb-4">
                                 Explore Metal Collections
                             </h3>
 

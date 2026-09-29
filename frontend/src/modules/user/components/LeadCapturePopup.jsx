@@ -142,7 +142,7 @@ const LeadCapturePopup = () => {
                                 </div>
                                 <button 
                                     onClick={() => setStep(2)}
-                                    className="w-full py-4 bg-black text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#3E2723] transition-all flex items-center justify-center gap-2"
+                                    className="w-full py-4 bg-brand-plum text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#3E2723] transition-all flex items-center justify-center gap-2"
                                 >
                                     Yes, Save My Cart <ArrowRight size={14} />
                                 </button>
@@ -182,7 +182,7 @@ const LeadCapturePopup = () => {
 
                                 <button 
                                     type="submit"
-                                    className="w-full py-4 bg-black text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#3E2723] transition-all"
+                                    className="w-full py-4 bg-brand-plum text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#3E2723] transition-all"
                                 >
                                     Secure My Cart
                                 </button>

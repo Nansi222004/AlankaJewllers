@@ -133,7 +133,7 @@ const FamilyTrendingNearYou = ({ sectionData }) => {
 
                 {/* Header Area */}
                 <div className="text-center mb-2 md:mb-8">
-                    <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#141211] tracking-tight">
+                    <h2 className="text-3xl md:text-5xl font-serif font-medium text-brand-espresso tracking-tight">
                         {String(sectionData?.settings?.title || sectionData?.label || 'Trending Near You').trim() || 'Trending Near You'}
                     </h2>
                 </div>
@@ -152,7 +152,7 @@ const FamilyTrendingNearYou = ({ sectionData }) => {
                                         transform: `rotateY(${angle}deg) translateZ(var(--radius))`,
                                     }}
                                 >
-                                    <Link to={item.path} className="block w-full h-full relative isolate rounded-[1.2rem] overflow-hidden cursor-pointer bg-white shadow-xl border border-[#C59B27]/20">
+                                    <Link to={item.path} className="block w-full h-full relative isolate rounded-[1.2rem] overflow-hidden cursor-pointer bg-white shadow-xl border border-brand-champagne/20">
                                         {/* Image */}
                                         <div className="absolute inset-0 bg-transparent">
                                             <img
@@ -173,7 +173,7 @@ const FamilyTrendingNearYou = ({ sectionData }) => {
                                         </div>
 
                                         {/* Border Glow on Hover */}
-                                        <div className="absolute inset-0 border-[2px] border-transparent group-hover:border-[#C59B27]/40 rounded-[1.2rem] transition-colors duration-500 pointer-events-none"></div>
+                                        <div className="absolute inset-0 border-[2px] border-transparent group-hover:border-brand-champagne/40 rounded-[1.2rem] transition-colors duration-500 pointer-events-none"></div>
                                     </Link>
                                 </div>
                             );

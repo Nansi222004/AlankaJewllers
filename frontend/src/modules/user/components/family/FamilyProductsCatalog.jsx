@@ -244,8 +244,8 @@ const FamilyProductsCatalog = ({
         navigate(buildFamilyShopPath({ recipient: normalizedRecipient }));
     };
 
-    const GOLD = '#C59B27';
-    const OBSIDIAN = '#141211';
+    const GOLD = '#B8956A';
+    const OBSIDIAN = '#332827';
 
     if (visibleProductCards.length === 0) return null;
 
@@ -275,8 +275,8 @@ const FamilyProductsCatalog = ({
                                 whileTap={{ scale: 0.95 }}
                                 className={`px-6 py-2.5 rounded-full font-semibold text-xs tracking-wider transition-all ${
                                     selectedRecipient === tabKey
-                                        ? 'bg-[#141211] text-[#E8D198] border border-[#C59B27] shadow-lg'
-                                        : 'bg-[#FAF8F5] text-stone-700 border border-[#E8DFD0] hover:border-[#C59B27]/40 hover:bg-stone-100'
+                                        ? 'bg-brand-plum text-brand-champagne-light border border-brand-champagne shadow-lg'
+                                        : 'bg-brand-pearl text-stone-700 border border-brand-border hover:border-brand-champagne/40 hover:bg-stone-100'
                                 }`}
                             >
                                 {resolvedSettings.tabConfigs?.[tabKey]?.tabLabel || defaultRecipientLabels[tabKey]}
@@ -430,8 +430,8 @@ const FamilyProductsCatalog_OLD = ({
         navigate(buildFamilyShopPath({ recipient: normalizedRecipient }));
     };
 
-    const GOLD_LIGHT = '#FAF8F5';
-    const GOLD = '#C59B27';
+    const GOLD_LIGHT = '#FBF8F7';
+    const GOLD = '#B8956A';
 
     if (visibleProductCards.length === 0) return null;
 
@@ -458,7 +458,7 @@ const FamilyProductsCatalog_OLD = ({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: 0.1 }}
-                        className="text-[4vw] sm:text-3xl md:text-4xl font-serif text-[#141211] tracking-tight mb-1 whitespace-nowrap flex justify-center items-center"
+                        className="text-[4vw] sm:text-3xl md:text-4xl font-serif text-brand-espresso tracking-tight mb-1 whitespace-nowrap flex justify-center items-center"
                     >
                         {(titleOverride || runtimeLabels[effectiveTab] || resolvedSettings.title)}
                         <span className="italic ml-1.5" style={{ color: GOLD }}>
@@ -485,7 +485,7 @@ const FamilyProductsCatalog_OLD = ({
                                     className={`w-full lg:flex-none lg:w-auto px-3 py-1.5 md:px-4 md:py-2 rounded-none text-[8px] md:text-[10px] font-black uppercase tracking-[0.15em] whitespace-nowrap transition-all border leading-none ${isLastOdd ? 'col-span-2 lg:col-span-1' : ''}`}
                                     style={{
                                         background: isActive ? GOLD : '#fff',
-                                        color: isActive ? '#141211' : '#444',
+                                        color: isActive ? '#332827' : '#444',
                                         borderColor: isActive ? GOLD : '#eee'
                                     }}
                                 >
@@ -518,7 +518,7 @@ const FamilyProductsCatalog_OLD = ({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         onClick={() => handleSelectRecipient('all')}
-                        className="px-8 py-3 md:px-10 md:py-3.5 rounded-none font-bold uppercase tracking-widest text-[10px] transition-all shadow-md hover:shadow-lg text-[#141211] bg-[#C59B27] hover:bg-[#D4AF37]"
+                        className="px-8 py-3 md:px-10 md:py-3.5 rounded-none font-bold uppercase tracking-widest text-[10px] transition-all shadow-md hover:shadow-lg text-brand-espresso bg-brand-champagne hover:bg-[#D4AF37]"
                     >
                         {resolvedSettings.ctaLabel}
                     </motion.button>

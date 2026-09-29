@@ -196,7 +196,7 @@ const MenExploreCollections = ({ sectionData }) => {
                                     onClick={() => scrollToDot(idx)}
                                     className={`transition-all duration-300 rounded-full ${
                                         activeIndex === idx 
-                                        ? "w-6 h-1.5 bg-black" 
+                                        ? "w-6 h-1.5 bg-brand-plum" 
                                         : "w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400"
                                     }`}
                                     aria-label={`Go to item ${idx + 1}`}

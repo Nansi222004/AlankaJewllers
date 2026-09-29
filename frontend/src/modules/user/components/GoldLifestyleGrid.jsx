@@ -115,13 +115,13 @@ const GoldLifestyleGrid = ({ sectionData = null }) => {
             <div className="container mx-auto px-4 md:px-6 max-w-[1450px]">
                 {/* Section Header */}
                 <div className="text-center mb-8 md:mb-12 relative">
-                    <span className="text-[10.5px] md:text-xs font-bold uppercase tracking-[0.3em] text-[#C59B27] block mb-2">
+                    <span className="text-[10.5px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-champagne block mb-2">
                         {eyebrow}
                     </span>
                     <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2F0A0F] font-normal tracking-tight mb-3">
                         {title}
                     </h2>
-                    <div className="h-[2px] w-14 md:w-20 bg-[#C59B27] mx-auto rounded-full mb-3" />
+                    <div className="h-[2px] w-14 md:w-20 bg-brand-champagne mx-auto rounded-full mb-3" />
                     <p className="font-serif italic text-stone-600 text-sm sm:text-base md:text-lg max-w-lg mx-auto">
                         {subtitle}
                     </p>
@@ -131,7 +131,7 @@ const GoldLifestyleGrid = ({ sectionData = null }) => {
                         <div className="mt-3 md:absolute md:right-0 md:bottom-2">
                             <Link
                                 to={viewAllPath}
-                                className="inline-flex items-center gap-1.5 text-xs md:text-sm font-semibold uppercase tracking-[0.18em] text-[#8C6B1C] hover:text-[#C59B27] transition-colors group/viewall"
+                                className="inline-flex items-center gap-1.5 text-xs md:text-sm font-semibold uppercase tracking-[0.18em] text-[#8C6B1C] hover:text-brand-champagne transition-colors group/viewall"
                             >
                                 <span>View All</span>
                                 <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover/viewall:translate-x-1" />
@@ -148,7 +148,7 @@ const GoldLifestyleGrid = ({ sectionData = null }) => {
                             whileHover={{ y: -4 }}
                             transition={{ duration: 0.3, ease: 'easeOut' }}
                             onClick={() => navigate(item.path)}
-                            className="group flex flex-col bg-[#FDFBF7] rounded-2xl overflow-hidden border border-[#E8DFD0]/70 hover:border-[#C59B27]/40 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            className="group flex flex-col bg-brand-pearl rounded-2xl overflow-hidden border border-brand-border/70 hover:border-brand-champagne/40 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
                         >
                             {/* Card Image */}
                             <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#FAF6F0]">
@@ -172,7 +172,7 @@ const GoldLifestyleGrid = ({ sectionData = null }) => {
                                         {item.subtitle}
                                     </p>
                                 </div>
-                                <div className="w-8 h-8 md:w-9 md:h-9 rounded-full border border-[#D4AF37]/30 bg-white group-hover:bg-[#C59B27] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 group-hover:border-[#C59B27]">
+                                <div className="w-8 h-8 md:w-9 md:h-9 rounded-full border border-[#D4AF37]/30 bg-white group-hover:bg-brand-champagne flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 group-hover:border-brand-champagne">
                                     <ArrowRight className="w-3.5 h-3.5 text-[#8C6B1C] group-hover:text-white transition-all duration-300 group-hover:translate-x-0.5" />
                                 </div>
                             </div>

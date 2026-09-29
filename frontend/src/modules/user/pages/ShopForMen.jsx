@@ -44,7 +44,7 @@ const ShopForMen = () => {
   if (isCmsLoading) return <Loader />;
   if (isError) {
     return (
-      <div className="bg-[#FAF8F5] min-h-screen flex items-center justify-center px-6 py-14">
+      <div className="bg-brand-pearl min-h-screen flex items-center justify-center px-6 py-14">
         <div className="max-w-xl w-full bg-white border border-gray-100 rounded-2xl p-8 shadow-sm text-center">
           <div className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400">
             Shop for Men
@@ -60,7 +60,7 @@ const ShopForMen = () => {
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#141211] px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white hover:bg-[#1C1917] hover:text-[#E8D198] transition-all"
+            className="mt-6 inline-flex items-center justify-center rounded-lg bg-brand-plum px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white hover:bg-brand-plum hover:text-brand-champagne-light transition-all"
           >
             Retry
           </button>
@@ -70,7 +70,7 @@ const ShopForMen = () => {
   }
 
   return (
-    <div className="mens-section bg-[#FAF8F5] min-h-screen text-[#111827] overflow-x-hidden">
+    <div className="mens-section bg-brand-pearl min-h-screen text-[#111827] overflow-x-hidden">
       <MenHeroCarousel sectionData={sectionMap["hero-banners"]} />
       <MenCategoriesGrid sectionData={sectionMap["categories-grid"]} />
 

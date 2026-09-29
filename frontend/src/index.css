@@ -2,14 +2,30 @@
 @import "tailwindcss";
 
 :root {
-    --primary-gold: #C6A04A;
-    --champagne-gold: #E5CC85;
-    --deep-charcoal: #171717;
-    --warm-ivory: #FAF7F0;
-    --white: #FFFFFF;
-    --text-primary: #242424;
-    --text-secondary: #77716A;
-    --border-gold: #E8E0D2;
+    /* Alankar Jewellers brand palette */
+    --brand-pearl: #FBF8F7;
+    --brand-porcelain: #F7EFEE;
+    --brand-white: #FFFFFF;
+    --brand-espresso: #332827;
+    --brand-plum: #4A3638;
+    --brand-taupe: #766866;
+    --brand-champagne: #B8956A;
+    --brand-champagne-light: #D8C3A5;
+    --brand-blush: #D9B8B6;
+    --brand-rosewater: #F1DFDE;
+    --brand-border: #E9DEDA;
+    --brand-border-soft: #F0E8E5;
+    --brand-champagne-mist: #F3EBDD;
+
+    /* Legacy aliases retained while components migrate to brand tokens. */
+    --primary-gold: var(--brand-champagne);
+    --champagne-gold: var(--brand-champagne-light);
+    --deep-charcoal: var(--brand-espresso);
+    --warm-ivory: var(--brand-pearl);
+    --white: var(--brand-white);
+    --text-primary: var(--brand-espresso);
+    --text-secondary: var(--brand-taupe);
+    --border-gold: var(--brand-border);
 }
 
 @theme {
@@ -17,73 +33,89 @@
     --font-body: 'Lato', sans-serif;
     --font-serif: 'Cormorant Garamond', serif;
 
-    --color-pure-white: #FFFFFF;
-    --color-primary: #171717;
-    --color-obsidian: #171717;
-    --color-dark: #171717;
-    --color-charcoal: #171717;
-    --color-text-primary: #242424;
-    --color-text-secondary: #77716A;
-    --color-muted: #77716A;
-    --color-gold: #C6A04A;
-    --color-gold-light: #E5CC85;
-    --color-gold-dark: #A88338;
-    --color-champagne: #E5CC85;
+    /* First-class semantic brand utilities (for example, bg-brand-pearl). */
+    --color-brand-pearl: var(--brand-pearl);
+    --color-brand-porcelain: var(--brand-porcelain);
+    --color-brand-white: var(--brand-white);
+    --color-brand-espresso: var(--brand-espresso);
+    --color-brand-plum: var(--brand-plum);
+    --color-brand-taupe: var(--brand-taupe);
+    --color-brand-champagne: var(--brand-champagne);
+    --color-brand-champagne-light: var(--brand-champagne-light);
+    --color-brand-blush: var(--brand-blush);
+    --color-brand-rosewater: var(--brand-rosewater);
+    --color-brand-border: var(--brand-border);
+    --color-brand-border-soft: var(--brand-border-soft);
+    --color-brand-champagne-mist: var(--brand-champagne-mist);
+
+    /* Existing Tailwind names remain available as migration aliases. */
+    --color-pure-white: var(--brand-white);
+    --color-primary: var(--brand-espresso);
+    --color-obsidian: var(--brand-espresso);
+    --color-dark: var(--brand-espresso);
+    --color-charcoal: var(--brand-espresso);
+    --color-text-primary: var(--brand-espresso);
+    --color-text-secondary: var(--brand-taupe);
+    --color-muted: var(--brand-taupe);
+    --color-gold: var(--brand-champagne);
+    --color-gold-light: var(--brand-champagne-light);
+    --color-gold-dark: var(--brand-plum);
+    --color-champagne: var(--brand-champagne-light);
     --color-wine: #7A1C28;
-    --color-beige: #FAF7F0;
-    --color-ivory: #FAF7F0;
-    --color-border-gold: #E8E0D2;
-    --color-border-subtle: #E8E0D2;
+    --color-beige: var(--brand-porcelain);
+    --color-ivory: var(--brand-pearl);
+    --color-border-gold: var(--brand-border);
+    --color-border-subtle: var(--brand-border-soft);
 }
 
 /* Alankar Jewellers Luxury UI Utilities */
 .luxury-card {
-    background-color: #FFFFFF;
-    border: 1px solid #E8E0D2;
-    box-shadow: 0 2px 12px -2px rgba(23, 23, 23, 0.03);
+    background-color: var(--brand-white);
+    border: 1px solid var(--brand-border-soft);
+    box-shadow: 0 4px 18px -8px rgba(51, 40, 39, 0.12);
     transition: all 0.25s ease;
 }
 
 .luxury-card:hover {
-    border-color: #C6A04A;
-    box-shadow: 0 8px 24px -4px rgba(198, 160, 74, 0.12);
+    border-color: var(--brand-champagne-light);
+    box-shadow: 0 12px 30px -10px rgba(51, 40, 39, 0.16);
 }
 
 .luxury-btn-primary {
-    background: #171717;
-    color: #FFFFFF;
-    border: 1px solid #171717;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: var(--brand-espresso);
+    color: var(--brand-white);
+    border: 1px solid var(--brand-espresso);
+    box-shadow: 0 3px 10px rgba(51, 40, 39, 0.14);
     transition: all 0.25s ease;
 }
 
 .luxury-btn-primary:hover {
-    background: #242424;
-    border-color: #C6A04A;
-    box-shadow: 0 4px 14px rgba(198, 160, 74, 0.18);
+    background: var(--brand-plum);
+    border-color: var(--brand-plum);
+    box-shadow: 0 6px 16px rgba(51, 40, 39, 0.18);
     transform: translateY(-1px);
 }
 
 .luxury-btn-gold {
-    background: #C6A04A;
-    color: #FFFFFF;
+    background: var(--brand-champagne);
+    color: var(--brand-espresso);
     font-weight: 600;
-    border: 1px solid #C6A04A;
-    box-shadow: 0 2px 10px rgba(198, 160, 74, 0.18);
+    border: 1px solid var(--brand-champagne);
+    box-shadow: 0 3px 12px rgba(184, 149, 106, 0.18);
     transition: all 0.25s ease;
 }
 
 .luxury-btn-gold:hover {
-    background: #B38E39;
-    border-color: #B38E39;
-    box-shadow: 0 4px 16px rgba(198, 160, 74, 0.25);
+    background: var(--brand-champagne-light);
+    border-color: var(--brand-champagne-light);
+    box-shadow: 0 6px 18px rgba(184, 149, 106, 0.24);
     transform: translateY(-1px);
 }
 
 .luxury-badge-gold {
-    background: #FAF7F0;
-    color: #A88338;
-    border: 1px solid #E8E0D2;
+    background: var(--brand-champagne-mist);
+    color: var(--brand-plum);
+    border: 1px solid var(--brand-border-soft);
 }
 
 /* Utility classes for font families used across components */
@@ -240,7 +272,7 @@ html.lenis body {
 
 .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: #C59B27 transparent;
+    scrollbar-color: var(--brand-champagne) transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -252,12 +284,12 @@ html.lenis body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #C59B27;
+    background: var(--brand-champagne);
     border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #96713A;
+    background: var(--brand-plum);
 }
 
 @keyframes slowZoom {
@@ -544,13 +576,13 @@ input:-webkit-autofill:active {
 }
 
 .rich-text-content blockquote {
-    border-left: 4px solid #C59B27;
+    border-left: 4px solid var(--brand-champagne);
     padding-left: 1.25rem;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
     font-style: italic;
     color: #4B5563;
-    background-color: #FAF8F5;
+    background-color: var(--brand-pearl);
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border-top-right-radius: 0.5rem;
@@ -558,7 +590,7 @@ input:-webkit-autofill:active {
 }
 
 .rich-text-content a {
-    color: #C59B27;
+    color: var(--brand-plum);
     text-decoration: underline;
     font-weight: 500;
 }

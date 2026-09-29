@@ -159,11 +159,11 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                 <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
                     {/* Top Diamond Emblem */}
                     <div className="flex items-center justify-center gap-3 mb-2.5">
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-[#C59B27]/70" />
-                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C59B27]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-brand-champagne/70" />
+                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-brand-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                             <polygon points="6 3 18 3 22 9 12 22 2 9" />
                         </svg>
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-[#C59B27]/70" />
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-brand-champagne/70" />
                     </div>
 
                     {/* Badge / Category Label */}
@@ -172,7 +172,7 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                     </span>
 
                     {/* Main Title */}
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-[#141211] font-normal tracking-tight leading-tight mb-2.5">
+                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-brand-espresso font-normal tracking-tight leading-tight mb-2.5">
                         {title}
                     </h2>
 
@@ -191,7 +191,7 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                             type="button"
                             onClick={() => scroll('left')}
                             aria-label="Scroll left"
-                            className="absolute -left-1 sm:-left-3 lg:-left-5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/95 backdrop-blur-sm shadow-[0_6px_20px_rgba(0,0,0,0.1)] border border-[#E8DFD0] flex items-center justify-center text-[#141211] hover:text-[#C59B27] hover:border-[#C59B27] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                            className="absolute -left-1 sm:-left-3 lg:-left-5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/95 backdrop-blur-sm shadow-[0_6px_20px_rgba(0,0,0,0.1)] border border-brand-border flex items-center justify-center text-brand-espresso hover:text-brand-champagne hover:border-brand-champagne hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
                         >
                             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                         </button>
@@ -203,7 +203,7 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                             type="button"
                             onClick={() => scroll('right')}
                             aria-label="Scroll right"
-                            className="absolute -right-1 sm:-right-3 lg:-right-5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/95 backdrop-blur-sm shadow-[0_6px_20px_rgba(0,0,0,0.1)] border border-[#E8DFD0] flex items-center justify-center text-[#141211] hover:text-[#C59B27] hover:border-[#C59B27] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                            className="absolute -right-1 sm:-right-3 lg:-right-5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/95 backdrop-blur-sm shadow-[0_6px_20px_rgba(0,0,0,0.1)] border border-brand-border flex items-center justify-center text-brand-espresso hover:text-brand-champagne hover:border-brand-champagne hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
                         >
                             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                         </button>
@@ -224,8 +224,8 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                                     onClick={() => handleCardClick(shape, isSelected)}
                                     className={`group relative flex flex-col justify-between bg-white rounded-2xl p-2 sm:p-2.5 pb-3.5 border transition-all duration-300 ease-out cursor-pointer select-none text-center snap-start w-[140px] sm:w-[152px] md:w-[160px] lg:w-[calc((100%-7*14px)/8)] min-w-[134px] max-w-[172px] shrink-0 ${
                                         isSelected
-                                            ? 'border-[#C59B27] shadow-[0_14px_30px_rgba(197,155,39,0.22)] scale-[1.04] -translate-y-1 ring-1 ring-[#C59B27]/40'
-                                            : 'border-[#EBE3D5] hover:border-[#C59B27] hover:shadow-[0_14px_30px_rgba(197,155,39,0.18)] hover:scale-[1.04] hover:-translate-y-1'
+                                            ? 'border-brand-champagne shadow-[0_14px_30px_rgba(184,149,106,0.22)] scale-[1.04] -translate-y-1 ring-1 ring-brand-champagne/40'
+                                            : 'border-[#EBE3D5] hover:border-brand-champagne hover:shadow-[0_14px_30px_rgba(184,149,106,0.18)] hover:scale-[1.04] hover:-translate-y-1'
                                     }`}
                                 >
                                     {/* 1. Diamond Image Container */}
@@ -250,7 +250,7 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                                     {/* 2. Shape Info */}
                                     <div className="flex-1 flex flex-col justify-between pt-2.5 sm:pt-3">
                                         <div>
-                                            <h3 className="font-serif text-[13px] sm:text-[14px] font-bold text-[#141211] group-hover:text-[#9E7820] transition-colors duration-300 tracking-tight leading-snug">
+                                            <h3 className="font-serif text-[13px] sm:text-[14px] font-bold text-brand-espresso group-hover:text-brand-champagne transition-colors duration-300 tracking-tight leading-snug">
                                                 {shape.name}
                                             </h3>
                                             <p className="text-[10px] sm:text-[11px] text-[#7A7065] font-normal leading-snug px-0.5 mt-1 min-h-[28px] sm:min-h-[32px] flex items-center justify-center line-clamp-2">
@@ -263,8 +263,8 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                                             <div
                                                 className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
                                                     isSelected
-                                                        ? 'bg-[#C59B27] text-white shadow-xs'
-                                                        : 'bg-[#F4EDE2] text-[#8C7D6B] group-hover:bg-[#C59B27] group-hover:text-white group-hover:shadow-xs group-hover:translate-x-0.5'
+                                                        ? 'bg-brand-champagne text-white shadow-xs'
+                                                        : 'bg-[#F4EDE2] text-[#8C7D6B] group-hover:bg-brand-champagne group-hover:text-white group-hover:shadow-xs group-hover:translate-x-0.5'
                                                 }`}
                                             >
                                                 <ArrowRight className="w-3 h-3 transition-transform duration-300" strokeWidth={2.2} />
@@ -282,10 +282,10 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                     {/* View All Diamond Shapes in Store Button */}
                     <Link
                         to="/shop?metal=diamond"
-                        className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full border border-[#C59B27] bg-white text-[#141211] hover:bg-[#141211] hover:text-[#E8D198] hover:border-[#141211] text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 shadow-sm hover:shadow-md group"
+                        className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full border border-brand-champagne bg-white text-brand-espresso hover:bg-brand-plum hover:text-brand-champagne-light hover:border-brand-espresso text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 shadow-sm hover:shadow-md group"
                     >
                         <span>View All Diamond Shapes in Store</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#C59B27] group-hover:text-[#E8D198] group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-3.5 h-3.5 text-brand-champagne group-hover:text-brand-champagne-light group-hover:translate-x-1 transition-transform" />
                     </Link>
 
                     {/* Bottom Subtitle Note */}

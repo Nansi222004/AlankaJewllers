@@ -13,12 +13,12 @@ const Wishlist = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-brand-pearl min-h-screen text-brand-espresso">
             {/* Back Button */}
             <div className="container mx-auto px-4 pt-6">
                 <button
                     onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 text-stone-600 hover:text-[#C59B27] transition-all group font-bold uppercase tracking-widest text-[10px]"
+                    className="flex items-center gap-2 text-stone-600 hover:text-brand-champagne transition-all group font-bold uppercase tracking-widest text-[10px]"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                     Back
@@ -31,18 +31,18 @@ const Wishlist = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="flex flex-col items-center justify-center text-center py-20 bg-[#FAF8F5] rounded-3xl border border-[#C59B27]/30 shadow-sm"
+                        className="flex flex-col items-center justify-center text-center py-20 bg-brand-pearl rounded-3xl border border-brand-border-soft shadow-[0_12px_36px_rgba(51,40,39,0.05)]"
                     >
-                        <div className="w-24 h-24 bg-[#C59B27]/10 rounded-full flex items-center justify-center mb-8 shadow-inner border border-[#C59B27]/25">
-                            <Heart className="w-10 h-10 text-[#C59B27]" fill="none" strokeWidth={1.5} />
+                        <div className="w-24 h-24 bg-brand-champagne/10 rounded-full flex items-center justify-center mb-8 shadow-inner border border-brand-champagne/25">
+                            <Heart className="w-10 h-10 text-brand-champagne" fill="none" strokeWidth={1.5} />
                         </div>
-                        <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#141211] mb-4">Your Wishlist is Empty</h2>
+                        <h2 className="text-2xl md:text-3xl font-serif font-bold text-brand-espresso mb-4">Your Wishlist is Empty</h2>
                         <p className="text-stone-500 mb-10 max-w-sm leading-relaxed text-sm md:text-base">
                             Explore our collection and tap the heart icon to save the pieces you want to revisit here.
                         </p>
                         <Link
                             to="/shop"
-                            className="bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-10 py-4 rounded-full hover:bg-[#1C1917] transition-all duration-300 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs shadow-lg shadow-black/10 flex items-center gap-3 hover:-translate-y-1 active:scale-95"
+                            className="bg-brand-plum text-white border border-brand-plum px-10 py-4 rounded-full hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all duration-300 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs shadow-lg shadow-brand-espresso/10 flex items-center gap-3 hover:-translate-y-1 active:scale-95"
                         >
                             <ArrowLeft className="w-4 h-4" /> Start Shopping
                         </Link>
@@ -77,7 +77,7 @@ const Wishlist = () => {
             {safeWishlist.length > 0 && (
                 <div className="container mx-auto px-4 pb-20">
                     <div className="text-center pt-12 border-t border-stone-100">
-                        <p className="text-[#C59B27] text-xs font-semibold uppercase tracking-widest opacity-80">
+                        <p className="text-brand-champagne text-xs font-semibold uppercase tracking-widest opacity-80">
                             Alankar Jewellers • Handcrafted Elegance
                         </p>
                     </div>

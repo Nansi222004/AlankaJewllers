@@ -14,6 +14,10 @@ dist-ssr
 *.local
 tests/
 test/
+.qa*
+.qa-*/
+.qa-screenshots/
+*.tmp
 
 # Editor directories and files
 .vscode/*

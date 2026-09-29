@@ -69,7 +69,7 @@ const CollectionCategoryGrid = ({
     defaultEyebrow = 'Curated Dimensions',
     defaultSubtitle = '',
     defaultItems = [],
-    bgClass = 'bg-[#FAF8F5]',
+    bgClass = 'bg-brand-pearl',
     sectionData: externalSectionData = null,
     sidePanelData: externalSidePanelData = null,
 }) => {
@@ -130,7 +130,7 @@ const CollectionCategoryGrid = ({
 
     if ((isCmsLoading && !sectionData && externalSectionData === null) || (categories.length === 0 && (isCmsLoading || isShopLoading))) {
         return (
-            <div className={`w-full ${bgClass} py-8 md:py-12 border-y border-[#E8DFD0]/60`}>
+            <div className={`w-full ${bgClass} py-8 md:py-12 border-y border-brand-border/60`}>
                 <div className="container mx-auto px-4 md:px-8 max-w-[1440px]">
                     <div className="h-6 w-48 bg-stone-200/60 rounded-md mb-6 animate-pulse" />
                     <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
@@ -156,7 +156,7 @@ const CollectionCategoryGrid = ({
         <Link
             key={cat.id}
             to={cat.path}
-            className="group flex flex-col justify-between h-full bg-white rounded-2xl overflow-hidden border border-[#E8DFD0] hover:border-[#C59B27] shadow-xs hover:shadow-[0_16px_36px_rgba(20,18,17,0.1)] transition-all duration-400"
+            className="group flex flex-col justify-between h-full bg-white rounded-2xl overflow-hidden border border-brand-border hover:border-brand-champagne shadow-xs hover:shadow-[0_16px_36px_rgba(51,40,39,0.1)] transition-all duration-400"
         >
             <div className="relative flex-1 min-h-[140px] w-full overflow-hidden bg-stone-100">
                 <img
@@ -168,20 +168,20 @@ const CollectionCategoryGrid = ({
                     className="w-full h-full object-cover object-center transition-transform duration-[1.2s] ease-out group-hover:scale-108"
                 />
                 {cat.badge && (
-                    <span className="absolute top-2.5 right-2.5 bg-[#141211]/85 text-[#E8D198] text-[8px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-10 border border-[#C59B27]/40 shadow-xs">
+                    <span className="absolute top-2.5 right-2.5 bg-brand-plum/85 text-brand-champagne-light text-[8px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-10 border border-brand-champagne/40 shadow-xs">
                         {cat.badge}
                     </span>
                 )}
             </div>
 
-            <div className="p-3.5 bg-white border-t border-[#E8DFD0]/60 flex flex-col justify-between shrink-0">
+            <div className="p-3.5 bg-white border-t border-brand-border/60 flex flex-col justify-between shrink-0">
                 <div className="flex items-center justify-between gap-1 mb-1">
-                    <h4 className="text-xs sm:text-sm font-serif font-medium text-[#141211] group-hover:text-[#C59B27] transition-colors line-clamp-1">
+                    <h4 className="text-xs sm:text-sm font-serif font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors line-clamp-1">
                         {cat.name}
                     </h4>
-                    <ChevronRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-[#C59B27] transition-all transform group-hover:translate-x-1 shrink-0" />
+                    <ChevronRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-brand-champagne transition-all transform group-hover:translate-x-1 shrink-0" />
                 </div>
-                <span className="text-[9px] uppercase font-sans font-semibold tracking-[0.16em] text-[#C59B27] group-hover:text-[#141211] transition-colors">
+                <span className="text-[9px] uppercase font-sans font-semibold tracking-[0.16em] text-brand-taupe group-hover:text-brand-plum transition-colors">
                     Explore Collection
                 </span>
             </div>
@@ -193,7 +193,7 @@ const CollectionCategoryGrid = ({
         leadCategory && (
             <Link
                 to={leadCategory.path}
-                className="group block relative h-full min-h-[460px] rounded-3xl overflow-hidden bg-white border border-[#E8DFD0] hover:border-[#C59B27] shadow-xs hover:shadow-[0_20px_40px_rgba(20,18,17,0.12)] transition-all duration-500"
+                className="group block relative h-full min-h-[460px] rounded-3xl overflow-hidden bg-white border border-brand-border hover:border-brand-champagne shadow-xs hover:shadow-[0_20px_40px_rgba(51,40,39,0.12)] transition-all duration-500"
             >
                 <img
                     src={leadCategory.image}
@@ -204,28 +204,28 @@ const CollectionCategoryGrid = ({
                     className="w-full h-full object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-106"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#141211] via-[#141211]/30 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-plum via-brand-plum/30 to-transparent z-10" />
 
                 {leadCategory.badge ? (
-                    <div className="absolute top-4 left-4 z-20 bg-[#C59B27] text-[#141211] text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
+                    <div className="absolute top-4 left-4 z-20 bg-brand-champagne text-brand-espresso text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-md">
                         {leadCategory.badge}
                     </div>
                 ) : (
-                    <div className="absolute top-4 left-4 z-20 bg-[#141211]/80 backdrop-blur-sm border border-[#C59B27]/40 text-[#E8D198] text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                    <div className="absolute top-4 left-4 z-20 bg-brand-plum/80 backdrop-blur-sm border border-brand-champagne/40 text-brand-champagne-light text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
                         Atelier Spotlight
                     </div>
                 )}
 
-                <div className="absolute bottom-6 inset-x-6 z-20 text-[#FAF8F5]">
-                    <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-[#E8D198] mb-1 block">
+                <div className="absolute bottom-6 inset-x-6 z-20 text-brand-pearl">
+                    <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-brand-champagne-light mb-1 block">
                         Signature Category
                     </span>
                     <h3 className="font-serif text-2xl lg:text-3xl font-medium tracking-tight mb-3">
                         {leadCategory.name}
                     </h3>
-                    <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#FAF8F5] group-hover:text-[#C59B27] transition-colors font-bold">
+                    <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-brand-pearl group-hover:text-brand-champagne transition-colors font-bold">
                         <span>Explore Collection</span>
-                        <ChevronRight className="w-4 h-4 text-[#C59B27] transition-transform group-hover:translate-x-1" />
+                        <ChevronRight className="w-4 h-4 text-brand-champagne transition-transform group-hover:translate-x-1" />
                     </div>
                 </div>
             </Link>
@@ -235,17 +235,17 @@ const CollectionCategoryGrid = ({
     return (
         <section
             id={sectionKey}
-            className={`w-full ${bgClass} py-8 md:py-16 border-y border-[#E8DFD0]/60 relative`}
+            className={`w-full ${bgClass} py-8 md:py-16 border-y border-brand-border/60 relative`}
         >
             <div className="container mx-auto px-4 md:px-8 max-w-[1440px]">
                 {/* Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12">
                     <div>
-                        <div className="inline-flex items-center gap-2 mb-2 text-[#C59B27] text-[10px] uppercase font-bold tracking-[0.3em]">
-                            <Sparkles className="w-3.5 h-3.5" />
+                        <div className="inline-flex items-center gap-2 mb-2 text-brand-plum text-[10px] uppercase font-bold tracking-[0.3em]">
+                            <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
                             <span>{sectionEyebrow}</span>
                         </div>
-                        <h2 className="font-serif text-2xl md:text-4xl text-[#141211] font-normal tracking-tight">
+                        <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
                             {sectionTitle}
                         </h2>
                     </div>
@@ -253,7 +253,7 @@ const CollectionCategoryGrid = ({
                         <span className="text-stone-500 text-xs font-sans">
                             {sectionDescription}
                         </span>
-                        <div className="w-10 h-[1px] bg-[#C59B27]" />
+                        <div className="w-10 h-[1px] bg-brand-champagne" />
                     </div>
                 </div>
 
@@ -314,8 +314,8 @@ const CollectionCategoryGrid = ({
                             <Link
                                 key={category.id}
                                 to={category.path}
-                                className={`group/item flex flex-col shrink-0 snap-start bg-white rounded-2xl border border-[#E8DFD0] hover:border-[#C59B27] overflow-hidden transition-all duration-300 ${
-                                    isLead ? 'w-[170px] sm:w-[200px] border-[#C59B27]/60 shadow-sm' : 'w-[130px] sm:w-[150px]'
+                                className={`group/item flex flex-col shrink-0 snap-start bg-white rounded-2xl border border-brand-border hover:border-brand-champagne overflow-hidden transition-all duration-300 ${
+                                    isLead ? 'w-[170px] sm:w-[200px] border-brand-champagne/60 shadow-sm' : 'w-[130px] sm:w-[150px]'
                                 }`}
                             >
                                 <div className="relative aspect-square overflow-hidden bg-stone-100">
@@ -328,13 +328,13 @@ const CollectionCategoryGrid = ({
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-106"
                                     />
                                     {isLead && (
-                                        <div className="absolute top-2 left-2 bg-[#141211]/80 backdrop-blur-xs text-[#E8D198] text-[8px] font-bold px-2 py-0.5 rounded-full border border-[#C59B27]/40">
+                                        <div className="absolute top-2 left-2 bg-brand-plum/80 backdrop-blur-xs text-brand-champagne-light text-[8px] font-bold px-2 py-0.5 rounded-full border border-brand-champagne/40">
                                             Spotlight
                                         </div>
                                     )}
                                 </div>
-                                <div className="p-2.5 text-center bg-white border-t border-[#E8DFD0]/50">
-                                    <span className="text-[11px] sm:text-xs font-serif font-medium text-[#141211] group-hover/item:text-[#C59B27] transition-colors line-clamp-1">
+                                <div className="p-2.5 text-center bg-white border-t border-brand-border/50">
+                                    <span className="text-[11px] sm:text-xs font-serif font-medium text-brand-espresso group-hover/item:text-brand-champagne transition-colors line-clamp-1">
                                         {category.name}
                                     </span>
                                 </div>

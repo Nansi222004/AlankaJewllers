@@ -70,7 +70,7 @@ const HeerCustomisationBanner = () => {
                             {['9kt', '14kt', '18kt'].map((k) => (
                                 <button 
                                     key={k}
-                                    className={`px-2 py-1 rounded-md text-[8px] font-black uppercase transition-all duration-300 ${k === '14kt' ? 'bg-[#D4AF37] text-black' : 'bg-white/5 text-white/60'}`}
+                                    className={`px-2 py-1 rounded-md text-[8px] font-black uppercase transition-all duration-300 ${k === '14kt' ? 'bg-[#D4AF37] text-brand-espresso' : 'bg-white/5 text-white/60'}`}
                                 >
                                     {k}
                                 </button>
@@ -86,7 +86,7 @@ const HeerCustomisationBanner = () => {
                             </h3>
                             <div className="static md:absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col items-center lg:items-end mt-2 md:mt-0">
                                 <Link to="/customization" className="inline-block">
-                                    <button className="group relative flex items-center gap-2 bg-[#D4AF37] hover:bg-white text-black px-5 py-2.5 rounded-full font-black uppercase tracking-[0.1em] text-[10px] transition-all duration-500 shadow-lg cursor-pointer">
+                                    <button className="group relative flex items-center gap-2 bg-[#D4AF37] hover:bg-white text-brand-espresso px-5 py-2.5 rounded-full font-black uppercase tracking-[0.1em] text-[10px] transition-all duration-500 shadow-lg cursor-pointer">
                                         Customise Now
                                         <ChevronRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
                                     </button>

@@ -144,7 +144,7 @@ const GoldExclusiveLaunch = ({ sectionData = null }) => {
                                     <motion.div 
                                         className="opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-700 delay-200"
                                     >
-                                        <div className="px-5 py-1.5 border border-white/40 rounded-full text-white text-[8px] uppercase tracking-[0.25em] backdrop-blur-md bg-white/5 hover:bg-white hover:text-black transition-all duration-500 shadow-xl">
+                                        <div className="px-5 py-1.5 border border-white/40 rounded-full text-white text-[8px] uppercase tracking-[0.25em] backdrop-blur-md bg-white/5 hover:bg-white hover:text-brand-espresso transition-all duration-500 shadow-xl">
                                             Explore
                                         </div>
                                     </motion.div>

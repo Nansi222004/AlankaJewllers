@@ -29,15 +29,15 @@ const AboutUs = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] opacity-[0.18] pointer-events-none select-none -z-10">
               <img src={logoIcon} alt="" className="w-full h-auto" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-serif text-black mb-4">
+            <h1 className="text-5xl md:text-6xl font-serif text-brand-espresso mb-4">
               About Us
             </h1>
-            <p className="text-black text-xl leading-relaxed max-w-xl font-serif">
+            <p className="text-brand-espresso text-xl leading-relaxed max-w-xl font-serif">
               Welcome to <strong>Alankar Jewellers</strong>, where elegance meets
               timeless tradition. We are more than just a jewellery brand; we
               are curators of silver artistry designed to adorn your soul.
             </p>
-            <p className="text-black text-xl leading-relaxed max-w-xl font-serif">
+            <p className="text-brand-espresso text-xl leading-relaxed max-w-xl font-serif">
               Our journey began with a passion for bringing high-quality,
               handcrafted 925 Sterling Silver pieces to the modern woman. Every
               necklace, ring, and bracelet in our collection tells a story of
@@ -45,7 +45,7 @@ const AboutUs = () => {
               luxury should be an everyday experience, not just for special
               occasions.
             </p>
-            <p className="text-black text-xl leading-relaxed max-w-xl font-serif">
+            <p className="text-brand-espresso text-xl leading-relaxed max-w-xl font-serif">
               At Alankar Jewellers, we are committed to sustainability and ethical
               sourcing, ensuring that beauty does not come at a cost to our
               planet. Join us in celebrating your unique style with ornaments
@@ -104,7 +104,7 @@ const AboutUs = () => {
             <div className="w-16 h-16 rounded-full bg-[#8D6E63] text-white flex items-center justify-center mb-6 shadow-lg">
               <Truck className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-xl text-black font-bold mb-3">
+            <h3 className="font-serif text-xl text-brand-espresso font-bold mb-3">
               Free Shipping
             </h3>
             <p className="text-[#8D6E63] text-base leading-relaxed">
@@ -125,7 +125,7 @@ const AboutUs = () => {
             <div className="w-16 h-16 rounded-full bg-[#8D6E63] text-white flex items-center justify-center mb-6 shadow-lg">
               <ThumbsUp className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-xl text-black font-bold mb-3">
+            <h3 className="font-serif text-xl text-brand-espresso font-bold mb-3">
               Premium Quality
             </h3>
             <p className="text-[#8D6E63] text-base leading-relaxed">
@@ -146,7 +146,7 @@ const AboutUs = () => {
             <div className="w-16 h-16 rounded-full bg-[#8D6E63] text-white flex items-center justify-center mb-6 shadow-lg">
               <Lock className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-xl text-black font-bold mb-3">
+            <h3 className="font-serif text-xl text-brand-espresso font-bold mb-3">
               100% Secure Checkout
             </h3>
             <p className="text-[#8D6E63] text-base leading-relaxed">

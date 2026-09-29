@@ -120,7 +120,7 @@ const Login = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-4 overflow-hidden bg-white">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-4 overflow-hidden bg-brand-pearl text-brand-espresso">
       {/* Dynamic Background - Abstract Luxury */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div
@@ -136,7 +136,7 @@ const Login = () => {
       {/* Back Button */}
       <button
         onClick={() => navigate("/")}
-        className="absolute top-6 left-6 z-[60] text-black hover:bg-black/5 p-3 rounded-full transition-all group">
+        className="absolute top-6 left-6 z-[60] text-brand-espresso hover:bg-black/5 p-3 rounded-full transition-all group">
         <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
       </button>
 
@@ -144,9 +144,9 @@ const Login = () => {
       <div className="absolute inset-0 z-50 flex flex-col justify-center px-4">
         <div className="relative w-full max-w-sm mx-auto p-[2px] rounded-[2rem] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
           {/* Animated Border */}
-          <div className="absolute w-[200%] h-[200%] -top-[50%] -left-[50%] bg-[conic-gradient(from_0deg,transparent_0_340deg,#C59B27_360deg)] animate-[spin_4s_linear_infinite] z-0" />
+          <div className="absolute w-[200%] h-[200%] -top-[50%] -left-[50%] bg-[conic-gradient(from_0deg,transparent_0_340deg,#B8956A_360deg)] animate-[spin_4s_linear_infinite] z-0" />
 
-          <div className="relative z-10 bg-white/95 backdrop-blur-xl px-6 py-8 rounded-[calc(2rem-2px)] w-full mx-auto border border-[#E8DFD0]/40">
+          <div className="relative z-10 bg-white/95 backdrop-blur-xl px-6 py-8 rounded-[calc(2rem-2px)] w-full mx-auto border border-brand-border/40">
             {/* Brand */}
             <div className="text-center mb-8 flex flex-col items-center gap-1.5">
               <img
@@ -193,7 +193,7 @@ const Login = () => {
                         required
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        className="w-full h-12 bg-stone-50/50 border border-stone-200 rounded-xl px-4 text-stone-900 font-medium placeholder:text-stone-400 focus:border-[#C59B27] focus:ring-1 focus:ring-[#C59B27] outline-none transition-all"
+                        className="w-full h-12 bg-stone-50/50 border border-stone-200 rounded-xl px-4 text-stone-900 font-medium placeholder:text-stone-400 focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne outline-none transition-all"
                         placeholder="Enter your name"
                       />
                     </div>
@@ -206,7 +206,7 @@ const Login = () => {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full h-12 bg-stone-50/50 border border-stone-200 rounded-xl px-4 text-stone-900 font-medium placeholder:text-stone-400 focus:border-[#C59B27] focus:ring-1 focus:ring-[#C59B27] outline-none transition-all"
+                        className="w-full h-12 bg-stone-50/50 border border-stone-200 rounded-xl px-4 text-stone-900 font-medium placeholder:text-stone-400 focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne outline-none transition-all"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -216,7 +216,7 @@ const Login = () => {
                   <label className="text-[10px] font-bold text-stone-500 uppercase tracking-wider pl-1">
                     Mobile Number
                   </label>
-                  <div className="flex bg-stone-50/50 border border-stone-200 rounded-xl overflow-hidden h-12 items-center focus-within:border-[#C59B27] focus-within:ring-1 focus-within:ring-[#C59B27] transition-all">
+                  <div className="flex bg-stone-50/50 border border-stone-200 rounded-xl overflow-hidden h-12 items-center focus-within:border-brand-champagne focus-within:ring-1 focus-within:ring-brand-champagne transition-all">
                     <div className="h-full px-4 flex items-center gap-2 text-stone-700 font-semibold border-r border-stone-200">
                       <span>+91</span>
                     </div>
@@ -236,7 +236,7 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/50 hover:bg-[#1C1917] hover:border-[#C59B27] py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all shadow-md mt-2">
+                  className="w-full bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all shadow-md mt-2">
                   Get OTP
                 </button>
               </form>
@@ -253,19 +253,19 @@ const Login = () => {
                       value={data}
                       onChange={(e) => handleOtpChange(e.target, index)}
                       onFocus={(e) => e.target.select()}
-                      className="w-14 h-16 bg-transparent border-b-2 border-stone-300 focus:border-[#C59B27] text-center text-3xl font-bold text-stone-900 outline-none transition-all p-0 rounded-none"
+                      className="w-14 h-16 bg-transparent border-b-2 border-stone-300 focus:border-brand-champagne text-center text-3xl font-bold text-stone-900 outline-none transition-all p-0 rounded-none"
                     />
                   ))}
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/50 hover:bg-[#1C1917] hover:border-[#C59B27] py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all shadow-md">
+                  className="w-full bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all shadow-md">
                   Verify & Proceed
                 </button>
                 <button
                   type="button"
                   onClick={() => setLoginStep(1)}
-                  className="w-full text-center text-[11px] font-bold text-stone-500 uppercase tracking-wider py-2 hover:text-[#C59B27] transition-colors">
+                  className="w-full text-center text-[11px] font-bold text-stone-500 uppercase tracking-wider py-2 hover:text-brand-champagne transition-colors">
                   Change Mobile Number
                 </button>
               </form>
@@ -276,7 +276,7 @@ const Login = () => {
                 {isSignup ? "Already a Member?" : "New here?"}
                 <Link
                   to={isSignup ? "/login" : "/signup"}
-                  className="ml-1 text-stone-900 font-bold border-b border-stone-900 hover:text-[#C59B27] hover:border-[#C59B27] transition-colors">
+                  className="ml-1 text-stone-900 font-bold border-b border-stone-900 hover:text-brand-champagne hover:border-brand-champagne transition-colors">
                   {isSignup ? "Login" : "Join Now"}
                 </Link>
               </p>

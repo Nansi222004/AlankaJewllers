@@ -59,17 +59,17 @@ const AllJewellery = () => {
                 {/* Editorial Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between text-left mb-10 md:mb-14">
                     <div>
-                        <div className="inline-flex items-center gap-2 mb-2 text-[#C59B27] text-[10px] uppercase font-bold tracking-[0.3em]">
+                        <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
                             <Sparkles className="w-3.5 h-3.5" />
                             <span>{eyebrow}</span>
                         </div>
-                        <h2 className="font-serif text-2xl md:text-4xl text-[#141211] font-normal tracking-tight">
+                        <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
                             {title}
                         </h2>
                     </div>
                     <Link
                         to={ctaLink}
-                        className="hidden md:inline-flex items-center gap-2 text-xs font-sans font-bold uppercase tracking-[0.18em] text-[#141211] hover:text-[#C59B27] transition-colors pb-1 border-b border-[#141211] hover:border-[#C59B27]"
+                        className="hidden md:inline-flex items-center gap-2 text-xs font-sans font-bold uppercase tracking-[0.18em] text-brand-espresso hover:text-brand-champagne transition-colors pb-1 border-b border-brand-espresso hover:border-brand-champagne"
                     >
                         <span>{ctaLabel}</span>
                         <ShoppingBag className="w-3.5 h-3.5" />
@@ -106,7 +106,7 @@ const AllJewellery = () => {
                 <div className="mt-8 flex justify-center md:hidden">
                     <Link
                         to={ctaLink}
-                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#141211] hover:text-[#C59B27] border-b border-[#141211] pb-1 transition-all"
+                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-espresso hover:text-brand-champagne border-b border-brand-espresso pb-1 transition-all"
                     >
                         <span>{ctaLabel}</span>
                         <ShoppingBag className="w-4 h-4" />

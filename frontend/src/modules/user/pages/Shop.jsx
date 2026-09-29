@@ -1428,7 +1428,7 @@ const Shop = () => {
             {/* Back Button */}
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center gap-1 text-stone-800 hover:text-[#C59B27] transition-all group font-bold uppercase tracking-wide text-[10px] md:text-xs shrink-0 min-w-[50px]"
+              className="flex items-center gap-1 text-stone-800 hover:text-brand-champagne transition-all group font-bold uppercase tracking-wide text-[10px] md:text-xs shrink-0 min-w-[50px]"
             >
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
               Back
@@ -1436,7 +1436,7 @@ const Shop = () => {
 
             {/* Title - Center */}
             <div className="text-center flex-1 mx-1 overflow-hidden">
-              <h1 className="text-base md:text-xl font-serif font-bold text-[#141211] leading-tight truncate tracking-wide">
+              <h1 className="text-base md:text-xl font-serif font-bold text-brand-espresso leading-tight truncate tracking-wide">
                 {pageTitle}
               </h1>
               {(searchQuery || priceMaxQuery || priceMinQuery) && (
@@ -1459,13 +1459,13 @@ const Shop = () => {
             <div className="flex md:hidden items-center gap-1.5 shrink-0">
               <button
                 onClick={() => setIsSortOpen(true)}
-                className="p-1.5 border border-stone-300 rounded-lg text-stone-800 hover:border-[#C59B27] hover:text-[#C59B27] transition-all"
+                className="p-1.5 border border-stone-300 rounded-lg text-stone-800 hover:border-brand-champagne hover:text-brand-champagne transition-all"
               >
                 <ArrowUpDown className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setIsFilterOpen(true)}
-                className="flex items-center gap-1 bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-2.5 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider"
+                className="flex items-center gap-1 bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne px-2.5 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider transition-colors"
               >
                 <Filter className="w-3 h-3" />
                 Filter
@@ -1527,18 +1527,18 @@ const Shop = () => {
             (queryParams.get("tags") && queryParams.get("tags").length > 0) ||
             availabilityQuery
           ) && (
-            <div className="flex md:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-2 px-3 border-t border-stone-100 bg-[#FAF8F5]/90">
+            <div className="flex md:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-2 px-3 border-t border-stone-100 bg-brand-pearl/90">
               <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 shrink-0">
                 Active:
               </span>
 
               {/* Jewellery Type Chip */}
               {queryParams.get("metal") && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
                   <span>Jewellery Type: <strong className="capitalize">{queryParams.get("metal")}</strong></span>
                   <button
                     onClick={() => handleMetalChange("All")}
-                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    className="hover:text-brand-champagne p-0.5 rounded-full"
                     title="Remove Jewellery Type filter"
                   >
                     <X className="w-3 h-3" />
@@ -1548,7 +1548,7 @@ const Shop = () => {
 
               {/* Gold Colour Chip */}
               {queryParams.get("metal")?.toLowerCase() === "gold" && toneQuery && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
                   <span
                     className="w-2.5 h-2.5 rounded-full inline-block shrink-0"
                     style={{
@@ -1563,7 +1563,7 @@ const Shop = () => {
                   <span>Gold Colour: <strong className="capitalize">{toneQuery.replace("-", " ")}</strong></span>
                   <button
                     onClick={() => handleToneChange(null)}
-                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    className="hover:text-brand-champagne p-0.5 rounded-full"
                     title="Remove Gold Colour filter"
                   >
                     <X className="w-3 h-3" />
@@ -1573,7 +1573,7 @@ const Shop = () => {
 
               {/* Silver Type Chip */}
               {queryParams.get("metal")?.toLowerCase() === "silver" && silverTypeQuery && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
                   <span
                     className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-stone-300"
                     style={{
@@ -1584,7 +1584,7 @@ const Shop = () => {
                   <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.label || silverTypeQuery}</strong></span>
                   <button
                     onClick={() => handleSilverTypeChange(null)}
-                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    className="hover:text-brand-champagne p-0.5 rounded-full"
                     title="Remove Silver Type filter"
                   >
                     <X className="w-3 h-3" />
@@ -1594,7 +1594,7 @@ const Shop = () => {
 
               {/* Diamond Type Chip */}
               {queryParams.get("metal")?.toLowerCase() === "diamond" && diamondTypeQuery && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
                   <span
                     className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-sky-300"
                     style={{
@@ -1605,7 +1605,7 @@ const Shop = () => {
                   <span>Diamond Type: <strong>{DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondTypeQuery.toLowerCase() || (d.value === 'lab_grown' && (diamondTypeQuery.toLowerCase() === 'lab-grown' || diamondTypeQuery.toLowerCase() === 'labgrown')))?.label || diamondTypeQuery}</strong></span>
                   <button
                     onClick={() => handleDiamondTypeChange(null)}
-                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    className="hover:text-brand-champagne p-0.5 rounded-full"
                     title="Remove Diamond Type filter"
                   >
                     <X className="w-3 h-3" />
@@ -1615,11 +1615,11 @@ const Shop = () => {
 
               {/* Product Type Chip */}
               {selectedCategory && selectedCategory !== "All" && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
                   <span>Product Type: <strong>{selectedCategory}</strong></span>
                   <button
                     onClick={() => handleCategoryChange("All")}
-                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    className="hover:text-brand-champagne p-0.5 rounded-full"
                     title="Remove Product Type filter"
                   >
                     <X className="w-3 h-3" />
@@ -1629,11 +1629,11 @@ const Shop = () => {
 
               {/* Purity Chip */}
               {Boolean(purityQuery && purityQuery !== "All") && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-[#C59B27]/40 text-[#141211] text-[11px] font-semibold shrink-0 shadow-2xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
                   <span>Purity: <strong>{['24', '22', '18', '14'].includes(String(purityQuery)) ? `${purityQuery} Ct Gold` : purityQuery === '925' ? '925 Silver' : purityQuery === 'fine' ? 'Fine Silver' : purityQuery}</strong></span>
                   <button
                     onClick={() => handlePurityChange("All")}
-                    className="hover:text-[#C59B27] p-0.5 rounded-full"
+                    className="hover:text-brand-champagne p-0.5 rounded-full"
                     title="Remove Purity filter"
                   >
                     <X className="w-3 h-3" />
@@ -1644,7 +1644,7 @@ const Shop = () => {
               {/* Clear All */}
               <button
                 onClick={clearAllFilters}
-                className="text-[10px] font-bold text-[#C59B27] hover:underline uppercase tracking-wider shrink-0 ml-1"
+                className="text-[10px] font-bold text-brand-plum hover:text-brand-champagne hover:underline uppercase tracking-wider shrink-0 ml-1"
               >
                 Clear All
               </button>
@@ -1668,22 +1668,22 @@ const Shop = () => {
             if (isComingSoon) {
               return (
                 <div className="flex flex-col items-center justify-center py-24 text-center animate-in fade-in zoom-in duration-500">
-                  <div className="w-20 h-20 bg-[#C59B27]/10 border border-[#C59B27]/20 rounded-full flex items-center justify-center mb-6">
-                    <ShoppingBag className="w-10 h-10 text-[#C59B27]" />
+                  <div className="w-20 h-20 bg-brand-champagne/10 border border-brand-champagne/20 rounded-full flex items-center justify-center mb-6">
+                    <ShoppingBag className="w-10 h-10 text-brand-champagne" />
                   </div>
-                  <h3 className="text-3xl font-serif text-[#141211] mb-3 italic">
+                  <h3 className="text-3xl font-serif text-brand-espresso mb-3 italic">
                     Coming Soon
                   </h3>
                   <p className="text-stone-500 max-w-md mx-auto mb-8 text-sm">
                     We're currently handcrafting new exquisite designs for{" "}
-                    <span className="text-[#141211] font-semibold">
+                    <span className="text-brand-espresso font-semibold">
                       {selectedCategory}
                     </span>
                     . Stay tuned!
                   </p>
                   <button
                     onClick={clearAllFilters}
-                    className="bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#1C1917] transition-all shadow-lg"
+                    className="bg-brand-plum text-white border border-brand-plum px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all shadow-lg"
                   >
                     Explore Other Collections
                   </button>
@@ -1714,7 +1714,7 @@ const Shop = () => {
                             updateShopQuery({ page: currentServerPage + 1 })
                           }
                           disabled={isServerProductsLoading}
-                          className="rounded-full bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-8 py-3 text-xs font-black uppercase tracking-widest hover:bg-[#1C1917] transition-all shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+                          className="rounded-full bg-brand-plum text-white border border-brand-plum px-8 py-3 text-xs font-black uppercase tracking-widest hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                         >
                           {isServerProductsLoading ? "Loading..." : "Load More"}
                         </button>
@@ -1728,10 +1728,10 @@ const Shop = () => {
               return (
                 <div className="py-12 md:py-16 text-center">
                   <div className="max-w-md mx-auto px-4">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#FAF8F5] border border-[#C59B27]/30 flex items-center justify-center text-[#C59B27]">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-pearl border border-brand-champagne/30 flex items-center justify-center text-brand-champagne">
                       <Search className="w-7 h-7" />
                     </div>
-                    <h3 className="text-xl md:text-2xl font-serif font-bold text-[#141211] mb-2">
+                    <h3 className="text-xl md:text-2xl font-serif font-bold text-brand-espresso mb-2">
                       No results for "{searchQuery}"
                     </h3>
                     <p className="text-stone-500 text-xs md:text-sm mb-6 leading-relaxed">
@@ -1750,7 +1750,7 @@ const Shop = () => {
                           onClick={() => {
                             navigate(`/shop?category=${item.query}`);
                           }}
-                          className="px-4 py-1.5 rounded-full border border-stone-300 text-xs font-medium text-stone-700 hover:border-[#C59B27] hover:text-[#C59B27] hover:bg-[#FAF8F5] transition-all"
+                          className="px-4 py-1.5 rounded-full border border-stone-300 text-xs font-medium text-stone-700 hover:border-brand-champagne hover:text-brand-champagne hover:bg-brand-pearl transition-all"
                         >
                           {item.label}
                         </button>
@@ -1759,7 +1759,7 @@ const Shop = () => {
                     <button
                       type="button"
                       onClick={clearAllFilters}
-                      className="inline-flex items-center gap-2 bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#1C1917] transition-all shadow-md"
+                      className="inline-flex items-center gap-2 bg-brand-plum text-white border border-brand-plum px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all shadow-md"
                     >
                       Clear Search & View All
                     </button>
@@ -1769,17 +1769,17 @@ const Shop = () => {
                     <div className="mt-16 pt-12 border-t border-stone-200 text-left">
                       <div className="flex items-center justify-between mb-6">
                         <div>
-                          <span className="text-[10px] uppercase font-bold tracking-widest text-[#C59B27]">
+                          <span className="text-[10px] uppercase font-bold tracking-widest text-brand-plum">
                             Curated Selection
                           </span>
-                          <h4 className="text-lg md:text-xl font-serif font-bold text-[#141211]">
+                          <h4 className="text-lg md:text-xl font-serif font-bold text-brand-espresso">
                             You May Also Like
                           </h4>
                         </div>
                         <button
                           type="button"
                           onClick={() => navigate("/shop")}
-                          className="text-xs font-bold text-[#C59B27] hover:underline"
+                          className="text-xs font-bold text-brand-plum hover:text-brand-champagne hover:underline"
                         >
                           View All Designs &rarr;
                         </button>
@@ -1800,7 +1800,7 @@ const Shop = () => {
 
             return (
               <div className="flex flex-col items-center justify-center py-20 text-center">
-                <h3 className="text-2xl font-serif text-[#141211] mb-2">
+                <h3 className="text-2xl font-serif text-brand-espresso mb-2">
                   No products found
                 </h3>
                 <p className="text-stone-500 text-sm">
@@ -1808,7 +1808,7 @@ const Shop = () => {
                 </p>
                 <button
                   onClick={clearAllFilters}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#C59B27] hover:underline"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-champagne hover:underline"
                 >
                   <SlidersHorizontal className="w-4 h-4" /> Clear all filters
                 </button>
@@ -1823,10 +1823,10 @@ const Shop = () => {
         {/* Sort Button (Custom Sheet Trigger) */}
         <div
           onClick={() => setIsSortOpen(true)}
-          className="flex-1 border-r border-stone-200 relative flex flex-col items-center justify-center active:bg-[#FAF8F5] cursor-pointer py-2"
+          className="flex-1 border-r border-stone-200 relative flex flex-col items-center justify-center active:bg-brand-pearl cursor-pointer py-2"
         >
-          <span className="text-[#141211] font-black text-[11px] uppercase tracking-widest flex items-center gap-2">
-            <ArrowUpDown className="w-3.5 h-3.5 text-[#C59B27]" /> Sort by
+          <span className="text-brand-espresso font-black text-[11px] uppercase tracking-widest flex items-center gap-2">
+            <ArrowUpDown className="w-3.5 h-3.5 text-brand-champagne" /> Sort by
           </span>
           <span className="text-[10px] text-stone-500 font-bold mt-1 uppercase tracking-tighter">
             {sortBy}
@@ -1836,10 +1836,10 @@ const Shop = () => {
         {/* Filter Button */}
         <button
           onClick={() => setIsFilterOpen(true)}
-          className="flex-1 flex flex-col items-center justify-center active:bg-[#FAF8F5] py-2 transition-colors"
+          className="flex-1 flex flex-col items-center justify-center active:bg-brand-pearl py-2 transition-colors"
         >
-          <span className="text-[#141211] font-black text-[11px] uppercase tracking-widest flex items-center gap-2">
-            <Filter className="w-3.5 h-3.5 text-[#C59B27]" /> Filter
+          <span className="text-brand-espresso font-black text-[11px] uppercase tracking-widest flex items-center gap-2">
+            <Filter className="w-3.5 h-3.5 text-brand-champagne" /> Filter
           </span>
           <span className="text-[10px] text-stone-500 font-bold mt-1 uppercase tracking-tighter">
             {selectedCategory !== "All" ||
@@ -1869,10 +1869,10 @@ const Shop = () => {
         <div className="flex flex-col h-full">
           {/* Sidebar Header */}
           <div className="flex items-center justify-between p-6 border-b border-stone-200">
-            <h3 className="text-xl font-serif text-[#141211]">Filters</h3>
+            <h3 className="text-xl font-serif text-brand-espresso">Filters</h3>
             <button
               onClick={() => setIsFilterOpen(false)}
-              className="text-stone-400 hover:text-[#141211]"
+              className="text-stone-400 hover:text-brand-espresso"
             >
               <ChevronDown className="w-6 h-6 rotate-90" />
             </button>
@@ -1885,7 +1885,7 @@ const Shop = () => {
           >
             {/* 1. Jewellery Type Filter */}
             <section>
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+              <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Jewellery Type
               </h4>
               <div className="grid grid-cols-5 gap-1 mb-3">
@@ -1904,8 +1904,8 @@ const Shop = () => {
                       onClick={() => handleMetalChange(m.id)}
                       className={`py-2 px-1 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${
                         isActive
-                          ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
+                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                       }`}
                     >
                       {m.label}
@@ -1916,15 +1916,15 @@ const Shop = () => {
 
               {/* Gold Tone Sub-Accordion (When Gold is selected) */}
               {queryParams.get("metal")?.toLowerCase() === "gold" && (
-                <div className="mt-3 p-3 bg-[#FAF8F5] border border-[#E8DFD0] rounded-xl space-y-2 animate-in fade-in duration-200">
-                  <div className="flex items-center justify-between pb-1.5 border-b border-[#E8DFD0]/60">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C827A]">
+                <div className="mt-3 p-3 bg-brand-pearl border border-brand-border rounded-xl space-y-2 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-brand-border/60">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-taupe">
                       Gold Colour
                     </span>
                     {toneQuery && (
                       <button
                         onClick={() => handleToneChange(null)}
-                        className="text-[10px] font-bold text-[#C59B27] hover:underline"
+                        className="text-[10px] font-bold text-brand-plum hover:text-brand-champagne hover:underline"
                       >
                         Reset Colour
                       </button>
@@ -1942,12 +1942,12 @@ const Shop = () => {
                           onClick={() => handleToneChange(t.value === "all" ? null : t.value)}
                           className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
                             isToneActive
-                              ? "bg-white border-[#C59B27] text-[#141211] font-bold shadow-2xs"
+                              ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
                               : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
                           }`}
                         >
                           {t.image ? (
-                            <img src={t.image} alt={t.label} className="w-4 h-4 rounded-full object-cover border border-[#E8DFD0] shrink-0" />
+                            <img src={t.image} alt={t.label} className="w-4 h-4 rounded-full object-cover border border-brand-border shrink-0" />
                           ) : (
                             <span className="w-3.5 h-3.5 rounded-full border border-stone-300 shrink-0" style={{ backgroundColor: t.swatchColor }} />
                           )}
@@ -1961,15 +1961,15 @@ const Shop = () => {
 
               {/* Silver Type Sub-Accordion (When Silver is selected) */}
               {queryParams.get("metal")?.toLowerCase() === "silver" && (
-                <div className="mt-3 p-3 bg-[#FAF8F5] border border-[#E8DFD0] rounded-xl space-y-2 animate-in fade-in duration-200">
-                  <div className="flex items-center justify-between pb-1.5 border-b border-[#E8DFD0]/60">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C827A]">
+                <div className="mt-3 p-3 bg-brand-pearl border border-brand-border rounded-xl space-y-2 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-brand-border/60">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-taupe">
                       Silver Type
                     </span>
                     {silverTypeQuery && (
                       <button
                         onClick={() => handleSilverTypeChange(null)}
-                        className="text-[10px] font-bold text-[#C59B27] hover:underline"
+                        className="text-[10px] font-bold text-brand-plum hover:text-brand-champagne hover:underline"
                       >
                         Reset Type
                       </button>
@@ -1987,7 +1987,7 @@ const Shop = () => {
                           onClick={() => handleSilverTypeChange(s.value === "all" ? null : s.value)}
                           className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
                             isSilverActive
-                              ? "bg-white border-[#C59B27] text-[#141211] font-bold shadow-2xs"
+                              ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
                               : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
                           }`}
                         >
@@ -2002,15 +2002,15 @@ const Shop = () => {
 
               {/* Diamond Type Sub-Accordion (When Diamond is selected) */}
               {queryParams.get("metal")?.toLowerCase() === "diamond" && (
-                <div className="mt-3 p-3 bg-[#FAF8F5] border border-[#E8DFD0] rounded-xl space-y-2 animate-in fade-in duration-200">
-                  <div className="flex items-center justify-between pb-1.5 border-b border-[#E8DFD0]/60">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C827A]">
+                <div className="mt-3 p-3 bg-brand-pearl border border-brand-border rounded-xl space-y-2 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-brand-border/60">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-taupe">
                       Diamond Type
                     </span>
                     {diamondTypeQuery && (
                       <button
                         onClick={() => handleDiamondTypeChange(null)}
-                        className="text-[10px] font-bold text-[#C59B27] hover:underline"
+                        className="text-[10px] font-bold text-brand-plum hover:text-brand-champagne hover:underline"
                       >
                         Reset Type
                       </button>
@@ -2028,7 +2028,7 @@ const Shop = () => {
                           onClick={() => handleDiamondTypeChange(d.value === "all" ? null : d.value)}
                           className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
                             isDiamondActive
-                              ? "bg-white border-[#C59B27] text-[#141211] font-bold shadow-2xs"
+                              ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
                               : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
                           }`}
                         >
@@ -2044,7 +2044,7 @@ const Shop = () => {
 
             {/* 2. Product Type Filter */}
             <section className="pt-6 border-t border-stone-100">
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+              <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Product Type
               </h4>
               <div className="flex flex-col gap-2.5 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
@@ -2055,10 +2055,10 @@ const Shop = () => {
                     value="All"
                     checked={selectedCategory === "All"}
                     onChange={(e) => handleCategoryChange(e.target.value)}
-                    className="form-radio text-[#141211] focus:ring-[#C59B27] accent-[#C59B27] h-4 w-4 border-stone-300"
+                    className="form-radio text-brand-espresso focus:ring-brand-champagne accent-brand-champagne h-4 w-4 border-stone-300"
                   />
                   <span
-                    className={`text-[13px] transition-all ${selectedCategory === "All" ? "text-[#141211] font-bold underline underline-offset-4 decoration-[#C59B27]" : "text-stone-600 group-hover:text-[#141211]"}`}
+                    className={`text-[13px] transition-all ${selectedCategory === "All" ? "text-brand-espresso font-bold underline underline-offset-4 decoration-brand-champagne" : "text-stone-600 group-hover:text-brand-espresso"}`}
                   >
                     All Jewellery
                   </span>
@@ -2074,10 +2074,10 @@ const Shop = () => {
                       value={cat.name}
                       checked={selectedCategory === cat.name}
                       onChange={(e) => handleCategoryChange(e.target.value)}
-                      className="form-radio text-[#141211] focus:ring-[#C59B27] accent-[#C59B27] h-4 w-4 border-stone-300"
+                      className="form-radio text-brand-espresso focus:ring-brand-champagne accent-brand-champagne h-4 w-4 border-stone-300"
                     />
                     <span
-                      className={`text-[13px] transition-all ${selectedCategory === cat.name ? "text-[#141211] font-bold underline underline-offset-4 decoration-[#C59B27]" : "text-stone-600 group-hover:text-[#141211]"}`}
+                      className={`text-[13px] transition-all ${selectedCategory === cat.name ? "text-brand-espresso font-bold underline underline-offset-4 decoration-brand-champagne" : "text-stone-600 group-hover:text-brand-espresso"}`}
                     >
                       {cat.name}
                     </span>
@@ -2088,7 +2088,7 @@ const Shop = () => {
 
             {/* 3. Purity Filter */}
             <section className="pt-6 border-t border-stone-100">
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+              <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Purity
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -2132,8 +2132,8 @@ const Shop = () => {
                         key={opt.value}
                         onClick={() => handlePurityChange(opt.value)}
                         className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider border rounded-full transition-all ${isActive
-                            ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
-                            : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
+                            ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                            : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                           }`}
                       >
                         {opt.label}
@@ -2146,7 +2146,7 @@ const Shop = () => {
 
             {/* 4. Stones Filter */}
             <section className="pt-6 border-t border-stone-100">
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+              <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Stones
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -2165,8 +2165,8 @@ const Shop = () => {
                       key={s.value}
                       onClick={() => handleStonesChange(s.value)}
                       className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider border rounded-full transition-all ${isActive
-                          ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
+                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {s.label}
@@ -2179,10 +2179,10 @@ const Shop = () => {
             {/* 5. Price Range Filter */}
             <section className="pt-6 border-t border-stone-100">
               <div className="flex justify-between items-center mb-4">
-                <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em]">
+                <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em]">
                   Price Range
                 </h4>
-                <span className="text-[10px] font-black text-[#C59B27] bg-[#C59B27]/10 border border-[#C59B27]/20 px-2 py-0.5 rounded uppercase tracking-widest">
+                <span className="text-[10px] font-black text-brand-plum bg-brand-champagne-mist border border-brand-border px-2 py-0.5 rounded uppercase tracking-widest">
                   {priceRange >= 50000
                     ? "Any Price"
                     : `Under ${formatCurrency(priceRange)}`}
@@ -2196,7 +2196,7 @@ const Shop = () => {
                   step="500"
                   value={priceRange}
                   onChange={(e) => handlePriceRangeChange(e.target.value)}
-                  className="w-full h-1.5 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-[#C59B27]"
+                  className="w-full h-1.5 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-brand-champagne"
                 />
                 <div className="flex justify-between mt-3">
                   <span className="text-[9px] text-stone-400 font-bold uppercase tracking-widest">
@@ -2211,7 +2211,7 @@ const Shop = () => {
 
             {/* 6. Shop For Filter */}
             <section className="pt-6 border-t border-stone-100">
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+              <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Shop For
               </h4>
               <div className="grid grid-cols-4 gap-1.5">
@@ -2228,8 +2228,8 @@ const Shop = () => {
                       key={aud.id}
                       onClick={() => handleAudienceChange(aud.id)}
                       className={`py-2.5 px-2 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${isActive
-                          ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
+                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {aud.label}
@@ -2241,7 +2241,7 @@ const Shop = () => {
 
             {/* 7. Style Filter */}
             <section className="pt-6 border-t border-stone-100">
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+              <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Style
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -2258,8 +2258,8 @@ const Shop = () => {
                       key={tag.value}
                       onClick={() => handleTagsChange(tag.value)}
                       className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider border rounded-full transition-all ${isActive
-                          ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
+                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {tag.label}
@@ -2271,7 +2271,7 @@ const Shop = () => {
 
             {/* 8. Availability Filter */}
             <section className="pt-6 border-t border-stone-100 pb-4">
-              <h4 className="font-bold text-[#141211] text-[11px] uppercase tracking-[0.2em] mb-4">
+              <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Availability
               </h4>
               <div className="grid grid-cols-3 gap-2">
@@ -2293,8 +2293,8 @@ const Shop = () => {
                       key={avail.value}
                       onClick={() => handleAvailabilityChange(avail.value)}
                       className={`py-2.5 px-2 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${isActive
-                          ? "bg-[#141211] text-[#E8D198] border-[#C59B27] shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-[#C59B27]"
+                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {avail.label}
@@ -2310,13 +2310,13 @@ const Shop = () => {
             <div className="flex gap-3">
               <button
                 onClick={clearAllFilters}
-                className="flex-1 py-3.5 border border-stone-300 text-[#141211] font-bold uppercase tracking-widest text-[10px] rounded-xl hover:bg-stone-50 transition-all"
+                className="flex-1 py-3.5 border border-stone-300 text-brand-espresso font-bold uppercase tracking-widest text-[10px] rounded-xl hover:bg-stone-50 transition-all"
               >
                 Reset
               </button>
               <button
                 onClick={() => setIsFilterOpen(false)}
-                className="flex-[2] py-3.5 bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 font-bold uppercase tracking-widest text-[10px] rounded-xl shadow-lg hover:bg-[#1C1917] transition-all"
+                className="flex-[2] py-3.5 bg-brand-plum text-white border border-brand-plum font-bold uppercase tracking-widest text-[10px] rounded-xl shadow-lg hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all"
               >
                 Apply Filters
               </button>
@@ -2334,7 +2334,7 @@ const Shop = () => {
           />
           <div className="fixed bottom-0 left-0 right-0 bg-white z-[210] rounded-t-2xl p-6 pb-8 animate-in slide-in-from-bottom duration-300 safe-bottom border-t border-stone-200">
             <div className="w-12 h-1.5 bg-stone-200 rounded-full mx-auto mb-6 opacity-60" />
-            <h3 className="text-lg font-serif font-bold text-[#141211] mb-6">
+            <h3 className="text-lg font-serif font-bold text-brand-espresso mb-6">
               Sort By
             </h3>
             <div className="space-y-4">
@@ -2352,23 +2352,23 @@ const Shop = () => {
                   className="w-full flex items-center justify-between text-left py-2 group"
                 >
                   <span
-                    className={`text-sm transition-colors ${sortBy === option ? "font-bold text-[#141211]" : "text-stone-600 group-hover:text-[#141211]"}`}
+                    className={`text-sm transition-colors ${sortBy === option ? "font-bold text-brand-espresso" : "text-stone-600 group-hover:text-brand-espresso"}`}
                   >
                     {option}
                   </span>
                   {sortBy === option ? (
-                    <div className="w-5 h-5 rounded-full bg-[#C59B27] flex items-center justify-center">
+                    <div className="w-5 h-5 rounded-full bg-brand-champagne flex items-center justify-center">
                       <div className="w-2 h-2 bg-white rounded-full" />
                     </div>
                   ) : (
-                    <div className="w-5 h-5 rounded-full border border-stone-300 group-hover:border-[#C59B27]" />
+                    <div className="w-5 h-5 rounded-full border border-stone-300 group-hover:border-brand-champagne" />
                   )}
                 </button>
               ))}
             </div>
 
             <div className="mt-8 pt-6 border-t border-stone-100">
-              <h3 className="text-lg font-serif font-bold text-[#141211] mb-6">
+              <h3 className="text-lg font-serif font-bold text-brand-espresso mb-6">
                 Filter by Price
               </h3>
               <div className="px-2">
@@ -2379,7 +2379,7 @@ const Shop = () => {
                   step="1000"
                   value={priceRange}
                   onChange={(e) => handlePriceRangeChange(e.target.value)}
-                  className="w-full h-1.5 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-[#C59B27]"
+                  className="w-full h-1.5 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-brand-champagne"
                 />
                 <div className="flex justify-between mt-4">
                   <span className="text-[9px] text-stone-400 font-bold uppercase tracking-widest">

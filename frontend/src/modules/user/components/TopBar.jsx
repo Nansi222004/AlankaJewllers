@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 
 const TopBar = () => {
     return (
-        <div className="bg-[#141211] text-[#FAF8F5] border-b border-[#C59B27]/20 text-[11px] py-1.5 px-4 md:px-12 flex justify-between items-center tracking-wide z-50 relative">
+        <div className="bg-brand-plum text-brand-pearl border-b border-brand-champagne/20 text-[11px] py-1.5 px-4 md:px-12 flex justify-between items-center tracking-wide z-50 relative">
             <div className="flex items-center gap-2">
-                <Truck size={14} className="text-[#E8D198]" />
-                <span className="font-medium text-[#FAF8F5]">Free Shipping On Orders Above ₹1499/-</span>
+                <Truck size={14} className="text-brand-champagne-light" />
+                <span className="font-medium text-brand-pearl">Free Shipping On Orders Above ₹1499/-</span>
             </div>
 
-            <div className="hidden md:flex items-center gap-6 text-[#FAF8F5]/80">
-                <Link to="/about-us" className="hover:text-[#E8D198] transition-colors">About Us</Link>
-                <Link to="/privacy-policy" className="hover:text-[#E8D198] transition-colors">Privacy Policy</Link>
-                <Link to="/contact-us" className="flex items-center gap-1 hover:text-[#E8D198] transition-colors">
-                    <Phone size={13} className="text-[#E8D198]" />
+            <div className="hidden md:flex items-center gap-6 text-brand-pearl/80">
+                <Link to="/about-us" className="hover:text-brand-champagne-light transition-colors">About Us</Link>
+                <Link to="/privacy-policy" className="hover:text-brand-champagne-light transition-colors">Privacy Policy</Link>
+                <Link to="/contact-us" className="flex items-center gap-1 hover:text-brand-champagne-light transition-colors">
+                    <Phone size={13} className="text-brand-champagne-light" />
                     Contact Us
                 </Link>
             </div>

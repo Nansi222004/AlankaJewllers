@@ -41,11 +41,11 @@ const FAQSection = () => {
     };
 
     return (
-        <section className="py-8 md:py-20 bg-[#FAF8F5] relative overflow-hidden">
+        <section className="py-8 md:py-20 bg-brand-pearl relative overflow-hidden">
             <div className="container mx-auto px-4 md:px-6 max-w-4xl relative z-10">
                 <div className="text-center mb-8 md:mb-16">
-                    <span className="text-[#C59B27] text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase mb-2 block">Common Questions</span>
-                    <h2 className="font-display text-2xl md:text-5xl text-[#141211]">{sectionData?.label || 'Frequently Asked Questions'}</h2>
+                    <span className="text-brand-champagne text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase mb-2 block">Common Questions</span>
+                    <h2 className="font-display text-2xl md:text-5xl text-brand-espresso">{sectionData?.label || 'Frequently Asked Questions'}</h2>
                 </div>
 
                 <div className="space-y-3 md:space-y-4">
@@ -53,7 +53,7 @@ const FAQSection = () => {
                         <div
                             key={index}
                             className={`bg-white rounded-xl md:rounded-2xl border transition-all duration-300 ${activeFaq === index
-                                ? 'border-[#C59B27] shadow-[0_10px_30px_rgba(197,155,39,0.1)]'
+                                ? 'border-brand-champagne shadow-[0_10px_30px_rgba(184,149,106,0.1)]'
                                 : 'border-stone-200/60 shadow-sm hover:shadow-md'
                                 }`}
                         >
@@ -61,10 +61,10 @@ const FAQSection = () => {
                                 onClick={() => toggleFaq(index)}
                                 className="w-full text-left px-4 py-4 md:px-8 md:py-6 flex justify-between items-center gap-4"
                             >
-                                <span className={`font-display text-sm md:text-xl font-medium ${activeFaq === index ? 'text-[#C59B27]' : 'text-[#141211]'}`}>
+                                <span className={`font-display text-sm md:text-xl font-medium ${activeFaq === index ? 'text-brand-champagne' : 'text-brand-espresso'}`}>
                                     {faq.question}
                                 </span>
-                                <span className={`flex-shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${activeFaq === index ? 'bg-[#141211] text-[#E8D198]' : 'bg-[#FAF8F5] text-stone-600'
+                                <span className={`flex-shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${activeFaq === index ? 'bg-brand-plum text-brand-champagne-light' : 'bg-brand-pearl text-stone-600'
                                     }`}>
                                     {activeFaq === index ? <Minus size={14} className="md:w-4 md:h-4" /> : <Plus size={14} className="md:w-4 md:h-4" />}
                                 </span>

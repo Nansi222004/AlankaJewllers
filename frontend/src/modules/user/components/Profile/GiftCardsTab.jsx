@@ -93,7 +93,7 @@ const GiftCardsTab = () => {
         return (
             <div className="bg-white p-6 md:p-8 rounded-2xl border border-stone-200 shadow-sm flex items-center justify-center min-h-[400px]">
                 <div className="flex flex-col items-center space-y-4">
-                    <div className="w-12 h-12 border-4 border-[#C59B27] border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-12 h-12 border-4 border-brand-champagne border-t-transparent rounded-full animate-spin"></div>
                     <p className="text-sm text-stone-500 font-medium">Retrieving your gift cards...</p>
                 </div>
             </div>
@@ -104,7 +104,7 @@ const GiftCardsTab = () => {
         <div className="bg-white p-6 md:p-8 rounded-2xl border border-stone-200 shadow-sm space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-6">
                 <div>
-                    <h2 className="font-serif font-bold text-lg md:text-xl text-[#141211] uppercase tracking-wider">My Gift Cards</h2>
+                    <h2 className="font-serif font-bold text-lg md:text-xl text-brand-espresso uppercase tracking-wider">My Gift Cards</h2>
                     <p className="text-xs text-stone-500 mt-1">Manage and track the E-Gift Cards you have purchased for friends and family.</p>
                 </div>
                 {cards.length > 0 && (
@@ -114,7 +114,7 @@ const GiftCardsTab = () => {
                             placeholder="Search code or recipient..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="bg-stone-50 border border-stone-200 rounded-xl pl-10 pr-4 py-2 text-xs w-full sm:w-60 outline-none focus:ring-2 focus:ring-[#C59B27]/20 focus:border-[#C59B27] focus:bg-white transition-all"
+                            className="bg-stone-50 border border-stone-200 rounded-xl pl-10 pr-4 py-2 text-xs w-full sm:w-60 outline-none focus:ring-2 focus:ring-brand-champagne/20 focus:border-brand-champagne focus:bg-white transition-all"
                         />
                         <Search className="absolute left-3.5 top-2.5 w-3.5 h-3.5 text-stone-400" />
                     </div>
@@ -123,16 +123,16 @@ const GiftCardsTab = () => {
 
             {cards.length === 0 ? (
                 <div className="text-center py-16 px-4 space-y-6 max-w-md mx-auto">
-                    <div className="w-16 h-16 rounded-full bg-[#C59B27]/10 flex items-center justify-center mx-auto border border-[#C59B27]/25">
-                        <Gift className="w-8 h-8 text-[#C59B27]" />
+                    <div className="w-16 h-16 rounded-full bg-brand-champagne/10 flex items-center justify-center mx-auto border border-brand-champagne/25">
+                        <Gift className="w-8 h-8 text-brand-champagne" />
                     </div>
                     <div className="space-y-2">
-                        <h3 className="text-base font-bold text-[#141211] font-serif">No Gift Cards Purchased Yet</h3>
+                        <h3 className="text-base font-bold text-brand-espresso font-serif">No Gift Cards Purchased Yet</h3>
                         <p className="text-xs text-stone-500 leading-relaxed">Spread love and sparkles by gifting your loved ones an Alankar Jewellers E-Gift Card. Let them pick their favorite jewelry.</p>
                     </div>
                     <a
                         href="/gift-cards"
-                        className="inline-block bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-[#1C1917] shadow-lg hover:-translate-y-0.5 transition-all"
+                        className="inline-block bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-brand-plum shadow-lg hover:-translate-y-0.5 transition-all"
                     >
                         Buy Gift Card
                     </a>
@@ -146,14 +146,14 @@ const GiftCardsTab = () => {
                     {filteredCards.map((card) => (
                         <div
                             key={card._id}
-                            className="relative overflow-hidden rounded-2xl border border-stone-200 bg-white hover:border-[#C59B27]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                            className="relative overflow-hidden rounded-2xl border border-stone-200 bg-white hover:border-brand-champagne/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
                         >
                             {/* Card Header Background Block */}
-                            <div className="p-5 bg-gradient-to-br from-[#141211] to-[#1C1917] text-[#FAF8F5] space-y-4 border-b border-[#C59B27]/30">
+                            <div className="p-5 bg-gradient-to-br from-brand-plum to-brand-plum text-brand-pearl space-y-4 border-b border-brand-champagne/30">
                                 <div className="flex justify-between items-start">
                                     <div className="flex items-center gap-2">
-                                        <Gift className="w-5 h-5 text-[#E8D198]" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#E8D198]">Alankar Jewellers Gift Voucher</span>
+                                        <Gift className="w-5 h-5 text-brand-champagne-light" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-champagne-light">Alankar Jewellers Gift Voucher</span>
                                     </div>
                                     <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${getStatusColor(card.status)}`}>
                                         {getStatusLabel(card.status)}

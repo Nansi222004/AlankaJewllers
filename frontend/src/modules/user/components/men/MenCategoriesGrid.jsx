@@ -74,10 +74,10 @@ const MenCategoriesGrid = ({ sectionData }) => {
             <div className="container mx-auto px-4 max-w-[1200px]">
                 {/* Header matching Screenshot 1 */}
                 <div className="text-center mb-3 md:mb-8 flex flex-col items-center">
-                    <h2 className="text-xl md:text-3xl font-bold tracking-tight text-black mb-0">
+                    <h2 className="text-xl md:text-3xl font-bold tracking-tight text-brand-espresso mb-0">
                         Discover by
                     </h2>
-                    <h1 className="text-3xl md:text-6xl font-black uppercase tracking-wider text-black mt-[-2px]">
+                    <h1 className="text-3xl md:text-6xl font-black uppercase tracking-wider text-brand-espresso mt-[-2px]">
                         Category
                     </h1>
                 </div>

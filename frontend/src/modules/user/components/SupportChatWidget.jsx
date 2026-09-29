@@ -42,7 +42,7 @@ const SupportChatWidget = ({ inline = false }) => {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Contact support"
-        className={`${buttonPositionClass} flex items-center justify-center w-14 h-14 bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 rounded-full shadow-[0_10px_25px_rgba(20,18,17,0.4)] hover:bg-[#1C1917] hover:border-[#C59B27] hover:text-[#FAF8F5] transition-all cursor-pointer group shrink-0`}>
+        className={`${buttonPositionClass} flex items-center justify-center w-14 h-14 bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 rounded-full shadow-[0_10px_25px_rgba(51,40,39,0.4)] hover:bg-brand-plum hover:border-brand-champagne hover:text-brand-pearl transition-all cursor-pointer group shrink-0`}>
         <AnimatePresence mode="wait">
           {isOpen ? (
             <motion.div

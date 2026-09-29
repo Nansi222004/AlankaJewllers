@@ -83,7 +83,7 @@ const Family3DCarousel = ({ sectionData }) => {
 
     return (
         <section 
-            className="pt-2 pb-4 md:py-12 bg-[#FAF8F5] relative overflow-hidden"
+            className="pt-2 pb-4 md:py-12 bg-brand-pearl relative overflow-hidden"
             style={{
                 '--radius': `${radius}px`,
                 '--cardW': `${cardWidth}px`,
@@ -138,10 +138,10 @@ const Family3DCarousel = ({ sectionData }) => {
                     viewport={{ once: true }}
                     className="relative hidden md:flex flex-col items-center justify-center mb-2 md:mb-8 text-center"
                 >
-                    <div className="inline-block bg-[#C59B27] text-[#141211] px-4 py-1 font-sans font-bold tracking-[0.2em] text-[9px] uppercase rounded-none shadow-sm mb-3">
+                    <div className="inline-block bg-brand-champagne text-brand-espresso px-4 py-1 font-sans font-bold tracking-[0.2em] text-[9px] uppercase rounded-none shadow-sm mb-3">
                         {String(sectionData?.settings?.eyebrow || 'Curated Picks').trim() || 'Curated Picks'}
                     </div>
-                    <h3 className="font-serif text-[#141211] text-2xl md:text-4xl font-medium tracking-tight uppercase">
+                    <h3 className="font-serif text-brand-espresso text-2xl md:text-4xl font-medium tracking-tight uppercase">
                         {String(sectionData?.settings?.title || sectionData?.label || 'Gifts to Remember').trim() || 'Gifts to Remember'}
                     </h3>
                 </motion.div>
@@ -160,9 +160,9 @@ const Family3DCarousel = ({ sectionData }) => {
                                         transform: `rotateY(${angle}deg) translateZ(var(--radius))`,
                                     }}
                                 >
-                                    <Link to={item.path} className="block w-full h-full relative isolate rounded-[1.2rem] overflow-hidden cursor-pointer bg-white shadow-xl border border-[#C59B27]/20">
+                                    <Link to={item.path} className="block w-full h-full relative isolate rounded-[1.2rem] overflow-hidden cursor-pointer bg-white shadow-xl border border-brand-champagne/20">
                                         {/* Image */}
-                                        <div className="absolute inset-0 bg-[#141211]">
+                                        <div className="absolute inset-0 bg-brand-plum">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
@@ -171,7 +171,7 @@ const Family3DCarousel = ({ sectionData }) => {
                                         </div>
 
                                         {/* Classic Gradient Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#141211]/95 via-[#141211]/30 to-transparent"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-brand-plum/95 via-brand-plum/30 to-transparent"></div>
 
                                         {/* Text Section overlay at bottom */}
                                         <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col items-center justify-end text-center z-10">
@@ -180,17 +180,17 @@ const Family3DCarousel = ({ sectionData }) => {
                                             </h4>
                                             
                                             {/* Discover/Animated Arrow */}
-                                            <div className="flex items-center gap-2 text-[#E8D198] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75">
-                                                <div className="h-[1px] w-3 bg-[#C59B27]/60"></div>
+                                            <div className="flex items-center gap-2 text-brand-champagne-light opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75">
+                                                <div className="h-[1px] w-3 bg-brand-champagne/60"></div>
                                                 <span className="text-[8px] font-bold uppercase tracking-[0.2em]">
                                                     Explore
                                                 </span>
-                                                <div className="h-[1px] w-3 bg-[#C59B27]/60"></div>
+                                                <div className="h-[1px] w-3 bg-brand-champagne/60"></div>
                                             </div>
                                         </div>
 
                                         {/* Border Glow on Hover */}
-                                        <div className="absolute inset-0 border-[2px] border-transparent group-hover:border-[#C59B27]/40 rounded-[1.2rem] transition-colors duration-500 pointer-events-none"></div>
+                                        <div className="absolute inset-0 border-[2px] border-transparent group-hover:border-brand-champagne/40 rounded-[1.2rem] transition-colors duration-500 pointer-events-none"></div>
                                     </Link>
                                 </div>
                             );

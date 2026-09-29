@@ -53,8 +53,8 @@ const DynamicPage = ({ slug: propSlug }) => {
 
   if (!page) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAF8F5] text-center px-4">
-        <h1 className="text-4xl font-display text-black mb-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-brand-pearl text-center px-4">
+        <h1 className="text-4xl font-display text-brand-espresso mb-4">
           Page Not Found
         </h1>
         <p className="text-gray-500 mb-8">
@@ -62,7 +62,7 @@ const DynamicPage = ({ slug: propSlug }) => {
         </p>
         <button
           onClick={() => navigate("/")}
-          className="px-8 py-3 bg-[#141211] text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#1C1917] hover:text-[#E8D198] transition-all"
+          className="px-8 py-3 bg-brand-plum text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-brand-plum hover:text-brand-champagne-light transition-all"
         >
           Back to Home
         </button>
@@ -71,23 +71,23 @@ const DynamicPage = ({ slug: propSlug }) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] selection:bg-[#C59B27] selection:text-white pb-20">
+    <div className="min-h-screen bg-brand-pearl selection:bg-brand-champagne selection:text-white pb-20">
       <div className="container mx-auto px-4 max-w-5xl pt-10 md:pt-16">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-black/40 hover:text-[#C59B27] transition-all group font-bold uppercase tracking-widest text-[10px] mb-8"
+          className="flex items-center gap-2 text-brand-espresso/40 hover:text-brand-champagne transition-all group font-bold uppercase tracking-widest text-[10px] mb-8"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Back
         </button>
 
         <div className="text-center mb-12 md:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-black mb-6 leading-tight break-words">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-brand-espresso mb-6 leading-tight break-words">
             {page.title}
           </h1>
-          <div className="w-24 h-0.5 bg-[#C59B27]/40 mx-auto mb-6"></div>
+          <div className="w-24 h-0.5 bg-brand-champagne/40 mx-auto mb-6"></div>
           {updatedAtLabel && (
-            <div className="flex items-center justify-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-black/30">
+            <div className="flex items-center justify-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-espresso/30">
               <div className="flex items-center gap-2">
                 <Clock size={14} />
                 <span>
@@ -98,15 +98,15 @@ const DynamicPage = ({ slug: propSlug }) => {
           )}
         </div>
 
-        <div className="bg-white rounded-2xl md:rounded-[2rem] p-6 sm:p-10 md:p-12 shadow-sm border border-[#E8DFD0] animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+        <div className="bg-white rounded-2xl md:rounded-[2rem] p-6 sm:p-10 md:p-12 shadow-sm border border-brand-border animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
           {hasContent ? (
             <div
               className="rich-text-content text-gray-700"
               dangerouslySetInnerHTML={{ __html: sanitizeHtml(page.content) }}
             />
           ) : (
-            <div className="rounded-[1.5rem] border border-dashed border-[#E8DFD0] bg-[#FAF8F5] px-6 py-12 text-center">
-              <h2 className="text-2xl font-display text-black mb-3">
+            <div className="rounded-[1.5rem] border border-dashed border-brand-border bg-brand-pearl px-6 py-12 text-center">
+              <h2 className="text-2xl font-display text-brand-espresso mb-3">
                 Content coming soon
               </h2>
               <p className="text-gray-500 font-serif">

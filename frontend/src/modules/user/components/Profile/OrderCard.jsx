@@ -75,7 +75,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                 <div className="flex justify-between items-start border-b border-gray-50 pb-3">
                     <div>
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">Order ID</p>
-                        <h4 className="text-sm font-bold text-black">#{orderDisplayShort}</h4>
+                        <h4 className="text-sm font-bold text-brand-espresso">#{orderDisplayShort}</h4>
                     </div>
                     <div className="text-right">
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">Date</p>
@@ -84,19 +84,19 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                 </div>
 
                 {activeRequest ? (
-                    <div className="bg-[#FAF8F5] p-4 rounded-xl border border-[#E8DFD0] flex justify-between items-center">
+                    <div className="bg-brand-pearl p-4 rounded-xl border border-brand-border flex justify-between items-center">
                         <div className="flex items-center gap-3">
-                            <div className="bg-amber-50 text-[#C59B27] p-2 rounded-full">
+                            <div className="bg-amber-50 text-brand-champagne p-2 rounded-full">
                                 <RefreshCw className="w-4 h-4 animate-spin" />
                             </div>
                             <div>
-                                <h4 className="text-sm font-bold text-[#141211] capitalize">{requestType} In Progress</h4>
+                                <h4 className="text-sm font-bold text-brand-espresso capitalize">{requestType} In Progress</h4>
                                 <p className="text-[10px] text-gray-500">{new Date(activeRequest.createdAt || activeRequest.date).toLocaleDateString()}</p>
                             </div>
                         </div>
                         <Link
                             to={`/order-tracking/${order.id}`}
-                            className="bg-white border border-[#E8DFD0] text-[#141211] hover:border-[#C59B27] px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm transition-colors"
+                            className="bg-white border border-brand-border text-brand-espresso hover:border-brand-champagne px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm transition-colors"
                         >
                             Track
                         </Link>
@@ -127,33 +127,33 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                             </div>
                             <div className="text-right">
                                 <p className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Total</p>
-                                <p className="text-sm font-bold text-[#141211]">{formatCurrency(order.total)}</p>
+                                <p className="text-sm font-bold text-brand-espresso">{formatCurrency(order.total)}</p>
                             </div>
                         </div>
 
                         <div className="flex gap-2 pt-1">
-                            <button className="flex-1 bg-[#FAF8F5] text-[#141211] py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-[#E8DFD0] active:scale-95 transition-transform" onClick={() => setShowDetails(!showDetails)}>
+                            <button className="flex-1 bg-brand-pearl text-brand-espresso py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-brand-border active:scale-95 transition-transform" onClick={() => setShowDetails(!showDetails)}>
                                 {showDetails ? 'Close' : 'Details'}
                             </button>
                             <button
                                 onClick={() => openAction('return')}
                                 disabled={!canRaiseRequest}
-                                className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest border active:scale-95 transition-transform ${canRaiseRequest ? 'bg-[#FAF8F5] text-[#141211] border-[#E8DFD0] hover:border-[#C59B27]' : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'}`}
+                                className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest border active:scale-95 transition-transform ${canRaiseRequest ? 'bg-brand-pearl text-brand-espresso border-brand-border hover:border-brand-champagne' : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'}`}
                             >
                                 Return
                             </button>
                             <button
                                 onClick={() => openAction('exchange')}
                                 disabled={!canRaiseRequest}
-                                className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest border active:scale-95 transition-transform ${canRaiseRequest ? 'bg-white text-[#141211] border-stone-200 hover:border-[#C59B27]' : 'bg-stone-100 text-stone-400 border-stone-200 cursor-not-allowed'}`}
+                                className={`flex-1 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest border active:scale-95 transition-transform ${canRaiseRequest ? 'bg-white text-brand-espresso border-stone-200 hover:border-brand-champagne' : 'bg-stone-100 text-stone-400 border-stone-200 cursor-not-allowed'}`}
                             >
                                 Exchange
                             </button>
-                            <Link to={`/order-tracking/${order.id}`} className="flex-1 bg-[#141211] text-[#E8D198] border border-[#C59B27]/40 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-center shadow-md active:scale-95 transition-transform hover:bg-[#1C1917]">
+                            <Link to={`/order-tracking/${order.id}`} className="flex-1 bg-brand-plum text-white border border-brand-plum py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-center shadow-md active:scale-95 transition-all hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne">
                                 Track
                             </Link>
-                            <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="flex-1 bg-white text-[#3E2723] border border-[#E8DFD0] py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-center shadow-sm active:scale-95 transition-transform flex items-center justify-center gap-1 hover:border-[#C59B27]">
-                                <FileText className="w-3 h-3 text-[#C59B27]" /> Invoice
+                            <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="flex-1 bg-white text-[#3E2723] border border-brand-border py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-center shadow-sm active:scale-95 transition-transform flex items-center justify-center gap-1 hover:border-brand-champagne">
+                                <FileText className="w-3 h-3 text-brand-champagne" /> Invoice
                             </Link>
                         </div>
                     </>
@@ -162,7 +162,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                 {/* Mobile Details View (Only if not tracking return, or simplified) */}
                 {showDetails && !activeRequest && (
                     <div className="pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
-                        <div className="space-y-3 bg-[#FAF8F5] p-3 rounded-xl border border-[#C59B27]/30">
+                        <div className="space-y-3 bg-brand-pearl p-3 rounded-xl border border-brand-champagne/30">
                             {items.map((item, idx) => (
                                 <div key={idx} className="flex items-center gap-3">
                                     <ProductThumb
@@ -173,19 +173,19 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                                         fallbackIconClassName="w-4 h-4"
                                     />
                                     <div className="flex-grow min-w-0">
-                                        <p className="text-[10px] font-bold text-[#141211] truncate">{item.name}</p>
+                                        <p className="text-[10px] font-bold text-brand-espresso truncate">{item.name}</p>
                                         <p className="text-[10px] text-stone-500">Qty: {item.quantity} • {formatCurrency(item.price)}</p>
                                     </div>
-                                    <p className="text-xs font-bold text-[#141211]">{formatCurrency((item.price || 0) * (item.quantity || 0))}</p>
+                                    <p className="text-xs font-bold text-brand-espresso">{formatCurrency((item.price || 0) * (item.quantity || 0))}</p>
                                 </div>
                             ))}
                             <div className="border-t border-stone-200 pt-2 mt-1 space-y-1 text-[10px]">
                                 <div className="flex justify-between text-stone-500"><p>Subtotal</p><p>{formatCurrency(subtotal)}</p></div>
                                 {discount > 0 && <div className="flex justify-between text-red-500"><p>Discount</p><p>- {formatCurrency(discount)}</p></div>}
-                                {giftWrapCharge > 0 && <div className="flex justify-between text-[#C59B27]"><p>Gift Wrap</p><p>+ {formatCurrency(giftWrapCharge)}</p></div>}
+                                {giftWrapCharge > 0 && <div className="flex justify-between text-brand-champagne"><p>Gift Wrap</p><p>+ {formatCurrency(giftWrapCharge)}</p></div>}
                                 <div className="flex justify-between text-stone-500"><p>Shipping</p><p>{shipping === 0 ? 'FREE' : formatCurrency(shipping)}</p></div>
                                 {giftCardDiscount > 0 && <div className="flex justify-between text-emerald-600"><p>Gift Card</p><p>- {formatCurrency(giftCardDiscount)}</p></div>}
-                                <div className="flex justify-between font-bold text-[#141211] pt-1"><p>Grand Total</p><p>{formatCurrency(order.total)}</p></div>
+                                <div className="flex justify-between font-bold text-brand-espresso pt-1"><p>Grand Total</p><p>{formatCurrency(order.total)}</p></div>
                             </div>
                         </div>
                     </div>
@@ -223,16 +223,16 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                     <div className="p-4 md:p-6 bg-white border-b border-gray-100 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <div className="bg-amber-50 p-3 rounded-full border border-amber-200">
-                                <RefreshCw className="w-6 h-6 text-[#C59B27] animate-spin" />
+                                <RefreshCw className="w-6 h-6 text-brand-champagne animate-spin" />
                             </div>
                             <div>
-                                <h4 className="text-base font-bold text-[#141211] capitalize">{requestType} In Progress</h4>
+                                <h4 className="text-base font-bold text-brand-espresso capitalize">{requestType} In Progress</h4>
                                 <p className="text-xs text-stone-500">Requested on {new Date(activeRequest.createdAt || activeRequest.date).toLocaleDateString()}</p>
                             </div>
                         </div>
                         <Link
                             to={`/order-tracking/${order.id}`}
-                            className="bg-white border border-[#E8DFD0] text-[#141211] px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider hover:border-[#C59B27] hover:bg-[#FAF8F5] transition-colors"
+                            className="bg-white border border-brand-border text-brand-espresso px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider hover:border-brand-champagne hover:bg-brand-pearl transition-colors"
                         >
                             Track Status
                         </Link>
@@ -242,22 +242,22 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                         <button
                             onClick={() => openAction('return')}
                             disabled={!canRaiseRequest}
-                            className={`px-4 md:px-6 py-2 text-[10px] md:text-sm font-bold border rounded-lg uppercase tracking-wider transition-colors ${canRaiseRequest ? 'text-[#141211] border-[#E8DFD0] hover:bg-[#FAF8F5] hover:border-[#C59B27]' : 'text-gray-400 border-gray-200 bg-gray-100 cursor-not-allowed'}`}
+                            className={`px-4 md:px-6 py-2 text-[10px] md:text-sm font-bold border rounded-lg uppercase tracking-wider transition-colors ${canRaiseRequest ? 'text-brand-espresso border-brand-border hover:bg-brand-pearl hover:border-brand-champagne' : 'text-gray-400 border-gray-200 bg-gray-100 cursor-not-allowed'}`}
                         >
                             Return
                         </button>
                         <button
                             onClick={() => openAction('exchange')}
                             disabled={!canRaiseRequest}
-                            className={`px-4 md:px-6 py-2 text-[10px] md:text-sm font-bold border rounded-lg uppercase tracking-wider transition-colors ${canRaiseRequest ? 'text-[#141211] border-[#E8DFD0] hover:bg-[#FAF8F5] hover:border-[#C59B27]' : 'text-gray-400 border-gray-200 bg-gray-100 cursor-not-allowed'}`}
+                            className={`px-4 md:px-6 py-2 text-[10px] md:text-sm font-bold border rounded-lg uppercase tracking-wider transition-colors ${canRaiseRequest ? 'text-brand-espresso border-brand-border hover:bg-brand-pearl hover:border-brand-champagne' : 'text-gray-400 border-gray-200 bg-gray-100 cursor-not-allowed'}`}
                         >
                             Exchange
                         </button>
-                        <Link to={`/order-tracking/${order.id}`} className="bg-[#141211] text-white px-6 md:px-8 py-2 text-[10px] md:text-sm font-bold rounded-lg uppercase tracking-wider hover:bg-[#1C1917] hover:text-[#E8D198] transition-all shadow-sm flex items-center justify-center">
+                        <Link to={`/order-tracking/${order.id}`} className="bg-brand-plum text-white border border-brand-plum px-6 md:px-8 py-2 text-[10px] md:text-sm font-bold rounded-lg uppercase tracking-wider hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all shadow-sm flex items-center justify-center">
                             Track Order
                         </Link>
-                        <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="px-4 md:px-5 py-2 text-[10px] md:text-sm font-bold border border-[#E8DFD0] text-[#3E2723] rounded-lg uppercase tracking-wider hover:border-[#C59B27] hover:bg-[#FAF8F5] transition-colors inline-flex items-center gap-1.5 shadow-sm">
-                            <FileText className="w-3.5 h-3.5 text-[#C59B27]" /> Invoice
+                        <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="px-4 md:px-5 py-2 text-[10px] md:text-sm font-bold border border-brand-border text-[#3E2723] rounded-lg uppercase tracking-wider hover:border-brand-champagne hover:bg-brand-pearl transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                            <FileText className="w-3.5 h-3.5 text-brand-champagne" /> Invoice
                         </Link>
                     </div>
                 )}
@@ -303,7 +303,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                                     </div>
                                 )}
                                 {giftWrapCharge > 0 && (
-                                    <div className="flex justify-between text-[#C59B27]">
+                                    <div className="flex justify-between text-brand-champagne">
                                         <span>Gift Wrap</span>
                                         <span>+ {formatCurrency(giftWrapCharge, 2)}</span>
                                     </div>
@@ -324,7 +324,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                 )}
 
                 {/* Grand Total Bar */}
-                <div className="bg-[#FAF8F5] border-t border-[#E8DFD0] text-[#141211] p-3.5 md:p-4 md:px-6 flex justify-between items-center text-base md:text-lg font-bold">
+                <div className="bg-brand-pearl border-t border-brand-border text-brand-espresso p-3.5 md:p-4 md:px-6 flex justify-between items-center text-base md:text-lg font-bold">
                     <span>Grand total</span>
                     <span>{formatCurrency(order.total, 2)}</span>
                 </div>

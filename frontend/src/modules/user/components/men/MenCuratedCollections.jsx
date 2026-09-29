@@ -85,13 +85,13 @@ const MenCuratedCollections = ({ sectionData }) => {
                 
                 {/* Header */}
                 <div className="text-center mb-3 md:mb-7 px-4">
-                    <span className="inline-flex items-center rounded-full border border-black/10 bg-[#F8F3F4] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/60">
+                    <span className="inline-flex items-center rounded-full border border-brand-espresso/10 bg-[#F8F3F4] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-espresso/60">
                         {resolvedSettings.badge}
                     </span>
-                    <h2 className="mt-2 text-xl md:text-3xl font-medium text-black tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                    <h2 className="mt-2 text-xl md:text-3xl font-medium text-brand-espresso tracking-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
                         {resolvedSettings.title}
                     </h2>
-                    <p className="mt-1.5 text-[12px] md:text-base text-black/55 max-w-2xl mx-auto">
+                    <p className="mt-1.5 text-[12px] md:text-base text-brand-espresso/55 max-w-2xl mx-auto">
                         {resolvedSettings.subtitle}
                     </p>
                 </div>
@@ -151,7 +151,7 @@ const MenCuratedCollections = ({ sectionData }) => {
                                     onClick={() => scrollToDot(idx)}
                                     className={`transition-all duration-300 rounded-full ${
                                         activeIndex === idx 
-                                        ? "w-6 h-1.5 bg-black" 
+                                        ? "w-6 h-1.5 bg-brand-plum" 
                                         : "w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400"
                                     }`}
                                     aria-label={`Go to item ${idx + 1}`}

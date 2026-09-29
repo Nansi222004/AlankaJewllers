@@ -182,7 +182,7 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                 onWheel={(e) => e.stopPropagation()}
                 style={{
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#C59B27 transparent',
+                    scrollbarColor: '#B8956A transparent',
                 }}
             >
                 <ul className="flex flex-col gap-0.5 sm:gap-1">
@@ -194,8 +194,8 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                                 onClick={resetMenu}
                                 className={`flex items-center px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 text-[13px] lg:text-[14px] transition-all duration-200 border-l-[3px] ${
                                     hoveredCategory === cat.name
-                                        ? 'text-[#C59B27] font-semibold bg-[#FAF8F5] border-[#C59B27]'
-                                        : 'text-gray-600 font-medium border-transparent hover:text-stone-900 hover:bg-[#FAF8F5]/60'
+                                        ? 'text-brand-champagne font-semibold bg-brand-pearl border-brand-champagne'
+                                        : 'text-gray-600 font-medium border-transparent hover:text-stone-900 hover:bg-brand-pearl/60'
                                 }`}
                             >
                                 <span className="tracking-tight whitespace-nowrap">{cat.name}</span>
@@ -212,7 +212,7 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                 onWheel={(e) => e.stopPropagation()}
                 style={{
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#C59B27 transparent',
+                    scrollbarColor: '#B8956A transparent',
                 }}
             >
                 <AnimatePresence mode="wait">
@@ -228,7 +228,7 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                             <Link
                                 to={mainCategories.find(c => c.name === hoveredCategory)?.path || '/shop'}
                                 onClick={resetMenu}
-                                className="inline-flex items-center text-[10px] font-bold text-[#141211] hover:text-[#C59B27] transition-all uppercase tracking-[0.2em] bg-[#FAF8F5] px-3.5 py-1.5 rounded-full border border-[#E8DFD0] hover:border-[#C59B27]/40 hover:shadow-sm active:scale-95 whitespace-nowrap"
+                                className="inline-flex items-center text-[10px] font-bold text-brand-espresso hover:text-brand-champagne transition-all uppercase tracking-[0.2em] bg-brand-pearl px-3.5 py-1.5 rounded-full border border-brand-border hover:border-brand-champagne/40 hover:shadow-sm active:scale-95 whitespace-nowrap"
                             >
                                 {hoveredCategory === 'All' ? 'Explore All Jewellery' : `View All ${hoveredCategory}`} →
                             </Link>
@@ -242,7 +242,7 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                                         key={sub.id}
                                         to={sub.path}
                                         onClick={resetMenu}
-                                        className="text-[12.5px] sm:text-[13px] font-medium text-stone-600 hover:text-[#C59B27] transition-all hover:translate-x-1 duration-200 py-0.5 block truncate"
+                                        className="text-[12.5px] sm:text-[13px] font-medium text-stone-600 hover:text-brand-champagne transition-all hover:translate-x-1 duration-200 py-0.5 block truncate"
                                         title={sub.name}
                                     >
                                         {sub.name}
@@ -263,7 +263,7 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                                                     key={item.name}
                                                     to={item.path}
                                                     onClick={resetMenu}
-                                                    className="text-[12.5px] sm:text-[13px] font-medium text-stone-600 hover:text-[#C59B27] transition-all hover:translate-x-1 duration-200 w-fit"
+                                                    className="text-[12.5px] sm:text-[13px] font-medium text-stone-600 hover:text-brand-champagne transition-all hover:translate-x-1 duration-200 w-fit"
                                                 >
                                                     {item.name}
                                                 </Link>

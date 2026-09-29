@@ -96,7 +96,7 @@ const WomenLatestCollections = () => {
                                     <h3 className="text-3xl md:text-5xl font-display text-white leading-tight mb-1" style={{ fontFamily: "'Cinzel', serif", fontWeight: 700 }}>
                                         {item.title.split(' ')[0]} <span className="text-white/80 italic font-serif text-2xl md:text-4xl">{item.title.split(' ').slice(1).join(' ')}</span>
                                     </h3>
-                                    <p className="text-[#E8D198] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4">
+                                    <p className="text-brand-champagne-light text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4">
                                         {item.subtitle}
                                     </p>
                                     

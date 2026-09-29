@@ -66,7 +66,7 @@ const AutoBannerSection = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-[#C59B27] text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-1 block"
+                    className="text-brand-champagne text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-1 block"
                 >
                     Premium Narrative
                 </motion.span>
@@ -76,9 +76,9 @@ const AutoBannerSection = () => {
                     viewport={{ once: true }}
                     className="text-2xl md:text-4xl font-serif text-stone-900 tracking-tight"
                 >
-                    Signature <span className="italic font-light text-[#C59B27]">Curations</span>
+                    Signature <span className="italic font-light text-brand-champagne">Curations</span>
                 </motion.h2>
-                <div className="w-12 h-[2px] bg-[#C59B27] mx-auto mt-2 rounded-full" />
+                <div className="w-12 h-[2px] bg-brand-champagne mx-auto mt-2 rounded-full" />
             </div>
 
             <div className="w-full aspect-[2.5/1] md:aspect-[5/1] relative">

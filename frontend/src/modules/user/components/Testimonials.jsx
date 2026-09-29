@@ -59,18 +59,18 @@ const Testimonials = () => {
   const supportingItems = displayItems.slice(1);
 
   return (
-    <section className="w-full py-12 md:py-24 bg-white overflow-hidden border-t border-[#E8DFD0]/60">
+    <section className="w-full py-12 md:py-24 bg-white overflow-hidden border-t border-brand-border/60">
       <div className="container mx-auto px-4 md:px-8 max-w-[1440px]">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16">
-          <div className="inline-flex items-center gap-2 mb-2 text-[#C59B27] text-[10px] uppercase font-bold tracking-[0.3em]">
+          <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Cherished Words</span>
           </div>
-          <h2 className="font-serif text-2xl md:text-4xl text-[#141211] font-normal tracking-tight">
+          <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
             {sectionData?.label || "Customer Stories"}
           </h2>
-          <div className="w-12 h-[1px] bg-[#C59B27] mx-auto mt-4" />
+          <div className="w-12 h-[1px] bg-brand-champagne mx-auto mt-4" />
         </div>
 
         {/* ── EDITORIAL ASYMMETRIC TESTIMONIAL LAYOUT (Desktop md+) ── */}
@@ -81,12 +81,12 @@ const Testimonials = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="md:col-span-7 bg-[#FAF8F5] rounded-3xl p-8 lg:p-12 border border-[#E8DFD0] relative flex flex-col justify-between shadow-xs"
+              className="md:col-span-7 bg-brand-pearl rounded-3xl p-8 lg:p-12 border border-brand-border relative flex flex-col justify-between shadow-xs"
             >
               <div>
                 {/* Large Decorative Quote Icon */}
-                <div className="w-12 h-12 rounded-full bg-[#141211] text-[#E8D198] flex items-center justify-center mb-6 shadow-sm">
-                  <Quote className="w-5 h-5 text-[#C59B27]" />
+                <div className="w-12 h-12 rounded-full bg-brand-plum text-brand-champagne-light flex items-center justify-center mb-6 shadow-sm">
+                  <Quote className="w-5 h-5 text-brand-champagne" />
                 </div>
 
                 {/* Stars Rating */}
@@ -94,33 +94,33 @@ const Testimonials = () => {
                   {[...Array(prominentItem.rating || 5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-4 h-4 fill-[#C59B27] text-[#C59B27]"
+                      className="w-4 h-4 fill-brand-champagne text-brand-champagne"
                     />
                   ))}
                 </div>
 
                 {/* Quotation Text in Luxury Serif */}
-                <p className="font-serif text-lg lg:text-2xl text-[#141211] font-normal italic leading-relaxed mb-8">
+                <p className="font-serif text-lg lg:text-2xl text-brand-espresso font-normal italic leading-relaxed mb-8">
                   "{prominentItem.text}"
                 </p>
               </div>
 
               {/* Author Info */}
-              <div className="flex items-center gap-4 pt-6 border-t border-[#E8DFD0]">
+              <div className="flex items-center gap-4 pt-6 border-t border-brand-border">
                 {prominentItem.image ? (
                   <img
                     src={prominentItem.image}
                     alt={prominentItem.name}
                     onError={(e) => handleImageError(e, customer1)}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#C59B27]/40 shadow-xs"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-brand-champagne/40 shadow-xs"
                   />
                 ) : (
-                  <div className="w-14 h-14 rounded-full bg-[#141211] text-[#E8D198] font-serif font-bold text-lg flex items-center justify-center border border-[#C59B27]/40">
+                  <div className="w-14 h-14 rounded-full bg-brand-plum text-brand-champagne-light font-serif font-bold text-lg flex items-center justify-center border border-brand-champagne/40">
                     {prominentItem.name.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <h4 className="font-serif text-base font-semibold text-[#141211]">
+                  <h4 className="font-serif text-base font-semibold text-brand-espresso">
                     {prominentItem.name}
                   </h4>
                   {prominentItem.location && (
@@ -142,14 +142,14 @@ const Testimonials = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="flex-1 bg-white rounded-3xl p-6 lg:p-8 border border-[#E8DFD0] hover:border-[#C59B27]/60 shadow-xs flex flex-col justify-between transition-all duration-300"
+                className="flex-1 bg-white rounded-3xl p-6 lg:p-8 border border-brand-border hover:border-brand-champagne/60 shadow-xs flex flex-col justify-between transition-all duration-300"
               >
                 <div>
                   <div className="flex gap-1 mb-3">
                     {[...Array(item.rating || 5)].map((_, i) => (
                       <Star
                         key={i}
-                        className="w-3.5 h-3.5 fill-[#C59B27] text-[#C59B27]"
+                        className="w-3.5 h-3.5 fill-brand-champagne text-brand-champagne"
                       />
                     ))}
                   </div>
@@ -164,7 +164,7 @@ const Testimonials = () => {
                       src={item.image}
                       alt={item.name}
                       onError={(e) => handleImageError(e, customer2)}
-                      className="w-10 h-10 rounded-full object-cover border border-[#C59B27]/30"
+                      className="w-10 h-10 rounded-full object-cover border border-brand-champagne/30"
                     />
                   ) : (
                     <div className="w-10 h-10 rounded-full bg-stone-100 text-stone-700 font-serif font-bold text-sm flex items-center justify-center border border-stone-200">
@@ -172,7 +172,7 @@ const Testimonials = () => {
                     </div>
                   )}
                   <div>
-                    <h5 className="font-serif text-xs font-semibold text-[#141211]">
+                    <h5 className="font-serif text-xs font-semibold text-brand-espresso">
                       {item.name}
                     </h5>
                     {item.location && (
@@ -192,37 +192,37 @@ const Testimonials = () => {
           {displayItems.map((item, index) => (
             <div
               key={item.id}
-              className="flex-shrink-0 w-[85%] snap-center bg-[#FAF8F5] rounded-2xl p-6 border border-[#E8DFD0] shadow-xs flex flex-col justify-between"
+              className="flex-shrink-0 w-[85%] snap-center bg-brand-pearl rounded-2xl p-6 border border-brand-border shadow-xs flex flex-col justify-between"
             >
               <div>
                 <div className="flex gap-1 mb-3">
                   {[...Array(item.rating || 5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-3.5 h-3.5 fill-[#C59B27] text-[#C59B27]"
+                      className="w-3.5 h-3.5 fill-brand-champagne text-brand-champagne"
                     />
                   ))}
                 </div>
-                <p className="font-serif text-sm text-[#141211] italic leading-relaxed mb-4">
+                <p className="font-serif text-sm text-brand-espresso italic leading-relaxed mb-4">
                   "{item.text}"
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 pt-3 border-t border-[#E8DFD0]/60">
+              <div className="flex items-center gap-3 pt-3 border-t border-brand-border/60">
                 {item.image ? (
                   <img
                     src={item.image}
                     alt={item.name}
                     onError={(e) => handleImageError(e, customer1)}
-                    className="w-10 h-10 rounded-full object-cover border border-[#C59B27]/40"
+                    className="w-10 h-10 rounded-full object-cover border border-brand-champagne/40"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-[#141211] text-[#E8D198] font-serif font-bold text-xs flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-brand-plum text-brand-champagne-light font-serif font-bold text-xs flex items-center justify-center">
                     {item.name.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <h4 className="font-serif text-xs font-bold text-[#141211]">
+                  <h4 className="font-serif text-xs font-bold text-brand-espresso">
                     {item.name}
                   </h4>
                   {item.location && (

@@ -46,7 +46,7 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
 
     return (
         <div 
-            className="flex flex-col bg-white w-[600px] sm:w-[620px] max-w-[calc(100vw-2rem)] shadow-[0_20px_45px_rgba(20,18,17,0.12)] overflow-hidden border border-[#E8DFD0] rounded-b-2xl font-sans"
+            className="flex flex-col bg-white w-[600px] sm:w-[620px] max-w-[calc(100vw-2rem)] shadow-[0_20px_45px_rgba(51,40,39,0.12)] overflow-hidden border border-brand-border rounded-b-2xl font-sans"
             style={{
                 maxHeight: menuMaxHeight ? `${menuMaxHeight}px` : 'min(420px, calc(100vh - 140px))',
                 width: maxWidth ? `${maxWidth}px` : undefined,
@@ -55,10 +55,10 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
             onWheel={(e) => e.stopPropagation()}
         >
             {/* ── Compact Header Row ── */}
-            <div className="bg-[#FAF8F5] px-4 sm:px-5 py-2.5 border-b border-[#E8DFD0]/70 flex items-center justify-between shrink-0">
+            <div className="bg-brand-pearl px-4 sm:px-5 py-2.5 border-b border-brand-border/70 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-2">
-                    <Coins className="w-3.5 h-3.5 text-[#C59B27] shrink-0" />
-                    <span className="text-xs font-semibold text-[#141211] font-serif tracking-wide">
+                    <Coins className="w-3.5 h-3.5 text-brand-champagne shrink-0" />
+                    <span className="text-xs font-semibold text-brand-espresso font-serif tracking-wide">
                         Bullions & Investment Coins
                     </span>
                     <span className="text-[10px] text-stone-400 font-sans hidden sm:inline">
@@ -69,7 +69,7 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                 <Link
                     to="/shop?metal=gold&karat=24"
                     onClick={resetMenu}
-                    className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-[#C59B27] hover:text-[#141211] transition-colors uppercase tracking-wider"
+                    className="inline-flex items-center gap-1 text-[10.5px] font-semibold text-brand-champagne hover:text-brand-espresso transition-colors uppercase tracking-wider"
                 >
                     <span>View All Bullions</span>
                     <ArrowRight className="w-3 h-3" />
@@ -83,18 +83,18 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                 onWheel={(e) => e.stopPropagation()}
                 style={{
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#C59B27 transparent',
+                    scrollbarColor: '#B8956A transparent',
                 }}
             >
-                <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-[#E8DFD0]/60 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-brand-border/60 gap-3 sm:gap-4">
                     {/* ── Column 1: Gold Bullions ── */}
                     <div className="sm:pr-2">
-                        <div className="flex items-center justify-between pb-2 mb-1.5 border-b border-[#E8DFD0]/50">
-                            <h4 className="text-xs font-semibold text-[#141211] font-serif tracking-wide flex items-center gap-1.5">
-                                <span className="w-2 h-2 rounded-full bg-[#C59B27]" />
+                        <div className="flex items-center justify-between pb-2 mb-1.5 border-b border-brand-border/50">
+                            <h4 className="text-xs font-semibold text-brand-espresso font-serif tracking-wide flex items-center gap-1.5">
+                                <span className="w-2 h-2 rounded-full bg-brand-champagne" />
                                 Gold Bullions
                             </h4>
-                            <span className="text-[9px] font-semibold bg-[#C59B27]/10 text-[#C59B27] px-2 py-0.5 rounded-full uppercase tracking-wider border border-[#C59B27]/20">
+                            <span className="text-[9px] font-semibold bg-brand-champagne/10 text-brand-champagne px-2 py-0.5 rounded-full uppercase tracking-wider border border-brand-champagne/20">
                                 24K & 22K
                             </span>
                         </div>
@@ -106,23 +106,23 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                                     key={item.title}
                                     to={item.path}
                                     onClick={resetMenu}
-                                    className="group flex items-center justify-between p-1.5 rounded-lg hover:bg-[#FAF8F5] transition-all border border-transparent hover:border-[#E8DFD0]/60"
+                                    className="group flex items-center justify-between p-1.5 rounded-lg hover:bg-brand-pearl transition-all border border-transparent hover:border-brand-border/60"
                                 >
                                     <div className="min-w-0 pr-2">
-                                        <div className="text-[11.5px] font-medium text-[#141211] group-hover:text-[#C59B27] transition-colors leading-tight">
+                                        <div className="text-[11.5px] font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors leading-tight">
                                             {item.title}
                                         </div>
                                         <p className="text-[10px] text-stone-400 leading-tight truncate">
                                             {item.subtitle}
                                         </p>
                                     </div>
-                                    <ChevronRight className="w-3.5 h-3.5 text-stone-300 group-hover:text-[#C59B27] group-hover:translate-x-0.5 transition-all shrink-0" />
+                                    <ChevronRight className="w-3.5 h-3.5 text-stone-300 group-hover:text-brand-champagne group-hover:translate-x-0.5 transition-all shrink-0" />
                                 </Link>
                             ))}
                         </div>
 
                         {/* Gold Weight Pills */}
-                        <div className="pt-2 border-t border-[#E8DFD0]/40">
+                        <div className="pt-2 border-t border-brand-border/40">
                             <span className="text-[9.5px] font-semibold text-stone-400 uppercase tracking-widest block mb-1.5">
                                 Weights
                             </span>
@@ -132,7 +132,7 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                                         key={weight}
                                         to="/shop?metal=gold&karat=24"
                                         onClick={resetMenu}
-                                        className="text-[10px] font-medium text-stone-600 hover:text-[#C59B27] hover:border-[#C59B27] hover:bg-white bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#E8DFD0]/80 transition-colors shadow-2xs"
+                                        className="text-[10px] font-medium text-stone-600 hover:text-brand-champagne hover:border-brand-champagne hover:bg-white bg-brand-pearl px-2 py-0.5 rounded-full border border-brand-border/80 transition-colors shadow-2xs"
                                     >
                                         {weight}
                                     </Link>
@@ -145,7 +145,7 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                             <Link
                                 to="/gold-collection"
                                 onClick={resetMenu}
-                                className="text-[10px] font-semibold text-[#C59B27] hover:text-[#141211] transition-colors tracking-wide inline-flex items-center gap-0.5"
+                                className="text-[10px] font-semibold text-brand-champagne hover:text-brand-espresso transition-colors tracking-wide inline-flex items-center gap-0.5"
                             >
                                 <span>Explore Gold Collection</span>
                                 <ArrowRight className="w-2.5 h-2.5" />
@@ -155,8 +155,8 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
 
                     {/* ── Column 2: Silver Bullions ── */}
                     <div className="pt-3 sm:pt-0 sm:pl-4">
-                        <div className="flex items-center justify-between pb-2 mb-1.5 border-b border-[#E8DFD0]/50">
-                            <h4 className="text-xs font-semibold text-[#141211] font-serif tracking-wide flex items-center gap-1.5">
+                        <div className="flex items-center justify-between pb-2 mb-1.5 border-b border-brand-border/50">
+                            <h4 className="text-xs font-semibold text-brand-espresso font-serif tracking-wide flex items-center gap-1.5">
                                 <span className="w-2 h-2 rounded-full bg-slate-400" />
                                 Silver Bullions
                             </h4>
@@ -175,7 +175,7 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                                     className="group flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50/70 transition-all border border-transparent hover:border-slate-200/80"
                                 >
                                     <div className="min-w-0 pr-2">
-                                        <div className="text-[11.5px] font-medium text-[#141211] group-hover:text-slate-800 transition-colors leading-tight">
+                                        <div className="text-[11.5px] font-medium text-brand-espresso group-hover:text-slate-800 transition-colors leading-tight">
                                             {item.title}
                                         </div>
                                         <p className="text-[10px] text-stone-400 leading-tight truncate">
@@ -188,7 +188,7 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                         </div>
 
                         {/* Silver Weight Pills */}
-                        <div className="pt-2 border-t border-[#E8DFD0]/40">
+                        <div className="pt-2 border-t border-brand-border/40">
                             <span className="text-[9.5px] font-semibold text-stone-400 uppercase tracking-widest block mb-1.5">
                                 Weights
                             </span>
@@ -211,7 +211,7 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                             <Link
                                 to="/shop?metal=silver"
                                 onClick={resetMenu}
-                                className="text-[10px] font-semibold text-slate-600 hover:text-[#141211] transition-colors tracking-wide inline-flex items-center gap-0.5"
+                                className="text-[10px] font-semibold text-slate-600 hover:text-brand-espresso transition-colors tracking-wide inline-flex items-center gap-0.5"
                             >
                                 <span>Explore Silver Collection</span>
                                 <ArrowRight className="w-2.5 h-2.5" />
@@ -222,17 +222,17 @@ const BullionsMenu = ({ resetMenu, availableHeight, maxWidth }) => {
             </div>
 
             {/* ── Slim Trust Footer Strip ── */}
-            <div className="bg-[#FAF8F5] px-4 py-2 border-t border-[#E8DFD0]/70 flex items-center justify-between text-[10px] text-stone-500 shrink-0">
+            <div className="bg-brand-pearl px-4 py-2 border-t border-brand-border/70 flex items-center justify-between text-[10px] text-stone-500 shrink-0">
                 <div className="flex items-center gap-1.5">
-                    <ShieldCheck className="w-3 h-3 text-[#C59B27] shrink-0" />
+                    <ShieldCheck className="w-3 h-3 text-brand-champagne shrink-0" />
                     <span>100% BIS Hallmarked</span>
                 </div>
                 <div className="hidden sm:flex items-center gap-1.5">
-                    <Scale className="w-3 h-3 text-[#C59B27] shrink-0" />
+                    <Scale className="w-3 h-3 text-brand-champagne shrink-0" />
                     <span>Direct Asset Pricing</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                    <Award className="w-3 h-3 text-[#C59B27] shrink-0" />
+                    <Award className="w-3 h-3 text-brand-champagne shrink-0" />
                     <span>Certified Buyback</span>
                 </div>
             </div>
