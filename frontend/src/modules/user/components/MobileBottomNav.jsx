@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, Bell, Heart, User, Sparkles } from 'lucide-react';
+import { Home, Bell, Heart, User, ShoppingBag } from 'lucide-react';
 import { useNotification } from '../../../context/NotificationContext';
 import { motion } from 'framer-motion';
 
@@ -83,7 +83,7 @@ const MobileBottomNav = () => {
                                 }`
                             }
                         >
-                            <Sparkles className="w-6 h-6 text-[#E8D198]" strokeWidth={2.5} />
+                            <ShoppingBag className="w-6 h-6 text-[#E8D198]" strokeWidth={2.5} />
                         </NavLink>
                     </div>
 
