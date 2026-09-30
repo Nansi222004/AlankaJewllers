@@ -92,7 +92,8 @@ const HorizontalFilters = ({
     sortBy = 'New Arrival',
     onSortChange,
     clearAll,
-    isCollectionLocked = false
+    isCollectionLocked = false,
+    hiddenFilterIds = []
 }) => {
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [hoveredMetal, setHoveredMetal] = useState(null);
@@ -301,7 +302,7 @@ const HorizontalFilters = ({
                     ref={filterScroll.ref}
                     className={`flex items-center gap-2 flex-wrap ${filterScroll.isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}`}
                 >
-                    {filterGroups.map((group) => {
+                    {filterGroups.filter((group) => !hiddenFilterIds.includes(group.id)).map((group) => {
                         const isGroupActive = Boolean(group.displayValue) || (group.id === 'price' && priceRange < 50000);
 
                         return (
@@ -531,6 +532,8 @@ const HorizontalFilters = ({
                         className="bg-transparent text-[12px] font-bold text-stone-800 outline-none cursor-pointer border-b border-transparent hover:border-brand-champagne transition-all uppercase"
                     >
                         <option value="New Arrival">New Arrival</option>
+                        <option value="Price Low to High">Price Low to High</option>
+                        <option value="Price High to Low">Price High to Low</option>
                         <option value="Discount">Discount</option>
                         <option value="Best Selling">Best Selling</option>
                     </select>

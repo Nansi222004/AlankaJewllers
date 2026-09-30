@@ -24,6 +24,7 @@ import catWeddingBanglesImg from '@assets/cat_wedding_bangles.png';
 import eternalDiamondBrillianceImg from '@assets/hero/eternal_diamond_brilliance.png';
 import diamondEleganceCampaignImg from '@assets/hero/diamond_elegance_campaign.png';
 import diamondLuxuryImg from '@assets/hero/diamond_luxury.png';
+import gemsHeroImg from '@assets/hero/precious_gemstones_art_of_colour.jpg';
 
 export const goldCollectionGridDefaults = [
     {
@@ -183,5 +184,46 @@ export const diamondCollectionGridDefaults = [
         label: 'Diamond Bangles',
         image: catWeddingBanglesImg,
         path: '/shop?metal=diamond&category=bangles'
+    }
+];
+
+// Fallback discovery cards mirror the CMS category-grid contract. Admin CMS
+// items replace these automatically once a Gems Collection Grid is configured.
+export const gemsCollectionGridDefaults = [
+    {
+        id: 'gems-all',
+        name: 'Gemstone Jewellery',
+        label: 'Gemstone Jewellery',
+        image: gemsHeroImg,
+        path: '/shop?metal=gems',
+        badge: 'The Gems Edit'
+    },
+    {
+        id: 'gems-earrings',
+        name: 'Gemstone Earrings',
+        label: 'Gemstone Earrings',
+        image: earringsImg,
+        path: '/shop?metal=gems&category=earrings-earrings'
+    },
+    {
+        id: 'gems-rings',
+        name: 'Gemstone Rings',
+        label: 'Gemstone Rings',
+        image: ringsImg,
+        path: '/shop?metal=gems&category=finger-ring'
+    },
+    {
+        id: 'gems-kundan',
+        name: 'Kundan & Gemstone Jewellery',
+        label: 'Kundan & Gemstone Jewellery',
+        image: catWeddingChokerImg,
+        path: '/shop?metal=gems&search=kundan'
+    },
+    {
+        id: 'gems-pearls',
+        name: 'Pearl Jewellery',
+        label: 'Pearl Jewellery',
+        image: pendantsImg,
+        path: '/shop?metal=gems&search=pearl'
     }
 ];

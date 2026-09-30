@@ -291,6 +291,7 @@ const SectionEditor = () => {
             'gold-collection-grid',
             'silver-collection-grid',
             'diamond-collection-grid',
+            'gems-collection-grid',
             'collections',
             'categories-grid',
             'trending-near-you',

@@ -1,19 +1,36 @@
 const Joi = require("joi");
 
-exports.sendOtpSchema = Joi.object({
-  phone: Joi.string().length(10).pattern(/^[0-9]+$/).required().messages({
-    "string.length": "Phone number must be exactly 10 digits",
-    "string.pattern.base": "Phone number must contain only digits",
-  }),
-  type: Joi.string().valid("login", "signup", "checkout").optional(),
+const customerPassword = Joi.string().min(8).max(72).required();
+
+exports.userLoginSchema = Joi.object({
+  email: Joi.string().trim().lowercase().email().required(),
+  password: customerPassword,
 });
 
-exports.verifyOtpSchema = Joi.object({
-  phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
-  otp: Joi.string().length(4).required(),
-  type: Joi.string().valid("login", "signup", "checkout").optional(),
-  name: Joi.string().allow("", null).optional(),
-  email: Joi.string().email().allow("", null).optional(),
+exports.userRegisterSchema = Joi.object({
+  name: Joi.string().trim().min(2).max(80).required(),
+  email: Joi.string().trim().lowercase().email().required(),
+  phone: Joi.string().length(10).pattern(/^[6-9][0-9]{9}$/).required(),
+  password: customerPassword,
+});
+
+exports.emailOtpSchema = Joi.object({
+  challengeId: Joi.string().hex().length(64).required(),
+  otp: Joi.string().pattern(/^[0-9]{6}$/).required(),
+});
+
+exports.resendEmailOtpSchema = Joi.object({
+  challengeId: Joi.string().hex().length(64).required(),
+});
+
+exports.forgotPasswordSchema = Joi.object({
+  email: Joi.string().trim().lowercase().email().required(),
+});
+
+exports.resetPasswordSchema = Joi.object({
+  challengeId: Joi.string().hex().length(64).required(),
+  resetToken: Joi.string().hex().length(64).required(),
+  newPassword: customerPassword,
 });
 
 exports.adminLoginSchema = Joi.object({

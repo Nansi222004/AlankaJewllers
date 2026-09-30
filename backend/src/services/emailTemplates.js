@@ -317,6 +317,25 @@ const welcomeEmail = ({ userName }) => {
   return layout("Welcome to Alankar Jewellers!", body);
 };
 
+const emailVerificationCode = ({ code, purpose = "login" }) => {
+  const headings = {
+    login: "Verify Your Sign In",
+    registration: "Verify Your Email",
+    password_reset: "Reset Your Password",
+  };
+  const body = `
+    <h2 style="margin:0 0 8px;font-size:24px;color:${BRAND_DARK};">${headings[purpose] || headings.login}</h2>
+    <p style="color:#666;margin:0 0 24px;font-size:15px;line-height:1.6;">Use the verification code below to continue with Alankar Jewellers.</p>
+    <div style="background:${BRAND_LIGHT};border:1px solid #eadfd8;border-radius:10px;padding:26px;text-align:center;margin-bottom:24px;">
+      <p style="margin:0 0 10px;font-size:11px;color:#777;text-transform:uppercase;letter-spacing:2px;">Your verification code</p>
+      <p style="margin:0;font-family:monospace;font-size:36px;font-weight:700;color:${BRAND_DARK};letter-spacing:8px;">${code}</p>
+    </div>
+    <p style="font-size:14px;color:#555;line-height:1.7;margin:0 0 12px;">This code expires in 10 minutes and can only be used once.</p>
+    <p style="font-size:13px;color:#888;line-height:1.7;margin:0;">If you did not request this verification, you can safely ignore this email.</p>`;
+
+  return layout("Your Alankar Jewellers Verification Code", body);
+};
+
 // ── Exports ───────────────────────────────────────────────────────────────────
 
 /**
@@ -407,6 +426,7 @@ module.exports = {
   returnRequested,
   returnStatusUpdate,
   welcomeEmail,
+  emailVerificationCode,
   giftCardDelivery,
   giftCardPurchaseConfirmation,
   replacementRequested,

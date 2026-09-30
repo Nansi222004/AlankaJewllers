@@ -4,9 +4,10 @@ const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
     phone: { type: String, required: true, unique: true, index: true, trim: true },
-    email: { type: String, default: "", trim: true, lowercase: true },
+    email: { type: String, default: "", trim: true, lowercase: true, index: true },
+    emailVerified: { type: Boolean, default: false },
     role: { type: String, enum: ["user", "admin"], default: "user" },
-    password: { type: String, default: null }, // admin only - bcrypt hashed
+    password: { type: String, default: null, select: false }, // bcrypt hash only
 
     points: { type: Number, default: 0 },
     usedCoupons: [{ type: String }],

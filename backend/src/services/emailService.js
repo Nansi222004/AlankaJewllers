@@ -229,15 +229,17 @@ const enqueueEmail = async (payload) => {
 // ── Verify connection on startup ──────────────────────────────────────────────
 
 const verifyConnection = async () => {
-  if (!transporter) return;
+  if (!transporter) return false;
   try {
     await transporter.verify();
     console.info("[Email] ✅ SMTP connection verified successfully.");
+    return true;
   } catch (err) {
     console.warn("[Email] ⚠️  SMTP connection check failed:", err.message);
     console.warn(
       "[Email]     Emails may fail silently. Check SMTP credentials in .env",
     );
+    return false;
   }
 };
 
@@ -246,4 +248,4 @@ verifyConnection().catch(() => { });
 
 // ── Exports ───────────────────────────────────────────────────────────────────
 
-module.exports = { sendEmail, enqueueEmail };
+module.exports = { sendEmail, enqueueEmail, verifyConnection };

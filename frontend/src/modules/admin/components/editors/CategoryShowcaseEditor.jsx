@@ -130,15 +130,18 @@ const CategoryShowcaseEditor = ({ sectionData, onSave, defaultItems = [] }) => {
     sectionId === "gold-collection-grid" ||
     sectionId === "silver-collection-grid" ||
     sectionId === "diamond-collection-grid" ||
+    sectionId === "gems-collection-grid" ||
     sectionData?.sectionType === "category-grid";
   const isGoldGrid = sectionId === "gold-collection-grid";
   const isSilverGrid = sectionId === "silver-collection-grid";
   const isDiamondGrid = sectionId === "diamond-collection-grid";
+  const isGemsGrid = sectionId === "gems-collection-grid";
   const isHomeCategoryGrid =
     sectionId === "category-grid" ||
     isGoldGrid ||
     isSilverGrid ||
-    isDiamondGrid;
+    isDiamondGrid ||
+    isGemsGrid;
   const isLuxuryWithinReach =
     sectionId === "luxury-within-reach" || isGoldLuxuryWithinReach;
   const isFamilyLuxuryWithinReach = isLuxuryWithinReach && isShopFamilySection;

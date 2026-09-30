@@ -1,293 +1,332 @@
-import React, { useState, useEffect } from "react";
-import loginHero from "@assets/login_hero_silver.png";
-import { useAuth } from "../../../context/AuthContext";
-import { useNavigate, Link, useLocation } from "react-router-dom";
-import { Crown, ArrowLeft } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useShop } from "../../../context/ShopContext";
-import {
-  readMenPendingCartItem,
-  clearMenPendingCartItem,
-} from "../utils/menNavigation";
-import {
-  readWomenPendingCartItem,
-  clearWomenPendingCartItem,
-} from "../utils/womenNavigation";
-
+import loginHero from "@assets/login_hero_silver.png";
 import defaultLogo from "@/assets/Alankar jewllers.png";
+import { useAuth } from "../../../context/AuthContext";
+import { useShop } from "../../../context/ShopContext";
 import { useSettings } from "../../../context/SettingsContext";
+import { readMenPendingCartItem, clearMenPendingCartItem } from "../utils/menNavigation";
+import { readWomenPendingCartItem, clearWomenPendingCartItem } from "../utils/womenNavigation";
+
+const emptyOtp = () => Array(6).fill("");
 
 const Login = () => {
-  const { sendOtp, verifyOtp } = useAuth();
+  const {
+    startLogin,
+    startRegistration,
+    verifyEmailOtp,
+    resendEmailOtp,
+    requestPasswordReset,
+    verifyPasswordResetOtp,
+    resetPassword,
+  } = useAuth();
   const { addToCart } = useShop();
   const { settings } = useSettings();
-  const currentLogo = (settings?.logo && !settings.logo.includes('logo.webp') && !/swarna|sands/i.test(settings.logo))
-    ? settings.logo
-    : defaultLogo;
-  const currentStoreName = (!settings?.storeName || /swarna\s*sparsh/i.test(settings.storeName))
-    ? "Alankar Jewellers"
-    : settings.storeName;
   const navigate = useNavigate();
   const location = useLocation();
-
-  // Determine mode based on URL
+  const otpRefs = useRef([]);
   const isSignup = location.pathname === "/signup";
   const redirectParam = new URLSearchParams(location.search).get("redirect");
-  const redirectTarget =
-    redirectParam && redirectParam.startsWith("/") ? redirectParam : "/profile";
+  const redirectTarget = redirectParam?.startsWith("/") ? redirectParam : "/profile";
 
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [loginStep, setLoginStep] = useState(1);
-  const [otp, setOtp] = useState(["", "", "", ""]);
-
-  // Additional fields for Signup
-  const [fullName, setFullName] = useState("");
+  const [step, setStep] = useState("credentials");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState(emptyOtp);
+  const [challengeId, setChallengeId] = useState("");
+  const [resetToken, setResetToken] = useState("");
+  const [resendSeconds, setResendSeconds] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  // Reset state when mode changes
+  const currentLogo = settings?.logo && !settings.logo.includes("logo.webp") && !/swarna|sands/i.test(settings.logo)
+    ? settings.logo
+    : defaultLogo;
+  const currentStoreName = !settings?.storeName || /swarna\s*sparsh/i.test(settings.storeName)
+    ? "Alankar Jewellers"
+    : settings.storeName;
+
   useEffect(() => {
-    setLoginStep(1);
-    setPhoneNumber("");
-    setOtp(["", "", "", ""]);
-    setFullName("");
-    setEmail("");
+    setStep("credentials");
+    setPassword("");
+    setOtp(emptyOtp());
+    setChallengeId("");
+    setError("");
   }, [isSignup]);
 
-  const handleSendOtp = async (e) => {
-    e.preventDefault();
-    if (phoneNumber.length === 10) {
-      const res = await sendOtp(phoneNumber, isSignup ? "signup" : "login");
-      if (res.success) {
-        setLoginStep(2);
-      } else {
-        toast.error(res.message);
-      }
-    } else {
-      toast.error("Please enter a valid 10-digit phone number");
+  useEffect(() => {
+    if (resendSeconds <= 0) return undefined;
+    const timer = window.setInterval(() => setResendSeconds((value) => Math.max(0, value - 1)), 1000);
+    return () => window.clearInterval(timer);
+  }, [resendSeconds]);
+
+  useEffect(() => {
+    if (step === "otp" || step === "resetOtp") {
+      window.setTimeout(() => otpRefs.current[0]?.focus(), 100);
+    }
+  }, [step]);
+
+  const finishLogin = () => {
+    const pendingWomenCartItem = readWomenPendingCartItem();
+    if (pendingWomenCartItem) {
+      addToCart(pendingWomenCartItem);
+      clearWomenPendingCartItem();
+      navigate("/cart", { replace: true });
+      return;
+    }
+    const pendingMenCartItem = readMenPendingCartItem();
+    if (pendingMenCartItem) {
+      addToCart(pendingMenCartItem);
+      clearMenPendingCartItem();
+      navigate("/cart", { replace: true });
+      return;
+    }
+    navigate(redirectTarget, { replace: true });
+  };
+
+  const run = async (action) => {
+    if (submitting) return null;
+    setSubmitting(true);
+    setError("");
+    try {
+      const result = await action();
+      if (!result?.success) setError(result?.message || "Something went wrong. Please try again.");
+      return result;
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  const handleVerifyOtp = async (e) => {
-    e.preventDefault();
-    const enteredOtp = otp.join("");
-    if (enteredOtp.length === 4) {
-      const res = await verifyOtp(
-        phoneNumber,
-        enteredOtp,
-        isSignup ? "signup" : "login",
-        isSignup
-          ? {
-            name: fullName.trim(),
-            email: email.trim(),
-          }
-          : {},
-      );
-      if (res.success) {
-        const pendingWomenCartItem = readWomenPendingCartItem();
-        if (pendingWomenCartItem) {
-          addToCart(pendingWomenCartItem);
-          clearWomenPendingCartItem();
-          navigate("/cart", { replace: true });
-          return;
-        }
-
-        const pendingCartItem = readMenPendingCartItem();
-        if (pendingCartItem) {
-          addToCart(pendingCartItem);
-          clearMenPendingCartItem();
-          navigate("/cart", { replace: true });
-          return;
-        }
-
-        navigate(redirectTarget, { replace: true });
-      } else {
-        toast.error(res.message);
-      }
-    } else {
-      toast.error("Please enter the 4-digit OTP");
+  const handleCredentials = async (event) => {
+    event.preventDefault();
+    const result = await run(() => isSignup
+      ? startRegistration({ name: fullName.trim(), phone, email: email.trim(), password })
+      : startLogin(email.trim(), password));
+    if (result?.success) {
+      setChallengeId(result.data.challengeId);
+      setOtp(emptyOtp());
+      setResendSeconds(result.data.resendAfter || 60);
+      setStep("otp");
     }
   };
 
-  const handleOtpChange = (element, index) => {
-    if (isNaN(element.value)) return;
-    let newOtp = [...otp];
-    newOtp[index] = element.value;
-    setOtp(newOtp);
-    if (element.nextSibling && element.value) {
-      element.nextSibling.focus();
+  const handleVerify = async (event) => {
+    event.preventDefault();
+    const code = otp.join("");
+    if (code.length !== 6) {
+      setError("Please enter the verification code.");
+      return;
+    }
+    const result = await run(() => verifyEmailOtp(challengeId, code));
+    if (result?.success) finishLogin();
+  };
+
+  const handleForgot = async (event) => {
+    event.preventDefault();
+    const result = await run(() => requestPasswordReset(email.trim()));
+    if (result?.success) {
+      setChallengeId(result.data.challengeId);
+      setOtp(emptyOtp());
+      setResendSeconds(result.data.resendAfter || 60);
+      setStep("resetOtp");
+      toast.success(result.message);
     }
   };
+
+  const handleResetOtp = async (event) => {
+    event.preventDefault();
+    const code = otp.join("");
+    if (code.length !== 6) {
+      setError("Please enter the verification code.");
+      return;
+    }
+    const result = await run(() => verifyPasswordResetOtp(challengeId, code));
+    if (result?.success) {
+      setResetToken(result.data.resetToken);
+      setStep("newPassword");
+    }
+  };
+
+  const handleNewPassword = async (event) => {
+    event.preventDefault();
+    if (newPassword !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+    const result = await run(() => resetPassword(challengeId, resetToken, newPassword));
+    if (result?.success) {
+      toast.success(result.message);
+      setPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      setStep("credentials");
+    }
+  };
+
+  const handleResend = async () => {
+    if (resendSeconds > 0 || submitting) return;
+    const result = await run(() => resendEmailOtp(challengeId));
+    if (result?.success) {
+      setOtp(emptyOtp());
+      setResendSeconds(result.data.resendAfter || 60);
+      toast.success(result.message);
+      otpRefs.current[0]?.focus();
+    }
+  };
+
+  const updateOtp = (index, value) => {
+    const digit = value.replace(/\D/g, "").slice(-1);
+    setOtp((current) => current.map((item, itemIndex) => itemIndex === index ? digit : item));
+    if (digit && index < 5) otpRefs.current[index + 1]?.focus();
+  };
+
+  const handleOtpKeyDown = (event, index) => {
+    if (event.key === "Backspace" && !otp[index] && index > 0) otpRefs.current[index - 1]?.focus();
+  };
+
+  const handleOtpPaste = (event) => {
+    const digits = event.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6).split("");
+    if (!digits.length) return;
+    event.preventDefault();
+    setOtp(Array.from({ length: 6 }, (_, index) => digits[index] || ""));
+    otpRefs.current[Math.min(digits.length, 6) - 1]?.focus();
+  };
+
+  const title = step === "otp"
+    ? "Verify Your Email"
+    : step === "forgot"
+      ? "Forgot Password"
+      : step === "resetOtp"
+        ? "Verify Your Email"
+        : step === "newPassword"
+          ? "Set New Password"
+          : isSignup ? "Create Account" : "Welcome Back";
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-4 overflow-hidden bg-brand-pearl text-brand-espresso">
-      {/* Dynamic Background - Abstract Luxury */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-left-bottom scale-[1.35] origin-bottom-left animate-in fade-in duration-1000 grayscale-[20%]"
-          style={{
-            backgroundImage: `url(${loginHero})`, // Using existing local hero
-          }}
-        />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/70 to-black/20 backdrop-blur-[2px]"></div>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-brand-pearl p-4 text-brand-espresso">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 scale-[1.25] bg-cover bg-left-bottom grayscale-[20%]" style={{ backgroundImage: `url(${loginHero})` }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/75 to-brand-espresso/25 backdrop-blur-[2px]" />
       </div>
 
-      {/* Back Button */}
-      <button
-        onClick={() => navigate("/")}
-        className="absolute top-6 left-6 z-[60] text-brand-espresso hover:bg-black/5 p-3 rounded-full transition-all group">
-        <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
+      <button onClick={() => navigate("/")} className="absolute left-4 top-4 z-[60] rounded-full p-3 text-brand-espresso transition hover:bg-white/60" aria-label="Back to home">
+        <ArrowLeft className="h-6 w-6" />
       </button>
 
-      {/* Mobile View - Clean & Minimal */}
-      <div className="absolute inset-0 z-50 flex flex-col justify-center px-4">
-        <div className="relative w-full max-w-sm mx-auto p-[2px] rounded-[2rem] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-          {/* Animated Border */}
-          <div className="absolute w-[200%] h-[200%] -top-[50%] -left-[50%] bg-[conic-gradient(from_0deg,transparent_0_340deg,#B8956A_360deg)] animate-[spin_4s_linear_infinite] z-0" />
-
-          <div className="relative z-10 bg-white/95 backdrop-blur-xl px-6 py-8 rounded-[calc(2rem-2px)] w-full mx-auto border border-brand-border/40">
-            {/* Brand */}
-            <div className="text-center mb-8 flex flex-col items-center gap-1.5">
-              <img
-                src={currentLogo}
-                alt={currentStoreName}
-                className="w-20 h-20 object-contain drop-shadow-sm"
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = defaultLogo;
-                }}
-              />
-              <span className="font-serif text-lg font-bold tracking-wider text-stone-900 uppercase">
-                {currentStoreName}
-              </span>
-            </div>
-
-            <div className="mb-6 text-center">
-              <h2 className="text-2xl font-serif text-stone-900 mb-1 font-bold">
-                {loginStep === 1
-                  ? isSignup
-                    ? "Create Account"
-                    : "Welcome Back"
-                  : "Verify OTP"}
-              </h2>
-              <p className="text-stone-500 text-sm font-sans">
-                {loginStep === 1
-                  ? isSignup
-                    ? "Begin your journey with us."
-                    : "Please login to continue."
-                  : `Enter code sent to +91 ${phoneNumber}`}
-              </p>
-            </div>
-
-            {loginStep === 1 ? (
-              <form onSubmit={handleSendOtp} className="space-y-4">
-                {isSignup && (
-                  <>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-stone-500 uppercase tracking-wider pl-1">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        className="w-full h-12 bg-stone-50/50 border border-stone-200 rounded-xl px-4 text-stone-900 font-medium placeholder:text-stone-400 focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne outline-none transition-all"
-                        placeholder="Enter your name"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-stone-500 uppercase tracking-wider pl-1">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full h-12 bg-stone-50/50 border border-stone-200 rounded-xl px-4 text-stone-900 font-medium placeholder:text-stone-400 focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne outline-none transition-all"
-                        placeholder="Enter your email"
-                      />
-                    </div>
-                  </>
-                )}
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-stone-500 uppercase tracking-wider pl-1">
-                    Mobile Number
-                  </label>
-                  <div className="flex bg-stone-50/50 border border-stone-200 rounded-xl overflow-hidden h-12 items-center focus-within:border-brand-champagne focus-within:ring-1 focus-within:ring-brand-champagne transition-all">
-                    <div className="h-full px-4 flex items-center gap-2 text-stone-700 font-semibold border-r border-stone-200">
-                      <span>+91</span>
-                    </div>
-                    <input
-                      type="tel"
-                      value={phoneNumber}
-                      onChange={(e) =>
-                        setPhoneNumber(
-                          e.target.value.replace(/\D/g, "").slice(0, 10),
-                        )
-                      }
-                      placeholder="98765 43210"
-                      className="flex-1 h-full bg-transparent border-0 px-4 text-stone-900 font-medium text-base placeholder:text-stone-400 focus:ring-0 outline-none"
-                      required
-                    />
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all shadow-md mt-2">
-                  Get OTP
-                </button>
-              </form>
-            ) : (
-              <form onSubmit={handleVerifyOtp} className="space-y-6">
-                <div className="flex justify-between gap-3 px-2">
-                  {otp.map((data, index) => (
-                    <input
-                      key={index}
-                      type="text"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      maxLength="1"
-                      value={data}
-                      onChange={(e) => handleOtpChange(e.target, index)}
-                      onFocus={(e) => e.target.select()}
-                      className="w-14 h-16 bg-transparent border-b-2 border-stone-300 focus:border-brand-champagne text-center text-3xl font-bold text-stone-900 outline-none transition-all p-0 rounded-none"
-                    />
-                  ))}
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all shadow-md">
-                  Verify & Proceed
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLoginStep(1)}
-                  className="w-full text-center text-[11px] font-bold text-stone-500 uppercase tracking-wider py-2 hover:text-brand-champagne transition-colors">
-                  Change Mobile Number
-                </button>
-              </form>
-            )}
-
-            <div className="mt-8 text-center">
-              <p className="text-xs text-stone-500 font-sans">
-                {isSignup ? "Already a Member?" : "New here?"}
-                <Link
-                  to={isSignup ? "/login" : "/signup"}
-                  className="ml-1 text-stone-900 font-bold border-b border-stone-900 hover:text-brand-champagne hover:border-brand-champagne transition-colors">
-                  {isSignup ? "Login" : "Join Now"}
-                </Link>
-              </p>
-            </div>
-          </div>
+      <div className="relative z-50 my-auto w-full max-w-sm rounded-[2rem] border border-brand-border bg-white/95 px-5 py-7 shadow-[0_16px_50px_rgba(51,40,39,0.15)] backdrop-blur-xl sm:px-7">
+        <div className="mb-6 flex flex-col items-center text-center">
+          <img src={currentLogo} alt={currentStoreName} className="h-16 w-16 object-contain" onError={(event) => { event.currentTarget.src = defaultLogo; }} />
+          <span className="font-serif text-lg font-bold uppercase tracking-wider">{currentStoreName}</span>
         </div>
+
+        <div className="mb-6 text-center">
+          <h1 className="font-serif text-2xl font-bold text-brand-espresso">{title}</h1>
+          <p className="mt-1 text-sm text-brand-taupe">
+            {step === "otp" || step === "resetOtp"
+              ? <>We&apos;ve sent a verification code to<br /><span className="font-medium text-brand-espresso">{email}</span></>
+              : step === "forgot"
+                ? "Enter your account email to receive a verification code."
+                : step === "newPassword"
+                  ? "Choose a secure password for your account."
+                  : isSignup ? "Begin your journey with us." : "Sign in securely with your email."}
+          </p>
+        </div>
+
+        {error && <div role="alert" className="mb-4 rounded-xl border border-brand-blush bg-brand-rosewater/45 px-3 py-2.5 text-sm text-brand-plum">{error}</div>}
+
+        {step === "credentials" && (
+          <form onSubmit={handleCredentials} className="space-y-4">
+            {isSignup && (
+              <>
+                <Field label="Full Name" type="text" value={fullName} onChange={setFullName} placeholder="Enter your name" autoComplete="name" />
+                <Field label="Mobile Number" type="tel" value={phone} onChange={(value) => setPhone(value.replace(/\D/g, "").slice(0, 10))} placeholder="98765 43210" autoComplete="tel" inputMode="numeric" pattern="[6-9][0-9]{9}" />
+              </>
+            )}
+            <Field label="Email Address" type="email" value={email} onChange={setEmail} placeholder="you@example.com" autoComplete="email" />
+            <PasswordField label="Password" value={password} onChange={setPassword} show={showPassword} setShow={setShowPassword} autoComplete={isSignup ? "new-password" : "current-password"} />
+            {!isSignup && (
+              <button type="button" onClick={() => { setStep("forgot"); setError(""); }} className="block w-full text-right text-xs font-semibold text-brand-plum hover:text-brand-champagne">Forgot Password?</button>
+            )}
+            <PrimaryButton loading={submitting}>{isSignup ? "Create Account" : "Login"}</PrimaryButton>
+          </form>
+        )}
+
+        {(step === "otp" || step === "resetOtp") && (
+          <form onSubmit={step === "otp" ? handleVerify : handleResetOtp} className="space-y-5">
+            <div className="grid grid-cols-6 gap-2" onPaste={handleOtpPaste}>
+              {otp.map((digit, index) => (
+                <input key={index} ref={(element) => { otpRefs.current[index] = element; }} type="text" inputMode="numeric" autoComplete={index === 0 ? "one-time-code" : "off"} value={digit} maxLength="1" onChange={(event) => updateOtp(index, event.target.value)} onKeyDown={(event) => handleOtpKeyDown(event, index)} aria-label={`Verification digit ${index + 1}`} className="h-12 min-w-0 rounded-lg border border-brand-border bg-brand-pearl text-center text-xl font-bold outline-none transition focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne" />
+              ))}
+            </div>
+            <PrimaryButton loading={submitting}>{step === "otp" ? "Verify Email" : "Verify Code"}</PrimaryButton>
+            <div className="flex items-center justify-between gap-3 text-xs">
+              <button type="button" onClick={handleResend} disabled={resendSeconds > 0 || submitting} className="font-semibold text-brand-plum disabled:text-brand-taupe">
+                {resendSeconds > 0 ? `Resend in ${resendSeconds}s` : "Resend code"}
+              </button>
+              <button type="button" onClick={() => { setStep(step === "otp" ? "credentials" : "forgot"); setOtp(emptyOtp()); setError(""); }} className="font-semibold text-brand-taupe hover:text-brand-plum">Change email / Back</button>
+            </div>
+          </form>
+        )}
+
+        {step === "forgot" && (
+          <form onSubmit={handleForgot} className="space-y-4">
+            <Field label="Email Address" type="email" value={email} onChange={setEmail} placeholder="you@example.com" autoComplete="email" />
+            <PrimaryButton loading={submitting}>Send Verification Code</PrimaryButton>
+            <button type="button" onClick={() => { setStep("credentials"); setError(""); }} className="w-full text-xs font-semibold text-brand-taupe hover:text-brand-plum">Back to login</button>
+          </form>
+        )}
+
+        {step === "newPassword" && (
+          <form onSubmit={handleNewPassword} className="space-y-4">
+            <PasswordField label="New Password" value={newPassword} onChange={setNewPassword} show={showPassword} setShow={setShowPassword} autoComplete="new-password" />
+            <PasswordField label="Confirm Password" value={confirmPassword} onChange={setConfirmPassword} show={showPassword} setShow={setShowPassword} autoComplete="new-password" />
+            <PrimaryButton loading={submitting}>Update Password</PrimaryButton>
+          </form>
+        )}
+
+        {step === "credentials" && (
+          <p className="mt-7 text-center text-xs text-brand-taupe">
+            {isSignup ? "Already a member?" : "New here?"}
+            <Link to={isSignup ? "/login" : "/signup"} className="ml-1 font-bold text-brand-espresso underline decoration-brand-champagne underline-offset-4">
+              {isSignup ? "Login" : "Join Now"}
+            </Link>
+          </p>
+        )}
       </div>
-
-
     </div>
   );
 };
+
+const Field = ({ label, value, onChange, ...props }) => (
+  <label className="block space-y-1.5">
+    <span className="pl-1 text-[10px] font-bold uppercase tracking-wider text-brand-taupe">{label}</span>
+    <input required value={value} onChange={(event) => onChange(event.target.value)} className="h-12 w-full rounded-xl border border-brand-border bg-brand-pearl/70 px-4 text-brand-espresso outline-none transition placeholder:text-brand-taupe/70 focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne" {...props} />
+  </label>
+);
+
+const PasswordField = ({ label, value, onChange, show, setShow, autoComplete }) => (
+  <label className="block space-y-1.5">
+    <span className="pl-1 text-[10px] font-bold uppercase tracking-wider text-brand-taupe">{label}</span>
+    <span className="relative block">
+      <input required minLength="8" maxLength="72" type={show ? "text" : "password"} value={value} onChange={(event) => onChange(event.target.value)} autoComplete={autoComplete} placeholder="••••••••" className="h-12 w-full rounded-xl border border-brand-border bg-brand-pearl/70 px-4 pr-12 text-brand-espresso outline-none transition focus:border-brand-champagne focus:ring-1 focus:ring-brand-champagne" />
+      <button type="button" onClick={() => setShow(!show)} className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-brand-taupe" aria-label={show ? "Hide password" : "Show password"}>
+        {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+      </button>
+    </span>
+  </label>
+);
+
+const PrimaryButton = ({ children, loading }) => (
+  <button type="submit" disabled={loading} className="w-full rounded-xl border border-brand-plum bg-brand-plum py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md transition hover:border-brand-champagne hover:bg-brand-champagne hover:text-brand-espresso disabled:cursor-not-allowed disabled:opacity-60">
+    {loading ? "Please wait…" : children}
+  </button>
+);
 
 export default Login;

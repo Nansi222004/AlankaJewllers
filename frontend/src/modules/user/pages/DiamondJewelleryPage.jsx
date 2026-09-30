@@ -12,6 +12,7 @@ import heroDiamondLuxury from "@assets/hero/diamond_luxury.png";
 import heroDiamondCampaign from "@assets/hero/diamond_elegance_campaign.png";
 
 import CollectionCategoryGrid from "../components/CollectionCategoryGrid";
+import CollectionNewLaunch from "../components/CollectionNewLaunch";
 import { diamondCollectionGridDefaults } from "../utils/collectionGridDefaults";
 
 // Specialized luxury diamond components
@@ -186,6 +187,11 @@ const DiamondJewelleryPage = () => {
           bgClass="bg-white"
         />
       )}
+
+      <CollectionNewLaunch
+        metal="diamond"
+        sectionData={sectionMap["diamond-new-launch"]}
+      />
 
       {/* 4. Shop by Diamond Shape */}
       {isSectionActive("diamond-shapes") && (

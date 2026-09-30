@@ -1,4 +1,5 @@
 import React, { lazy, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useShop } from '../../../context/ShopContext';
 import { useHomepageCms } from '../hooks/useHomepageCms';
 import Loader from '../../shared/components/Loader';
@@ -8,6 +9,7 @@ import LazySection from '../../../components/LazySection';
 // ─── ABOVE-FOLD: eagerly imported — these are visible immediately on page load ───
 import PromoSlider from '../components/PromoSlider';
 import NewLaunchSection from '../components/NewLaunchSection';
+import CollectionNewLaunch from '../components/CollectionNewLaunch';
 import CategoryGrid, {
     SilverCollectionGrid
 } from '../components/CategoryGrid';
@@ -39,6 +41,8 @@ import Newsletter from '../components/Newsletter';
 
 
 const Home = () => {
+    const location = useLocation();
+    const isSilverCollection = location.pathname === '/silver-collection';
     const { isLoading: isShopLoading } = useShop();
     const {
         isError: isHomepageCmsError,
@@ -85,9 +89,10 @@ const Home = () => {
 
             {/* ── ABOVE FOLD: loaded eagerly (visible immediately) ── */}
             <PromoSlider />
-            <CategoryGrid />
-            <NewLaunchSection />
+            {!isSilverCollection && <CategoryGrid />}
+            {!isSilverCollection && <NewLaunchSection />}
             <SilverCollectionGrid />
+            {isSilverCollection && <CollectionNewLaunch metal="silver" />}
             <DynamicPromoBanner />
             <TrustMarkers />
 

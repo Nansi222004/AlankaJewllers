@@ -14,7 +14,7 @@ import GoldExploreCollections from "../components/GoldExploreCollections";
 import BestStylesSection from "../components/BestStylesSection";
 import GoldCategoryGrid from "../components/GoldCategoryGrid";
 import { GoldCollectionGrid } from "../components/CategoryGrid";
-import GoldNewLaunchBanner from "../components/GoldNewLaunchBanner";
+import CollectionNewLaunch from "../components/CollectionNewLaunch";
 import PromoSlider from "../components/PromoSlider";
 import GoldRingCarousel from "../components/GoldRingCarousel";
 import GoldTestimonials from "../components/GoldTestimonials";
@@ -195,6 +195,10 @@ const GoldJewelleryPage = () => {
         sectionData={sectionMap["gold-collection-grid"]}
         sidePanelData={sectionMap["gold-shop-by-colour"]}
       />
+      <CollectionNewLaunch
+        metal="gold"
+        sectionData={sectionMap["gold-new-launch-banner"]}
+      />
       <HeerCustomisationBanner />
       <GoldExploreCollections
         sectionData={sectionMap["gold-explore-collections"]}
@@ -240,7 +244,6 @@ const GoldJewelleryPage = () => {
         </div>
       </div>
 
-      <GoldNewLaunchBanner sectionData={sectionMap["gold-new-launch-banner"]} />
       <GoldExclusiveLaunch sectionData={sectionMap["gold-exclusive-launch"]} />
       <GoldRingCarousel sectionData={sectionMap["gold-ring-carousel"]} />
       <HeerCustomisationBanner />

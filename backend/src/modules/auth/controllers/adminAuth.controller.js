@@ -65,7 +65,7 @@ exports.login = async (req, res) => {
         { phone: identifier.replace(/^\+91/, "") }
       ],
       role: "admin"
-    });
+    }).select("+password");
 
     if (!matchedAdmin) {
       return error(res, "Invalid credentials.", 401, "INVALID_CREDENTIALS");

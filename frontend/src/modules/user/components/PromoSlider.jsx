@@ -42,7 +42,7 @@ const SLIDES = [
     }
 ];
 
-const PromoSlider = ({ externalSlides, autoplayInterval }) => {
+const PromoSlider = ({ externalSlides, autoplayInterval, compact = false }) => {
     const { data: homepageSections = {} } = useHomepageCms();
     const sectionData = homepageSections?.['hero-banners'] || homepageSections?.['dynamic-promo-banner'];
     const dynamicSlides = Array.isArray(sectionData?.items)
@@ -109,7 +109,7 @@ const PromoSlider = ({ externalSlides, autoplayInterval }) => {
             onMouseEnter={() => setIsSuspended(true)}
             onMouseLeave={() => setIsSuspended(false)}
         >
-            <div className={`relative w-full overflow-hidden group transition-all duration-300 min-h-[220px] sm:min-h-[280px] md:min-h-[380px] ${extendedSlides[currentIndex]?.mobileImage ? 'aspect-[2/1] md:aspect-[3.5/1]' : 'aspect-[16/9] sm:aspect-[2.2/1] md:aspect-[3.5/1]'}`}>
+            <div className={`relative w-full overflow-hidden group transition-all duration-300 ${compact ? 'h-[210px] sm:h-[250px] md:h-[300px]' : `min-h-[220px] sm:min-h-[280px] md:min-h-[380px] ${extendedSlides[currentIndex]?.mobileImage ? 'aspect-[2/1] md:aspect-[3.5/1]' : 'aspect-[16/9] sm:aspect-[2.2/1] md:aspect-[3.5/1]'}`}`}>
                 <motion.div
                     className="absolute inset-0 flex h-full w-full"
                     animate={{

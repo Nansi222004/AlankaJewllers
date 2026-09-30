@@ -16,7 +16,7 @@ const browser = spawn(browserPath, [
   '--use-angle=swiftshader', '--use-gl=angle', '--hide-scrollbars',
   '--no-first-run', '--disable-default-apps',
   `--remote-debugging-port=${port}`,
-  `--user-data-dir=${root}.qa-phase4-profile-${name}`,
+  `--user-data-dir=${outputDir}/profile-${name}`,
   `--window-size=${width},${height}`, url,
 ], { stdio: 'ignore' });
 

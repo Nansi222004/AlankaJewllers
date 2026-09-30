@@ -28,7 +28,9 @@ export const AuthProvider = ({ children }) => {
             if (cachedUser) {
                 try {
                     setUser(JSON.parse(cachedUser));
-                } catch (e) {}
+                } catch {
+                    localStorage.removeItem(userKey);
+                }
             }
             loadUser(userKey);
         } else {
@@ -55,40 +57,49 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // --- USER AUTH (OTP) ---
-    const sendOtp = async (phone, type) => {
+    const authRequest = async (path, payload, fallbackMessage) => {
         try {
-            const res = await api.post('auth/send-otp', { phone, type });
+            const res = await api.post(path, payload);
             return res.data;
         } catch (err) {
-            return { success: false, message: err.response?.data?.message || "Failed to send OTP" };
+            return { success: false, message: err.response?.data?.message || fallbackMessage, error: err.response?.data?.error };
         }
     };
 
-    const verifyOtp = async (phone, otp, type, profileData = {}) => {
-        try {
-            const payload = {
-                phone,
-                otp,
-                type,
-                ...(profileData?.name ? { name: profileData.name } : {}),
-                ...(profileData?.email ? { email: profileData.email } : {})
-            };
-            const res = await api.post('auth/verify-otp', payload);
-            if (res.data.success) {
-                const { user: userData, token } = res.data.data;
-                setUser(userData);
-                localStorage.setItem('sands_token', token);
-                localStorage.setItem('sands_current_user', JSON.stringify(userData));
-                toast.success("Login successful!");
-                // Register FCM token
-                registerFCMToken(true).catch(err => console.error("FCM registration error:", err));
-            }
-            return res.data;
-        } catch (err) {
-            return { success: false, message: err.response?.data?.message || "Invalid OTP" };
+    const startLogin = (email, password) =>
+        authRequest('auth/login', { email, password }, 'Unable to start login. Please try again.');
+
+    const startRegistration = (profile) =>
+        authRequest('auth/register', profile, 'Unable to create account. Please try again.');
+
+    const verifyEmailOtp = async (challengeId, otp) => {
+        const result = await authRequest(
+            'auth/verify-email-otp',
+            { challengeId, otp },
+            'Unable to verify the code. Please try again.'
+        );
+        if (result.success) {
+            const { user: userData, token } = result.data;
+            setUser(userData);
+            localStorage.setItem('sands_token', token);
+            localStorage.setItem('sands_current_user', JSON.stringify(userData));
+            toast.success(result.message || 'Login successful!');
+            registerFCMToken(true).catch(err => console.error("FCM registration error:", err));
         }
+        return result;
     };
+
+    const resendEmailOtp = (challengeId) =>
+        authRequest('auth/resend-email-otp', { challengeId }, 'Unable to resend the verification email.');
+
+    const requestPasswordReset = (email) =>
+        authRequest('auth/forgot-password', { email }, 'Unable to process this request.');
+
+    const verifyPasswordResetOtp = (challengeId, otp) =>
+        authRequest('auth/verify-password-reset-otp', { challengeId, otp }, 'Unable to verify the code.');
+
+    const resetPassword = (challengeId, resetToken, newPassword) =>
+        authRequest('auth/reset-password', { challengeId, resetToken, newPassword }, 'Unable to reset the password.');
 
     // --- ADMIN AUTH ---
     const adminLogin = async (email, password) => {
@@ -192,8 +203,13 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider value={{ 
             user, 
             loading, 
-            sendOtp, 
-            verifyOtp, 
+            startLogin,
+            startRegistration,
+            verifyEmailOtp,
+            resendEmailOtp,
+            requestPasswordReset,
+            verifyPasswordResetOtp,
+            resetPassword,
             adminLogin, 
             logout,
             deleteAccount,

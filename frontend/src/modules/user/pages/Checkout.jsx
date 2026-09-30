@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useResetScroll } from '../../../hooks/useResetScroll';
 import { useAnalytics } from '../../../hooks/useAnalytics';
+import api from '../../../services/api';
 
 import CheckoutAuth from '../components/Checkout/CheckoutAuth';
 import CheckoutAddresses from '../components/Checkout/CheckoutAddresses';
@@ -14,17 +15,12 @@ import CheckoutCartSummary from '../components/Checkout/CheckoutCartSummary';
 const Checkout = () => {
     useResetScroll();
     const { cart, placeOrder, addresses, addAddress, defaultAddressId, coupons, applyCoupon, appliedCoupon, couponDiscount, clearAppliedCoupon } = useShop();
-    const { user, sendOtp, verifyOtp } = useAuth();
+    const { user } = useAuth();
     const navigate = useNavigate();
     const { track } = useAnalytics();
     const currencyText = (value) => `₹${Number(value || 0).toLocaleString('en-IN')}`;
     const cartItemKey = (item) => `${item.id}-${item.variantId || item.packId || 'default'}`;
     const couponSummary = (coupon) => coupon?.description || coupon?.desc || 'Offer available on eligible items';
-
-    // Login State
-    const [loginStep, setLoginStep] = useState(1); // 1: Phone, 2: OTP
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [otp, setOtp] = useState(['', '', '', '']); // 4 digit OTP
 
     // Checkout Form State
     const [formData, setFormData] = useState({
@@ -154,46 +150,6 @@ const Checkout = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Login Handlers
-    const handleSendOtp = async (e) => {
-        e.preventDefault();
-        if (phoneNumber.length === 10) {
-            const res = await sendOtp(phoneNumber, 'checkout');
-            if (res.success) {
-                setLoginStep(2);
-            } else {
-                toast.error(res.message);
-            }
-        } else {
-            toast.error("Please enter a valid 10-digit phone number");
-        }
-    };
-
-    const handleVerifyOtp = async (e) => {
-        e.preventDefault();
-        const enteredOtp = otp.join('');
-        if (enteredOtp.length === 4) {
-            const res = await verifyOtp(phoneNumber, enteredOtp, 'checkout');
-            if (res.success) {
-                setFormData(prev => ({ ...prev, phone: phoneNumber }));
-            } else {
-                toast.error(res.message);
-            }
-        } else {
-            toast.error("Please enter the 4-digit OTP");
-        }
-    };
-
-    const handleOtpChange = (element, index) => {
-        if (isNaN(element.value)) return;
-        let newOtp = [...otp];
-        newOtp[index] = element.value;
-        setOtp(newOtp);
-        if (element.nextSibling && element.value) {
-            element.nextSibling.focus();
-        }
-    };
-
     // Checkout Handler
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -296,16 +252,7 @@ const Checkout = () => {
 
     if (!user) {
         return (
-            <CheckoutAuth
-                loginStep={loginStep}
-                setLoginStep={setLoginStep}
-                phoneNumber={phoneNumber}
-                setPhoneNumber={setPhoneNumber}
-                otp={otp}
-                handleOtpChange={handleOtpChange}
-                handleSendOtp={handleSendOtp}
-                handleVerifyOtp={handleVerifyOtp}
-            />
+            <CheckoutAuth />
         );
     }
 

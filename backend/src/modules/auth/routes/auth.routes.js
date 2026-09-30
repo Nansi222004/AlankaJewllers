@@ -7,8 +7,12 @@ const userAuth   = require("../controllers/userAuth.controller");
 const adminAuth  = require("../controllers/adminAuth.controller");
 const validate = require("../../../middlewares/validate");
 const {
-  sendOtpSchema,
-  verifyOtpSchema,
+  userLoginSchema,
+  userRegisterSchema,
+  emailOtpSchema,
+  resendEmailOtpSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
   adminLoginSchema,
   adminSendResetOtpSchema,
   adminResetPasswordSchema,
@@ -16,9 +20,14 @@ const {
   adminResetPasswordMobileSchema,
 } = require("../validators/auth.validator");
 
-// User auth
-router.post("/send-otp",    otpLimiter, validate(sendOtpSchema), userAuth.sendOtp);
-router.post("/verify-otp",  verifyOtpLimiter, validate(verifyOtpSchema), userAuth.verifyOtp);
+// Customer auth: password first, email OTP second factor, JWT only after verification.
+router.post("/login", otpLimiter, validate(userLoginSchema), userAuth.login);
+router.post("/register", otpLimiter, validate(userRegisterSchema), userAuth.register);
+router.post("/verify-email-otp", verifyOtpLimiter, validate(emailOtpSchema), userAuth.verifyEmailOtp);
+router.post("/resend-email-otp", otpLimiter, validate(resendEmailOtpSchema), userAuth.resendEmailOtp);
+router.post("/forgot-password", otpLimiter, validate(forgotPasswordSchema), userAuth.forgotPassword);
+router.post("/verify-password-reset-otp", verifyOtpLimiter, validate(emailOtpSchema), userAuth.verifyPasswordResetOtp);
+router.post("/reset-password", otpLimiter, validate(resetPasswordSchema), userAuth.resetPassword);
 router.get("/me",           require("../../../middlewares/authenticate"), userAuth.getMe);
 router.post("/logout",      userAuth.logout);
 

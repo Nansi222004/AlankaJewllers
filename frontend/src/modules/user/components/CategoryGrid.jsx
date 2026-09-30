@@ -4,7 +4,8 @@ import { homeCategoryGridDefaults } from '../utils/homeCategoryGridDefaults';
 import {
     goldCollectionGridDefaults,
     silverCollectionGridDefaults,
-    diamondCollectionGridDefaults
+    diamondCollectionGridDefaults,
+    gemsCollectionGridDefaults
 } from '../utils/collectionGridDefaults';
 
 export const CategoryGrid = () => {
@@ -56,6 +57,20 @@ export const DiamondCollectionGrid = () => {
             defaultSubtitle="Dazzling certified diamond jewellery designed to capture light"
             defaultItems={diamondCollectionGridDefaults}
             bgClass="bg-white"
+        />
+    );
+};
+
+export const GemsCollectionGrid = (props) => {
+    return (
+        <CollectionCategoryGrid
+            sectionKey="gems-collection-grid"
+            defaultTitle="Gems Collection"
+            defaultEyebrow="The Art of Colour"
+            defaultSubtitle="Explore gemstone jewellery by style and setting"
+            defaultItems={gemsCollectionGridDefaults}
+            bgClass="bg-brand-pearl"
+            {...props}
         />
     );
 };

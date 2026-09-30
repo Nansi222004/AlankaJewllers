@@ -94,7 +94,13 @@ const stableKeyFromParams = (params) => {
   return entries.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join("&");
 };
 
-const Shop = () => {
+const Shop = ({
+  collectionMetal = "",
+  collectionTitle = "",
+  embedded = false,
+  emptyTitle = "No products found",
+  emptyDescription = "Try adjusting your filters to find your perfect match.",
+}) => {
   const { products, categories, isLoading } = useShop();
   const visibleCategories = categories.filter(
     (cat) =>
@@ -219,6 +225,7 @@ const Shop = () => {
     };
   }, []);
   const queryParams = new URLSearchParams(location.search);
+  if (collectionMetal) queryParams.set("metal", collectionMetal);
   const isComingSoonQuery = queryParams.get("status") === "coming-soon";
   const sourceQuery = queryParams.get("source");
   const priceMaxQuery = queryParams.get("price_max") || queryParams.get("maxPrice") || queryParams.get("priceMax"); // upper bound — e.g. price_max=50000
@@ -290,8 +297,8 @@ const Shop = () => {
   const serverQueryParams = useMemo(() => {
     if (productsQuery) return null; // pinned-products mode uses /by-ids
 
-    const qp = new URLSearchParams(location.search);
-    const metal = qp.get("metal");
+    const qp = new URLSearchParams(queryParams);
+    const metal = collectionMetal || qp.get("metal");
     const effectiveKarat = karatQuery || purityQuery || "";
     const effectiveCategory = normalizeCategoryToken(qp.get("category") || "");
     const categorySlugParam = String(category || "").trim();
@@ -385,6 +392,7 @@ const Shop = () => {
     limitQuery,
     location.pathname,
     toneQuery,
+    collectionMetal,
   ]);
 
   const {
@@ -546,6 +554,10 @@ const Shop = () => {
 
     if (sortQuery === "most-sold" && sortBy !== "Best Selling") {
       if (!isCancelled) setSortBy("Best Selling");
+    } else if ((sortQuery === "priceLtoH" || sortQuery === "price-asc") && sortBy !== "Price Low to High") {
+      if (!isCancelled) setSortBy("Price Low to High");
+    } else if ((sortQuery === "priceHtoL" || sortQuery === "price-desc") && sortBy !== "Price High to Low") {
+      if (!isCancelled) setSortBy("Price High to Low");
     } else if ((sortQuery === "latest" || sortQuery === "newest") && sortBy !== "New Arrival") {
       if (!isCancelled) setSortBy("New Arrival");
     } else if (sortQuery === "discount" && sortBy !== "Discount") {
@@ -608,6 +620,8 @@ const Shop = () => {
 
   const updateShopQuery = (updates = {}, pathOverride = location.pathname) => {
     const params = new URLSearchParams(location.search);
+
+    if (collectionMetal) params.set("metal", collectionMetal);
 
     Object.entries(updates).forEach(([key, value]) => {
       if (
@@ -1157,6 +1171,10 @@ const Shop = () => {
     // 4. Apply Sorting
     if (sortQuery === "discount" || sortBy === "Discount") {
       result.sort((a, b) => getProductDiscountPercent(b) - getProductDiscountPercent(a));
+    } else if (sortQuery === "priceLtoH" || sortQuery === "price-asc" || sortBy === "Price Low to High") {
+      result.sort((a, b) => getProductPrice(a) - getProductPrice(b));
+    } else if (sortQuery === "priceHtoL" || sortQuery === "price-desc" || sortBy === "Price High to Low") {
+      result.sort((a, b) => getProductPrice(b) - getProductPrice(a));
     } else if (sortQuery === "most-sold" || sortBy === "Best Selling") {
       result.sort((a, b) => (getProductSold(b) - getProductSold(a)) || ((b.rating || 0) - (a.rating || 0)));
     } else if (sortQuery === "random") {
@@ -1220,17 +1238,18 @@ const Shop = () => {
             ? "Diamond Jewellery"
             : "Jewellery";
     document.title = `${pageTitle} | Alankar Jewellers - ${suffix}`;
-  }, [pageTitle]);
+  }, [pageTitle, collectionTitle]);
 
   // Handle Category Change
   const handleCategoryChange = (val) => {
     if (val === "All") {
       setSelectedCategory("All");
       const params = new URLSearchParams(location.search);
+      if (collectionMetal) params.set("metal", collectionMetal);
       params.delete("category");
       params.delete("page");
       const qs = params.toString();
-      navigate(`/shop${qs ? `?${qs}` : ""}`);
+      navigate(`${embedded ? location.pathname : "/shop"}${qs ? `?${qs}` : ""}`);
       return;
     }
 
@@ -1254,7 +1273,9 @@ const Shop = () => {
     params.delete("search");
     const qs = params.toString();
 
-    if (slug) {
+    if (embedded) {
+      updateShopQuery({ category: slug || selectedCat?._id || selectedCat?.id || val, page: null, search: null });
+    } else if (slug) {
       navigate(`/category/${encodeURIComponent(slug)}${qs ? `?${qs}` : ""}`);
     } else {
       const catId = selectedCat?._id || selectedCat?.id || val;
@@ -1268,6 +1289,8 @@ const Shop = () => {
     const sortMap = {
       "New Arrival": "latest",
       Newest: "latest",
+      "Price Low to High": "priceLtoH",
+      "Price High to Low": "priceHtoL",
       Discount: "discount",
       "Best Selling": "most-sold",
     };
@@ -1389,7 +1412,11 @@ const Shop = () => {
     setFilterTrending(false);
     setPriceRange(50000);
     setSortBy("New Arrival");
-    navigate("/shop");
+    navigate(
+      embedded && collectionMetal
+        ? `${location.pathname}?metal=${encodeURIComponent(collectionMetal)}`
+        : "/shop",
+    );
   };
 
   return (
@@ -1418,7 +1445,7 @@ const Shop = () => {
         </div>
       )}
       <div className="container mx-auto px-4 md:px-6 pb-32 md:pb-8">
-        {activeCategory && <CategoryHeroBanner category={activeCategory} />}
+        {!embedded && activeCategory && <CategoryHeroBanner category={activeCategory} />}
         {/* Sticky Header & Filters Container */}
         <div
           className={`sticky z-[40] bg-white transition-all duration-300 ${isNavVisible ? "top-[138px] md:top-[138px]" : "top-0"}`}
@@ -1426,32 +1453,30 @@ const Shop = () => {
           {/* Header Section - Back Left, Title Center, Items Right */}
           <div className="py-2 md:py-3 flex flex-row justify-between items-center gap-2 md:gap-4 border-b border-stone-200 px-4 md:px-0">
             {/* Back Button */}
-            <button
+            {!embedded && <button
               onClick={() => navigate(-1)}
               className="flex items-center gap-1 text-stone-800 hover:text-brand-champagne transition-all group font-bold uppercase tracking-wide text-[10px] md:text-xs shrink-0 min-w-[50px]"
             >
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
               Back
-            </button>
+            </button>}
 
             {/* Title - Center */}
             <div className="text-center flex-1 mx-1 overflow-hidden">
               <h1 className="text-base md:text-xl font-serif font-bold text-brand-espresso leading-tight truncate tracking-wide">
-                {pageTitle}
+                {collectionTitle || pageTitle}
               </h1>
-              {(searchQuery || priceMaxQuery || priceMinQuery) && (
-                <p className="text-[11px] md:text-xs text-stone-500 font-medium tracking-wide mt-0.5">
-                  {isServerProductsLoading ? (
-                    "Loading designs..."
-                  ) : (
-                    `${serverPagination?.total ?? productsToRender.length} ${
-                      (serverPagination?.total ?? productsToRender.length) === 1
-                        ? "Design"
-                        : "Designs"
-                    } Found`
-                  )}
-                </p>
-              )}
+              <p className="text-[11px] md:text-xs text-stone-500 font-medium tracking-wide mt-0.5">
+                {isServerProductsLoading ? (
+                  "Loading designs..."
+                ) : (
+                  `${serverPagination?.total ?? productsToRender.length} ${
+                    (serverPagination?.total ?? productsToRender.length) === 1
+                      ? "Design"
+                      : "Designs"
+                  } Found`
+                )}
+              </p>
             </div>
 
 
@@ -1511,12 +1536,14 @@ const Shop = () => {
             sortBy={sortBy}
             onSortChange={handleSortChange}
             clearAll={clearAllFilters}
+            isCollectionLocked={Boolean(collectionMetal)}
+            hiddenFilterIds={collectionMetal === "gems" ? ["metal", "purity", "stones"] : []}
           />
 
           {/* Mobile Active Filter Chips */}
           {Boolean(
             (selectedCategory && selectedCategory !== "All") ||
-            queryParams.get("metal") ||
+            (!collectionMetal && queryParams.get("metal")) ||
             toneQuery ||
             silverTypeQuery ||
             diamondTypeQuery ||
@@ -1533,7 +1560,7 @@ const Shop = () => {
               </span>
 
               {/* Jewellery Type Chip */}
-              {queryParams.get("metal") && (
+              {!collectionMetal && queryParams.get("metal") && (
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
                   <span>Jewellery Type: <strong className="capitalize">{queryParams.get("metal")}</strong></span>
                   <button
@@ -1800,11 +1827,11 @@ const Shop = () => {
 
             return (
               <div className="flex flex-col items-center justify-center py-20 text-center">
-                <h3 className="text-2xl font-serif text-brand-espresso mb-2">
-                  No products found
-                </h3>
-                <p className="text-stone-500 text-sm">
-                  Try adjusting your filters to find your perfect match.
+                  <h3 className="text-2xl font-serif text-brand-espresso mb-2">
+                   {emptyTitle}
+                  </h3>
+                  <p className="text-stone-500 text-sm">
+                   {emptyDescription}
                 </p>
                 <button
                   onClick={clearAllFilters}
@@ -1884,7 +1911,7 @@ const Shop = () => {
             className={`p-6 flex-1 overflow-y-auto space-y-10 custom-scrollbar overscroll-contain ${sidebarScroll.isDragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
           >
             {/* 1. Jewellery Type Filter */}
-            <section>
+            {!collectionMetal && <section>
               <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Jewellery Type
               </h4>
@@ -2040,7 +2067,7 @@ const Shop = () => {
                   </div>
                 </div>
               )}
-            </section>
+            </section>}
 
             {/* 2. Product Type Filter */}
             <section className="pt-6 border-t border-stone-100">
@@ -2087,7 +2114,7 @@ const Shop = () => {
             </section>
 
             {/* 3. Purity Filter */}
-            <section className="pt-6 border-t border-stone-100">
+            {collectionMetal !== "gems" && <section className="pt-6 border-t border-stone-100">
               <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Purity
               </h4>
@@ -2142,10 +2169,10 @@ const Shop = () => {
                   });
                 })()}
               </div>
-            </section>
+            </section>}
 
             {/* 4. Stones Filter */}
-            <section className="pt-6 border-t border-stone-100">
+            {collectionMetal !== "gems" && <section className="pt-6 border-t border-stone-100">
               <h4 className="font-bold text-brand-espresso text-[11px] uppercase tracking-[0.2em] mb-4">
                 Stones
               </h4>
@@ -2174,7 +2201,7 @@ const Shop = () => {
                   );
                 })}
               </div>
-            </section>
+            </section>}
 
             {/* 5. Price Range Filter */}
             <section className="pt-6 border-t border-stone-100">
@@ -2340,6 +2367,8 @@ const Shop = () => {
             <div className="space-y-4">
               {[
                 "New Arrival",
+                "Price Low to High",
+                "Price High to Low",
                 "Discount",
                 "Best Selling",
               ].map((option) => (

@@ -76,7 +76,8 @@ import { homeCategoryGridDefaults } from "../../user/utils/homeCategoryGridDefau
 import {
   goldCollectionGridDefaults,
   silverCollectionGridDefaults,
-  diamondCollectionGridDefaults
+  diamondCollectionGridDefaults,
+  gemsCollectionGridDefaults
 } from "../../user/utils/collectionGridDefaults";
 
 import menHeroDefault from "@assets/hero/modern_gold_fusion.png";
@@ -3009,11 +3010,26 @@ const gemsCollectionSections = [
   },
   {
     pageKey: "gems-collection",
+    sectionKey: "gems-collection-grid",
+    sectionType: "category-grid",
+    label: "Gems Collection Grid",
+    isActive: true,
+    sortOrder: 2,
+    settings: {
+      title: "Gems Collection",
+      subtitle: "The Art of Colour",
+      badge: "The Art of Colour",
+      description: "Explore gemstone jewellery by style and setting",
+    },
+    items: gemsCollectionGridDefaults,
+  },
+  {
+    pageKey: "gems-collection",
     sectionKey: "gems-trust-markers",
     sectionType: "rich-content",
     label: "Gemstone Trust & Certification",
     isActive: true,
-    sortOrder: 2,
+    sortOrder: 4,
     settings: {
       title: "Certified Precious Gemstones",
       subtitle: "Every gemstone is ethically sourced, lab-certified, and set in hallmarked gold and fine silver",
@@ -3072,7 +3088,7 @@ const gemsCollectionSections = [
     sectionType: "rich-content",
     label: "Bespoke Gemstone Consultation",
     isActive: true,
-    sortOrder: 4,
+    sortOrder: 5,
     settings: {
       title: "Commission a Bespoke Gemstone Creation",
       subtitle: "Work with our private atelier to source rare gemstones and craft bespoke custom settings tailored to your vision.",
