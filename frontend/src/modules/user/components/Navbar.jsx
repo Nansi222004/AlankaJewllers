@@ -550,7 +550,7 @@ const Navbar = () => {
             {/* Mobile Header */}
             <div className="lg:hidden flex flex-col w-full relative">
                 <div
-                    className="flex items-center justify-between px-4 py-3"
+                    className="flex items-center justify-between gap-2 px-3 py-2.5 sm:px-4 sm:py-3"
                     style={{
                         background: '#FFFFFF',
                         borderBottom: '1px solid #F0F0F0',
@@ -564,17 +564,17 @@ const Navbar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.45, ease: 'easeOut' }}
                     >
-                        <Link to="/" className="flex items-center gap-2">
+                        <Link to="/" className="flex min-w-0 items-center gap-2">
                             <img
                                 src={currentLogo}
                                 alt={currentStoreName}
-                                className="h-[40px] w-auto object-contain"
+                                className="h-9 w-auto max-w-[88px] shrink-0 object-contain sm:h-10 sm:max-w-[110px]"
                                 onError={(e) => {
                                     e.currentTarget.onerror = null;
                                     e.currentTarget.src = defaultLogo;
                                 }}
                             />
-                            <span className="font-serif text-base font-bold tracking-wider text-brand-espresso uppercase">
+                            <span className="hidden font-serif text-base font-bold uppercase tracking-wider text-brand-espresso sm:block">
                                 {currentStoreName}
                             </span>
                         </Link>
@@ -582,7 +582,7 @@ const Navbar = () => {
 
                     {/* Right Icons */}
                     <motion.div
-                        className="flex items-center gap-2"
+                        className="flex shrink-0 items-center gap-1.5 sm:gap-2"
                         initial={{ opacity: 0, x: 18 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.45, ease: 'easeOut', delay: 0.08 }}
@@ -591,7 +591,7 @@ const Navbar = () => {
                         <motion.button
                             whileTap={{ scale: 0.82 }}
                             onClick={() => setShowMobileSearch(!showMobileSearch)}
-                            className="relative p-1.5 rounded-lg transition-colors"
+                            className="relative flex h-9 w-9 items-center justify-center rounded-xl transition-colors"
                             style={{
                                 background: showMobileSearch ? 'rgba(241,223,222,0.75)' : '#F7EFEE',
                             }}
@@ -608,14 +608,14 @@ const Navbar = () => {
 
                         {/* Wishlist (tablet+) */}
                         <motion.div whileTap={{ scale: 0.82 }} className="hidden sm:block">
-                            <Link to="/wishlist" className="relative p-1.5 rounded-lg block" style={{ background: '#F7EFEE' }}>
+                            <Link to="/wishlist" className="relative flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: '#F7EFEE' }}>
                                 <Heart className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />
                             </Link>
                         </motion.div>
 
                         {/* Bell */}
                         <motion.div whileTap={{ scale: 0.82 }} className="relative">
-                            <Link to="/notifications" className="relative p-1.5 rounded-lg block" style={{ background: '#F7EFEE' }}>
+                            <Link to="/notifications" className="relative flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: '#F7EFEE' }}>
                                 <Bell className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />
                                 {unreadCount > 0 && (
                                     <span
@@ -630,7 +630,7 @@ const Navbar = () => {
 
                         {/* Cart */}
                         <motion.div whileTap={{ scale: 0.82 }} className="relative">
-                            <Link to="/cart" className="relative p-1.5 rounded-lg block" style={{ background: '#F7EFEE' }}>
+                            <Link to="/cart" className="relative flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: '#F7EFEE' }}>
                                 <ShoppingCart className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />
                                 {cart?.length > 0 && (
                                     <span
@@ -647,7 +647,7 @@ const Navbar = () => {
                         <motion.button
                             whileTap={{ scale: 0.82 }}
                             onClick={() => setIsMenuOpen(true)}
-                            className="p-1.5 rounded-lg"
+                            className="flex h-9 w-9 items-center justify-center rounded-xl"
                             style={{ background: '#F7EFEE' }}
                         >
                             <Menu className="w-4.5 h-4.5" style={{ color: '#332827' }} strokeWidth={2} />

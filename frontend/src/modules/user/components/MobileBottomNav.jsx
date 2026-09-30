@@ -20,7 +20,7 @@ const MobileBottomNav = () => {
     ];
 
     return (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-[200] pb-safe drop-shadow-[0_-4px_10px_rgba(0,0,0,0.05)] pointer-events-none">
+        <div className="pointer-events-none fixed bottom-0 left-0 right-0 z-[200] bg-white/95 pb-[env(safe-area-inset-bottom)] drop-shadow-[0_-4px_10px_rgba(0,0,0,0.05)] md:hidden">
             {/* The actual navigation bar container with pointer events enabled */}
             <div className="relative h-16 pointer-events-auto flex">
                 {/* Left Background */}

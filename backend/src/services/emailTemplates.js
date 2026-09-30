@@ -317,14 +317,13 @@ const welcomeEmail = ({ userName }) => {
   return layout("Welcome to Alankar Jewellers!", body);
 };
 
-const emailVerificationCode = ({ code, purpose = "login" }) => {
+const emailVerificationCode = ({ code, purpose = "registration" }) => {
   const headings = {
-    login: "Verify Your Sign In",
     registration: "Verify Your Email",
     password_reset: "Reset Your Password",
   };
   const body = `
-    <h2 style="margin:0 0 8px;font-size:24px;color:${BRAND_DARK};">${headings[purpose] || headings.login}</h2>
+    <h2 style="margin:0 0 8px;font-size:24px;color:${BRAND_DARK};">${headings[purpose] || headings.registration}</h2>
     <p style="color:#666;margin:0 0 24px;font-size:15px;line-height:1.6;">Use the verification code below to continue with Alankar Jewellers.</p>
     <div style="background:${BRAND_LIGHT};border:1px solid #eadfd8;border-radius:10px;padding:26px;text-align:center;margin-bottom:24px;">
       <p style="margin:0 0 10px;font-size:11px;color:#777;text-transform:uppercase;letter-spacing:2px;">Your verification code</p>

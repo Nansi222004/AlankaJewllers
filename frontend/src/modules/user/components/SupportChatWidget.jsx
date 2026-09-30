@@ -42,7 +42,7 @@ const SupportChatWidget = ({ inline = false }) => {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Contact support"
-        className={`${buttonPositionClass} flex items-center justify-center w-14 h-14 bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 rounded-full shadow-[0_10px_25px_rgba(51,40,39,0.4)] hover:bg-brand-plum hover:border-brand-champagne hover:text-brand-pearl transition-all cursor-pointer group shrink-0`}>
+        className={`${buttonPositionClass} group flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full border border-brand-champagne/40 bg-brand-plum text-brand-champagne-light shadow-[0_10px_25px_rgba(51,40,39,0.4)] transition-all hover:border-brand-champagne hover:bg-brand-plum hover:text-brand-pearl md:h-14 md:w-14`}>
         <AnimatePresence mode="wait">
           {isOpen ? (
             <motion.div
@@ -50,7 +50,7 @@ const SupportChatWidget = ({ inline = false }) => {
               initial={{ rotate: -90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}>
-              <X className="w-6 h-6" />
+              <X className="h-5 w-5 md:h-6 md:w-6" />
             </motion.div>
           ) : (
             <motion.div
@@ -59,7 +59,7 @@ const SupportChatWidget = ({ inline = false }) => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.5, opacity: 0 }}
               className="relative">
-              <Headphones className="w-6 h-6" />
+              <Headphones className="h-5 w-5 md:h-6 md:w-6" />
               {/* Unread dot indicator */}
               {isCustomer &&
                 tickets.some((t) => t.status === "In Progress") && (

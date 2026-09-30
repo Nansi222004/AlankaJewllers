@@ -127,14 +127,14 @@ const Footer = () => {
   if (isOrderSuccess) return null;
 
   return (
-    <footer className="relative bg-brand-plum text-brand-porcelain pt-16 pb-8 overflow-hidden border-t border-brand-champagne/30">
+    <footer className="relative overflow-hidden border-t border-brand-champagne/30 bg-brand-plum pb-24 pt-8 text-brand-porcelain md:pb-8 md:pt-16">
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-brand-plum via-brand-champagne to-brand-plum"></div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+        <div className="mb-7 grid grid-cols-1 gap-6 lg:mb-12 lg:grid-cols-12 lg:gap-12">
           {/* Brand Section */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="space-y-4">
+          <div className="space-y-3 lg:col-span-4 md:space-y-6">
+            <div className="space-y-3 md:space-y-4">
               <Link
                 to="/"
                 className="inline-block transition-transform hover:scale-105 duration-500"
@@ -142,7 +142,7 @@ const Footer = () => {
                 <img
                   src={activeLogo}
                   alt={activeStoreName}
-                  className="h-16 w-auto object-contain"
+                  className="h-12 w-auto object-contain md:h-16"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = defaultLogo;
@@ -150,19 +150,19 @@ const Footer = () => {
                 />
               </Link>
               <div className="space-y-2">
-                <h3 className="text-xl font-serif text-white leading-tight tracking-wide font-bold">
+                <h3 className="font-serif text-lg font-bold leading-tight tracking-wide text-white md:text-xl">
                   {activeTagline} <br />
                   <span className="italic font-serif text-brand-champagne font-light">
                     {activeSubTagline}
                   </span>
                 </h3>
-                <p className="text-brand-porcelain/75 font-sans text-[13px] leading-relaxed max-w-sm">
+                <p className="max-w-sm font-sans text-[12px] leading-relaxed text-brand-porcelain/75 md:text-[13px]">
                   {activeDescription}
                 </p>
               </div>
             </div>
 
-            <div className="flex gap-6 items-center pt-2">
+            <div className="flex items-center gap-4 pt-1 md:gap-6 md:pt-2">
               {[
                 { Icon: ShieldCheck, label: "Secure" },
                 { Icon: Star, label: "925 Pure" },
@@ -172,7 +172,7 @@ const Footer = () => {
                   key={i}
                   className="flex flex-col items-center gap-1.5 group cursor-default"
                 >
-                  <div className="w-10 h-10 rounded-full bg-brand-plum shadow-sm border border-brand-champagne/40 flex items-center justify-center text-brand-champagne group-hover:scale-110 group-hover:bg-brand-champagne group-hover:text-brand-espresso transition-all duration-500">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-brand-champagne/40 bg-brand-plum text-brand-champagne shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-champagne group-hover:text-brand-espresso md:h-10 md:w-10">
                     <badge.Icon className="w-4 h-4" />
                   </div>
                   <span className="text-[9px] uppercase tracking-[0.25em] text-brand-porcelain/70 font-bold group-hover:text-brand-champagne-light transition-colors">
@@ -184,7 +184,7 @@ const Footer = () => {
           </div>
 
           {/* Links Grid */}
-          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-8 pt-4">
+          <div className="grid grid-cols-2 gap-4 pt-0 md:grid-cols-3 md:gap-8 md:pt-4 lg:col-span-5">
             {[
               {
                 title: settings.footerColumn1Title,
@@ -199,16 +199,16 @@ const Footer = () => {
                 links: settings.footerWorldLinks,
               },
             ].map((col, i) => (
-              <div key={i} className="space-y-4">
-                <h4 className="font-serif text-brand-champagne-light font-bold uppercase tracking-[0.25em] text-[11px] border-b border-brand-champagne/30 pb-2 mb-2">
+              <div key={i} className={`space-y-2.5 md:space-y-4 ${i === 2 ? "col-span-2 md:col-span-1" : ""}`}>
+                <h4 className="mb-1 border-b border-brand-champagne/30 pb-1.5 font-serif text-[11px] font-bold uppercase tracking-[0.25em] text-brand-champagne-light md:mb-2 md:pb-2">
                   {col.title}
                 </h4>
-                <ul className="space-y-2.5">
+                <ul className="space-y-1.5 md:space-y-2.5">
                   {col.links?.map((link, idx) => (
                     <li key={idx}>
                       <Link
                         to={normalizeFooterLink(link.path)}
-                        className="text-[13px] text-brand-porcelain/75 hover:text-brand-white transition-all hover:translate-x-1 inline-flex items-center group font-sans"
+                        className="group inline-flex items-center font-sans text-[12px] leading-5 text-brand-porcelain/75 transition-all hover:translate-x-1 hover:text-brand-white md:text-[13px]"
                       >
                         <span className="w-1.5 h-[1px] bg-brand-champagne mr-2 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                         {link.name}
@@ -222,19 +222,19 @@ const Footer = () => {
 
           {/* Contact Card */}
           <div className="lg:col-span-3">
-            <div className="bg-brand-plum p-6 rounded-[2rem] border border-brand-champagne/30 shadow-xl shadow-brand-espresso/40 space-y-6 relative overflow-hidden group">
+            <div className="group relative space-y-4 overflow-hidden rounded-2xl border border-brand-champagne/30 bg-brand-plum p-4 shadow-xl shadow-brand-espresso/40 md:space-y-6 md:rounded-[2rem] md:p-6">
               <div className="absolute top-0 right-0 w-24 h-24 bg-brand-champagne/5 rounded-bl-full -z-0 group-hover:scale-[2] transition-transform duration-1000"></div>
 
-              <div className="relative z-10 space-y-5">
+              <div className="relative z-10 space-y-3 md:space-y-5">
                 <h4 className="font-serif text-brand-champagne-light font-bold uppercase tracking-[0.25em] text-[11px]">
                   Connect Directly
                 </h4>
-                <div className="space-y-4">
+                <div className="space-y-2.5 md:space-y-4">
                   <a
                     href={`mailto:${activeEmail}`}
-                    className="flex items-center gap-4 group/item"
+                    className="group/item flex items-center gap-3 md:gap-4"
                   >
-                    <div className="w-10 h-10 bg-brand-plum border border-brand-champagne/50 text-brand-champagne-light rounded-[14px] flex items-center justify-center group-hover/item:bg-brand-champagne group-hover/item:text-brand-espresso transition-all duration-500 shadow-sm shrink-0">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-brand-champagne/50 bg-brand-plum text-brand-champagne-light shadow-sm transition-all duration-500 group-hover/item:bg-brand-champagne group-hover/item:text-brand-espresso md:h-10 md:w-10 md:rounded-[14px]">
                       <Mail className="w-4 h-4" />
                     </div>
                     <span className="text-[13px] font-medium text-brand-porcelain/85 hover:text-brand-champagne-light transition-colors break-all">
@@ -243,17 +243,17 @@ const Footer = () => {
                   </a>
                   <a
                     href={`tel:${activePhone}`}
-                    className="flex items-center gap-4 group/item"
+                    className="group/item flex items-center gap-3 md:gap-4"
                   >
-                    <div className="w-10 h-10 bg-brand-plum border border-brand-champagne/50 text-brand-champagne-light rounded-[14px] flex items-center justify-center group-hover/item:bg-brand-champagne group-hover/item:text-brand-espresso transition-all duration-500 shadow-sm shrink-0">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-brand-champagne/50 bg-brand-plum text-brand-champagne-light shadow-sm transition-all duration-500 group-hover/item:bg-brand-champagne group-hover/item:text-brand-espresso md:h-10 md:w-10 md:rounded-[14px]">
                       <Phone className="w-4 h-4" />
                     </div>
                     <span className="text-[13px] font-medium text-brand-porcelain/85 hover:text-brand-champagne-light transition-colors">
                       {activePhone}
                     </span>
                   </a>
-                  <div className="flex items-start gap-4 group/item">
-                    <div className="w-10 h-10 bg-brand-plum border border-brand-champagne/50 text-brand-champagne-light rounded-[14px] flex items-center justify-center group-hover/item:bg-brand-champagne group-hover/item:text-brand-espresso transition-all duration-500 shadow-sm shrink-0 mt-0.5">
+                  <div className="group/item flex items-start gap-3 md:gap-4">
+                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-brand-champagne/50 bg-brand-plum text-brand-champagne-light shadow-sm transition-all duration-500 group-hover/item:bg-brand-champagne group-hover/item:text-brand-espresso md:h-10 md:w-10 md:rounded-[14px]">
                       <MapPin className="w-4 h-4" />
                     </div>
                     <span className="text-[12px] font-normal text-brand-porcelain/85 leading-relaxed">
@@ -262,7 +262,7 @@ const Footer = () => {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-brand-taupe/30 space-y-3">
+                <div className="space-y-2 border-t border-brand-taupe/30 pt-3 md:space-y-3 md:pt-4">
                   <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-porcelain/65">
                     Social Gallery
                   </p>
@@ -293,8 +293,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mb-8 border border-brand-champagne/20 bg-brand-plum/70 backdrop-blur-sm rounded-2xl py-3.5 px-6 max-w-4xl mx-auto shadow-sm">
-          <div className="flex items-center gap-4">
+        <div className="mx-auto mb-5 max-w-4xl rounded-2xl border border-brand-champagne/20 bg-brand-plum/70 px-3 py-3 shadow-sm backdrop-blur-sm md:mb-8 md:px-6 md:py-3.5">
+          <div className="flex items-start gap-3 md:items-center md:gap-4">
             <div className="w-8 h-8 rounded-full bg-brand-champagne/10 border border-brand-champagne/30 flex items-center justify-center shrink-0">
               <ShieldCheck className="w-4 h-4 text-brand-champagne" />
             </div>
@@ -309,7 +309,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-6 border-t border-brand-taupe/30">
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-brand-taupe/30 pt-4 md:flex-row md:gap-6 md:pt-6">
           <div className="flex items-center gap-3 bg-brand-plum px-4 py-2 rounded-full border border-brand-champagne/30 shadow-xs">
             <Truck className="w-4 h-4 text-brand-champagne" />
             <span className="text-[9px] uppercase tracking-[0.25em] font-bold text-brand-champagne-light">

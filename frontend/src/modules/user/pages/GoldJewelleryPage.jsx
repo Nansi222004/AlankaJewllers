@@ -205,18 +205,18 @@ const GoldJewelleryPage = () => {
       />
       <BestStylesSection sectionData={sectionMap["best-styles"]} />
 
-      <div className="w-full bg-white py-12">
+      <div className="w-full bg-white py-6 sm:py-12">
         <div className="container mx-auto px-4 max-w-[1450px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 md:gap-6">
             {trustBadges.map((badge, idx) => (
               <motion.div
                 key={badge.id}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className={`flex items-center gap-5 bg-[#F9F8EF] rounded-[24px] p-2 pr-4 md:pr-6 shadow-sm hover:shadow-md transition-all duration-300 ${idx % 2 === 0 ? "mx-6 sm:mx-0 scale-[0.92] sm:scale-100" : "mx-0 scale-100"}`}
+                className="flex items-center gap-3 rounded-2xl border border-brand-border-soft bg-brand-pearl p-2.5 pr-4 shadow-sm transition-all duration-300 hover:shadow-md sm:gap-5 sm:rounded-[24px] sm:p-2 md:pr-6"
               >
-                <div className="w-[70px] h-[70px] md:w-[85px] md:h-[85px] bg-white rounded-[20px] flex items-center justify-center shrink-0 shadow-sm border border-[#E8D8A0]/30 overflow-hidden">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-brand-border-soft bg-white shadow-sm sm:h-[70px] sm:w-[70px] sm:rounded-[20px] md:h-[85px] md:w-[85px]">
                   {badge.image ? (
                     <img
                       src={badge.image}
@@ -224,17 +224,17 @@ const GoldJewelleryPage = () => {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <badge.icon className="w-7 h-7 md:w-9 md:h-9 text-[#2A4D35]" />
+                    <badge.icon className="h-5 w-5 text-brand-champagne sm:h-7 sm:w-7 md:h-9 md:w-9" />
                   )}
                 </div>
 
                 <div className="py-1">
                   <h4
-                    className={`text-gray-900 leading-tight font-black ${idx === 3 ? "tracking-[0.4em] text-[16px] md:text-[20px]" : "text-[15px] md:text-[17px]"}`}
+                    className={`font-bold leading-tight text-brand-espresso ${idx === 3 ? "text-[13px] tracking-[0.3em] sm:text-[16px] md:text-[20px]" : "text-[13px] sm:text-[15px] md:text-[17px]"}`}
                   >
                     {badge.title}
                   </h4>
-                  <p className="text-[#333] text-[15px] md:text-[17px] font-medium leading-tight">
+                  <p className="text-[12px] font-medium leading-tight text-brand-taupe sm:text-[15px] md:text-[17px]">
                     {idx === 2 ? "Days Return" : badge.subtitle}
                   </p>
                 </div>

@@ -28,12 +28,7 @@ const sendChallengeEmail = async ({ email, otp, purpose }) =>
     subject: "Your Alankar Jewellers Verification Code",
     html: emailTemplates.emailVerificationCode({
       code: otp,
-      purpose:
-        purpose === "user_registration"
-          ? "registration"
-          : purpose === "user_password_reset"
-            ? "password_reset"
-            : "login",
+      purpose: purpose === "user_password_reset" ? "password_reset" : "registration",
     }),
     type: purpose,
   });

@@ -110,6 +110,10 @@ const Login = () => {
       ? startRegistration({ name: fullName.trim(), phone, email: email.trim(), password })
       : startLogin(email.trim(), password));
     if (result?.success) {
+      if (!isSignup) {
+        finishLogin();
+        return;
+      }
       setChallengeId(result.data.challengeId);
       setOtp(emptyOtp());
       setResendSeconds(result.data.resendAfter || 60);

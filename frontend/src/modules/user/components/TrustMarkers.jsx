@@ -67,7 +67,7 @@ const TrustMarkers = () => {
     return (
         <section className="w-full bg-brand-pearl py-4 md:py-5 border-b border-brand-border/80">
             <div className="container mx-auto px-4 max-w-[1400px]">
-                <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-10 gap-y-2.5">
+                <div className="grid grid-cols-2 gap-2.5 md:flex md:flex-wrap md:items-center md:justify-center md:gap-x-10 md:gap-y-2.5">
                     {markers.map((marker, index) => (
                         <motion.div
                             key={marker.id}
@@ -75,7 +75,7 @@ const TrustMarkers = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.05 }}
-                            className="flex items-center gap-2 cursor-default group"
+                            className="group flex min-w-0 cursor-default items-center gap-2 rounded-xl border border-brand-border-soft bg-white p-2.5 shadow-sm md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
                         >
                             <span className="w-1.5 h-1.5 rotate-45 bg-brand-champagne shrink-0 opacity-80 group-hover:scale-125 transition-transform" />
                             <span className="text-brand-espresso text-[11px] sm:text-xs md:text-[13px] font-sans tracking-wide">

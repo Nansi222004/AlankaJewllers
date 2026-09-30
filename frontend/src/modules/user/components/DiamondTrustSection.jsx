@@ -122,11 +122,11 @@ const DiamondTrustSection = ({ sectionData }) => {
     }, [sectionData?.items]);
 
     return (
-        <section className="py-12 sm:py-16 md:py-20 bg-[#FAF8F4] border-b border-[#E8DFD1] overflow-hidden">
+        <section className="overflow-hidden border-b border-[#E8DFD1] bg-[#FAF8F4] py-8 sm:py-16 md:py-20">
             <div className="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* ── Section Header ────────────────────────────────────── */}
-                <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+                <div className="mx-auto mb-6 max-w-3xl text-center sm:mb-12">
                     {/* Top Diamond Emblem */}
                     <div className="flex items-center justify-center gap-3 mb-2.5">
                         <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-brand-champagne/70" />
@@ -153,18 +153,18 @@ const DiamondTrustSection = ({ sectionData }) => {
                 </div>
 
                 {/* ── 4 Assurance Cards Grid ────────────────────────────── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
                     {cards.map((card) => {
                         const IconComponent = ICON_MAP[card.iconName] || ShieldCheck;
 
                         return (
                             <div
                                 key={card.key}
-                                className="group relative bg-white rounded-2xl sm:rounded-3xl border border-[#EBE3D5] p-3.5 sm:p-4 pb-5 sm:pb-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(184,149,106,0.14)] hover:border-brand-champagne/70 hover:-translate-y-1.5 transition-all duration-400 flex flex-col justify-between h-full select-none"
+                                className="group relative flex h-full select-none flex-col justify-between rounded-2xl border border-[#EBE3D5] bg-white p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-1.5 hover:border-brand-champagne/70 hover:shadow-[0_16px_36px_rgba(184,149,106,0.14)] sm:rounded-3xl sm:p-4 sm:pb-6"
                             >
-                                <div>
+                                <div className="flex items-center gap-3 sm:block">
                                     {/* 1. Image Container with Zoom-on-Hover */}
-                                    <div className="relative w-full aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-[#FAF6EF] mb-4 sm:mb-4.5 shadow-inner">
+                                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#FAF6EF] shadow-inner sm:mb-4.5 sm:aspect-[4/3] sm:h-auto sm:w-full sm:rounded-2xl">
                                         <img
                                             src={card.image}
                                             alt={`${card.title} - ${card.subtitle}`}
@@ -180,13 +180,13 @@ const DiamondTrustSection = ({ sectionData }) => {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
 
                                         {/* Top Glassmorphic Tag */}
-                                        <div className="absolute top-2.5 left-2.5 z-10 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-sans font-medium text-white/95 flex items-center gap-1.5 shadow-2xs">
+                                        <div className="absolute left-2.5 top-2.5 z-10 hidden items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 font-sans text-[10px] font-medium text-white/95 shadow-2xs backdrop-blur-md sm:flex sm:text-[11px]">
                                             <span className="w-1.5 h-1.5 rounded-full bg-[#E6C665]" />
                                             <span>{card.tag}</span>
                                         </div>
 
                                         {/* Floating Gold Icon Badge */}
-                                        <div className="absolute bottom-2.5 right-2.5 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/95 backdrop-blur-md border border-[#EBE3D5] text-brand-champagne flex items-center justify-center shadow-md group-hover:bg-brand-champagne group-hover:text-white transition-all duration-300 group-hover:scale-105">
+                                        <div className="absolute bottom-1.5 right-1.5 z-10 flex h-7 w-7 items-center justify-center rounded-lg border border-[#EBE3D5] bg-white/95 text-brand-champagne shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:bg-brand-champagne group-hover:text-white sm:bottom-2.5 sm:right-2.5 sm:h-10 sm:w-10 sm:rounded-xl">
                                             <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300" />
                                         </div>
                                     </div>
@@ -199,14 +199,14 @@ const DiamondTrustSection = ({ sectionData }) => {
                                         <h4 className="font-serif italic text-xs sm:text-[13px] text-[#8C7A68] mb-2 leading-tight">
                                             {card.subtitle}
                                         </h4>
-                                        <p className="text-xs text-[#6B6156] font-light leading-relaxed">
+                                        <p className="hidden text-xs font-light leading-relaxed text-[#6B6156] sm:block">
                                             {card.description}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* 3. Decorative Bottom Gold Accent Line */}
-                                <div className="px-1 sm:px-1.5 pt-4 mt-auto">
+                                <div className="mt-auto hidden px-1 pt-4 sm:block sm:px-1.5">
                                     <div className="w-8 h-[1.5px] bg-brand-champagne/40 rounded-full group-hover:w-16 group-hover:bg-brand-champagne transition-all duration-300" />
                                 </div>
                             </div>

@@ -62,12 +62,7 @@ exports.login = async (req, res) => {
     }
     if (!ensureActiveUser(res, user)) return;
 
-    await EmailOTP.deleteMany({ userId: user._id, purpose: "user_login" });
-    const challenge = await createChallenge({ email, purpose: "user_login", userId: user._id });
-    if (!challenge) {
-      return error(res, "Unable to send verification email. Please try again.", 503, "EMAIL_SEND_FAILED");
-    }
-    return success(res, challengePayload(challenge), "Verification code sent.");
+    return issueSession(res, user, "Login successful");
   } catch (_err) {
     return error(res, "Unable to start login. Please try again.", 500);
   }
@@ -108,7 +103,7 @@ exports.register = async (req, res) => {
 exports.verifyEmailOtp = async (req, res) => {
   try {
     const challenge = await EmailOTP.findOne({ challengeId: req.body.challengeId });
-    if (!challenge || !["user_login", "user_registration"].includes(challenge.purpose)) {
+    if (!challenge || challenge.purpose !== "user_registration") {
       return error(res, "This verification code has expired. Please request a new code.", 400, "OTP_EXPIRED");
     }
     const result = await verifyChallenge({
@@ -126,48 +121,29 @@ exports.verifyEmailOtp = async (req, res) => {
       return error(res, message, status, result.code);
     }
 
-    let user;
-    let isNewUser = false;
-    if (result.record.purpose === "user_registration") {
-      const { name, phone, passwordHash } = result.record.metadata || {};
-      const conflict = await User.findOne({ $or: [{ email: result.record.email }, { phone }] });
-      if (conflict) {
-        await EmailOTP.deleteOne({ _id: result.record._id });
-        return error(res, "An account with these details already exists.", 409, "ACCOUNT_EXISTS");
-      }
-      user = await User.create({
-        name,
-        phone,
-        email: result.record.email,
-        password: passwordHash,
-        emailVerified: true,
-        role: "user",
-      });
-      isNewUser = true;
-      enqueueEmail({
-        to: user.email,
-        subject: "Welcome to Alankar Jewellers!",
-        html: emailTemplates.welcomeEmail({ userName: user.name }),
-        type: "welcome",
-      });
-    } else {
-      user = await User.findById(result.record.userId);
-      if (!user) {
-        await EmailOTP.deleteOne({ _id: result.record._id });
-        return error(res, "This account no longer exists.", 401, "ACCOUNT_DELETED");
-      }
-      if (!ensureActiveUser(res, user)) {
-        await EmailOTP.deleteOne({ _id: result.record._id });
-        return;
-      }
-      if (!user.emailVerified) {
-        user.emailVerified = true;
-        await user.save();
-      }
+    const { name, phone, passwordHash } = result.record.metadata || {};
+    const conflict = await User.findOne({ $or: [{ email: result.record.email }, { phone }] });
+    if (conflict) {
+      await EmailOTP.deleteOne({ _id: result.record._id });
+      return error(res, "An account with these details already exists.", 409, "ACCOUNT_EXISTS");
     }
+    const user = await User.create({
+      name,
+      phone,
+      email: result.record.email,
+      password: passwordHash,
+      emailVerified: true,
+      role: "user",
+    });
+    enqueueEmail({
+      to: user.email,
+      subject: "Welcome to Alankar Jewellers!",
+      html: emailTemplates.welcomeEmail({ userName: user.name }),
+      type: "welcome",
+    });
 
     await EmailOTP.deleteOne({ _id: result.record._id });
-    return issueSession(res, user, isNewUser ? "Account created successfully" : "Login successful");
+    return issueSession(res, user, "Account created successfully");
   } catch (_err) {
     return error(res, "Unable to verify the code. Please try again.", 500);
   }

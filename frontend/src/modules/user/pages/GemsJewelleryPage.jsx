@@ -127,9 +127,9 @@ const GemsJewelleryPage = () => {
       </section>
 
       {isActive(trustSection) && (
-        <section className="border-y border-brand-border-soft bg-brand-pearl px-4 py-10 sm:py-12">
+        <section className="border-y border-brand-border-soft bg-brand-pearl px-4 py-7 sm:py-12">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-7 text-center">
+            <div className="mb-5 text-center sm:mb-7">
               <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-champagne">
                 {trustSection?.settings?.eyebrow || "The Alankar Promise"}
               </p>
@@ -137,14 +137,18 @@ const GemsJewelleryPage = () => {
                 {trustSection?.settings?.title || "Gemstone Trust & Service"}
               </h2>
             </div>
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4 lg:gap-5">
               {trustItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.id} className="border border-brand-border bg-brand-white p-4 text-center sm:p-6">
-                    <Icon className="mx-auto h-5 w-5 text-brand-champagne" />
-                    <h3 className="mt-3 font-serif text-base text-brand-espresso">{item.name}</h3>
-                    <p className="mt-1 text-xs leading-relaxed text-brand-taupe">{item.subtitle}</p>
+                  <div key={item.id} className="flex items-center gap-3 rounded-xl border border-brand-border bg-brand-white p-3 text-left shadow-sm sm:block sm:p-6 sm:text-center sm:shadow-none">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-champagne-mist sm:mx-auto">
+                      <Icon className="h-4 w-4 text-brand-champagne sm:h-5 sm:w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-[14px] leading-tight text-brand-espresso sm:mt-3 sm:text-base">{item.name}</h3>
+                      <p className="mt-0.5 text-xs leading-relaxed text-brand-taupe sm:mt-1">{item.subtitle}</p>
+                    </div>
                   </div>
                 );
               })}

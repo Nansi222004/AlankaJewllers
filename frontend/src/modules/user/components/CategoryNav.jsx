@@ -121,10 +121,9 @@ const CategoryNav = ({ showMetalToggle = true }) => {
             `}</style>
             <div className="w-full max-w-[1600px] mx-auto px-2 sm:px-4 md:px-6 lg:px-8 relative" onMouseLeave={resetMenu}>
                 {/* Navigation Links - Responsive without left-clipping on any screen */}
-                <div className={`w-full ${hoveredItem ? 'overflow-visible' : 'overflow-x-auto lg:overflow-visible'} category-nav-scroll scroll-smooth py-1 flex items-center`}>
+                <div className="category-nav-scroll flex w-full items-center overflow-x-auto overscroll-x-contain py-1 scroll-smooth lg:overflow-visible">
                     <ul
-                        className="flex items-center w-max min-w-full justify-start lg:justify-center gap-3 sm:gap-4 md:gap-4 lg:gap-5 xl:gap-7 2xl:gap-10 flex-nowrap py-1 px-1 sm:px-2"
-                        style={{ justifyContent: 'safe center' }}
+                        className="flex w-max min-w-full flex-nowrap items-center justify-start gap-5 px-3 py-1 sm:gap-6 sm:px-4 lg:justify-center lg:gap-5 xl:gap-7 2xl:gap-10"
                     >
                         {navItems.map((item) => {
                             const active = isItemActive(item);
@@ -141,7 +140,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                         }
                                     }}
                                     onMouseLeave={() => setHoveredItem(null)}
-                                    className="relative py-1 shrink-0"
+                                    className="relative shrink-0 py-1.5"
                                 >
                                     <Link
                                         to={item.path}
@@ -156,7 +155,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                                 setHoveredItem(hoveredItem === item.id ? null : item.id);
                                             }
                                         }}
-                                        className={`text-[10.5px] sm:text-[11px] md:text-[11.5px] lg:text-[12px] xl:text-[12.5px] 2xl:text-[13px] font-bold uppercase tracking-tight sm:tracking-normal xl:tracking-[0.04em] font-sans flex items-center gap-0.5 sm:gap-1 transition-all duration-200 whitespace-nowrap ${
+                                        className={`flex min-h-8 items-center gap-1 whitespace-nowrap font-sans text-[11px] font-bold uppercase tracking-normal transition-all duration-200 sm:text-[11.5px] lg:text-[12px] xl:text-[12.5px] xl:tracking-[0.04em] 2xl:text-[13px] ${
                                             active || hoveredItem === item.id ? 'text-brand-champagne' : 'text-brand-espresso hover:text-brand-champagne'
                                         }`}
                                     >
@@ -231,7 +230,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
 
                 {/* Gold / Silver / Diamond / Gems 4-Option Selector — Balanced, Aligned & Responsive */}
                 {showMetalToggle && (
-                    <div className="flex justify-center pb-1.5 pt-0.5 px-2 relative">
+                    <div className="relative flex justify-center px-2 pb-1.5 pt-0.5 sm:px-4">
                         <div className="p-0.5 md:p-1 w-full sm:w-[680px] max-w-full rounded-full border border-brand-border flex items-center bg-white shadow-[0_2px_12px_rgba(51,40,39,0.06)] relative">
                             {/* Animated Background Pill */}
                             <div className="absolute inset-0.5 md:inset-1 flex" style={{ zIndex: 0 }}>

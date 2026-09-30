@@ -212,10 +212,10 @@ const SupportChatPanel = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="fixed right-0 md:right-6 z-[10000] w-full shadow-2xl overflow-hidden bottom-0 md:bottom-[11.5rem] md:w-[380px] h-full md:h-[550px] md:max-h-[calc(100vh-13.5rem)] bg-white md:rounded-3xl border border-gray-100 flex flex-col"
+          className="fixed bottom-0 right-0 z-[10000] flex h-[100dvh] max-h-[100dvh] w-full flex-col overflow-hidden border border-gray-100 bg-white shadow-2xl md:bottom-[11.5rem] md:right-6 md:h-[550px] md:max-h-[calc(100vh-13.5rem)] md:w-[380px] md:rounded-3xl"
         >
           {/* Header */}
-          <div className="bg-brand-plum text-brand-pearl border-b border-brand-champagne/20 px-6 py-4 flex items-center justify-between shrink-0">
+          <div className="flex shrink-0 items-center justify-between border-b border-brand-champagne/20 bg-brand-plum px-4 py-3 text-brand-pearl md:px-6 md:py-4">
             <div className="flex items-center gap-3">
               {view !== "list" && (
                 <button
@@ -230,11 +230,11 @@ const SupportChatPanel = () => {
                   <ChevronLeft className="w-5 h-5" />
                 </button>
               )}
-              <div className="w-10 h-10 rounded-full bg-brand-champagne/15 border border-brand-champagne/30 flex items-center justify-center">
-                <Headphones className="w-5 h-5 text-brand-champagne-light" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-champagne/30 bg-brand-champagne/15 md:h-10 md:w-10">
+                <Headphones className="h-4 w-4 text-brand-champagne-light md:h-5 md:w-5" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-sm tracking-wide text-brand-pearl">
+                <h3 className="font-display text-xs font-bold uppercase tracking-wide text-brand-pearl md:text-sm md:normal-case">
                   Alankar Jewellers Support
                 </h3>
                 <div className="flex items-center gap-1.5 mt-0.5">
@@ -413,17 +413,17 @@ const SupportChatPanel = () => {
                   className="flex-grow flex flex-col overflow-hidden h-full"
                 >
                   {/* Main CTA */}
-                  <div className="p-4 shrink-0">
+                  <div className="shrink-0 p-3 md:p-4">
                     <button
                       onClick={() => setView("create")}
-                      className="w-full bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 py-3 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-brand-plum hover:border-brand-champagne hover:text-brand-pearl transition-all shadow-sm text-xs cursor-pointer"
+                      className="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl border border-brand-champagne/40 bg-brand-plum px-4 py-3 text-xs font-bold text-brand-champagne-light shadow-sm transition-all hover:border-brand-champagne hover:bg-brand-plum hover:text-brand-pearl"
                     >
                       <Plus className="w-4 h-4" />
                       Create Support Request
                     </button>
                   </div>
 
-                  <div className="flex-grow overflow-y-auto overscroll-contain px-4 pb-4 space-y-3">
+                  <div className="flex-grow space-y-3 overflow-y-auto overscroll-contain px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:px-4 md:pb-4">
                     <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 pl-1">
                       Your Support History
                     </div>
@@ -466,8 +466,8 @@ const SupportChatPanel = () => {
                         </div>
                       ))
                     ) : (
-                      <div className="text-center py-12 bg-white rounded-2xl border border-dashed border-gray-200/80 p-6">
-                        <Inbox className="w-8 h-8 text-gray-300 mx-auto mb-3" />
+                      <div className="rounded-2xl border border-dashed border-gray-200/80 bg-white p-4 py-6 text-center md:p-6 md:py-12">
+                        <Inbox className="mx-auto mb-2 h-7 w-7 text-gray-300 md:mb-3 md:h-8 md:w-8" />
                         <p className="text-xs text-gray-500 font-semibold mb-1">
                           No support tickets found
                         </p>
@@ -503,7 +503,7 @@ const SupportChatPanel = () => {
 
                   <form
                     onSubmit={handleCreateTicketSubmit}
-                    className="flex-grow overflow-y-auto overscroll-contain p-4 space-y-4 flex flex-col"
+                    className="flex flex-grow flex-col space-y-3 overflow-y-auto overscroll-contain p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:p-4 sm:space-y-4"
                   >
                     <div>
                       <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">
@@ -536,7 +536,7 @@ const SupportChatPanel = () => {
                       </select>
                     </div>
 
-                    <div className="flex-grow flex flex-col min-h-[150px]">
+                    <div className="flex min-h-[120px] flex-grow flex-col sm:min-h-[150px]">
                       <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">
                         Detailed Message
                       </label>

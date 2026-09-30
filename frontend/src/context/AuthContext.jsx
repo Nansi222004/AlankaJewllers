@@ -66,8 +66,24 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const startLogin = (email, password) =>
-        authRequest('auth/login', { email, password }, 'Unable to start login. Please try again.');
+    const establishCustomerSession = (result) => {
+        if (!result?.success) return result;
+        const { user: userData, token } = result.data;
+        setUser(userData);
+        localStorage.setItem('sands_token', token);
+        localStorage.setItem('sands_current_user', JSON.stringify(userData));
+        registerFCMToken(true).catch(err => console.error("FCM registration error:", err));
+        return result;
+    };
+
+    const startLogin = async (email, password) => {
+        const result = await authRequest('auth/login', { email, password }, 'Unable to log in. Please try again.');
+        if (result.success) {
+            establishCustomerSession(result);
+            toast.success(result.message || 'Login successful!');
+        }
+        return result;
+    };
 
     const startRegistration = (profile) =>
         authRequest('auth/register', profile, 'Unable to create account. Please try again.');
@@ -79,12 +95,8 @@ export const AuthProvider = ({ children }) => {
             'Unable to verify the code. Please try again.'
         );
         if (result.success) {
-            const { user: userData, token } = result.data;
-            setUser(userData);
-            localStorage.setItem('sands_token', token);
-            localStorage.setItem('sands_current_user', JSON.stringify(userData));
+            establishCustomerSession(result);
             toast.success(result.message || 'Login successful!');
-            registerFCMToken(true).catch(err => console.error("FCM registration error:", err));
         }
         return result;
     };
