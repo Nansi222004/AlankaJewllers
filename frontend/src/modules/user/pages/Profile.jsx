@@ -12,7 +12,8 @@ const OrdersTab = React.lazy(() => import('../components/Profile/OrdersTab'));
 const AddressesTab = React.lazy(() => import('../components/Profile/AddressesTab'));
 const PaymentsTab = React.lazy(() => import('../components/Profile/PaymentsTab'));
 const CouponsTab = React.lazy(() => import('../components/Profile/CouponsTab'));
-const GiftCardsTab = React.lazy(() => import('../components/Profile/GiftCardsTab'));
+// TEMP UI HIDE: Restore when the profile Gift Cards page should be visible again.
+// const GiftCardsTab = React.lazy(() => import('../components/Profile/GiftCardsTab'));
 
 const EMPTY_ADDRESS = {
     name: '',
@@ -55,7 +56,7 @@ const Profile = () => {
     const safeReplacements = Array.isArray(replacements) ? replacements : [];
     const availableCoupons = Array.isArray(coupons) ? coupons.filter(c => c?.active !== false) : [];
     const { activeTab: tabParam, subId } = useParams();
-    const activeTab = tabParam || 'profile';
+    const activeTab = tabParam === 'gift-cards' ? 'profile' : (tabParam || 'profile');
     const navigate = useNavigate();
 
     // State Synced with params
@@ -251,9 +252,10 @@ const Profile = () => {
                                     handleCopyCoupon={handleCopyCoupon}
                                 />
                             )}
+                            {/* TEMP UI HIDE: /profile/gift-cards
                             {activeTab === 'gift-cards' && (
                                 <GiftCardsTab />
-                            )}
+                            )} */}
                             {activeTab === 'addresses' && (
                                 <AddressesTab 
                                     safeAddresses={safeAddresses}

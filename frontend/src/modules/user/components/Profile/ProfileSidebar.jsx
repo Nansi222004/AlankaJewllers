@@ -26,7 +26,7 @@ const ProfileSidebar = ({
     const isWishlistActive = pathname.startsWith('/wishlist');
     const isPaymentsActive = pathname.startsWith('/profile/payments');
     const isCouponsActive = pathname.startsWith('/profile/coupons');
-    const isGiftCardsActive = pathname.startsWith('/profile/gift-cards');
+    // TEMP UI HIDE: const isGiftCardsActive = pathname.startsWith('/profile/gift-cards');
     const isHelpActive = pathname.startsWith('/help');
     const isReturnPolicyActive = pathname.startsWith('/return-policy');
     const isReplacementPolicyActive = pathname.startsWith('/replacement-policy');
@@ -93,10 +93,11 @@ const ProfileSidebar = ({
                     <span className="font-medium text-sm md:text-base">My Coupons</span>
                     {availableCoupons.length > 0 && <span className={`ml-auto text-xs py-0.5 px-2 rounded-full ${isCouponsActive ? 'bg-brand-champagne/20 text-brand-champagne-light' : 'bg-stone-100 text-stone-700'}`}>{availableCoupons.length}</span>}
                 </button>
+                {/* TEMP UI HIDE: Restore the profile Gift Cards navigation item when needed.
                 <button onClick={() => navigate('/profile/gift-cards')} className={`w-full flex items-center space-x-3 px-3 md:px-4 py-3 rounded-xl transition-all ${isGiftCardsActive ? 'bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 shadow-md' : 'text-stone-600 hover:bg-brand-pearl'}`}>
                     <Gift className="w-4 h-4 md:w-5 md:h-5" />
                     <span className="font-medium text-sm md:text-base">My Gift Cards</span>
-                </button>
+                </button> */}
                 <button onClick={() => navigate('/help')} className={`w-full flex items-center space-x-3 px-3 md:px-4 py-3 rounded-xl transition-all ${isHelpActive ? 'bg-brand-plum text-brand-champagne-light border border-brand-champagne/40 shadow-md' : 'text-stone-600 hover:bg-brand-pearl'}`}>
                     <HelpCircle className="w-4 h-4 md:w-5 md:h-5" />
                     <span className="font-medium text-sm md:text-base">Help Center</span>

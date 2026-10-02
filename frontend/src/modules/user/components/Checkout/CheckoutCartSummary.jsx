@@ -96,7 +96,7 @@ const CheckoutCartSummary = ({
                     )}
                 </div>
 
-                {/* Gift Card */}
+                {/* TEMP UI HIDE: Gift Card section.
                 <div className="mb-4">
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                         <Gift className="w-3.5 h-3.5 text-brand-champagne" />
@@ -136,7 +136,7 @@ const CheckoutCartSummary = ({
                             {giftCardLoading ? "..." : "Apply"}
                         </button>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="space-y-3 text-sm text-gray-600 mb-6 pt-4 border-t border-brand-border">
                     <div className="flex justify-between items-center">

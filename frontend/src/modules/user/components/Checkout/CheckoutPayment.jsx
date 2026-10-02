@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreditCard, Banknote } from 'lucide-react';
+import { Banknote } from 'lucide-react';
 
 const CheckoutPayment = ({ paymentMethod, setPaymentMethod, hasGiftCard = false }) => {
     return (
@@ -10,6 +10,7 @@ const CheckoutPayment = ({ paymentMethod, setPaymentMethod, hasGiftCard = false 
             </h2>
 
             <div className="space-y-4">
+                {/* TEMP: Online payment option hidden until the gateway is re-enabled.
                 <label className={`flex items-center gap-4 border p-4 rounded-xl cursor-pointer transition-all ${paymentMethod === 'online' ? 'border-brand-espresso bg-gray-50' : 'border-gray-100 hover:border-gray-300'}`}>
                     <div className="relative flex items-center">
                         <input
@@ -31,7 +32,7 @@ const CheckoutPayment = ({ paymentMethod, setPaymentMethod, hasGiftCard = false 
                             <p className="text-xs text-gray-500 font-serif">Fast and secure online payment</p>
                         </div>
                     </div>
-                </label>
+                </label> */}
 
                 <label className={`flex items-center gap-4 border p-4 rounded-xl transition-all ${hasGiftCard ? 'opacity-50 cursor-not-allowed bg-gray-100 border-gray-200' : paymentMethod === 'cod' ? 'border-brand-espresso bg-gray-50 cursor-pointer' : 'border-gray-100 hover:border-gray-300 cursor-pointer'}`}>
                     <div className="relative flex items-center">

@@ -360,6 +360,7 @@ const CheckoutPage = () => {
                   </div>
                 </label>
 
+                {/* TEMP: Online UPI/Card option hidden while gateway payments are disabled.
                 <label
                   className={`flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl border-2 cursor-pointer transition-all ${paymentMethod === "online" ? "border-primary bg-primary/5" : "border-gray-50 hover:border-gray-100"}`}
                 >
@@ -379,7 +380,7 @@ const CheckoutPage = () => {
                       Secure Online
                     </div>
                   </div>
-                </label>
+                </label> */}
               </div>
             </div>
 

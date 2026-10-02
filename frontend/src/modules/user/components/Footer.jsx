@@ -372,7 +372,7 @@ const Footer = () => {
               </a>
             </div>
 
-            {/* Social Icons Row */}
+            {/* TEMP UI HIDE: Footer social icons.
             <div className="pt-0.5">
               <div className="flex items-center gap-2">
                 {[
@@ -393,7 +393,7 @@ const Footer = () => {
                   </a>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Security Advisory (Compact Mobile Row) */}
@@ -569,6 +569,7 @@ const Footer = () => {
                     <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-porcelain/65">
                       Social Gallery
                     </p>
+                    {/* TEMP UI HIDE: Social Gallery icons.
                     <div className="flex gap-2.5">
                       {[
                         { Icon: Facebook, link: settings.socialLinks?.facebook },
@@ -589,7 +590,7 @@ const Footer = () => {
                           <social.Icon className="w-4 h-4" />
                         </a>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

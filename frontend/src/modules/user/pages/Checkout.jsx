@@ -35,7 +35,8 @@ const Checkout = () => {
         state: '',
         pincode: '',
     });
-    const [paymentMethod, setPaymentMethod] = useState('online');
+    // TEMP: Online payments are paused; COD is the only checkout method.
+    const [paymentMethod, setPaymentMethod] = useState('cod');
     const [loading, setLoading] = useState(false);
     const [addressSelection, setAddressSelection] = useState(addresses.length > 0 ? 'saved' : 'new');
     const [selectedSavedAddressId, setSelectedSavedAddressId] = useState(defaultAddressId || null);
@@ -67,13 +68,8 @@ const Checkout = () => {
     const giftCardDiscount = computedGiftCards.reduce((acc, gc) => acc + gc.amountUsed, 0);
     const total = Math.max(0, subtotal + giftWrapCharge + shipping - discount - giftCardDiscount);
 
-    // Force Prepaid if order contains a gift card
-    useEffect(() => {
-        if (hasGiftCard && paymentMethod !== 'online') {
-            setPaymentMethod('online');
-            toast.error('Cash on Delivery is not available for orders containing Gift Cards.');
-        }
-    }, [hasGiftCard, paymentMethod]);
+    // TEMP: The former "force prepaid for gift cards" effect is intentionally
+    // disabled with online payments. Gift-card products are blocked on submit.
 
     // Track checkout start
     useEffect(() => {
@@ -153,6 +149,7 @@ const Checkout = () => {
     // Checkout Handler
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setLoading(true);
 
         if ((addressSelection === 'new' || addresses.length === 0) && saveNewAddress) {

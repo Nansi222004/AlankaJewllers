@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreditCard, ShieldCheck, Banknote } from 'lucide-react';
+import { ShieldCheck, Banknote } from 'lucide-react';
 
 const PaymentsTab = () => {
     return (
@@ -8,6 +8,7 @@ const PaymentsTab = () => {
                 <h2 className="text-xl md:text-2xl font-display font-bold text-brand-espresso text-center md:text-left tracking-wide">Payment Methods</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                {/* TEMP: Razorpay/Cards/UPI method hidden while online payments are disabled.
                 <div className="md:bg-white p-4 md:p-6 md:rounded-2xl md:border border-brand-border hover:border-brand-champagne/50 transition-all hover:shadow-md">
                     <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
                         <div className="bg-blue-50 p-2 rounded-lg text-blue-600">
@@ -20,7 +21,7 @@ const PaymentsTab = () => {
                         <CreditCard className="w-4 h-4" />
                         <ShieldCheck className="w-4 h-4" />
                     </div>
-                </div>
+                </div> */}
                 <div className="md:bg-white p-4 md:p-6 md:rounded-2xl md:border border-brand-border hover:border-brand-champagne/50 transition-all hover:shadow-md">
                     <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
                         <div className="bg-green-50 p-2 rounded-lg text-green-600">
