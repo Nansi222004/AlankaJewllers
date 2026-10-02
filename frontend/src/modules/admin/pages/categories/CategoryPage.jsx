@@ -6,6 +6,7 @@ import DataTable from '../../components/common/DataTable';
 import AdminStatsCard from '../../components/AdminStatsCard';
 import { adminService } from '../../services/adminService';
 import toast from 'react-hot-toast';
+import ConfirmModal from '../../../shared/components/ConfirmModal';
 
 const CategoryPage = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const CategoryPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('all');
     const [isSyncing, setIsSyncing] = useState(false);
+    const [categoryToDelete, setCategoryToDelete] = useState(null);
 
     const fetchCategories = async () => {
         try {
@@ -48,16 +50,16 @@ const CategoryPage = () => {
         }
     };
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this category?')) {
-            const success = await adminService.deleteCategory(id);
-            if (success) {
-                setCategories(prev => prev.filter(cat => cat._id !== id));
-                toast.success("Category deleted");
-            } else {
-                toast.error("Delete failed");
-            }
+    const handleDelete = async () => {
+        if (!categoryToDelete?._id) return false;
+        const success = await adminService.deleteCategory(categoryToDelete._id);
+        if (success) {
+            setCategories(prev => prev.filter(cat => cat._id !== categoryToDelete._id));
+            toast.success("Category deleted");
+            return true;
         }
+        toast.error("Delete failed");
+        return false;
     };
 
     const toggleVisibility = async (id, field) => {
@@ -141,7 +143,7 @@ const CategoryPage = () => {
                         <Edit2 className="w-4 h-4" />
                     </button>
                     <button
-                        onClick={() => handleDelete(item._id)}
+                        onClick={() => setCategoryToDelete(item)}
                         className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
                     >
                         <Trash2 className="w-4 h-4" />
@@ -240,6 +242,14 @@ const CategoryPage = () => {
                 setSearchTerm={setSearchTerm}
                 searchPlaceholder="Search categories..."
                 filters={filters}
+            />
+            <ConfirmModal
+                isOpen={Boolean(categoryToDelete)}
+                onClose={() => setCategoryToDelete(null)}
+                onConfirm={handleDelete}
+                title="Delete category?"
+                description={`Are you sure you want to delete “${categoryToDelete?.name || 'this category'}”?`}
+                confirmLabel="Delete category"
             />
         </div>
     );

@@ -137,8 +137,8 @@ const ProductGeneralTab = ({
                                     goldTone: material === 'Gold' ? formData.goldTone : '',
                                     silverCategory: material === 'Silver' ? formData.silverCategory : '',
                                     diamondType: material === 'Diamond' ? formData.diamondType : 'none',
-                                    settingMetal: material === 'Diamond' ? formData.settingMetal : '',
-                                    settingPurity: material === 'Diamond' ? formData.settingPurity : '',
+                                    settingMetal: ['Diamond', 'Gems'].includes(material) ? formData.settingMetal : '',
+                                    settingPurity: ['Diamond', 'Gems'].includes(material) ? formData.settingPurity : '',
                                     gemstoneType: material === 'Gems' ? formData.gemstoneType : '',
                                     gemstones: material === 'Gems' ? formData.gemstones : [],
                                     variants: (formData.variants || []).map((variant) => ({
@@ -290,6 +290,49 @@ const ProductGeneralTab = ({
 
                         {formData.material === 'Gems' && (
                             <>
+                                <Select
+                                    label="Setting Metal"
+                                    value={formData.settingMetal || ''}
+                                    onChange={(e) => setFormData({ ...formData, settingMetal: e.target.value, settingPurity: '', goldCategory: '', silverCategory: '' })}
+                                    options={[
+                                        { label: 'Select Setting Metal', value: '' },
+                                        { label: 'Gold (Yellow Gold)', value: 'Gold' },
+                                        { label: 'White Gold', value: 'White Gold' },
+                                        { label: 'Rose Gold', value: 'Rose Gold' },
+                                        { label: 'Silver', value: 'Silver' },
+                                        { label: 'Platinum', value: 'Platinum' }
+                                    ]}
+                                    disabled={isViewMode}
+                                    error={errors.settingMetal}
+                                />
+                                <Select
+                                    label="Setting Purity / Karat"
+                                    value={formData.settingPurity || ''}
+                                    onChange={(e) => setFormData({
+                                        ...formData,
+                                        settingPurity: e.target.value,
+                                        goldCategory: e.target.value.includes('14') ? '14' : e.target.value.includes('18') ? '18' : e.target.value.includes('22') ? '22' : '',
+                                        silverCategory: e.target.value.includes('925') ? '925 sterling silver' : ''
+                                    })}
+                                    options={formData.settingMetal === 'Platinum'
+                                        ? [
+                                            { label: 'Select Setting Purity', value: '' },
+                                            { label: '950 Platinum', value: 'Platinum 950' }
+                                        ]
+                                        : formData.settingMetal === 'Silver'
+                                            ? [
+                                                { label: 'Select Setting Purity', value: '' },
+                                                { label: '925 Sterling Silver', value: '925 sterling silver' }
+                                            ]
+                                            : [
+                                                { label: 'Select Setting Purity', value: '' },
+                                                { label: '14 Karat (14K)', value: '14K' },
+                                                { label: '18 Karat (18K)', value: '18K' },
+                                                { label: '22 Karat (22K)', value: '22K' }
+                                            ]}
+                                    disabled={isViewMode}
+                                    error={errors.settingPurity}
+                                />
                                 <Select
                                     label={<span>Gemstone Type <span className="text-red-500">*</span></span>}
                                     value={formData.gemstoneType || ''}

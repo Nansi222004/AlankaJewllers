@@ -13,6 +13,7 @@ const mongoose = require("mongoose");
 const { enqueueEmail } = require("../../../services/emailService");
 const emailTemplates = require("../../../services/emailTemplates");
 const GiftCard = require("../../../models/GiftCard");
+const PaymentQuote = require("../../../models/PaymentQuote");
 const { emitNewOrder } = require("../../../services/socketEmitter");
 
 const isPaymentSandboxAllowed = () => {
@@ -32,6 +33,26 @@ const createSandboxOrder = (orderId, total) => ({
   receipt: String(orderId || `ORD-${Date.now()}`),
   isDevMock: true,
 });
+
+const PAYMENT_QUOTE_TTL_MS = 15 * 60 * 1000;
+
+const priceUpdatedResponse = (res, orderData) =>
+  res.status(409).json({
+    success: false,
+    error: "PRICE_UPDATED",
+    message: "Some product prices have been updated. Your total has been refreshed.",
+    data: { quote: orderData },
+  });
+
+const loadExistingQuoteOrder = async (quote) => {
+  if (!quote) return null;
+  return Order.findOne({
+    $or: [
+      { paymentQuoteId: quote._id },
+      ...(quote.orderId ? [{ _id: quote.orderId }] : []),
+    ],
+  });
+};
 
 // POST /api/user/payment/razorpay-order
 exports.createRazorpayOrder = async (req, res) => {
@@ -289,12 +310,31 @@ exports.initiatePayment = async (req, res) => {
       giftCardCodes,
     );
 
+    if (orderData.priceChanges?.length) {
+      return priceUpdatedResponse(res, orderData);
+    }
+
+    const paymentQuote = await PaymentQuote.create({
+      userId,
+      orderData,
+      amountPaise: Math.round(orderData.total * 100),
+      currency: "INR",
+      expiresAt: new Date(Date.now() + PAYMENT_QUOTE_TTL_MS),
+    });
+
     if (orderData.total === 0) {
       // Bypass Razorpay entirely for zero-total checkouts
-      const order = await createAndProcessPrepaidOrder(orderData, {
+      const order = await createAndProcessPrepaidOrder({
+        ...orderData,
+        paymentQuoteId: paymentQuote._id,
+      }, {
         gateway: "giftcard_bypass",
         reason: "Zero total order covered by gift cards",
       });
+      paymentQuote.status = "consumed";
+      paymentQuote.orderId = order._id;
+      paymentQuote.consumedAt = new Date();
+      await paymentQuote.save();
       return success(
         res,
         { isZeroTotal: true, orderId: order._id },
@@ -308,9 +348,11 @@ exports.initiatePayment = async (req, res) => {
           "[Razorpay] Credentials not configured in .env. Using test sandbox order.",
         );
         const rpOrder = createSandboxOrder(orderData.orderId, orderData.total);
+        paymentQuote.razorpayOrderId = rpOrder.id;
+        await paymentQuote.save();
         return success(
           res,
-          { rpOrder, orderData },
+          { rpOrder, quoteId: paymentQuote._id },
           "Test sandbox payment initiated",
         );
       }
@@ -354,8 +396,14 @@ exports.initiatePayment = async (req, res) => {
       }
     }
 
-    // Return both the razorpay order and the calculated data so frontend can pass it back for verification
-    return success(res, { rpOrder, orderData }, "Razorpay payment initiated");
+    paymentQuote.razorpayOrderId = rpOrder.id;
+    await paymentQuote.save();
+
+    return success(
+      res,
+      { rpOrder, quoteId: paymentQuote._id, expiresAt: paymentQuote.expiresAt },
+      "Razorpay payment initiated",
+    );
   } catch (err) {
     console.error("[initiatePayment error]:", err);
     const errMsg =
@@ -375,16 +423,46 @@ exports.verifyPayment = async (req, res) => {
       razorpay_payment_id,
       razorpay_order_id,
       razorpay_signature,
-      orderData,
+      quoteId,
     } = req.body;
 
     if (
-      !orderData ||
+      !quoteId ||
       !razorpay_payment_id ||
       !razorpay_order_id ||
       !razorpay_signature
     ) {
       return error(res, "Missing payment verification details", 400);
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(quoteId)) {
+      return error(res, "Invalid payment quote", 400, "PAYMENT_QUOTE_INVALID");
+    }
+
+    let paymentQuote = await PaymentQuote.findOne({
+      _id: quoteId,
+      userId: req.user.userId,
+    });
+    if (!paymentQuote) {
+      return error(res, "Payment quote not found", 404, "PAYMENT_QUOTE_NOT_FOUND");
+    }
+
+    if (paymentQuote.status === "consumed") {
+      const existingOrder = await loadExistingQuoteOrder(paymentQuote);
+      if (existingOrder) {
+        return success(res, { order: existingOrder }, "Payment already verified");
+      }
+      return error(res, "Payment quote has already been consumed", 409, "PAYMENT_QUOTE_CONSUMED");
+    }
+
+    if (paymentQuote.expiresAt <= new Date()) {
+      paymentQuote.status = "expired";
+      await paymentQuote.save();
+      return error(res, "Payment quote has expired", 410, "PAYMENT_QUOTE_EXPIRED");
+    }
+
+    if (paymentQuote.razorpayOrderId !== razorpay_order_id) {
+      return error(res, "Razorpay order does not match payment quote", 400, "PAYMENT_ORDER_MISMATCH");
     }
 
     // 1. Verify Razorpay signature
@@ -408,7 +486,11 @@ exports.verifyPayment = async (req, res) => {
         .update(body.toString())
         .digest("hex");
 
-      const isSignatureValid = expectedSignature === razorpay_signature;
+      const expectedBuffer = Buffer.from(expectedSignature);
+      const receivedBuffer = Buffer.from(String(razorpay_signature));
+      const isSignatureValid =
+        expectedBuffer.length === receivedBuffer.length &&
+        crypto.timingSafeEqual(expectedBuffer, receivedBuffer);
 
       if (!isSignatureValid) {
         return error(
@@ -418,33 +500,77 @@ exports.verifyPayment = async (req, res) => {
           "PAYMENT_SIGNATURE_INVALID",
         );
       }
+
+      let gatewayPayment;
+      try {
+        gatewayPayment = await razorpay.payments.fetch(razorpay_payment_id);
+      } catch (fetchError) {
+        console.error("[Razorpay payment fetch error]:", fetchError);
+        return error(res, "Unable to verify payment with Razorpay", 502, "PAYMENT_LOOKUP_FAILED");
+      }
+
+      if (
+        gatewayPayment.order_id !== paymentQuote.razorpayOrderId ||
+        Number(gatewayPayment.amount) !== Number(paymentQuote.amountPaise) ||
+        String(gatewayPayment.currency || "").toUpperCase() !== paymentQuote.currency ||
+        gatewayPayment.status !== "captured"
+      ) {
+        return error(res, "Paid amount or currency does not match payment quote", 400, "PAYMENT_AMOUNT_MISMATCH");
+      }
     }
 
-    // 2. Signature is valid - Now create the order in DB
-    // SECURITY FIX: Re-calculate order data on server to prevent frontend tampering
-    const userId = req.user.userId;
-    const userEmail = req.user.email;
-    const items = orderData.items;
-    const shippingAddress = orderData.shippingAddress;
-    const couponCode = orderData.couponCode;
-    const giftCardCodes = orderData.giftCardCodes || [];
-
-    const validatedOrderData = await _calculateOrderData(
-      userId,
-      userEmail,
-      items,
-      shippingAddress,
-      "razorpay",
-      couponCode,
-      giftCardCodes,
+    paymentQuote = await PaymentQuote.findOneAndUpdate(
+      {
+        _id: paymentQuote._id,
+        userId: req.user.userId,
+        status: "pending",
+        expiresAt: { $gt: new Date() },
+      },
+      { $set: { status: "processing" } },
+      { new: true },
     );
 
-    const order = await createAndProcessPrepaidOrder(validatedOrderData, {
-      razorpay_payment_id,
-      razorpay_order_id,
-      razorpay_signature,
-      gateway: isDevMock ? "razorpay_dev_mock" : "razorpay",
-    });
+    if (!paymentQuote) {
+      const latestQuote = await PaymentQuote.findById(quoteId);
+      const existingOrder = await loadExistingQuoteOrder(latestQuote);
+      if (existingOrder) {
+        return success(res, { order: existingOrder }, "Payment already verified");
+      }
+      return error(res, "Payment quote is already being processed", 409, "PAYMENT_QUOTE_LOCKED");
+    }
+
+    let order;
+    try {
+      order = await createAndProcessPrepaidOrder({
+        ...paymentQuote.orderData,
+        paymentQuoteId: paymentQuote._id,
+      }, {
+        razorpay_payment_id,
+        razorpay_order_id,
+        razorpay_signature,
+        gateway: isDevMock ? "razorpay_dev_mock" : "razorpay",
+      });
+
+      paymentQuote.status = "consumed";
+      paymentQuote.orderId = order._id;
+      paymentQuote.consumedAt = new Date();
+      await paymentQuote.save();
+    } catch (creationError) {
+      const existingOrder = await loadExistingQuoteOrder(paymentQuote);
+      if (existingOrder) {
+        paymentQuote.status = "consumed";
+        paymentQuote.orderId = existingOrder._id;
+        paymentQuote.consumedAt = new Date();
+        await paymentQuote.save();
+        order = existingOrder;
+      } else {
+        await PaymentQuote.updateOne(
+          { _id: paymentQuote._id, status: "processing" },
+          { $set: { status: "pending" } },
+        );
+        throw creationError;
+      }
+    }
 
     return success(
       res,

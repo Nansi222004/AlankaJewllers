@@ -121,7 +121,7 @@ export const CartProvider = ({ children }) => {
   const [razorpayModalState, setRazorpayModalState] = useState({
     isOpen: false,
     rpOrder: null,
-    orderData: null,
+    quoteId: null,
     resolve: null,
   });
 
@@ -674,7 +674,7 @@ export const CartProvider = ({ children }) => {
 
   // ── handleRazorpayPayment ────────────────────────────────────────────────
   const handleRazorpayPayment = useCallback(
-    (rpOrder, orderData) => {
+    (rpOrder, quoteId) => {
       return new Promise((resolve) => {
         // If this is a development test mode / mock order, open the Razorpay Test Mode Modal on screen!
         if (
@@ -684,7 +684,7 @@ export const CartProvider = ({ children }) => {
           setRazorpayModalState({
             isOpen: true,
             rpOrder,
-            orderData,
+            quoteId,
             resolve,
           });
           return;
@@ -695,7 +695,7 @@ export const CartProvider = ({ children }) => {
           setRazorpayModalState({
             isOpen: true,
             rpOrder,
-            orderData,
+            quoteId,
             resolve,
           });
           return;
@@ -715,7 +715,7 @@ export const CartProvider = ({ children }) => {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
                   razorpay_signature: response.razorpay_signature,
-                  orderData: orderData,
+                  quoteId,
                 });
                 if (verifyRes.data.success) {
                   setCart([]);
@@ -757,7 +757,7 @@ export const CartProvider = ({ children }) => {
           setRazorpayModalState({
             isOpen: true,
             rpOrder,
-            orderData,
+            quoteId,
             resolve,
           });
         }
@@ -769,15 +769,15 @@ export const CartProvider = ({ children }) => {
   // Modal actions for interactive test payment
   const handleDevModalSuccess = useCallback(
     async ({ paymentId }) => {
-      const { rpOrder, orderData, resolve } = razorpayModalState;
-      if (!rpOrder || !orderData) return;
+      const { rpOrder, quoteId, resolve } = razorpayModalState;
+      if (!rpOrder || !quoteId) return;
 
       try {
         const verifyRes = await api.post("user/payments/verify", {
           razorpay_order_id: rpOrder.id,
           razorpay_payment_id: paymentId || `pay_test_${Date.now()}`,
           razorpay_signature: "dev_mock_signature",
-          orderData: orderData,
+          quoteId,
         });
 
         if (verifyRes.data?.success) {
@@ -787,7 +787,7 @@ export const CartProvider = ({ children }) => {
           setRazorpayModalState({
             isOpen: false,
             rpOrder: null,
-            orderData: null,
+            quoteId: null,
             resolve: null,
           });
           toast.success("Payment successful & Order placed!");
@@ -798,7 +798,7 @@ export const CartProvider = ({ children }) => {
           setRazorpayModalState({
             isOpen: false,
             rpOrder: null,
-            orderData: null,
+            quoteId: null,
             resolve: null,
           });
         }
@@ -811,7 +811,7 @@ export const CartProvider = ({ children }) => {
         setRazorpayModalState({
           isOpen: false,
           rpOrder: null,
-          orderData: null,
+          quoteId: null,
           resolve: null,
         });
       }
@@ -828,12 +828,77 @@ export const CartProvider = ({ children }) => {
       setRazorpayModalState({
         isOpen: false,
         rpOrder: null,
-        orderData: null,
+        quoteId: null,
         resolve: null,
       });
     },
     [razorpayModalState],
   );
+
+  const formatCheckoutItems = useCallback((sourceItems) =>
+    (sourceItems || cart).map((item) => {
+      const isGift =
+        item.isGiftCard ||
+        String(item.productId || item.id || "").startsWith("GIFT_CARD_");
+      return {
+        productId: item.productId || item.id || item._id,
+        variantId: isGift
+          ? "GIFT_CARD_VAR"
+          : item.variantId ||
+            item.packId ||
+            item.selectedVariant?.id ||
+            item.selectedVariant?._id ||
+            item.variants?.[0]?.id ||
+            item.variants?.[0]?._id,
+        quantity: item.qty || item.quantity || 1,
+        isGiftCard: isGift,
+        personalization: item.personalization || null,
+        price: Number(item.price || 0),
+        name: item.name,
+        giftWrap: Boolean(item.giftWrap),
+        giftMessage: item.giftWrap ? String(item.giftMessage || "") : "",
+      };
+    }), [cart]);
+
+  const applyServerPricesToCart = useCallback((quote) => {
+    const serverItems = Array.isArray(quote?.items) ? quote.items : [];
+    if (!serverItems.length) return;
+    setCart((current) => current.map((item) => {
+      const match = serverItems.find((serverItem) =>
+        String(serverItem.productId) === String(item.productId || item.id || item._id) &&
+        String(serverItem.variantId) === String(item.variantId || item.packId || item.selectedVariant?.id || item.selectedVariant?._id));
+      if (!match || item.isGiftCard) return item;
+      return {
+        ...item,
+        price: Number(match.price),
+        finalPrice: Number(match.price),
+        originalPrice: Number(match.mrp ?? match.price),
+        selectedVariant: item.selectedVariant
+          ? { ...item.selectedVariant, price: Number(match.price), finalPrice: Number(match.price), mrp: Number(match.mrp ?? match.price) }
+          : item.selectedVariant,
+      };
+    }));
+  }, []);
+
+  const getCheckoutQuote = useCallback(async ({
+    items,
+    shippingAddress,
+    couponCode,
+    giftCardCodes = [],
+  } = {}) => {
+    const formattedItems = formatCheckoutItems(items);
+    if (!formattedItems.length || formattedItems.some((item) => !item.productId || !item.variantId)) return null;
+    const isAuthenticated = hasAuthToken();
+    const response = await api.post(isAuthenticated ? "user/orders/quote" : "public/checkout/quote", {
+      items: formattedItems,
+      shippingAddress,
+      couponCode: isAuthenticated ? couponCode : undefined,
+      giftCardCodes: isAuthenticated ? giftCardCodes : [],
+    });
+    const quote = response.data?.data?.quote;
+    if (quote?.priceChanges?.length) applyServerPricesToCart(quote);
+    return quote || null;
+  }, [formatCheckoutItems, applyServerPricesToCart]);
 
   // ── placeOrder ───────────────────────────────────────────────────────────
   const placeOrder = useCallback(
@@ -880,32 +945,25 @@ export const CartProvider = ({ children }) => {
           return null;
         }
 
-        const formattedItems = (items || cart).map((item) => {
-          const isGift =
-            item.isGiftCard ||
-            String(item.productId || item.id || "").startsWith("GIFT_CARD_");
-          return {
-            productId: item.productId || item.id || item._id,
-            variantId: isGift
-              ? "GIFT_CARD_VAR"
-              : item.variantId ||
-              item.packId ||
-              item.selectedVariant?.id ||
-              item.selectedVariant?._id ||
-              item.variants?.[0]?.id ||
-              item.variants?.[0]?._id,
-            quantity: item.qty || item.quantity,
-            isGiftCard: isGift,
-            personalization: item.personalization || null,
-            price: item.price,
-            name: item.name,
-            giftWrap: Boolean(item.giftWrap),
-            giftMessage: item.giftWrap ? String(item.giftMessage || "") : "",
-          };
-        });
+        const formattedItems = formatCheckoutItems(items || cart);
 
         if (formattedItems.some((it) => !it.productId || !it.variantId)) {
           toast.error("Some cart items are missing variant information.");
+          return null;
+        }
+
+        const checkoutQuote = await getCheckoutQuote({
+          items: items || cart,
+          shippingAddress: normalizedAddress,
+          couponCode,
+          giftCardCodes: giftCardCodes || [],
+        });
+        if (!checkoutQuote) {
+          toast.error("Unable to confirm the latest checkout total. Please try again.");
+          return null;
+        }
+        if (checkoutQuote.priceChanges?.length) {
+          toast("Some product prices have been updated. Your total has been refreshed.");
           return null;
         }
 
@@ -922,7 +980,7 @@ export const CartProvider = ({ children }) => {
               toast.error(initRes.data.message || "Payment initiation failed");
               return null;
             }
-            const { rpOrder, orderData, isZeroTotal, orderId } =
+            const { rpOrder, quoteId, isZeroTotal, orderId } =
               initRes.data.data;
             if (isZeroTotal) {
               setCart([]);
@@ -932,8 +990,13 @@ export const CartProvider = ({ children }) => {
               );
               return orderId;
             }
-            return await handleRazorpayPayment(rpOrder, orderData);
+            return await handleRazorpayPayment(rpOrder, quoteId);
           } catch (err) {
+            if (err.response?.data?.error === "PRICE_UPDATED") {
+              applyServerPricesToCart(err.response?.data?.data?.quote);
+              toast("Some product prices have been updated. Your total has been refreshed.");
+              return null;
+            }
             toast.error(
               err.response?.data?.message || err.message || "Payment initiation failed",
             );
@@ -962,11 +1025,16 @@ export const CartProvider = ({ children }) => {
         toast.success("Order placed successfully!");
         return order._id;
       } catch (err) {
+        if (err.response?.data?.error === "PRICE_UPDATED") {
+          applyServerPricesToCart(err.response?.data?.data?.quote);
+          toast("Some product prices have been updated. Your total has been refreshed.");
+          return null;
+        }
         toast.error(err.response?.data?.message || "Checkout failed");
         return null;
       }
     },
-    [cart, user, normalizeShippingAddress, handleRazorpayPayment],
+    [cart, user, normalizeShippingAddress, handleRazorpayPayment, formatCheckoutItems, getCheckoutQuote, applyServerPricesToCart],
   );
 
   // ── clearAllOnAccountDelete ──────────────────────────────────────────────
@@ -983,6 +1051,7 @@ export const CartProvider = ({ children }) => {
   const value = {
     cart,
     setCart,
+    getCheckoutQuote,
     coupons,
     setCoupons,
     appliedCoupon,
@@ -1016,7 +1085,7 @@ export const CartProvider = ({ children }) => {
         <RazorpayTestModal
           isOpen={razorpayModalState.isOpen}
           rpOrder={razorpayModalState.rpOrder}
-          orderData={razorpayModalState.orderData}
+          orderData={{ orderId: razorpayModalState.rpOrder?.receipt }}
           onSuccess={handleDevModalSuccess}
           onCancel={handleDevModalCancel}
         />

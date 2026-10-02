@@ -132,7 +132,9 @@ const SharedProductEditor = ({
                     cut: '',
                     shape: '',
                     diamondCount: 0
-                }
+                },
+                diamondPricing: { enabled: false, pricingMode: 'total', pricePerCarat: 0, totalPrice: 0, certificateCharge: 0, certificateUrl: '' },
+                gemstonePricing: []
             }],
             faqs: [],
             seo: { title: '', description: '', keywords: '' },
@@ -218,10 +220,12 @@ const SharedProductEditor = ({
         if (formData.material === 'Silver' && !formData.silverCategory) {
             newErrors.silverCategory = "Silver purity is required.";
         }
-        if (formData.material === 'Diamond') {
-            if (!formData.diamondType || formData.diamondType === 'none') newErrors.diamondType = "Diamond origin is required.";
+        if (['Diamond', 'Gems'].includes(formData.material)) {
             if (!formData.settingMetal) newErrors.settingMetal = "Setting metal is required.";
             if (!formData.settingPurity) newErrors.settingPurity = "Setting purity is required.";
+        }
+        if (formData.material === 'Diamond') {
+            if (!formData.diamondType || formData.diamondType === 'none') newErrors.diamondType = "Diamond origin is required.";
             if (!formData.sourceDocumentationConfirmed) newErrors.sourceDocumentationConfirmed = "Confirm the diamond claims are supported by source documentation.";
         }
         if (formData.status === 'Active') {
@@ -283,6 +287,36 @@ const SharedProductEditor = ({
                         newErrors[`variant_${i}_diamondCount`] = "Diamond count cannot be negative";
                     }
                 }
+
+                if (v.diamondPricing?.enabled) {
+                    const mode = v.diamondPricing.pricingMode || 'total';
+                    if (!['total', 'per_carat'].includes(mode)) newErrors[`variant_${i}_diamondPrice`] = "Invalid diamond pricing mode";
+                    if (mode === 'per_carat' && (!(Number(v.diamondSpecs?.carat) > 0) || !(Number(v.diamondPricing.pricePerCarat) > 0))) {
+                        newErrors[`variant_${i}_diamondPrice`] = "Per-carat diamond pricing requires carat and price per carat greater than zero";
+                    }
+                    if ([v.diamondPricing.pricePerCarat, v.diamondPricing.totalPrice, v.diamondPricing.certificateCharge].some(value => Number(value) < 0)) {
+                        newErrors[`variant_${i}_diamondPrice`] = "Diamond pricing cannot be negative";
+                    }
+                }
+
+                if (formData.material === 'Diamond' && !v.diamondPricing?.enabled && !(Number(v.diamondPrice) > 0)) {
+                    newErrors[`variant_${i}_diamondPrice`] = "Diamond pricing is required";
+                }
+                if (formData.material === 'Gems' && !(v.gemstonePricing || []).length && !(Number(v.diamondPrice) > 0)) {
+                    newErrors[`variant_${i}_diamondPrice`] = "Gemstone pricing is required";
+                }
+
+                (v.gemstonePricing || []).forEach((stone, stoneIndex) => {
+                    const prefix = `Gemstone ${stoneIndex + 1}`;
+                    if (!stone.gemstoneType) newErrors[`variant_${i}_gemstone_${stoneIndex}`] = `${prefix}: type is required`;
+                    if (!(Number(stone.quantity) > 0)) newErrors[`variant_${i}_gemstone_${stoneIndex}`] = `${prefix}: quantity must be greater than zero`;
+                    if ([stone.weight, stone.pricePerCarat, stone.totalPrice, stone.certificateCharge].some(value => Number(value) < 0)) {
+                        newErrors[`variant_${i}_gemstone_${stoneIndex}`] = `${prefix}: pricing cannot be negative`;
+                    }
+                    if (stone.pricingMode === 'per_carat' && (!(Number(stone.weight) > 0) || !(Number(stone.pricePerCarat) > 0))) {
+                        newErrors[`variant_${i}_gemstone_${stoneIndex}`] = `${prefix}: per-carat pricing requires weight and price per carat greater than zero`;
+                    }
+                });
 
                 if (formData.status === 'Active' && Number(v.stock) <= 0) {
                     newErrors[`variant_${v.id}_stock`] = "Positive stock is required before publishing.";
@@ -549,7 +583,16 @@ const SharedProductEditor = ({
                                 cut: v.diamondSpecs?.cut || '',
                                 shape: v.diamondSpecs?.shape || '',
                                 diamondCount: v.diamondSpecs?.diamondCount || 0
-                            }
+                            },
+                            diamondPricing: {
+                                enabled: Boolean(v.diamondPricing?.enabled),
+                                pricingMode: v.diamondPricing?.pricingMode || 'total',
+                                pricePerCarat: v.diamondPricing?.pricePerCarat ?? 0,
+                                totalPrice: v.diamondPricing?.totalPrice ?? 0,
+                                certificateCharge: v.diamondPricing?.certificateCharge ?? 0,
+                                certificateUrl: v.diamondPricing?.certificateUrl || ''
+                            },
+                            gemstonePricing: Array.isArray(v.gemstonePricing) ? v.gemstonePricing : []
                         };
                     }) || [];
 
@@ -655,7 +698,7 @@ const SharedProductEditor = ({
                 if (v.id === vid) {
                     const updated = { ...v, [field]: value };
                     
-                    if (['makingCharge', 'hallmarkingCharge', 'diamondCertificateCharge', 'additionalCharge', 'diamondPrice', 'weight', 'weightUnit'].includes(field)) {
+                    if (['makingCharge', 'hallmarkingCharge', 'diamondCertificateCharge', 'additionalCharge', 'diamondPrice', 'diamondPricing', 'gemstonePricing', 'weight', 'weightUnit'].includes(field)) {
                         const pricing = getPricingForVariant(updated, prev, metalRates, gstRate);
                         updated.mrp = pricing.finalPrice.toString();
                         updated.price = pricing.finalPrice.toString();
@@ -682,13 +725,17 @@ const SharedProductEditor = ({
             sourceDocumentationConfirmed: false,
             variants: prev.variants.map(v => {
                 if (v.id === vid) {
-                    return {
+                    const updated = {
                         ...v,
                         diamondSpecs: {
                             ...(v.diamondSpecs || {}),
                             [field]: value
                         }
                     };
+                    const pricing = getPricingForVariant(updated, prev, metalRates, gstRate);
+                    updated.mrp = pricing.finalPrice.toString();
+                    updated.price = pricing.finalPrice.toString();
+                    return updated;
                 }
                 return v;
             })
@@ -730,7 +777,9 @@ const SharedProductEditor = ({
                     cut: '',
                     shape: '',
                     diamondCount: 0
-                }
+                },
+                diamondPricing: { enabled: false, pricingMode: 'total', pricePerCarat: 0, totalPrice: 0, certificateCharge: 0, certificateUrl: '' },
+                gemstonePricing: []
             }]
         }));
     };
@@ -910,6 +959,8 @@ const SharedProductEditor = ({
         if (formData.material === 'Gems' && !String(formData.gemstoneType || '').trim()) {
             newErrors.gemstoneType = "Gemstone type is required for Gems products";
         }
+        if (formData.material === 'Gems' && !formData.settingMetal) newErrors.settingMetal = "Setting metal is required";
+        if (formData.material === 'Gems' && !formData.settingPurity) newErrors.settingPurity = "Setting purity is required";
         if (formData.material === 'Gems' && !(formData.gemstones || []).length) newErrors.gemstones = "At least one verified gemstone/material entry is required";
         if (formData.material === 'Gems' && ['Ruby', 'Emerald', 'Sapphire'].includes(formData.gemstoneType) && !formData.sourceDocumentationConfirmed) {
             newErrors.sourceDocumentationConfirmed = "Source documentation is required for this gemstone claim";
@@ -939,6 +990,12 @@ const SharedProductEditor = ({
             if (!v.name) newErrors[`variant_${i}_name`] = `${varLabel}: Name is required`;
             if (!v.weight) newErrors[`variant_${i}_weight`] = `${varLabel}: Weight is required`;
             if (formData.status === 'Active' && Number(v.stock) <= 0) newErrors[`variant_${i}_stock`] = `${varLabel}: Positive stock is required before publishing`;
+            if (formData.material === 'Diamond' && !v.diamondPricing?.enabled && !(Number(v.diamondPrice) > 0)) {
+                newErrors[`variant_${i}_diamondPrice`] = `${varLabel}: Diamond pricing is required`;
+            }
+            if (formData.material === 'Gems' && !(v.gemstonePricing || []).length && !(Number(v.diamondPrice) > 0)) {
+                newErrors[`variant_${i}_diamondPrice`] = `${varLabel}: Gemstone pricing is required`;
+            }
         });
 
         const combined = { ...liveErrors, ...newErrors };

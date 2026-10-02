@@ -52,6 +52,108 @@ const normalizeDiamondType = (value) => {
   return "none";
 };
 
+const toNumber = (value, fallback = 0) => {
+  if (value === "" || value === null || value === undefined) return fallback;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : Number.NaN;
+};
+
+const normalizeDiamondPricing = (pricing = {}) => ({
+  enabled: pricing.enabled === true || pricing.enabled === "true",
+  pricingMode: String(pricing.pricingMode || "total").toLowerCase(),
+  pricePerCarat: toNumber(pricing.pricePerCarat),
+  totalPrice: toNumber(pricing.totalPrice),
+  certificateCharge: toNumber(pricing.certificateCharge),
+  certificateUrl: String(pricing.certificateUrl || "").trim()
+});
+
+const normalizeGemstonePricing = (stones = []) => (
+  Array.isArray(stones) ? stones.map((stone) => ({
+    gemstoneType: String(stone?.gemstoneType || "").trim(),
+    quantity: toNumber(stone?.quantity, 1),
+    weight: toNumber(stone?.weight),
+    pricingMode: String(stone?.pricingMode || "total").toLowerCase(),
+    pricePerCarat: toNumber(stone?.pricePerCarat),
+    totalPrice: toNumber(stone?.totalPrice),
+    certificateCharge: toNumber(stone?.certificateCharge)
+  })) : []
+);
+
+const validateProductPricing = (productLike = {}) => {
+  const variants = Array.isArray(productLike.variants) ? productLike.variants : [];
+  const material = String(productLike.material || "");
+
+  if (material === "Diamond" && normalizeDiamondType(productLike.diamondType) === "none") {
+    return "Diamond type is required for Diamond products.";
+  }
+  if (["Diamond", "Gems"].includes(material) && (!productLike.settingMetal || !productLike.settingPurity)) {
+    return `Setting metal and purity are required for ${material} products.`;
+  }
+
+  for (let index = 0; index < variants.length; index += 1) {
+    const variant = variants[index];
+    const label = variant.name || `#${index + 1}`;
+    const nonNegativeFields = [
+      ["diamond price", variant.diamondPrice],
+      ["diamond certificate charge", variant.diamondCertificateCharge],
+      ["making charge", variant.makingCharge],
+      ["hallmarking charge", variant.hallmarkingCharge],
+      ["additional charge", variant.additionalCharge]
+    ];
+    for (const [field, value] of nonNegativeFields) {
+      if (!Number.isFinite(Number(value)) || Number(value) < 0) {
+        return `${field} cannot be negative or invalid for variant "${label}".`;
+      }
+    }
+
+    const diamondPricing = variant.diamondPricing || {};
+    if (diamondPricing.enabled) {
+      const diamondType = normalizeDiamondType(variant.diamondType || productLike.diamondType);
+      if (diamondType === "none") return `Diamond type is required for variant "${label}".`;
+      if (!["total", "per_carat"].includes(diamondPricing.pricingMode)) return `Invalid diamond pricing mode for variant "${label}".`;
+      const diamondValues = diamondPricing.pricingMode === "per_carat"
+        ? [diamondPricing.pricePerCarat, diamondPricing.certificateCharge ?? 0]
+        : [diamondPricing.totalPrice, diamondPricing.certificateCharge ?? 0];
+      if (diamondValues
+        .some((value) => !Number.isFinite(Number(value)) || Number(value) < 0)) {
+        return `Diamond pricing cannot contain negative or invalid values for variant "${label}".`;
+      }
+      if (diamondPricing.pricingMode === "per_carat"
+        && (!(Number(variant.diamondSpecs?.carat) > 0) || !(Number(diamondPricing.pricePerCarat) > 0))) {
+        return `Diamond per-carat pricing requires carat and price per carat greater than zero for variant "${label}".`;
+      }
+    }
+
+    const gemstones = Array.isArray(variant.gemstonePricing) ? variant.gemstonePricing : [];
+    if (material === "Diamond" && !diamondPricing.enabled && !(Number(variant.diamondPrice) > 0)) {
+      return `Diamond pricing is required for variant "${label}".`;
+    }
+    if (material === "Gems" && gemstones.length === 0 && !(Number(variant.diamondPrice) > 0)) {
+      return `Gemstone pricing is required for variant "${label}".`;
+    }
+    for (let stoneIndex = 0; stoneIndex < gemstones.length; stoneIndex += 1) {
+      const stone = gemstones[stoneIndex];
+      if (!stone.gemstoneType) return `Gemstone type is required for stone ${stoneIndex + 1} in variant "${label}".`;
+      if (!["total", "per_carat"].includes(stone.pricingMode)) return `Invalid gemstone pricing mode for stone ${stoneIndex + 1} in variant "${label}".`;
+      const gemstoneValues = stone.pricingMode === "per_carat"
+        ? [stone.weight, stone.pricePerCarat, stone.certificateCharge ?? 0, stone.quantity]
+        : [stone.totalPrice, stone.certificateCharge ?? 0, stone.quantity];
+      if (gemstoneValues
+        .some((value) => !Number.isFinite(Number(value)) || Number(value) < 0)) {
+        return `Gemstone pricing cannot contain negative or invalid values for stone ${stoneIndex + 1} in variant "${label}".`;
+      }
+      if (!(Number(stone.quantity) > 0)) return `Gemstone quantity must be greater than zero for stone ${stoneIndex + 1} in variant "${label}".`;
+      if (stone.pricingMode === "per_carat" && (!(Number(stone.weight) > 0) || !(Number(stone.pricePerCarat) > 0))) {
+        return `Gemstone per-carat pricing requires weight and price per carat greater than zero for stone ${stoneIndex + 1} in variant "${label}".`;
+      }
+    }
+  }
+  return "";
+};
+
+// Exported for focused unit testing; routes continue to use the controller methods below.
+exports.validateProductPricing = validateProductPricing;
+
 const normalizeVariantFields = (variants = [], fallback = {}) => {
   const fallbackWeight = fallback.weight !== undefined && fallback.weight !== null
     ? Number(fallback.weight) || 0
@@ -101,6 +203,8 @@ const normalizeVariantFields = (variants = [], fallback = {}) => {
       shape: String(variant.diamondSpecs?.shape || "").trim(),
       diamondCount: Number(variant.diamondSpecs?.diamondCount) || 0
     },
+    diamondPricing: normalizeDiamondPricing(variant.diamondPricing),
+    gemstonePricing: normalizeGemstonePricing(variant.gemstonePricing),
     serialCodes: normalizeSerialCodes(variant.serialCodes || [])
   }));
 };
@@ -166,9 +270,10 @@ const getPublishReadinessError = (productLike = {}, metalRates = {}) => {
 
   const requiresMetalRate = productLike.material === "Gold"
     || productLike.material === "Silver"
-    || productLike.material === "Diamond";
+    || productLike.material === "Diamond"
+    || (productLike.material === "Gems" && Boolean(productLike.settingMetal));
   if (requiresMetalRate && getTenGramRate(productLike, metalRates) <= 0) {
-    const purity = productLike.material === "Diamond"
+    const purity = ["Diamond", "Gems"].includes(productLike.material)
       ? productLike.settingPurity
       : (productLike.goldCategory || productLike.silverCategory);
     return `Pricing configuration required for ${purity || "this purity"}.`;
@@ -254,6 +359,9 @@ exports.createProduct = async (req, res) => {
       metalRates,
       gstRate
     );
+
+    const pricingValidationError = validateProductPricing(productData);
+    if (pricingValidationError) return error(res, pricingValidationError, 400);
 
     const publishReadinessError = getPublishReadinessError(productData, metalRates);
     if (publishReadinessError) return error(res, publishReadinessError, 400);
@@ -444,6 +552,9 @@ exports.updateProduct = async (req, res) => {
     const metalRates = settings?.metalRates || {};
     const gstRate = settings?.gstRate || 0;
     applyMetalPricingToProduct(product, metalRates, gstRate);
+
+    const pricingValidationError = validateProductPricing(product);
+    if (pricingValidationError) return error(res, pricingValidationError, 400);
 
     const publishReadinessError = getPublishReadinessError(product, metalRates);
     if (publishReadinessError) return error(res, publishReadinessError, 400);

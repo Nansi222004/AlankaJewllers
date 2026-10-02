@@ -13,6 +13,7 @@ router.use("/shipping",   require("./shippingWebhook.routes"));
 router.use("/settings",   require("./settings.routes"));
 router.use("/logistics",  require("./logistics.routes"));
 router.use("/metal-rates", require("./metalRate.routes"));
+router.use("/checkout", require("./checkout.routes"));
 
 module.exports = router;
 

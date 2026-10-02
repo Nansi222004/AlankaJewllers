@@ -1,4 +1,5 @@
 const Order = require("../../../models/Order");
+const Notification = require("../../../models/Notification");
 const { success, error } = require("../../../utils/apiResponse");
 const mongoose = require("mongoose");
 const { emitOrderStatusUpdate } = require("../../../services/socketEmitter");
@@ -131,6 +132,22 @@ exports.getOrderDetail = async (req, res) => {
       });
     }
 
+    // Auto-mark notifications for this order as read since admin is viewing it
+    try {
+      const safeOrderId = String(order.orderId || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const notifQuery = {
+        $or: [
+          { link: `/admin/orders/${order._id}` },
+          { link: `/admin/orders/${req.params.id}` }
+        ],
+        isRead: false
+      };
+      if (safeOrderId) {
+        notifQuery.$or.push({ message: { $regex: safeOrderId, $options: "i" } });
+      }
+      await Notification.updateMany(notifQuery, { $set: { isRead: true } });
+    } catch (_e) {}
+
     return success(res, { order }, "Order details retrieved");
   } catch (err) { return error(res, err.message); }
 };
@@ -205,6 +222,22 @@ exports.updateOrderStatus = async (req, res) => {
     });
 
     await order.save();
+
+    // Auto-mark notifications for this order as read since admin accepted/updated it
+    try {
+      const safeOrderId = String(order.orderId || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const notifQuery = {
+        $or: [
+          { link: `/admin/orders/${order._id}` },
+          { link: `/admin/orders/${id}` }
+        ],
+        isRead: false
+      };
+      if (safeOrderId) {
+        notifQuery.$or.push({ message: { $regex: safeOrderId, $options: "i" } });
+      }
+      await Notification.updateMany(notifQuery, { $set: { isRead: true } });
+    } catch (_e) {}
 
     if (!isSameStatusUpdate && ["Cancelled", "Returned"].includes(nextStatus)) {
       if (Array.isArray(order.appliedGiftCards) && order.appliedGiftCards.length > 0) {

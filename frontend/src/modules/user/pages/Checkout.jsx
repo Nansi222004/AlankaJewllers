@@ -14,7 +14,7 @@ import CheckoutCartSummary from '../components/Checkout/CheckoutCartSummary';
 
 const Checkout = () => {
     useResetScroll();
-    const { cart, placeOrder, addresses, addAddress, defaultAddressId, coupons, applyCoupon, appliedCoupon, couponDiscount, clearAppliedCoupon } = useShop();
+    const { cart, placeOrder, getCheckoutQuote, addresses, addAddress, defaultAddressId, coupons, applyCoupon, appliedCoupon, couponDiscount, clearAppliedCoupon } = useShop();
     const { user } = useAuth();
     const navigate = useNavigate();
     const { track } = useAnalytics();
@@ -50,23 +50,54 @@ const Checkout = () => {
     const [giftCardInput, setGiftCardInput] = useState('');
     const [giftCardLoading, setGiftCardLoading] = useState(false);
     const [appliedGiftCards, setAppliedGiftCards] = useState([]);
+    const [serverQuote, setServerQuote] = useState(null);
+    const [quoteLoading, setQuoteLoading] = useState(false);
 
-    // Calculate totals
-    const subtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
-    const giftWrapCharge = cart.reduce((acc, item) => acc + (item.giftWrap ? 50 : 0), 0);
-    const gstIncluded = cart.reduce((acc, item) => acc + ((Number(item.gst || item.selectedVariant?.gst || 0)) * (item.quantity || 1)), 0);
-    const shipping = (appliedCoupon?.isFreeShipping || (subtotal - discount + giftWrapCharge) > 499) ? 0 : 50;
+    const clientSubtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+    const clientGiftWrapCharge = cart.reduce((acc, item) => acc + (item.giftWrap ? 50 : 0), 0);
+    const subtotal = Number(serverQuote?.subtotal ?? clientSubtotal);
+    const giftWrapCharge = Number(serverQuote?.giftWrapCharge ?? clientGiftWrapCharge);
+    const shipping = Number(serverQuote?.shipping ?? 0);
+    const authoritativeDiscount = Number(serverQuote?.discount ?? discount);
+    const gstIncluded = serverQuote?.items
+        ? serverQuote.items.reduce((acc, item) => acc + Number(item.pricingSnapshot?.gstAmount || 0) * Number(item.quantity || 1), 0)
+        : cart.reduce((acc, item) => acc + ((Number(item.gst || item.selectedVariant?.gst || 0)) * (item.quantity || 1)), 0);
 
     // Dynamically compute gift card discount based on current remaining balance
     const hasGiftCard = cart.some(item => item.isGiftCard || String(item.id || '').startsWith('GIFT_CARD_'));
-    let remainingToPay = Math.max(0, subtotal + giftWrapCharge + shipping - discount);
-    const computedGiftCards = appliedGiftCards.map(gc => {
+    let remainingToPay = Math.max(0, subtotal + giftWrapCharge + shipping - authoritativeDiscount);
+    const locallyComputedGiftCards = appliedGiftCards.map(gc => {
         const amountUsed = Math.min(gc.balance, remainingToPay);
         remainingToPay -= amountUsed;
         return { ...gc, amountUsed };
     });
-    const giftCardDiscount = computedGiftCards.reduce((acc, gc) => acc + gc.amountUsed, 0);
-    const total = Math.max(0, subtotal + giftWrapCharge + shipping - discount - giftCardDiscount);
+    const computedGiftCards = serverQuote?.appliedGiftCards?.length
+        ? serverQuote.appliedGiftCards
+        : locallyComputedGiftCards;
+    const giftCardDiscount = Number(serverQuote?.giftCardDiscount ?? locallyComputedGiftCards.reduce((acc, gc) => acc + gc.amountUsed, 0));
+    const total = Number(serverQuote?.total ?? Math.max(0, subtotal + giftWrapCharge + shipping - authoritativeDiscount - giftCardDiscount));
+
+    useEffect(() => {
+        if (!user || !cart.length || !getCheckoutQuote) return;
+        let cancelled = false;
+        setQuoteLoading(true);
+        getCheckoutQuote({
+            items: cart,
+            couponCode: appliedCoupon?.code,
+            giftCardCodes: appliedGiftCards.map((card) => card.code),
+        }).then((quote) => {
+            if (cancelled || !quote) return;
+            setServerQuote(quote);
+            if (quote.priceChanges?.length) {
+                toast('Some product prices have been updated. Your total has been refreshed.');
+            }
+        }).catch((err) => {
+            if (!cancelled) toast.error(err.response?.data?.message || 'Unable to refresh checkout total');
+        }).finally(() => {
+            if (!cancelled) setQuoteLoading(false);
+        });
+        return () => { cancelled = true; };
+    }, [user, cart, appliedCoupon?.code, appliedGiftCards, getCheckoutQuote]);
 
     // TEMP: The former "force prepaid for gift cards" effect is intentionally
     // disabled with online payments. Gift-card products are blocked on submit.
@@ -93,7 +124,7 @@ const Checkout = () => {
     const handleApplyCouponValidated = async (coupon) => {
         const code = coupon?.code || couponCode;
         if (!code) return;
-        const result = await applyCoupon(code, subtotal, cart);
+        const result = await applyCoupon(code, clientSubtotal, cart);
         if (!result.valid) {
             toast.error(result.error || 'Invalid coupon');
             return;
@@ -113,7 +144,7 @@ const Checkout = () => {
         if (appliedGiftCards.some(gc => gc.code === code)) {
             toast.error('This gift card is already applied'); return;
         }
-        const currentRemaining = Math.max(0, subtotal + giftWrapCharge + shipping - discount - giftCardDiscount);
+        const currentRemaining = Math.max(0, subtotal + giftWrapCharge + shipping - authoritativeDiscount - giftCardDiscount);
         if (currentRemaining <= 0) {
             toast.error('Your order total is already fully covered by other discounts');
             return;
@@ -293,7 +324,8 @@ const Checkout = () => {
                     subtotal={subtotal}
                     giftWrapCharge={giftWrapCharge}
                     shipping={shipping}
-                    discount={discount}
+                    shippingQuoted={Boolean(serverQuote)}
+                    discount={authoritativeDiscount}
                     total={total}
                     appliedCoupon={appliedCoupon}
                     setShowCouponModal={setShowCouponModal}
@@ -305,7 +337,7 @@ const Checkout = () => {
                     handleApplyGiftCard={handleApplyGiftCard}
                     giftCardLoading={giftCardLoading}
                     removeGiftCard={removeGiftCard}
-                    loading={loading}
+                    loading={loading || quoteLoading}
                     paymentMethod={paymentMethod}
                     showCouponModal={showCouponModal}
                     couponCode={couponCode}

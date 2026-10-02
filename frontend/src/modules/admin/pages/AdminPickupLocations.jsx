@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { adminService } from '../services/adminService';
+import ConfirmModal from '../../shared/components/ConfirmModal';
 
 // ── Sync Status Badge ─────────────────────────────────────────────────────────
 const SyncBadge = ({ shiprocket }) => {
@@ -313,6 +314,7 @@ const AdminPickupLocations = () => {
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [locationToDelete, setLocationToDelete] = useState(null);
   const [editingLocation, setEditingLocation] = useState(null);
   const [syncingId, setSyncingId] = useState(null);
 
@@ -355,14 +357,17 @@ const AdminPickupLocations = () => {
     }
   };
 
-  const handleDelete = async (loc) => {
-    if (!window.confirm(`Are you sure you want to delete "${loc.warehouseName}"?`)) return;
+  const handleDelete = async () => {
+    const loc = locationToDelete;
+    if (!loc?._id) return false;
     try {
       await adminService.deletePickupLocation(loc._id);
       toast.success('Location deleted');
       fetchLocations();
+      return true;
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to delete location');
+      return false;
     }
   };
 
@@ -504,7 +509,7 @@ const AdminPickupLocations = () => {
                     </button>
                     {!isPrimary && (
                       <button
-                        onClick={() => handleDelete(loc)}
+                        onClick={() => setLocationToDelete(loc)}
                         className="p-1.5 rounded-lg text-red-400 hover:text-red-700 hover:bg-red-50 transition-colors"
                         title="Delete"
                       >
@@ -530,6 +535,14 @@ const AdminPickupLocations = () => {
           onSaved={fetchLocations}
         />
       )}
+      <ConfirmModal
+        isOpen={Boolean(locationToDelete)}
+        onClose={() => setLocationToDelete(null)}
+        onConfirm={handleDelete}
+        title="Delete pickup location?"
+        description={`Are you sure you want to delete “${locationToDelete?.warehouseName || 'this location'}”?`}
+        confirmLabel="Delete location"
+      />
     </div>
   );
 };

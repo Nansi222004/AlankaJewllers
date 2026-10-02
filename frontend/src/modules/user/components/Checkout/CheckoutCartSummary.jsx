@@ -8,6 +8,7 @@ const CheckoutCartSummary = ({
     subtotal,
     giftWrapCharge,
     shipping,
+    shippingQuoted,
     discount,
     total,
     appliedCoupon,
@@ -151,7 +152,13 @@ const CheckoutCartSummary = ({
                     )}
                     <div className="flex justify-between items-center">
                         <span className="font-serif">Shipping</span>
-                        <span className="font-sans font-bold">{shipping === 0 ? <span className="text-emerald-600">Free</span> : currencyText(shipping)}</span>
+                        <span className="font-sans font-bold">
+                            {!shippingQuoted
+                                ? 'Calculating…'
+                                : shipping === 0
+                                    ? <span className="text-emerald-600">Free</span>
+                                    : currencyText(shipping)}
+                        </span>
                     </div>
                     {gstIncluded > 0 && (
                         <div className="flex justify-between items-center text-gray-500 text-xs">

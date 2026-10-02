@@ -117,6 +117,7 @@ const AdminLayout = ({ children }) => {
     const [latestNotif, setLatestNotif] = useState(null);
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
     const prevCountRef = React.useRef(0);
+    const isInitialLoadRef = React.useRef(true);
 
     React.useEffect(() => {
         const handleClickOutside = (event) => {
@@ -133,35 +134,76 @@ const AdminLayout = ({ children }) => {
         let hideTimer = null;
 
         const checkNotifications = async () => {
-            const allNotifs = await adminService.getAdminNotifications({ limit: 100 });
-            if (!mounted) return;
+            try {
+                const allNotifs = await adminService.getAdminNotifications({ limit: 100 });
+                if (!mounted) return;
 
-            const safeNotifications = Array.isArray(allNotifs) ? allNotifs : [];
-            const unreadItems = safeNotifications.filter((n) => !n?.isRead);
-            const unreadCount = unreadItems.length;
+                const safeNotifications = Array.isArray(allNotifs) ? allNotifs : [];
+                const unreadItems = safeNotifications.filter((n) => !n?.isRead);
+                const unreadCount = unreadItems.length;
 
-            if (unreadCount > prevCountRef.current) {
-                const newest = unreadItems[0];
-                if (newest) {
-                    setLatestNotif(newest);
-                    setShowPopup(true);
-                    if (hideTimer) clearTimeout(hideTimer);
-                    hideTimer = setTimeout(() => setShowPopup(false), 8000);
+                // Only show popup for brand-new notifications received during active session,
+                // NEVER on initial page mount or browser refresh
+                if (!isInitialLoadRef.current && unreadCount > prevCountRef.current) {
+                    const newest = unreadItems[0];
+                    if (newest) {
+                        setLatestNotif(newest);
+                        setShowPopup(true);
+                        if (hideTimer) clearTimeout(hideTimer);
+                        hideTimer = setTimeout(() => setShowPopup(false), 8000);
+                    }
                 }
-            }
 
-            prevCountRef.current = unreadCount;
-            setNotifications(safeNotifications);
+                isInitialLoadRef.current = false;
+                prevCountRef.current = unreadCount;
+                setNotifications(safeNotifications);
+            } catch (err) {
+                console.error("Failed to load admin notifications:", err);
+            }
         };
 
         checkNotifications();
         const interval = setInterval(checkNotifications, 10000);
+
+        const handleSync = () => {
+            checkNotifications();
+        };
+        window.addEventListener('admin-notification-sync', handleSync);
+
         return () => {
             mounted = false;
             clearInterval(interval);
             if (hideTimer) clearTimeout(hideTimer);
+            window.removeEventListener('admin-notification-sync', handleSync);
         };
     }, []);
+
+    const handleViewDetails = async (notif) => {
+        setShowPopup(false);
+        if (notif?._id) {
+            try {
+                await adminService.markAdminNotificationRead(notif._id);
+                setNotifications(prev => prev.map(n => n._id === notif._id ? { ...n, isRead: true } : n));
+                prevCountRef.current = Math.max(0, prevCountRef.current - 1);
+            } catch (err) {
+                console.error("Failed to mark notification read:", err);
+            }
+        }
+        navigate(notif?.link || '/admin/notifications');
+    };
+
+    const handleDismissPopup = async (notif) => {
+        setShowPopup(false);
+        if (notif?._id) {
+            try {
+                await adminService.markAdminNotificationRead(notif._id);
+                setNotifications(prev => prev.map(n => n._id === notif._id ? { ...n, isRead: true } : n));
+                prevCountRef.current = Math.max(0, prevCountRef.current - 1);
+            } catch (err) {
+                console.error("Failed to mark notification read:", err);
+            }
+        }
+    };
 
     const unreadCount = notifications.filter((n) => !n?.isRead).length;
 
@@ -428,16 +470,13 @@ const AdminLayout = ({ children }) => {
                                     <h4 className="text-xs font-black text-gray-900 uppercase tracking-tight truncate">{latestNotif.title}</h4>
                                     <p className="text-[11px] text-gray-500 font-bold mt-1 line-clamp-2 leading-relaxed uppercase tracking-tight">{latestNotif.message}</p>
                                     <button
-                                        onClick={() => {
-                                            navigate(latestNotif.link || '/admin/notifications');
-                                            setShowPopup(false);
-                                        }}
+                                        onClick={() => handleViewDetails(latestNotif)}
                                         className="text-[10px] font-black text-[#3E2723] uppercase tracking-widest mt-3 hover:underline"
                                     >
                                         View Details
                                     </button>
                                 </div>
-                                <button onClick={() => setShowPopup(false)} className="text-gray-400 hover:text-gray-600">
+                                <button onClick={() => handleDismissPopup(latestNotif)} className="text-gray-400 hover:text-gray-600">
                                     <X className="w-4 h-4" />
                                 </button>
                             </div>

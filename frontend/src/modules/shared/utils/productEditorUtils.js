@@ -47,7 +47,9 @@ export const getTenGramRate = (formData, metalRates) => {
     const material = normalizeString(formData.material);
     const settingMetal = normalizeString(formData.settingMetal);
 
-    if (material === 'gold' || (material === 'diamond' && (settingMetal === 'gold' || settingMetal === 'white gold' || settingMetal === 'rose gold'))) {
+    const isStoneSetProduct = material === 'diamond' || material === 'gems';
+
+    if (material === 'gold' || (isStoneSetProduct && (settingMetal === 'gold' || settingMetal === 'white gold' || settingMetal === 'rose gold'))) {
         const goldCategory = normalizeString(formData.goldCategory || formData.settingPurity);
         const gold10g = metalRates.gold10g || {};
         const fallback = Number(metalRates.goldPerGram || 0) * 10;
@@ -60,7 +62,7 @@ export const getTenGramRate = (formData, metalRates) => {
         return Number(gold10g.k18) || Number(gold10g.k22) || Number(gold10g.k14) || Number(gold10g.k24) || fallback;
     }
 
-    if (material === 'silver' || (material === 'diamond' && settingMetal === 'silver')) {
+    if (material === 'silver' || (isStoneSetProduct && settingMetal === 'silver')) {
         const silverCategory = normalizeString(formData.silverCategory || formData.settingPurity);
         const silver10g = metalRates.silver10g || {};
         const fallback = Number(metalRates.silverPerGram || 0) * 10;
@@ -70,7 +72,7 @@ export const getTenGramRate = (formData, metalRates) => {
         return Number(silver10g.silverOther) || fallback;
     }
 
-    if (material === 'diamond' && settingMetal === 'platinum') {
+    if (isStoneSetProduct && settingMetal === 'platinum') {
         return Number(metalRates.platinum10g?.pt950) || Number(metalRates.platinumPerGram || 0) * 10;
     }
 
@@ -82,10 +84,10 @@ export const getPricingConfigurationError = (formData, metalRates) => {
     const settingMetal = normalizeString(formData.settingMetal);
     const requiresMetalRate = material === 'gold'
         || material === 'silver'
-        || (material === 'diamond' && ['gold', 'white gold', 'rose gold', 'silver', 'platinum'].includes(settingMetal));
+        || (['diamond', 'gems'].includes(material) && ['gold', 'white gold', 'rose gold', 'silver', 'platinum'].includes(settingMetal));
 
     if (requiresMetalRate && getTenGramRate(formData, metalRates) <= 0) {
-        const purity = formData.material === 'Diamond'
+        const purity = ['Diamond', 'Gems'].includes(formData.material)
             ? formData.settingPurity
             : (formData.goldCategory || formData.silverCategory);
         return `Pricing configuration required for ${purity || 'this purity'}.`;
@@ -115,26 +117,111 @@ export const getPaymentGatewayChargePercent = (formData) => (
     String(formData.paymentGatewayChargeBearer || 'store').toLowerCase() === 'user' ? 2 : 0
 );
 
+/**
+ * resolveDiamondPriceFrontend - mirrors backend resolveDiamondPrice.
+ * Admin-Controlled ONLY. No market lookup.
+ * When diamondPricing.enabled=true: uses new sub-object.
+ * Otherwise: falls back to legacy flat diamondPrice field.
+ */
+export const resolveDiamondPriceFrontend = (variant = {}) => {
+    const dp = variant.diamondPricing || {};
+    const legacyDiamondPrice = roundCurrency(Number(variant.diamondPrice) || 0);
+    const legacyCertCharge = roundCurrency(Number(variant.diamondCertificateCharge) || 0);
+
+    if (!dp.enabled) {
+        return { resolvedDiamondPrice: legacyDiamondPrice, resolvedCertificateCharge: legacyCertCharge };
+    }
+
+    const certCharge = roundCurrency(Number(dp.certificateCharge) || 0);
+    const mode = String(dp.pricingMode || 'total').toLowerCase();
+    let price = 0;
+
+    if (mode === 'per_carat') {
+        const caratValue = parseFloat(String(variant.diamondSpecs?.carat || '0')) || 0;
+        price = roundCurrency(caratValue * (Number(dp.pricePerCarat) || 0));
+    } else {
+        price = roundCurrency(Number(dp.totalPrice) || 0);
+    }
+
+    return { resolvedDiamondPrice: price, resolvedCertificateCharge: certCharge };
+};
+
+/**
+ * resolveGemstonePriceFrontend - mirrors backend resolveGemstonePrice.
+ * Admin-Controlled ONLY. Gemstone type does NOT auto-generate a market price.
+ */
+export const resolveGemstonePriceFrontend = (variant = {}) => {
+    const stones = Array.isArray(variant.gemstonePricing) ? variant.gemstonePricing : [];
+    if (stones.length === 0) return { resolvedGemstonePrice: 0, resolvedGemstoneCertCharge: 0 };
+
+    let totalGemstonePrice = 0;
+    let totalCertCharge = 0;
+
+    for (const stone of stones) {
+        const mode = String(stone.pricingMode || 'total').toLowerCase();
+        let stonePrice = 0;
+        if (mode === 'per_carat') {
+            stonePrice = roundCurrency((Number(stone.weight) || 0) * (Number(stone.pricePerCarat) || 0));
+        } else {
+            stonePrice = roundCurrency(Number(stone.totalPrice) || 0);
+        }
+        totalGemstonePrice += stonePrice;
+        totalCertCharge += roundCurrency(Number(stone.certificateCharge) || 0);
+    }
+
+    return {
+        resolvedGemstonePrice: roundCurrency(totalGemstonePrice),
+        resolvedGemstoneCertCharge: roundCurrency(totalCertCharge)
+    };
+};
+
 export const getPricingForVariant = (variant, formData, metalRates, gstRate) => {
     const metalPrice = getMetalPrice(variant, formData, metalRates);
-    const makingCharge = Number(variant.makingCharge) || 0;
-    const diamondPrice = Number(variant.diamondPrice) || 0;
-    const hallmarkingCharge = Number(variant.hallmarkingCharge) || 0;
-    const diamondCertificateCharge = Number(variant.diamondCertificateCharge) || 0;
-    const additionalCharge = Number(variant.additionalCharge) || 0;
-    const hiddenCharge = roundCurrency(hallmarkingCharge + diamondCertificateCharge + additionalCharge);
-    const subtotalBeforeTax = roundCurrency(metalPrice + makingCharge + diamondPrice + hiddenCharge);
+    const makingCharge = roundCurrency(Number(variant.makingCharge) || 0);
+
+    // Diamond price — Admin-Controlled, resolved from new sub-object or legacy field
+    const { resolvedDiamondPrice, resolvedCertificateCharge } = resolveDiamondPriceFrontend(variant);
+    const material = normalizeString(formData.material);
+    const hasStructuredDiamond = variant.diamondPricing?.enabled === true;
+    const hasStructuredGemstones = Array.isArray(variant.gemstonePricing) && variant.gemstonePricing.length > 0;
+    const usesLegacyGemstoneAmount = material === 'gems' && !hasStructuredDiamond && !hasStructuredGemstones;
+    const diamondPrice = roundCurrency(
+        usesLegacyGemstoneAmount || (hasStructuredGemstones && !hasStructuredDiamond)
+            ? 0
+            : resolvedDiamondPrice
+    );
+
+    // Gemstone price — Admin-Controlled, never from API Mitra
+    const { resolvedGemstonePrice, resolvedGemstoneCertCharge } = resolveGemstonePriceFrontend(variant);
+    const gemstonePrice = roundCurrency(usesLegacyGemstoneAmount ? resolvedDiamondPrice : resolvedGemstonePrice);
+
+    const hallmarkingCharge = roundCurrency(Number(variant.hallmarkingCharge) || 0);
+    const diamondCertificateCharge = usesLegacyGemstoneAmount ? 0 : resolvedCertificateCharge;
+    const gemstoneCertificateCharge = roundCurrency(
+        resolvedGemstoneCertCharge + (usesLegacyGemstoneAmount ? resolvedCertificateCharge : 0)
+    );
+    const additionalCharge = roundCurrency(Number(variant.additionalCharge) || 0);
+
+    const hiddenCharge = roundCurrency(
+        hallmarkingCharge + diamondCertificateCharge + gemstoneCertificateCharge + additionalCharge
+    );
+    const subtotalBeforeTax = roundCurrency(
+        metalPrice + makingCharge + diamondPrice + gemstonePrice + hiddenCharge
+    );
     const gstValue = roundCurrency((subtotalBeforeTax * (Number(gstRate) || 0)) / 100);
     const priceAfterTax = roundCurrency(subtotalBeforeTax + gstValue);
     const pgChargePercent = getPaymentGatewayChargePercent(formData);
     const pgChargeAmount = roundCurrency((priceAfterTax * pgChargePercent) / 100);
     const finalPrice = roundCurrency(priceAfterTax + pgChargeAmount);
+
     return {
         metalPrice,
         makingCharge,
         diamondPrice,
-        hallmarkingCharge,
+        gemstonePrice,
         diamondCertificateCharge,
+        gemstoneCertificateCharge,
+        hallmarkingCharge,
         additionalCharge,
         hiddenCharge,
         subtotalBeforeTax,

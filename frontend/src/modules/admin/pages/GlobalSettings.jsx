@@ -52,6 +52,8 @@ const DEFAULT_SETTINGS = {
   email: "swarna.sparsh22@gmail.com",
   contactEmail: "swarna.sparsh22@gmail.com",
   website: "https://alankar-jewellers.com/",
+  shippingCharges: 0,
+  freeShippingThreshold: 0,
 
   productHeader: "ESTIMATED DELIVERY DATE",
   returnPolicy: "2 Days Return",
@@ -652,6 +654,43 @@ const GlobalSettings = () => {
               onChange={(e) => handleChange("fraudWarning", e.target.value)}
               disabled={!isEditing}
             />
+          </div>
+        </div>
+
+        {/* Store & Brand Information Section - Full Width */}
+        <div className="lg:col-span-2 bg-white p-4 md:p-6 rounded-2xl border border-gray-200 shadow-sm space-y-5">
+          <div>
+            <h3 className="text-xl font-serif font-medium text-[#3E2723] flex items-center gap-2">
+              <Truck className="w-5 h-5" /> Checkout Shipping
+            </h3>
+            <p className="text-xs text-gray-500 mt-1">These values are used by the server for Cart, Checkout, COD and Razorpay quotes.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="text-[10px] font-medium text-gray-400 tracking-wide mb-2 block">Shipping charge (₹)</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 disabled:text-gray-500"
+                value={settings.shippingCharges ?? 0}
+                onChange={(e) => handleChange("shippingCharges", Math.max(0, Number(e.target.value) || 0))}
+                disabled={!isEditing}
+              />
+            </div>
+            <div>
+              <label className="text-[10px] font-medium text-gray-400 tracking-wide mb-2 block">Free shipping above (₹)</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 disabled:text-gray-500"
+                value={settings.freeShippingThreshold ?? 0}
+                onChange={(e) => handleChange("freeShippingThreshold", Math.max(0, Number(e.target.value) || 0))}
+                disabled={!isEditing}
+              />
+              <p className="mt-1 text-[10px] text-gray-400">Set 0 to disable threshold-based free shipping.</p>
+            </div>
           </div>
         </div>
 

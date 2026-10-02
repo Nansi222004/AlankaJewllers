@@ -225,6 +225,7 @@ export const ShopProvider = ({ children }) => {
         toggleCoupon: cartCtx.toggleCoupon,
         toggleGiftWrap: cartCtx.toggleGiftWrap,
         updateGiftMessage: cartCtx.updateGiftMessage,
+        getCheckoutQuote: cartCtx.getCheckoutQuote,
 
         // Wishlist domain
         wishlist: wishlistCtx.wishlist,
@@ -291,7 +292,7 @@ export const ShopProvider = ({ children }) => {
         cartCtx.applyCoupon, cartCtx.clearAppliedCoupon, cartCtx.validateCoupon,
         cartCtx.getActiveCoupons, cartCtx.addCoupon, cartCtx.updateCoupon,
         cartCtx.deleteCoupon, cartCtx.toggleCoupon,
-        cartCtx.toggleGiftWrap, cartCtx.updateGiftMessage,
+        cartCtx.toggleGiftWrap, cartCtx.updateGiftMessage, cartCtx.getCheckoutQuote,
         // Wishlist
         wishlistCtx.wishlist, wishlistCtx.addToWishlist,
         wishlistCtx.removeFromWishlist, wishlistCtx.toggleWishlist,
@@ -315,7 +316,7 @@ export const ShopProvider = ({ children }) => {
         showNotification, setIsPincodeModalOpen, updatePincode, checkPincodeServiceability,
         updateActiveMetal, setGlobalGst,
         // Catalogue
-        products, categories, isCatalogueLoading,
+        products, categories, siteSettings, isCatalogueLoading,
     ]);
 
 
