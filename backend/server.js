@@ -6,6 +6,7 @@ const app = require("./src/app");
 const connectDB = require("./src/config/db");
 const { initSocket } = require("./src/socket");
 const { seed: seedCommissionTiers } = require("./src/seeders/commissionTiersSeeder");
+const { startMetalRateScheduler } = require("./src/services/metalRateScheduler");
 
 const PORT = process.env.PORT || 5000;
 const HOST = "0.0.0.0"; // Bind to all interfaces for network access
@@ -27,6 +28,7 @@ connectDB().then(async () => {
   }
 
   server.listen(PORT, HOST, () => {
+    startMetalRateScheduler();
     console.log(`✅  Server running on http://${HOST}:${PORT}`);
   });
 });

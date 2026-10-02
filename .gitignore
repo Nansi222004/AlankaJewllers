@@ -5,6 +5,8 @@ temp_interactive_push.bat
 # Environment & Secrets
 .env
 .env.*
+!.env.example
+!**/.env.example
 *.local
 serviceAccountKey.json
 *serviceAccount*.json

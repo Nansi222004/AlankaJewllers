@@ -15,6 +15,7 @@ import CategoryGrid, {
 } from '../components/CategoryGrid';
 import DynamicPromoBanner from '../components/DynamicPromoBanner';
 import TrustMarkers from '../components/TrustMarkers';
+import GoldSilverRates from '../components/GoldSilverRates';
 
 // ─── BELOW-FOLD: lazy loaded — downloaded only when user scrolls toward them ────
 // This moves ~70KB of JS out of the critical render path
@@ -95,6 +96,7 @@ const Home = () => {
             {isSilverCollection && <CollectionNewLaunch metal="silver" />}
             <DynamicPromoBanner />
             <TrustMarkers />
+            <GoldSilverRates />
 
             {/* ── BELOW FOLD: lazy loaded inside SectionShell ── */}
             <ShopByPrice />

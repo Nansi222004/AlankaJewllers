@@ -61,6 +61,8 @@ import { useAnalytics } from "../../../hooks/useAnalytics";
 import Loader from "../../shared/components/Loader";
 import { getProductPrice, getProductMRP, formatCurrency } from "../utils/price";
 import RecentlyViewed from "../components/RecentlyViewed";
+import { useMetalRates } from "../hooks/useMetalRates";
+import { formatRateUnit, getVerifiedReferenceRate } from "../utils/referenceMetalRate";
 
 // Import model shots (angle 2) for maximum hover impact
 import latestRing from "@assets/latest_drop_ring.png";
@@ -349,6 +351,8 @@ const ProductDetails = () => {
   const { user } = useAuth();
   const [localPincode, setLocalPincode] = useState(pincode || "");
   const [showAuthPopup, setShowAuthPopup] = useState(false);
+  const referenceCity = String(pincodeData?.city || "").split("/")[0].trim();
+  const { data: referenceRates } = useMetalRates(referenceCity);
 
   useEffect(() => {
     setLocalPincode(pincode);
@@ -428,6 +432,11 @@ const ProductDetails = () => {
       .trim();
     return category === "925 sterling silver";
   }, [product]);
+
+  const verifiedReferenceRate = useMemo(
+    () => getVerifiedReferenceRate(product, referenceRates),
+    [product, referenceRates],
+  );
 
   useEffect(() => {
     let ignore = false;
@@ -1556,6 +1565,17 @@ const ProductDetails = () => {
             <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-1">
               {hasDisplayPrice ? "Inclusive of all taxes & shipping" : "Contact us for current pricing"}
             </p>
+            {verifiedReferenceRate && (
+              <div className="mx-auto mt-4 max-w-md rounded-xl border border-brand-champagne/30 bg-brand-pearl px-4 py-3 text-sm text-brand-espresso">
+                <span className="font-semibold">
+                  Current {verifiedReferenceRate.label} Rate in {referenceRates.city}:
+                </span>{" "}
+                <span className="font-bold">
+                  {formatCurrency(verifiedReferenceRate.rate)} {formatRateUnit(verifiedReferenceRate.unit)}
+                </span>
+                {referenceRates.isStale && <span className="mt-1 block text-[10px] text-amber-700">Last available reference rate</span>}
+              </div>
+            )}
           </div>
 
           {/* Variant & Action Section - Tightened */}
