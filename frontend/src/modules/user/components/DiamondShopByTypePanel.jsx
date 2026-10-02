@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Sparkles, Gem } from 'lucide-react';
+import { ChevronRight, Gem } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
 import naturalDiamondImg from '@assets/hero/diamond_luxury.png';
@@ -110,7 +111,7 @@ const DiamondShopByTypePanel = ({
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-1.5 mb-2 text-stone-600 text-[10px] uppercase font-bold tracking-[0.25em]">
-                    <Sparkles className="w-3.5 h-3.5 text-stone-500" />
+                    <AlankaJewelleryMark className="w-3.5 h-3.5 text-stone-500" />
                     <span>{badge}</span>
                 </div>
                 <h3 className="font-serif text-xl lg:text-2xl text-brand-espresso font-medium tracking-tight mb-1">

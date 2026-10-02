@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { 
     Download, CheckCircle2 as SuccessIcon, Copy, QrCode, Barcode as BarcodeIcon, 
-    Loader2, Plus, Upload, X, Trash2, Sparkles, ImagePlus, ExternalLink, 
+    Loader2, Plus, Upload, X, Trash2, ImagePlus, ExternalLink, 
     FileText, CheckCircle2, IndianRupee, Scale, Tag, Box, Zap, Coins, 
     Calculator, Layers, Search, Truck, Info, ChevronRight, LayoutDashboard,
     ArrowLeft, Eye
@@ -29,6 +29,7 @@ import {
     normalizeSerialCodes,
     getAvailableSerialCodes,
     getPricingForVariant,
+    getPricingConfigurationError,
     syncVariantSerialQuantity
 } from '../utils/productEditorUtils';
 
@@ -68,7 +69,11 @@ const SharedProductEditor = ({
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [createdProductData, setCreatedProductData] = useState(null);
     const [gstRate, setGstRate] = useState(3);
-    const [metalRates, setMetalRates] = useState({ gold: 0, silver: 0, platinum: 0 });
+    const [metalRates, setMetalRates] = useState({
+        gold10g: { k14: 0, k18: 0, k22: 0, k24: 0 },
+        silver10g: { sterling925: 0, silverOther: 0 },
+        platinum10g: { pt950: 0 }
+    });
     
     const serialBarcodeRefs = useRef({});
     
@@ -83,6 +88,11 @@ const SharedProductEditor = ({
             productCode: '',
             huid: '',
             material: 'Silver',
+            goldTone: '',
+            gemstoneType: '',
+            gemstones: [],
+            imageIntegrityConfirmed: false,
+            sourceDocumentationConfirmed: false,
             description: '',
             specifications: '',
             supplierInfo: '',
@@ -153,7 +163,7 @@ const SharedProductEditor = ({
             settingPurity: ''
         };
 
-        if (typeof window !== 'undefined' && !Boolean(id)) {
+        if (typeof window !== 'undefined' && !id) {
             const saved = localStorage.getItem(storageKey);
             if (saved) {
                 try {
@@ -188,6 +198,35 @@ const SharedProductEditor = ({
         // 3. Category
         if (!formData.categories?.[0]?.category) {
             newErrors.categories = "Category is required.";
+        }
+
+        if (formData.material === 'Gems' && !String(formData.gemstoneType || '').trim()) {
+            newErrors.gemstoneType = "Gemstone type is required for Gems products.";
+        }
+        if (formData.material === 'Gems' && !(formData.gemstones || []).length) {
+            newErrors.gemstones = "At least one verified gemstone/material entry is required.";
+        }
+        if (formData.material === 'Gems' && ['Ruby', 'Emerald', 'Sapphire'].includes(formData.gemstoneType) && !formData.sourceDocumentationConfirmed) {
+            newErrors.sourceDocumentationConfirmed = "Source documentation is required for this gemstone claim.";
+        }
+        if (formData.material === 'Gold' && !formData.goldCategory) {
+            newErrors.goldCategory = "Gold purity is required.";
+        }
+        if (formData.material === 'Gold' && !formData.goldTone) {
+            newErrors.goldTone = "Gold tone is required.";
+        }
+        if (formData.material === 'Silver' && !formData.silverCategory) {
+            newErrors.silverCategory = "Silver purity is required.";
+        }
+        if (formData.material === 'Diamond') {
+            if (!formData.diamondType || formData.diamondType === 'none') newErrors.diamondType = "Diamond origin is required.";
+            if (!formData.settingMetal) newErrors.settingMetal = "Setting metal is required.";
+            if (!formData.settingPurity) newErrors.settingPurity = "Setting purity is required.";
+            if (!formData.sourceDocumentationConfirmed) newErrors.sourceDocumentationConfirmed = "Confirm the diamond claims are supported by source documentation.";
+        }
+        if (formData.status === 'Active') {
+            const pricingConfigurationError = getPricingConfigurationError(formData, metalRates);
+            if (pricingConfigurationError) newErrors.pricingConfiguration = pricingConfigurationError;
         }
 
 
@@ -244,11 +283,22 @@ const SharedProductEditor = ({
                         newErrors[`variant_${i}_diamondCount`] = "Diamond count cannot be negative";
                     }
                 }
+
+                if (formData.status === 'Active' && Number(v.stock) <= 0) {
+                    newErrors[`variant_${v.id}_stock`] = "Positive stock is required before publishing.";
+                    newErrors[`variant_${i}_stock`] = "Positive stock is required before publishing.";
+                }
+
+                const pricing = getPricingForVariant(v, formData, metalRates, gstRate);
+                if (formData.status === 'Active' && pricing.finalPrice <= 0) {
+                    newErrors[`variant_${v.id}_price`] = "Final product price must be greater than ₹0.";
+                    newErrors[`variant_${i}_price`] = "Final product price must be greater than ₹0.";
+                }
             });
         }
 
         setLiveErrors(newErrors);
-    }, [formData]);
+    }, [formData, metalRates, gstRate]);
 
     const combinedErrors = useMemo(() => {
         if (!hasTriedSubmit) return {};
@@ -565,6 +615,7 @@ const SharedProductEditor = ({
         const previews = newFiles.map(file => URL.createObjectURL(file));
         setImageFiles(prev => [...prev, ...newFiles]);
         setPreviewImages(prev => [...prev, ...previews].slice(0, 5));
+        setFormData(prev => ({ ...prev, imageIntegrityConfirmed: false }));
     };
 
     const handleHoverImageUpload = (e) => {
@@ -577,6 +628,7 @@ const SharedProductEditor = ({
         const preview = URL.createObjectURL(file);
         setImageFiles(prev => [...prev, file]);
         setPreviewImages(prev => [...prev, preview].slice(0, 5));
+        setFormData(prev => ({ ...prev, imageIntegrityConfirmed: false }));
     };
 
     const handleRemoveImage = (index) => {
@@ -591,13 +643,14 @@ const SharedProductEditor = ({
             setImageFiles(prev => prev.filter((_, i) => i !== newFileIndex));
         }
 
-        setFormData(prev => ({ ...prev, deletedImages: updates.deletedImages }));
+        setFormData(prev => ({ ...prev, deletedImages: updates.deletedImages, imageIntegrityConfirmed: false }));
         setPreviewImages(newPreviewImages);
     };
 
     const handleVariantChange = (vid, field, value) => {
         setFormData(prev => ({
             ...prev,
+            sourceDocumentationConfirmed: false,
             variants: prev.variants.map(v => {
                 if (v.id === vid) {
                     const updated = { ...v, [field]: value };
@@ -626,6 +679,7 @@ const SharedProductEditor = ({
     const handleDiamondSpecChange = (vid, field, value) => {
         setFormData(prev => ({
             ...prev,
+            sourceDocumentationConfirmed: false,
             variants: prev.variants.map(v => {
                 if (v.id === vid) {
                     return {
@@ -714,6 +768,7 @@ const SharedProductEditor = ({
             ...prev,
             [variantId]: [...(prev[variantId] || []), ...previews]
         }));
+        setFormData(prev => ({ ...prev, imageIntegrityConfirmed: false }));
     };
 
     const handleRemoveVariantUpload = (variantId, previewIndex) => {
@@ -726,12 +781,14 @@ const SharedProductEditor = ({
             ...prev,
             [variantId]: (prev[variantId] || []).filter((_, index) => index !== previewIndex)
         }));
+        setFormData(prev => ({ ...prev, imageIntegrityConfirmed: false }));
     };
 
     const handleRemoveSavedVariantImage = (variantId, imageUrl) => {
         if (!variantId || !imageUrl) return;
         setFormData((prev) => ({
             ...prev,
+            imageIntegrityConfirmed: false,
             variants: prev.variants.map((variant) => {
                 if (variant.id !== variantId) return variant;
                 return {
@@ -849,11 +906,39 @@ const SharedProductEditor = ({
         
         const strippedDesc = (formData.description || '').replace(/<[^>]*>/g, '').trim();
         if (!strippedDesc) newErrors.description = "Product Description is required";
+
+        if (formData.material === 'Gems' && !String(formData.gemstoneType || '').trim()) {
+            newErrors.gemstoneType = "Gemstone type is required for Gems products";
+        }
+        if (formData.material === 'Gems' && !(formData.gemstones || []).length) newErrors.gemstones = "At least one verified gemstone/material entry is required";
+        if (formData.material === 'Gems' && ['Ruby', 'Emerald', 'Sapphire'].includes(formData.gemstoneType) && !formData.sourceDocumentationConfirmed) {
+            newErrors.sourceDocumentationConfirmed = "Source documentation is required for this gemstone claim";
+        }
+        if (formData.material === 'Gold' && !formData.goldCategory) newErrors.goldCategory = "Gold purity is required";
+        if (formData.material === 'Gold' && !formData.goldTone) newErrors.goldTone = "Gold tone is required";
+        if (formData.material === 'Silver' && !formData.silverCategory) newErrors.silverCategory = "Silver purity is required";
+        if (formData.material === 'Diamond') {
+            if (!formData.diamondType || formData.diamondType === 'none') newErrors.diamondType = "Diamond origin is required";
+            if (!formData.settingMetal) newErrors.settingMetal = "Setting metal is required";
+            if (!formData.settingPurity) newErrors.settingPurity = "Setting purity is required";
+            if (!formData.sourceDocumentationConfirmed) newErrors.sourceDocumentationConfirmed = "Source documentation confirmation is required for Diamond products";
+        }
+        if (formData.status === 'Active' && !formData.imageIntegrityConfirmed) {
+            newErrors.imageIntegrityConfirmed = "Confirm that the images show this exact product before publishing";
+        }
+        if (formData.status === 'Active' && previewImages.length === 0) {
+            newErrors.images = "At least one original product image is required before publishing";
+        }
+        const pricingConfigurationError = formData.status === 'Active'
+            ? getPricingConfigurationError(formData, metalRates)
+            : '';
+        if (pricingConfigurationError) newErrors.pricingConfiguration = pricingConfigurationError;
         
         formData.variants.forEach((v, i) => {
             const varLabel = v.name ? `Variant "${v.name}"` : `Variant #${i + 1}`;
             if (!v.name) newErrors[`variant_${i}_name`] = `${varLabel}: Name is required`;
             if (!v.weight) newErrors[`variant_${i}_weight`] = `${varLabel}: Weight is required`;
+            if (formData.status === 'Active' && Number(v.stock) <= 0) newErrors[`variant_${i}_stock`] = `${varLabel}: Positive stock is required before publishing`;
         });
 
         const combined = { ...liveErrors, ...newErrors };
@@ -881,13 +966,17 @@ const SharedProductEditor = ({
             );
 
             // Determine redirect behavior
-            const hasGeneralErrors = ['name', 'huid', 'categories', 'description'].some(k => k in newErrors);
+            const hasGeneralErrors = ['name', 'huid', 'categories', 'description', 'goldCategory', 'goldTone', 'silverCategory', 'diamondType', 'settingMetal', 'settingPurity', 'gemstoneType', 'gemstones', 'sourceDocumentationConfirmed'].some(k => k in newErrors);
             if (hasGeneralErrors) {
                 setActiveTab('general');
+            } else if ('images' in newErrors || 'imageIntegrityConfirmed' in newErrors) {
+                setActiveTab('media');
+            } else if ('pricingConfiguration' in newErrors) {
+                setActiveTab('variants');
             } else {
                 // Find first variant error
                 const firstVarErrIdx = formData.variants.findIndex((v, i) => 
-                    `variant_${i}_name` in newErrors || `variant_${i}_weight` in newErrors
+                    `variant_${i}_name` in newErrors || `variant_${i}_weight` in newErrors || `variant_${i}_stock` in newErrors || `variant_${i}_price` in newErrors
                 );
                 if (firstVarErrIdx !== -1) {
                     setActiveTab('variants');
@@ -928,13 +1017,18 @@ const SharedProductEditor = ({
             productForm.append('productCode', payload.productCode);
             productForm.append('huid', payload.huid);
             productForm.append('material', payload.material);
+            productForm.append('goldTone', payload.goldTone || '');
+            productForm.append('gemstoneType', payload.gemstoneType || '');
+            productForm.append('gemstones', JSON.stringify(payload.gemstones || []));
+            productForm.append('imageIntegrityConfirmed', String(Boolean(payload.imageIntegrityConfirmed)));
+            productForm.append('sourceDocumentationConfirmed', String(Boolean(payload.sourceDocumentationConfirmed)));
             productForm.append('description', payload.description);
             productForm.append('specifications', payload.specifications || '');
             productForm.append('supplierInfo', payload.supplierInfo || '');
             productForm.append('stylingTips', payload.stylingTips || '');
             productForm.append('careTips', payload.careTips || '');
             const primaryVariant = payload.variants[0] || {};
-            productForm.append('diamondType', primaryVariant.diamondType || 'none');
+            productForm.append('diamondType', payload.diamondType || primaryVariant.diamondType || 'none');
             productForm.append('categories', JSON.stringify(categoryIds));
             productForm.append('audience', JSON.stringify(payload.audience || ['unisex']));
             productForm.append('weight', primaryVariant.weight || '');
@@ -942,6 +1036,8 @@ const SharedProductEditor = ({
             productForm.append('paymentGatewayChargeBearer', payload.paymentGatewayChargeBearer || 'store');
             productForm.append('silverCategory', payload.silverCategory || '');
             productForm.append('goldCategory', payload.goldCategory || '');
+            productForm.append('settingMetal', payload.settingMetal || '');
+            productForm.append('settingPurity', payload.settingPurity || '');
             productForm.append('cardLabel', payload.cardLabel || '');
             productForm.append('cardBadge', payload.cardBadge || '');
             productForm.append('status', payload.status || 'Active');
@@ -1117,6 +1213,7 @@ const SharedProductEditor = ({
                             <ProductMediaTab 
                                 formData={formData} 
                                 setFormData={setFormData} 
+                                errors={combinedErrors}
                                 isViewMode={isViewMode} 
                                 previewImages={previewImages}
                                 handleImageUpload={handleImageUpload}

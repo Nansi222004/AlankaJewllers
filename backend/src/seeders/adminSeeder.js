@@ -21,7 +21,7 @@ const seed = async () => {
   } else {
     await User.create({
       name,
-      phone: "+919921128662",
+      phone: "+91 8668821446",
       email,
       password: hashed,
       role: "admin",

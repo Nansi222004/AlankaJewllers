@@ -38,7 +38,7 @@ const layout = (title, bodyHtml) => `<!DOCTYPE html>
           <td style="background:#f9f4ef;padding:24px 40px;text-align:center;border-top:1px solid #ece8e1;">
             <p style="margin:0;font-size:12px;color:#888;">© ${new Date().getFullYear()} Alankar Jewellers. All rights reserved.</p>
             <p style="margin:6px 0 0;font-size:12px;color:#aaa;">
-              Questions? <a href="mailto:support@swarnasparsh.com" style="color:${BRAND_COLOR};text-decoration:none;">support@swarnasparsh.com</a>
+              Questions? Email us at <a href="mailto:${process.env.SUPPORT_EMAIL || 'swarna.sparsh22@gmail.com'}" style="color:${BRAND_COLOR};text-decoration:none;">${process.env.SUPPORT_EMAIL || 'swarna.sparsh22@gmail.com'}</a>
             </p>
           </td>
         </tr>
@@ -134,7 +134,7 @@ const orderConfirmation = ({ order, userName }) => {
 
     ${divider()}
     <div style="text-align:center;padding:8px 0;">
-      ${btn("Track Your Order", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/order-tracking/${order._id}`)}
+      ${btn("Track Your Order", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/order-tracking/${order._id}`)}
     </div>`;
 
   return layout(`Order Confirmed — ${order.orderId}`, body);
@@ -167,7 +167,7 @@ const paymentSuccess = ({ order, userName, paymentId }) => {
     ${itemsTable(order.items)}
     ${divider()}
     <div style="text-align:center;padding:8px 0;">
-      ${btn("View Order Details", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/order-tracking/${order._id}`)}
+      ${btn("View Order Details", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/order-tracking/${order._id}`)}
     </div>`;
 
   return layout(`Payment Confirmed — ${order.orderId}`, body);
@@ -203,7 +203,7 @@ const orderShipped = ({
 
     ${divider()}
     <div style="text-align:center;padding:8px 0;">
-      ${btn("Track Shipment", trackingUrl || `${process.env.CLIENT_URL || "https://sandsjewels.com"}/order-tracking/${order._id}`)}
+      ${btn("Track Shipment", trackingUrl || `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/order-tracking/${order._id}`)}
     </div>`;
 
   return layout(`Your Order is Shipped — ${order.orderId}`, body);
@@ -220,7 +220,7 @@ const orderCancelled = ({ order, userName, reason }) => {
     ${order.paymentStatus === "paid" ? `<p style="font-size:14px;color:#2e7d32;font-weight:600;">A refund of ${rupees(order.total)} will be initiated within 5–7 business days.</p>` : ""}
     ${divider()}
     <div style="text-align:center;">
-      ${btn("Continue Shopping", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/shop`)}
+      ${btn("Continue Shopping", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/shop`)}
     </div>`;
 
   return layout(`Order Cancelled — ${order.orderId}`, body);
@@ -244,7 +244,7 @@ const returnRequested = ({ returnReq, userName, order }) => {
     <p style="font-size:13px;color:#666;line-height:1.7;">Our team will review your request within <strong>24–48 hours</strong>. You will receive an email once a decision is made.</p>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Return Status", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/return/${returnReq._id}`)}
+      ${btn("View Return Status", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/return/${returnReq._id}`)}
     </div>`;
 
   return layout(`Return Request — ${returnReq.returnId}`, body);
@@ -288,7 +288,7 @@ const returnStatusUpdate = ({
     </div>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Return Details", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/return/${returnReq._id}`)}
+      ${btn("View Return Details", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/return/${returnReq._id}`)}
     </div>`;
 
   return layout(`Return ${newStatus} — ${returnReq.returnId}`, body);
@@ -311,7 +311,7 @@ const welcomeEmail = ({ userName }) => {
     </div>
 
     <div style="text-align:center;">
-      ${btn("Start Shopping", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/shop`)}
+      ${btn("Start Shopping", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/shop`)}
     </div>`;
 
   return layout("Welcome to Alankar Jewellers!", body);
@@ -341,7 +341,7 @@ const emailVerificationCode = ({ code, purpose = "registration" }) => {
  * 10. Gift Card Delivery — sent to the RECIPIENT
  */
 const giftCardDelivery = ({ giftCard }) => {
-  const shopUrl = process.env.CLIENT_URL || "https://sandsjewels.com";
+  const shopUrl = process.env.CLIENT_URL || "https://alankar-jewellers.com";
   const rupees = (n) => `₹${Number(n || 0).toLocaleString("en-IN")}`;
 
   const body = `
@@ -390,7 +390,7 @@ const giftCardDelivery = ({ giftCard }) => {
  */
 const giftCardPurchaseConfirmation = ({ giftCard, buyerName }) => {
   const rupees = (n) => `₹${Number(n || 0).toLocaleString("en-IN")}`;
-  const shopUrl = process.env.CLIENT_URL || "https://sandsjewels.com";
+  const shopUrl = process.env.CLIENT_URL || "https://alankar-jewellers.com";
 
   const body = `
     <h2 style="margin:0 0 4px;font-size:22px;color:${BRAND_DARK};">Gift Card Sent Successfully! ✅</h2>
@@ -450,7 +450,7 @@ function replacementRequested({ replacementReq, userName, order }) {
     <p style="font-size:13px;color:#666;line-height:1.7;">Our team will review your replacement request within <strong>24–48 hours</strong>. You will receive an email once a decision is made.</p>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Replacement Status", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/profile/replacements`)}
+      ${btn("View Replacement Status", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/profile/replacements`)}
     </div>`;
 
   return layout(`Replacement Request — ${replacementReq.replacementId}`, body);
@@ -495,7 +495,7 @@ function replacementStatusUpdate({
     </div>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Replacement Details", `${process.env.CLIENT_URL || "https://sandsjewels.com"}/profile/replacements`)}
+      ${btn("View Replacement Details", `${process.env.CLIENT_URL || "https://alankar-jewellers.com"}/profile/replacements`)}
     </div>`;
 
   return layout(`Replacement ${newStatus} — ${replacementReq.replacementId}`, body);

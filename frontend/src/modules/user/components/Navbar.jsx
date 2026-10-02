@@ -1,7 +1,8 @@
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Search, Heart, ShoppingCart, User, Users, Menu, X, ChevronDown, ChevronRight, Bell, Sparkles, Coins, Gem, Droplet, LifeBuoy, Sun, Hexagon, Gift, MoreHorizontal, ShoppingBag, Info, Landmark, Tag } from 'lucide-react';
+import { Search, Heart, ShoppingCart, User, Users, Menu, X, ChevronDown, ChevronRight, Bell, Coins, Gem, Droplet, LifeBuoy, Sun, Hexagon, Gift, MoreHorizontal, ShoppingBag, Info, Landmark, Tag } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 import { useShop } from '../../../context/ShopContext';
 import { useNotification } from '../../../context/NotificationContext';
 import defaultLogo from '@/assets/Alankar jewllers.png';
@@ -760,11 +761,11 @@ const Navbar = () => {
                                 {/* Navigation Links */}
                                 <nav className="flex-1 flex flex-col overflow-y-auto no-scrollbar px-3 pb-8">
                                     {[
-                                        { label: 'All Jewellery', path: '/shop', icon: Sparkles },
+                                        { label: 'All Jewellery', path: '/shop', icon: AlankaJewelleryMark },
                                         { label: 'Gold', path: '/gold-collection', icon: Coins },
                                         { label: 'Silver', path: '/silver-collection', icon: Droplet },
                                         { label: 'Diamond', path: '/diamond-collection', icon: Gem },
-                                        { label: 'Gems', path: '/gems-collection', icon: Sparkles },
+                                        { label: 'Gems', path: '/gems-collection', icon: AlankaJewelleryMark },
                                         { label: 'Bullions', path: '/shop?metal=gold&karat=24', icon: Landmark },
                                         { label: 'Rings', path: '/shop?category=rings', icon: LifeBuoy },
                                         { label: 'Daily Wear', path: '/shop?category=daily-wear', icon: Sun },
@@ -780,7 +781,7 @@ const Navbar = () => {
                                             ]
                                         },
                                         {
-                                            label: 'Jewellery Under ₹50K',
+                                            label: 'Under ₹50K',
                                             path: '/shop?price_max=50000',
                                             icon: Tag,
                                             isUnder50k: true

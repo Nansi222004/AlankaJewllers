@@ -7,7 +7,7 @@ const { deleteFromCloudinary } = require("../../../utils/cloudinaryUtils");
 const { success, error } = require("../../../utils/apiResponse");
 const Setting = require("../../../models/Setting");
 const Seller = require("../../../models/Seller");
-const { applyMetalPricingToProduct } = require("../../../utils/metalPricing");
+const { applyMetalPricingToProduct, getTenGramRate } = require("../../../utils/metalPricing");
 const { generateUniqueProductCode, generateVariantCode } = require("../../../utils/productIdentity");
 const { normalizeProductForResponse } = require("../../../utils/productCompatibility");
 const auditLogger = require("../../../utils/auditLogger");
@@ -18,6 +18,8 @@ const PRODUCT_UPDATE_WHITELIST = [
   "variants", "status", "categories", "sellerId",
   "isFeatured", "isTrending", "isNewArrival",
   "returnEligibilities", "weight", "material", "faqs",
+  "goldTone", "gemstoneType", "gemstones",
+  "imageIntegrityConfirmed", "sourceDocumentationConfirmed",
   "showInNavbar", "showInCollection", "active",
   "navShopByCategory",
   "cardLabel", "cardBadge", "careTips", "silverCategory",
@@ -149,6 +151,43 @@ const collectReferencedImageUrls = (productLike = {}) => {
   return new Set([...productImages, ...variantImages]);
 };
 
+const TARGET_CATALOGUE_MATERIALS = new Set(["Gold", "Silver", "Diamond", "Gems"]);
+
+const getPublishReadinessError = (productLike = {}, metalRates = {}) => {
+  const isPublishing = productLike.status === "Active" && productLike.active !== false;
+  if (!isPublishing || !TARGET_CATALOGUE_MATERIALS.has(productLike.material)) return "";
+
+  if (!Array.isArray(productLike.images) || productLike.images.filter(Boolean).length === 0) {
+    return "At least one original product image is required before publishing.";
+  }
+  if (productLike.imageIntegrityConfirmed !== true) {
+    return "Confirm that the images show this exact product before publishing.";
+  }
+
+  const requiresMetalRate = productLike.material === "Gold"
+    || productLike.material === "Silver"
+    || productLike.material === "Diamond";
+  if (requiresMetalRate && getTenGramRate(productLike, metalRates) <= 0) {
+    const purity = productLike.material === "Diamond"
+      ? productLike.settingPurity
+      : (productLike.goldCategory || productLike.silverCategory);
+    return `Pricing configuration required for ${purity || "this purity"}.`;
+  }
+
+  if (!Array.isArray(productLike.variants) || productLike.variants.length === 0) {
+    return "At least one product variant is required before publishing.";
+  }
+  for (const variant of productLike.variants) {
+    if (Number(variant.weight) <= 0) return `Positive weight is required for variant "${variant.name || "Unnamed"}".`;
+    if (Number(variant.stock) <= 0) return `Positive stock is required for variant "${variant.name || "Unnamed"}".`;
+    if (Number(variant.finalPrice ?? variant.price) <= 0) return `Final product price must be greater than ₹0 for variant "${variant.name || "Unnamed"}".`;
+    if (productLike.material === "Diamond" && Number(variant.diamondPrice) <= 0) {
+      return `Diamond / Stones price is required for Diamond variant "${variant.name || "Unnamed"}".`;
+    }
+  }
+  return "";
+};
+
 
 // ─────────────────────────────────────────────────────────────────
 // POST /api/admin/products
@@ -215,6 +254,9 @@ exports.createProduct = async (req, res) => {
       metalRates,
       gstRate
     );
+
+    const publishReadinessError = getPublishReadinessError(productData, metalRates);
+    if (publishReadinessError) return error(res, publishReadinessError, 400);
 
     const product = await Product.create(productData);
 
@@ -402,6 +444,9 @@ exports.updateProduct = async (req, res) => {
     const metalRates = settings?.metalRates || {};
     const gstRate = settings?.gstRate || 0;
     applyMetalPricingToProduct(product, metalRates, gstRate);
+
+    const publishReadinessError = getPublishReadinessError(product, metalRates);
+    if (publishReadinessError) return error(res, publishReadinessError, 400);
 
     await product.save();
 

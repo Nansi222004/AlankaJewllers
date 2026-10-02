@@ -25,7 +25,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
         { id: 'all', name: 'All Jewellery', path: '/shop', hasChevron: true },
         { id: 'bullions', name: 'Bullions', path: '/shop?metal=gold&karat=24', hasChevron: true },
         { id: 'gifting', name: 'Gifting', path: '/category/women', hasChevron: true },
-        { id: 'under50k', name: 'Jewellery Under ₹50K', path: '/shop?price_max=50000', hasChevron: false },
+        { id: 'under50k', name: 'Under ₹50K', path: '/shop?price_max=50000', hasChevron: false },
         { id: 'exclusive', name: 'Exclusive', fullSuffix: ' Collections', path: '/shop?search=exclusive', hasChevron: false },
         { id: 'more', name: 'More', fullSuffix: ' at Alankar Jewellers', path: '/about', hasChevron: false },
     ];

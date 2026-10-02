@@ -2,7 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import {
-    Tag, Sparkles, Scale, Zap, IndianRupee, CheckCircle2,
+    Tag, Scale, Zap, IndianRupee, CheckCircle2,
     Layers, Copy, Barcode as BarcodeIcon, QrCode, Download,
     Loader2, Upload, Plus, Trash2, ImagePlus, FileText, Info,
     Search, X
@@ -32,7 +32,9 @@ const ProductGeneralTab = ({
     const materialOptions = React.useMemo(() => [
         { label: 'Gold', value: 'Gold' },
         { label: 'Silver', value: 'Silver' },
-        { label: 'Diamond', value: 'Diamond' }
+        { label: 'Diamond', value: 'Diamond' },
+        { label: 'Gems', value: 'Gems' },
+        { label: 'Other', value: 'Other' }
     ], []);
 
     return (
@@ -126,63 +128,104 @@ const ProductGeneralTab = ({
                         <Select
                             label="Primary Material"
                             value={formData.material}
-                            onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                            onChange={(e) => {
+                                const material = e.target.value;
+                                setFormData({
+                                    ...formData,
+                                    material,
+                                    goldCategory: material === 'Gold' ? formData.goldCategory : '',
+                                    goldTone: material === 'Gold' ? formData.goldTone : '',
+                                    silverCategory: material === 'Silver' ? formData.silverCategory : '',
+                                    diamondType: material === 'Diamond' ? formData.diamondType : 'none',
+                                    settingMetal: material === 'Diamond' ? formData.settingMetal : '',
+                                    settingPurity: material === 'Diamond' ? formData.settingPurity : '',
+                                    gemstoneType: material === 'Gems' ? formData.gemstoneType : '',
+                                    gemstones: material === 'Gems' ? formData.gemstones : [],
+                                    variants: (formData.variants || []).map((variant) => ({
+                                        ...variant,
+                                        diamondType: material === 'Diamond' ? variant.diamondType : 'none'
+                                    }))
+                                });
+                            }}
                             options={materialOptions}
                             disabled={isViewMode}
                         />
 
                         {formData.material === 'Silver' && (
                             <Select
-                                label="Silver Purity Categorization"
+                                label={<span>Silver Purity <span className="text-red-500">*</span></span>}
                                 value={formData.silverCategory}
                                 onChange={(e) => setFormData({ ...formData, silverCategory: e.target.value })}
                                 options={[
                                     { label: 'Select Purity', value: '' },
                                     { label: '800', value: '800' },
                                     { label: '835', value: '835' },
-                                    { label: '925', value: '925' },
+                                    { label: '925 Silver', value: '925' },
                                     { label: '925 Sterling Silver', value: '925 sterling silver' },
                                     { label: '958', value: '958' },
                                     { label: '970', value: '970' },
                                     { label: '990', value: '990' },
-                                    { label: '999', value: '999' }
+                                    { label: '999 Fine Silver', value: '999' }
                                 ]}
                                 disabled={isViewMode}
+                                error={errors.silverCategory}
                             />
                         )}
                         {formData.material === 'Gold' && (
-                            <Select
-                                label="Gold Karat Categorization"
-                                value={formData.goldCategory}
-                                onChange={(e) => setFormData({ ...formData, goldCategory: e.target.value })}
-                                options={[
-                                    { label: 'Select Karat', value: '' },
-                                    { label: '14 Karat', value: '14' },
-                                    { label: '18 Karat', value: '18' },
-                                    { label: '22 Karat', value: '22' },
-                                    { label: '24 Karat', value: '24' }
-                                ]}
-                                disabled={isViewMode}
-                            />
+                            <>
+                                <Select
+                                    label={<span>Gold Purity <span className="text-red-500">*</span></span>}
+                                    value={formData.goldCategory}
+                                    onChange={(e) => setFormData({ ...formData, goldCategory: e.target.value })}
+                                    options={[
+                                        { label: 'Select Karat', value: '' },
+                                        { label: '14 Karat', value: '14' },
+                                        { label: '18 Karat', value: '18' },
+                                        { label: '22 Karat', value: '22' },
+                                        { label: '24 Karat', value: '24' }
+                                    ]}
+                                    disabled={isViewMode}
+                                    error={errors.goldCategory}
+                                />
+                                <Select
+                                    label={<span>Gold Tone <span className="text-red-500">*</span></span>}
+                                    value={formData.goldTone || ''}
+                                    onChange={(e) => setFormData({ ...formData, goldTone: e.target.value })}
+                                    options={[
+                                        { label: 'Select Gold Tone', value: '' },
+                                        { label: 'Yellow Gold', value: 'Yellow Gold' },
+                                        { label: 'Rose Gold', value: 'Rose Gold' },
+                                        { label: 'White Gold', value: 'White Gold' }
+                                    ]}
+                                    disabled={isViewMode}
+                                    error={errors.goldTone}
+                                />
+                            </>
                         )}
                         {formData.material === 'Diamond' && (
                             <>
                                 <Select
                                     label="Diamond Origin / Type"
                                     value={formData.diamondType || 'none'}
-                                    onChange={(e) => setFormData({ ...formData, diamondType: e.target.value })}
+                                    onChange={(e) => setFormData({
+                                        ...formData,
+                                        diamondType: e.target.value,
+                                        sourceDocumentationConfirmed: false,
+                                        variants: (formData.variants || []).map((variant) => ({ ...variant, diamondType: e.target.value }))
+                                    })}
                                     options={[
                                         { label: 'Select Diamond Type', value: 'none' },
                                         { label: 'Natural Diamond', value: 'natural' },
                                         { label: 'Lab-Grown Diamond', value: 'lab_grown' }
                                     ]}
                                     disabled={isViewMode}
+                                    error={errors.diamondType}
                                 />
 
                                 <Select
                                     label="Setting Metal"
                                     value={formData.settingMetal || ''}
-                                    onChange={(e) => setFormData({ ...formData, settingMetal: e.target.value })}
+                                    onChange={(e) => setFormData({ ...formData, settingMetal: e.target.value, settingPurity: '', goldCategory: '', sourceDocumentationConfirmed: false })}
                                     options={[
                                         { label: 'Select Setting Metal', value: '' },
                                         { label: 'Gold (Yellow Gold)', value: 'Gold' },
@@ -192,21 +235,31 @@ const ProductGeneralTab = ({
                                         { label: 'Silver', value: 'Silver' }
                                     ]}
                                     disabled={isViewMode}
+                                    error={errors.settingMetal}
                                 />
 
                                 <Select
                                     label="Setting Purity / Karat"
                                     value={formData.settingPurity || ''}
-                                    onChange={(e) => setFormData({ ...formData, settingPurity: e.target.value, goldCategory: e.target.value.includes('14') ? '14' : e.target.value.includes('18') ? '18' : e.target.value.includes('22') ? '22' : e.target.value.includes('24') ? '24' : '' })}
-                                    options={[
-                                        { label: 'Select Setting Purity', value: '' },
-                                        { label: '14 Karat (14K)', value: '14K' },
-                                        { label: '18 Karat (18K)', value: '18K' },
-                                        { label: '22 Karat (22K)', value: '22K' },
-                                        { label: '950 Platinum', value: 'Platinum 950' },
-                                        { label: '925 Sterling Silver', value: '925 sterling silver' }
-                                    ]}
+                                    onChange={(e) => setFormData({ ...formData, settingPurity: e.target.value, goldCategory: e.target.value.includes('14') ? '14' : e.target.value.includes('18') ? '18' : e.target.value.includes('22') ? '22' : '', sourceDocumentationConfirmed: false })}
+                                    options={formData.settingMetal === 'Platinum'
+                                        ? [
+                                            { label: 'Select Setting Purity', value: '' },
+                                            { label: '950 Platinum', value: 'Platinum 950' }
+                                        ]
+                                        : formData.settingMetal === 'Silver'
+                                            ? [
+                                                { label: 'Select Setting Purity', value: '' },
+                                                { label: '925 Sterling Silver', value: '925 sterling silver' }
+                                            ]
+                                            : [
+                                                { label: 'Select Setting Purity', value: '' },
+                                                { label: '14 Karat (14K)', value: '14K' },
+                                                { label: '18 Karat (18K)', value: '18K' },
+                                                { label: '22 Karat (22K)', value: '22K' }
+                                            ]}
                                     disabled={isViewMode}
+                                    error={errors.settingPurity}
                                 />
 
                                 <Input
@@ -219,6 +272,74 @@ const ProductGeneralTab = ({
                                     placeholder="e.g. https://.../certificate.pdf"
                                     disabled={isViewMode}
                                 />
+                                <label className="flex items-start gap-3 rounded-2xl border border-pink-200 bg-pink-50 p-4 text-sm text-pink-900">
+                                    <input
+                                        type="checkbox"
+                                        checked={Boolean(formData.sourceDocumentationConfirmed)}
+                                        onChange={(e) => setFormData({ ...formData, sourceDocumentationConfirmed: e.target.checked })}
+                                        disabled={isViewMode}
+                                        className="mt-1"
+                                    />
+                                    <span>
+                                        I confirm the Diamond origin and any carat, clarity, color, cut, shape, count or certification claims are supported by supplied source documentation.
+                                        {errors.sourceDocumentationConfirmed && <span className="block text-xs text-red-600 mt-1">{errors.sourceDocumentationConfirmed}</span>}
+                                    </span>
+                                </label>
+                            </>
+                        )}
+
+                        {formData.material === 'Gems' && (
+                            <>
+                                <Select
+                                    label={<span>Gemstone Type <span className="text-red-500">*</span></span>}
+                                    value={formData.gemstoneType || ''}
+                                    onChange={(e) => setFormData({ ...formData, gemstoneType: e.target.value, sourceDocumentationConfirmed: false })}
+                                    options={[
+                                        { label: 'Select Gemstone Type', value: '' },
+                                        { label: 'Kundan', value: 'Kundan' },
+                                        { label: 'Pearl', value: 'Pearl' },
+                                        { label: 'Ruby (source-verified only)', value: 'Ruby' },
+                                        { label: 'Emerald (source-verified only)', value: 'Emerald' },
+                                        { label: 'Sapphire (source-verified only)', value: 'Sapphire' },
+                                        { label: 'Decorative / Imitation Stone', value: 'Decorative / Imitation Stone' },
+                                        { label: 'Mixed Gemstones', value: 'Mixed Gemstones' },
+                                        { label: 'Other', value: 'Other' }
+                                    ]}
+                                    disabled={isViewMode}
+                                    error={errors.gemstoneType}
+                                />
+                                <Input
+                                    label="Gemstones"
+                                    value={(formData.gemstones || []).join(', ')}
+                                    onChange={(e) => setFormData({
+                                        ...formData,
+                                        gemstones: e.target.value
+                                            .split(',')
+                                            .map((value) => value.trim())
+                                            .filter(Boolean)
+                                    })}
+                                    placeholder="Comma-separated, e.g. Emerald, Pearl"
+                                    disabled={isViewMode}
+                                    error={errors.gemstones}
+                                />
+                                <p className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
+                                    Use Ruby, Emerald or Sapphire only when client documentation confirms the gemstone. For colored glass, Hydro or imitation stones, state that explicitly.
+                                </p>
+                                {['Ruby', 'Emerald', 'Sapphire'].includes(formData.gemstoneType) && (
+                                    <label className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                                        <input
+                                            type="checkbox"
+                                            checked={Boolean(formData.sourceDocumentationConfirmed)}
+                                            onChange={(e) => setFormData({ ...formData, sourceDocumentationConfirmed: e.target.checked })}
+                                            disabled={isViewMode}
+                                            className="mt-1"
+                                        />
+                                        <span>
+                                            I confirm this named gemstone is supported by supplied source documentation and is not merely a decorative color description.
+                                            {errors.sourceDocumentationConfirmed && <span className="block text-xs text-red-600 mt-1">{errors.sourceDocumentationConfirmed}</span>}
+                                        </span>
+                                    </label>
+                                )}
                             </>
                         )}
 

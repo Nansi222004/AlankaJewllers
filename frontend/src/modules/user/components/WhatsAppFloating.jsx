@@ -5,8 +5,8 @@ import { useSettings } from "../../../context/SettingsContext";
 
 const WhatsAppFloating = ({ inline = false }) => {
   const { settings } = useSettings();
-  const rawPhone = settings?.phone || settings?.contactPhone || "+919921128662";
-  const phoneNumber = rawPhone.replace(/\D/g, "") || "919921128662";
+  const rawPhone = settings?.phone || settings?.contactPhone || "+91 8668821446";
+  const phoneNumber = rawPhone.replace(/\D/g, "") || "918668821446";
   const brand = settings?.storeName || "Alankar Jewellers";
   const message =
     `Hi ${brand}, I'm interested in your jewellery collection.`;

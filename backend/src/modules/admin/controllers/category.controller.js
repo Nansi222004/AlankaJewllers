@@ -228,7 +228,7 @@ exports.syncExternalCatalog = async (req, res) => {
   try {
     const { syncSwarnaSparshCatalog } = require("../../../../scripts/sync-swarnasparsh-catalog");
     const result = await syncSwarnaSparshCatalog();
-    return success(res, result, "SwarnaSparsh.com catalog synchronized successfully");
+    return success(res, result, "Catalog synchronized successfully");
   } catch (err) {
     console.error("[Admin] Sync catalog failed:", err);
     return error(res, `Failed to sync catalog: ${err.message}`, 500);

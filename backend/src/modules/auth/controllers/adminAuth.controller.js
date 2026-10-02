@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
       admin = await User.create({
         name: envAdminName,
         email: envAdminEmail,
-        phone: "+919921128662",
+        phone: "+91 8668821446",
         password: hashed,
         role: "admin"
       });

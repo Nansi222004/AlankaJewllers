@@ -1,125 +1,186 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
-import banner10k from '@assets/luxury_range_10k.png';
-import range15k from '@assets/luxury_range_15k.png';
-import range20k from '@assets/premium_ring_product.png';
-import premiumGifts from '@assets/beyond_bold_emerald_set.png';
+import range10k from '@assets/gold_lifestyle/gold_minimalistic.png';
+import range20k from '@assets/categories/gold_earrings_light.png';
+import range30k from '@assets/categories/gold_pendants_light.png';
+import range50k from '@assets/gold_lifestyle/gold_statement_50k.jpg';
 
-const fallbackItems = [
-    { id: '10k', title: 'Under INR 10000', image: banner10k, path: '/shop?price_max=10000&metal=gold' },
-    { id: '15k', title: 'Under INR 15000', image: range15k, path: '/shop?price_max=15000&metal=gold' },
-    { id: '20k', title: 'Under INR 20000', image: range20k, path: '/shop?price_max=20000&metal=gold' },
-    { id: 'premium', title: 'Premium Gifts', image: premiumGifts, path: '/shop?sort=price-desc&metal=gold' }
+const GOLD_PRICE_TIERS = [
+    {
+        key: '10k',
+        priceMax: 10000,
+        title: 'UNDER INR 10,000',
+        badge: '₹10,000',
+        descriptor: 'Everyday Gold',
+        image: range10k,
+        path: '/shop?price_max=10000&metal=gold'
+    },
+    {
+        key: '20k',
+        priceMax: 20000,
+        title: 'UNDER INR 20,000',
+        badge: '₹20,000',
+        descriptor: 'Elegant Essentials',
+        image: range20k,
+        path: '/shop?price_max=20000&metal=gold'
+    },
+    {
+        key: '30k',
+        priceMax: 30000,
+        title: 'UNDER INR 30,000',
+        badge: '₹30,000',
+        descriptor: 'Statement Styles',
+        image: range30k,
+        path: '/shop?price_max=30000&metal=gold'
+    },
+    {
+        key: '50k',
+        priceMax: 50000,
+        title: 'UNDER INR 50,000',
+        badge: '₹50,000',
+        descriptor: 'Premium Gold',
+        image: range50k,
+        path: '/shop?price_max=50000&metal=gold'
+    }
 ];
 
 const parsePriceMax = (item = {}) => {
     const direct = Number(item?.priceMax || item?.price || 0);
     if (Number.isFinite(direct) && direct > 0) return direct;
-    const fromTitle = String(item?.name || item?.label || '').replace(/[^0-9]/g, '');
+    const rawStr = String(item?.name || item?.label || item?.title || '');
+    const fromTitle = rawStr.replace(/[^0-9]/g, '');
     if (!fromTitle) return null;
     const parsed = Number(fromTitle);
     return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 };
 
-const ensureGoldPricePath = (rawPath, priceMax, categoryId = '') => {
-    const source = String(rawPath || '/shop').trim();
-    const queryString = source.startsWith('/shop') && source.includes('?') ? source.split('?')[1] : '';
-    const params = new URLSearchParams(queryString);
+const ensureGoldPricePath = (priceMax, categoryId = '') => {
+    const params = new URLSearchParams();
+    params.set('price_max', String(priceMax));
     params.set('metal', 'gold');
-    if (priceMax) params.set('price_max', String(priceMax));
-    const normalizedCategoryId = String(categoryId || '').trim();
-    if (normalizedCategoryId) params.set('category', normalizedCategoryId);
-    else params.delete('category');
-    const query = params.toString();
-    return `/shop${query ? `?${query}` : '?metal=gold'}`;
+    const normalizedCategory = String(categoryId || '').trim();
+    if (normalizedCategory) {
+        params.set('category', normalizedCategory);
+    }
+    return `/shop?${params.toString()}`;
 };
 
 const GoldLuxuryWithinReach = ({ sectionData = null }) => {
-    const navigate = useNavigate();
-
     const items = useMemo(() => {
         const configured = Array.isArray(sectionData?.items) ? sectionData.items : [];
-        if (configured.length === 0) return fallbackItems;
 
-        return configured.map((item, idx) => {
-            const fallback = fallbackItems[idx % fallbackItems.length];
-            const priceMax = parsePriceMax(item) || parsePriceMax({ name: fallback.title });
-            const categoryId = String(item?.categoryId || '').trim();
+        // Exclude unwanted tiers: Under INR 15,000, Under INR 40,000, and Premium Gifts
+        const validConfigured = configured.filter((item) => {
+            const pMax = parsePriceMax(item);
+            const rawName = String(item?.name || item?.label || item?.title || '').toLowerCase();
+            if (rawName.includes('gift') || rawName.includes('15000') || rawName.includes('40000')) {
+                return false;
+            }
+            if (pMax === 15000 || pMax === 40000) {
+                return false;
+            }
+            return true;
+        });
+
+        return GOLD_PRICE_TIERS.map((tier) => {
+            const match = validConfigured.find((c) => parsePriceMax(c) === tier.priceMax);
+            if (!match) return tier;
+
+            const categoryId = String(match?.categoryId || '').trim();
+            const resolvedImage = match?.image ? resolveLegacyCmsAsset(match.image, tier.image) : tier.image;
+            const customDescriptor = String(match?.subtitle || match?.description || '').trim();
+
             return {
-                id: item?.itemId || item?.id || `gold-luxury-${idx + 1}`,
-                title: item?.name || item?.label || fallback.title,
-                image: resolveLegacyCmsAsset(item?.image, fallback.image),
-                path: ensureGoldPricePath(item?.path || fallback.path, priceMax, categoryId)
+                ...tier,
+                id: match?.itemId || match?.id || tier.key,
+                descriptor: customDescriptor || tier.descriptor,
+                image: resolvedImage || tier.image,
+                path: ensureGoldPricePath(tier.priceMax, categoryId)
             };
         });
     }, [sectionData]);
 
     const sectionTitle = String(sectionData?.settings?.title || sectionData?.label || 'Luxury within Reach').trim() || 'Luxury within Reach';
-
-    const heroItem = items[0] || fallbackItems[0];
-    const gridItems = items.slice(1, 4);
-    const heroPriceText = (() => {
-        const digits = String(heroItem.title || '').replace(/[^0-9]/g, '');
-        if (!digits) return 'INR 10000';
-        return `INR ${digits}`;
-    })();
+    const sectionSubtitle = String(
+        sectionData?.settings?.subtitle || 
+        sectionData?.settings?.description || 
+        'Fine gold jewellery thoughtfully curated across approachable price points.'
+    ).trim();
 
     return (
-        <section className="w-full py-6 bg-[#F8FFF9] overflow-hidden">
-            <div className="max-w-[1450px] mx-auto px-6">
-                <div className="text-center mb-6">
-                    <h2 className="text-xl md:text-2xl font-serif text-brand-espresso">{sectionTitle}</h2>
+        <section 
+            id="gold-luxury-within-reach"
+            aria-label="Shop Gold Jewellery by Budget" 
+            className="w-full py-8 sm:py-10 md:py-12 bg-[#FBF8F7] border-y border-[#E9DEDA] overflow-hidden"
+        >
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+                {/* Header */}
+                <div className="text-center mb-6 sm:mb-8 md:mb-10">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-[#B8956A] mb-1.5 block">
+                        Accessible Luxury
+                    </span>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-[#332827] font-normal leading-tight tracking-tight">
+                        {sectionTitle}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-[#766866] mt-1.5 sm:mt-2 max-w-md sm:max-w-lg mx-auto leading-relaxed">
+                        {sectionSubtitle}
+                    </p>
+                    <div className="h-px w-12 bg-[#B8956A]/40 mt-2.5 sm:mt-3 mx-auto" />
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    onClick={() => navigate(heroItem.path)}
-                    className="relative w-full h-[120px] md:h-[160px] rounded-[20px] overflow-hidden mb-5 group cursor-pointer shadow-md border border-white/20"
-                >
-                    <div className="absolute inset-0 bg-[#05140B]">
-                        <img src={heroItem.image} alt={heroItem.title} className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-[2s]" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/10 to-transparent" />
-                    </div>
-
-                    <div className="relative h-full flex flex-col justify-center px-8 md:px-12">
-                        <div className="mb-0">
-                             <p className="text-white/80 text-[10px] md:text-xs font-body leading-none mb-1 uppercase tracking-widest">Gifts</p>
-                             <div className="flex items-baseline gap-1.5">
-                                <span className="text-white text-2xl md:text-4xl font-black tracking-tighter">{heroPriceText}</span>
-                                <span className="text-white/90 text-[10px] md:text-base font-medium uppercase">Under</span>
-                             </div>
-                        </div>
-                        <div className="mt-2 md:mt-3">
-                            <div className="bg-white/90 hover:bg-white text-brand-espresso px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-all">
-                                Shop Now <ArrowRight size={12} />
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
-                    {gridItems.map((item, idx) => (
+                {/* Compact 4-Card Grid: Desktop 4 in a row, Mobile 2x2 grid */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+                    {items.map((item, idx) => (
                         <motion.div
-                            key={item.id}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            key={item.key || item.id || idx}
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: idx * 0.1 }}
-                            onClick={() => navigate(item.path)}
-                            className="relative aspect-[3/1] md:aspect-[1.4] rounded-[20px] overflow-hidden group cursor-pointer shadow-sm border border-gray-100 bg-[#05140B]"
+                            transition={{ duration: 0.4, delay: idx * 0.08 }}
+                            className="h-full"
                         >
-                            <img src={item.image} alt={item.title} className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-[1.5s]" />
-                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                            <Link
+                                to={item.path}
+                                id={`gold-budget-card-${item.key || idx}`}
+                                className="group flex flex-col h-full bg-white rounded-xl sm:rounded-2xl border border-[#E9DEDA] hover:border-[#B8956A]/60 shadow-[0_2px_12px_-4px_rgba(51,40,39,0.05)] hover:shadow-[0_10px_25px_-8px_rgba(184,149,106,0.18)] transition-all duration-300 overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-[#B8956A]/50"
+                            >
+                                {/* Image Container: 4:3 ratio, light editorial presentation */}
+                                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F7EFEE]">
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        loading="lazy"
+                                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                    />
+                                    {/* Budget Badge */}
+                                    <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-white/95 backdrop-blur-xs border border-[#E9DEDA] text-[#332827] text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-2xs tracking-wide">
+                                        {item.badge}
+                                    </span>
+                                </div>
 
-                            <div className="absolute inset-0 flex flex-col justify-end p-5">
-                                <h3 className="text-white text-lg md:text-xl font-black tracking-tighter uppercase mb-0">{item.title}</h3>
-                            </div>
+                                {/* Card Details */}
+                                <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-between flex-1 bg-white border-t border-[#E9DEDA]/60">
+                                    <div>
+                                        <span className="text-[9px] sm:text-[10px] font-sans font-medium tracking-[0.16em] uppercase text-[#766866] block mb-1">
+                                            {item.descriptor}
+                                        </span>
+                                        <h3 className="text-xs sm:text-sm md:text-[15px] font-serif font-semibold text-[#332827] group-hover:text-[#B8956A] transition-colors uppercase tracking-wider leading-snug">
+                                            {item.title}
+                                        </h3>
+                                    </div>
+
+                                    {/* CTA link */}
+                                    <div className="mt-3 sm:mt-4 pt-2 sm:pt-2.5 border-t border-[#F7EFEE] flex items-center justify-between">
+                                        <span className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.16em] text-[#B8956A] group-hover:text-[#332827] transition-colors inline-flex items-center gap-1 sm:gap-1.5">
+                                            EXPLORE COLLECTION <ArrowRight size={11} className="transition-transform group-hover:translate-x-1 shrink-0" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

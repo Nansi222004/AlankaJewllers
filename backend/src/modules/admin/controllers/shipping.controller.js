@@ -16,7 +16,7 @@ const { isValidInternalStatus, getInternalStatuses } = require("../../../service
 
 const buildPickupAddress = (source) => ({
   name: source.contactPerson || source.fullName || source.shopName || "Alankar Jewellers Dispatch",
-  phone: source.phone || source.mobileNumber || "+919921128662",
+  phone: source.phone || source.mobileNumber || "+91 8668821446",
   address: source.addressLine1
     ? [source.addressLine1, source.addressLine2].filter(Boolean).join(", ")
     : source.shopAddress || source.address || "Alankar Jewellers, Sarafa Lane Gandhi Chowk",

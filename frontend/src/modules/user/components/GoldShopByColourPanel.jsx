@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { ChevronRight, ShieldCheck } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
 import whiteImg from '@assets/gold_color_white.png';
@@ -129,7 +130,7 @@ const GoldShopByColourPanel = ({
             <div className={`w-full max-w-full overflow-hidden bg-brand-pearl rounded-2xl border border-brand-border p-3 sm:p-5 ${className}`}>
                 <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-brand-border/60 min-w-0">
                     <div className="flex items-center gap-1.5 shrink-0">
-                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
+                        <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <span className="font-serif text-sm sm:text-base font-medium text-brand-espresso">
                             {title}
                         </span>
@@ -176,7 +177,7 @@ const GoldShopByColourPanel = ({
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-1.5 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.25em]">
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                     <span>{badge}</span>
                 </div>
                 <h3 className="font-serif text-xl lg:text-2xl text-brand-espresso font-medium tracking-tight mb-1">

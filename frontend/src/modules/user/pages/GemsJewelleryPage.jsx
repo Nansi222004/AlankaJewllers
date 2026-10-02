@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Gem, MessageCircle, RefreshCw, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { Gem, MessageCircle, RefreshCw, ShieldCheck, Star } from "lucide-react";
+import AlankaJewelleryMark from "../components/AlankaJewelleryMark";
 import { useShop } from "../../../context/ShopContext";
 import { usePublicCmsPage } from "../hooks/usePublicCmsPage";
 import PromoSlider from "../components/PromoSlider";
@@ -71,7 +72,7 @@ const GemsJewelleryPage = () => {
   const trustSection = sectionMap["gems-trust-markers"];
   const bespokeSection = sectionMap["gems-bespoke-consultation"];
   const trustItems = useMemo(() => {
-    const iconMap = { ShieldCheck, Gem, RefreshCw, Star, Sparkles };
+    const iconMap = { ShieldCheck, Gem, RefreshCw, Star, Sparkles: AlankaJewelleryMark };
     const items = trustSection?.items;
     if (!Array.isArray(items) || items.length === 0) return DEFAULT_TRUST_ITEMS;
     return items.map((item, index) => ({
@@ -112,8 +113,15 @@ const GemsJewelleryPage = () => {
       />
 
       <CollectionNewLaunch
+        collection="gems"
+        material="gems"
         metal="gems"
         sectionData={sectionMap["gems-new-launch"]}
+        showEmptyState={true}
+        emptyTitle="New Gemstone Pieces Coming Soon"
+        emptyDescription="Explore our curated gemstone collection while our latest pieces are being prepared."
+        emptyCtaLabel="EXPLORE GEMS"
+        emptyCtaLink="#gems-products"
       />
 
       <section id="gems-products" className="scroll-mt-36 bg-white pt-2">

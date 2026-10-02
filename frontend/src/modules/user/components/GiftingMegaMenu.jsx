@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, User, Heart, Users } from 'lucide-react';
+import { ArrowRight, User, Heart, Users } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 
 const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
     const giftOptions = [
@@ -52,7 +53,7 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                 {/* Header label */}
                 <div className="flex items-center justify-between mb-4 sm:mb-5 pb-2.5 border-b border-[#EFE7DC]">
                     <div className="flex items-center gap-2">
-                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
+                        <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <h3 className="text-brand-plum text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.25em]">
                             Curated Gift Collections
                         </h3>

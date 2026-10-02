@@ -31,7 +31,7 @@ const defaultPages = {
       <p>Natural gemstones, cubic zirconias, and cultured pearls require delicate handling. Never immerse pearls or glued settings in hot water. Avoid ultrasonic cleaners unless specifically recommended by our gemologist.</p>
 
       <h3>5. Complimentary Professional Servicing</h3>
-      <p>Alankar Jewellers offers lifetime inspection and cleaning services for all authentic pieces. If your jewellery requires professional prong tightening, re-polishing, or re-plating, visit our boutique or reach out to our concierge at <strong>support@swarnasparsh.com</strong> or call <strong>+91 99211 28662</strong>.</p>
+      <p>Alankar Jewellers offers lifetime inspection and cleaning services for all authentic pieces. If your jewellery requires professional prong tightening, re-polishing, or re-plating, visit our boutique or reach out to our concierge at <strong>swarna.sparsh22@gmail.com</strong> or call <strong>+91 8668821446</strong>.</p>
     `
   },
   "about-us": {
@@ -60,7 +60,7 @@ const defaultPages = {
     title: "Terms & Conditions",
     content: `
       <h2>Terms and Conditions of Use</h2>
-      <p>Welcome to Alankar Jewellers ("we", "us", "our"). By accessing or purchasing from swarnasparsh.com, you agree to comply with and be bound by the following Terms & Conditions. Please read them carefully before placing an order.</p>
+      <p>Welcome to Alankar Jewellers ("we", "us", "our"). By accessing or purchasing from alankar-jewellers.com, you agree to comply with and be bound by the following Terms & Conditions. Please read them carefully before placing an order.</p>
 
       <h3>1. General Agreement</h3>
       <p>These terms govern your use of our website and purchase of jewellery and accessories. If you do not agree with any part of these terms, please discontinue use of our services.</p>
@@ -110,7 +110,7 @@ const defaultPages = {
       <p>All network communications on Alankar Jewellers are protected with 256-bit SSL encryption. We never sell, rent, or lease your personal information to third-party advertisers.</p>
 
       <h3>4. Your Rights</h3>
-      <p>You have the right to access, update, or request the deletion of your account profile at any time. For privacy inquiries or requests, contact our Data Protection Officer at <strong>support@swarnasparsh.com</strong>.</p>
+      <p>You have the right to access, update, or request the deletion of your account profile at any time. For privacy inquiries or requests, contact our Data Protection Officer at <strong>swarna.sparsh22@gmail.com</strong>.</p>
     `
   },
   "shipping-policy": {
@@ -223,7 +223,7 @@ const defaultPages = {
         <li><strong>Master Handcrafting:</strong> Our artisans cast the piece in certified 925 Silver or Gold, hand-setting stones and polishing each contour to perfection.</li>
       </ol>
 
-      <p>To start your custom design journey, contact our design studio at <strong>support@swarnasparsh.com</strong> or call <strong>+91 99211 28662</strong>.</p>
+      <p>To start your custom design journey, contact our design studio at <strong>swarna.sparsh22@gmail.com</strong> or call <strong>+91 8668821446</strong>.</p>
     `
   }
 };

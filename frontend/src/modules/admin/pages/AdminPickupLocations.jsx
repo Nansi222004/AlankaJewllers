@@ -202,7 +202,7 @@ const LocationFormModal = ({ location, onClose, onSaved }) => {
               type="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="dispatch@swarnasparsh.com"
+              placeholder="e.g. dispatch@yourdomain.com"
               className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#8D6E63]"
             />
           </div>

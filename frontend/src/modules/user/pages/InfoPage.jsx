@@ -196,12 +196,16 @@ const InfoPage = ({ type }) => {
                       Email Us
                     </h4>
                     <div className="text-gray-500 text-sm mt-1 space-y-0.5">
-                      <a
-                        href={`mailto:${settings?.email || "support@swarnasparsh.com"}`}
-                        className="block hover:text-primary transition-colors font-medium"
-                      >
-                        {settings?.email || "support@swarnasparsh.com"}
-                      </a>
+                      {settings?.email ? (
+                        <a
+                          href={`mailto:${settings.email}`}
+                          className="block hover:text-primary transition-colors font-medium"
+                        >
+                          {settings.email}
+                        </a>
+                      ) : (
+                        <span className="text-gray-400 italic">Contact us via phone or our help center</span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -214,10 +218,10 @@ const InfoPage = ({ type }) => {
                     <h4 className="font-bold text-footerBg text-sm">Call Us</h4>
                     <p className="text-gray-500 text-sm mt-1">
                       <a
-                        href={`tel:${settings?.phone || "+919921128662"}`}
+                        href={`tel:${settings?.phone || "+91 8668821446"}`}
                         className="hover:text-primary transition-colors font-medium"
                       >
-                        {settings?.phone || "+919921128662"}
+                        {settings?.phone || "+91 8668821446"}
                       </a>{" "}
                       <span className="text-xs text-gray-400 ml-1">
                         (Mon-Sat, 10am-7pm)

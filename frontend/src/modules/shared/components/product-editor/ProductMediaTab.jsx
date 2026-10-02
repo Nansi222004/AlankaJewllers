@@ -1,15 +1,14 @@
 import React from 'react';
-import {
-    Upload, X, Trash2, Sparkles, ImagePlus, ExternalLink,
-    FileText, CheckCircle2, Download, Info, Loader2, Copy
-} from 'lucide-react';
+import { Upload, X, Trash2, ImagePlus, FileText, CheckCircle2, Info, Copy } from 'lucide-react';
 import { FormSection } from '../../../admin/components/common/FormControls';
 import { ENHANCEMENT_PROMPT } from '../../utils/productEditorUtils';
 import toast from 'react-hot-toast';
+import AlankaJewelleryMark from '../AlankaJewelleryMark';
 
 const ProductMediaTab = ({
     formData,
     setFormData,
+    errors = {},
     isViewMode,
     previewImages,
     handleImageUpload,
@@ -21,10 +20,8 @@ const ProductMediaTab = ({
     isImageVideoPreview,
     removeVideo,
     enhancingIndex,
-    setEnhancingIndex,
     showEnhanceModal,
     setShowEnhanceModal,
-    enhancedIndices,
     handleEnhancedUpload
 }) => {
     return (
@@ -39,9 +36,9 @@ const ProductMediaTab = ({
                                     <Info size={16} />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-amber-800">Gallery Intelligence</p>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-amber-800">Original Product Photography</p>
                                     <p className="text-[10px] text-amber-700/70 mt-1 leading-relaxed font-medium">
-                                        Image 1 is the <span className="font-bold text-amber-900">Master Identity</span>. Image 2 enables the <span className="font-bold text-amber-900">Interactive Hover</span> state. Total 5 slots available.
+                                        Image 1 is the clearly identified <span className="font-bold text-amber-900">Primary Image</span>. Image 2 is the hover image. Upload up to five original photographs of this exact product; stock, AI-generated and unrelated images are prohibited.
                                     </p>
                                 </div>
                             </div>
@@ -55,7 +52,7 @@ const ProductMediaTab = ({
                                         <div className="absolute bottom-3 left-3 flex gap-1.5">
                                             {idx === 0 && (
                                                 <div className="px-2 py-1 rounded-lg bg-black/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-widest shadow-lg border border-white/20">
-                                                    Master
+                                                    Primary
                                                 </div>
                                             )}
                                             {idx === 1 && (
@@ -63,26 +60,10 @@ const ProductMediaTab = ({
                                                     Hover
                                                 </div>
                                             )}
-                                            {enhancedIndices.has(idx) && (
-                                                <div className="px-1.5 py-1 rounded-lg bg-emerald-500/90 backdrop-blur-md text-white shadow-lg border border-white/20">
-                                                    <Sparkles size={8} />
-                                                </div>
-                                            )}
                                         </div>
 
                                         {!isViewMode && (
                                             <div className="absolute top-3 right-3 flex gap-2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        setEnhancingIndex(idx);
-                                                        setShowEnhanceModal(true);
-                                                    }}
-                                                    className="p-2 bg-white/90 backdrop-blur-md text-amber-600 rounded-xl shadow-lg border border-white hover:bg-amber-600 hover:text-white transition-all"
-                                                    title="Enhance with AI"
-                                                >
-                                                    <Sparkles size={14} />
-                                                </button>
                                                 <button
                                                     type="button"
                                                     onClick={() => handleRemoveImage(idx)}
@@ -112,20 +93,20 @@ const ProductMediaTab = ({
                                 </p>
                             </div>
 
-                            {!isViewMode && previewImages.length > 0 && (
-                                <div className="flex gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setEnhancingIndex(0);
-                                            setShowEnhanceModal(true);
-                                        }}
-                                        className="flex-1 py-4 bg-[#FDFBF7] border border-[#EFEBE9] text-[#8D6E63] rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-amber-400 hover:bg-white transition-all flex items-center justify-center gap-2 group shadow-sm"
-                                    >
-                                        <Sparkles size={14} className="group-hover:animate-pulse" /> AI Enhancement Suite
-                                    </button>
-                                </div>
-                            )}
+                            <label className="flex items-start gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
+                                <input
+                                    type="checkbox"
+                                    checked={Boolean(formData.imageIntegrityConfirmed)}
+                                    onChange={(e) => setFormData({ ...formData, imageIntegrityConfirmed: e.target.checked })}
+                                    disabled={isViewMode}
+                                    className="mt-1"
+                                />
+                                <span>
+                                    I verified that every uploaded image shows this exact physical product and matches its name, category, material and documented stones.
+                                    {errors.imageIntegrityConfirmed && <span className="block text-xs text-red-600 mt-1">{errors.imageIntegrityConfirmed}</span>}
+                                </span>
+                            </label>
+                            {errors.images && <p className="text-xs font-semibold text-red-600">{errors.images}</p>}
                         </div>
                     </FormSection>
                 </div>
@@ -193,11 +174,11 @@ const ProductMediaTab = ({
                         <div className="bg-[#3E2723] p-10 text-white relative">
                             <div className="flex items-center gap-4 mb-3">
                                 <div className="p-2 bg-amber-400 rounded-xl text-[#3E2723]">
-                                    <Sparkles size={24} />
+                                    <AlankaJewelleryMark size={24} className="text-[#3E2723]" />
                                 </div>
-                                <h2 className="text-3xl font-black uppercase tracking-tight">Vision Engine</h2>
+                                <h2 className="text-3xl font-black uppercase tracking-tight">Visual Studio</h2>
                             </div>
-                            <p className="text-[10px] font-black text-amber-400/80 uppercase tracking-[0.3em] ml-1">Powered by Gemini Visual Intelligence</p>
+                            <p className="text-[10px] font-black text-amber-400/80 uppercase tracking-[0.3em] ml-1">Asset Enhancement & Retouching Studio</p>
                             <button
                                 onClick={() => setShowEnhanceModal(false)}
                                 className="absolute top-10 right-10 p-2 hover:bg-white/10 rounded-2xl transition-all text-white/60"
@@ -222,10 +203,10 @@ const ProductMediaTab = ({
                                 <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Enhancement Protocol</h4>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {[
-                                        { icon: ExternalLink, text: "Access Gemini Cloud Studio", color: "text-blue-500", bg: "bg-blue-50" },
+                                        { icon: FileText, text: "Review Atelier Standards", color: "text-blue-500", bg: "bg-blue-50" },
                                         { icon: Upload, text: "Inject Source Artifact", color: "text-purple-500", bg: "bg-purple-50" },
                                         { icon: FileText, text: "Execute Logic Prompt", color: "text-amber-500", bg: "bg-amber-50" },
-                                        { icon: CheckCircle2, text: "Commit Enhanced Asset", color: "text-emerald-500", bg: "bg-emerald-50" }
+                                        { icon: CheckCircle2, text: "Commit Retouched Asset", color: "text-emerald-500", bg: "bg-emerald-50" }
                                     ].map((step, i) => (
                                         <div key={i} className="flex gap-4 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm">
                                             <div className={`w-8 h-8 rounded-xl ${step.bg} flex items-center justify-center flex-shrink-0`}>
@@ -259,25 +240,17 @@ const ProductMediaTab = ({
                         </div>
 
                         <div className="p-10 pt-4 flex flex-col gap-4">
-                            <a
-                                href="https://gemini.google.com/"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="w-full py-5 bg-[#3E2723] text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.25em] shadow-[0_20px_40px_-10px_rgba(62,39,35,0.3)] hover:bg-black transition-all flex items-center justify-center gap-3 group active:scale-[0.98]"
-                            >
-                                1. Initialize Gemini Studio <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            </a>
-
-                            <label className="w-full py-5 bg-white border-2 border-dashed border-gray-200 text-gray-500 rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.25em] hover:border-amber-600 hover:text-amber-600 cursor-pointer transition-all flex items-center justify-center gap-3 group active:scale-[0.98]">
-                                <ImagePlus size={16} className="group-hover:scale-125 transition-transform" /> 2. Commit Enhanced Asset
+                            <label className="w-full py-5 bg-[#3E2723] text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.25em] shadow-[0_20px_40px_-10px_rgba(62,39,35,0.3)] hover:bg-black cursor-pointer transition-all flex items-center justify-center gap-3 group active:scale-[0.98]">
+                                <ImagePlus size={16} className="group-hover:scale-125 transition-transform" /> Upload & Commit Retouched Asset
                                 <input type="file" className="hidden" onChange={handleEnhancedUpload} accept="image/*" />
                             </label>
 
                             <button
+                                type="button"
                                 onClick={() => setShowEnhanceModal(false)}
-                                className="w-full py-2 text-[10px] font-black uppercase tracking-widest text-gray-300 hover:text-gray-500 transition-colors"
+                                className="w-full py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-gray-600 transition-colors"
                             >
-                                Bypass Enhancement
+                                Close Studio
                             </button>
                         </div>
                     </div>

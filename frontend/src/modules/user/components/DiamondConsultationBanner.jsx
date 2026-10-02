@@ -1,5 +1,6 @@
 import React from 'react';
-import { MessageCircle, Sparkles, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
+import { MessageCircle, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 
 const DiamondConsultationBanner = ({ sectionData }) => {
     const settings = sectionData?.settings || {};
@@ -18,7 +19,7 @@ const DiamondConsultationBanner = ({ sectionData }) => {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-champagne/30 bg-[#171E26] text-brand-champagne text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-6 shadow-sm">
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                     <span>{badge}</span>
                 </div>
 

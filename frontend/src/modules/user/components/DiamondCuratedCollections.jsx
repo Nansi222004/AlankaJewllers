@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, ArrowUpRight, Tag } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Tag } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 
 import editEverydayImg from '@assets/edits/edit_everyday.png';
 import editSolitaireImg from '@assets/edits/edit_solitaire.png';
@@ -163,7 +164,7 @@ const DiamondCuratedCollections = ({ sectionData }) => {
                 {/* Header */}
                 <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-white text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-2.5 shadow-2xs">
-                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
+                        <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <span>{badge}</span>
                     </div>
                     <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight mb-2.5">

@@ -29,13 +29,13 @@ import {
   Instagram,
   Youtube,
   Layout,
-  Sparkles,
   Smile,
   Droplets,
   Image as ImageIcon,
   Loader2,
 } from "lucide-react";
 import PageHeader from "../components/common/PageHeader";
+import AlankaJewelleryMark from "../../shared/components/AlankaJewelleryMark";
 import api from "../../../services/api";
 import { adminService } from "../services/adminService";
 import toast from "react-hot-toast";
@@ -47,11 +47,11 @@ const DEFAULT_SETTINGS = {
   logo: "/logo.webp",
   address:
     "Alankar Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
-  phone: "+919921128662",
-  contactPhone: "+919921128662",
-  email: "support@swarnasparsh.com",
-  contactEmail: "support@swarnasparsh.com",
-  website: "www.swarnasparsh.com",
+  phone: "+91 8668821446",
+  contactPhone: "+91 8668821446",
+  email: "swarna.sparsh22@gmail.com",
+  contactEmail: "swarna.sparsh22@gmail.com",
+  website: "https://alankar-jewellers.com/",
 
   productHeader: "ESTIMATED DELIVERY DATE",
   returnPolicy: "2 Days Return",
@@ -675,7 +675,7 @@ const GlobalSettings = () => {
             {/* Brand Name */}
             <div>
               <label className="flex items-center gap-2 text-[10px] font-medium text-gray-400 tracking-wide mb-2">
-                <Sparkles className="w-3 h-3 text-[#C9A24D]" />
+                <AlankaJewelleryMark className="w-3 h-3 text-[#C9A24D]" />
                 <span>Brand / Store Name</span>
               </label>
               <input
@@ -716,7 +716,7 @@ const GlobalSettings = () => {
                   handleChange("contactPhone", e.target.value);
                 }}
                 disabled={!isEditing}
-                placeholder="+919921128662"
+                placeholder="+91 8668821446"
               />
             </div>
 
@@ -734,7 +734,7 @@ const GlobalSettings = () => {
                   handleChange("contactEmail", e.target.value);
                 }}
                 disabled={!isEditing}
-                placeholder="support@swarnasparsh.com"
+                placeholder="swarna.sparsh22@gmail.com"
               />
             </div>
 
@@ -844,7 +844,7 @@ const GlobalSettings = () => {
             {/* The Alankar Jewellers Promise Section */}
             <div className="space-y-4">
               <h4 className="text-sm font-medium text-gray-900 tracking-wide border-b border-gray-100 pb-2 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#9C5B61]" />
+                <AlankaJewelleryMark className="w-4 h-4 text-[#9C5B61]" />
                 The Alankar Jewellers Promise (USPs)
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -901,7 +901,7 @@ const GlobalSettings = () => {
             {/* Care Guide Section */}
             <div className="space-y-4">
               <h4 className="text-sm font-medium text-gray-900 tracking-wide border-b border-gray-100 pb-2 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#9C5B61]" />
+                <AlankaJewelleryMark className="w-4 h-4 text-[#9C5B61]" />
                 Care Guide Steps
               </h4>
 

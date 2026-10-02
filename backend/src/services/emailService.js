@@ -156,7 +156,7 @@ const sendEmail = async ({
   }
 
   const mailOptions = {
-    from: `Alankar Jewellers <${process.env.SMTP_FROM || process.env.SUPPORT_EMAIL || "noreply@swarnasparsh.com"}>`,
+    from: `Alankar Jewellers <${process.env.SMTP_FROM || process.env.SUPPORT_EMAIL}>`,
     to,
     subject,
     html,

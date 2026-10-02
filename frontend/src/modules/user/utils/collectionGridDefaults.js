@@ -1,11 +1,11 @@
-import goldRingsGreen from '@assets/categories/gold_rings_green.png';
-import goldEarringsGreen from '@assets/categories/gold_earrings_green.png';
-import goldPendantsGreen from '@assets/categories/gold_pendants_green.png';
-import goldBraceletsGreen from '@assets/categories/gold_bracelets_green.png';
-import goldBanglesGreen from '@assets/categories/gold_bangles_green.png';
-import goldMangalsutraGreen from '@assets/categories/gold_mangalsutra_green.png';
-import goldSetsGreen from '@assets/categories/gold_sets_green.png';
-import goldNewArrivalsGreen from '@assets/categories/gold_new_arrivals_green.png';
+import goldRingsLight from '@assets/categories/gold_rings_light.png';
+import goldEarringsLight from '@assets/categories/gold_earrings_light.png';
+import goldPendantsLight from '@assets/categories/gold_pendants_light.png';
+import goldBracelet from '@assets/categories/gold_bracelet.png';
+import goldBangle from '@assets/categories/gold_bangle.png';
+import goldMangalsutraLight from '@assets/categories/gold_mangalsutra_light.png';
+import setsImg from '@assets/categories/sets.png';
+import newlaunchImg from '@assets/categories/newlaunch.png';
 
 import ringsImg from '@assets/categories/rings.png';
 import earringsImg from '@assets/categories/earrings.png';
@@ -31,7 +31,7 @@ export const goldCollectionGridDefaults = [
         id: 'gold-rings',
         name: 'Gold Rings',
         label: 'Gold Rings',
-        image: goldRingsGreen,
+        image: goldRingsLight,
         path: '/shop?metal=gold&category=finger-ring',
         badge: 'Signature'
     },
@@ -39,49 +39,49 @@ export const goldCollectionGridDefaults = [
         id: 'gold-earrings',
         name: 'Gold Earrings',
         label: 'Gold Earrings',
-        image: goldEarringsGreen,
+        image: goldEarringsLight,
         path: '/shop?metal=gold&category=earrings'
     },
     {
         id: 'gold-necklaces',
         name: 'Gold Necklaces',
         label: 'Gold Necklaces',
-        image: goldSetsGreen,
+        image: setsImg,
         path: '/shop?metal=gold&category=necklace'
     },
     {
         id: 'gold-bangles',
         name: 'Gold Bangles',
         label: 'Gold Bangles',
-        image: goldBanglesGreen,
+        image: goldBangle,
         path: '/shop?metal=gold&category=bangles'
     },
     {
         id: 'gold-bracelets',
         name: 'Gold Bracelets',
         label: 'Gold Bracelets',
-        image: goldBraceletsGreen,
+        image: goldBracelet,
         path: '/shop?metal=gold&category=bracelet'
     },
     {
         id: 'gold-pendants',
         name: 'Gold Pendants',
         label: 'Gold Pendants',
-        image: goldPendantsGreen,
+        image: goldPendantsLight,
         path: '/shop?metal=gold&category=chain-pendent'
     },
     {
         id: 'gold-mangalsutra',
         name: 'Gold Mangalsutra',
         label: 'Gold Mangalsutra',
-        image: goldMangalsutraGreen,
+        image: goldMangalsutraLight,
         path: '/shop?metal=gold&category=mangalsutra'
     },
     {
         id: 'gold-new-arrivals',
         name: 'Gold New Arrivals',
         label: 'Gold New Arrivals',
-        image: goldNewArrivalsGreen,
+        image: newlaunchImg,
         path: '/shop?metal=gold&sort=latest',
         badge: 'Fresh Drops'
     }
@@ -199,13 +199,6 @@ export const gemsCollectionGridDefaults = [
         badge: 'The Gems Edit'
     },
     {
-        id: 'gems-earrings',
-        name: 'Gemstone Earrings',
-        label: 'Gemstone Earrings',
-        image: earringsImg,
-        path: '/shop?metal=gems&category=earrings-earrings'
-    },
-    {
         id: 'gems-rings',
         name: 'Gemstone Rings',
         label: 'Gemstone Rings',
@@ -213,17 +206,31 @@ export const gemsCollectionGridDefaults = [
         path: '/shop?metal=gems&category=finger-ring'
     },
     {
-        id: 'gems-kundan',
-        name: 'Kundan & Gemstone Jewellery',
-        label: 'Kundan & Gemstone Jewellery',
-        image: catWeddingChokerImg,
-        path: '/shop?metal=gems&search=kundan'
+        id: 'gems-earrings',
+        name: 'Gemstone Earrings',
+        label: 'Gemstone Earrings',
+        image: earringsImg,
+        path: '/shop?metal=gems&category=earrings'
     },
     {
-        id: 'gems-pearls',
-        name: 'Pearl Jewellery',
-        label: 'Pearl Jewellery',
+        id: 'gems-pendants',
+        name: 'Gemstone Pendants',
+        label: 'Gemstone Pendants',
         image: pendantsImg,
-        path: '/shop?metal=gems&search=pearl'
+        path: '/shop?metal=gems&category=chain-pendent'
+    },
+    {
+        id: 'gems-bracelets',
+        name: 'Gemstone Bracelets',
+        label: 'Gemstone Bracelets',
+        image: braceletsImg,
+        path: '/shop?metal=gems&category=bracelet'
+    },
+    {
+        id: 'gems-necklaces',
+        name: 'Gemstone Necklaces',
+        label: 'Gemstone Necklaces',
+        image: setsImg,
+        path: '/shop?metal=gems&category=necklace'
     }
 ];

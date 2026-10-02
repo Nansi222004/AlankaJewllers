@@ -42,12 +42,16 @@ const CuratedForEveryBond = ({ sectionData = null }) => {
     const title = String(sectionData?.settings?.title || sectionData?.label || 'Curated For Every Bond').trim() || 'Curated For Every Bond';
 
     return (
-        <section className="w-full bg-[#FBF3EF] py-6 md:py-8 px-4 md:px-12 overflow-hidden select-none">
+        <section className="w-full bg-brand-pearl py-8 md:py-12 px-4 md:px-12 border-b border-brand-border-soft overflow-hidden select-none">
             <div className="max-w-[1000px] mx-auto">
-                <div className="text-center mb-6 md:mb-8">
-                    <h2 className="text-[22px] md:text-[28px] font-serif text-[#333] tracking-wide">
+                <div className="text-center mb-6 md:mb-10">
+                    <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] text-brand-champagne mb-1.5 block">
+                        Gifts of Love
+                    </span>
+                    <h2 className="text-[22px] md:text-[30px] font-serif font-normal text-brand-espresso tracking-tight">
                         {title}
                     </h2>
+                    <div className="h-px w-16 bg-brand-champagne/40 mx-auto mt-2.5" />
                 </div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
@@ -58,21 +62,21 @@ const CuratedForEveryBond = ({ sectionData = null }) => {
                             className="group block"
                         >
                             <motion.div
-                                whileHover={{ y: -6 }}
+                                whileHover={{ y: -5 }}
                                 transition={{ type: 'spring', stiffness: 300 }}
                                 className="relative flex flex-col items-center"
                             >
-                                <div className="relative w-full aspect-[5/6] overflow-hidden rounded-[20px] shadow-sm border border-white/30">
+                                <div className="relative w-full aspect-[5/6] overflow-hidden rounded-[20px] shadow-2xs border border-brand-border bg-brand-porcelain">
                                     <img
                                         src={bond.image}
                                         alt={bond.label}
-                                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                     />
-                                    <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+                                    <div className="absolute inset-0 bg-black/5 pointer-events-none group-hover:bg-transparent transition-colors" />
                                 </div>
 
-                                <div className="mt-[-15px] z-10 w-[80%] bg-white py-1.5 px-3 rounded-full shadow-md text-center border border-[#eee]">
-                                    <span className="text-[#2A4D35] font-serif italic text-xs md:text-base font-medium tracking-tight">
+                                <div className="mt-[-16px] z-10 w-[84%] bg-white py-2 px-3 rounded-full shadow-sm text-center border border-brand-border group-hover:border-brand-champagne transition-all duration-300">
+                                    <span className="text-brand-plum group-hover:text-brand-espresso font-serif italic text-xs md:text-sm font-medium tracking-tight transition-colors">
                                         {bond.label}
                                     </span>
                                 </div>

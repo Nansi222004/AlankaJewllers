@@ -78,6 +78,7 @@ exports.getProducts = async (req, res) => {
     const effectiveMaxPrice = req.query.maxPrice ?? req.query.price_max ?? req.query.priceMax ?? null;
 
     const cleanSearch = String(search || "").trim();
+    const requestedMetal = String(metal || "").trim().toLowerCase();
     const resolvedPage = clampInt(page, 1, { min: 1, max: 100000 });
     const resolvedLimit = clampInt(limit, 20, { min: 1, max: 60 });
 
@@ -247,6 +248,7 @@ exports.getProducts = async (req, res) => {
         if (effectiveTone === "white-gold" || effectiveTone === "white" || effectiveTone === "white gold") {
           andFilters.push({
             $or: [
+              { goldTone: "White Gold" },
               { settingMetal: { $regex: "white[\\s-]*gold", $options: "i" } },
               { material: { $regex: "white[\\s-]*gold", $options: "i" } }
             ]
@@ -254,6 +256,7 @@ exports.getProducts = async (req, res) => {
         } else if (effectiveTone === "rose-gold" || effectiveTone === "rose" || effectiveTone === "rose gold") {
           andFilters.push({
             $or: [
+              { goldTone: "Rose Gold" },
               { settingMetal: { $regex: "rose[\\s-]*gold", $options: "i" } },
               { material: { $regex: "rose[\\s-]*gold", $options: "i" } }
             ]
@@ -263,11 +266,13 @@ exports.getProducts = async (req, res) => {
             $and: [
               {
                 $or: [
+                  { goldTone: "Yellow Gold" },
                   { settingMetal: { $regex: "^(gold|yellow[\\s-]*gold)$", $options: "i" } },
                   { material: { $regex: "^(gold|yellow[\\s-]*gold|22k[\\s-]*gold|18k[\\s-]*gold|24k[\\s-]*gold|14k[\\s-]*gold|solid[\\s-]*gold)$", $options: "i" } },
                   { goldCategory: { $in: ["14", "18", "22", "24"] } }
                 ]
               },
+              { goldTone: { $not: { $in: ["White Gold", "Rose Gold"] } } },
               { settingMetal: { $not: { $regex: "white|rose", $options: "i" } } },
               { material: { $not: { $regex: "white[\\s-]*gold|rose[\\s-]*gold", $options: "i" } } }
             ]
@@ -326,13 +331,20 @@ exports.getProducts = async (req, res) => {
         }
       } else if (normalized === "gems" || normalized === "gemstone" || normalized === "gemstones") {
         andFilters.push({
-          $or: [
+          $and: [
+            {
+              $or: [
             { gemstone: { $exists: true, $nin: [null, "", "none"] } },
             { gemstones: { $exists: true, $nin: [null, "", "none"] } },
             { gemstoneType: { $exists: true, $nin: [null, "", "none"] } },
-            { material: { $regex: "gem|gemstone|emerald|ruby|sapphire|pearl|topaz|amethyst", $options: "i" } },
+            { material: { $in: ["Gems", "Gemstone", "Gemstones"] } },
+            { material: { $regex: "^(gem|gemstone)s?$", $options: "i" } },
             { categorySlug: { $regex: "gem", $options: "i" } },
             { category: { $regex: "gem", $options: "i" } }
+              ]
+            },
+            { material: { $not: { $regex: "plated|alloy|imitation|antique finish|kundan|pearls?", $options: "i" } } },
+            { name: { $not: { $regex: "plated|alloy|imitation|oxydis|oxidi|mala", $options: "i" } } }
           ]
         });
       }
@@ -440,7 +452,7 @@ exports.getProducts = async (req, res) => {
       query.$and = andFilters;
     }
 
-    const selectFields = "name slug productCode brand images videoUrl variants tags rating reviewCount categories category categorySlug categoryId navShopByCategory weight weightUnit goldCategory silverCategory material settingMetal settingPurity diamondType audience sold createdAt updatedAt description";
+    const selectFields = "name slug productCode brand images videoUrl variants tags rating reviewCount categories category categorySlug categoryId navShopByCategory weight weightUnit goldCategory goldTone silverCategory material gemstoneType gemstones settingMetal settingPurity diamondType audience sold createdAt updatedAt description";
 
     let products = [];
     let total = 0;

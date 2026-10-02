@@ -102,14 +102,15 @@ const TermsAndConditions = () => {
             </h4>
             <p className="text-xs md:text-sm text-stone-500">
               If you have any questions regarding our terms, please reach out to
-              our support team at{" "}
+              our support team{settings?.email ? (
+              <>{' '}at{' '}
               <a
-                href={`mailto:${settings?.email || "support@swarnasparsh.com"}`}
+                href={`mailto:${settings.email}`}
                 className="font-bold text-brand-espresso border-b border-brand-champagne/40 hover:text-brand-champagne transition-colors"
               >
-                {settings?.email || "support@swarnasparsh.com"}
-              </a>{" "}
-              or visit our help center.
+                {settings.email}
+              </a>{' '}
+              or visit</>) : (' via')} our help center.
             </p>
           </div>
         </div>

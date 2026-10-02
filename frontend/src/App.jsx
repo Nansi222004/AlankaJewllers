@@ -315,6 +315,7 @@ const AppContent = () => {
           <Footer />
           <FloatingContactStack />
           <MobileBottomNav />
+          <PincodeModal />
         </>
       )}
     </div>

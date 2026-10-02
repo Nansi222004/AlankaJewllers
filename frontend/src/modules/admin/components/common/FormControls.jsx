@@ -16,7 +16,7 @@ export const Input = memo(({ label, helperText, ...props }) => (
     </div>
 ));
 
-export const Select = memo(({ label, options, helperText, ...props }) => (
+export const Select = memo(({ label, options, helperText, error, ...props }) => (
     <div className="space-y-1.5">
         {label && (
             <label className="block text-xs font-semibold text-gray-700 tracking-wide">
@@ -26,7 +26,7 @@ export const Select = memo(({ label, options, helperText, ...props }) => (
         <div className="relative">
             <select
                 {...props}
-                className="w-full bg-white border border-gray-300 rounded-lg py-2.5 px-3.5 text-sm text-gray-900 focus:outline-none focus:border-[#3E2723] focus:ring-2 focus:ring-[#3E2723]/10 transition-all shadow-sm appearance-none cursor-pointer"
+                className={`w-full bg-white border rounded-lg py-2.5 px-3.5 text-sm text-gray-900 focus:outline-none transition-all shadow-sm appearance-none cursor-pointer ${error ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200/40' : 'border-gray-300 focus:border-[#3E2723] focus:ring-2 focus:ring-[#3E2723]/10'}`}
             >
                 {options.map((opt, i) => (
                     <option key={i} value={opt.value}>{opt.label}</option>
@@ -36,7 +36,8 @@ export const Select = memo(({ label, options, helperText, ...props }) => (
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
             </div>
         </div>
-        {helperText && <p className="text-[10px] text-gray-400 mt-0.5 ml-1">{helperText}</p>}
+        {helperText && !error && <p className="text-[10px] text-gray-400 mt-0.5 ml-1">{helperText}</p>}
+        {error && <p className="text-[10px] text-red-500 font-bold ml-1">{error}</p>}
     </div>
 ));
 

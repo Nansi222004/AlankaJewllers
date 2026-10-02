@@ -5,11 +5,11 @@ import {
     RotateCcw,
     Star,
     Award,
-    Sparkles,
     CheckCircle2,
     Gem,
     Truck
 } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 
 import trustCertifiedImg from '@assets/trust/trust_certified.png';
 import trustExchangeImg from '@assets/trust/trust_exchange.png';
@@ -23,7 +23,7 @@ const ICON_MAP = {
     RotateCcw,
     Star,
     Award,
-    Sparkles,
+    Sparkles: AlankaJewelleryMark,
     CheckCircle2,
     Gem,
     Truck

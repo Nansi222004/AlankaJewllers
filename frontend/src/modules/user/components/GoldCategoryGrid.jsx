@@ -1,28 +1,28 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
-import goldRingsGreen from '@assets/categories/gold_rings_green.png';
-import goldEarringsGreen from '@assets/categories/gold_earrings_green.png';
-import goldPendantsGreen from '@assets/categories/gold_pendants_green.png';
-import goldBraceletsGreen from '@assets/categories/gold_bracelets_green.png';
-import goldNosepinsGreen from '@assets/categories/gold_nosepins_green.png';
-import goldMangalsutraGreen from '@assets/categories/gold_mangalsutra_green.png';
-import goldBanglesGreen from '@assets/categories/gold_bangles_green.png';
-import goldSetsGreen from '@assets/categories/gold_sets_green.png';
-import goldNewArrivalsGreen from '@assets/categories/gold_new_arrivals_green.png';
+import goldRingsLight from '@assets/categories/gold_rings_light.png';
+import goldEarringsLight from '@assets/categories/gold_earrings_light.png';
+import goldPendantsLight from '@assets/categories/gold_pendants_light.png';
+import goldBracelet from '@assets/categories/gold_bracelet.png';
+import catNosepin from '@assets/categories/nosepin.png';
+import goldMangalsutraLight from '@assets/categories/gold_mangalsutra_light.png';
+import goldBangle from '@assets/categories/gold_bangle.png';
+import catSets from '@assets/categories/sets.png';
+import catNewLaunch from '@assets/categories/newlaunch.png';
 
 const GOLD_CATEGORIES = [
-    { id: 1, name: 'Gold Rings', image: goldRingsGreen, path: '/shop?metal=gold&category=rings', badge: '' },
-    { id: 2, name: 'Gold Earrings', image: goldEarringsGreen, path: '/shop?metal=gold&category=earrings', badge: '' },
-    { id: 3, name: 'Gold Pendants', image: goldPendantsGreen, path: '/shop?metal=gold&category=necklaces', badge: '' },
-    { id: 4, name: 'Gold Bracelets', image: goldBraceletsGreen, path: '/shop?metal=gold&category=bracelets', badge: '' },
-    { id: 5, name: 'Gold Nose Pins', image: goldNosepinsGreen, path: '/shop?metal=gold&category=nose-pins', badge: '' },
-    { id: 6, name: 'Gold Mangalsutra', image: goldMangalsutraGreen, path: '/shop?metal=gold&category=mangalsutras', badge: '' },
-    { id: 7, name: 'Gold Bangles', image: goldBanglesGreen, path: '/shop?metal=gold&category=bangles', badge: '' },
-    { id: 8, name: 'Gold Sets', image: goldSetsGreen, path: '/shop?metal=gold&category=sets', badge: '' },
-    { id: 9, name: 'New Arrivals', image: goldNewArrivalsGreen, path: '/shop?metal=gold&filter=new', badge: 'New' },
+    { id: 1, name: 'Gold Rings', image: goldRingsLight, path: '/shop?metal=gold&category=rings', badge: '' },
+    { id: 2, name: 'Gold Earrings', image: goldEarringsLight, path: '/shop?metal=gold&category=earrings', badge: '' },
+    { id: 3, name: 'Gold Pendants', image: goldPendantsLight, path: '/shop?metal=gold&category=necklaces', badge: '' },
+    { id: 4, name: 'Gold Bracelets', image: goldBracelet, path: '/shop?metal=gold&category=bracelets', badge: '' },
+    { id: 5, name: 'Gold Nose Pins', image: catNosepin, path: '/shop?metal=gold&category=nose-pins', badge: '' },
+    { id: 6, name: 'Gold Mangalsutra', image: goldMangalsutraLight, path: '/shop?metal=gold&category=mangalsutras', badge: '' },
+    { id: 7, name: 'Gold Bangles', image: goldBangle, path: '/shop?metal=gold&category=bangles', badge: '' },
+    { id: 8, name: 'Gold Sets', image: catSets, path: '/shop?metal=gold&category=sets', badge: '' },
+    { id: 9, name: 'New Arrivals', image: catNewLaunch, path: '/shop?metal=gold&filter=new', badge: 'New' },
 ];
 
 const GoldCategoryGrid = ({ sectionData = null }) => {
@@ -98,26 +98,28 @@ const GoldCategoryGrid = ({ sectionData = null }) => {
     };
 
     return (
-        <div className="w-full bg-white py-4 md:py-10 relative group">
+        <section className="w-full bg-brand-pearl py-6 md:py-12 relative group border-b border-brand-border-soft/60">
             <div className="max-w-[1450px] mx-auto px-4 relative">
-                <div className="flex items-center justify-center gap-2.5 md:gap-4 mb-3 md:mb-8">
-                    <span className="text-[#C9A84C] text-xl">*</span>
-                    <div className="flex items-center gap-3">
-                        <div className="h-px w-10 md:w-16 bg-gradient-to-r from-transparent to-[#C9A84C]" />
-                        <h2 className="text-[18px] md:text-[26px] font-semibold text-gray-900 tracking-tight">
+                {/* Section Header */}
+                <div className="flex flex-col items-center justify-center mb-6 md:mb-10 text-center">
+                    <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] text-brand-champagne mb-1.5">
+                        Exquisite Craftsmanship
+                    </span>
+                    <div className="flex items-center justify-center gap-3 md:gap-4">
+                        <div className="h-px w-8 md:w-16 bg-gradient-to-r from-transparent to-brand-champagne/40" />
+                        <h2 className="text-[22px] md:text-[32px] font-serif font-normal text-brand-espresso tracking-tight">
                             {sectionTitle}
                         </h2>
-                        <div className="h-px w-10 md:w-16 bg-gradient-to-l from-transparent to-[#C9A84C]" />
+                        <div className="h-px w-8 md:w-16 bg-gradient-to-l from-transparent to-brand-champagne/40" />
                     </div>
-                    <span className="text-[#C9A84C] text-xl">*</span>
                 </div>
 
-                {/* Overscroll Wrapper to prevent cropping elements on viewport edges */}
+                {/* Categories Horizontal Carousel */}
                 <div className="-mx-4 overflow-hidden">
                     <div
                         ref={scrollRef}
                         onScroll={handleScroll}
-                        className="flex overflow-x-auto scrollbar-hide gap-3 md:gap-5 pb-2 md:pb-4 px-4 md:px-12 snap-x snap-mandatory scroll-smooth"
+                        className="flex overflow-x-auto scrollbar-hide gap-3.5 md:gap-6 pb-3 md:pb-5 px-4 md:px-12 snap-x snap-mandatory scroll-smooth"
                     >
                         {categories.map((cat) => (
                             <Link
@@ -125,27 +127,26 @@ const GoldCategoryGrid = ({ sectionData = null }) => {
                                 to={cat.path}
                                 className="flex flex-col items-center group/item cursor-pointer shrink-0 snap-start"
                             >
-                                <div className="relative w-[98px] h-[112px] md:w-[175px] md:h-[195px] mb-2 md:mb-3 overflow-hidden rounded-[12px] md:rounded-[14px] border border-[#e8d5a3] group-hover/item:border-[#C9A84C] transition-all duration-300 shadow-sm">
+                                <div className="relative w-[108px] h-[124px] sm:w-[136px] sm:h-[155px] md:w-[178px] md:h-[200px] mb-2.5 md:mb-3.5 overflow-hidden rounded-[14px] md:rounded-[20px] border border-brand-border bg-brand-porcelain group-hover/item:border-brand-champagne group-hover/item:shadow-md transition-all duration-500 shadow-xs">
                                     <img
                                         src={cat.image}
                                         alt={cat.name}
-                                        className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-700"
+                                        className="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-700 ease-out"
                                     />
                                     {cat.badge ? (
-                                        <div className="absolute top-2 right-2 bg-[#C9A84C] text-white text-[7px] md:text-[9px] px-2 py-0.5 rounded-full flex items-center gap-1 shadow-md uppercase font-bold tracking-wider z-10">
-                                            <span className="text-[10px]">*</span>
+                                        <div className="absolute top-2 right-2 bg-brand-champagne text-white text-[7.5px] md:text-[9px] px-2 py-0.5 rounded-full flex items-center gap-1 shadow-xs uppercase font-bold tracking-wider z-10">
                                             {cat.badge}
                                         </div>
                                     ) : null}
 
-                                    {/* Premium Sliding Button Overlay */}
-                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#C9A84C] to-[#D4B56A] py-3 md:py-4 transform translate-y-full group-hover/item:translate-y-0 transition-transform duration-500 ease-in-out flex items-center justify-center shadow-[0_-4px_15px_rgba(0,0,0,0.1)]">
-                                        <span className="text-[9px] md:text-[11px] font-black text-white uppercase tracking-[0.3em] flex items-center gap-1.5">
-                                            Shop Now <ChevronRight className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                                    {/* Premium Understated Sliding Button */}
+                                    <div className="absolute inset-x-0 bottom-0 bg-brand-plum/90 backdrop-blur-xs py-2.5 md:py-3.5 transform translate-y-full group-hover/item:translate-y-0 transition-transform duration-300 ease-out flex items-center justify-center">
+                                        <span className="text-[9px] md:text-[10px] font-bold text-brand-champagne-light uppercase tracking-[0.2em] flex items-center gap-1">
+                                            Explore <ChevronRight className="w-3 h-3 md:w-3.5 md:h-3.5 text-brand-champagne" />
                                         </span>
                                     </div>
                                 </div>
-                                <span className="text-[12px] md:text-[16px] font-bold text-gray-800 group-hover/item:text-[#A8862A] transition-colors text-center tracking-tight leading-tight">
+                                <span className="text-[13px] md:text-[15px] font-medium text-brand-espresso group-hover/item:text-brand-champagne transition-colors text-center tracking-tight leading-snug">
                                     {cat.name}
                                 </span>
                             </Link>
@@ -155,15 +156,15 @@ const GoldCategoryGrid = ({ sectionData = null }) => {
 
                 {/* Carousel Dots */}
                 {categories.length > 1 && (
-                    <div className="flex justify-center items-center gap-2 pb-6 mt-4 md:mt-2">
+                    <div className="flex justify-center items-center gap-2 pt-2 md:pt-4">
                         {categories.map((_, idx) => (
                             <button
                                 key={idx}
                                 onClick={() => scrollToDot(idx)}
                                 className={`transition-all duration-300 rounded-full ${
                                     activeIndex === idx 
-                                    ? "w-6 h-1.5 bg-[#C9A84C]" 
-                                    : "w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400"
+                                    ? "w-6 h-1.5 bg-brand-champagne" 
+                                    : "w-1.5 h-1.5 bg-brand-border hover:bg-brand-taupe"
                                 }`}
                                 aria-label={`Go to item ${idx + 1}`}
                             />
@@ -171,7 +172,7 @@ const GoldCategoryGrid = ({ sectionData = null }) => {
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     );
 };
 

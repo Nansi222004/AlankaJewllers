@@ -21,6 +21,11 @@ const EXACT_ALLOWED_ROUTES = new Set([
   '/new-arrivals',
   '/trending',
   '/gold-collection',
+  '/silver-collection',
+  '/diamond-collection',
+  '/gems-collection',
+  '/collections',
+  '/gift-cards',
 ]);
 
 const PREFIX_ALLOWED_ROUTES = [
@@ -34,15 +39,20 @@ const PREFIX_ALLOWED_ROUTES = [
 const ROUTE_ALIASES = {
   '/returns': '/return-policy',
   '/contact': '/help',
+  '/blogs': '/about',
+  '/blog': '/about',
 };
 
 export const normalizeStoreLink = (link) => {
   if (typeof link !== 'string') return '/shop';
 
-  const value = ROUTE_ALIASES[link.trim()] || link.trim();
+  const raw = link.trim();
+  const value = ROUTE_ALIASES[raw] || raw;
   if (!value.startsWith('/')) return '/shop';
-  if (EXACT_ALLOWED_ROUTES.has(value)) return value;
-  if (PREFIX_ALLOWED_ROUTES.some((prefix) => value.startsWith(prefix))) return value;
+
+  const [pathname] = value.split(/[?#]/);
+  if (EXACT_ALLOWED_ROUTES.has(pathname)) return value;
+  if (PREFIX_ALLOWED_ROUTES.some((prefix) => pathname.startsWith(prefix))) return value;
 
   return '/shop';
 };

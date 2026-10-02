@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// Import local gold assets for the display - ALL GREEN THEMED
-import goldRings from '@assets/categories/gold_rings_green.png';
-import goldEarrings from '@assets/categories/gold_earrings_green.png';
-import goldPendants from '@assets/categories/gold_pendants_green.png';
-import goldBangles from '@assets/categories/gold_bangles_green.png';
-import goldMangalsutra from '@assets/categories/gold_mangalsutra_green.png';
-import goldBracelets from '@assets/categories/gold_bracelets_green.png';
-import goldNewArrivals from '@assets/categories/gold_new_arrivals_green.png';
+// Import local gold assets for the display - Light Alankar theme
+import goldRings from '@assets/categories/gold_rings_light.png';
+import goldEarrings from '@assets/categories/gold_earrings_light.png';
+import goldPendants from '@assets/categories/gold_pendants_light.png';
+import goldBangles from '@assets/categories/gold_bangle.png';
+import goldMangalsutra from '@assets/categories/gold_mangalsutra_light.png';
+import goldBracelets from '@assets/categories/gold_bracelet.png';
+import goldNewArrivals from '@assets/categories/newlaunch.png';
 
 const collections = [
     { 

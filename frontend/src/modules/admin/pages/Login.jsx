@@ -249,7 +249,7 @@ const AdminLogin = () => {
                         type="text"
                         value={resetMobile}
                         onChange={(e) => setResetMobile(e.target.value)}
-                        placeholder="+919921128662"
+                        placeholder="+91 8668821446"
                         className="w-full bg-[#FDFBF7] border border-[#EFEBE9] rounded-xl py-4 px-6 text-sm focus:outline-none focus:border-[#8D6E63] focus:ring-4 focus:ring-[#8D6E63]/5 transition-all shadow-inner"
                       />
                     </div>

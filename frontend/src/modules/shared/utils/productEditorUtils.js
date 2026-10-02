@@ -70,7 +70,27 @@ export const getTenGramRate = (formData, metalRates) => {
         return Number(silver10g.silverOther) || fallback;
     }
 
+    if (material === 'diamond' && settingMetal === 'platinum') {
+        return Number(metalRates.platinum10g?.pt950) || Number(metalRates.platinumPerGram || 0) * 10;
+    }
+
     return 0;
+};
+
+export const getPricingConfigurationError = (formData, metalRates) => {
+    const material = normalizeString(formData.material);
+    const settingMetal = normalizeString(formData.settingMetal);
+    const requiresMetalRate = material === 'gold'
+        || material === 'silver'
+        || (material === 'diamond' && ['gold', 'white gold', 'rose gold', 'silver', 'platinum'].includes(settingMetal));
+
+    if (requiresMetalRate && getTenGramRate(formData, metalRates) <= 0) {
+        const purity = formData.material === 'Diamond'
+            ? formData.settingPurity
+            : (formData.goldCategory || formData.silverCategory);
+        return `Pricing configuration required for ${purity || 'this purity'}.`;
+    }
+    return '';
 };
 
 export const getMetalRate = (variant, formData, metalRates) => {

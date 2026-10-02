@@ -1,5 +1,5 @@
 /**
- * PayoutRequest — Sands Jewels Wallet System
+ * PayoutRequest — Alankar Jewellers Wallet System
  *
  * Tracks seller withdrawal requests and their lifecycle.
  *

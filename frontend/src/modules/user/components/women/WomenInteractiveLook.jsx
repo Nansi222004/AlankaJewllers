@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Sparkles, ChevronRight } from 'lucide-react';
+import { ShoppingBag, ChevronRight } from 'lucide-react';
 import { useShop } from '../../../../context/ShopContext';
 import { useAuth } from '../../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';

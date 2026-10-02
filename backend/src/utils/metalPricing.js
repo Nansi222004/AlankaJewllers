@@ -43,6 +43,10 @@ const getTenGramRate = (payload = {}, rates = {}) => {
     return Number(silver10g.silverOther) || Number(rates.silverPerGram || 0) * 10;
   }
 
+  if (material === "diamond" && settingMetal === "platinum") {
+    return Number(rates.platinum10g?.pt950) || Number(rates.platinumPerGram || 0) * 10;
+  }
+
   return 0;
 };
 
@@ -154,6 +158,7 @@ module.exports = {
   applyMetalPricingToProduct,
   computeMetalPrice,
   computeVariantPricing,
+  getTenGramRate,
   getMetalRate,
   getPaymentGatewayChargePercent,
   normalizeChargeBearer

@@ -4,15 +4,15 @@ const settingSchema = new mongoose.Schema(
   {
     storeName: { type: String, default: "Alankar Jewellers" },
     tagline: { type: String, default: "Alankar Jewellers – Where Luxury Meets Identity" },
-    contactEmail: { type: String, default: "support@swarnasparsh.com" },
-    contactPhone: { type: String, default: "+919921128662" },
+    contactEmail: { type: String, default: "swarna.sparsh22@gmail.com" },
+    contactPhone: { type: String, default: "+91 8668821446" },
     address: {
       type: String,
       default: "Alankar Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
     },
-    email: { type: String, default: "support@swarnasparsh.com" },
-    phone: { type: String, default: "+919921128662" },
-    website: { type: String, default: "www.swarnasparsh.com" },
+    email: { type: String, default: "swarna.sparsh22@gmail.com" },
+    phone: { type: String, default: "+91 8668821446" },
+    website: { type: String, default: "https://alankar-jewellers.com/" },
     socialLinks: {
       facebook: { type: String, default: "#" },
       instagram: { type: String, default: "#" },
@@ -212,6 +212,9 @@ const settingSchema = new mongoose.Schema(
       silver10g: {
         sterling925: { type: Number, default: 0 },
         silverOther: { type: Number, default: 0 },
+      },
+      platinum10g: {
+        pt950: { type: Number, default: 0 },
       },
     },
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Image as ImageIcon, Save, ArrowUp, ArrowDown, Sparkles, CheckCircle2, RotateCcw } from 'lucide-react';
+import { Image as ImageIcon, Save, ArrowUp, ArrowDown, CheckCircle2, RotateCcw } from 'lucide-react';
+import AlankaJewelleryMark from '../../../shared/components/AlankaJewelleryMark';
 import toast from 'react-hot-toast';
 import { adminService } from '../../services/adminService';
 import { Input } from '../common/FormControls';
@@ -185,7 +186,7 @@ const ShopBySilverEditor = ({ sectionData, onSave, defaultSection = {} }) => {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-5 border-b border-stone-100 gap-4">
                     <div>
                         <div className="inline-flex items-center gap-2 text-stone-600 text-xs font-bold uppercase tracking-wider mb-1">
-                            <Sparkles className="w-3.5 h-3.5" />
+                            <AlankaJewelleryMark className="w-3.5 h-3.5 text-stone-600" />
                             <span>Silver Collection Integration</span>
                         </div>
                         <h2 className="text-xl font-serif font-bold text-stone-900">

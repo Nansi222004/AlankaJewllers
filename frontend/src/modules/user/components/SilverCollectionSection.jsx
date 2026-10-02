@@ -1,13 +1,17 @@
 import React, { useRef, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
+import ProductCard from './ProductCard';
+import ProductSkeleton from './ProductSkeleton';
 import { useHomepageCms } from '../hooks/useHomepageCms';
+import { usePublicProductsQuery } from '../hooks/usePublicProductsQuery';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 import { handleImageError } from '../../../utils/imageFallbacks';
+import { matchesRequestedMetal } from '../utils/productMetal';
 
-// Import thematic assets & new atelier editorial fallback
-import bannerImg from '@assets/pure_silver_atelier_hero.jpg';
+// Import thematic assets
 import themeInfinity from '@assets/theme_infinity.png';
 import themeKnots from '@assets/theme_knots.png';
 import themeDrops from '@assets/theme_drops.png';
@@ -97,12 +101,31 @@ const SilverCollectionSection = () => {
     const { data: homepageSections = {} } = useHomepageCms();
     const sectionData = homepageSections?.['silver-collection'];
 
-    const bannerData = {
-        image: resolveLegacyCmsAsset(sectionData?.settings?.bannerImage, bannerImg),
-        title: sectionData?.settings?.title || 'Pure Silver Atelier',
-        subtitle: sectionData?.settings?.subtitle || 'Expressions in Sterling Grace',
-        footerText: sectionData?.settings?.footerText || 'Crafted with Devotion'
-    };
+    // Respect CMS active toggle
+    if (sectionData?.isActive === false) return null;
+
+    // Fetch genuine silver products
+    const { data: productsData, isLoading } = usePublicProductsQuery(
+        {
+            metal: 'silver',
+            inStockOnly: true,
+            sort: 'newest',
+            page: 1,
+            limit: 8,
+        },
+        { enabled: true }
+    );
+
+    const rawProducts = productsData?.products || [];
+    const products = useMemo(() => {
+        return rawProducts.filter((product) => matchesRequestedMetal(product, 'silver'));
+    }, [rawProducts]);
+
+    const title = sectionData?.settings?.title || 'Silver Collection';
+    const eyebrow = sectionData?.settings?.eyebrow || 'Sterling Masterpieces';
+    const subtitle =
+        sectionData?.settings?.subtitle ||
+        'Explore our handcrafted 925 sterling silver pieces, designed for timeless grace and everyday luxury.';
 
     const items = useMemo(() => {
         const configured = Array.isArray(sectionData?.items) ? sectionData.items : [];
@@ -138,71 +161,74 @@ const SilverCollectionSection = () => {
     return (
         <section className="w-full bg-brand-pearl py-10 md:py-20 overflow-hidden font-sans border-t border-brand-border/60">
             <div className="max-w-[1440px] mx-auto px-4 md:px-8">
-                {/* ── EDITORIAL ATELIER SHOWCASE BANNER ── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden mb-10 md:mb-16 shadow-xl border border-brand-champagne/25 bg-[#171513] group cursor-pointer"
-                    onClick={() => navigate('/shop?metal=silver')}
-                >
-                    <div className="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[340px] md:min-h-[400px] lg:min-h-[440px]">
-                        {/* 1. Left Visual Area (58–60% on Desktop) */}
-                        <div className="md:col-span-7 relative overflow-hidden h-[240px] sm:h-[300px] md:h-full bg-[#171513]">
-                            <img
-                                src={bannerData.image}
-                                alt={bannerData.title}
-                                loading="lazy"
-                                decoding="async"
-                                onError={(e) => handleImageError(e, bannerImg)}
-                                className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
-                            />
-                            {/* Seamless soft editorial gradient dissolving image into warm charcoal panel */}
-                            <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#171513] via-[#171513]/70 to-transparent hidden md:block pointer-events-none" />
-                            {/* Mobile bottom vignette for comfortable text transition */}
-                            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#171513] to-transparent md:hidden pointer-events-none" />
-                        </div>
-
-                        {/* 2. Right Content Panel (40–42% on Desktop) */}
-                        <div className="md:col-span-5 flex flex-col justify-center px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-14 relative z-10 bg-[#171513] text-left">
-                            {/* Subtle Warm Luxury Ambient Glow */}
-                            <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-brand-champagne/5 blur-3xl pointer-events-none" />
-
-                            {/* Eyebrow */}
-                            <div className="inline-flex items-center gap-2 mb-2 md:mb-3 text-brand-champagne text-[9.5px] md:text-[10.5px] uppercase font-bold tracking-[0.3em]">
-                                <Sparkles className="w-3 h-3 text-brand-champagne" />
-                                <span>Sterling Masterpieces</span>
+                {/* ── SILVER PRODUCTS SHOWCASE (Replacing static atelier banner) ── */}
+                <div className="mb-12 md:mb-16">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-8 text-left">
+                        <div>
+                            <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] md:text-[11px] uppercase font-bold tracking-[0.28em]">
+                                <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                                <span>{eyebrow}</span>
                             </div>
-
-                            {/* Heading */}
-                            <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] text-brand-pearl font-normal tracking-tight leading-[1.18] mb-2 md:mb-3">
-                                {bannerData.title}
-                            </h3>
-
-                            {/* Thin Gold Decorative Line */}
-                            <div className="w-10 h-[1.5px] bg-brand-champagne my-2 md:my-3 rounded-full" />
-
-                            {/* Subtitle / Description */}
-                            <p className="text-stone-300 font-sans text-xs md:text-sm font-light tracking-wide leading-relaxed mb-6 md:mb-8 max-w-[360px]">
-                                {bannerData.subtitle}
+                            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight">
+                                {title}
+                            </h2>
+                            <p className="mt-1 text-xs sm:text-sm text-brand-taupe font-sans max-w-lg">
+                                {subtitle}
                             </p>
+                        </div>
 
-                            {/* Refined Editorial Text-Link CTA */}
-                            <div>
-                                <div className="inline-flex items-center gap-2.5 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-[#E5C378] group/cta relative pb-1">
-                                    <span className="relative">
-                                        {bannerData.footerText}
-                                        <span className="absolute left-0 bottom-0 w-full h-[1px] bg-brand-champagne/60 group-hover/cta:bg-[#DFB750] group-hover/cta:w-[calc(100%+4px)] transition-all duration-300" />
-                                    </span>
-                                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 ease-out group-hover/cta:translate-x-1.5 text-brand-champagne" />
-                                </div>
+                        <Link
+                            to="/shop?metal=silver"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-plum hover:text-brand-champagne transition-colors self-start sm:self-end pb-1 border-b border-brand-plum/30 hover:border-brand-champagne"
+                        >
+                            <span>View All Silver</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                    </div>
+
+                    {isLoading ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                            {Array.from({ length: 4 }).map((_, idx) => (
+                                <ProductSkeleton key={idx} />
+                            ))}
+                        </div>
+                    ) : products.length > 0 ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                            {products.map((product) => (
+                                <ProductCard key={product.id || product._id} product={product} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="relative overflow-hidden rounded-2xl border border-brand-champagne/30 bg-gradient-to-br from-brand-pearl via-white to-brand-porcelain p-8 md:p-12 text-center shadow-sm">
+                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-champagne-mist text-brand-champagne">
+                                <AlankaJewelleryMark className="h-7 w-7 text-brand-champagne" />
+                            </div>
+                            <h3 className="mt-4 font-serif text-xl sm:text-2xl font-medium text-brand-espresso">
+                                Sterling Silver Pieces Coming Soon
+                            </h3>
+                            <p className="mx-auto mt-2 max-w-lg text-xs sm:text-sm leading-relaxed text-brand-taupe">
+                                Explore our complete fine jewellery catalogue while our latest 925 sterling silver designs are being updated.
+                            </p>
+                            <div className="mt-6 flex justify-center">
+                                <Link
+                                    to="/shop?metal=silver"
+                                    className="inline-flex items-center gap-2 bg-brand-plum px-7 py-3 text-xs font-bold uppercase tracking-widest text-brand-champagne-light transition-all duration-300 hover:bg-brand-champagne hover:text-brand-espresso hover:shadow-md"
+                                >
+                                    <span>EXPLORE SILVER</span>
+                                    <ArrowRight className="h-4 w-4" />
+                                </Link>
                             </div>
                         </div>
-                    </div>
-                </motion.div>
+                    )}
+                </div>
 
-                {/* ── THEMATIC CARDS SCROLL ── */}
+                {/* ── THEMATIC CARDS SCROLL (Preserved) ── */}
                 <div className="relative">
+                    <div className="mb-4 text-left">
+                        <span className="text-[10px] uppercase font-bold tracking-[0.24em] text-brand-champagne">
+                            Explore by Theme
+                        </span>
+                    </div>
                     <div
                         ref={scrollRef}
                         onScroll={handleScroll}

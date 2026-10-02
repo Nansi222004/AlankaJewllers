@@ -30,9 +30,9 @@ const CategoryPage = () => {
         fetchCategories();
     }, []);
 
-    const handleSyncSwarnaSparsh = async () => {
+    const handleSyncCatalog = async () => {
         setIsSyncing(true);
-        const toastId = toast.loading("Syncing categories & products from SwarnaSparsh.com...");
+        const toastId = toast.loading("Syncing categories & products from catalog...");
         try {
             const res = await adminService.syncExternalCatalog();
             if (res.success) {
@@ -204,9 +204,9 @@ const CategoryPage = () => {
                 subtitle="Manage shared categories across all collections."
                 actions={[
                     {
-                        label: isSyncing ? "Syncing..." : "Sync from SwarnaSparsh.com",
+                        label: isSyncing ? "Syncing..." : "Sync Catalog",
                         icon: <RefreshCw className={`w-4 h-4 ${isSyncing ? "animate-spin" : ""}`} />,
-                        onClick: handleSyncSwarnaSparsh,
+                        onClick: handleSyncCatalog,
                         disabled: isSyncing,
                         className: "border border-[#C59B27] text-[#8C6A12] bg-[#FAF8F5] hover:bg-[#C59B27] hover:text-white px-3.5 md:px-4 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 disabled:opacity-50"
                     },

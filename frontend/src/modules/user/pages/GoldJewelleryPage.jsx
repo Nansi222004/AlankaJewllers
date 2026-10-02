@@ -19,7 +19,6 @@ import PromoSlider from "../components/PromoSlider";
 import GoldRingCarousel from "../components/GoldRingCarousel";
 import GoldTestimonials from "../components/GoldTestimonials";
 import CuratedForEveryBond from "../components/CuratedForEveryBond";
-import GoldCuratedShowcase from "../components/GoldCuratedShowcase";
 import GoldExclusiveLaunch from "../components/GoldExclusiveLaunch";
 import GoldLuxuryWithinReach from "../components/GoldLuxuryWithinReach";
 import GoldDirectProducts from "../components/GoldDirectProducts";
@@ -199,7 +198,6 @@ const GoldJewelleryPage = () => {
         metal="gold"
         sectionData={sectionMap["gold-new-launch-banner"]}
       />
-      <HeerCustomisationBanner />
       <GoldExploreCollections
         sectionData={sectionMap["gold-explore-collections"]}
       />
@@ -252,9 +250,8 @@ const GoldJewelleryPage = () => {
       />
       <GoldTestimonials sectionData={sectionMap["gold-testimonials"]} />
       <CuratedForEveryBond sectionData={sectionMap["gold-curated-bond"]} />
-      <GoldCuratedShowcase sectionData={sectionMap["gold-curated-showcase"]} />
+      <GoldDirectProducts sectionData={sectionMap["gold-products-listing"] || sectionMap["gold-curated-showcase"]} />
       <GoldTrustStrip />
-      <GoldDirectProducts sectionData={sectionMap["gold-products-listing"]} />
     </div>
   );
 };

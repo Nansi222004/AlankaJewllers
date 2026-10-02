@@ -1,5 +1,5 @@
 /**
- * 💰 Commission Model — Sands Jewels
+ * 💰 Commission Model — Alankar Jewellers
  *
  * Immutable ledger of platform commission charged to sellers.
  *

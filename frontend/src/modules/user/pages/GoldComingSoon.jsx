@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, Star, Heart } from 'lucide-react';
+import { ArrowRight, Star, Heart } from 'lucide-react';
+import AlankaJewelleryMark from '../components/AlankaJewelleryMark';
 import { Link } from 'react-router-dom';
 
 const GoldComingSoon = () => {
@@ -27,7 +28,7 @@ const GoldComingSoon = () => {
                                 transition={{ duration: 4, repeat: Infinity }}
                                 className="absolute -top-4 -right-4 text-[#D4AF37]"
                             >
-                                <Sparkles size={32} />
+                                <AlankaJewelleryMark size={32} className="text-[#D4AF37]" />
                             </motion.div>
                         </div>
                     </motion.div>
@@ -65,7 +66,7 @@ const GoldComingSoon = () => {
                         {[
                             { icon: Star, text: "Bespoke Craftsmanship" },
                             { icon: Heart, text: "Hallmarked Purity" },
-                            { icon: Sparkles, text: "Exclusive Designs" }
+                            { icon: AlankaJewelleryMark, text: "Exclusive Designs" }
                         ].map((item, idx) => (
                             <div key={idx} className="bg-white/50 backdrop-blur-sm border border-[#D4AF37]/20 p-6 rounded-2xl flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
                                 <item.icon className="text-[#D4AF37] w-6 h-6" />

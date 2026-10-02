@@ -14,6 +14,9 @@ const INITIAL_RATES = {
   silver10g: {
     sterling925: 0,
     silverOther: 0
+  },
+  platinum10g: {
+    pt950: 0
   }
 };
 
@@ -29,6 +32,9 @@ const normalizeRatesFromApi = (rates = {}) => ({
   silver10g: {
     sterling925: Number(rates.silver10g?.sterling925) || 0,
     silverOther: Number(rates.silver10g?.silverOther) || 0
+  },
+  platinum10g: {
+    pt950: Number(rates.platinum10g?.pt950) || 0
   }
 });
 
@@ -68,7 +74,8 @@ const MetalPricing = () => {
   const handleSave = async () => {
     const allRates = [
       ...Object.values(metalRates.gold10g || {}),
-      ...Object.values(metalRates.silver10g || {})
+      ...Object.values(metalRates.silver10g || {}),
+      ...Object.values(metalRates.platinum10g || {})
     ];
     if (allRates.some((value) => Number(value) < 0)) {
       toast.error('Metal rates cannot be negative');
@@ -87,6 +94,9 @@ const MetalPricing = () => {
         silver10g: {
           sterling925: Number(metalRates.silver10g?.sterling925) || 0,
           silverOther: Number(metalRates.silver10g?.silverOther) || 0
+        },
+        platinum10g: {
+          pt950: Number(metalRates.platinum10g?.pt950) || 0
         }
       }
     };
@@ -121,7 +131,7 @@ const MetalPricing = () => {
 
   return (
     <div className="max-w-[1100px] mx-auto space-y-6 pb-20">
-      <PageHeader title="Metal Pricing" subtitle="Update admin gold and silver rates for admin-owned products only" />
+      <PageHeader title="Metal Pricing" subtitle="Update admin Gold, Silver and Platinum rates using client-provided values" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {cards.map((card) => (
@@ -141,7 +151,7 @@ const MetalPricing = () => {
           Configure store metal pricing per 10 grams. These centralized rates apply across the entire Alankar Jewellers catalog. Global GST is managed separately in Tax Settings, and final product prices include making charges, GST, and payment gateway charge configuration.
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="space-y-4">
             <h3 className="text-sm font-medium text-gray-800  tracking-wide">Gold Rates (Per 10g)</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -223,6 +233,22 @@ const MetalPricing = () => {
                 />
                 <p className="text-[11px] text-gray-500">Per gram: {formatCurrency(toPerGram(metalRates.silver10g?.silverOther))}</p>
               </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-sm font-medium text-gray-800 tracking-wide">Platinum Rates (Per 10g)</h3>
+            <div className="space-y-2">
+              <label className="text-[10px] font-medium text-gray-400 tracking-wide">Platinum 950</label>
+              <input
+                type="number"
+                value={metalRates.platinum10g?.pt950}
+                onChange={(e) => updateRate('platinum10g', 'pt950', e.target.value)}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl py-2 px-4 text-sm font-medium text-gray-800 focus:outline-none focus:border-[#3E2723]/40"
+                placeholder="0"
+                disabled={loading}
+              />
+              <p className="text-[11px] text-gray-500">Per gram: {formatCurrency(toPerGram(metalRates.platinum10g?.pt950))}</p>
             </div>
           </div>
         </div>

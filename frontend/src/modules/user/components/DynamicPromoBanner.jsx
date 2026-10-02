@@ -1,7 +1,8 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 import { useHomepageCms } from '../hooks/useHomepageCms';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 import { IMAGE_FALLBACKS, handleImageError } from '../../../utils/imageFallbacks';
@@ -62,7 +63,7 @@ const DynamicPromoBanner = () => {
                         {/* Eyebrow & Brand Tag */}
                         <div className="space-y-4">
                             <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-brand-champagne/10 border border-brand-champagne/30 text-brand-champagne-light text-[10px] uppercase font-bold tracking-[0.25em]">
-                                <Sparkles className="w-3 h-3 text-brand-champagne" />
+                                <AlankaJewelleryMark className="w-3 h-3 text-brand-champagne" />
                                 <span>{banner.tag || 'Alankar Jewellers Atelier'}</span>
                             </div>
 

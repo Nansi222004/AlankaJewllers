@@ -65,14 +65,12 @@ import categoryMensilver from '@assets/categories/mensilver.png';
 import categorySets from '@assets/categories/sets.png';
 import categoryAnklets from '@assets/categories/anklets.png';
 import categorySilverchains from '@assets/categories/silverchains.png';
-import goldRingsGreen from '@assets/categories/gold_rings_green.png';
-import goldEarringsGreen from '@assets/categories/gold_earrings_green.png';
-import goldPendantsGreen from '@assets/categories/gold_pendants_green.png';
-import goldBraceletsGreen from '@assets/categories/gold_bracelets_green.png';
-import goldBanglesGreen from '@assets/categories/gold_bangles_green.png';
-import goldMangalsutraGreen from '@assets/categories/gold_mangalsutra_green.png';
-import goldSetsGreen from '@assets/categories/gold_sets_green.png';
-import goldNewArrivalsGreen from '@assets/categories/gold_new_arrivals_green.png';
+import goldRingsLight from '@assets/categories/gold_rings_light.png';
+import goldEarringsLight from '@assets/categories/gold_earrings_light.png';
+import goldPendantsLight from '@assets/categories/gold_pendants_light.png';
+import goldBracelet from '@assets/categories/gold_bracelet.png';
+import goldBangle from '@assets/categories/gold_bangle.png';
+import goldMangalsutraLight from '@assets/categories/gold_mangalsutra_light.png';
 import diamondRingImg from '@assets/diamond_ring.png';
 import catWeddingDiamondImg from '@assets/cat_wedding_diamond.png';
 import catWeddingChokerImg from '@assets/cat_wedding_choker.png';
@@ -147,6 +145,7 @@ import goldMinimalistic from '@assets/gold_lifestyle/gold_minimalistic.png';
 import goldTwinning from '@assets/gold_lifestyle/gold_twinning.png';
 import goldDateNights from '@assets/gold_lifestyle/gold_date_nights.png';
 import goldBridesmaid from '@assets/gold_lifestyle/gold_bridesmaid.jpg';
+import goldStatement50k from '@assets/gold_lifestyle/gold_statement_50k.jpg';
 import goldColorWhite from '@assets/gold_color_white.png';
 import goldColorRose from '@assets/gold_color_rose.png';
 import goldColorYellow from '@assets/gold_color_yellow.png';
@@ -157,6 +156,7 @@ const legacyAssetMap = {
   'gold_gift_card.png': goldGiftCard,
   'gold_traditional.png': goldTraditional,
   'gold_minimalistic.png': goldMinimalistic,
+  'gold_statement_50k.jpg': goldStatement50k,
   'gold_twinning.png': goldTwinning,
   'gold_date_nights.png': goldDateNights,
   'gold_bridesmaid.jpg': goldBridesmaid,
@@ -309,14 +309,14 @@ const legacyAssetMap = {
   'Bangles.png': womenCategoryBangles,
   'Sets.png': womenCategorySets,
   'Personalised.png': womenCategoryPersonalised,
-  'gold_rings_green.png': goldRingsGreen,
-  'gold_earrings_green.png': goldEarringsGreen,
-  'gold_pendants_green.png': goldPendantsGreen,
-  'gold_bracelets_green.png': goldBraceletsGreen,
-  'gold_bangles_green.png': goldBanglesGreen,
-  'gold_mangalsutra_green.png': goldMangalsutraGreen,
-  'gold_sets_green.png': goldSetsGreen,
-  'gold_new_arrivals_green.png': goldNewArrivalsGreen,
+  'gold_rings_green.png': goldRingsLight,
+  'gold_earrings_green.png': goldEarringsLight,
+  'gold_pendants_green.png': goldPendantsLight,
+  'gold_bracelets_green.png': goldBracelet,
+  'gold_bangles_green.png': goldBangle,
+  'gold_mangalsutra_green.png': goldMangalsutraLight,
+  'gold_sets_green.png': categorySets,
+  'gold_new_arrivals_green.png': categoryNewlaunch,
   'diamond_ring.png': diamondRingImg,
   'cat_wedding_diamond.png': catWeddingDiamondImg,
   'cat_wedding_choker.png': catWeddingChokerImg,

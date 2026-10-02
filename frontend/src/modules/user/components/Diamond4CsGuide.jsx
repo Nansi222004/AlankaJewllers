@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    Sparkles,
     CheckCircle2,
     Award,
     Info,
@@ -13,9 +12,9 @@ import {
     ShieldCheck,
     ZoomIn,
     Compass,
-    SlidersHorizontal,
-    Sparkle
+    SlidersHorizontal
 } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 
 import roundDiamondImg from '@assets/diamonds/round.png';
 
@@ -319,7 +318,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                             Light Reflection & Refraction Simulator
                                         </span>
                                         <span className="text-[11px] text-brand-champagne font-semibold flex items-center gap-1 font-sans">
-                                            <Sparkles className="w-3.5 h-3.5" /> Interactive
+                                            <AlankaJewelleryMark className="w-3.5 h-3.5" /> Interactive
                                         </span>
                                     </div>
 
@@ -440,7 +439,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                             Diamond Body Tint Comparison
                                         </span>
                                         <span className="text-[11px] text-brand-champagne font-semibold flex items-center gap-1 font-sans">
-                                            <Sparkles className="w-3.5 h-3.5" /> GIA Standard
+                                            <AlankaJewelleryMark className="w-3.5 h-3.5" /> GIA Standard
                                         </span>
                                     </div>
 

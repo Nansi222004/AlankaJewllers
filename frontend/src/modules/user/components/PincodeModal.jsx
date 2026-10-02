@@ -1,30 +1,58 @@
-import React, { useState } from 'react';
-import { X, MapPin, Search, Navigation, AlertCircle, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, MapPin, Navigation, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useShop } from '../../../context/ShopContext';
 import toast from 'react-hot-toast';
 
 const PincodeModal = () => {
-    const { isPincodeModalOpen, setIsPincodeModalOpen, pincode: currentPincode, updatePincode } = useShop();
+    const { 
+        isPincodeModalOpen, 
+        setIsPincodeModalOpen, 
+        pincode: currentPincode, 
+        checkPincodeServiceability,
+        pincodeLoading 
+    } = useShop();
+
     const [tempPincode, setTempPincode] = useState(currentPincode || '');
-    const [isValidating, setIsValidating] = useState(false);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (isPincodeModalOpen) {
+            setTempPincode(currentPincode || '');
+            setError('');
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = 'unset';
+            };
+        }
+    }, [isPincodeModalOpen, currentPincode]);
 
     if (!isPincodeModalOpen) return null;
 
-    const handleApply = async () => {
-        if (tempPincode.length !== 6 || !/^\d+$/.test(tempPincode)) {
-            toast.error("Please enter a valid 6-digit pincode");
+    const handleApply = async (overridePin) => {
+        const pinToCheck = String(overridePin || tempPincode || '').trim();
+        if (pinToCheck.length !== 6 || !/^\d+$/.test(pinToCheck)) {
+            const msg = "Please enter a valid 6-digit pincode";
+            setError(msg);
+            toast.error(msg);
             return;
         }
 
-        setIsValidating(true);
-        // Simulate API check for serviceability
-        setTimeout(() => {
-            updatePincode(tempPincode);
-            setIsValidating(false);
+        if (overridePin) {
+            setTempPincode(overridePin);
+        }
+        setError('');
+
+        const res = await checkPincodeServiceability(pinToCheck);
+        if (res?.serviceable) {
             setIsPincodeModalOpen(false);
-            toast.success(`Delivery pincode updated to ${tempPincode}`);
-        }, 800);
+            const locationInfo = res.city ? `${res.city.split('/')[0].trim()}, ${res.state}` : (res.state || pinToCheck);
+            toast.success(`Delivery pincode updated to ${pinToCheck} (${locationInfo})`);
+        } else {
+            const failureMsg = res?.reason || "Pincode is currently not serviceable for delivery";
+            setError(failureMsg);
+            toast.error(failureMsg);
+        }
     };
 
     const handleUseCurrentLocation = () => {
@@ -107,22 +135,40 @@ const PincodeModal = () => {
                                         type="text"
                                         maxLength={6}
                                         value={tempPincode}
-                                        onChange={(e) => setTempPincode(e.target.value.replace(/\D/g, ''))}
-                                        className="w-full bg-stone-50 border-2 border-stone-200 rounded-2xl py-4 px-6 text-lg font-bold tracking-widest text-brand-espresso focus:outline-none focus:border-brand-champagne focus:bg-white transition-all"
+                                        disabled={pincodeLoading}
+                                        onChange={(e) => {
+                                            setTempPincode(e.target.value.replace(/\D/g, ''));
+                                            if (error) setError('');
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault();
+                                                if (tempPincode.length === 6 && !pincodeLoading) {
+                                                    handleApply();
+                                                }
+                                            }
+                                        }}
+                                        className="w-full bg-stone-50 border-2 border-stone-200 rounded-2xl py-4 px-6 text-lg font-bold tracking-widest text-brand-espresso focus:outline-none focus:border-brand-champagne focus:bg-white transition-all disabled:opacity-60"
                                         placeholder="000000"
                                     />
                                     <button 
-                                        onClick={handleApply}
-                                        disabled={tempPincode.length !== 6 || isValidating}
+                                        onClick={() => handleApply()}
+                                        disabled={tempPincode.length !== 6 || pincodeLoading}
                                         className={`absolute right-2 top-2 bottom-2 px-6 rounded-xl font-bold text-xs uppercase tracking-widest transition-all ${
-                                            tempPincode.length === 6 && !isValidating
-                                            ? 'bg-brand-plum text-brand-champagne-light border border-brand-champagne/50 shadow-md hover:bg-brand-plum active:translate-y-0'
+                                            tempPincode.length === 6 && !pincodeLoading
+                                            ? 'bg-brand-plum text-brand-champagne-light border border-brand-champagne/50 shadow-md hover:bg-brand-plum active:translate-y-0 cursor-pointer'
                                             : 'bg-stone-200 text-stone-400 cursor-not-allowed'
                                         }`}
                                     >
-                                        {isValidating ? 'Checking...' : 'Apply'}
+                                        {pincodeLoading ? 'Checking...' : 'Apply'}
                                     </button>
                                 </div>
+                                {error && (
+                                    <div className="flex items-center gap-1.5 mt-2 text-rose-600 text-xs font-medium">
+                                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                                        <span>{error}</span>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Divider */}
@@ -135,7 +181,8 @@ const PincodeModal = () => {
                             {/* Use Current Location */}
                             <button
                                 onClick={handleUseCurrentLocation}
-                                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl border border-brand-champagne/40 text-brand-espresso bg-amber-500/5 font-bold hover:bg-brand-champagne/10 transition-all active:scale-95"
+                                disabled={pincodeLoading}
+                                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl border border-brand-champagne/40 text-brand-espresso bg-amber-500/5 font-bold hover:bg-brand-champagne/10 transition-all active:scale-95 disabled:opacity-50"
                             >
                                 <Navigation className="w-4 h-4 text-brand-champagne" />
                                 <span className="text-sm font-semibold tracking-wide">Use Current Location</span>
@@ -148,13 +195,9 @@ const PincodeModal = () => {
                                     {popularCities.map(city => (
                                         <button
                                             key={city.code}
-                                            onClick={() => {
-                                                setTempPincode(city.code);
-                                                updatePincode(city.code);
-                                                setIsPincodeModalOpen(false);
-                                                toast.success(`Welcome to ${city.name}!`);
-                                            }}
-                                            className="px-3 py-2 rounded-xl border border-stone-200 text-[11px] font-semibold text-stone-700 hover:border-brand-champagne hover:text-brand-champagne hover:bg-amber-50/50 transition-all text-center"
+                                            disabled={pincodeLoading}
+                                            onClick={() => handleApply(city.code)}
+                                            className="px-3 py-2 rounded-xl border border-stone-200 text-[11px] font-semibold text-stone-700 hover:border-brand-champagne hover:text-brand-champagne hover:bg-amber-50/50 transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             {city.name}
                                         </button>
@@ -166,7 +209,7 @@ const PincodeModal = () => {
                     
                     {/* Footer Warning */}
                     <div className="px-8 py-5 bg-stone-50 border-t border-stone-100 flex items-center gap-3">
-                        <AlertCircle className="w-4 h-4 text-brand-champagne" />
+                        <AlertCircle className="w-4 h-4 text-brand-champagne shrink-0" />
                         <p className="text-[10px] text-stone-500 font-medium">Delivery times and availability may vary based on your selected location.</p>
                     </div>
                 </motion.div>

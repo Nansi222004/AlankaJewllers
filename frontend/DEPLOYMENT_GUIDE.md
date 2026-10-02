@@ -1,6 +1,6 @@
-# How to Deploy Sands Jewels
+# How to Deploy Alankar Jewellers
 
-Since Sands Jewels is a **Single Page Application (SPA)** built with React and Vite, deploying it is very easy. The User implementation (`/`) and Admin Dashboard (`/admin`) are part of the same project, so you only need to deploy this one codebase, and both will work automatically.
+Since Alankar Jewellers is a **Single Page Application (SPA)** built with React and Vite, deploying it is very easy. The User implementation (`/`) and Admin Dashboard (`/admin`) are part of the same project, so you only need to deploy this one codebase, and both will work automatically.
 
 I have already added two configuration files to your project to make this smooth:
 

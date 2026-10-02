@@ -27,6 +27,9 @@ const pickPreferredSilverTenGram = (silver10g = {}) =>
   ?? normalizeRateValue(silver10g.sterling925)
   ?? 0;
 
+const pickPreferredPlatinumTenGram = (platinum10g = {}) =>
+  normalizeRateValue(platinum10g.pt950) ?? 0;
+
 const normalizeMetalRates = (incoming = {}, existing = {}) => {
   const normalized = {};
 
@@ -50,6 +53,9 @@ const normalizeMetalRates = (incoming = {}, existing = {}) => {
   const silver10g = normalizeTenGramRates(incoming.silver10g, existing.silver10g, silverPerGram, [
     "sterling925", "silverOther"
   ]);
+  const platinum10g = normalizeTenGramRates(incoming.platinum10g, existing.platinum10g, 0, [
+    "pt950"
+  ]);
 
   if (goldPerGram === undefined || incoming.gold10g) {
     goldPerGram = pickPreferredGoldTenGram(gold10g) / 10;
@@ -64,6 +70,8 @@ const normalizeMetalRates = (incoming = {}, existing = {}) => {
   normalized.silverPerMilligram = normalized.silverPerGram / 1000;
   normalized.gold10g = gold10g;
   normalized.silver10g = silver10g;
+  normalized.platinum10g = platinum10g;
+  normalized.platinumPerGram = pickPreferredPlatinumTenGram(platinum10g) / 10;
 
   return normalized;
 };
@@ -75,7 +83,8 @@ const hasNegativeRate = (rates = {}) => {
     rates.silverPerGram,
     rates.silverPerMilligram,
     ...(rates.gold10g ? Object.values(rates.gold10g) : []),
-    ...(rates.silver10g ? Object.values(rates.silver10g) : [])
+    ...(rates.silver10g ? Object.values(rates.silver10g) : []),
+    ...(rates.platinum10g ? Object.values(rates.platinum10g) : [])
   ];
 
   return flatValues.some((value) => Number(value) < 0);

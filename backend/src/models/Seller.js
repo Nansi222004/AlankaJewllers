@@ -55,6 +55,9 @@ const sellerSchema = new mongoose.Schema({
     silver10g: {
       sterling925: { type: Number, default: 0 },
       silverOther: { type: Number, default: 0 }
+    },
+    platinum10g: {
+      pt950: { type: Number, default: 0 }
     }
   },
   termsAcceptedAt: { type: Date },

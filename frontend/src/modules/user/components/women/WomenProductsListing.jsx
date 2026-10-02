@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Sparkles, Star } from 'lucide-react';
+import { Heart, Star } from 'lucide-react';
+import AlankaJewelleryMark from '../AlankaJewelleryMark';
 import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../../../../context/ShopContext';
 import { useAuth } from '../../../../context/AuthContext';
@@ -194,7 +195,7 @@ const WomenProductsListing = ({ sectionData = null }) => {
                         transition={{ duration: 0.6 }}
                         className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4 border border-brand-champagne/40 bg-brand-champagne/10"
                     >
-                        <Sparkles className="w-3.5 h-3.5 text-brand-champagne" />
+                        <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <span className="text-xs font-black uppercase tracking-widest text-brand-champagne">For Her</span>
                     </motion.div>
                     <motion.h2

@@ -89,8 +89,8 @@ const Home = () => {
 
             {/* ── ABOVE FOLD: loaded eagerly (visible immediately) ── */}
             <PromoSlider />
-            {!isSilverCollection && <CategoryGrid />}
-            {!isSilverCollection && <NewLaunchSection />}
+            <CategoryGrid />
+            <NewLaunchSection />
             <SilverCollectionGrid />
             {isSilverCollection && <CollectionNewLaunch metal="silver" />}
             <DynamicPromoBanner />

@@ -8,7 +8,7 @@ const Page = require("../src/models/Page");
 const sellerPrivacyContent = `
 <h2>Merchant Privacy Policy</h2>
 <p>Last updated: June 17, 2026</p>
-<p>Sands Jewels ("we", "us", or "our") operates the Sands Jewels Merchant platform. We are committed to protecting the privacy of our sellers and merchants. This Privacy Policy describes how we collect, use, and share information about you when you register and use our seller services.</p>
+<p>Alankar Jewellers ("we", "us", or "our") operates the Alankar Jewellers Merchant platform. We are committed to protecting the privacy of our sellers and merchants. This Privacy Policy describes how we collect, use, and share information about you when you register and use our seller services.</p>
 
 <h3>1. Information We Collect</h3>
 <p>When you register as a merchant on our platform, we collect information necessary to establish and manage your business profile, process commissions, and handle payouts:</p>
@@ -41,7 +41,7 @@ const sellerPrivacyContent = `
 <p>You can update your profile, contact information, and banking details directly through the Seller Dashboard profile settings. For account deletion requests or further queries, contact merchant support.</p>
 
 <h3>6. Contact Us</h3>
-<p>If you have any questions about this Merchant Privacy Policy, please contact our merchant support team at <strong>support@swarnasparsh.com</strong> or call us at <strong>+919921128662</strong>.</p>
+<p>If you have any questions about this Merchant Privacy Policy, please contact our merchant support team at <strong>swarna.sparsh22@gmail.com</strong> or call us at <strong>+91 8668821446</strong>.</p>
 `;
 
 const seed = async () => {

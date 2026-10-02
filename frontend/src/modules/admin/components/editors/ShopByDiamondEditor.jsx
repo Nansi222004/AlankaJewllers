@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Image as ImageIcon, Save, ArrowUp, ArrowDown, Sparkles, CheckCircle2, RotateCcw, Gem } from 'lucide-react';
+import { Image as ImageIcon, Save, ArrowUp, ArrowDown, CheckCircle2, RotateCcw, Gem } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { adminService } from '../../services/adminService';
 import { Input } from '../common/FormControls';

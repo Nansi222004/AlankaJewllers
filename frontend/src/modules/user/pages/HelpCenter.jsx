@@ -134,15 +134,15 @@ const HelpCenter = () => {
     const [faqs, setFaqs] = useState(DEFAULT_FAQS);
     const [isLoadingFaqs, setIsLoadingFaqs] = useState(true);
     const [contactDetails, setContactDetails] = useState({
-        phone: settings?.phone || '+919921128662',
-        email: settings?.email || 'support@swarnasparsh.com'
+        phone: settings?.phone || '+91 8668821446',
+        email: settings?.email || 'swarna.sparsh22@gmail.com'
     });
 
     useEffect(() => {
         if (settings?.phone || settings?.email) {
             setContactDetails({
-                phone: settings?.phone || '+919921128662',
-                email: settings?.email || 'support@swarnasparsh.com'
+                phone: settings?.phone || '+91 8668821446',
+                email: settings?.email || 'swarna.sparsh22@gmail.com'
             });
         }
     }, [settings]);
@@ -165,8 +165,8 @@ const HelpCenter = () => {
 
                 if (isMounted && settingsRes?.data) {
                     const s = settingsRes.data?.data?.settings || settingsRes.data?.settings || settingsRes.data;
-                    const phone = s?.contactPhone || s?.phone || settings?.phone || '+919921128662';
-                    const email = s?.contactEmail || s?.email || settings?.email || 'support@swarnasparsh.com';
+                    const phone = s?.contactPhone || s?.phone || settings?.phone || '+91 8668821446';
+                    const email = s?.contactEmail || s?.email || settings?.email || 'swarna.sparsh22@gmail.com';
                     setContactDetails({ phone, email });
                 }
             } catch (err) {

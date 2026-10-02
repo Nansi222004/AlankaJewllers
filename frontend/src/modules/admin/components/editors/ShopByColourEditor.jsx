@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Image as ImageIcon, Save, ArrowUp, ArrowDown, Sparkles, CheckCircle2, RotateCcw } from 'lucide-react';
+import { Image as ImageIcon, Save, ArrowUp, ArrowDown, CheckCircle2, RotateCcw } from 'lucide-react';
+import AlankaJewelleryMark from '../../../shared/components/AlankaJewelleryMark';
 import toast from 'react-hot-toast';
 import { adminService } from '../../services/adminService';
 import { Input } from '../common/FormControls';
@@ -179,7 +180,7 @@ const ShopByColourEditor = ({ sectionData, onSave, defaultSection = {} }) => {
             <div className="px-6 md:px-8 py-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
                     <div className="inline-flex items-center gap-2 mb-1 text-[#C59B27] text-xs font-bold uppercase tracking-widest">
-                        <Sparkles size={14} />
+                        <AlankaJewelleryMark size={14} className="text-[#C59B27]" />
                         <span>Gold Collection Integration</span>
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold text-[#3E2723]">Shop by Colour (Gold Tone Panel)</h3>

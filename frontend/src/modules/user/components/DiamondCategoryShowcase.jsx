@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ChevronRight, Gem } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
+import { ChevronRight, Gem } from 'lucide-react';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
 import ringsImg from '@assets/categories/rings.png';
@@ -81,7 +82,7 @@ const DiamondCategoryShowcase = ({ sectionData }) => {
                                     className="max-h-[85%] max-w-[85%] object-contain transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 border border-stone-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-xs">
-                                    <Sparkles className="w-3 h-3 text-brand-champagne" />
+                                    <AlankaJewelleryMark className="w-3 h-3 text-brand-champagne" />
                                 </div>
                             </div>
 

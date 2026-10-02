@@ -3,15 +3,15 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
-import ringGreen from '@assets/categories/gold_rings_green.png';
+import ringLight from '@assets/categories/gold_rings_light.png';
 
 const fallbackRingTypes = [
-    { id: 1, name: 'Solitaire Ring', image: ringGreen, path: '/shop?category=Rings&search=solitaire' },
-    { id: 2, name: 'Promise Ring', image: ringGreen, path: '/shop?category=Rings&search=promise' },
-    { id: 3, name: '9kt Ring', image: ringGreen, path: '/shop?category=Rings&search=9kt' },
-    { id: 4, name: 'Vanki Ring', image: ringGreen, path: '/shop?category=Rings&search=vanki' },
-    { id: 5, name: 'Rose Gold Ring', image: ringGreen, path: '/shop?category=Rings&search=rose-gold' },
-    { id: 6, name: 'Classic Ring', image: ringGreen, path: '/shop?category=Rings&search=classic' },
+    { id: 1, name: 'Solitaire Ring', image: ringLight, path: '/shop?category=Rings&search=solitaire' },
+    { id: 2, name: 'Promise Ring', image: ringLight, path: '/shop?category=Rings&search=promise' },
+    { id: 3, name: '9kt Ring', image: ringLight, path: '/shop?category=Rings&search=9kt' },
+    { id: 4, name: 'Vanki Ring', image: ringLight, path: '/shop?category=Rings&search=vanki' },
+    { id: 5, name: 'Rose Gold Ring', image: ringLight, path: '/shop?category=Rings&search=rose-gold' },
+    { id: 6, name: 'Classic Ring', image: ringLight, path: '/shop?category=Rings&search=classic' },
 ];
 
 const ensureGoldPath = (rawPath = '', categoryId = '') => {
@@ -74,44 +74,46 @@ const GoldRingCarousel = ({ sectionData = null }) => {
     };
 
     return (
-        <section className="w-full py-12 bg-white">
-            <div className="max-w-[1450px] mx-auto px-6">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-serif text-[#142E1F] italic mb-4">
+        <section className="w-full py-8 md:py-14 bg-brand-pearl/50 border-b border-brand-border-soft/60">
+            <div className="max-w-[1450px] mx-auto px-4 md:px-6">
+                <div className="text-center mb-8 md:mb-10">
+                    <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] text-brand-champagne mb-1.5 block">
+                        Signature Silhouettes
+                    </span>
+                    <h2 className="text-2xl md:text-4xl font-serif text-brand-espresso font-normal tracking-tight">
                         {title}
                     </h2>
-                    <div className="h-[1px] w-24 bg-[#D4B390] mx-auto opacity-50" />
+                    <div className="h-px w-16 bg-brand-champagne/40 mx-auto mt-3" />
                 </div>
 
                 <div 
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex overflow-x-auto scrollbar-hide gap-4 md:gap-6 pb-6 snap-x snap-mandatory scroll-smooth px-1"
+                    className="flex overflow-x-auto scrollbar-hide gap-3.5 md:gap-5 pb-5 snap-x snap-mandatory scroll-smooth px-1"
                 >
                     {ringTypes.map((type) => (
                         <motion.div
                             key={type.id}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.4 }}
                             onClick={() => navigate(type.path)}
-                            className="flex-shrink-0 w-[140px] md:w-[180px] lg:w-[200px] snap-start bg-white border border-gray-100 rounded-lg overflow-hidden group cursor-pointer shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col h-full p-3"
+                            className="flex-shrink-0 w-[140px] md:w-[180px] lg:w-[205px] snap-start bg-white border border-brand-border rounded-2xl overflow-hidden group cursor-pointer shadow-xs hover:shadow-md transition-all duration-300 flex flex-col h-full p-2.5 sm:p-3"
                         >
                             {/* Image Container - Square and clean */}
-                            <div className="relative w-full aspect-square overflow-hidden bg-[#F8F8F8] rounded-md">
+                            <div className="relative w-full aspect-square overflow-hidden bg-brand-porcelain rounded-xl border border-brand-border-soft">
                                 <img
                                     src={type.image}
                                     alt={type.name}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                 />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
                             </div>
 
-                            {/* Button Style Label - Centered and padded */}
-                            <div className="mt-4 mb-1 px-2">
-                                <div className="w-full py-2.5 bg-[#142E1F] text-center rounded-sm transition-all duration-300 group-hover:bg-[#1A3D29] group-hover:shadow-md">
-                                    <span className="text-[10px] md:text-[11px] font-bold text-white uppercase tracking-[0.15em]">
+                            {/* Button Style Label - Light Understated Luxury */}
+                            <div className="mt-3 mb-1 px-1">
+                                <div className="w-full py-2.5 px-2 bg-brand-pearl group-hover:bg-brand-rosewater/40 border border-brand-border group-hover:border-brand-champagne/60 text-center rounded-xl transition-all duration-300 shadow-2xs">
+                                    <span className="text-[10px] md:text-[11px] font-semibold text-brand-plum group-hover:text-brand-espresso uppercase tracking-[0.14em]">
                                         {type.name}
                                     </span>
                                 </div>
@@ -122,15 +124,15 @@ const GoldRingCarousel = ({ sectionData = null }) => {
 
                 {/* Carousel Dots */}
                 {ringTypes.length > 1 && (
-                    <div className="flex justify-center items-center gap-2 pb-6 mt-2">
+                    <div className="flex justify-center items-center gap-2 pt-2 md:pt-4">
                         {ringTypes.map((_, idx) => (
                             <button
                                 key={idx}
                                 onClick={() => scrollToDot(idx)}
                                 className={`transition-all duration-300 rounded-full ${
                                     activeIndex === idx 
-                                        ? "w-6 h-1.5 bg-[#142E1F]" 
-                                        : "w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400"
+                                        ? "w-6 h-1.5 bg-brand-champagne" 
+                                        : "w-1.5 h-1.5 bg-brand-border hover:bg-brand-taupe"
                                 }`}
                                 aria-label={`Go to item ${idx + 1}`}
                             />
@@ -140,10 +142,10 @@ const GoldRingCarousel = ({ sectionData = null }) => {
 
                 <div className="mt-8 flex justify-center">
                     <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                         onClick={() => navigate(ctaPath)}
-                        className="bg-[#142E1F] text-white font-bold text-[13px] md:text-[15px] px-12 py-3.5 rounded-full hover:bg-[#1A3D29] transition-all duration-300 shadow-lg tracking-widest uppercase"
+                        className="bg-brand-plum text-brand-champagne-light hover:bg-brand-espresso font-medium text-[11px] md:text-[13px] px-10 py-3 rounded-full border border-brand-champagne/30 transition-all duration-300 shadow-sm hover:shadow-md tracking-[0.2em] uppercase"
                         type="button"
                     >
                         {ctaLabel}

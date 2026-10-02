@@ -1,46 +1,46 @@
 import React, { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { resolveLegacyCmsAsset } from "../utils/legacyCmsAssets";
 
-import ringGreen from "@assets/categories/gold_rings_green.png";
+import ringLight from "@assets/categories/gold_rings_light.png";
 
 const fallbackCollections = [
   {
     id: 1,
     title: "The Gold Standards",
-    image: ringGreen,
+    image: ringLight,
     path: "/shop?category=Rings",
   },
   {
     id: 2,
-    title: "Pure Green Favourites",
-    image: ringGreen,
-    path: "/shop?category=Rings&search=promise",
+    title: "Timeless Solitaires",
+    image: ringLight,
+    path: "/shop?category=Rings&search=solitaire",
   },
   {
     id: 3,
     title: "Shubh Akshaya Tritiya",
-    image: ringGreen,
+    image: ringLight,
     path: "/shop?metal=gold",
   },
   {
     id: 4,
-    title: "Alankar Jewellers",
-    image: ringGreen,
+    title: "Alankar Heritage",
+    image: ringLight,
     path: "/shop?category=Rings&search=vanki",
   },
   {
     id: 5,
     title: "Crafted in Pure Gold",
-    image: ringGreen,
+    image: ringLight,
     path: "/shop?category=Rings&search=solitaire",
   },
   {
     id: 6,
     title: "Luxury Ring Sets",
-    image: ringGreen,
+    image: ringLight,
     path: "/shop?category=Rings&search=classic",
   },
 ];
@@ -126,51 +126,48 @@ const GoldCuratedShowcase = ({ sectionData = null }) => {
   };
 
   return (
-    <section className="py-8 md:py-14 bg-white select-none overflow-hidden">
+    <section className="py-8 md:py-14 bg-brand-pearl/50 border-b border-brand-border-soft select-none overflow-hidden">
       <div className="w-full">
         <div className="text-center mb-8 md:mb-12 px-4">
-          <span className="inline-flex items-center rounded-none border border-[#D4B390]/30 bg-[#FAF9F0] px-4 py-2.5 text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-[#2A4D35]">
+          <span className="inline-flex items-center rounded-full border border-brand-border bg-white px-4 py-1.5 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] text-brand-champagne shadow-2xs">
             {eyebrow}
           </span>
-          <h2 className="mt-4 text-[26px] md:text-[36px] font-serif italic font-medium text-[#2A4D35] tracking-tight">
+          <h2 className="mt-3 text-[24px] md:text-[36px] font-serif font-normal text-brand-espresso tracking-tight">
             {title}
           </h2>
+          <div className="h-px w-16 bg-brand-champagne/40 mx-auto mt-2.5" />
         </div>
 
         <div className="relative group/main max-w-[1550px] mx-auto">
-
-
-
-
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            className="flex overflow-x-auto gap-3 md:gap-5 pb-8 hide-scrollbar scroll-smooth snap-x snap-mandatory px-4"
+            className="flex overflow-x-auto gap-3.5 md:gap-5 pb-8 hide-scrollbar scroll-smooth snap-x snap-mandatory px-4"
           >
             {collections.map((item, idx) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
                 onClick={() => navigate(item.path)}
-                className="flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] aspect-[4/5] relative group cursor-pointer overflow-hidden rounded-none bg-[#0D1C12] snap-start shadow-md border border-gray-200"
+                className="flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] aspect-[4/5] relative group cursor-pointer overflow-hidden rounded-2xl bg-brand-porcelain snap-start shadow-xs hover:shadow-md border border-brand-border transition-all duration-300"
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover opacity-95 transition-transform duration-700 ease-out group-hover:scale-105"
                 />
 
-                <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black/90 via-black/30 to-transparent transition-opacity" />
+                <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-brand-espresso/85 via-brand-espresso/30 to-transparent transition-opacity" />
 
-                <div className="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300">
+                <div className="absolute bottom-5 left-5 right-5 text-white z-10 transition-all duration-300">
                   <div className="flex items-center justify-between group/btn border-b border-white/20 pb-2">
-                    <h3 className="text-[11px] md:text-[13px] font-black tracking-[0.2em] uppercase leading-tight max-w-[85%]">
+                    <h3 className="text-[11px] md:text-[12px] font-semibold tracking-[0.16em] uppercase leading-tight max-w-[85%] text-brand-pearl">
                       {item.title}
                     </h3>
-                    <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                    <ChevronRight className="w-4 h-4 text-brand-champagne transition-transform group-hover/btn:translate-x-1" />
                   </div>
                 </div>
               </motion.div>
@@ -185,8 +182,8 @@ const GoldCuratedShowcase = ({ sectionData = null }) => {
                   key={idx}
                   onClick={() => scrollToDot(idx)}
                   className={`transition-all duration-300 rounded-full ${activeIndex === idx
-                      ? "w-6 h-1.5 bg-[#2A4D35]"
-                      : "w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400"
+                      ? "w-6 h-1.5 bg-brand-champagne"
+                      : "w-1.5 h-1.5 bg-brand-border hover:bg-brand-taupe"
                     }`}
                   aria-label={`Go to item ${idx + 1}`}
                 />
@@ -198,14 +195,14 @@ const GoldCuratedShowcase = ({ sectionData = null }) => {
 
       <style>
         {`
-                .hide-scrollbar::-webkit-scrollbar {
-                    display: none;
-                }
-                .hide-scrollbar {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-                `}
+          .hide-scrollbar::-webkit-scrollbar {
+              display: none;
+          }
+          .hide-scrollbar {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+          }
+        `}
       </style>
     </section>
   );

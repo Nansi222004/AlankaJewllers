@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Star, Sparkles, Quote } from "lucide-react";
+import { Star, Quote } from "lucide-react";
+import AlankaJewelleryMark from "./AlankaJewelleryMark";
 import { useHomepageCms } from "../hooks/useHomepageCms";
 import { resolveLegacyCmsAsset } from "../utils/legacyCmsAssets";
 import { handleImageError } from "../../../utils/imageFallbacks";
@@ -64,7 +65,7 @@ const Testimonials = () => {
         {/* Header */}
         <div className="text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
-            <Sparkles className="w-3.5 h-3.5" />
+            <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
             <span>Cherished Words</span>
           </div>
           <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">

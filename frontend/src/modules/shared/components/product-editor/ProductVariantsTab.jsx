@@ -1,13 +1,14 @@
 import React from 'react';
 import { 
-    Tag, Sparkles, Scale, Zap, IndianRupee, CheckCircle2 as SuccessIcon, 
+    Tag, Scale, Zap, IndianRupee, CheckCircle2 as SuccessIcon, 
     Layers, Calculator, Box, Barcode as BarcodeIcon, Copy, Download, 
     Plus, Trash2, ImagePlus, FileText, ChevronDown, ChevronUp, X, Info,
     CheckCircle2
 } from 'lucide-react';
 import Barcode from 'react-barcode';
-import { roundCurrency, getPricingForVariant, getAvailableSerialCodes, normalizeSerialCodes } from '../../utils/productEditorUtils';
+import { roundCurrency, getPricingForVariant, getPricingConfigurationError, getAvailableSerialCodes, normalizeSerialCodes } from '../../utils/productEditorUtils';
 import toast from 'react-hot-toast';
+import AlankaJewelleryMark from '../AlankaJewelleryMark';
 
 const ProductVariantsTab = ({ 
     formData, 
@@ -43,9 +44,15 @@ const ProductVariantsTab = ({
         { label: 'Grams', value: 'Grams' },
         { label: 'Milligrams', value: 'Milligrams' }
     ];
+    const pricingConfigurationError = getPricingConfigurationError(formData, metalRates);
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {pricingConfigurationError && (
+                <div className="rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm font-semibold text-red-800">
+                    {pricingConfigurationError} Update the actual client-provided rate in Admin → Metal Pricing before publishing.
+                </div>
+            )}
             <div className="flex items-center justify-between">
                 <div>
                     <h3 className="text-xl font-black text-gray-900 uppercase tracking-tight">Product Variants</h3>
@@ -69,6 +76,8 @@ const ProductVariantsTab = ({
                     const isExpanded = expandedVariant === v.id;
                     const nameError = errors[`variant_${v.id}_name`] || errors[`variant_${idx}_name`];
                     const weightError = errors[`variant_${v.id}_weight`] || errors[`variant_${idx}_weight`];
+                    const stockError = errors[`variant_${v.id}_stock`] || errors[`variant_${idx}_stock`];
+                    const priceError = errors[`variant_${v.id}_price`] || errors[`variant_${idx}_price`];
                     const makingError = errors[`variant_${v.id}_makingCharge`] || errors[`variant_${idx}_makingCharge`];
                     const hallmarkingError = errors[`variant_${v.id}_hallmarkingCharge`] || errors[`variant_${idx}_hallmarkingCharge`];
                     const diamondPriceError = errors[`variant_${v.id}_diamondPrice`] || errors[`variant_${idx}_diamondPrice`];
@@ -166,7 +175,7 @@ const ProductVariantsTab = ({
                                             </div>
                                             <div className="space-y-2">
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
-                                                    <Sparkles size={10} className="text-amber-500" /> Diamond Type
+                                                    <AlankaJewelleryMark size={10} className="text-amber-500" /> Diamond Type
                                                 </label>
                                                 <select
                                                     value={v.diamondType || formData.diamondType || 'none'}
@@ -323,7 +332,7 @@ const ProductVariantsTab = ({
                                             </div>
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
-                                                    <Sparkles size={10} className="text-amber-500" /> Diamond / Stones
+                                                    <AlankaJewelleryMark size={10} className="text-amber-500" /> Diamond / Stones
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -495,6 +504,7 @@ const ProductVariantsTab = ({
                                                     <span className="text-xs font-medium text-amber-700">Total</span>
                                                     <span>₹ {pricing.finalPrice.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
                                                 </div>
+                                                {priceError && <div className="text-[10px] text-red-500 mt-1">{priceError}</div>}
                                             </div>
                                         </div>
                                     </div>
@@ -530,6 +540,7 @@ const ProductVariantsTab = ({
                                                         <span className="text-[8px] font-black uppercase tracking-widest">In Stock</span>
                                                     </div>
                                                 </div>
+                                                {stockError && <div className="text-[10px] text-red-500 mt-1">{stockError}</div>}
                                             </div>
                                         </div>
 
@@ -640,7 +651,7 @@ const ProductVariantsTab = ({
                                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
                                                 <div className="flex items-center gap-3">
                                                     <div className="p-2 bg-pink-100 rounded-xl text-pink-600">
-                                                        <Sparkles size={18} />
+                                                        <AlankaJewelleryMark size={18} className="text-pink-600" />
                                                     </div>
                                                     <div>
                                                         <h4 className="text-[10px] font-black text-pink-800 uppercase tracking-[0.2em]">Diamond Intelligence</h4>

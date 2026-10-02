@@ -8,6 +8,7 @@ const parseFormData = require("../../../middlewares/parseFormData");
 const PRODUCT_COMPLEX_FIELDS = [
   "categories",
   "variants",
+  "gemstones",
   "tags",
   "faqs",
   "deletedImages",

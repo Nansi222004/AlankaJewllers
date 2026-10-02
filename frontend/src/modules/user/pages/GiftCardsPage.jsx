@@ -4,7 +4,6 @@ import {
   Gift,
   Heart,
   Send,
-  Sparkles,
   ShieldCheck,
   Clock,
   Check,
@@ -12,6 +11,7 @@ import {
   Lock,
 } from "lucide-react";
 import { useShop } from "../../../context/ShopContext";
+import AlankaJewelleryMark from "../components/AlankaJewelleryMark";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
@@ -120,7 +120,7 @@ const GiftCardsPage = () => {
               className="space-y-8"
             >
               <div className="inline-flex items-center gap-2 bg-brand-champagne/10 px-4 py-2 rounded-full border border-brand-champagne/20">
-                <Sparkles className="w-4 h-4 text-brand-champagne" />
+                <AlankaJewelleryMark className="w-4 h-4 text-brand-champagne" />
                 <span className="text-[10px] font-bold text-brand-champagne uppercase tracking-[0.2em]">
                   The Perfect Surprise
                 </span>

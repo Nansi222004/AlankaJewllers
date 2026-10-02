@@ -6,10 +6,10 @@ import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
 import dailyWearBanner from '@assets/explore/gold_daily_wear_banner_1775911015640.png';
 import officeWearBanner from '@assets/explore/gold_office_wear_banner_1775911038204.png';
-import thumb1 from '@assets/categories/gold_rings_green.png';
-import thumb2 from '@assets/categories/gold_earrings_green.png';
-import thumb3 from '@assets/categories/gold_pendants_green.png';
-import thumb4 from '@assets/categories/gold_bracelets_green.png';
+import thumb1 from '@assets/categories/gold_rings_light.png';
+import thumb2 from '@assets/categories/gold_earrings_light.png';
+import thumb3 from '@assets/categories/gold_pendants_light.png';
+import thumb4 from '@assets/categories/gold_bracelet.png';
 
 const fallbackCollections = [
     {

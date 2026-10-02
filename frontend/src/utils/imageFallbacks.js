@@ -31,14 +31,11 @@ import catToerings from '@assets/categories/toerings.png';
 import catNosepin from '@assets/categories/nosepin.png';
 import catMensilver from '@assets/categories/mensilver.png';
 import goldBangle from '@assets/categories/gold_bangle.png';
-import goldRingsGreen from '@assets/categories/gold_rings_green.png';
-import goldEarringsGreen from '@assets/categories/gold_earrings_green.png';
-import goldPendantsGreen from '@assets/categories/gold_pendants_green.png';
-import goldBraceletsGreen from '@assets/categories/gold_bracelets_green.png';
-import goldBanglesGreen from '@assets/categories/gold_bangles_green.png';
-import goldMangalsutraGreen from '@assets/categories/gold_mangalsutra_green.png';
-import goldSetsGreen from '@assets/categories/gold_sets_green.png';
-import goldNosepinsGreen from '@assets/categories/gold_nosepins_green.png';
+import goldBracelet from '@assets/categories/gold_bracelet.png';
+import goldRingsLight from '@assets/categories/gold_rings_light.png';
+import goldEarringsLight from '@assets/categories/gold_earrings_light.png';
+import goldPendantsLight from '@assets/categories/gold_pendants_light.png';
+import goldMangalsutraLight from '@assets/categories/gold_mangalsutra_light.png';
 
 export const IMAGE_FALLBACKS = {
   // Product fallbacks
@@ -57,7 +54,7 @@ export const IMAGE_FALLBACKS = {
   toering: catToerings,
 
   // Metals & Specialities
-  gold: goldPendantsGreen,
+  gold: goldPendantsLight,
   silver: catSilverchains,
   bridal: bridalAsset,
 
@@ -80,14 +77,14 @@ export const IMAGE_FALLBACKS = {
   recipient_women: catWomenPremium,
 
   // Gold Category specific
-  gold_ring: goldRingsGreen,
-  gold_earring: goldEarringsGreen,
-  gold_pendant: goldPendantsGreen,
-  gold_bracelet: goldBraceletsGreen,
-  gold_bangle: goldBanglesGreen,
-  gold_mangalsutra: goldMangalsutraGreen,
-  gold_set: goldSetsGreen,
-  gold_nosepin: goldNosepinsGreen,
+  gold_ring: goldRingsLight,
+  gold_earring: goldEarringsLight,
+  gold_pendant: goldPendantsLight,
+  gold_bracelet: goldBracelet,
+  gold_bangle: goldBangle,
+  gold_mangalsutra: goldMangalsutraLight,
+  gold_set: catSets,
+  gold_nosepin: catNosepin,
 
   // Editorial & Content
   editorial: trendingModern,

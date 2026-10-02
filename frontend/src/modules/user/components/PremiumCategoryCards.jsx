@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 import womenImg from '@assets/cat_women_portrait_new.jpg';
 import menImg from '@assets/cat_men_premium.png';
 import giftingImg from '@assets/gifting_still_life.jpg';
@@ -261,7 +262,7 @@ const PremiumCategoryCards = () => {
                             {/* Top Badge */}
                             <div className="relative z-10 flex items-center justify-between">
                                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-brand-champagne text-[8.5px] md:text-[9px] font-semibold tracking-[0.2em] uppercase">
-                                    <Sparkles className="w-2.5 h-2.5 text-brand-champagne" />
+                                    <AlankaJewelleryMark className="w-2.5 h-2.5 text-brand-champagne" />
                                     <span>{GIFTING_DATA.badge}</span>
                                 </div>
                             </div>

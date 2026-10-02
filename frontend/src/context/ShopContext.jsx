@@ -70,32 +70,26 @@ export const ShopProvider = ({ children }) => {
     const checkPincodeServiceability = useCallback(async (targetPincode) => {
         const pinStr = String(targetPincode || '').trim();
         if (!pinStr) {
-            const errorResult = { serviceable: false, reason: "Pincode is required" };
-            setPincodeData(errorResult);
-            return errorResult;
+            return { serviceable: false, reason: "Pincode is required" };
         }
 
         setPincodeLoading(true);
         try {
             const response = await api.get(`/public/logistics/check-pincode?pincode=${pinStr}`);
             const result = response.data?.data || {};
-            setPincodeData(result);
             if (result.serviceable) {
                 setPincode(pinStr);
+                setPincodeData(result);
                 localStorage.setItem('user_pincode', pinStr);
                 localStorage.setItem('user_pincode_data', JSON.stringify(result));
-            } else {
-                localStorage.removeItem('user_pincode_data');
             }
             return result;
         } catch (err) {
-            const errorResult = {
+            return {
                 pincode: pinStr,
                 serviceable: false,
                 reason: err.response?.data?.message || "Failed to verify pincode"
             };
-            setPincodeData(errorResult);
-            return errorResult;
         } finally {
             setPincodeLoading(false);
         }

@@ -1,6 +1,8 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { Gem, RotateCcw, Truck, FileText, Shield, Gift, Sparkles, Lock, CreditCard } from 'lucide-react';
+import { Gem, RotateCcw, Truck, FileText, Shield, Gift, Lock, CreditCard } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 import { useHomepageCms } from '../hooks/useHomepageCms';
 
 const iconMap = {
@@ -10,7 +12,7 @@ const iconMap = {
     'file-text': FileText,
     shield: Shield,
     gift: Gift,
-    sparkles: Sparkles,
+    sparkles: AlankaJewelleryMark,
     lock: Lock,
     'credit-card': CreditCard
 };
@@ -21,28 +23,28 @@ const FALLBACK_PROMISES = [
         iconKey: 'gem',
         title: 'Pure 925',
         subtitle: 'SILVER',
-        desc: 'Authentic Craftsmanship'
+        desc: 'Certified Authenticity'
     },
     {
         id: 2,
         iconKey: 'rotate-ccw',
-        title: 'Easy Returns',
-        subtitle: 'POLICY',
-        desc: 'Hassle-free Support'
+        title: '30-Day Easy',
+        subtitle: 'RETURN',
+        desc: 'Hassle-free Refund'
     },
     {
         id: 3,
         iconKey: 'truck',
-        title: 'Insured Delivery',
-        subtitle: 'SHIPPING',
-        desc: 'Safe Doorstep Delivery'
+        title: 'Free Delivery',
+        subtitle: 'ABOVE ₹999',
+        desc: 'Fast Shipping'
     },
     {
         id: 4,
         iconKey: 'file-text',
-        title: 'Secure Shopping',
-        subtitle: 'EXPERIENCE',
-        desc: 'Protected Transactions'
+        title: 'T&C Apply',
+        subtitle: 'SECURE SHOP',
+        desc: '100% Protection'
     }
 ];
 
@@ -61,22 +63,63 @@ const BrandPromises = () => {
         : FALLBACK_PROMISES;
 
     return (
-        <section className="py-12 md:py-20 bg-brand-pearl relative overflow-hidden border-t border-brand-border/70">
+        <section className="py-7 md:py-20 bg-brand-pearl relative overflow-hidden border-t border-brand-border/70">
             <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
                 {/* Header */}
-                <div className="text-center mb-10 md:mb-16">
-                    <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
-                        <Sparkles className="w-3.5 h-3.5" />
+                <div className="text-center mb-5 md:mb-16">
+                    <div className="inline-flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2 text-brand-champagne text-[9px] md:text-[10px] uppercase font-bold tracking-[0.25em] md:tracking-[0.3em]">
+                        <AlankaJewelleryMark className="w-3 h-3 md:w-3.5 md:h-3.5 text-brand-champagne" />
                         <span>The Alankar Jewellers Touch</span>
                     </div>
-                    <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
-                        {sectionData?.label || 'Our Commitments'}
+                    <h2 className="font-serif text-xl sm:text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
+                        {sectionData?.label || 'Why Choose Us'}
                     </h2>
-                    <div className="w-12 h-[1px] bg-brand-champagne mx-auto mt-4" />
+                    <div className="w-10 md:w-12 h-[1px] bg-brand-champagne mx-auto mt-2 md:mt-4" />
                 </div>
 
-                {/* ── EDITORIAL COLUMN PILLARS WITH VERTICAL DIVIDERS ── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-brand-border border-y border-brand-border py-6 md:py-10 bg-white/60 rounded-3xl shadow-xs">
+                {/* ── MOBILE COMPACT 2-COLUMN TRUST GRID (< md) ── */}
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 md:hidden">
+                    {promises.map((item, index) => {
+                        const Icon = iconMap[item.iconKey] || Gem;
+
+                        return (
+                            <motion.div
+                                key={item.id}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: index * 0.05 }}
+                                className="flex flex-col items-center justify-center text-center p-3 sm:p-3.5 bg-white/90 rounded-2xl border border-brand-border/80 shadow-xs hover:border-brand-champagne/40 transition-colors"
+                                style={{ minHeight: '115px' }}
+                            >
+                                {/* Compact Icon Circle */}
+                                <div className="w-10 h-10 rounded-full bg-brand-pearl border border-brand-champagne/40 flex items-center justify-center text-brand-champagne mb-2 shadow-2xs">
+                                    <Icon strokeWidth={1.5} className="w-5 h-5 text-brand-champagne" />
+                                </div>
+
+                                {/* Typography */}
+                                <div className="space-y-0.5 max-w-full px-1">
+                                    {item.subtitle && (
+                                        <span className="text-[8.5px] font-sans font-bold uppercase tracking-[0.2em] text-brand-champagne block truncate">
+                                            {item.subtitle}
+                                        </span>
+                                    )}
+                                    <h3 className="font-serif text-[12.5px] sm:text-[13px] font-semibold text-brand-espresso leading-snug tracking-tight">
+                                        {item.title}
+                                    </h3>
+                                    {item.desc && (
+                                        <p className="text-stone-500 font-sans text-[10px] leading-tight truncate opacity-85 font-light">
+                                            {item.desc}
+                                        </p>
+                                    )}
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+
+                {/* ── DESKTOP EDITORIAL COLUMN PILLARS WITH VERTICAL DIVIDERS (md+) ── */}
+                <div className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-brand-border border-y border-brand-border py-6 md:py-10 bg-white/60 rounded-3xl shadow-xs">
                     {promises.map((item, index) => {
                         const Icon = iconMap[item.iconKey] || Gem;
 

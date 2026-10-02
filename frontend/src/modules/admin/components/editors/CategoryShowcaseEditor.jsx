@@ -34,9 +34,11 @@ import goldSetsGreen from "../../../user/assets/categories/gold_sets_green.png";
 import goldNewArrivalsGreen from "../../../user/assets/categories/gold_new_arrivals_green.png";
 import goldDailyWearBanner from "../../../user/assets/explore/gold_daily_wear_banner_1775911015640.png";
 import goldOfficeWearBanner from "../../../user/assets/explore/gold_office_wear_banner_1775911038204.png";
-import goldLuxuryRange10k from "../../../user/assets/luxury_range_10k.png";
+import goldLuxuryRange10k from "../../../user/assets/gold_lifestyle/gold_minimalistic.png";
 import goldLuxuryRange15k from "../../../user/assets/luxury_range_15k.png";
-import goldLuxuryRange20k from "../../../user/assets/premium_ring_product.png";
+import goldLuxuryRange20k from "../../../user/assets/categories/gold_earrings_light.png";
+import goldLuxuryRange30k from "../../../user/assets/categories/gold_pendants_light.png";
+import goldLuxuryRange50k from "../../../user/assets/gold_lifestyle/gold_statement_50k.jpg";
 import goldLuxuryPremium from "../../../user/assets/beyond_bold_emerald_set.png";
 import goldColorYellow from "../../../user/assets/gold_color_yellow.png";
 import goldColorRose from "../../../user/assets/gold_color_rose.png";
@@ -622,16 +624,6 @@ const CategoryShowcaseEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                         },
                         {
                           id: "gold-luxury-2",
-                          name: "Under INR 15000",
-                          label: "Under INR 15000",
-                          priceMax: 15000,
-                          image: goldLuxuryRange15k,
-                          categoryId: "",
-                          path: "/shop?metal=gold&price_max=15000",
-                          tag: "",
-                        },
-                        {
-                          id: "gold-luxury-3",
                           name: "Under INR 20000",
                           label: "Under INR 20000",
                           priceMax: 20000,
@@ -641,13 +633,23 @@ const CategoryShowcaseEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                           tag: "",
                         },
                         {
-                          id: "gold-luxury-4",
-                          name: "Premium Gifts",
-                          label: "Premium Gifts",
-                          priceMax: 25000,
-                          image: goldLuxuryPremium,
+                          id: "gold-luxury-3",
+                          name: "Under INR 30000",
+                          label: "Under INR 30000",
+                          priceMax: 30000,
+                          image: goldLuxuryRange30k,
                           categoryId: "",
-                          path: "/shop?metal=gold&price_max=25000",
+                          path: "/shop?metal=gold&price_max=30000",
+                          tag: "",
+                        },
+                        {
+                          id: "gold-luxury-4",
+                          name: "Under INR 50000",
+                          label: "Under INR 50000",
+                          priceMax: 50000,
+                          image: goldLuxuryRange50k,
+                          categoryId: "",
+                          path: "/shop?metal=gold&price_max=50000",
                           tag: "",
                         },
                       ]

@@ -14,6 +14,15 @@ const productSchema = new mongoose.Schema({
   description: { type: String },
   stylingTips: { type: String },
   material: { type: String, default: 'Silver' },
+  goldTone: {
+    type: String,
+    enum: ['Yellow Gold', 'Rose Gold', 'White Gold', ''],
+    default: ''
+  },
+  gemstoneType: { type: String, trim: true, default: '' },
+  gemstones: [{ type: String, trim: true }],
+  imageIntegrityConfirmed: { type: Boolean, default: false },
+  sourceDocumentationConfirmed: { type: Boolean, default: false },
   audience: [{
     type: String,
     enum: ["men", "women", "family", "unisex"],

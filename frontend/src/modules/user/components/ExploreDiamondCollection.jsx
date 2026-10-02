@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sparkles, ArrowRight, Gem, RotateCcw, Eye } from 'lucide-react';
+import { ArrowRight, Gem, RotateCcw, Eye } from 'lucide-react';
+import AlankaJewelleryMark from './AlankaJewelleryMark';
 import { formatCurrency, getProductPrice, getProductMRP } from '../utils/price';
 import { getProductCardUrl } from '../../../utils/imageUtils';
 
@@ -152,7 +153,7 @@ const DiamondProductCard = ({ product }) => {
                 {/* Diamond Origin Badge */}
                 <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 z-10 flex flex-col gap-1">
                     <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE3D6] text-brand-espresso text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-2xs">
-                        <Sparkles className="w-2.5 h-2.5 text-brand-champagne" />
+                        <AlankaJewelleryMark className="w-2.5 h-2.5 text-brand-champagne" />
                         <span>{diamondOrigin}</span>
                     </span>
                     {hasDiscount && discountPercent > 0 && (

@@ -2,9 +2,9 @@ import React from 'react';
 import { MessageCircle, Phone, Mail } from 'lucide-react';
 import { useSettings } from '../../../context/SettingsContext';
 
-export const SUPPORT_PHONE_DISPLAY = '+91 99211 28662';
-export const SUPPORT_PHONE_TEL = '+919921128662';
-export const SUPPORT_EMAIL = 'support@swarnasparsh.com';
+export const SUPPORT_PHONE_DISPLAY = '+91 86688 21446';
+export const SUPPORT_PHONE_TEL = '+918668821446';
+export const SUPPORT_EMAIL = 'swarna.sparsh22@gmail.com';
 
 const StillNeedHelpCard = ({
   onContactSupport,
