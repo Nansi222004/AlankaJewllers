@@ -332,7 +332,7 @@ const ProductVariantsTab = ({
                                             </div>
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
-                                                    <AlankaJewelleryMark size={10} className="text-amber-500" /> Diamond / Stones
+                                                    <AlankaJewelleryMark size={10} className="text-amber-500" /> Legacy Diamond / Stones
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -427,9 +427,7 @@ const ProductVariantsTab = ({
                                                 {additionalError && <div className="text-[10px] text-red-500 mt-1 ml-1">{additionalError}</div>}
                                             </div>
                                         </div>
-                                    </div>
-
-                                    {/* Pricing Breakdown (Screenshot Parity) */}
+                                    </div>                                    {/* Pricing Breakdown */}
                                     <div className="space-y-8">
                                         <div className="flex items-center justify-between border-b border-gray-50 pb-2">
                                             <div className="flex items-center gap-2">
@@ -444,7 +442,7 @@ const ProductVariantsTab = ({
                                             <span className="text-[9px] font-black text-gray-300 uppercase tracking-widest">Step 2</span>
                                         </div>
 
-                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                                             <div>
                                                 <label className="text-xs font-medium text-gray-500 mb-1 block">Metal Price</label>
                                                 <div className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-sm font-semibold text-gray-800 flex items-center gap-1.5">
@@ -458,15 +456,35 @@ const ProductVariantsTab = ({
                                                 </div>
                                             </div>
                                             <div>
-                                                <label className="text-xs font-medium text-gray-500 mb-1 block">Diamond / Stones</label>
+                                                <label className="text-xs font-medium text-gray-500 mb-1 block">Diamond Value</label>
                                                 <div className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-sm font-semibold text-gray-800 flex items-center gap-1.5">
                                                     <span className="text-xs text-gray-400">₹</span> {pricing.diamondPrice.toFixed(2)}
                                                 </div>
                                             </div>
+                                            {pricing.gemstonePrice > 0 && (
+                                                <div>
+                                                    <label className="text-xs font-medium text-purple-600 mb-1 block">Gemstone Value</label>
+                                                    <div className="w-full bg-purple-50 border border-purple-100 rounded-lg py-2 px-3 text-sm font-semibold text-purple-800 flex items-center gap-1.5">
+                                                        <span className="text-xs text-purple-400">₹</span> {pricing.gemstonePrice.toFixed(2)}
+                                                    </div>
+                                                </div>
+                                            )}
                                             <div>
-                                                <label className="text-xs font-medium text-gray-500 mb-1 block">Hidden Charges</label>
+                                                <label className="text-xs font-medium text-gray-500 mb-1 block">Hallmarking</label>
                                                 <div className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-sm font-semibold text-gray-800 flex items-center gap-1.5">
-                                                    <span className="text-xs text-gray-400">₹</span> {pricing.hiddenCharge.toFixed(2)}
+                                                    <span className="text-xs text-gray-400">₹</span> {pricing.hallmarkingCharge.toFixed(2)}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="text-xs font-medium text-gray-500 mb-1 block">Certificate Charges</label>
+                                                <div className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-sm font-semibold text-gray-800 flex items-center gap-1.5">
+                                                    <span className="text-xs text-gray-400">₹</span> {(pricing.diamondCertificateCharge + pricing.gemstoneCertificateCharge).toFixed(2)}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="text-xs font-medium text-gray-500 mb-1 block">Additional Charges</label>
+                                                <div className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-sm font-semibold text-gray-800 flex items-center gap-1.5">
+                                                    <span className="text-xs text-gray-400">₹</span> {pricing.additionalCharge.toFixed(2)}
                                                 </div>
                                             </div>
                                             <div>
@@ -645,7 +663,7 @@ const ProductVariantsTab = ({
                                         </div>
                                     </div>
 
-                                    {/* Diamond Specs (Conditional) */}
+                                    {/* Diamond Specs (Conditional — Descriptive Only) */}
                                     {(formData.material === 'Diamond' || (v.diamondType || formData.diamondType) !== 'none') && (
                                         <div className="bg-pink-50/30 rounded-[2.5rem] p-4 sm:p-8 border border-pink-100/50 space-y-6">
                                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
@@ -672,6 +690,7 @@ const ProductVariantsTab = ({
                                                     </select>
                                                 </div>
                                             </div>
+                                            {/* Descriptive specs — informational, do NOT auto-generate price */}
                                             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                                                 {[
                                                     { label: 'Carat', key: 'carat', placeholder: 'e.g. 0.50' },
@@ -683,9 +702,9 @@ const ProductVariantsTab = ({
                                                 ].map((spec) => (
                                                     <div key={spec.key} className="space-y-1.5">
                                                         <label className="text-[9px] font-black text-pink-700/60 uppercase tracking-widest ml-1">{spec.label}</label>
-                                                        <input 
+                                                        <input
                                                             type={spec.type || 'text'}
-                                                            value={v.diamondSpecs?.[spec.key] || ''} 
+                                                            value={v.diamondSpecs?.[spec.key] || ''}
                                                             onChange={(e) => {
                                                                 const val = e.target.value;
                                                                 if (spec.type === 'number' && val !== '' && Number(val) < 0) return;
@@ -699,6 +718,268 @@ const ProductVariantsTab = ({
                                                     </div>
                                                 ))}
                                             </div>
+
+                                            {/* Diamond Pricing — Admin-Controlled */}
+                                            <div className="border-t border-pink-100 pt-6 space-y-4">
+                                                <div className="flex items-center justify-between">
+                                                    <h5 className="text-[9px] font-black text-pink-800 uppercase tracking-widest">Diamond Pricing</h5>
+                                                    <label className="flex items-center gap-2 cursor-pointer">
+                                                        <span className="text-[9px] font-black text-pink-600 uppercase tracking-widest">Use Structured Pricing</span>
+                                                        <div
+                                                            onClick={() => !isViewMode && handleVariantChange(v.id, 'diamondPricing', {
+                                                                ...(v.diamondPricing || {}),
+                                                                enabled: !(v.diamondPricing?.enabled)
+                                                            })}
+                                                            className={`relative w-10 h-5 rounded-full transition-all cursor-pointer ${v.diamondPricing?.enabled ? 'bg-pink-500' : 'bg-gray-200'}`}
+                                                        >
+                                                            <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${v.diamondPricing?.enabled ? 'left-5' : 'left-0.5'}`} />
+                                                        </div>
+                                                    </label>
+                                                </div>
+
+                                                {v.diamondPricing?.enabled ? (
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                                        {/* Pricing Mode */}
+                                                        <div className="space-y-1.5">
+                                                            <label className="text-[9px] font-black text-pink-700/70 uppercase tracking-widest ml-1">Pricing Mode</label>
+                                                            <select
+                                                                value={v.diamondPricing?.pricingMode || 'total'}
+                                                                onChange={(e) => handleVariantChange(v.id, 'diamondPricing', { ...(v.diamondPricing || {}), pricingMode: e.target.value })}
+                                                                disabled={isViewMode}
+                                                                className="w-full bg-white border border-pink-200 rounded-xl py-2.5 px-4 text-xs font-bold text-gray-800 outline-none focus:border-pink-500 transition-all"
+                                                            >
+                                                                <option value="total">Total Price (Admin enters full amount)</option>
+                                                                <option value="per_carat">Per Carat × Carat Weight</option>
+                                                            </select>
+                                                        </div>
+
+                                                        {/* Price field based on mode */}
+                                                        {(v.diamondPricing?.pricingMode || 'total') === 'total' ? (
+                                                            <div className="space-y-1.5">
+                                                                <label className="text-[9px] font-black text-pink-700/70 uppercase tracking-widest ml-1">Total Diamond Price (₹)</label>
+                                                                <div className="relative">
+                                                                    <input
+                                                                        type="number"
+                                                                        value={v.diamondPricing?.totalPrice ?? ''}
+                                                                        onChange={(e) => handleVariantChange(v.id, 'diamondPricing', { ...(v.diamondPricing || {}), totalPrice: e.target.value })}
+                                                                        disabled={isViewMode}
+                                                                        className="w-full bg-white border border-pink-200 rounded-xl py-2.5 pl-10 pr-4 text-sm font-bold text-gray-800 outline-none focus:border-pink-500 transition-all"
+                                                                        placeholder="0"
+                                                                        min={0}
+                                                                    />
+                                                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-gray-400">Rs</span>
+                                                                </div>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="space-y-1.5">
+                                                                <label className="text-[9px] font-black text-pink-700/70 uppercase tracking-widest ml-1">Price Per Carat (₹)</label>
+                                                                <div className="relative">
+                                                                    <input
+                                                                        type="number"
+                                                                        value={v.diamondPricing?.pricePerCarat ?? ''}
+                                                                        onChange={(e) => handleVariantChange(v.id, 'diamondPricing', { ...(v.diamondPricing || {}), pricePerCarat: e.target.value })}
+                                                                        disabled={isViewMode}
+                                                                        className="w-full bg-white border border-pink-200 rounded-xl py-2.5 pl-10 pr-4 text-sm font-bold text-gray-800 outline-none focus:border-pink-500 transition-all"
+                                                                        placeholder="0"
+                                                                        min={0}
+                                                                    />
+                                                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-gray-400">Rs</span>
+                                                                </div>
+                                                                <p className="text-[8px] text-pink-500 font-bold ml-1">× Carat from specs above = ₹{((parseFloat(v.diamondSpecs?.carat || '0') || 0) * (Number(v.diamondPricing?.pricePerCarat) || 0)).toFixed(2)}</p>
+                                                            </div>
+                                                        )}
+
+                                                        {/* Certificate charge */}
+                                                        <div className="space-y-1.5">
+                                                            <label className="text-[9px] font-black text-pink-700/70 uppercase tracking-widest ml-1">Certificate Charge (₹)</label>
+                                                            <div className="relative">
+                                                                <input
+                                                                    type="number"
+                                                                    value={v.diamondPricing?.certificateCharge ?? ''}
+                                                                    onChange={(e) => handleVariantChange(v.id, 'diamondPricing', { ...(v.diamondPricing || {}), certificateCharge: e.target.value })}
+                                                                    disabled={isViewMode}
+                                                                    className="w-full bg-white border border-pink-200 rounded-xl py-2.5 pl-10 pr-4 text-sm font-bold text-gray-800 outline-none focus:border-pink-500 transition-all"
+                                                                    placeholder="0"
+                                                                    min={0}
+                                                                />
+                                                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-gray-400">Rs</span>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Certificate URL */}
+                                                        <div className="sm:col-span-2 space-y-1.5">
+                                                            <label className="text-[9px] font-black text-pink-700/70 uppercase tracking-widest ml-1">Certificate URL (GIA / IGI etc.)</label>
+                                                            <input
+                                                                type="url"
+                                                                value={v.diamondPricing?.certificateUrl || ''}
+                                                                onChange={(e) => handleVariantChange(v.id, 'diamondPricing', { ...(v.diamondPricing || {}), certificateUrl: e.target.value })}
+                                                                disabled={isViewMode}
+                                                                className="w-full bg-white border border-pink-200 rounded-xl py-2.5 px-4 text-xs font-bold text-gray-800 outline-none focus:border-pink-500 transition-all"
+                                                                placeholder="https://www.gia.edu/report-check/..."
+                                                            />
+                                                        </div>
+
+                                                        {/* Computed preview */}
+                                                        <div className="sm:col-span-1 flex items-end">
+                                                            <div className="w-full bg-pink-100/60 border border-pink-200 rounded-xl py-2.5 px-4">
+                                                                <p className="text-[9px] font-black text-pink-700 uppercase tracking-widest">Diamond Component</p>
+                                                                <p className="text-lg font-black text-pink-900">₹{pricing.diamondPrice.toFixed(2)}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="bg-white border border-pink-100 rounded-xl p-4">
+                                                        <p className="text-[10px] font-bold text-pink-400 uppercase tracking-widest">Using legacy Diamond / Stones field above</p>
+                                                        <p className="text-[9px] text-gray-400 mt-1">Enable Structured Pricing to use per-carat or managed total pricing.</p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Optional for metal products; primary pricing section for Gems products. */}
+                                    {['Gold', 'Silver', 'Diamond', 'Gems', 'Gemstone'].includes(formData.material) && (
+                                        <div className="bg-purple-50/30 rounded-[2.5rem] p-4 sm:p-8 border border-purple-100/50 space-y-6">
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="p-2 bg-purple-100 rounded-xl text-purple-600">
+                                                        <AlankaJewelleryMark size={18} className="text-purple-600" />
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="text-[10px] font-black text-purple-800 uppercase tracking-[0.2em]">Gemstone Pricing</h4>
+                                                        <p className="text-[8px] font-bold text-purple-400 uppercase mt-0.5">Admin-Controlled — No automatic market pricing</p>
+                                                    </div>
+                                                </div>
+                                                {!isViewMode && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            const stones = Array.isArray(v.gemstonePricing) ? [...v.gemstonePricing] : [];
+                                                            stones.push({ gemstoneType: 'Ruby', quantity: 1, weight: 0, pricingMode: 'total', pricePerCarat: 0, totalPrice: 0, certificateCharge: 0 });
+                                                            handleVariantChange(v.id, 'gemstonePricing', stones);
+                                                        }}
+                                                        className="flex items-center gap-1.5 px-4 py-2 bg-purple-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-purple-700 transition-all"
+                                                    >
+                                                        <Plus size={12} /> Add Stone
+                                                    </button>
+                                                )}
+                                            </div>
+
+                                            {(v.gemstonePricing || []).length === 0 ? (
+                                                <div className="bg-white border border-purple-100 rounded-xl p-4 text-center">
+                                                    <p className="text-[10px] font-bold text-purple-300 uppercase tracking-widest">No gemstones added yet. Click Add Stone to begin.</p>
+                                                </div>
+                                            ) : (
+                                                <div className="space-y-4">
+                                                    {(v.gemstonePricing || []).map((stone, stoneIdx) => {
+                                                        const stonePrice = stone.pricingMode === 'per_carat'
+                                                            ? ((Number(stone.weight) || 0) * (Number(stone.pricePerCarat) || 0)).toFixed(2)
+                                                            : (Number(stone.totalPrice) || 0).toFixed(2);
+                                                        return (
+                                                            <div key={stoneIdx} className="bg-white border border-purple-100 rounded-2xl p-4 sm:p-5 relative">
+                                                                {!isViewMode && (
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() => {
+                                                                            const stones = [...(v.gemstonePricing || [])].filter((_, i) => i !== stoneIdx);
+                                                                            handleVariantChange(v.id, 'gemstonePricing', stones);
+                                                                        }}
+                                                                        className="absolute top-3 right-3 p-1 text-gray-300 hover:text-red-500 transition-colors"
+                                                                    >
+                                                                        <X size={14} />
+                                                                    </button>
+                                                                )}
+                                                                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                                                                    <div className="space-y-1">
+                                                                        <label className="text-[8px] font-black text-purple-600 uppercase tracking-widest">Stone Type</label>
+                                                                        <select
+                                                                            value={stone.gemstoneType || 'Ruby'}
+                                                                            onChange={(e) => {
+                                                                                const stones = [...(v.gemstonePricing || [])];
+                                                                                stones[stoneIdx] = { ...stones[stoneIdx], gemstoneType: e.target.value };
+                                                                                handleVariantChange(v.id, 'gemstonePricing', stones);
+                                                                            }}
+                                                                            disabled={isViewMode}
+                                                                            className="w-full bg-white border border-purple-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-800 outline-none focus:border-purple-500 transition-all"
+                                                                        >
+                                                                            <option value="Ruby">Ruby</option>
+                                                                            <option value="Emerald">Emerald</option>
+                                                                            <option value="Sapphire">Sapphire</option>
+                                                                            <option value="Pearl">Pearl</option>
+                                                                            <option value="Other">Other</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div className="space-y-1">
+                                                                        <label className="text-[8px] font-black text-purple-600 uppercase tracking-widest">Qty</label>
+                                                                        <input type="number" value={stone.quantity ?? 1} min={1}
+                                                                            onChange={(e) => { const s = [...(v.gemstonePricing || [])]; s[stoneIdx] = { ...s[stoneIdx], quantity: e.target.value }; handleVariantChange(v.id, 'gemstonePricing', s); }}
+                                                                            disabled={isViewMode}
+                                                                            className="w-full bg-white border border-purple-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-800 outline-none focus:border-purple-500 transition-all"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="space-y-1">
+                                                                        <label className="text-[8px] font-black text-purple-600 uppercase tracking-widest">Weight (ct)</label>
+                                                                        <input type="number" value={stone.weight ?? 0} min={0}
+                                                                            onChange={(e) => { const s = [...(v.gemstonePricing || [])]; s[stoneIdx] = { ...s[stoneIdx], weight: e.target.value }; handleVariantChange(v.id, 'gemstonePricing', s); }}
+                                                                            disabled={isViewMode}
+                                                                            className="w-full bg-white border border-purple-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-800 outline-none focus:border-purple-500 transition-all"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="space-y-1">
+                                                                        <label className="text-[8px] font-black text-purple-600 uppercase tracking-widest">Mode</label>
+                                                                        <select
+                                                                            value={stone.pricingMode || 'total'}
+                                                                            onChange={(e) => { const s = [...(v.gemstonePricing || [])]; s[stoneIdx] = { ...s[stoneIdx], pricingMode: e.target.value }; handleVariantChange(v.id, 'gemstonePricing', s); }}
+                                                                            disabled={isViewMode}
+                                                                            className="w-full bg-white border border-purple-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-800 outline-none focus:border-purple-500 transition-all"
+                                                                        >
+                                                                            <option value="total">Total</option>
+                                                                            <option value="per_carat">Per Carat</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    {stone.pricingMode === 'per_carat' ? (
+                                                                        <div className="space-y-1">
+                                                                            <label className="text-[8px] font-black text-purple-600 uppercase tracking-widest">₹ / Carat</label>
+                                                                            <input type="number" value={stone.pricePerCarat ?? 0} min={0}
+                                                                                onChange={(e) => { const s = [...(v.gemstonePricing || [])]; s[stoneIdx] = { ...s[stoneIdx], pricePerCarat: e.target.value }; handleVariantChange(v.id, 'gemstonePricing', s); }}
+                                                                                disabled={isViewMode}
+                                                                                className="w-full bg-white border border-purple-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-800 outline-none focus:border-purple-500 transition-all"
+                                                                            />
+                                                                        </div>
+                                                                    ) : (
+                                                                        <div className="space-y-1">
+                                                                            <label className="text-[8px] font-black text-purple-600 uppercase tracking-widest">Total Price (₹)</label>
+                                                                            <input type="number" value={stone.totalPrice ?? 0} min={0}
+                                                                                onChange={(e) => { const s = [...(v.gemstonePricing || [])]; s[stoneIdx] = { ...s[stoneIdx], totalPrice: e.target.value }; handleVariantChange(v.id, 'gemstonePricing', s); }}
+                                                                                disabled={isViewMode}
+                                                                                className="w-full bg-white border border-purple-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-800 outline-none focus:border-purple-500 transition-all"
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                    <div className="space-y-1">
+                                                                        <label className="text-[8px] font-black text-purple-600 uppercase tracking-widest">Cert. Charge</label>
+                                                                        <input type="number" value={stone.certificateCharge ?? 0} min={0}
+                                                                            onChange={(e) => { const s = [...(v.gemstonePricing || [])]; s[stoneIdx] = { ...s[stoneIdx], certificateCharge: e.target.value }; handleVariantChange(v.id, 'gemstonePricing', s); }}
+                                                                            disabled={isViewMode}
+                                                                            className="w-full bg-white border border-purple-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-800 outline-none focus:border-purple-500 transition-all"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="mt-3 flex justify-end">
+                                                                    <div className="bg-purple-100/70 rounded-lg px-3 py-1.5 text-[10px] font-black text-purple-800">
+                                                                        {stone.gemstoneType} = ₹{stonePrice}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                    <div className="flex justify-end">
+                                                        <div className="bg-purple-700 rounded-xl px-4 py-2 text-xs font-black text-white">
+                                                            Total Gemstone Value: ₹{pricing.gemstonePrice.toFixed(2)}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     )}
 

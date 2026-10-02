@@ -31,5 +31,12 @@ const placeOrderSchema = Joi.object({
   giftCardCodes: Joi.array().items(Joi.string().allow("")).optional(),
 });
 
-module.exports = { placeOrderSchema };
+const checkoutQuoteSchema = Joi.object({
+  items: Joi.array().items(itemSchema).min(1).required(),
+  shippingAddress: placeOrderSchema.extract("shippingAddress").optional(),
+  couponCode: Joi.string().allow("").uppercase(),
+  giftCardCodes: Joi.array().items(Joi.string().allow("")).optional(),
+});
+
+module.exports = { placeOrderSchema, checkoutQuoteSchema };
 

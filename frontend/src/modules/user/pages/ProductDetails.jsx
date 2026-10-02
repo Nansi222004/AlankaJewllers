@@ -732,32 +732,39 @@ const ProductDetails = () => {
   const averageRating = Number(product?.rating || 0);
   const hasReviews = reviewCount > 0 && averageRating > 0;
 
-  const resolvedHiddenCharge = Number(
-    selectedVariant?.hiddenCharge ??
-    Number(selectedVariant?.hallmarkingCharge || 0) +
-    Number(selectedVariant?.diamondCertificateCharge || 0) +
-    Number(selectedVariant?.additionalCharge || 0),
-  );
-  const resolvedPgCharge = Number(selectedVariant?.pgChargeAmount || 0);
+  const normalizedMaterial = String(product?.material || '').trim().toLowerCase();
+  const hasStructuredDiamond = selectedVariant?.diamondPricing?.enabled === true;
+  const hasStructuredGemstones = Array.isArray(selectedVariant?.gemstonePricing) && selectedVariant.gemstonePricing.length > 0;
+  const usesLegacyGemstoneAmount = normalizedMaterial === 'gems' && !hasStructuredDiamond && !hasStructuredGemstones;
+  const effectiveDiamondPrice = usesLegacyGemstoneAmount || (hasStructuredGemstones && !hasStructuredDiamond)
+    ? 0
+    : Number(selectedVariant?.diamondPrice || 0);
+  const effectiveGemstonePrice = usesLegacyGemstoneAmount
+    ? Number(selectedVariant?.gemstonePrice ?? selectedVariant?.diamondPrice ?? 0)
+    : Number(selectedVariant?.gemstonePrice || 0);
+  const diamondCertificateCharge = usesLegacyGemstoneAmount
+    ? 0
+    : Number(selectedVariant?.diamondCertificateCharge || 0);
+  const gemstoneCertificateCharge = usesLegacyGemstoneAmount
+    ? Number(selectedVariant?.gemstoneCertificateCharge ?? selectedVariant?.diamondCertificateCharge ?? 0)
+    : Number(selectedVariant?.gemstoneCertificateCharge || 0);
   const pricingBreakdown = {
     metalPrice: Number(selectedVariant?.metalPrice || 0),
-    makingCharge:
-      Number(selectedVariant?.makingCharge || 0) +
-      resolvedHiddenCharge +
-      resolvedPgCharge,
-    diamondPrice: Number(selectedVariant?.diamondPrice || 0),
+    makingCharge: Number(selectedVariant?.makingCharge || 0),
+    diamondPrice: effectiveDiamondPrice,
+    gemstonePrice: effectiveGemstonePrice,
+    hallmarkingCharge: Number(selectedVariant?.hallmarkingCharge || 0),
+    certificateCharge: diamondCertificateCharge + gemstoneCertificateCharge,
+    additionalCharge: Number(selectedVariant?.additionalCharge || 0),
+    taxableSubtotal: Number(selectedVariant?.subtotalBeforeTax || 0),
     gst: Number(selectedVariant?.gst ?? selectedVariant?.gstAmount ?? 0),
+    pgCharge: Number(selectedVariant?.pgChargeAmount || 0),
     finalPrice: Number(selectedVariant?.finalPrice ?? variantPrice ?? 0),
   };
   const selectedVariantWeight = selectedVariant?.weight ?? product?.weight ?? 0;
   const selectedVariantWeightUnit =
     selectedVariant?.weightUnit || product?.weightUnit || "";
-  const pricingSubtotal =
-    Number(selectedVariant?.subtotalBeforeTax || 0) ||
-    Number(pricingBreakdown.metalPrice || 0) +
-    Number(pricingBreakdown.makingCharge || 0) +
-    Number(pricingBreakdown.diamondPrice || 0) -
-    resolvedPgCharge;
+  const pricingSubtotal = pricingBreakdown.taxableSubtotal;
   const gstPercent =
     pricingSubtotal > 0
       ? Math.round(
@@ -1437,11 +1444,7 @@ const ProductDetails = () => {
                         <tbody className="divide-y divide-gray-50">
                           {[
                             {
-                              label: metalType === "diamond"
-                                ? `Setting Metal (${product?.settingMetal ? `${product.settingMetal}${product.settingPurity ? ` ${product.settingPurity}` : ''}` : (product?.material || 'Setting')})`
-                                : metalType === "gold"
-                                  ? `Metal (${product?.purity || 'Gold'})`
-                                  : `Metal (${product?.purity || '925 Silver'})`,
+                              label: "Metal Value",
                               rate: is925SterlingSilver
                                 ? "-"
                                 : `${selectedVariantWeight || product.weight || "---"} g`,
@@ -1453,17 +1456,23 @@ const ProductDetails = () => {
                               value: pricingBreakdown.makingCharge,
                             },
                             {
-                              label: metalType === "diamond" ? "Diamond Stones" : "Diamond / Stones",
+                              label: "Diamond",
                               rate: (dSpecs?.carat || product?.diamondWeight || currentVariant?.diamondWeight)
                                 ? `${dSpecs?.carat || product?.diamondWeight || currentVariant?.diamondWeight} ct`
                                 : "-",
                               value: pricingBreakdown.diamondPrice,
                             },
+                            { label: "Gemstone", rate: "-", value: pricingBreakdown.gemstonePrice },
+                            { label: "Hallmarking", rate: "-", value: pricingBreakdown.hallmarkingCharge },
+                            { label: "Certificate", rate: "-", value: pricingBreakdown.certificateCharge },
+                            { label: "Additional Charges", rate: "-", value: pricingBreakdown.additionalCharge },
+                            { label: "Taxable Subtotal", rate: "-", value: pricingBreakdown.taxableSubtotal },
                             {
                               label: `GST (${gstPercent}%)`,
                               rate: "-",
                               value: pricingBreakdown.gst,
                             },
+                            ...(pricingBreakdown.pgCharge > 0 ? [{ label: "Payment Gateway Charge", rate: `${Number(selectedVariant?.pgChargePercent || 0)}%`, value: pricingBreakdown.pgCharge }] : []),
                           ].map((item, idx) => (
                             <tr
                               key={idx}
@@ -1487,7 +1496,7 @@ const ProductDetails = () => {
                               colSpan="2"
                               className="px-3 md:px-6 py-3 md:py-5 text-[10px] md:text-[11px] font-bold text-stone-900 uppercase tracking-[0.2em]"
                             >
-                              Total Price
+                              Final Product Price
                             </td>
                             <td className="px-3 md:px-6 py-3 md:py-5 text-base md:text-lg font-bold text-brand-plum text-right">
                               {formatCurrency(
@@ -1501,8 +1510,7 @@ const ProductDetails = () => {
                       </table>
                     </div>
                     <p className="mt-3 md:mt-4 text-[8px] md:text-[9px] text-gray-400 text-center font-bold uppercase tracking-widest italic">
-                      * Final price includes all applicable taxes and insured
-                      shipping.
+                      * Taxes included; shipping calculated at checkout.
                     </p>
                   </div>
                 )}
@@ -1563,7 +1571,7 @@ const ProductDetails = () => {
               )}
             </div>
             <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-1">
-              {hasDisplayPrice ? "Inclusive of all taxes & shipping" : "Contact us for current pricing"}
+              {hasDisplayPrice ? "Taxes included; shipping calculated at checkout" : "Contact us for current pricing"}
             </p>
             {verifiedReferenceRate && (
               <div className="mx-auto mt-4 max-w-md rounded-xl border border-brand-champagne/30 bg-brand-pearl px-4 py-3 text-sm text-brand-espresso">
@@ -2171,7 +2179,7 @@ const ProductDetails = () => {
                       <div className="space-y-4">
                         <div className="flex justify-between items-center text-xs font-medium text-gray-600">
                           <span>
-                            Metal Price{" "}
+                            Metal Value{" "}
                             {is925SterlingSilver
                               ? ""
                               : `(${currentVariant?.weight || product.weight || "0"} {currentVariant?.weightUnit || product.weightUnit || 'g'})`}
@@ -2188,12 +2196,30 @@ const ProductDetails = () => {
                         </div>
                         {pricingBreakdown.diamondPrice > 0 && (
                           <div className="flex justify-between items-center text-xs font-medium text-gray-600">
-                            <span>Diamond / Stones</span>
+                            <span>Diamond</span>
                             <span className="font-bold text-gray-900">
                               {formatCurrency(pricingBreakdown.diamondPrice)}
                             </span>
                           </div>
                         )}
+                        {pricingBreakdown.gemstonePrice > 0 && (
+                          <div className="flex justify-between items-center text-xs font-medium text-gray-600">
+                            <span>Gemstone</span>
+                            <span className="font-bold text-gray-900">{formatCurrency(pricingBreakdown.gemstonePrice)}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between items-center text-xs font-medium text-gray-600">
+                          <span>Hallmarking</span>
+                          <span className="font-bold text-gray-900">{formatCurrency(pricingBreakdown.hallmarkingCharge)}</span>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-medium text-gray-600">
+                          <span>Certificate</span>
+                          <span className="font-bold text-gray-900">{formatCurrency(pricingBreakdown.certificateCharge)}</span>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-medium text-gray-600">
+                          <span>Additional Charges</span>
+                          <span className="font-bold text-gray-900">{formatCurrency(pricingBreakdown.additionalCharge)}</span>
+                        </div>
                         <div className="pt-4 border-t border-brand-border flex justify-between items-center">
                           <span className="text-xs font-bold text-brand-plum uppercase tracking-widest">
                             Subtotal (Pre-Tax)
@@ -2206,9 +2232,15 @@ const ProductDetails = () => {
                           <span>GST ({gstPercent}%)</span>
                           <span>{formatCurrency(pricingBreakdown.gst)}</span>
                         </div>
+                        {pricingBreakdown.pgCharge > 0 && (
+                          <div className="flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                            <span>Payment Gateway Charge ({Number(selectedVariant?.pgChargePercent || 0)}%)</span>
+                            <span>{formatCurrency(pricingBreakdown.pgCharge)}</span>
+                          </div>
+                        )}
                         <div className="pt-4 border-t-2 border-dashed border-[#F5E6D3] flex justify-between items-center">
                           <span className="text-sm font-black text-brand-espresso uppercase tracking-widest">
-                            Grand Total
+                            Final Product Price
                           </span>
                           <span className="text-xl font-black text-brand-espresso">
                             {formatCurrency(

@@ -76,6 +76,10 @@ const productSchema = new mongoose.Schema({
       answer: { type: String, trim: true }
     }],
     makingCharge: { type: Number, default: 0 },
+    // ── Legacy diamond/stone price (authoritative computed value) ─────────
+    // This is the single diamond/stone amount fed into subtotalBeforeTax.
+    // Populated either from diamondPricing (new) or direct admin entry (legacy).
+    // Do NOT set this directly when using the new diamondPricing sub-object.
     diamondPrice: { type: Number, default: 0 },
     diamondType: {
       type: String,
@@ -83,6 +87,8 @@ const productSchema = new mongoose.Schema({
       default: "none"
     },
     hallmarkingCharge: { type: Number, default: 0 },
+    // Legacy certificate charge (included in hiddenCharge).
+    // If diamondPricing.enabled, this is auto-synced from diamondPricing.certificateCharge.
     diamondCertificateCharge: { type: Number, default: 0 },
     additionalCharge: { type: Number, default: 0 },
     hiddenCharge: { type: Number, default: 0 },
@@ -99,6 +105,7 @@ const productSchema = new mongoose.Schema({
     discount: { type: Number },
     stock: { type: Number, required: true, min: 0 },
     sold: { type: Number, default: 0 },
+    // ── Diamond descriptive specs (informational — do NOT auto-generate price) ──
     diamondSpecs: {
       carat: { type: String, default: "" },
       clarity: { type: String, default: "" },
@@ -107,6 +114,61 @@ const productSchema = new mongoose.Schema({
       shape: { type: String, default: "" },
       diamondCount: { type: Number, default: 0 }
     },
+    // ── Diamond Pricing (Admin-Controlled) ───────────────────────────────
+    // When enabled=true, this object is the authoritative source for diamondPrice.
+    // The legacy diamondPrice field is overwritten by the value resolved here.
+    // API Mitra gold/silver rates NEVER touch these fields.
+    diamondPricing: {
+      enabled: { type: Boolean, default: false },
+      // "total": admin enters the full diamond price directly.
+      // "per_carat": finalDiamondPrice = carat × pricePerCarat.
+      pricingMode: {
+        type: String,
+        enum: ["total", "per_carat"],
+        default: "total"
+      },
+      // Used only when pricingMode = "per_carat".
+      // carat is read from diamondSpecs.carat (existing field) so we don't duplicate.
+      pricePerCarat: { type: Number, default: 0, min: 0 },
+      // Used when pricingMode = "total".
+      totalPrice: { type: Number, default: 0, min: 0 },
+      // Certificate charge for the diamond grading report (GIA / IGI etc.).
+      // This syncs into the legacy diamondCertificateCharge field automatically.
+      certificateCharge: { type: Number, default: 0, min: 0 },
+      // Optional URL to diamond grading certificate document.
+      certificateUrl: { type: String, default: "" }
+    },
+    // ── Gemstone Pricing (Admin-Controlled, supports multiple stones) ────
+    // API Mitra rates NEVER touch gemstonePricing.
+    // gemstonePrice is the computed sum of all stones and is written to
+    // subtotalBeforeTax alongside diamondPrice. Both can be present only when
+    // the admin explicitly configures both structured pricing sources.
+    gemstonePricing: [{
+      gemstoneType: {
+        type: String,
+        enum: ["Ruby", "Emerald", "Sapphire", "Pearl", "Other"],
+        required: true
+      },
+      // Informational — used for per_carat pricing mode.
+      weight: { type: Number, default: 0, min: 0 },
+      quantity: { type: Number, default: 1, min: 0 },
+      pricingMode: {
+        type: String,
+        enum: ["total", "per_carat"],
+        default: "total"
+      },
+      // Used when pricingMode = "per_carat": price = weight × pricePerCarat.
+      pricePerCarat: { type: Number, default: 0, min: 0 },
+      // Used when pricingMode = "total".
+      totalPrice: { type: Number, default: 0, min: 0 },
+      // Optional certificate charge for this specific stone.
+      certificateCharge: { type: Number, default: 0, min: 0 },
+      _id: false
+    }],
+    // Computed sum of all gemstonePricing entries. Set by metalPricing utility.
+    // DO NOT set manually — it is overwritten on every product save.
+    gemstonePrice: { type: Number, default: 0 },
+    gemstoneCertificateCharge: { type: Number, default: 0 },
     serialCodes: [{
       code: { type: String, trim: true },
       status: { type: String, enum: ["AVAILABLE", "SOLD_OFFLINE", "SOLD_ONLINE"], default: "AVAILABLE" }

@@ -102,6 +102,7 @@ const OrderDetailPage = () => {
                 setLoading(true);
                 const data = await adminService.getOrderDetails(id);
                 setOrder(data);
+                window.dispatchEvent(new CustomEvent('admin-notification-sync'));
             } catch (err) {
                 toast.error('Unable to load this order right now.');
                 navigate('/admin/orders');
@@ -182,6 +183,7 @@ const OrderDetailPage = () => {
             }
 
             setOrder(res.order || await refreshOrder());
+            window.dispatchEvent(new CustomEvent('admin-notification-sync'));
             setActionNote('');
             toast.success(res.message || 'Order updated');
         } finally {
@@ -238,6 +240,7 @@ const OrderDetailPage = () => {
             }
 
             setOrder(res.order || await refreshOrder());
+            window.dispatchEvent(new CustomEvent('admin-notification-sync'));
             setActionNote('');
             toast.success(res.message || 'Shipping info updated');
         } finally {

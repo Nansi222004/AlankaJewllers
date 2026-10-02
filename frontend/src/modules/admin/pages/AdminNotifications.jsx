@@ -34,6 +34,7 @@ const AdminNotifications = () => {
         const success = await adminService.markAdminNotificationRead(id);
         if (success) {
             setNotifications((prev) => prev.map(n => n._id === id ? { ...n, isRead: true } : n));
+            window.dispatchEvent(new CustomEvent('admin-notification-sync'));
         } else {
             toast.error("Failed to update notification");
         }
@@ -43,6 +44,7 @@ const AdminNotifications = () => {
         const success = await adminService.markAllAdminNotificationsRead();
         if (success) {
             setNotifications((prev) => prev.map(n => ({ ...n, isRead: true })));
+            window.dispatchEvent(new CustomEvent('admin-notification-sync'));
         } else {
             toast.error("Failed to mark all as read");
         }

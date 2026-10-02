@@ -5,6 +5,7 @@ const Coupon = require("../../../models/Coupon");
 const StockLog = require("../../../models/StockLog");
 const GiftCard = require("../../../models/GiftCard");
 const User = require("../../../models/User");
+const Setting = require("../../../models/Setting");
 const { generateOrderId } = require("../../../utils/generateId");
 const { success, error } = require("../../../utils/apiResponse");
 const razorpay = require("../../../config/razorpay");
@@ -18,6 +19,8 @@ const {
   consumeSerializedStock,
   restockSerializedUnits,
 } = require("../../../utils/inventorySync");
+const { calculateShippingQuote } = require("../../../utils/shippingQuote");
+const { buildOrderItemPricingSnapshot } = require("../../../utils/orderPricingSnapshot");
 
 const DEFAULT_LOW_STOCK_THRESHOLD = 5;
 
@@ -263,13 +266,18 @@ const _calculateOrderData = async (
   paymentMethod,
   couponCode,
   giftCardCodes = [],
+  options = {},
 ) => {
   if (!items || !items.length)
     throw new Error("Order must contain at least one item.");
-  if (!shippingAddress) throw new Error("Shipping address is required.");
+  if (!shippingAddress && options.requireShippingAddress !== false)
+    throw new Error("Shipping address is required.");
+
+  const resolvedShippingAddress = shippingAddress || {};
 
   let subtotal = 0;
   const orderItems = [];
+  const priceChanges = [];
 
   // 1. Validate Items & Stock & Price
   for (const item of items) {
@@ -296,6 +304,29 @@ const _calculateOrderData = async (
         price: cardValue,
         mrp: cardValue,
         quantity: item.quantity,
+        pricingSnapshotVersion: 1,
+        pricingSnapshot: {
+          weight: 0,
+          weightUnit: "Grams",
+          metal: "",
+          purity: "",
+          metalRate: 0,
+          metalValue: 0,
+          makingCharge: 0,
+          diamondPrice: 0,
+          gemstonePrice: 0,
+          hallmarkingCharge: 0,
+          diamondCertificateCharge: 0,
+          gemstoneCertificateCharge: 0,
+          additionalCharge: 0,
+          taxableSubtotal: cardValue,
+          gstRate: 0,
+          gstAmount: 0,
+          pgChargePercent: 0,
+          pgChargeAmount: 0,
+          finalItemPrice: cardValue,
+          mrp: cardValue,
+        },
         isGiftCard: true,
         personalization: item.personalization || undefined,
       });
@@ -318,6 +349,18 @@ const _calculateOrderData = async (
     const itemTotal = variant.price * item.quantity;
     subtotal += itemTotal;
 
+    const submittedPrice = Number(item.price);
+    const serverPrice = Number(variant.price);
+    if (Number.isFinite(submittedPrice) && roundCurrency(submittedPrice) !== roundCurrency(serverPrice)) {
+      priceChanges.push({
+        productId: String(product._id),
+        variantId: String(variant._id),
+        productName: product.name,
+        oldPrice: roundCurrency(submittedPrice),
+        newPrice: roundCurrency(serverPrice),
+      });
+    }
+
     orderItems.push({
       productId: product._id,
       variantId: variant._id,
@@ -330,6 +373,8 @@ const _calculateOrderData = async (
       price: variant.price,
       mrp: variant.mrp,
       quantity: item.quantity,
+      pricingSnapshotVersion: 1,
+      pricingSnapshot: buildOrderItemPricingSnapshot(product, variant),
       sellerId: product.sellerId,
       categoryId: product.categories?.[0] || undefined,
       giftWrap: Boolean(item.giftWrap),
@@ -358,9 +403,17 @@ const _calculateOrderData = async (
     isFreeShipping = result.isFreeShipping;
   }
 
-  // Unified Shipping Logic (Free shipping above ₹499, else ₹50)
-  let shipping = subtotal - discount + giftWrapCharge > 499 ? 0 : 50;
-  if (isFreeShipping) shipping = 0;
+  const settings = await Setting.findOne()
+    .select("shippingCharges freeShippingThreshold")
+    .lean();
+  const shippingQuote = calculateShippingQuote({
+    subtotal,
+    discount,
+    giftWrapCharge,
+    isFreeShipping,
+    settings: settings || {},
+  });
+  const shipping = shippingQuote.shipping;
 
   // 3. Apply Gift Cards (partial use supported, multiple cards allowed)
   let giftCardDiscount = 0;
@@ -406,11 +459,13 @@ const _calculateOrderData = async (
   return {
     orderId: generateOrderId(),
     userId,
-    customerName: `${shippingAddress.firstName} ${shippingAddress.lastName}`,
-    customerEmail: shippingAddress.email || userEmail,
-    customerPhone: shippingAddress.phone,
+    customerName: [resolvedShippingAddress.firstName, resolvedShippingAddress.lastName]
+      .filter(Boolean)
+      .join(" "),
+    customerEmail: resolvedShippingAddress.email || userEmail,
+    customerPhone: resolvedShippingAddress.phone,
     items: orderItems,
-    shippingAddress,
+    shippingAddress: resolvedShippingAddress,
     paymentMethod,
     couponCode: appliedCoupon ? couponCode.toUpperCase() : undefined,
     giftCardDiscount,
@@ -418,13 +473,50 @@ const _calculateOrderData = async (
     subtotal,
     discount,
     shipping,
+    shippingQuote,
     giftWrapCharge,
     sellerInvoiceAllocations,
     total,
+    priceChanges,
+    quoteCode: priceChanges.length > 0 ? "PRICE_UPDATED" : "OK",
     status: paymentMethod === "cod" ? "Processing" : "Pending",
     paymentStatus: paymentMethod === "cod" ? "cod" : "pending",
     timeline: [{ status: "Ordered", note: "Order placed successfully" }],
   };
+};
+
+// POST /api/user/orders/quote — authoritative, non-persistent checkout quote.
+exports.getCheckoutQuote = async (req, res) => {
+  try {
+    const { items, shippingAddress, couponCode, giftCardCodes } = req.body || {};
+    const userId = req.user?.userId || null;
+    if (!userId && (couponCode || (Array.isArray(giftCardCodes) && giftCardCodes.length > 0))) {
+      return error(res, "Sign in to apply coupons or gift cards", 401, "UNAUTHENTICATED");
+    }
+    const quote = await _calculateOrderData(
+      userId,
+      req.user?.email || "",
+      items,
+      shippingAddress,
+      "cod",
+      couponCode,
+      giftCardCodes,
+      { requireShippingAddress: false },
+    );
+    return success(
+      res,
+      { quote },
+      quote.priceChanges.length > 0
+        ? "Some product prices have been updated. Your total has been refreshed."
+        : "Checkout quote calculated",
+    );
+  } catch (err) {
+    const message = err?.message || "Unable to calculate checkout quote";
+    const statusCode = /stock|not found|unavailable|required|invalid|must contain|variant/i.test(message)
+      ? 400
+      : 500;
+    return error(res, message, statusCode);
+  }
 };
 
 // ─────────────────────────────────────────────────────────────────
@@ -447,6 +539,15 @@ exports.placeOrder = async (req, res) => {
       couponCode,
       giftCardCodes,
     );
+
+    if (orderData.priceChanges?.length) {
+      return res.status(409).json({
+        success: false,
+        error: "PRICE_UPDATED",
+        message: "Some product prices have been updated. Your total has been refreshed.",
+        data: { quote: orderData },
+      });
+    }
 
     // 4. Create Razorpay order (no stock deduction yet for online payments)
     if (paymentMethod === "razorpay") {

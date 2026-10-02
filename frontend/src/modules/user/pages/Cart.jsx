@@ -8,11 +8,12 @@ import CouponsModal from '../components/CouponsModal';
 import { useResetScroll } from '../../../hooks/useResetScroll';
 
 const Cart = () => {
-    const { cart, removeFromCart, updateQuantity, coupons, applyCoupon, appliedCoupon, couponDiscount, clearAppliedCoupon, toggleGiftWrap, updateGiftMessage, siteSettings } = useShop();
+    const { cart, removeFromCart, updateQuantity, getCheckoutQuote, coupons, applyCoupon, appliedCoupon, couponDiscount, clearAppliedCoupon, toggleGiftWrap, updateGiftMessage, siteSettings } = useShop();
     const navigate = useNavigate();
     const [showCouponModal, setShowCouponModal] = React.useState(false);
     const [couponSectionExpanded, setCouponSectionExpanded] = React.useState(true);
     const [showBreakdown, setShowBreakdown] = React.useState(false);
+    const [serverQuote, setServerQuote] = React.useState(null);
 
     const warrantyLabel = siteSettings?.warrantyText || "6-Month Warranty";
     const platingLabel = siteSettings?.platingText || "Lifetime Plating";
@@ -27,12 +28,36 @@ const Cart = () => {
 
     useResetScroll();
 
-    const subtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
-    const giftWrapCharge = cart.reduce((acc, item) => acc + (item.giftWrap ? 50 : 0), 0);
-    const shipping = (subtotal - Number(couponDiscount || 0) + giftWrapCharge) > 499 ? 0 : 50;
-    const discount = Number(couponDiscount || 0);
-    const total = subtotal + giftWrapCharge + shipping - discount;
-    const gstIncluded = cart.reduce((acc, item) => acc + ((Number(item.gst || item.selectedVariant?.gst || 0)) * (item.quantity || 1)), 0);
+    const clientSubtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+    const clientGiftWrapCharge = cart.reduce((acc, item) => acc + (item.giftWrap ? 50 : 0), 0);
+    const subtotal = Number(serverQuote?.subtotal ?? clientSubtotal);
+    const giftWrapCharge = Number(serverQuote?.giftWrapCharge ?? clientGiftWrapCharge);
+    const shipping = serverQuote ? Number(serverQuote.shipping || 0) : 0;
+    const discount = Number(serverQuote?.discount ?? couponDiscount ?? 0);
+    const total = Number(serverQuote?.total ?? (subtotal + giftWrapCharge - discount));
+    const gstIncluded = serverQuote?.items
+        ? serverQuote.items.reduce((acc, item) => acc + Number(item.pricingSnapshot?.gstAmount || 0) * Number(item.quantity || 1), 0)
+        : cart.reduce((acc, item) => acc + ((Number(item.gst || item.selectedVariant?.gst || 0)) * (item.quantity || 1)), 0);
+
+    React.useEffect(() => {
+        if (!cart.length || !getCheckoutQuote) {
+            setServerQuote(null);
+            return;
+        }
+        let cancelled = false;
+        getCheckoutQuote({ items: cart, couponCode: appliedCoupon?.code })
+            .then((quote) => {
+                if (cancelled || !quote) return;
+                setServerQuote(quote);
+                if (quote.priceChanges?.length) {
+                    toast('Some product prices have been updated. Your total has been refreshed.');
+                }
+            })
+            .catch(() => {
+                if (!cancelled) setServerQuote(null);
+            });
+        return () => { cancelled = true; };
+    }, [cart, appliedCoupon?.code, getCheckoutQuote]);
 
     const variantLabel = (item) => {
         const name = item.selectedVariant?.name || item.selectedVariant?.variantName || '';
@@ -289,7 +314,7 @@ const Cart = () => {
                                                                     )}
                                                                     <div className="flex justify-between">
                                                                         <span>Shipping</span>
-                                                                        <span className="font-semibold text-gray-900">{shipping === 0 ? 'FREE' : currencyText(shipping)}</span>
+                                                                        <span className="font-semibold text-gray-900">{serverQuote ? (shipping === 0 ? 'FREE' : currencyText(shipping)) : 'Calculated at checkout'}</span>
                                                                     </div>
                                                                     {gstIncluded > 0 && (
                                                                         <div className="flex justify-between text-gray-400">
@@ -373,7 +398,11 @@ const Cart = () => {
                             )}
 
                             <div className="space-y-2.5 pt-2">
-                                <p className="text-[9px] text-gray-400 font-normal text-center uppercase tracking-[0.08em]">Free Shipping on orders above ₹499</p>
+                                <p className="text-[9px] text-gray-400 font-normal text-center uppercase tracking-[0.08em]">
+                                    {serverQuote?.shippingQuote?.freeShippingThreshold > 0
+                                        ? `Free shipping above ${currencyText(serverQuote.shippingQuote.freeShippingThreshold)}`
+                                        : 'Shipping is calculated by the server at checkout'}
+                                </p>
 
                                 <Link
                                     to="/checkout"

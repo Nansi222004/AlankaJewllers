@@ -9,6 +9,7 @@ import PageHeader from '../components/common/PageHeader';
 import AdminStatsCard from '../components/AdminStatsCard';
 import { adminService } from '../services/adminService';
 import toast from 'react-hot-toast';
+import ConfirmModal from '../../shared/components/ConfirmModal';
 
 const FAQManagement = () => {
     const [faqs, setFaqs] = useState([]);
@@ -16,6 +17,7 @@ const FAQManagement = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingFaq, setEditingFaq] = useState(null);
+    const [faqToDelete, setFaqToDelete] = useState(null);
     const [formData, setFormData] = useState({
         category: 'Orders',
         question: '',
@@ -98,21 +100,22 @@ const FAQManagement = () => {
         }
     };
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this FAQ?')) {
-            try {
-                const res = await adminService.deleteFAQ(id);
-                if (res.success) {
-                    toast.success('FAQ deleted successfully');
-                    fetchFaqs();
-                } else {
-                    toast.error(res.message || 'Failed to delete FAQ');
-                }
-            } catch (err) {
-                console.error('Failed to delete FAQ:', err);
-                toast.error('Failed to delete FAQ');
+    const handleDelete = async () => {
+        const id = faqToDelete?._id || faqToDelete?.id;
+        if (!id) return false;
+        try {
+            const res = await adminService.deleteFAQ(id);
+            if (res.success) {
+                toast.success('FAQ deleted successfully');
+                fetchFaqs();
+                return true;
             }
+            toast.error(res.message || 'Failed to delete FAQ');
+        } catch (err) {
+            console.error('Failed to delete FAQ:', err);
+            toast.error('Failed to delete FAQ');
         }
+        return false;
     };
 
     const mappedFaqs = faqs.map(faq => ({
@@ -246,7 +249,7 @@ const FAQManagement = () => {
                                         <span>Edit</span>
                                     </button>
                                     <button
-                                        onClick={() => handleDelete(faq.id)}
+                                        onClick={() => setFaqToDelete(faq)}
                                         className="flex-1 md:flex-none w-full flex items-center justify-center gap-1.5 px-3 py-2 text-[10px] font-bold text-red-500 bg-red-50 hover:bg-red-500 hover:text-white rounded-lg transition-all"
                                     >
                                         <Trash2 className="w-3 h-3" />
@@ -374,6 +377,14 @@ const FAQManagement = () => {
                     </div>
                 </div>
             )}
+            <ConfirmModal
+                isOpen={Boolean(faqToDelete)}
+                onClose={() => setFaqToDelete(null)}
+                onConfirm={handleDelete}
+                title="Delete FAQ?"
+                description="This FAQ will be permanently removed from the help content."
+                confirmLabel="Delete FAQ"
+            />
         </div>
     );
 };

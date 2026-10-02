@@ -7,6 +7,7 @@ import BulkUpdateModal from '../components/BulkUpdateModal';
 import { adminService } from '../services/adminService';
 import toast from 'react-hot-toast';
 import { exportToExcelCSV } from '../../../utils/exportUtils';
+import ConfirmModal from '../../shared/components/ConfirmModal';
 
 const ProductManagement = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const ProductManagement = () => {
     const [selectedIds, setSelectedIds] = useState([]);
     const [categoryOptions, setCategoryOptions] = useState([]);
     const [categoriesById, setCategoriesById] = useState({});
+    const [productToDelete, setProductToDelete] = useState(null);
 
     // Advanced Filters & Pagination
     const [filtersObj, setFiltersObj] = useState({
@@ -198,16 +200,16 @@ const ProductManagement = () => {
         navigate(returnUrl);
     };
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this product?')) {
-            const success = await adminService.deleteProduct(id);
-            if (success) {
-                setProducts(prev => prev.filter(p => p._id !== id));
-                toast.success("Product deleted successfully");
-            } else {
-                toast.error("Failed to delete product");
-            }
+    const handleDelete = async () => {
+        if (!productToDelete?._id) return false;
+        const success = await adminService.deleteProduct(productToDelete._id);
+        if (success) {
+            setProducts(prev => prev.filter(p => p._id !== productToDelete._id));
+            toast.success("Product deleted successfully");
+            return true;
         }
+        toast.error("Failed to delete product");
+        return false;
     };
 
     const columns = [
@@ -346,7 +348,7 @@ const ProductManagement = () => {
                         <Edit2 className="w-4 h-4" />
                     </button>
                     <button
-                        onClick={() => handleDelete(item._id)}
+                        onClick={() => setProductToDelete(item)}
                         className="p-1 text-gray-700 hover:text-red-700 transition-colors"
                         title="Delete"
                     >
@@ -502,6 +504,14 @@ const ProductManagement = () => {
                 onClose={() => setIsBulkModalOpen(false)}
                 onApply={handleBulkApply}
                 products={products}
+            />
+            <ConfirmModal
+                isOpen={Boolean(productToDelete)}
+                onClose={() => setProductToDelete(null)}
+                onConfirm={handleDelete}
+                title="Delete product?"
+                description={`Are you sure you want to permanently delete “${productToDelete?.name || 'this product'}”? This action cannot be undone.`}
+                confirmLabel="Delete product"
             />
         </div>
     );

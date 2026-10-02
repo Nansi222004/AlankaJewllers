@@ -217,6 +217,20 @@ const AdminOrderInvoice = () => {
                   <td className="py-3 px-3">
                     <p className="font-bold text-gray-900">{item.name}</p>
                     <p className="text-[10px] font-mono text-gray-400">SKU: {item.sku}</p>
+                    {item.pricingSnapshotVersion >= 1 && item.pricingSnapshot && (
+                      <div className="mt-1 text-[9px] leading-relaxed text-gray-500">
+                        <p>{item.pricingSnapshot.metal} {item.pricingSnapshot.purity} · {item.pricingSnapshot.weight} {item.pricingSnapshot.weightUnit}</p>
+                        <p>
+                          Metal {formatMoney(item.pricingSnapshot.metalValue)} · Making {formatMoney(item.pricingSnapshot.makingCharge)}
+                          {item.pricingSnapshot.diamondPrice > 0 ? ` · Diamond ${formatMoney(item.pricingSnapshot.diamondPrice)}` : ''}
+                          {item.pricingSnapshot.gemstonePrice > 0 ? ` · Gemstone ${formatMoney(item.pricingSnapshot.gemstonePrice)}` : ''}
+                        </p>
+                        <p>
+                          Hallmark {formatMoney(item.pricingSnapshot.hallmarkingCharge)} · Certificates {formatMoney(Number(item.pricingSnapshot.diamondCertificateCharge || 0) + Number(item.pricingSnapshot.gemstoneCertificateCharge || 0))} · Additional {formatMoney(item.pricingSnapshot.additionalCharge)}
+                          {item.pricingSnapshot.pgChargeAmount > 0 ? ` · PG ${formatMoney(item.pricingSnapshot.pgChargeAmount)}` : ''}
+                        </p>
+                      </div>
+                    )}
                   </td>
                   <td className="py-3 px-2 font-mono text-gray-600">{item.hsnCode}</td>
                   <td className="py-3 px-2 text-gray-600">{item.purity}</td>
@@ -279,6 +293,13 @@ const AdminOrderInvoice = () => {
               </div>
             )}
 
+            {invoice.pgCharge > 0 && (
+              <div className="flex justify-between py-1 text-gray-600">
+                <span>Payment Gateway Charge:</span>
+                <span className="font-mono">{formatMoney(invoice.pgCharge)}</span>
+              </div>
+            )}
+
             {invoice.shippingFee > 0 && (
               <div className="flex justify-between py-1 text-gray-600">
                 <span>Shipping Charges:</span>
@@ -286,10 +307,24 @@ const AdminOrderInvoice = () => {
               </div>
             )}
 
+            {invoice.giftWrapCharge > 0 && (
+              <div className="flex justify-between py-1 text-gray-600">
+                <span>Gift Wrap:</span>
+                <span className="font-mono">{formatMoney(invoice.giftWrapCharge)}</span>
+              </div>
+            )}
+
             {invoice.discount > 0 && (
               <div className="flex justify-between py-1 text-emerald-600">
                 <span>Discount / Coupon Applied:</span>
                 <span className="font-mono">- {formatMoney(invoice.discount)}</span>
+              </div>
+            )}
+
+            {invoice.giftCardDiscount > 0 && (
+              <div className="flex justify-between py-1 text-emerald-600">
+                <span>Gift Card:</span>
+                <span className="font-mono">- {formatMoney(invoice.giftCardDiscount)}</span>
               </div>
             )}
 

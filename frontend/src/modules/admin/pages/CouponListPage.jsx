@@ -16,11 +16,13 @@ import Pagination from '../components/Pagination';
 import DataTable from '../components/common/DataTable';
 import AdminStatsCard from '../components/AdminStatsCard';
 import toast from 'react-hot-toast';
+import ConfirmModal from '../../shared/components/ConfirmModal';
 
 const CouponListPage = () => {
     const navigate = useNavigate();
     const [coupons, setCoupons] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [couponToDelete, setCouponToDelete] = useState(null);
 
     useEffect(() => {
         // Refresh coupons on mount to get full admin list
@@ -62,16 +64,17 @@ const CouponListPage = () => {
 
     const totalPages = Math.ceil(filteredCoupons.length / itemsPerPage);
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this coupon?')) {
-            const success = await adminService.deleteCoupon(id);
-            if (success) {
-                setCoupons(prev => prev.filter(c => (c._id || c.id) !== id));
-                toast.success("Coupon deleted");
-            } else {
-                toast.error("Failed to delete coupon");
-            }
+    const handleDelete = async () => {
+        const id = couponToDelete?._id || couponToDelete?.id;
+        if (!id) return false;
+        const success = await adminService.deleteCoupon(id);
+        if (success) {
+            setCoupons(prev => prev.filter(c => (c._id || c.id) !== id));
+            toast.success("Coupon deleted");
+            return true;
         }
+        toast.error("Failed to delete coupon");
+        return false;
     };
 
     const handleToggle = async (id) => {
@@ -184,7 +187,7 @@ const CouponListPage = () => {
                         <Edit2 size={16} />
                     </button>
                     <button
-                        onClick={() => handleDelete(coupon._id || coupon.id)}
+                        onClick={() => setCouponToDelete(coupon)}
                         className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
                         title="Delete Coupon"
                     >
@@ -265,6 +268,14 @@ const CouponListPage = () => {
                 itemsPerPage={itemsPerPage}
                 />
             )}
+            <ConfirmModal
+                isOpen={Boolean(couponToDelete)}
+                onClose={() => setCouponToDelete(null)}
+                onConfirm={handleDelete}
+                title="Delete coupon?"
+                description={`The coupon “${couponToDelete?.code || ''}” will no longer be available to customers.`}
+                confirmLabel="Delete coupon"
+            />
         </div>
     );
 };

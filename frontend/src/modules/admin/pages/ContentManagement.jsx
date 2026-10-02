@@ -9,10 +9,12 @@ import {
   Check,
 } from "lucide-react";
 import PageHeader from "../components/common/PageHeader";
+import TextPromptModal from "../../shared/components/TextPromptModal";
 
 const ContentManagement = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [imagePrompt, setImagePrompt] = useState(null);
 
   // Initial Mock Content - About Us
   const [aboutContent, setAboutContent] = useState({
@@ -325,11 +327,7 @@ const ContentManagement = () => {
                   {isEditing && (
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-2 animate-in fade-in">
                       <button
-                        onClick={() => {
-                          const newUrl = prompt("Enter Image URL:", img.url);
-                          if (newUrl)
-                            handleImageChange("images", img.id, newUrl);
-                        }}
+                        onClick={() => setImagePrompt({ field: "images", id: img.id, url: img.url })}
                         className="p-2 md:p-3 bg-white rounded-full text-gray-900 shadow-xl hover:scale-110 transition-all pointer-events-auto"
                       >
                         <Edit3 className="w-3 h-3 md:w-4 md:h-4" />
@@ -373,15 +371,7 @@ const ContentManagement = () => {
                   {isEditing && (
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-2 animate-in fade-in">
                       <button
-                        onClick={() => {
-                          const newUrl = prompt("Enter Image URL:", img.url);
-                          if (newUrl)
-                            handleImageChange(
-                              "instagramImages",
-                              img.id,
-                              newUrl,
-                            );
-                        }}
+                        onClick={() => setImagePrompt({ field: "instagramImages", id: img.id, url: img.url })}
                         className="p-2 md:p-2 bg-white rounded-full text-gray-900 shadow-xl hover:scale-110 transition-all"
                       >
                         <Edit3 className="w-3 h-3 md:w-4 md:h-4" />
@@ -400,6 +390,17 @@ const ContentManagement = () => {
           </div>
         </div>
       </div>
+      <TextPromptModal
+        isOpen={Boolean(imagePrompt)}
+        onClose={() => setImagePrompt(null)}
+        onSubmit={(newUrl) => handleImageChange(imagePrompt.field, imagePrompt.id, newUrl)}
+        title="Update image URL"
+        label="Image URL"
+        initialValue={imagePrompt?.url || ''}
+        placeholder="https://example.com/image.jpg"
+        submitLabel="Update image"
+        inputType="url"
+      />
     </div>
   );
 };

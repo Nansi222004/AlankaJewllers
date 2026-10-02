@@ -6,6 +6,7 @@ import {
 import toast from 'react-hot-toast';
 import { adminService } from '../services/adminService';
 import ShipmentTimeline from '../../shared/components/ShipmentTimeline';
+import ConfirmModal from '../../shared/components/ConfirmModal';
 
 const COURIERS = [
   { id: 'shiprocket', name: 'Shiprocket', desc: 'Smart Courier Selection & Automatic AWB Generation', disabled: false },
@@ -22,6 +23,7 @@ const AdminShipmentPanel = ({ order, onShipmentCreated }) => {
   const [cancelling, setCancelling] = useState(false);
   const [requestingPickup, setRequestingPickup] = useState(false);
   const [generatingManifest, setGeneratingManifest] = useState(false);
+  const [shipmentToCancel, setShipmentToCancel] = useState(null);
 
   // Form state
   const [selectedCourier, setSelectedCourier] = useState('shiprocket');
@@ -189,16 +191,19 @@ const AdminShipmentPanel = ({ order, onShipmentCreated }) => {
     }
   };
 
-  const handleCancel = async (shipmentId) => {
-    if (!window.confirm('Are you sure you want to cancel this courier booking?')) return;
+  const handleCancel = async () => {
+    const shipmentId = shipmentToCancel;
+    if (!shipmentId) return false;
     setCancelling(true);
     try {
       await adminService.cancelShipment(shipmentId);
       fetchShipments();
       toast.success('Shipment cancelled');
       if (onShipmentCreated) onShipmentCreated(null);
+      return true;
     } catch (err) {
       toast.error(err.response?.data?.message || 'Cancellation failed');
+      return false;
     } finally {
       setCancelling(false);
     }
@@ -250,7 +255,7 @@ const AdminShipmentPanel = ({ order, onShipmentCreated }) => {
                 )}
                 {['CREATED', 'PICKUP_SCHEDULED'].includes(activeShipment.status) && (
                   <button
-                    onClick={() => handleCancel(activeShipment._id)}
+                    onClick={() => setShipmentToCancel(activeShipment._id)}
                     disabled={cancelling}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100 transition-colors disabled:opacity-50"
                   >
@@ -541,6 +546,14 @@ const AdminShipmentPanel = ({ order, onShipmentCreated }) => {
           )}
         </div>
       )}
+      <ConfirmModal
+        isOpen={Boolean(shipmentToCancel)}
+        onClose={() => setShipmentToCancel(null)}
+        onConfirm={handleCancel}
+        title="Cancel courier booking?"
+        description="The active courier booking will be cancelled. This action may not be reversible with the courier."
+        confirmLabel="Cancel booking"
+      />
     </div>
   );
 };

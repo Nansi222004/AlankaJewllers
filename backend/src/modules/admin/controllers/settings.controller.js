@@ -55,6 +55,15 @@ exports.updateSettings = async (req, res) => {
     delete payload._id;
     delete payload.__v;
 
+    for (const field of ["shippingCharges", "freeShippingThreshold"]) {
+      if (payload[field] === undefined) continue;
+      const value = Number(payload[field]);
+      if (!Number.isFinite(value) || value < 0) {
+        return error(res, `${field} must be a non-negative number`, 400);
+      }
+      payload[field] = value;
+    }
+
     const before = await Setting.findOne().lean();
 
     const settings = await Setting.findOneAndUpdate(

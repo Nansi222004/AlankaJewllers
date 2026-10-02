@@ -8,6 +8,7 @@ import PageHeader from '../components/common/PageHeader';
 import AdminStatsCard from '../components/AdminStatsCard';
 import { adminService } from '../services/adminService';
 import toast from 'react-hot-toast';
+import ConfirmModal from '../../shared/components/ConfirmModal';
 
 const STATUS_LABELS = {
     pending: 'Pending',
@@ -20,6 +21,7 @@ const ReviewModeration = () => {
     const [loading, setLoading] = useState(true);
     const [filterStatus, setFilterStatus] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
+    const [reviewToDelete, setReviewToDelete] = useState(null);
 
     const loadReviews = async () => {
         setLoading(true);
@@ -54,14 +56,16 @@ const ReviewModeration = () => {
         }
     };
 
-    const deleteReview = async (id) => {
-        if (!window.confirm('Are you sure you want to permanently delete this review?')) return;
-        const response = await adminService.deleteReview(id);
+    const deleteReview = async () => {
+        if (!reviewToDelete?._id) return false;
+        const response = await adminService.deleteReview(reviewToDelete._id);
         if (response?.success) {
             toast.success(response.message || "Review deleted");
             loadReviews();
+            return true;
         } else {
             toast.error(response?.message || "Failed to delete review");
+            return false;
         }
     };
 
@@ -253,7 +257,7 @@ const ReviewModeration = () => {
                                                 </button>
                                             )}
                                             <button
-                                                onClick={() => deleteReview(review._id)}
+                                                onClick={() => setReviewToDelete(review)}
                                                 className="p-1.5 md:p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all active:scale-95"
                                                 title="Delete review"
                                             >
@@ -267,6 +271,14 @@ const ReviewModeration = () => {
                     </table>
                 </div>
             </div>
+            <ConfirmModal
+                isOpen={Boolean(reviewToDelete)}
+                onClose={() => setReviewToDelete(null)}
+                onConfirm={deleteReview}
+                title="Delete review?"
+                description="This review will be permanently removed and cannot be restored."
+                confirmLabel="Delete review"
+            />
         </div>
     );
 };

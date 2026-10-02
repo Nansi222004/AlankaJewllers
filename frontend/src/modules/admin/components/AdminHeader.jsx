@@ -26,9 +26,11 @@ const AdminHeader = () => {
         };
         updateCounts();
         const interval = setInterval(updateCounts, 15000);
+        window.addEventListener('admin-notification-sync', updateCounts);
         return () => {
             isMounted = false;
             clearInterval(interval);
+            window.removeEventListener('admin-notification-sync', updateCounts);
         };
     }, []);
 

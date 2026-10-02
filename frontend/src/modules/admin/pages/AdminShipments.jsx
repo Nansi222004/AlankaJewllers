@@ -6,6 +6,8 @@ import {
 } from 'lucide-react';
 import { adminShippingService } from '../services/adminShippingService';
 import ShipmentTimeline from '../../shared/components/ShipmentTimeline';
+import ConfirmModal from '../../shared/components/ConfirmModal';
+import toast from 'react-hot-toast';
 
 const STATUS_COLORS = {
   CREATED: 'bg-blue-50 text-blue-700 border-blue-200',
@@ -42,6 +44,7 @@ const AdminShipments = () => {
   const [reports, setReports] = useState(null);
   const [showReports, setShowReports] = useState(false);
   const [actionLoading, setActionLoading] = useState('');
+  const [shipmentToCancel, setShipmentToCancel] = useState(null);
 
   const fetchShipments = useCallback(async (page = 1) => {
     setLoading(true);
@@ -69,11 +72,20 @@ const AdminShipments = () => {
     finally { setActionLoading(''); }
   };
 
-  const handleCancel = async (id) => {
-    if (!window.confirm('Cancel this shipment?')) return;
+  const handleCancel = async () => {
+    const id = shipmentToCancel;
+    if (!id) return false;
     setActionLoading(id);
-    try { await adminShippingService.cancelShipment(id); fetchShipments(pagination.page); if (selectedShipment?._id === id) viewDetail(id); }
-    catch (err) { alert(err.response?.data?.message || 'Failed'); } finally { setActionLoading(''); }
+    try {
+      await adminShippingService.cancelShipment(id);
+      fetchShipments(pagination.page);
+      if (selectedShipment?._id === id) viewDetail(id);
+      toast.success('Shipment cancelled');
+      return true;
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to cancel shipment');
+      return false;
+    } finally { setActionLoading(''); }
   };
 
   const handleOverride = async () => {
@@ -83,7 +95,7 @@ const AdminShipments = () => {
       await adminShippingService.overrideStatus(overrideModal, { status: overrideStatus, message: overrideMessage });
       setOverrideModal(null); setOverrideStatus(''); setOverrideMessage('');
       fetchShipments(pagination.page); if (selectedShipment?._id === overrideModal) viewDetail(overrideModal);
-    } catch (err) { alert(err.response?.data?.message || 'Failed'); } finally { setActionLoading(''); }
+    } catch (err) { toast.error(err.response?.data?.message || 'Failed to update shipment'); } finally { setActionLoading(''); }
   };
 
   const fetchReports = async () => {
@@ -193,7 +205,7 @@ const AdminShipments = () => {
           <div className="px-6 pb-4 flex gap-2 flex-wrap">
             <button onClick={() => handleTrack(selectedShipment._id)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 text-amber-700 text-xs font-bold hover:bg-amber-100 border border-amber-200"><RefreshCw className="w-3.5 h-3.5" /> Sync</button>
             {!['CANCELLED','DELIVERED','RTO_DELIVERED'].includes(selectedShipment.status) && (
-              <><button onClick={() => handleCancel(selectedShipment._id)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100 border border-red-200"><XCircle className="w-3.5 h-3.5" /> Cancel</button>
+              <><button onClick={() => setShipmentToCancel(selectedShipment._id)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 text-red-700 text-xs font-bold hover:bg-red-100 border border-red-200"><XCircle className="w-3.5 h-3.5" /> Cancel</button>
               <button onClick={() => { setOverrideModal(selectedShipment._id); setOverrideStatus(selectedShipment.status); }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-violet-50 text-violet-700 text-xs font-bold hover:bg-violet-100 border border-violet-200">Override Status</button></>
             )}
           </div>
@@ -268,6 +280,14 @@ const AdminShipments = () => {
           </>
         )}
       </div>
+      <ConfirmModal
+        isOpen={Boolean(shipmentToCancel)}
+        onClose={() => setShipmentToCancel(null)}
+        onConfirm={handleCancel}
+        title="Cancel shipment?"
+        description="The active courier booking will be cancelled. This action may not be reversible with the courier."
+        confirmLabel="Cancel shipment"
+      />
     </div>
   );
 };
