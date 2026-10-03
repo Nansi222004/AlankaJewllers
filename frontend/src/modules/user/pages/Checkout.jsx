@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { useResetScroll } from '../../../hooks/useResetScroll';
 import { useAnalytics } from '../../../hooks/useAnalytics';
 import api from '../../../services/api';
+import { isPurchasablePrice, resolveCartQuantity } from '../../../utils/cartIntegrity';
 
 import CheckoutAuth from '../components/Checkout/CheckoutAuth';
 import CheckoutAddresses from '../components/Checkout/CheckoutAddresses';
@@ -52,8 +53,10 @@ const Checkout = () => {
     const [appliedGiftCards, setAppliedGiftCards] = useState([]);
     const [serverQuote, setServerQuote] = useState(null);
     const [quoteLoading, setQuoteLoading] = useState(false);
+    const [quoteError, setQuoteError] = useState(null);
 
-    const clientSubtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+    const hasUnavailablePrice = cart.some(item => !item.isGiftCard && !isPurchasablePrice(item.price)) || quoteError?.code === 'PRICE_UNAVAILABLE';
+    const clientSubtotal = cart.reduce((acc, item) => acc + (isPurchasablePrice(item.price) ? Number(item.price) * resolveCartQuantity(item) : 0), 0);
     const clientGiftWrapCharge = cart.reduce((acc, item) => acc + (item.giftWrap ? 50 : 0), 0);
     const subtotal = Number(serverQuote?.subtotal ?? clientSubtotal);
     const giftWrapCharge = Number(serverQuote?.giftWrapCharge ?? clientGiftWrapCharge);
@@ -88,11 +91,20 @@ const Checkout = () => {
         }).then((quote) => {
             if (cancelled || !quote) return;
             setServerQuote(quote);
+            setQuoteError(null);
             if (quote.priceChanges?.length) {
                 toast('Some product prices have been updated. Your total has been refreshed.');
             }
         }).catch((err) => {
-            if (!cancelled) toast.error(err.response?.data?.message || 'Unable to refresh checkout total');
+            if (!cancelled) {
+                const nextError = {
+                    code: err.response?.data?.error,
+                    message: err.response?.data?.message || 'Unable to refresh checkout total',
+                };
+                setServerQuote(null);
+                setQuoteError(nextError);
+                toast.error(nextError.message);
+            }
         }).finally(() => {
             if (!cancelled) setQuoteLoading(false);
         });
@@ -180,6 +192,11 @@ const Checkout = () => {
     // Checkout Handler
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (hasUnavailablePrice) {
+            toast.error(quoteError?.message || 'This product is currently available on request. Please contact us for the latest price.');
+            return;
+        }
 
         setLoading(true);
 
@@ -338,6 +355,8 @@ const Checkout = () => {
                     giftCardLoading={giftCardLoading}
                     removeGiftCard={removeGiftCard}
                     loading={loading || quoteLoading}
+                    pricingUnavailable={hasUnavailablePrice}
+                    pricingErrorMessage={quoteError?.message}
                     paymentMethod={paymentMethod}
                     showCouponModal={showCouponModal}
                     couponCode={couponCode}

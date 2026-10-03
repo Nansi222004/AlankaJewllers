@@ -11,18 +11,29 @@ import { useAuth } from "./AuthContext";
 import { analytics } from "../services/analytics";
 import { adminService } from "../modules/admin/services/adminService";
 import RazorpayTestModal from "../modules/user/components/RazorpayTestModal";
+import {
+  isPurchasablePrice,
+  resolveCartQuantity,
+  withCanonicalQuantity,
+} from "../utils/cartIntegrity";
 
 // ─── Helpers (shared with ShopContext aggregator) ─────────────────────────────
 export const normalizeVariantForCart = (
   variant = {},
   fallbackProduct = {},
-) => ({
+) => {
+  const rawPrice = variant.price ?? variant.finalPrice;
+  const normalizedPrice = Number(rawPrice);
+  const price = Number.isFinite(normalizedPrice) ? normalizedPrice : null;
+  return ({
   ...variant,
   id: variant.id || variant._id,
   _id: variant._id || variant.id,
-  price: Number(variant.price ?? variant.finalPrice) || 0,
+  price,
   mrp: Number(variant.mrp ?? variant.finalPrice ?? variant.price) || 0,
-  finalPrice: Number(variant.finalPrice ?? variant.price) || 0,
+  finalPrice: Number.isFinite(Number(variant.finalPrice ?? variant.price))
+    ? Number(variant.finalPrice ?? variant.price)
+    : null,
   image:
     variant.image ||
     variant.variantImages?.[0] ||
@@ -31,7 +42,8 @@ export const normalizeVariantForCart = (
     "",
   weight: variant.weight ?? fallbackProduct.weight ?? 0,
   weightUnit: variant.weightUnit || fallbackProduct.weightUnit || "Grams",
-});
+  });
+};
 
 export const normalizeProductForCart = (
   product = {},
@@ -104,7 +116,13 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const saved =
       localStorage.getItem("guestCart") || localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
+    if (!saved) return [];
+    try {
+      const parsed = JSON.parse(saved);
+      return Array.isArray(parsed) ? parsed.map(withCanonicalQuantity) : [];
+    } catch {
+      return [];
+    }
   });
 
   const [coupons, setCoupons] = useState([]);
@@ -139,7 +157,7 @@ export const CartProvider = ({ children }) => {
       const items = cart.map((item) => ({
         productId: item.id || item._id,
         variantId: item.variantId,
-        quantity: item.quantity,
+        quantity: resolveCartQuantity(item),
         isGiftCard: Boolean(item.isGiftCard),
         price: Number(item.price) || 0,
         name: String(item.name || ""),
@@ -174,13 +192,13 @@ export const CartProvider = ({ children }) => {
               return {
                 id: item.productId,
                 _id: item.productId,
-                name: item.name || "Alankar Jewellers Gift Card",
+                name: item.name || "ALANKA JEWELLERS Gift Card",
                 price: item.price,
                 image: item.image,
                 isGiftCard: true,
                 personalization: item.personalization,
-                quantity: item.quantity,
-                qty: item.quantity,
+                quantity: resolveCartQuantity(item),
+                qty: resolveCartQuantity(item),
                 variantId: item.variantId || "GIFT_CARD_VAR",
                 packId: item.variantId || "GIFT_CARD_VAR",
               };
@@ -197,7 +215,8 @@ export const CartProvider = ({ children }) => {
             );
             return {
               ...normalized,
-              quantity: item.quantity,
+              quantity: resolveCartQuantity(item),
+              qty: resolveCartQuantity(item),
               image: normalized.image || item.image || "",
             };
           })
@@ -295,6 +314,11 @@ export const CartProvider = ({ children }) => {
       return;
     }
 
+    if (!productData?.isGiftCard && !isPurchasablePrice(productData?.price)) {
+      toast.error("This product is currently available on request. Please contact us for the latest price.");
+      return;
+    }
+
     console.log("🛒 Adding to cart:", {
       productId,
       variantId,
@@ -325,7 +349,7 @@ export const CartProvider = ({ children }) => {
       if (existing) {
         const currentStock = resolveAvailableStock(existing, variantId);
         const limitStock = currentStock !== null ? currentStock : maxStock;
-        const nextQuantity = existing.quantity + requestedQty;
+        const nextQuantity = resolveCartQuantity(existing) + requestedQty;
         if (limitStock !== null && nextQuantity > limitStock) {
           toast.error(`Only ${limitStock} units available`);
           const cappedQty = Math.max(1, Math.min(limitStock, nextQuantity));
@@ -426,7 +450,7 @@ export const CartProvider = ({ children }) => {
           (targetVariantKey === null || itemVariantKey === targetVariantKey)
         ) {
           const maxStock = resolveAvailableStock(item, itemVariantKey);
-          const requestedQuantity = Math.max(1, item.quantity + amount);
+          const requestedQuantity = Math.max(1, resolveCartQuantity(item) + amount);
           const newQuantity =
             maxStock !== null
               ? Math.min(requestedQuantity, maxStock)
@@ -706,7 +730,7 @@ export const CartProvider = ({ children }) => {
             key: import.meta.env.VITE_RAZORPAY_KEY_ID,
             amount: rpOrder.amount,
             currency: rpOrder.currency,
-            name: "Alankar Jewellers",
+            name: "ALANKA JEWELLERS",
             description: "Order Payment",
             order_id: rpOrder.id,
             handler: async (response) => {
@@ -840,7 +864,7 @@ export const CartProvider = ({ children }) => {
       const isGift =
         item.isGiftCard ||
         String(item.productId || item.id || "").startsWith("GIFT_CARD_");
-      return {
+      const formattedItem = {
         productId: item.productId || item.id || item._id,
         variantId: isGift
           ? "GIFT_CARD_VAR"
@@ -850,14 +874,15 @@ export const CartProvider = ({ children }) => {
             item.selectedVariant?._id ||
             item.variants?.[0]?.id ||
             item.variants?.[0]?._id,
-        quantity: item.qty || item.quantity || 1,
+        quantity: resolveCartQuantity(item),
         isGiftCard: isGift,
         personalization: item.personalization || null,
-        price: Number(item.price || 0),
         name: item.name,
         giftWrap: Boolean(item.giftWrap),
         giftMessage: item.giftWrap ? String(item.giftMessage || "") : "",
       };
+      if (isPurchasablePrice(item.price)) formattedItem.price = Number(item.price);
+      return formattedItem;
     }), [cart]);
 
   const applyServerPricesToCart = useCallback((quote) => {

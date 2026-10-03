@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
 import CouponsModal from '../components/CouponsModal';
 import { useResetScroll } from '../../../hooks/useResetScroll';
+import { isPurchasablePrice, resolveCartQuantity } from '../../../utils/cartIntegrity';
 
 const Cart = () => {
     const { cart, removeFromCart, updateQuantity, getCheckoutQuote, coupons, applyCoupon, appliedCoupon, couponDiscount, clearAppliedCoupon, toggleGiftWrap, updateGiftMessage, siteSettings } = useShop();
@@ -14,6 +15,7 @@ const Cart = () => {
     const [couponSectionExpanded, setCouponSectionExpanded] = React.useState(true);
     const [showBreakdown, setShowBreakdown] = React.useState(false);
     const [serverQuote, setServerQuote] = React.useState(null);
+    const [quoteError, setQuoteError] = React.useState(null);
 
     const warrantyLabel = siteSettings?.warrantyText || "6-Month Warranty";
     const platingLabel = siteSettings?.platingText || "Lifetime Plating";
@@ -28,7 +30,9 @@ const Cart = () => {
 
     useResetScroll();
 
-    const clientSubtotal = cart.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+    const unavailableItems = cart.filter(item => !item.isGiftCard && !isPurchasablePrice(item.price));
+    const hasUnavailablePrice = unavailableItems.length > 0 || quoteError?.code === 'PRICE_UNAVAILABLE';
+    const clientSubtotal = cart.reduce((acc, item) => acc + (isPurchasablePrice(item.price) ? Number(item.price) * resolveCartQuantity(item) : 0), 0);
     const clientGiftWrapCharge = cart.reduce((acc, item) => acc + (item.giftWrap ? 50 : 0), 0);
     const subtotal = Number(serverQuote?.subtotal ?? clientSubtotal);
     const giftWrapCharge = Number(serverQuote?.giftWrapCharge ?? clientGiftWrapCharge);
@@ -42,6 +46,7 @@ const Cart = () => {
     React.useEffect(() => {
         if (!cart.length || !getCheckoutQuote) {
             setServerQuote(null);
+            setQuoteError(null);
             return;
         }
         let cancelled = false;
@@ -49,12 +54,19 @@ const Cart = () => {
             .then((quote) => {
                 if (cancelled || !quote) return;
                 setServerQuote(quote);
+                setQuoteError(null);
                 if (quote.priceChanges?.length) {
                     toast('Some product prices have been updated. Your total has been refreshed.');
                 }
             })
-            .catch(() => {
-                if (!cancelled) setServerQuote(null);
+            .catch((err) => {
+                if (!cancelled) {
+                    setServerQuote(null);
+                    setQuoteError({
+                        code: err.response?.data?.error,
+                        message: err.response?.data?.message || 'Unable to validate cart pricing',
+                    });
+                }
             });
         return () => { cancelled = true; };
     }, [cart, appliedCoupon?.code, getCheckoutQuote]);
@@ -176,8 +188,8 @@ const Cart = () => {
 
                                             <div className="flex flex-wrap items-center justify-between gap-2 md:gap-3 mt-1">
                                                 <div className="flex flex-wrap items-baseline gap-1.5 md:gap-2">
-                                                    <span className="text-base md:text-lg font-semibold text-gray-900">{currencyText(item.price)}</span>
-                                                    {item.originalPrice && (
+                                                    <span className="text-base md:text-lg font-semibold text-gray-900">{isPurchasablePrice(item.price) ? currencyText(item.price) : 'Price on Request'}</span>
+                                                    {isPurchasablePrice(item.price) && item.originalPrice && (
                                                         <span className="text-[10px] md:text-xs text-gray-400 line-through">{currencyText(item.originalPrice)}</span>
                                                     )}
                                                 </div>
@@ -186,13 +198,13 @@ const Cart = () => {
                                                 <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-1.5 py-1 shrink-0 mt-1 md:mt-0">
                                                     <button
                                                         onClick={() => updateQuantity(item.id, -1, variantKey(item))}
-                                                        disabled={item.quantity <= 1}
+                                                        disabled={resolveCartQuantity(item) <= 1}
                                                         className="w-6 h-6 shrink-0 flex items-center justify-center rounded border border-gray-200 text-gray-500 disabled:opacity-30 hover:bg-gray-50 transition-all"
                                                     >
                                                         <Minus className="w-3 h-3" strokeWidth={2.5} />
                                                     </button>
                                                     <span className="text-xs font-medium text-gray-900 min-w-[20px] text-center">
-                                                        {item.quantity || 1}
+                                                        {resolveCartQuantity(item)}
                                                     </span>
                                                     <button
                                                         onClick={() => updateQuantity(item.id, 1, variantKey(item))}
@@ -205,7 +217,7 @@ const Cart = () => {
 
                                             <div className="flex items-center gap-1.5 text-[#2DB37E] text-[10px] md:text-xs">
                                                 <Truck className="w-3.5 h-3.5" />
-                                                Free Delivery
+                                                Shipping calculated at checkout
                                             </div>
                                         </div>
                                     </div>
@@ -273,7 +285,7 @@ const Cart = () => {
                                     <div className="flex flex-col gap-1">
                                         <span className="text-[9px] text-gray-400 font-normal uppercase tracking-[0.1em]">Final Amount</span>
                                         <div className="flex items-center gap-2">
-                                            <span className="text-xl font-semibold text-gray-900">{currencyText(total)}</span>
+                                            <span className="text-xl font-semibold text-gray-900">{hasUnavailablePrice ? 'Unavailable' : currencyText(total)}</span>
                                             <div className="relative flex items-center">
                                                 <button
                                                     type="button"
@@ -404,13 +416,24 @@ const Cart = () => {
                                         : 'Shipping is calculated by the server at checkout'}
                                 </p>
 
-                                <Link
-                                    to="/checkout"
-                                    className="w-full bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne py-3.5 rounded-xl font-bold uppercase tracking-[0.15em] text-[11px] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-espresso/20 active:scale-95"
-                                >
-                                    <Lock className="w-3.5 h-3.5 text-brand-champagne" />
-                                    Checkout
-                                </Link>
+                                {hasUnavailablePrice ? (
+                                    <div className="space-y-3">
+                                        <p className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-center text-xs text-amber-900">
+                                            {quoteError?.message || 'This product is currently available on request. Please contact us for the latest price.'}
+                                        </p>
+                                        <button type="button" onClick={() => navigate('/help')} className="w-full rounded-xl bg-brand-plum py-3.5 text-[11px] font-bold uppercase tracking-[0.15em] text-white hover:bg-brand-champagne hover:text-brand-espresso">
+                                            Enquire Now
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <Link
+                                        to="/checkout"
+                                        className="w-full bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne py-3.5 rounded-xl font-bold uppercase tracking-[0.15em] text-[11px] transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-espresso/20 active:scale-95"
+                                    >
+                                        <Lock className="w-3.5 h-3.5 text-brand-champagne" />
+                                        Checkout
+                                    </Link>
+                                )}
 
                                 {gstIncluded > 0 && (
                                     <p className="text-[8px] text-gray-400 text-center font-normal">

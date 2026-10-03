@@ -1,5 +1,6 @@
 const User = require("../../../models/User");
 const { success, error } = require("../../../utils/apiResponse");
+const { mergeGuestCart, toPositiveQuantity } = require("../../../utils/cartMerge");
 
 exports.getCart = async (req, res) => {
   try {
@@ -83,34 +84,16 @@ exports.syncCart = async (req, res) => {
     if (!user) return error(res, "User not found", 404);
 
     // Merge logic: productId + variantId
-    const mergedCart = [...(user.cart || [])];
-
-    guestItems.forEach(guestItem => {
-      const productId = guestItem.id || guestItem._id || guestItem.productId;
-      const variantId = guestItem.variantId;
-      const quantity = guestItem.quantity || 1;
-
-      const existingIndex = mergedCart.findIndex(
-        item => String(item.productId) === String(productId) && String(item.variantId) === String(variantId)
-      );
-
-      if (existingIndex > -1) {
-        // If it exists, we could either take the max quantity or sum them up. 
-        // Summing up is usually safer for "merge"
-        mergedCart[existingIndex].quantity += quantity;
-      } else {
-        mergedCart.push({ 
-          productId, 
-          variantId, 
-          quantity,
-          isGiftCard: guestItem.isGiftCard || false,
-          price: guestItem.price || 0,
-          name: guestItem.name || "",
-          image: guestItem.image || "",
-          personalization: guestItem.personalization || null
-        });
-      }
-    });
+    const mergedCart = mergeGuestCart(user.cart || [], guestItems).map((item) => ({
+      productId: item.productId || item.id || item._id,
+      variantId: item.variantId,
+      quantity: toPositiveQuantity(item.quantity),
+      isGiftCard: Boolean(item.isGiftCard),
+      price: Number(item.price) || 0,
+      name: item.name || "",
+      image: item.image || "",
+      personalization: item.personalization || null,
+    }));
 
     user.cart = mergedCart;
     await user.save();

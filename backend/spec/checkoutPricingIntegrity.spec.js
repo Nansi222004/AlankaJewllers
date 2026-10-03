@@ -79,7 +79,7 @@ test("C13. Stale cart prices produce PRICE_UPDATED details", () => {
 test("C14. Server checkout quote loads Product variants and ignores client totals", () => {
   const source = read("src/modules/user/controllers/order.controller.js");
   assert.match(source, /const product = await Product\.findById\(item\.productId\)/);
-  assert.match(source, /const itemTotal = variant\.price \* item\.quantity/);
+  assert.match(source, /const itemTotal = purchasable\.price \* purchasable\.quantity/);
   assert.match(source, /exports\.getCheckoutQuote/);
 });
 test("C15. Payment quote stores immutable amount, currency, snapshot and expiry", () => {

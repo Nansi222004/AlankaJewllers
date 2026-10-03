@@ -21,6 +21,11 @@ const {
 } = require("../../../utils/inventorySync");
 const { calculateShippingQuote } = require("../../../utils/shippingQuote");
 const { buildOrderItemPricingSnapshot } = require("../../../utils/orderPricingSnapshot");
+const {
+  normalizeQuantity,
+  assertValidProductAndVariantIds,
+  assertPurchasableVariant,
+} = require("../../../utils/checkoutValidation");
 
 const DEFAULT_LOW_STOCK_THRESHOLD = 5;
 
@@ -284,6 +289,7 @@ const _calculateOrderData = async (
     const isGift =
       item.isGiftCard || String(item.productId || "").startsWith("GIFT_CARD_");
     if (isGift) {
+      const quantity = normalizeQuantity(item.quantity);
       if (paymentMethod === "cod") {
         throw new Error(
           "Gift cards cannot be purchased using Cash on Delivery. Please select an online payment method.",
@@ -292,7 +298,7 @@ const _calculateOrderData = async (
       const cardValue = Number(item.price || 500);
       if (cardValue < 500) throw new Error("Gift card minimum value is ₹500");
 
-      const itemTotal = cardValue * item.quantity;
+      const itemTotal = cardValue * quantity;
       subtotal += itemTotal;
 
       orderItems.push({
@@ -303,7 +309,7 @@ const _calculateOrderData = async (
         image: "",
         price: cardValue,
         mrp: cardValue,
-        quantity: item.quantity,
+        quantity,
         pricingSnapshotVersion: 1,
         pricingSnapshot: {
           weight: 0,
@@ -333,20 +339,20 @@ const _calculateOrderData = async (
       continue;
     }
 
+    assertValidProductAndVariantIds(item.productId, item.variantId);
     const product = await Product.findById(item.productId);
     if (!product) throw new Error(`Product ${item.productId} not found`);
     await ensureProductOrderable(product);
 
     const variant = product.variants.id(item.variantId);
     if (!variant) throw new Error(`Variant ${item.variantId} not found`);
+    const purchasable = assertPurchasableVariant({
+      product,
+      variant,
+      quantity: item.quantity,
+    });
 
-    if (variant.stock < item.quantity) {
-      throw new Error(
-        `Insufficient stock for ${product.name} (${variant.name})`,
-      );
-    }
-
-    const itemTotal = variant.price * item.quantity;
+    const itemTotal = purchasable.price * purchasable.quantity;
     subtotal += itemTotal;
 
     const submittedPrice = Number(item.price);
@@ -370,9 +376,9 @@ const _calculateOrderData = async (
         product.images[0] ||
         (variant.variantImages && variant.variantImages[0]) ||
         "",
-      price: variant.price,
+      price: purchasable.price,
       mrp: variant.mrp,
-      quantity: item.quantity,
+      quantity: purchasable.quantity,
       pricingSnapshotVersion: 1,
       pricingSnapshot: buildOrderItemPricingSnapshot(product, variant),
       sellerId: product.sellerId,
@@ -515,7 +521,7 @@ exports.getCheckoutQuote = async (req, res) => {
     const statusCode = /stock|not found|unavailable|required|invalid|must contain|variant/i.test(message)
       ? 400
       : 500;
-    return error(res, message, statusCode);
+    return error(res, message, err?.statusCode || statusCode, err?.code);
   }
 };
 
@@ -695,7 +701,7 @@ exports.placeOrder = async (req, res) => {
 
     return success(res, { order }, "Order placed successfully", 201);
   } catch (err) {
-    return error(res, err.message);
+    return error(res, err.message, err?.statusCode || 500, err?.code);
   }
 };
 

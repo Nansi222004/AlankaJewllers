@@ -9,6 +9,7 @@
     "test:metal-rates": "node --test spec/metalRate.service.spec.js",
     "test:stone-pricing": "node --test spec/diamondGemstonePricing.spec.js",
     "test:checkout-pricing": "node --test spec/checkoutPricingIntegrity.spec.js",
+    "test:zero-price": "node --test spec/zeroPriceOrderProtection.spec.js",
     "seed:admin": "node src/seeders/adminSeeder.js",
     "seed:categories": "node src/seeders/categorySeeder.js",
     "seed:products": "node src/seeders/productSeeder.js",

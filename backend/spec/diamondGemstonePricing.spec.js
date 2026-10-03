@@ -158,7 +158,7 @@ test('19. Customer-borne PG charge is applied after GST', () => {
 test('20. Checkout snapshots the server variant price and Razorpay uses order total', () => {
   const orderController = fs.readFileSync(path.join(__dirname, '../src/modules/user/controllers/order.controller.js'), 'utf8');
   const paymentController = fs.readFileSync(path.join(__dirname, '../src/modules/user/controllers/payment.controller.js'), 'utf8');
-  assert.match(orderController, /const itemTotal = variant\.price \* item\.quantity/);
-  assert.match(orderController, /price: variant\.price/);
+  assert.match(orderController, /const itemTotal = purchasable\.price \* purchasable\.quantity/);
+  assert.match(orderController, /price: purchasable\.price/);
   assert.match(paymentController, /amount: Math\.round\(order\.total \* 100\)/);
 });

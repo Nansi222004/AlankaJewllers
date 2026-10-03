@@ -1,5 +1,6 @@
 import React from 'react';
 import { Gift, ArrowRight, Tag, ShieldCheck, Lock, X } from 'lucide-react';
+import { isPurchasablePrice, resolveCartQuantity } from '../../../../utils/cartIntegrity';
 
 const CheckoutCartSummary = ({
     cart,
@@ -29,7 +30,9 @@ const CheckoutCartSummary = ({
     handleApplyCouponValidated,
     availableCoupons,
     couponSummary,
-    gstIncluded
+    gstIncluded,
+    pricingUnavailable,
+    pricingErrorMessage
 }) => {
     return (
         <div className="lg:col-span-1">
@@ -51,8 +54,8 @@ const CheckoutCartSummary = ({
                             </div>
                             <div className="flex-1">
                                 <p className="text-sm font-bold text-brand-espresso line-clamp-2 font-display uppercase tracking-wide text-[11px]">{item.name}</p>
-                                <p className="text-xs text-gray-500 mt-1 font-serif">Qty: {item.quantity || 1}</p>
-                                <p className="text-sm font-bold text-brand-espresso mt-1">{currencyText(item.price * (item.quantity || 1))}</p>
+                                <p className="text-xs text-gray-500 mt-1 font-serif">Qty: {resolveCartQuantity(item)}</p>
+                                <p className="text-sm font-bold text-brand-espresso mt-1">{isPurchasablePrice(item.price) ? currencyText(Number(item.price) * resolveCartQuantity(item)) : 'Price on Request'}</p>
                                 {item.giftWrap && (
                                     <p className="text-[10px] text-brand-champagne mt-1 flex items-center gap-1 font-sans">
                                         🎁 Gift wrapped {item.giftMessage ? `("${item.giftMessage}")` : ''}
@@ -184,7 +187,7 @@ const CheckoutCartSummary = ({
                     <div className="flex justify-between items-end">
                         <div className="flex flex-col">
                             <span className="text-[10px] text-gray-400 font-black uppercase tracking-[0.15em] mb-1">Final Amount</span>
-                            <span className="font-black text-3xl text-gray-900 tracking-tight">{currencyText(total)}</span>
+                            <span className="font-black text-3xl text-gray-900 tracking-tight">{pricingUnavailable ? 'Unavailable' : currencyText(total)}</span>
                         </div>
                         <div className="flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">
                             <Lock size={12} className="text-emerald-600" />
@@ -198,13 +201,21 @@ const CheckoutCartSummary = ({
                     <p className="font-serif leading-relaxed">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
                 </div>
 
+                {pricingUnavailable && (
+                    <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-center text-xs text-amber-900">
+                        {pricingErrorMessage || 'This product is currently available on request. Please contact us for the latest price.'}
+                    </p>
+                )}
+
                 <button
                     form="checkout-form"
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || pricingUnavailable}
                     className={`w-full bg-brand-border text-brand-espresso py-4 rounded-xl font-bold hover:bg-brand-champagne hover:text-white transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-lg uppercase tracking-widest text-sm ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
                 >
-                    {loading ? (
+                    {pricingUnavailable ? (
+                        <span>Price Unavailable</span>
+                    ) : loading ? (
                         <span className="flex items-center gap-2">
                             {paymentMethod === 'online' ? 'Redirecting...' : 'Processing...'}
                         </span>

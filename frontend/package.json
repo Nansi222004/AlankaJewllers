@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "test:metal-rates": "node --test spec/referenceMetalRate.spec.js",
+    "test:cart-integrity": "node --test spec/cartIntegrity.spec.js",
     "preview": "vite preview"
   },
   "dependencies": {

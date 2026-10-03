@@ -479,7 +479,7 @@ const ProductDetails = () => {
             : metalType === "silver"
               ? "Silver Jewellery"
               : "Jewellery";
-      document.title = `${product.name} | Alankar Jewellers - ${suffix}`;
+      document.title = `${product.name} | ALANKA JEWELLERS - ${suffix}`;
     }
   }, [product, metalType, track]);
 
@@ -658,7 +658,8 @@ const ProductDetails = () => {
       (v) => String(v.id || v._id) === String(selectedVariantId),
     ) || product?.variants?.[0];
   const variantPrice = selectedVariant?.price ?? getProductPrice(product);
-  const hasDisplayPrice = Number(variantPrice) > 0;
+  const numericVariantPrice = Number(variantPrice);
+  const hasDisplayPrice = Number.isFinite(numericVariantPrice) && numericVariantPrice > 0;
   const variantMrp = selectedVariant?.mrp ?? getProductMRP(product);
   const variantDiscount =
     variantMrp > variantPrice
@@ -668,7 +669,7 @@ const ProductDetails = () => {
   const availableStock = Number.isFinite(selectedVariantStock)
     ? Math.max(0, selectedVariantStock)
     : null;
-  const canAddToCart = availableStock === null || availableStock > 0;
+  const isInStock = availableStock === null || availableStock > 0;
 
   const galleryImages = useMemo(() => {
     const productImages = Array.isArray(product?.images)
@@ -771,7 +772,7 @@ const ProductDetails = () => {
         (Number(pricingBreakdown.gst || 0) / pricingSubtotal) * 10000,
       ) / 100
       : 0;
-  const supplierName = product?.brand || "Alankar Jewellers";
+  const supplierName = product?.brand || "ALANKA JEWELLERS";
 
   // Local currencyText removed
   // Using imported formatCurrency
@@ -780,8 +781,12 @@ const ProductDetails = () => {
 
   // Handlers for Animation
   const handleAddToCart = () => {
-    if (!canAddToCart) {
+    if (!isInStock) {
       toast.error("This variant is out of stock");
+      return;
+    }
+    if (!hasDisplayPrice) {
+      navigate("/help");
       return;
     }
 
@@ -930,19 +935,19 @@ const ProductDetails = () => {
   return (
     <div className="bg-brand-pearl text-brand-espresso min-h-screen py-8 pb-24 md:pb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both selection:bg-brand-rosewater selection:text-brand-plum">
       <Helmet>
-        <title>{product.seo?.title || `${product.name} | Alankar Jewellers`}</title>
+        <title>{product.seo?.title || `${product.name} | ALANKA JEWELLERS`}</title>
         <meta
           name="description"
           content={
             product.seo?.description ||
             product.description?.replace(/<[^>]*>?/gm, "").slice(0, 160) ||
-            `Buy ${product.name} at Alankar Jewellers.`
+            `Explore ${product.name} at ALANKA JEWELLERS.`
           }
         />
         {product.seo?.keywords && (
           <meta name="keywords" content={product.seo.keywords} />
         )}
-        <meta property="og:title" content={product.seo?.title || `${product.name} | Alankar Jewellers`} />
+        <meta property="og:title" content={product.seo?.title || `${product.name} | ALANKA JEWELLERS`} />
         <meta
           property="og:description"
           content={
@@ -1019,10 +1024,10 @@ const ProductDetails = () => {
               {/* Action Button */}
               <button
                 onClick={handleAddToCart}
-                disabled={!canAddToCart}
-                className={`px-8 py-3 rounded-full font-medium text-[10px] tracking-widest uppercase transition-all active:scale-95 ${canAddToCart ? "bg-brand-plum hover:bg-brand-champagne hover:text-brand-espresso text-white shadow-sm" : "bg-gray-100 text-gray-400 cursor-not-allowed"}`}
+                disabled={!isInStock}
+                className={`px-8 py-3 rounded-full font-medium text-[10px] tracking-widest uppercase transition-all active:scale-95 ${isInStock ? "bg-brand-plum hover:bg-brand-champagne hover:text-brand-espresso text-white shadow-sm" : "bg-gray-100 text-gray-400 cursor-not-allowed"}`}
               >
-                {canAddToCart ? "Add to Bag" : "Out of Stock"}
+                {!isInStock ? "Out of Stock" : hasDisplayPrice ? "Add to Bag" : "Enquire Now"}
               </button>
             </div>
           </div>
@@ -1071,7 +1076,7 @@ const ProductDetails = () => {
                         />
                         <text className="text-[9px] font-bold tracking-[0.2em] uppercase fill-white/80">
                           <textPath xlinkHref="#circlePathSmall">
-                            The Lookbook • Alankar Jewellers Royal •{" "}
+                            The Lookbook • ALANKA JEWELLERS Royal •{" "}
                           </textPath>
                         </text>
                       </svg>
@@ -1138,7 +1143,7 @@ const ProductDetails = () => {
                         try {
                           await navigator.share({
                             title: product?.name || "Check out this product",
-                            text: `I found this beautiful ${product?.name} on Alankar Jewellers!`,
+                            text: `I found this beautiful ${product?.name} on ALANKA JEWELLERS!`,
                             url: url,
                           });
                         } catch (err) {
@@ -1427,6 +1432,15 @@ const ProductDetails = () => {
                       ref={tableScroll.ref}
                       className={`bg-gray-50/50 rounded-xl md:rounded-2xl border border-gray-100 overflow-x-auto custom-scrollbar shadow-sm ${tableScroll.isDragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
                     >
+                      {!hasDisplayPrice ? (
+                        <div className="px-6 py-10 text-center">
+                          <p className="text-base font-bold text-brand-espresso">Price on Request</p>
+                          <p className="mt-2 text-xs text-gray-500">A component breakdown will be shown when a current selling price is available.</p>
+                          <button type="button" onClick={() => navigate("/help")} className="mt-5 rounded-xl bg-brand-plum px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white hover:bg-brand-champagne hover:text-brand-espresso">
+                            Enquire Now
+                          </button>
+                        </div>
+                      ) : (
                       <table className="w-full text-left border-collapse">
                         <thead>
                           <tr className="border-b border-gray-100">
@@ -1508,9 +1522,10 @@ const ProductDetails = () => {
                           </tr>
                         </tfoot>
                       </table>
+                      )}
                     </div>
                     <p className="mt-3 md:mt-4 text-[8px] md:text-[9px] text-gray-400 text-center font-bold uppercase tracking-widest italic">
-                      * Taxes included; shipping calculated at checkout.
+                      {hasDisplayPrice ? "* Taxes included; shipping calculated at checkout." : "Contact us for the latest price."}
                     </p>
                   </div>
                 )}
@@ -1621,20 +1636,22 @@ const ProductDetails = () => {
             <div className="hidden md:flex flex-col items-center gap-4">
               <button
                 onClick={handleAddToCart}
-                disabled={!canAddToCart}
-                className={`w-full max-w-md py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 relative overflow-hidden group shadow-lg ${canAddToCart
+                disabled={!isInStock}
+                className={`w-full max-w-md py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 relative overflow-hidden group shadow-lg ${isInStock
                     ? "bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne hover:-translate-y-0.5"
                     : "bg-stone-100 text-stone-400 cursor-not-allowed border border-stone-200"
                   }`}
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
-                  {canAddToCart ? (
+                  {!isInStock ? (
+                    "Out of Stock"
+                  ) : hasDisplayPrice ? (
                     <>
                       <ShoppingBag className="w-4 h-4 text-brand-champagne" />
                       Add to Bag
                     </>
                   ) : (
-                    "Out of Stock"
+                    "Enquire Now"
                   )}
                 </span>
               </button>
@@ -1702,12 +1719,12 @@ const ProductDetails = () => {
             {/* Stock & Codes */}
             <div className="flex flex-col items-center gap-3 pt-4 border-t border-gray-50">
               <div
-                className={`flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest ${canAddToCart ? "text-emerald-600" : "text-rose-600"}`}
+                className={`flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest ${isInStock ? "text-emerald-600" : "text-rose-600"}`}
               >
                 <div
-                  className={`w-1 h-1 rounded-full ${canAddToCart ? "bg-emerald-500 animate-pulse" : "bg-rose-500"}`}
+                  className={`w-1 h-1 rounded-full ${isInStock ? "bg-emerald-500 animate-pulse" : "bg-rose-500"}`}
                 />
-                {canAddToCart ? "Ready to Ship" : "Sold Out"}
+                {isInStock ? (hasDisplayPrice ? "Ready to Ship" : "Available on Request") : "Sold Out"}
               </div>
 
               <div className="flex gap-4 opacity-30">
@@ -1747,19 +1764,21 @@ const ProductDetails = () => {
         <div className="fixed bottom-[90px] left-0 right-0 bg-white/95 backdrop-blur-md border-t border-stone-200 px-4 py-2.5 z-[150] md:hidden shadow-[0_-10px_30px_rgba(0,0,0,0.1)] animate-in slide-in-from-bottom duration-500">
           <button
             onClick={handleAddToCart}
-            disabled={!canAddToCart}
-            className={`w-full rounded-xl h-11 font-bold uppercase tracking-[0.15em] text-[11px] flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-md ${canAddToCart
+            disabled={!isInStock}
+            className={`w-full rounded-xl h-11 font-bold uppercase tracking-[0.15em] text-[11px] flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-md ${isInStock
                 ? "bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne"
                 : "bg-stone-100 text-stone-400 cursor-not-allowed border border-stone-200"
               }`}
           >
-            {canAddToCart ? (
+            {!isInStock ? (
+              "Out of Stock"
+            ) : hasDisplayPrice ? (
               <>
                 <ShoppingBag className="w-4 h-4 text-brand-champagne" />
                 Add to Bag
               </>
             ) : (
-              "Out of Stock"
+              "Enquire Now"
             )}
           </button>
         </div>
@@ -1899,7 +1918,7 @@ const ProductDetails = () => {
               <div>
                 <h3 className="text-2xl font-sans font-bold text-brand-espresso mb-2 flex items-center gap-3">
                   <AlankaJewelleryMark className="w-6 h-6 text-brand-champagne" />
-                  The Alankar Jewellers Promise
+                  The ALANKA JEWELLERS Promise
                 </h3>
                 <p className="text-gray-400 text-xs font-bold uppercase tracking-[0.2em]">
                   Our commitment to excellence
@@ -2131,7 +2150,7 @@ const ProductDetails = () => {
                                 View Certificate <ExternalLink size={10} />
                               </a>
                             ) : (
-                              product.certificate || "Alankar Jewellers Authenticated"
+                              product.certificate || "ALANKA JEWELLERS Authenticated"
                             ),
                           },
                           { label: "HUID", value: product.huid || "---" },
@@ -2793,7 +2812,7 @@ const ProductDetails = () => {
               {/* Why Choose Section */}
               <div className="space-y-6">
                 <h4 className="text-2xl font-bold text-gray-900 leading-tight">
-                  Why Choose Alankar Jewellers Lab-Grown Diamonds?
+                  Why Choose ALANKA JEWELLERS Lab-Grown Diamonds?
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
@@ -3083,7 +3102,7 @@ const ProductDetails = () => {
                 </h2>
               </div>
               <p className="text-[10px] font-bold text-brand-champagne-light uppercase tracking-[0.2em]">
-                Find your perfect fit with Alankar Jewellers
+                Find your perfect fit with ALANKA JEWELLERS
               </p>
               <button
                 onClick={() => setIsSizeGuideOpen(false)}

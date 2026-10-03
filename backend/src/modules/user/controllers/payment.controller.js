@@ -15,6 +15,7 @@ const emailTemplates = require("../../../services/emailTemplates");
 const GiftCard = require("../../../models/GiftCard");
 const PaymentQuote = require("../../../models/PaymentQuote");
 const { emitNewOrder } = require("../../../services/socketEmitter");
+const { assertImmutableOrderItemsPriced } = require("../../../utils/checkoutValidation");
 
 const isPaymentSandboxAllowed = () => {
   return (
@@ -71,6 +72,14 @@ exports.createRazorpayOrder = async (req, res) => {
 
     if (order.paymentStatus === "paid") {
       return error(res, "This order is already paid", 400);
+    }
+    if (!Number.isFinite(Number(order.total)) || Number(order.total) <= 0) {
+      return error(
+        res,
+        "This product is currently available on request. Please contact us for the latest price.",
+        422,
+        "PRICE_UNAVAILABLE",
+      );
     }
 
     if (!razorpay) {
@@ -135,6 +144,10 @@ const createAndProcessPrepaidOrder = async (
   validatedOrderData,
   paymentDetails,
 ) => {
+  // Validate the immutable snapshot itself. This does not re-read current
+  // Product documents, and blocks any legacy pending quote containing a
+  // zero/missing physical-item price.
+  assertImmutableOrderItemsPriced(validatedOrderData.items);
   const isDigitalOnly = validatedOrderData.items.every(
     (item) => item.isGiftCard,
   );
@@ -412,7 +425,7 @@ exports.initiatePayment = async (req, res) => {
       err?.name === "ValidationError" ||
       /stock|not found|unavailable|required|invalid|must contain|variant/i.test(errMsg);
     const statusCode = err?.statusCode || (isClientError ? 400 : 500);
-    return error(res, errMsg, statusCode);
+    return error(res, errMsg, statusCode, err?.code);
   }
 };
 
