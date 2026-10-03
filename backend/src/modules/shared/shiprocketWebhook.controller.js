@@ -68,7 +68,12 @@ exports.handleShiprocketWebhook = async (req, res) => {
     // Optional: verify shared secret header
     const secret = process.env.SHIPROCKET_WEBHOOK_SECRET || process.env.SHIPPING_WEBHOOK_SECRET;
     if (secret) {
-      const incoming = req.headers["x-shiprocket-secret"] || req.headers["authorization"];
+      const incoming =
+        req.headers["x-api-key"] ||
+        req.headers["x-shiprocket-secret"] ||
+        req.headers["authorization"] ||
+        req.headers["x-webhook-token"] ||
+        req.query?.token;
       if (incoming !== secret && incoming !== `Bearer ${secret}`) {
         console.warn("[ShiprocketWebhook] Invalid secret. Rejecting.");
         return res.status(401).json({ success: false, message: "Unauthorized" });
@@ -76,6 +81,12 @@ exports.handleShiprocketWebhook = async (req, res) => {
     }
 
     const body = req.body;
+
+    // Handle Shiprocket "Test Webhook" button ping
+    if (body?.test || body?.event === "test" || (!body?.awb && !body?.awb_code && !body?.order_id && !body?.sr_order_id && !body?.shipment_id)) {
+      console.log("[ShiprocketWebhook] Test ping / handshake received successfully.");
+      return res.status(200).json({ success: true, message: "Webhook endpoint active and verified" });
+    }
 
     // Shiprocket webhook payload shape:
     // { awb: "...", current_status: "...", shipment_id: "...", order_id: "...", ... }
@@ -97,12 +108,6 @@ exports.handleShiprocketWebhook = async (req, res) => {
     }
 
     console.log(`[ShiprocketWebhook] AWB=${awb} status=${rawStatus}`);
-
-    if (!awb && !shiprocketOrderId) {
-      return res.status(400).json({ success: false, message: "Missing AWB or order_id" });
-    }
-
-    // Map to internal status
     const internalStatus = mapStatus("shiprocket", rawStatus);
     if (!internalStatus) {
       console.warn(`[ShiprocketWebhook] Unmapped status: "${rawStatus}"`);
