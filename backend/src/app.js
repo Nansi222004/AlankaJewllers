@@ -105,6 +105,17 @@ app.use("/api/v1/fcm-tokens", require("./modules/public/routes/fcmToken.routes")
 app.use("/api/fcm-tokens", require("./modules/public/routes/fcmToken.routes"));
 
 // ── Courier Webhooks (no auth – verified by secret inside controllers) ───────
+// Note: Shiprocket forbids keywords 'shiprocket', 'kartrocket', 'sr', 'kr' in the webhook URL.
+app.post(
+  "/api/webhooks/tracking",
+  require("./modules/shared/shiprocketWebhook.controller")
+    .handleShiprocketWebhook,
+);
+app.post(
+  "/api/webhooks/shipment-status",
+  require("./modules/shared/shiprocketWebhook.controller")
+    .handleShiprocketWebhook,
+);
 app.post(
   "/api/webhooks/shiprocket",
   require("./modules/shared/shiprocketWebhook.controller")
