@@ -47,8 +47,25 @@ const variantSchema = Joi.object({
     _id: Joi.string().trim().allow(""),
     code: Joi.string().trim().required(),
     status: Joi.string().valid("AVAILABLE", "SOLD_OFFLINE", "SOLD_ONLINE").optional()
-  })).optional()
-});
+  })).optional(),
+  diamondPricing: Joi.object({
+    enabled: boolField.optional(),
+    pricingMode: Joi.string().valid("total", "per_carat").allow("").optional(),
+    pricePerCarat: Joi.number().min(0).allow(null, "").optional(),
+    totalPrice: Joi.number().min(0).allow(null, "").optional(),
+    certificateCharge: Joi.number().min(0).allow(null, "").optional(),
+    certificateUrl: Joi.string().trim().allow("").optional()
+  }).unknown(true).optional(),
+  gemstonePricing: Joi.array().items(Joi.object({
+    gemstoneType: Joi.string().trim().allow("").optional(),
+    quantity: Joi.number().min(0).allow(null, "").optional(),
+    weight: Joi.number().min(0).allow(null, "").optional(),
+    pricingMode: Joi.string().valid("total", "per_carat").allow("").optional(),
+    pricePerCarat: Joi.number().min(0).allow(null, "").optional(),
+    totalPrice: Joi.number().min(0).allow(null, "").optional(),
+    certificateCharge: Joi.number().min(0).allow(null, "").optional()
+  }).unknown(true)).optional()
+}).unknown(true);
 
 const productSchema = Joi.object({
   name: Joi.string().required().trim().min(3).max(100),
@@ -149,7 +166,7 @@ const productSchema = Joi.object({
   relatedProducts: Joi.array()
     .items(Joi.string().pattern(/^[0-9a-fA-F]{24}$/))
     .optional()
-}).custom((value, helpers) => {
+}).unknown(true).custom((value, helpers) => {
   const catalogueMaterial = ["Gold", "Silver", "Diamond", "Gems"].includes(value.material);
   const isPublishing = value.status === "Active" && value.active !== false;
 

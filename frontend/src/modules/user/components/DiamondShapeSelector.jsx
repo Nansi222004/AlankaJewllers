@@ -152,22 +152,22 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
     };
 
     return (
-        <section className="py-12 sm:py-16 md:py-20 bg-[#FAF8F4] border-b border-[#E8DFD1] overflow-hidden">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#F2F6FA] to-white border-b border-[#D4E0ED] overflow-hidden">
             <div className="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* ── Section Header ────────────────────────────────────── */}
                 <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
                     {/* Top Diamond Emblem */}
                     <div className="flex items-center justify-center gap-3 mb-2.5">
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-brand-champagne/70" />
-                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-brand-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-[#1E3A5F]/70" />
+                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#1E3A5F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                             <polygon points="6 3 18 3 22 9 12 22 2 9" />
                         </svg>
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-brand-champagne/70" />
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-[#1E3A5F]/70" />
                     </div>
 
                     {/* Badge / Category Label */}
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#8C7A68] block mb-2 font-sans">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#1E3A5F] block mb-2 font-sans">
                         {badge}
                     </span>
 
@@ -224,12 +224,12 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                                     onClick={() => handleCardClick(shape, isSelected)}
                                     className={`group relative flex flex-col justify-between bg-white rounded-2xl p-2 sm:p-2.5 pb-3.5 border transition-all duration-300 ease-out cursor-pointer select-none text-center snap-start w-[140px] sm:w-[152px] md:w-[160px] lg:w-[calc((100%-7*14px)/8)] min-w-[134px] max-w-[172px] shrink-0 ${
                                         isSelected
-                                            ? 'border-brand-champagne shadow-[0_14px_30px_rgba(184,149,106,0.22)] scale-[1.04] -translate-y-1 ring-1 ring-brand-champagne/40'
-                                            : 'border-[#EBE3D5] hover:border-brand-champagne hover:shadow-[0_14px_30px_rgba(184,149,106,0.18)] hover:scale-[1.04] hover:-translate-y-1'
+                                            ? 'border-[#0F2038] shadow-[0_14px_30px_rgba(15,32,56,0.25)] scale-[1.04] -translate-y-1 ring-2 ring-[#1E3A5F]/30'
+                                            : 'border-[#D4E0ED] hover:border-[#1E3A5F] hover:shadow-[0_14px_30px_rgba(15,32,56,0.14)] hover:scale-[1.04] hover:-translate-y-1'
                                     }`}
                                 >
                                     {/* 1. Diamond Image Container */}
-                                    <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#F7EFE6] flex items-center justify-center shadow-inner">
+                                    <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#EEF3F8] flex items-center justify-center shadow-inner">
                                         <img
                                             src={shape.image}
                                             alt={`${shape.name} Diamond Cut`}
@@ -242,7 +242,7 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                                         />
 
                                         {/* Magnifier Glass Overlay Icon (Reveals smoothly on hover) */}
-                                        <div className="absolute top-2 right-2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#8A6A24]/75 backdrop-blur-xs text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100 border border-white/40 shadow-xs pointer-events-none">
+                                        <div className="absolute top-2 right-2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0F2038]/80 backdrop-blur-xs text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100 border border-white/40 shadow-xs pointer-events-none">
                                             <Search className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" strokeWidth={2.2} />
                                         </div>
                                     </div>
@@ -250,7 +250,7 @@ const DiamondShapeSelector = ({ sectionData, selectedShape = null, onSelectShape
                                     {/* 2. Shape Info */}
                                     <div className="flex-1 flex flex-col justify-between pt-2.5 sm:pt-3">
                                         <div>
-                                            <h3 className="font-serif text-[13px] sm:text-[14px] font-bold text-brand-espresso group-hover:text-brand-champagne transition-colors duration-300 tracking-tight leading-snug">
+                                            <h3 className="font-serif text-[13px] sm:text-[14px] font-bold text-brand-espresso group-hover:text-[#1E3A5F] transition-colors duration-300 tracking-tight leading-snug">
                                                 {shape.name}
                                             </h3>
                                             <p className="text-[10px] sm:text-[11px] text-[#7A7065] font-normal leading-snug px-0.5 mt-1 min-h-[28px] sm:min-h-[32px] flex items-center justify-center line-clamp-2">

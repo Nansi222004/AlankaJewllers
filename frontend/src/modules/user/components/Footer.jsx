@@ -28,15 +28,15 @@ const Footer = () => {
   const { settings: globalSettings } = useSettings();
 
   const [settings, setSettings] = useState({
-    storeName: "Alankar Jewellers",
-    tagline: "Alankar Jewellers – Where Luxury Meets Identity",
+    storeName: "Alanka Jewellers",
+    tagline: "Alanka Jewellers – Where Luxury Meets Identity",
     logo: "/logo.webp",
     footerTagline: "Timeless Elegance,",
     footerSubTagline: "Handcrafted for You.",
     footerDescription:
-      "Every piece at Alankar Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
+      "Every piece at Alanka Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
     address:
-      "Alankar Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
+      "Alanka Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
     phone: "+91 8668821446",
     email: "swarna.sparsh22@gmail.com",
     footerColumn1Title: "Experience",
@@ -65,7 +65,7 @@ const Footer = () => {
       instagram: "#",
     },
     footerDeliveryText: "Safe & Insured Express Worldwide Delivery",
-    footerCopyrightText: "Alankar Jewellers. All Rights Reserved.",
+    footerCopyrightText: "Alanka Jewellers. All Rights Reserved.",
   });
 
   const [openSections, setOpenSections] = useState({
@@ -132,7 +132,7 @@ const Footer = () => {
       : defaultLogo;
   const activeStoreName =
     !globalSettings?.storeName || /swarna\s*sparsh/i.test(globalSettings.storeName)
-      ? "Alankar Jewellers"
+      ? "Alanka Jewellers"
       : globalSettings.storeName;
   const activeTagline = globalSettings?.footerTagline || settings.footerTagline;
   const activeSubTagline =
@@ -406,7 +406,7 @@ const Footer = () => {
                 </span>
                 {globalSettings?.fraudWarning ||
                   settings.fraudWarning ||
-                  "Alankar Jewellers never asks for confidential banking details, OTPs, or passwords over phone or email."}
+                  "Alanka Jewellers never asks for confidential banking details, OTPs, or passwords over phone or email."}
               </p>
             </div>
           </div>
@@ -608,7 +608,7 @@ const Footer = () => {
                 </span>
                 {globalSettings?.fraudWarning ||
                   settings.fraudWarning ||
-                  "Alankar Jewellers will NEVER ask for OTPs, passwords, or sensitive financial information via unsolicited calls, WhatsApp, or emails."}
+                  "Alanka Jewellers will NEVER ask for OTPs, passwords, or sensitive financial information via unsolicited calls, WhatsApp, or emails."}
               </p>
             </div>
           </div>
@@ -626,7 +626,7 @@ const Footer = () => {
                 &copy; {new Date().getFullYear()}{" "}
                 {globalSettings?.footerCopyrightText ||
                   settings.footerCopyrightText ||
-                  "Alankar Jewellers. All Rights Reserved."}
+                  "Alanka Jewellers. All Rights Reserved."}
               </p>
             </div>
           </div>

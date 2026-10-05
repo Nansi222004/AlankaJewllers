@@ -153,7 +153,7 @@ const resolveGemstonePrice = (variant = {}) => {
  * computeVariantPricing — authoritative price calculation for ALL product types.
  *
  * Formula:
- *   metalPrice        = weight x metalRatePerGram         [Admin-entered rates]
+ *   metalPrice        = weight x metalRatePerGram         [API Mitra → Cache → Admin Fallback]
  *   makingCharge      = admin input per variant
  *   diamondPrice      = resolveDiamondPrice()             [Admin-Controlled]
  *   gemstonePrice     = resolveGemstonePrice()            [Admin-Controlled]
@@ -164,15 +164,21 @@ const resolveGemstonePrice = (variant = {}) => {
  *   pgChargeAmount    = priceAfterTax x pgChargePercent / 100
  *   finalPrice        = priceAfterTax + pgChargeAmount   <- checkout price
  *
- * API Mitra provides gold/silver reference rates for display only.
- * Admin-entered Setting.metalRates power the actual calculation.
- * Diamond and Gemstone pricing are NEVER derived from API Mitra.
+ * Rate Priority:
+ *   1. API Mitra live rate (primary)
+ *   2. Cached API Mitra rate (if live unavailable)
+ *   3. Admin fallback rate (emergency)
+ *   4. UNAVAILABLE (blocks checkout)
+ *
+ * Diamond and Gemstone pricing are NEVER derived from API Mitra - always admin-controlled.
  */
 const computeVariantPricing = ({
   product = {},
   variant = {},
   rates = {},
-  gstRate = 0
+  gstRate = 0,
+  rateSource = null,
+  rateSources = null
 } = {}) => {
   const fallbackWeight = Number(product.weight) || 0;
   const fallbackWeightUnit = product.weightUnit || "Grams";
@@ -228,7 +234,7 @@ const computeVariantPricing = ({
   const pgChargeAmount = roundCurrency((priceAfterTax * pgChargePercent) / 100);
   const finalPrice = roundCurrency(priceAfterTax + pgChargeAmount);
 
-  return {
+  const result = {
     weight: variantWeight,
     weightUnit: variantWeightUnit,
     metalPrice,
@@ -250,15 +256,31 @@ const computeVariantPricing = ({
     price: finalPrice,
     mrp: finalPrice
   };
+
+  // Include rate source metadata when available
+  if (rateSources) {
+    result.pricingMetadata = {
+      rateSource: rateSources.activeGold || rateSources.activeSilver || rateSource || "ADMIN",
+      isLive: rateSources.activeGoldIsLive || rateSources.activeSilverIsLive || false,
+      sources: rateSources
+    };
+  } else if (rateSource) {
+    result.pricingMetadata = {
+      rateSource,
+      isLive: false
+    };
+  }
+
+  return result;
 };
 
-const applyMetalPricingToProduct = (product, rates = {}, gstRate = 0) => {
+const applyMetalPricingToProduct = (product, rates = {}, gstRate = 0, rateSources = null) => {
   if (!product) return product;
   product.paymentGatewayChargeBearer = normalizeChargeBearer(product.paymentGatewayChargeBearer);
 
   if (Array.isArray(product.variants)) {
     product.variants = product.variants.map((variant) => {
-      const pricing = computeVariantPricing({ product, variant, rates, gstRate });
+      const pricing = computeVariantPricing({ product, variant, rates, gstRate, rateSources });
       const preserveLegacyGemstoneFields = normalizeString(product.material) === "gems"
         && variant.diamondPricing?.enabled !== true
         && (!Array.isArray(variant.gemstonePricing) || variant.gemstonePricing.length === 0);

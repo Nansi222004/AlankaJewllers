@@ -1138,7 +1138,7 @@ const SharedProductEditor = ({
                 setShowSuccessModal(true);
             }
         } catch (err) {
-            toast.error(err.response?.data?.message || "Failed to save product");
+            toast.error(err.response?.data?.message || err.message || "Failed to save product");
         } finally {
             setIsSaving(false);
         }

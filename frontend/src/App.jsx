@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { ShopProvider } from './context/ShopContext';
+import { ShopProvider, useShop } from './context/ShopContext';
 import { SettingsProvider } from './context/SettingsContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
@@ -112,11 +112,12 @@ import Loader from './modules/shared/components/Loader';
 const LoadingFallback = () => <Loader fullPage={false} />;
 
 import { initializePushNotifications, registerFCMToken, setupForegroundNotificationHandler } from './services/pushNotificationService';
-import toast, { useToasterStore } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const AppContent = () => {
   const location = useLocation();
   const { user, loading } = useAuth();
+  const { activeMetal } = useShop();
   usePageTracking();
 
 
@@ -177,7 +178,7 @@ const AppContent = () => {
   const showMetalToggle = location.pathname === '/' || location.pathname === '/silver-collection' || location.pathname === '/gold-collection' || location.pathname === '/diamond-collection' || location.pathname === '/gems-collection';
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-brand-espresso bg-brand-pearl">
+    <div className="min-h-screen flex flex-col font-sans text-brand-espresso bg-brand-pearl" data-collection-theme={activeMetal}>
       {!isAdminPath && !isLoginPath && (
         <>
           <div 
@@ -195,7 +196,7 @@ const AppContent = () => {
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
           {/* User Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<GoldJewelleryPage />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />

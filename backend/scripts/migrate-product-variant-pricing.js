@@ -6,6 +6,7 @@ const Product = require("../src/models/Product");
 const Setting = require("../src/models/Setting");
 const Seller = require("../src/models/Seller");
 const { applyMetalPricingToProduct } = require("../src/utils/metalPricing");
+const { resolveMetalRates } = require("../src/utils/metalRateResolver");
 const { generateUniqueProductCode, generateVariantCode } = require("../src/utils/productIdentity");
 
 const applyMode = process.argv.includes("--apply");
@@ -90,9 +91,15 @@ const run = async () => {
         const ownerRates = product.sellerId
           ? (sellerRateMap.get(String(product.sellerId)) || {})
           : (settings?.metalRates || {});
-        applyMetalPricingToProduct(product, ownerRates, gstRate);
-        // eslint-disable-next-line no-await-in-loop
-        await product.save();
+        // Use resolver to get rates with API Mitra → Cache → Admin Fallback priority
+        try {
+          const resolvedRates = await resolveMetalRates(product, ownerRates, null);
+          applyMetalPricingToProduct(product, resolvedRates, gstRate);
+          // eslint-disable-next-line no-await-in-loop
+          await product.save();
+        } catch (rateError) {
+          console.warn(`[Migration] Skipping product ${product.productCode}: ${rateError.message}`);
+        }
       }
       changed = true;
     }

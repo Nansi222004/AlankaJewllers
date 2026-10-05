@@ -71,15 +71,42 @@ const CollectionNewLaunch = ({
 
   const viewAllLink = `/shop?metal=${encodeURIComponent(effectiveCollection)}&tags=isNewLaunch`;
 
+  const themeConfig = {
+    gold: {
+      sectionBg: "border-y border-brand-border bg-brand-porcelain",
+      ribbonBg: "bg-brand-plum text-brand-champagne-light",
+      viewAllText: "text-brand-plum hover:text-brand-champagne",
+    },
+    silver: {
+      sectionBg: "border-y border-[#E9DEDA] bg-gradient-to-b from-[#FBF8F7] to-white",
+      ribbonBg: "bg-gradient-to-r from-[#6B3F46] to-[#8E5B63] text-[#F1DFDE]",
+      viewAllText: "text-[#6B3F46] hover:text-[#C98F96]",
+    },
+    diamond: {
+      sectionBg: "border-y border-[#D4E0ED] bg-gradient-to-b from-[#F2F6FA] to-white",
+      ribbonBg: "bg-[#0F2038] text-[#E0EAFC]",
+      viewAllText: "text-[#1E3A5F] hover:text-[#0F2038]",
+    },
+    gems: {
+      sectionBg: "border-y border-[#C8DFD5] bg-gradient-to-b from-[#F0F7F4] to-white",
+      ribbonBg: "bg-[#0D3B2E] text-[#E3F5EC]",
+      viewAllText: "text-[#185A44] hover:text-[#0D3B2E]",
+    },
+  }[effectiveCollection] || {
+    sectionBg: "border-y border-brand-border bg-brand-porcelain",
+    ribbonBg: "bg-brand-plum text-brand-champagne-light",
+    viewAllText: "text-brand-plum hover:text-brand-champagne",
+  };
+
   return (
     <section
       id={`${effectiveCollection}-new-launch`}
-      className="w-full overflow-hidden border-y border-brand-border bg-brand-porcelain py-9 md:py-12"
+      className={`w-full overflow-hidden py-9 md:py-12 ${themeConfig.sectionBg}`}
     >
       <div className="container mx-auto max-w-[1450px] px-4 md:px-8">
         <div className="mb-7 flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
           <div className="flex min-w-0 flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <span className="bg-brand-plum px-5 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-champagne-light md:px-7">
+            <span className={`px-5 py-2 text-[10px] font-bold uppercase tracking-[0.24em] md:px-7 ${themeConfig.ribbonBg}`}>
               {ribbonLabel}
             </span>
             <div className="min-w-0 text-center sm:text-left">
@@ -92,7 +119,7 @@ const CollectionNewLaunch = ({
 
           <Link
             to={viewAllLink}
-            className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-plum transition-colors hover:text-brand-champagne"
+            className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.18em] transition-colors ${themeConfig.viewAllText}`}
           >
             VIEW ALL
             <ChevronRight className="h-3.5 w-3.5" />

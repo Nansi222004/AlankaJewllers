@@ -243,22 +243,22 @@ const Diamond4CsGuide = ({ sectionData }) => {
     const activeConfig = useMemo(() => CS_CONFIG[activeTab] || CS_CONFIG.cut, [activeTab]);
 
     return (
-        <section className="py-14 sm:py-18 md:py-24 bg-[#F3F5F7] border-b border-[#E2E6EB] overflow-hidden">
+        <section className="py-14 sm:py-18 md:py-24 bg-gradient-to-b from-[#FAFBFD] to-[#F0F4F8] border-b border-[#D4E0ED] overflow-hidden">
             <div className="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* ── Section Header ────────────────────────────────────── */}
                 <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
                     {/* Top Diamond Emblem */}
                     <div className="flex items-center justify-center gap-3 mb-2.5">
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-brand-champagne/70" />
-                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-brand-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-[#1E3A5F]/70" />
+                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#1E3A5F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                             <polygon points="6 3 18 3 22 9 12 22 2 9" />
                         </svg>
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-brand-champagne/70" />
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-[#1E3A5F]/70" />
                     </div>
 
                     {/* Badge */}
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#64748B] block mb-2 font-sans">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#1E3A5F] block mb-2 font-sans">
                         {badge}
                     </span>
 
@@ -285,18 +285,18 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                 onClick={() => setActiveTab(c.key)}
                                 className={`group relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 cursor-pointer select-none shrink-0 border ${
                                     isCurrent
-                                        ? 'bg-brand-plum text-white border-brand-espresso shadow-[0_8px_24px_rgba(51,40,39,0.18)] scale-[1.02]'
-                                        : 'bg-white text-[#475569] border-[#DFE4EA] hover:border-brand-champagne/70 hover:text-brand-espresso hover:bg-white shadow-2xs'
+                                        ? 'bg-[#0F2038] text-white border-[#0B192C] shadow-[0_8px_24px_rgba(15,32,56,0.25)] scale-[1.02]'
+                                        : 'bg-white text-[#475569] border-[#D4E0ED] hover:border-[#1E3A5F]/70 hover:text-[#0F2038] hover:bg-white shadow-2xs'
                                 }`}
                             >
                                 <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-xl flex items-center justify-center transition-colors ${
-                                    isCurrent ? 'bg-brand-champagne/25 text-[#E6C665]' : 'bg-[#EDF2F7] text-[#64748B] group-hover:text-brand-champagne'
+                                    isCurrent ? 'bg-white/15 text-white' : 'bg-[#EDF2F7] text-[#64748B] group-hover:text-[#1E3A5F]'
                                 }`}>
                                     <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                 </div>
                                 <span className="font-sans uppercase text-[11px] sm:text-xs tracking-wider">{c.tabLabel}</span>
                                 {isCurrent && (
-                                    <span className="w-1.5 h-1.5 rounded-full bg-brand-champagne animate-pulse" />
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
                                 )}
                             </button>
                         );
@@ -323,7 +323,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                     </div>
 
                                     {/* Main Visual Display */}
-                                    <div className="relative aspect-[16/11] rounded-2xl overflow-hidden bg-gradient-to-b from-brand-plum via-[#1E1B18] to-brand-plum border border-[#2D2824] p-5 sm:p-6 flex flex-col items-center justify-between text-white shadow-inner">
+                                    <div className="relative aspect-[16/11] rounded-2xl overflow-hidden bg-gradient-to-b from-[#0A1626] via-[#0F2038] to-[#162D4A] border border-[#1E3A5F]/50 p-5 sm:p-6 flex flex-col items-center justify-between text-white shadow-inner">
                                         {/* Background Sparkle Particles */}
                                         <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#B8956A_1px,transparent_1px)] [background-size:16px_16px]" />
 

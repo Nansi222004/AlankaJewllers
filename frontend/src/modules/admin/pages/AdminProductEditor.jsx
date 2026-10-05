@@ -8,14 +8,18 @@ const AdminProductEditor = () => {
         createProduct: async (formData) => {
             const res = await adminService.createProduct(formData);
             if (res?.success === false) {
-                throw new Error(res?.message || 'Failed to create product');
+                const err = new Error(res?.message || 'Failed to create product');
+                err.response = { data: { message: res?.message } };
+                throw err;
             }
             return res?.data?.product || res?.product || res?.data?.data?.product;
         },
         updateProduct: async (id, formData) => {
             const res = await adminService.updateProduct(id, formData);
             if (res?.success === false) {
-                throw new Error(res?.message || 'Failed to update product');
+                const err = new Error(res?.message || 'Failed to update product');
+                err.response = { data: { message: res?.message } };
+                throw err;
             }
             return res;
         }

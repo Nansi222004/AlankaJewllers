@@ -23,10 +23,12 @@ import GoldExclusiveLaunch from "../components/GoldExclusiveLaunch";
 import GoldLuxuryWithinReach from "../components/GoldLuxuryWithinReach";
 import GoldDirectProducts from "../components/GoldDirectProducts";
 import GoldTrustStrip from "../components/GoldTrustStrip";
+import GoldSilverRates from "../components/GoldSilverRates";
 import HeerCustomisationBanner from "../components/HeerCustomisationBanner";
 import Loader from "../../shared/components/Loader";
 import { resolveLegacyCmsAsset } from "../utils/legacyCmsAssets";
 import { usePublicCmsPage } from "../hooks/usePublicCmsPage";
+import { useShop } from "../../../context/ShopContext";
 
 import heroGold from "@assets/hero/bridal_royal.png";
 
@@ -52,9 +54,12 @@ const GoldJewelleryPage = () => {
     refetch,
   } = usePublicCmsPage("gold-collection");
 
+  const { updateActiveMetal } = useShop();
+
   useEffect(() => {
-    document.title = "Shop Gold Jewellery | Alankar Jewellers";
-  }, []);
+    document.title = "Shop Gold Jewellery | Alanka Jewellers";
+    updateActiveMetal("gold");
+  }, [updateActiveMetal]);
 
   const sectionMap = useMemo(
     () =>
@@ -186,7 +191,7 @@ const GoldJewelleryPage = () => {
   }
 
   return (
-    <div className="bg-white min-h-screen font-body overflow-x-hidden">
+    <div data-collection-theme="gold" className="bg-white min-h-screen font-body overflow-x-hidden">
       <PromoSlider externalSlides={heroSlides} autoplayInterval={autoplayMs} />
 
       <GoldCategoryGrid sectionData={sectionMap["gold-category-grid"]} />
@@ -198,6 +203,7 @@ const GoldJewelleryPage = () => {
         metal="gold"
         sectionData={sectionMap["gold-new-launch-banner"]}
       />
+      <GoldSilverRates metal="gold" />
       <GoldExploreCollections
         sectionData={sectionMap["gold-explore-collections"]}
       />

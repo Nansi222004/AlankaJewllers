@@ -2,20 +2,20 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import api from '../services/api';
 
 export const OFFICIAL_SETTINGS_DEFAULTS = {
-  storeName: 'Alankar Jewellers',
-  tagline: 'Alankar Jewellers – Where Luxury Meets Identity',
+  storeName: 'Alanka Jewellers',
+  tagline: 'Alanka Jewellers – Where Luxury Meets Identity',
   phone: '+91 8668821446',
   contactPhone: '+91 8668821446',
-  email: 'swarna.sparsh22@gmail.com',
-  contactEmail: 'swarna.sparsh22@gmail.com',
-  website: 'https://alankar-jewellers.com/',
-  address: 'Alankar Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra',
+  email: 'alanka.jewellers@gmail.com',
+  contactEmail: 'alanka.jewellers@gmail.com',
+  website: 'https://alanka-jewellers.com/',
+  address: 'Alanka Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra',
   logo: '/logo.webp',
   footerTagline: 'Timeless Elegance,',
   footerSubTagline: 'Handcrafted for You.',
   footerDescription:
-    "Every piece at Alankar Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
-  footerCopyrightText: 'Alankar Jewellers. All Rights Reserved.',
+    "Every piece at Alanka Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
+  footerCopyrightText: 'Alanka Jewellers. All Rights Reserved.',
   footerDeliveryText: 'Safe & Insured Express Worldwide Delivery',
   socialLinks: {
     facebook: '#',
@@ -30,37 +30,37 @@ export const sanitizeSettings = (raw) => {
   const cleaned = { ...raw };
 
   // Normalize legacy storeName
-  if (!cleaned.storeName || /swarna\s*sparsh/i.test(cleaned.storeName)) {
+  if (!cleaned.storeName || /swarna\s*sparsh|alankar/i.test(cleaned.storeName)) {
     cleaned.storeName = OFFICIAL_SETTINGS_DEFAULTS.storeName;
   }
 
   // Normalize legacy tagline
-  if (!cleaned.tagline || /swarna\s*sparsh/i.test(cleaned.tagline)) {
+  if (!cleaned.tagline || /swarna\s*sparsh|alankar/i.test(cleaned.tagline)) {
     cleaned.tagline = OFFICIAL_SETTINGS_DEFAULTS.tagline;
   }
 
   // Normalize legacy address
-  if (cleaned.address && /swarna\s*sparsh/i.test(cleaned.address)) {
-    cleaned.address = cleaned.address.replace(/swarna\s*sparsh/gi, 'Alankar Jewellers');
+  if (cleaned.address && /swarna\s*sparsh|alankar/i.test(cleaned.address)) {
+    cleaned.address = cleaned.address.replace(/swarna\s*sparsh|alankar\s*jewellers/gi, 'Alanka Jewellers');
   }
 
   // Normalize legacy fraud warning
-  if (cleaned.fraudWarning && /swarna\s*sparsh/i.test(cleaned.fraudWarning)) {
-    cleaned.fraudWarning = cleaned.fraudWarning.replace(/swarna\s*sparsh/gi, 'Alankar Jewellers');
+  if (cleaned.fraudWarning && /swarna\s*sparsh|alankar/i.test(cleaned.fraudWarning)) {
+    cleaned.fraudWarning = cleaned.fraudWarning.replace(/swarna\s*sparsh|alankar\s*jewellers/gi, 'Alanka Jewellers');
   }
 
   // Normalize legacy footer description
-  if (cleaned.footerDescription && /swarna\s*sparsh/i.test(cleaned.footerDescription)) {
-    cleaned.footerDescription = cleaned.footerDescription.replace(/swarna\s*sparsh/gi, 'Alankar Jewellers');
+  if (cleaned.footerDescription && /swarna\s*sparsh|alankar/i.test(cleaned.footerDescription)) {
+    cleaned.footerDescription = cleaned.footerDescription.replace(/swarna\s*sparsh|alankar\s*jewellers/gi, 'Alanka Jewellers');
   }
 
   // Normalize legacy footer copyright text
-  if (cleaned.footerCopyrightText && /swarna\s*sparsh/i.test(cleaned.footerCopyrightText)) {
-    cleaned.footerCopyrightText = cleaned.footerCopyrightText.replace(/swarna\s*sparsh/gi, 'Alankar Jewellers');
+  if (cleaned.footerCopyrightText && /swarna\s*sparsh|alankar/i.test(cleaned.footerCopyrightText)) {
+    cleaned.footerCopyrightText = cleaned.footerCopyrightText.replace(/swarna\s*sparsh|alankar\s*jewellers/gi, 'Alanka Jewellers');
   }
 
   // Normalize logo if pointing to legacy swarna/sands assets
-  if (cleaned.logo && /swarna|sands-logo/i.test(cleaned.logo)) {
+  if (cleaned.logo && /swarna|sands-logo|alankar/i.test(cleaned.logo)) {
     cleaned.logo = OFFICIAL_SETTINGS_DEFAULTS.logo;
   }
 

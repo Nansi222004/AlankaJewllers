@@ -122,22 +122,22 @@ const DiamondTrustSection = ({ sectionData }) => {
     }, [sectionData?.items]);
 
     return (
-        <section className="overflow-hidden border-b border-[#E8DFD1] bg-[#FAF8F4] py-8 sm:py-16 md:py-20">
+        <section className="overflow-hidden border-b border-[#D4E0ED] bg-gradient-to-b from-[#F2F6FA] to-white py-8 sm:py-16 md:py-20">
             <div className="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* ── Section Header ────────────────────────────────────── */}
                 <div className="mx-auto mb-6 max-w-3xl text-center sm:mb-12">
                     {/* Top Diamond Emblem */}
                     <div className="flex items-center justify-center gap-3 mb-2.5">
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-brand-champagne/70" />
-                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-brand-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-r from-transparent to-[#1E3A5F]/70" />
+                        <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#1E3A5F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                             <polygon points="6 3 18 3 22 9 12 22 2 9" />
                         </svg>
-                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-brand-champagne/70" />
+                        <span className="h-[1px] w-10 sm:w-14 bg-gradient-to-l from-transparent to-[#1E3A5F]/70" />
                     </div>
 
                     {/* Badge */}
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#8C7A68] block mb-2 font-sans">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#1E3A5F] block mb-2 font-sans">
                         {badge}
                     </span>
 
@@ -160,11 +160,11 @@ const DiamondTrustSection = ({ sectionData }) => {
                         return (
                             <div
                                 key={card.key}
-                                className="group relative flex h-full select-none flex-col justify-between rounded-2xl border border-[#EBE3D5] bg-white p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-1.5 hover:border-brand-champagne/70 hover:shadow-[0_16px_36px_rgba(184,149,106,0.14)] sm:rounded-3xl sm:p-4 sm:pb-6"
+                                className="group relative flex h-full select-none flex-col justify-between rounded-2xl border border-[#D4E0ED] bg-white p-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-400 hover:-translate-y-1.5 hover:border-[#1E3A5F]/70 hover:shadow-[0_16px_36px_rgba(15,32,56,0.14)] sm:rounded-3xl sm:p-4 sm:pb-6"
                             >
                                 <div className="flex items-center gap-3 sm:block">
                                     {/* 1. Image Container with Zoom-on-Hover */}
-                                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#FAF6EF] shadow-inner sm:mb-4.5 sm:aspect-[4/3] sm:h-auto sm:w-full sm:rounded-2xl">
+                                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#EEF3F8] shadow-inner sm:mb-4.5 sm:aspect-[4/3] sm:h-auto sm:w-full sm:rounded-2xl">
                                         <img
                                             src={card.image}
                                             alt={`${card.title} - ${card.subtitle}`}
@@ -181,12 +181,12 @@ const DiamondTrustSection = ({ sectionData }) => {
 
                                         {/* Top Glassmorphic Tag */}
                                         <div className="absolute left-2.5 top-2.5 z-10 hidden items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 font-sans text-[10px] font-medium text-white/95 shadow-2xs backdrop-blur-md sm:flex sm:text-[11px]">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#E6C665]" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]" />
                                             <span>{card.tag}</span>
                                         </div>
 
-                                        {/* Floating Gold Icon Badge */}
-                                        <div className="absolute bottom-1.5 right-1.5 z-10 flex h-7 w-7 items-center justify-center rounded-lg border border-[#EBE3D5] bg-white/95 text-brand-champagne shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:bg-brand-champagne group-hover:text-white sm:bottom-2.5 sm:right-2.5 sm:h-10 sm:w-10 sm:rounded-xl">
+                                        {/* Floating Dark Blue Icon Badge */}
+                                        <div className="absolute bottom-1.5 right-1.5 z-10 flex h-7 w-7 items-center justify-center rounded-lg border border-[#D4E0ED] bg-white/95 text-[#1E3A5F] shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:bg-[#0F2038] group-hover:text-white sm:bottom-2.5 sm:right-2.5 sm:h-10 sm:w-10 sm:rounded-xl">
                                             <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300" />
                                         </div>
                                     </div>

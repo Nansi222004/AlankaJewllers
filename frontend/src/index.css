@@ -26,6 +26,50 @@
     --text-primary: var(--brand-espresso);
     --text-secondary: var(--brand-taupe);
     --border-gold: var(--brand-border);
+
+    /* Dynamic Collection Theme Defaults (Gold Default) */
+    --collection-primary: #B8956A;
+    --collection-secondary: #D8C3A5;
+    --collection-surface: #FAF8F7;
+    --collection-border: #E9DEDA;
+    --collection-ribbon-bg: #4A3638;
+    --collection-ribbon-text: #D8C3A5;
+}
+
+[data-collection-theme="gold"] {
+    --collection-primary: #B8956A;
+    --collection-secondary: #D8C3A5;
+    --collection-surface: #FAF8F7;
+    --collection-border: #E9DEDA;
+    --collection-ribbon-bg: #4A3638;
+    --collection-ribbon-text: #D8C3A5;
+}
+
+[data-collection-theme="silver"] {
+    --collection-primary: #C98F96;
+    --collection-secondary: #D9B8B6;
+    --collection-surface: #FBF8F7;
+    --collection-border: #E9DEDA;
+    --collection-ribbon-bg: #6B3F46;
+    --collection-ribbon-text: #F1DFDE;
+}
+
+[data-collection-theme="diamond"] {
+    --collection-primary: #0F2038;
+    --collection-secondary: #1E3A5F;
+    --collection-surface: #F2F6FA;
+    --collection-border: #D4E0ED;
+    --collection-ribbon-bg: #0F2038;
+    --collection-ribbon-text: #E0EAFC;
+}
+
+[data-collection-theme="gems"] {
+    --collection-primary: #0D3B2E;
+    --collection-secondary: #185A44;
+    --collection-surface: #F0F7F4;
+    --collection-border: #C8DFD5;
+    --collection-ribbon-bg: #0D3B2E;
+    --collection-ribbon-text: #E3F5EC;
 }
 
 @theme {

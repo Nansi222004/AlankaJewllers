@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useShop } from '../../../context/ShopContext';
 import AllJewelleryMegaMenu from './AllJewelleryMegaMenu';
 import AllJewelleryMenu from './CategoryNavComponents/AllJewelleryMenu';
 import BullionsMenu from './CategoryNavComponents/BullionsMenu';
 import GiftingMegaMenu from './GiftingMegaMenu';
-import { motion, AnimatePresence } from 'framer-motion';
+import { getCollectionTheme } from '../utils/collectionTheme';
 
 const CategoryNav = ({ showMetalToggle = true }) => {
     const location = useLocation();
@@ -96,22 +97,29 @@ const CategoryNav = ({ showMetalToggle = true }) => {
         };
     }, [updateMenuPlacement]);
 
-    // Keep the metal toggle consistent with the current route/query.
-    // Silver remains the default landing selection.
+    // Keep the metal toggle consistent with explicit route/query.
+    // Gold is the default home selection; explicit URL takes precedence over default.
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const metalParam = String(params.get('metal') || '').trim().toLowerCase();
         const karatParam = String(params.get('karat') || params.get('purity') || '').trim();
+        const isSilverRoute = location.pathname.startsWith('/silver') || metalParam === 'silver';
         const isGemsRoute = location.pathname.startsWith('/gems') || metalParam === 'gems' || metalParam === 'gemstone' || metalParam === 'gemstones';
         const isDiamondRoute = location.pathname.startsWith('/diamond') || metalParam === 'diamond';
-        const isGoldRoute = location.pathname.startsWith('/gold') || metalParam === 'gold' || (!metalParam && Boolean(karatParam));
+        const isGoldRoute = location.pathname === '/' || location.pathname.startsWith('/gold') || metalParam === 'gold' || (!metalParam && Boolean(karatParam));
 
-        const desiredMetal = isGemsRoute ? 'gems' : (isDiamondRoute ? 'diamond' : (isGoldRoute ? 'gold' : 'silver'));
+        let explicitMetal = null;
+        if (isGemsRoute) explicitMetal = 'gems';
+        else if (isDiamondRoute) explicitMetal = 'diamond';
+        else if (isGoldRoute) explicitMetal = 'gold';
+        else if (isSilverRoute) explicitMetal = 'silver';
 
-        if (desiredMetal && desiredMetal !== activeMetal) {
-            updateActiveMetal(desiredMetal);
+        if (explicitMetal && explicitMetal !== activeMetal) {
+            updateActiveMetal(explicitMetal);
         }
     }, [activeMetal, location.pathname, location.search, updateActiveMetal]);
+
+    const currentTheme = getCollectionTheme(activeMetal);
 
     return (
         <div className="border-b block w-full bg-white relative z-40" style={{ borderColor: '#EBEBEB', fontFamily: "'Inter', 'Lato', sans-serif" }}>
@@ -231,7 +239,13 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                 {/* Gold / Silver / Diamond / Gems 4-Option Selector — Balanced, Aligned & Responsive */}
                 {showMetalToggle && (
                     <div className="relative flex justify-center px-2 pb-1.5 pt-0.5 sm:px-4">
-                        <div className="p-0.5 md:p-1 w-full sm:w-[680px] max-w-full rounded-full border border-brand-border flex items-center bg-white shadow-[0_2px_12px_rgba(51,40,39,0.06)] relative">
+                        <div
+                            className="p-0.5 md:p-1 w-full sm:w-[680px] max-w-full rounded-full border flex items-center bg-white relative transition-all duration-300"
+                            style={{
+                                borderColor: currentTheme.containerBorder,
+                                boxShadow: currentTheme.containerGlow,
+                            }}
+                        >
                             {/* Animated Background Pill */}
                             <div className="absolute inset-0.5 md:inset-1 flex" style={{ zIndex: 0 }}>
                                 <motion.div
@@ -239,12 +253,8 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     initial={false}
                                     animate={{
                                         x: activeMetal === 'gold' ? '0%' : (activeMetal === 'silver' ? '100%' : (activeMetal === 'diamond' ? '200%' : '300%')),
-                                        background: activeMetal === 'gold'
-                                            ? 'linear-gradient(135deg, #B8956A, #D8C3A5)'
-                                            : (activeMetal === 'silver' ? '#766866' : (activeMetal === 'diamond' ? '#4A3638' : '#D9B8B6')),
-                                        boxShadow: activeMetal === 'gold'
-                                            ? '0 4px 14px rgba(184,149,106,0.22)'
-                                            : '0 4px 14px rgba(51,40,39,0.25)'
+                                        background: currentTheme.pillBackground,
+                                        boxShadow: currentTheme.pillShadow,
                                     }}
                                     transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                                     className="w-1/4 h-full rounded-full"
@@ -255,9 +265,9 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                             <button
                                 onClick={() => {
                                     updateActiveMetal('gold');
-                                    navigate('/gold-collection');
+                                    navigate('/');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? 'text-brand-espresso' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? 'text-brand-espresso font-extrabold' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Gold
                             </button>
@@ -268,7 +278,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('silver');
                                     navigate('/silver-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? 'text-white' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? 'text-white font-bold' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Silver
                             </button>
@@ -279,7 +289,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('diamond');
                                     navigate('/diamond-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? 'text-white' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? 'text-white font-bold' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Diamond
                             </button>
@@ -290,7 +300,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('gems');
                                     navigate('/gems-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gems' ? 'text-brand-plum' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gems' ? 'text-white font-bold' : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Gems
                             </button>

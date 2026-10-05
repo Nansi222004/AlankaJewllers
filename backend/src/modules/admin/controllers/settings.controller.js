@@ -4,6 +4,7 @@ const Product = require("../../../models/Product");
 const Seller = require("../../../models/Seller");
 const { applyMetalPricingToProduct } = require("../../../utils/metalPricing");
 const { normalizeMetalRates, hasNegativeRate } = require("../../../utils/metalRateNormalization");
+const { resolveMetalRates } = require("../../../utils/metalRateResolver");
 const auditLogger = require("../../../utils/auditLogger");
 
 const getOrCreateSettings = async () => {
@@ -134,8 +135,15 @@ exports.updateMetalPricing = async (req, res) => {
     const allProducts = await Product.find({});
 
     for (const product of allProducts) {
-      applyMetalPricingToProduct(product, settings.metalRates || {}, settings.gstRate || 0);
-      await product.save();
+      // Use resolver to get rates with API Mitra → Cache → Admin Fallback priority
+      try {
+        const resolvedRates = await resolveMetalRates(product, settings.metalRates || {}, null);
+        applyMetalPricingToProduct(product, resolvedRates, settings.gstRate || 0, resolvedRates.sources);
+        await product.save();
+      } catch (rateError) {
+        console.warn(`[MetalPricing] Skipping product ${product.productCode}: ${rateError.message}`);
+        // Continue with other products - don't fail entire repricing
+      }
     }
 
     const adminProductCount = await countAdminOwnedProducts();
@@ -193,8 +201,15 @@ exports.updateTaxSettings = async (req, res) => {
       const ownerRates = product.sellerId
         ? (sellerRateMap.get(String(product.sellerId)) || {})
         : (settings.metalRates || {});
-      applyMetalPricingToProduct(product, ownerRates, settings.gstRate || 0);
-      await product.save();
+      // Use resolver to get rates with API Mitra → Cache → Admin Fallback priority
+      try {
+        const resolvedRates = await resolveMetalRates(product, ownerRates, null);
+        applyMetalPricingToProduct(product, resolvedRates, settings.gstRate || 0, resolvedRates.sources);
+        await product.save();
+      } catch (rateError) {
+        console.warn(`[TaxSettings] Skipping product ${product.productCode}: ${rateError.message}`);
+        // Continue with other products - don't fail entire repricing
+      }
     }
 
     return success(res, {

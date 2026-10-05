@@ -42,7 +42,18 @@ export const ShopProvider = ({ children }) => {
         } catch { return null; }
     });
     const [pincodeLoading, setPincodeLoading] = useState(false);
-    const [activeMetal, setActiveMetal] = useState(() => localStorage.getItem('user_active_metal') || 'silver');
+    const [activeMetal, setActiveMetal] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const path = window.location.pathname;
+            if (path === '/' || path.startsWith('/gold')) return 'gold';
+            if (path.startsWith('/silver')) return 'silver';
+            if (path.startsWith('/diamond')) return 'diamond';
+            if (path.startsWith('/gems')) return 'gems';
+            const saved = localStorage.getItem('user_active_metal');
+            if (saved) return saved;
+        }
+        return 'gold';
+    });
     const [globalGst, _setGlobalGst] = useState(() => localStorage.getItem('admin_global_gst') || '0');
 
     const showNotification = useCallback((message) => setNotification(message), []);

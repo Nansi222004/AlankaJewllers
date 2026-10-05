@@ -87,19 +87,24 @@ const Navbar = () => {
         };
     }, [isMenuOpen]);
 
-    // Sync the header toggle state with the current route/query
+    // Sync the header toggle state with explicit route/query
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const metalParam = String(params.get('metal') || '').trim().toLowerCase();
         const karatParam = String(params.get('karat') || params.get('purity') || '').trim();
+        const isSilverRoute = location.pathname.startsWith('/silver') || metalParam === 'silver';
         const isGemsRoute = location.pathname.startsWith('/gems') || metalParam === 'gems' || metalParam === 'gemstone' || metalParam === 'gemstones';
         const isDiamondRoute = location.pathname.startsWith('/diamond') || metalParam === 'diamond';
-        const isGoldRoute = location.pathname.startsWith('/gold') || metalParam === 'gold' || (!metalParam && Boolean(karatParam));
+        const isGoldRoute = location.pathname === '/' || location.pathname.startsWith('/gold') || metalParam === 'gold' || (!metalParam && Boolean(karatParam));
 
-        const desiredMetal = isGemsRoute ? 'gems' : (isDiamondRoute ? 'diamond' : (isGoldRoute ? 'gold' : 'silver'));
+        let explicitMetal = null;
+        if (isGemsRoute) explicitMetal = 'gems';
+        else if (isDiamondRoute) explicitMetal = 'diamond';
+        else if (isGoldRoute) explicitMetal = 'gold';
+        else if (isSilverRoute) explicitMetal = 'silver';
 
-        if (desiredMetal && desiredMetal !== activeMetal) {
-            updateActiveMetal(desiredMetal);
+        if (explicitMetal && explicitMetal !== activeMetal) {
+            updateActiveMetal(explicitMetal);
         }
     }, [activeMetal, location.pathname, location.search, updateActiveMetal]);
 
@@ -285,10 +290,10 @@ const Navbar = () => {
                                 }}
                             />
                             <div className="flex flex-col">
-                                <span className="font-serif text-lg font-bold tracking-wider text-brand-espresso leading-tight uppercase">
+                                <span className="font-serif text-2xl font-black tracking-wider text-brand-espresso leading-none">
                                     {currentStoreName}
                                 </span>
-                                <span className="text-[9px] font-medium tracking-[0.2em] text-brand-plum uppercase">
+                                <span className="text-[10px] tracking-widest text-brand-taupe uppercase font-semibold mt-1">
                                     {currentTagline}
                                 </span>
                             </div>
@@ -747,7 +752,7 @@ const Navbar = () => {
                                                 <ShoppingBag className="w-7 h-7 text-brand-espresso absolute -bottom-1 -right-2 bg-white" strokeWidth={1.5} />
                                             </div>
                                             <div className="flex-1">
-                                                <h3 className="text-[17px] font-serif font-bold text-brand-espresso leading-tight mb-2 tracking-wide">Welcome to Alankar Jewellers</h3>
+                                                <h3 className="text-[17px] font-serif font-bold text-brand-espresso leading-tight mb-2 tracking-wide">Welcome to Alanka Jewellers</h3>
                                                 <div className="flex items-center gap-2">
                                                     <Link to="/login" className="text-[11px] font-bold text-brand-champagne hover:underline uppercase tracking-wider" onClick={() => setIsMenuOpen(false)}>LOGIN</Link>
                                                     <span className="text-gray-300">|</span>
@@ -875,8 +880,8 @@ const Navbar = () => {
                                                 className={`flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group border-b border-brand-border last:border-0 relative overflow-hidden ${
                                                     item.label === 'Gold' ? 'bg-gradient-to-r from-amber-50 to-white hover:from-amber-100 border-amber-200' :
                                                     item.label === 'Silver' ? 'bg-gradient-to-r from-slate-50 to-white hover:from-slate-100 border-slate-200' :
-                                                    item.label === 'Diamond' ? 'bg-gradient-to-r from-sky-50/70 via-[#FAFBFD] to-white hover:from-sky-100/70 border-sky-200' :
-                                                    item.label === 'Gems' ? 'bg-gradient-to-r from-emerald-50/70 via-[#FAFBFD] to-white hover:from-emerald-100/70 border-emerald-200' :
+                                                    item.label === 'Diamond' ? 'bg-gradient-to-r from-blue-950/10 via-[#FAFBFD] to-white hover:from-blue-950/15 border-blue-900/20' :
+                                                    item.label === 'Gems' ? 'bg-gradient-to-r from-emerald-950/10 via-[#FAFBFD] to-white hover:from-emerald-950/15 border-emerald-900/20' :
                                                     item.label === 'Bullions' ? 'bg-gradient-to-r from-brand-pearl via-white to-amber-50/50 hover:from-amber-100/60 border-amber-200/80' :
                                                     isItemActiveUnder50k ? 'bg-gradient-to-r from-amber-50 to-white text-brand-champagne border border-amber-200' :
                                                         'text-gray-800 hover:bg-white hover:text-brand-champagne'
@@ -886,8 +891,8 @@ const Navbar = () => {
                                                     <item.icon className={`w-5 h-5 transition-colors ${
                                                         item.label === 'Gold' ? 'text-amber-500 group-hover:text-amber-600 animate-pulse' :
                                                         item.label === 'Silver' ? 'text-slate-400 group-hover:text-slate-600 animate-pulse' :
-                                                        item.label === 'Diamond' ? 'text-sky-600 group-hover:text-sky-700 animate-pulse' :
-                                                        item.label === 'Gems' ? 'text-emerald-600 group-hover:text-emerald-700 animate-pulse' :
+                                                        item.label === 'Diamond' ? 'text-[#1E3A5F] group-hover:text-[#0F2038] animate-pulse' :
+                                                        item.label === 'Gems' ? 'text-[#185A44] group-hover:text-[#0D3B2E] animate-pulse' :
                                                         item.label === 'Bullions' ? 'text-brand-champagne group-hover:text-brand-espresso' :
                                                         isItemActiveUnder50k ? 'text-brand-champagne' :
                                                             'text-gray-600 group-hover:text-brand-champagne'
@@ -895,8 +900,8 @@ const Navbar = () => {
                                                     <span className={`text-[15px] tracking-wide ${
                                                         item.label === 'Gold' ? 'text-amber-700 font-bold group-hover:text-amber-800' :
                                                         item.label === 'Silver' ? 'text-slate-600 font-bold group-hover:text-slate-800' :
-                                                        item.label === 'Diamond' ? 'text-stone-900 font-bold group-hover:text-brand-champagne' :
-                                                        item.label === 'Gems' ? 'text-stone-900 font-bold group-hover:text-emerald-700' :
+                                                        item.label === 'Diamond' ? 'text-[#0F2038] font-bold group-hover:text-[#1E3A5F]' :
+                                                        item.label === 'Gems' ? 'text-[#0D3B2E] font-bold group-hover:text-[#185A44]' :
                                                         item.label === 'Bullions' ? 'text-brand-espresso font-bold group-hover:text-brand-champagne' :
                                                         isItemActiveUnder50k ? 'text-brand-champagne font-bold' :
                                                             'font-medium text-gray-800 group-hover:font-semibold group-hover:text-brand-champagne'

@@ -8,6 +8,7 @@ const { success, error } = require("../../../utils/apiResponse");
 const Setting = require("../../../models/Setting");
 const Seller = require("../../../models/Seller");
 const { applyMetalPricingToProduct, getTenGramRate } = require("../../../utils/metalPricing");
+const { resolveMetalRates } = require("../../../utils/metalRateResolver");
 const { generateUniqueProductCode, generateVariantCode } = require("../../../utils/productIdentity");
 const { normalizeProductForResponse } = require("../../../utils/productCompatibility");
 const auditLogger = require("../../../utils/auditLogger");
@@ -351,19 +352,28 @@ exports.createProduct = async (req, res) => {
     }
 
     const settings = await Setting.findOne();
-    const metalRates = settings?.metalRates || {};
+    const adminMetalRates = settings?.metalRates || {};
     const gstRate = settings?.gstRate || 0;
+
+    // Resolve metal rates with API Mitra → Cache → Admin Fallback priority
+    let resolvedRates;
+    try {
+      resolvedRates = await resolveMetalRates(data, adminMetalRates, null);
+    } catch (rateError) {
+      return error(res, rateError.message || "Metal rate unavailable. Cannot price product.", 503);
+    }
 
     const productData = applyMetalPricingToProduct(
       { ...data, productCode: data.productCode, slug: productSlug, images, videoUrl, isSerialized: true },
-      metalRates,
-      gstRate
+      resolvedRates,
+      gstRate,
+      resolvedRates.sources
     );
 
     const pricingValidationError = validateProductPricing(productData);
     if (pricingValidationError) return error(res, pricingValidationError, 400);
 
-    const publishReadinessError = getPublishReadinessError(productData, metalRates);
+    const publishReadinessError = getPublishReadinessError(productData, resolvedRates);
     if (publishReadinessError) return error(res, publishReadinessError, 400);
 
     const product = await Product.create(productData);
@@ -549,14 +559,22 @@ exports.updateProduct = async (req, res) => {
     const removedImageUrls = [...originalReferencedImages].filter((imageUrl) => !nextReferencedImages.has(imageUrl));
 
     const settings = await Setting.findOne();
-    const metalRates = settings?.metalRates || {};
+    const adminMetalRates = settings?.metalRates || {};
     const gstRate = settings?.gstRate || 0;
-    applyMetalPricingToProduct(product, metalRates, gstRate);
+
+    // Resolve metal rates with API Mitra → Cache → Admin Fallback priority
+    let resolvedRates;
+    try {
+      resolvedRates = await resolveMetalRates(product, adminMetalRates, null);
+    } catch (rateError) {
+      return error(res, rateError.message || "Metal rate unavailable. Cannot price product.", 503);
+    }
+    applyMetalPricingToProduct(product, resolvedRates, gstRate, resolvedRates.sources);
 
     const pricingValidationError = validateProductPricing(product);
     if (pricingValidationError) return error(res, pricingValidationError, 400);
 
-    const publishReadinessError = getPublishReadinessError(product, metalRates);
+    const publishReadinessError = getPublishReadinessError(product, resolvedRates);
     if (publishReadinessError) return error(res, publishReadinessError, 400);
 
     await product.save();
@@ -685,6 +703,7 @@ exports.bulkPriceUpdate = async (req, res) => {
     const products = await Product.find(query);
     const settings = await Setting.findOne();
     const gstRate = settings?.gstRate || 0;
+    const adminMetalRates = settings?.metalRates || {};
     const sellerIds = [...new Set(
       products
         .map((product) => product.sellerId ? String(product.sellerId) : null)
@@ -731,9 +750,17 @@ exports.bulkPriceUpdate = async (req, res) => {
 
       const ownerRates = prod.sellerId
         ? (sellerRateMap.get(String(prod.sellerId)) || {})
-        : (settings?.metalRates || {});
-      applyMetalPricingToProduct(prod, ownerRates, gstRate);
-      await prod.save();
+        : adminMetalRates;
+      
+      // Resolve metal rates with API Mitra → Cache → Admin Fallback priority
+      try {
+        const resolvedRates = await resolveMetalRates(prod, ownerRates, null);
+        applyMetalPricingToProduct(prod, resolvedRates, gstRate, resolvedRates.sources);
+        await prod.save();
+      } catch (rateError) {
+        console.warn(`[BulkUpdate] Skipping product ${prod.productCode}: ${rateError.message}`);
+        // Continue with other products - don't fail entire bulk update
+      }
     }
 
     return success(res, { count: products.length }, "Bulk product pricing inputs updated successfully");

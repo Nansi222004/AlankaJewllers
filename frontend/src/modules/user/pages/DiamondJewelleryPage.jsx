@@ -56,7 +56,7 @@ const DEFAULT_HERO_SLIDES = [
 ];
 
 const DiamondJewelleryPage = () => {
-  const { products = [], isLoading: isShopLoading } = useShop();
+  const { products = [], isLoading: isShopLoading, updateActiveMetal } = useShop();
   const {
     data: sections = [],
     isLoading: isCmsLoading,
@@ -68,9 +68,10 @@ const DiamondJewelleryPage = () => {
   const [selectedShape, setSelectedShape] = useState(null);
 
   useEffect(() => {
-    document.title = "Shop Diamond Jewellery | Alankar Jewellers";
+    document.title = "Shop Diamond Jewellery | Alanka Jewellers";
+    updateActiveMetal("diamond");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [updateActiveMetal]);
 
   const sectionMap = useMemo(
     () =>
@@ -168,7 +169,7 @@ const DiamondJewelleryPage = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen font-body text-stone-900 selection:bg-brand-champagne selection:text-brand-espresso">
+    <div className="bg-[#FAFBFD] min-h-screen font-body text-stone-900 selection:bg-[#1E3A5F] selection:text-white" data-collection-theme="diamond">
       {/* 1. Dynamic Hero Banner Slider */}
       {isSectionActive("hero-banners-diamond") && (
         <PromoSlider externalSlides={heroSlides} autoplayInterval={autoplayMs} />
@@ -184,7 +185,7 @@ const DiamondJewelleryPage = () => {
           defaultEyebrow={sectionMap["diamond-category-grid"]?.settings?.badge || "DIAMOND COLLECTION"}
           defaultSubtitle={sectionMap["diamond-category-grid"]?.settings?.subtitle || "Dazzling certified diamond jewellery designed to capture light"}
           defaultItems={diamondCollectionGridDefaults}
-          bgClass="bg-white"
+          bgClass="bg-gradient-to-b from-[#F2F6FA] to-white"
         />
       )}
 

@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useShop } from '../../../context/ShopContext';
 import { useHomepageCms } from '../hooks/useHomepageCms';
@@ -44,7 +44,7 @@ import Newsletter from '../components/Newsletter';
 const Home = () => {
     const location = useLocation();
     const isSilverCollection = location.pathname === '/silver-collection';
-    const { isLoading: isShopLoading } = useShop();
+    const { isLoading: isShopLoading, updateActiveMetal } = useShop();
     const {
         isError: isHomepageCmsError,
         error: homepageCmsError,
@@ -54,8 +54,9 @@ const Home = () => {
     useResetScroll();
 
     useEffect(() => {
-        document.title = "Alankar Jewellers | Crafted for Moments That Last";
-    }, []);
+        document.title = "Alanka Jewellers | Crafted for Moments That Last";
+        updateActiveMetal('silver');
+    }, [updateActiveMetal]);
 
     // ONLY block on shop data (products/categories) — CMS is enhancement-only.
     // Previously we also blocked on isHomepageCmsLoading which meant the entire
@@ -67,7 +68,7 @@ const Home = () => {
     }
 
     return (
-        <div className="bg-white font-body text-stone-900 relative selection:bg-brand-champagne selection:text-brand-espresso">
+        <div data-collection-theme="silver" className="bg-[#FBF8F7] font-body text-[#332827] relative selection:bg-[#F1DFDE] selection:text-[#6B3F46]">
             {isHomepageCmsError && (
                 <div className="mx-auto max-w-[1450px] px-4 pt-4">
                     <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] text-amber-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -96,7 +97,7 @@ const Home = () => {
             {isSilverCollection && <CollectionNewLaunch metal="silver" />}
             <DynamicPromoBanner />
             <TrustMarkers />
-            <GoldSilverRates />
+            <GoldSilverRates metal="silver" />
 
             {/* ── BELOW FOLD: lazy loaded inside SectionShell ── */}
             <ShopByPrice />
