@@ -1,1 +1,1 @@
-export { AlankarJewelleryMark, AlankarJewelleryMark as AlankarrJewelleryMark, default } from './AlankaJewelleryMark';
+export { AlankaJewelleryMark, AlankarJewelleryMark, AlankarrJewelleryMark, default } from './AlankaJewelleryMark';
