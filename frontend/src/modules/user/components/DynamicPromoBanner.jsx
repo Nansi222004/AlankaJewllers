@@ -64,7 +64,7 @@ const DynamicPromoBanner = () => {
                         <div className="space-y-4">
                             <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-brand-champagne/10 border border-brand-champagne/30 text-brand-champagne-light text-[10px] uppercase font-bold tracking-[0.25em]">
                                 <AlankarJewelleryMark className="w-3 h-3 text-brand-champagne" />
-                                <span>{banner.tag || 'Alankarr Jewellers Atelier'}</span>
+                                <span>{banner.tag || 'AlankarJewellers Atelier'}</span>
                             </div>
 
                             {/* Headline */}

@@ -1073,7 +1073,7 @@ const homeSections = [
         image: testimonialCustomer2,
         rating: 5,
         description:
-          "Bought a bracelet for my sister's birthday. She absolutely loved it! The shine is perfect, and the delivery was very fast. Highly recommend Alankarr Jewellers for quality silver.",
+          "Bought a bracelet for my sister's birthday. She absolutely loved it! The shine is perfect, and the delivery was very fast. Highly recommend AlankarJewellers for quality silver.",
         location: "Delhi",
       },
       {
@@ -1174,7 +1174,7 @@ const shopMenSections = [
     items: [
       {
         id: "men-hero-1",
-        name: "Alankarr JEWELLERS BRINGS TO YOU",
+        name: "AlankarJEWELLERS BRINGS TO YOU",
         label: "MEN",
         subtitle: "Modern Silver for\nthe Bold Man",
         image: menHeroBoldDefault,
@@ -2633,7 +2633,7 @@ const goldCollectionSections = [
         image: testimonialCustomer2,
         rating: 5,
         description:
-          "Most gold rings for men look dated. I wanted to gift him something that matches the wedding ring he got me too. Finally got to know Alankarr Jewellers's gold made-to-order option.",
+          "Most gold rings for men look dated. I wanted to gift him something that matches the wedding ring he got me too. Finally got to know AlankarJewellers's gold made-to-order option.",
         location: "Mumbai",
       },
       {
@@ -2857,7 +2857,7 @@ const diamondCollectionSections = [
     isActive: true,
     sortOrder: 6,
     settings: {
-      title: "The Alankarr Assurance",
+      title: "The AlankarAssurance",
       subtitle: "Every diamond comes with verified grading, lifetime care, and absolute purity",
       badge: "Certified Trust",
     },

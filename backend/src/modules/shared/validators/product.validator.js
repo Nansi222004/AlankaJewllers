@@ -71,7 +71,7 @@ const productSchema = Joi.object({
   name: Joi.string().required().trim().min(3).max(100),
   productCode: Joi.string().trim().allow(""),
   slug: Joi.string().trim().lowercase(),
-  brand: Joi.string().default("Alankarr Jewellers"),
+  brand: Joi.string().default("AlankarJewellers"),
   categories: Joi.array().items(Joi.string().pattern(/^[0-9a-fA-F]{24}$/)).min(1).max(1).required(),
   description: Joi.string().required(),
   stylingTips: Joi.string().allow(""),

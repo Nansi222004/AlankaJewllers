@@ -140,7 +140,7 @@ const CuratedEditCard = ({ item, fallbackItem, index }) => {
                         <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
                     </span>
                     <span className="text-[10px] text-stone-400 font-medium tracking-wide">
-                        Alankarr Fine Jewels
+                        AlankarFine Jewels
                     </span>
                 </div>
             </div>

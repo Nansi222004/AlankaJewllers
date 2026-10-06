@@ -138,7 +138,7 @@ const CS_CONFIG = {
         badge: 'Structural Purity',
         tagline: 'Under 10x gemological magnification, diamonds are graded for internal inclusions and external blemishes.',
         icon: Eye,
-        proTip: 'Every single diamond in the Alankarr collection is verified 100% eye-clean, ensuring no inclusions ever impede outer sparkle.',
+        proTip: 'Every single diamond in the Alankarcollection is verified 100% eye-clean, ensuring no inclusions ever impede outer sparkle.',
         details: [
             { title: 'FL / IF', desc: 'Flawless / Internally Flawless. 0 inclusions visible under 10x magnification.' },
             { title: 'VVS1 - VVS2', desc: 'Very, Very Slightly Included. Microscopic pinpoints extremely difficult to detect.' },
@@ -175,7 +175,7 @@ const CS_CONFIG = {
                 title: 'Very Slightly Included (100% Eye-Clean)',
                 loupeDesc: 'Minor crystals visible under 10x magnification, completely invisible to the naked eye.',
                 inclusionsCount: 2,
-                rarity: 'Alankarr Gold Standard',
+                rarity: 'AlankarGold Standard',
                 inclusions: [
                     { x: 35, y: 48, size: 'w-1.5 h-1.5', label: 'Small Crystal' },
                     { x: 65, y: 55, size: 'w-1 h-1', label: 'Faint Feather' }
@@ -728,7 +728,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                             <div className="bg-brand-pearl rounded-2xl p-5 border border-[#F0DDE3]">
                                 <div className="flex items-center justify-between mb-3.5">
                                     <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#8B6874] font-sans">
-                                        Quality Tiers & Alankarr Standard
+                                        Quality Tiers & AlankarStandard
                                     </h4>
                                     <span className="text-[10px] text-brand-champagne font-semibold flex items-center gap-1 font-sans">
                                         <ShieldCheck className="w-3.5 h-3.5 text-brand-champagne" /> Certified Selection

@@ -39,9 +39,9 @@ const DynamicPage = ({ slug: propSlug }) => {
 
   useEffect(() => {
     if (page?.title) {
-      document.title = `${page.title} | Alankarr Jewellers`;
+      document.title = `${page.title} | AlankarJewellers`;
     } else {
-      document.title = "Alankarr Jewellers";
+      document.title = "AlankarJewellers";
     }
   }, [page]);
 

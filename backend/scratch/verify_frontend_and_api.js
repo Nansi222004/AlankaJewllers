@@ -17,7 +17,7 @@ function fetchJson(url) {
 }
 
 async function run() {
-  console.log('=== VERIFYING AlankarR JEWELLERS SEARCH SYSTEM ===\n');
+  console.log('=== VERIFYING AlankarJEWELLERS SEARCH SYSTEM ===\n');
 
   // 1. Check frontend server
   try {

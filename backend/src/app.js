@@ -84,7 +84,7 @@ app.use("/api/", limiter);
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Alankarr Jewellers API is running smoothly",
+    message: "AlankarJewellers API is running smoothly",
     timestamp: new Date().toISOString(),
   });
 });

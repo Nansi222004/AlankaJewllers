@@ -35,7 +35,7 @@ const ShopForFamily = () => {
   } = usePublicCmsPage("shop-family");
 
   useEffect(() => {
-    document.title = "Gifts for Family | Alankarr Jewellers";
+    document.title = "Gifts for Family | AlankarJewellers";
   }, []);
 
   useEffect(() => {

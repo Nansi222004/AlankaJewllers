@@ -9,7 +9,7 @@ import { resolveLegacyCmsAsset } from '../../utils/legacyCmsAssets';
 const defaultSlides = [
     {
         id: 'family-hero-default',
-        tag: 'The Alankarr Jewellers Family Boutique',
+        tag: 'The AlankarJewellers Family Boutique',
         title: 'Masterpiece ',
         titleItalic: 'Gifting',
         subtitle: 'Exquisite delicate treasures designed for those who matter most in your life.',

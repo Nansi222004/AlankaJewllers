@@ -42,7 +42,7 @@ const GoldComingSoon = () => {
                         >
                             <h4 className="text-[#AA8C2C] font-black uppercase tracking-[0.4em] text-xs mb-4">The Grand Unveil</h4>
                             <h1 className="text-5xl md:text-7xl font-display font-bold text-brand-espresso leading-tight">
-                                Alankarr JEWELLERS <span className="text-[#D4AF37]">GOLD</span> <br />COLLECTION
+                                AlankarJEWELLERS <span className="text-[#D4AF37]">GOLD</span> <br />COLLECTION
                             </h1>
                         </motion.div>
 

@@ -229,7 +229,7 @@ const AdminShipmentPanel = ({ order, onShipmentCreated }) => {
             <div className="px-6 py-4 border-b border-gray-100 flex flex-wrap items-center justify-between gap-3 bg-[#FDFBF7]">
               <div>
                 <h3 className="text-sm font-black text-[#3E2723] uppercase tracking-wider flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-[#8D6E63]" /> Active Shipment (Alankarr Jewellers Fulfillment)
+                  <Truck className="w-4 h-4 text-[#8D6E63]" /> Active Shipment (AlankarJewellers Fulfillment)
                 </h3>
                 <p className="text-[11px] text-gray-500 font-medium mt-0.5">
                   Handled via {activeShipment.courier?.toUpperCase()}

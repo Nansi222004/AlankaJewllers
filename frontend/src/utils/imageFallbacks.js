@@ -1,6 +1,6 @@
 /**
- * Centralized Fallback Image System for Alankarr Jewellers
- * Uses authentic, local Alankarr Jewellers project assets to guarantee
+ * Centralized Fallback Image System for AlankarJewellers
+ * Uses authentic, local AlankarJewellers project assets to guarantee
  * graceful degradation and luxury visual identity across the storefront.
  */
 

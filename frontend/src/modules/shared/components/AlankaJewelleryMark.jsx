@@ -1,15 +1,15 @@
 import React from 'react';
 
 /**
- * AlankarJewelleryMark
+ * AlankaJewelleryMark
  *
- * Dedicated, bespoke jewellery atelier decorative glyph for Alankarr Jewellers.
+ * Dedicated, bespoke jewellery atelier decorative glyph for Alankar Jewellers / Alanka Jewellers.
  * Features an elegant, four-faceted step-cut gemstone mark with a refined
  * central table facet and corner convergence lines.
  *
  * Authentic luxury jewellery hallmark that scales cleanly down to 12-14px.
  */
-export const AlankarJewelleryMark = ({
+export const AlankaJewelleryMark = ({
     className = 'w-3.5 h-3.5 text-brand-champagne',
     size,
     strokeWidth = 1.5,
@@ -43,7 +43,8 @@ export const AlankarJewelleryMark = ({
     );
 };
 
-export const AlankarJewelleryMark = AlankarJewelleryMark;
-export const AlankaJewelleryMark = AlankarJewelleryMark;
+// Aliases for seamless backwards compatibility across all modules
+export const AlankarJewelleryMark = AlankaJewelleryMark;
+export const AlankarrJewelleryMark = AlankaJewelleryMark;
 
-export default AlankarJewelleryMark;
+export default AlankaJewelleryMark;

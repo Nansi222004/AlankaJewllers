@@ -148,7 +148,7 @@ const MetalPricing = () => {
 
       <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 space-y-6">
         <div className="rounded-2xl border border-amber-100 bg-amber-50 p-4 text-sm text-amber-900">
-          Configure store metal pricing per 10 grams. These centralized rates apply across the entire Alankarr Jewellers catalog. Global GST is managed separately in Tax Settings, and final product prices include making charges, GST, and payment gateway charge configuration.
+          Configure store metal pricing per 10 grams. These centralized rates apply across the entire AlankarJewellers catalog. Global GST is managed separately in Tax Settings, and final product prices include making charges, GST, and payment gateway charge configuration.
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

@@ -8,7 +8,7 @@ const DiamondConsultationBanner = ({ sectionData }) => {
     const subtitle = settings.subtitle || 'Speak with our dedicated jewellery consultants to curate custom settings, solitaire rings, and personalised anniversary gifts crafted to your exact preferences.';
     const badge = settings.badge || 'Private Atelier Consultation';
     const rawNumber = String(settings.whatsappNumber || '919876543210').replace(/[^0-9]/g, '');
-    const whatsappUrl = settings.ctaPath || `https://wa.me/${rawNumber}?text=${encodeURIComponent("Hello Alankarr Jewellers, I'm interested in curating a bespoke diamond design.")}`;
+    const whatsappUrl = settings.ctaPath || `https://wa.me/${rawNumber}?text=${encodeURIComponent("Hello AlankarJewellers, I'm interested in curating a bespoke diamond design.")}`;
     const ctaLabel = settings.ctaLabel || 'Consult on WhatsApp';
 
     return (

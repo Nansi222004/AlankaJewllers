@@ -1,5 +1,5 @@
 /**
- * Universal Price Utility for Alankarr Jewellers
+ * Universal Price Utility for AlankarJewellers
  * Centralizes the logic for extracting product prices to avoid ₹0 errors.
  */
 

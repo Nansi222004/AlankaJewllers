@@ -30,7 +30,7 @@ const TESTIMONIALS = [
     id: 3,
     name: "Priya Patel",
     image: customer3,
-    text: "Gifted these earrings to my sister on her wedding and she loved them! I am obsessed with buying gifts from Alankarr Jewellers.",
+    text: "Gifted these earrings to my sister on her wedding and she loved them! I am obsessed with buying gifts from AlankarJewellers.",
     location: "Bangalore",
   },
 ];

@@ -137,7 +137,7 @@ exports.verifyEmailOtp = async (req, res) => {
     });
     enqueueEmail({
       to: user.email,
-      subject: "Welcome to Alankarr Jewellers!",
+      subject: "Welcome to AlankarJewellers!",
       html: emailTemplates.welcomeEmail({ userName: user.name }),
       type: "welcome",
     });

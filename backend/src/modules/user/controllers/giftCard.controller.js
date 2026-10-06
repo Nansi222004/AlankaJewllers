@@ -93,7 +93,7 @@ exports.fulfillGiftCardOrder = async (req, res) => {
     // Email to recipient
     enqueueEmail({
       to: card.recipientEmail,
-      subject: `${card.senderName} sent you a ₹${cardValue.toLocaleString("en-IN")} Alankarr Jewellers Gift Card! 🎁`,
+      subject: `${card.senderName} sent you a ₹${cardValue.toLocaleString("en-IN")} AlankarJewellers Gift Card! 🎁`,
       html: emailTemplates.giftCardDelivery({ giftCard: card }),
       type: "general",
     });
@@ -102,7 +102,7 @@ exports.fulfillGiftCardOrder = async (req, res) => {
     if (user?.email) {
       enqueueEmail({
         to: user.email,
-        subject: "Your Alankarr Jewellers Gift Card Has Been Sent! ✅",
+        subject: "Your AlankarJewellers Gift Card Has Been Sent! ✅",
         html: emailTemplates.giftCardPurchaseConfirmation({ giftCard: card, buyerName: user.name }),
         type: "general",
       });
@@ -125,7 +125,7 @@ exports.fulfillGiftCardsInOrder = async (order) => {
       const p = item.personalization || {};
       const recipientName = p.recipientName || "Recipient";
       const recipientEmail = p.recipientEmail || "";
-      const senderName = p.senderName || order.customerName || "Alankarr Jewellers Customer";
+      const senderName = p.senderName || order.customerName || "AlankarJewellers Customer";
       const personalMessage = p.message || p.personalMessage || "";
 
       if (!recipientEmail) {
@@ -164,7 +164,7 @@ exports.fulfillGiftCardsInOrder = async (order) => {
       // Email to recipient
       enqueueEmail({
         to: card.recipientEmail,
-        subject: `${card.senderName} sent you a ₹${cardValue.toLocaleString("en-IN")} Alankarr Jewellers Gift Card! 🎁`,
+        subject: `${card.senderName} sent you a ₹${cardValue.toLocaleString("en-IN")} AlankarJewellers Gift Card! 🎁`,
         html: emailTemplates.giftCardDelivery({ giftCard: card }),
         type: "general",
       });
@@ -173,7 +173,7 @@ exports.fulfillGiftCardsInOrder = async (order) => {
       if (order.customerEmail) {
         enqueueEmail({
           to: order.customerEmail,
-          subject: "Your Alankarr Jewellers Gift Card Has Been Sent! ✅",
+          subject: "Your AlankarJewellers Gift Card Has Been Sent! ✅",
           html: emailTemplates.giftCardPurchaseConfirmation({ giftCard: card, buyerName: order.customerName }),
           type: "general",
         });

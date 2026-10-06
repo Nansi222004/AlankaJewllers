@@ -27,7 +27,7 @@ const ShopForWomen = () => {
   } = usePublicCmsPage("shop-women");
 
   useEffect(() => {
-    document.title = "Shop Women's Jewellery | Alankarr Jewellers";
+    document.title = "Shop Women's Jewellery | AlankarJewellers";
   }, []);
 
   const sectionMap = useMemo(
