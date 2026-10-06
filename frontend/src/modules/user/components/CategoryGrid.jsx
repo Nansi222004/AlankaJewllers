@@ -16,7 +16,7 @@ export const CategoryGrid = () => {
             defaultEyebrow="Curated Dimensions"
             defaultSubtitle="Handcrafted Categories"
             defaultItems={homeCategoryGridDefaults}
-            bgClass="bg-brand-pearl"
+            bgClass="bg-[#F1E7EA]"
         />
     );
 };
@@ -29,7 +29,7 @@ export const GoldCollectionGrid = (props) => {
             defaultEyebrow="Pure Radiance"
             defaultSubtitle="Timeless gold jewellery crafted with exceptional artistry"
             defaultItems={goldCollectionGridDefaults}
-            bgClass="bg-brand-pearl"
+            bgClass="bg-[#E3D3D8]"
             {...props}
         />
     );
@@ -43,7 +43,7 @@ export const SilverCollectionGrid = () => {
             defaultEyebrow="Sterling Elegance"
             defaultSubtitle="Handcrafted 925 sterling silver essentials for everyday elegance"
             defaultItems={silverCollectionGridDefaults}
-            bgClass="bg-brand-pearl"
+            bgClass="bg-[#EDE1E5]"
         />
     );
 };

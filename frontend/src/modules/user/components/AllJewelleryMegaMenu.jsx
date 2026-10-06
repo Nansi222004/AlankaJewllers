@@ -162,7 +162,7 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
-                            className="p-4 sm:p-6 bg-[#F9FAFB]"
+                            className="p-4 sm:p-6 bg-[#FFF9FA]"
                         >
                             <button 
                                 onClick={() => setView('main')}

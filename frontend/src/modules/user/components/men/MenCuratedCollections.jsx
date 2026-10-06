@@ -118,7 +118,7 @@ const MenCuratedCollections = ({ sectionData }) => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                                 onClick={() => navigate(item.link)}
-                                className="flex-shrink-0 w-[132px] md:w-[280px] lg:w-[320px] aspect-square relative group cursor-pointer overflow-hidden rounded-none bg-[#F5F5F5] snap-start shadow-[0_10px_25px_rgba(0,0,0,0.08)] md:shadow-[0_15px_35px_rgba(0,0,0,0.12)]"
+                                className="flex-shrink-0 w-[132px] md:w-[280px] lg:w-[320px] aspect-square relative group cursor-pointer overflow-hidden rounded-none bg-[#FFF7F9] snap-start shadow-[0_10px_25px_rgba(0,0,0,0.08)] md:shadow-[0_15px_35px_rgba(0,0,0,0.12)]"
                             >
                                 <img 
                                     src={item.image} 

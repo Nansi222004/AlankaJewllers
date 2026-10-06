@@ -102,15 +102,15 @@ const PerfectGift = () => {
     });
 
     return (
-        <section className="pt-2 pb-6 md:pt-4 md:pb-20 bg-white text-brand-espresso overflow-hidden font-sans border-b border-gray-100">
+        <section className="pt-4 pb-6 md:pt-8 md:pb-16 bg-[#EDE1E5] text-brand-espresso overflow-hidden font-sans border-b border-[#D2BBC3]">
             <div className="container mx-auto px-4">
                 
                 {/* Section Title */}
                 <div className="text-center mb-8 md:mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-3">
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-plum tracking-tight mb-3">
                         {bondSettings.title || 'Shop by Bond'}
                     </h2>
-                    <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-[0.3em] font-semibold">
+                    <p className="text-brand-taupe text-[10px] md:text-xs uppercase tracking-[0.3em] font-semibold">
                         {bondSettings.subtitle || 'Curated for your loved ones'}
                     </p>
                 </div>
@@ -123,7 +123,7 @@ const PerfectGift = () => {
                             to={item.path} 
                             className="flex flex-col items-center shrink-0 w-[130px] md:w-[210px] group"
                         >
-                            <div className="bg-[#F3F3F3] p-1.5 md:p-2 rounded-2xl md:rounded-3xl w-full flex flex-col items-center transition-all duration-500 group-hover:bg-[#EAEAEA] group-hover:translate-y-[-6px] shadow-sm">
+                            <div className="bg-[#F8EAF0] border border-[#DBC8CE] p-1.5 md:p-2 rounded-2xl md:rounded-3xl w-full flex flex-col items-center transition-all duration-500 group-hover:bg-[#F3DDE5] group-hover:border-[#C77F94] group-hover:translate-y-[-6px] shadow-sm">
                                 <div className="w-full aspect-[4/5] overflow-hidden rounded-xl md:rounded-2xl mb-3">
                                     <img
                                         src={item.image}
@@ -131,7 +131,7 @@ const PerfectGift = () => {
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
-                                <h3 className="text-[14px] md:text-[16px] font-semibold text-gray-800 tracking-tight pb-3 px-2 text-center leading-none">
+                                <h3 className="text-[14px] md:text-[16px] font-semibold text-brand-espresso tracking-tight pb-3 px-2 text-center leading-none">
                                     {item.name}
                                 </h3>
                             </div>
@@ -141,10 +141,10 @@ const PerfectGift = () => {
 
                 {/* Featured Products Sub-section */}
                 {featuredGifts.length > 0 && (
-                <div className="mt-4 md:mt-8 pt-4 md:pt-8 border-t border-gray-100">
+                <div className="mt-4 md:mt-8 pt-4 md:pt-8 border-t border-[#D2BBC3]">
                     <div className="flex items-center justify-between mb-4 md:mb-8">
                         <div>
-                            <h3 className="text-xl md:text-2xl font-semibold text-gray-900 tracking-tight">
+                            <h3 className="text-xl md:text-2xl font-semibold text-brand-plum tracking-tight">
                                 {giftSettings.title || 'Featured Gifts'}
                             </h3>
                             <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest mt-0.5">

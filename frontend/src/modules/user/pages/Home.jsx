@@ -68,7 +68,7 @@ const Home = () => {
     }
 
     return (
-        <div data-collection-theme="silver" className="bg-[#FBF8F7] font-body text-[#332827] relative selection:bg-[#F1DFDE] selection:text-[#6B3F46]">
+        <div data-collection-theme="silver" className="bg-[#E9DDE1] font-body text-[#3D2730] relative selection:bg-[#DBC8CE] selection:text-[#6B3F46]">
             {isHomepageCmsError && (
                 <div className="mx-auto max-w-[1450px] px-4 pt-4">
                     <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] text-amber-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -81,7 +81,7 @@ const Home = () => {
                         <button
                             type="button"
                             onClick={() => refetchHomepageCms()}
-                            className="shrink-0 rounded-lg bg-[#3E2723] px-4 py-2 text-[11px] font-black uppercase tracking-widest text-white hover:opacity-95"
+                            className="shrink-0 rounded-lg bg-[#702F46] px-4 py-2 text-[11px] font-black uppercase tracking-widest text-white hover:opacity-95"
                         >
                             Retry
                         </button>

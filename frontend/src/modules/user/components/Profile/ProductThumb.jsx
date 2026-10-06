@@ -8,7 +8,7 @@ export const ProductThumb = ({ src, alt = '', className, fallbackClassName = '',
 
     if (!imageSrc) {
         return (
-            <div className={`${className} ${fallbackClassName} bg-[#FAFAFA] text-[#8D6E63] flex items-center justify-center`}>
+            <div className={`${className} ${fallbackClassName} bg-[#FFF9FA] text-[#9A6676] flex items-center justify-center`}>
                 <Package className={fallbackIconClassName} />
             </div>
         );

@@ -150,14 +150,14 @@ const StyleItYourWay = () => {
     }, []);
 
     return (
-        <section className="pt-4 pb-0 md:pt-10 md:pb-2 bg-white relative">
+        <section className="pt-5 pb-0 md:pt-10 md:pb-3 bg-[#DBC8CE] relative border-y border-[#B88E9B]">
             <div className="container mx-auto px-4 md:px-6">
 
                 {/* Centered Header */}
                 <div className="flex flex-col items-center text-center mb-6">
                     <div className="flex flex-col items-center">
-                        <span className="text-brand-champagne text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-1 block">Curated For You</span>
-                        <h3 className="font-display text-2xl md:text-3xl text-brand-espresso">
+                        <span className="text-brand-plum text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-1 block">Curated For You</span>
+                        <h3 className="font-display text-2xl md:text-3xl text-brand-plum">
                             {sectionData?.label || "Style It Your Way"}
                         </h3>
                     </div>

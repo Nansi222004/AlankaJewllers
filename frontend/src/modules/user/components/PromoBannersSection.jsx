@@ -63,7 +63,7 @@ const PromoBannersSection = () => {
                         <motion.div
                             whileHover={{ scale: 1.02 }}
                             className="w-full h-full relative overflow-hidden"
-                            style={{ background: 'linear-gradient(135deg, #FBF8F7 0%, #E9DEDA 100%)' }}
+                            style={{ background: 'linear-gradient(135deg, #FFF9FA 0%, #EBD3DA 100%)' }}
                         >
                             <div className="absolute top-6 left-8 z-10">
                                 <h3 className="text-3xl md:text-4xl font-serif italic text-brand-espresso">Bestsellers</h3>

@@ -171,12 +171,12 @@ const AdminSidebar = () => {
       <div className="p-6 border-b border-white/10 flex items-center gap-3 shrink-0">
         <img
           src={logo}
-          alt="Alankar Jewellers"
+          alt="ALANKA JEWELLERS"
           className="h-10 w-10 object-contain"
         />
         <div className="flex flex-col">
           <span className="font-serif text-sm font-bold tracking-wider text-amber-300 leading-tight uppercase">
-            Alankar Jewellers
+            ALANKA JEWELLERS
           </span>
           <span className="text-[9px] font-medium tracking-widest text-amber-100/70 uppercase">
             Admin

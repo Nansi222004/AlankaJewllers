@@ -19,7 +19,7 @@ const collections = [
         subtitle: 'Sleek, silver, and made to turn heads',
         titleStyle: 'italic font-black text-5xl md:text-6xl tracking-tight',
         textColor: 'text-white',
-        bgClass: 'bg-gradient-to-r from-[#071022] to-[#12213D]',
+        bgClass: 'bg-gradient-to-r from-[#41283C] to-[#702F46]',
         image: edgeBanner,
         products: [
             { id: 'e1', img: prodRing,     name: 'Ring' },

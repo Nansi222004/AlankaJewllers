@@ -40,7 +40,7 @@ const WishlistPage = () => {
     }
 
     return (
-        <div className="bg-[#fcfcfc] min-h-screen py-4 md:py-12">
+        <div className="bg-[#FFF9FA] min-h-screen py-4 md:py-12">
             <div className="container mx-auto px-3 md:px-12">
                 <div className="flex items-center gap-2 md:gap-4 mb-6 md:mb-10">
                     <button onClick={() => navigate(-1)} className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors text-footerBg/70">

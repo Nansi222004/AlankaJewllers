@@ -100,7 +100,7 @@ const BestStylesSection = ({ sectionData = null }) => {
     if (displayItems.length === 0) return null;
 
     return (
-        <section className="pt-2 pb-2 md:pt-4 md:pb-4 bg-white overflow-hidden">
+        <section className="pt-3 pb-3 md:pt-6 md:pb-6 bg-[#F1E7EA] overflow-hidden border-y border-[#D2BBC3]/70">
             <div className="container mx-auto px-4 max-w-[1450px]">
                 <div className="relative mb-3 md:mb-5 flex flex-col items-center">
                     <div className="flex flex-col items-center text-center">

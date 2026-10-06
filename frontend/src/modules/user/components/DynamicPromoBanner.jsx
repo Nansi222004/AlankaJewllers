@@ -156,7 +156,7 @@ const DynamicPromoBanner = () => {
     const activeBanner = bannerItems[currentIndex] || bannerItems[0];
 
     return (
-        <section className="w-full bg-white py-3 md:py-6 relative">
+        <section className="w-full bg-[#E7D7DC] py-4 md:py-7 relative border-y border-[#D2BBC3]">
             <div className="container mx-auto px-3 md:px-6 max-w-[1440px]">
                 <div className="relative">
                     <AnimatePresence mode="wait">

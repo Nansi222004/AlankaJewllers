@@ -52,7 +52,7 @@ const PremiumCategoryCards = () => {
     return (
         <section
             ref={containerRef}
-            className="py-10 md:py-14 lg:py-16 bg-[#FAF9F5] overflow-hidden border-b border-stone-200/60 font-sans"
+            className="py-10 md:py-14 lg:py-16 bg-[#F1E7EA] overflow-hidden border-b border-[#D2BBC3] font-sans"
         >
             <div className="container mx-auto px-4 max-w-[1240px]">
                 {/* 1. Section Header */}
@@ -61,7 +61,7 @@ const PremiumCategoryCards = () => {
                         initial={{ opacity: 0, y: 8 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5 }}
-                        className="text-[10px] md:text-[11px] font-bold tracking-[0.35em] text-brand-champagne uppercase mb-2 block"
+                        className="text-[10px] md:text-[11px] font-bold tracking-[0.35em] text-[#754655] uppercase mb-2 block"
                     >
                         GIFT THE EXCELLENCE
                     </motion.span>
@@ -70,16 +70,16 @@ const PremiumCategoryCards = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5, delay: 0.08 }}
-                        className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-serif text-stone-900 tracking-tight leading-tight mb-2.5"
+                        className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-serif text-brand-plum tracking-tight leading-tight mb-2.5"
                     >
-                        Shop by <span className="italic font-light text-brand-champagne">Recipient</span>
+                        Shop by <span className="italic font-medium text-[#825565]">Recipient</span>
                     </motion.h2>
 
                     <motion.div
                         initial={{ opacity: 0, scaleX: 0 }}
                         animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
                         transition={{ duration: 0.5, delay: 0.15 }}
-                        className="w-10 h-[1.5px] bg-brand-champagne rounded-full"
+                        className="w-10 h-[1.5px] bg-[#825565] rounded-full"
                     />
                 </div>
 

@@ -72,7 +72,7 @@ const GoldSilverRates = ({ metal }) => {
         <section
             className={`relative overflow-hidden py-12 md:py-16 ${
                 isSilverMode
-                    ? 'bg-gradient-to-b from-[#FBF8F7] via-[#F8EFF0] to-[#FBF8F7] border-y border-[#E9DEDA]/70'
+                    ? 'bg-gradient-to-b from-[#E3D3D8] via-[#F1E7EA] to-[#E3D3D8] border-y border-[#D2BBC3]'
                     : 'bg-[#FBF7F1] border-y border-brand-border-soft/60'
             }`}
             aria-labelledby="metal-rates-title"
@@ -80,11 +80,11 @@ const GoldSilverRates = ({ metal }) => {
             {/* Ambient decorative glows */}
             <div
                 className={`absolute -right-24 -top-24 h-64 w-64 rounded-full blur-3xl pointer-events-none ${
-                    isSilverMode ? 'bg-[#D9B8B6]/20' : 'bg-brand-champagne/10'
+                    isSilverMode ? 'bg-[#D99AAE]/20' : 'bg-brand-champagne/10'
                 }`}
             />
             {isSilverMode && (
-                <div className="absolute -left-20 -bottom-20 h-56 w-56 rounded-full bg-[#C98F96]/15 blur-3xl pointer-events-none" />
+                <div className="absolute -left-20 -bottom-20 h-56 w-56 rounded-full bg-[#C77F94]/15 blur-3xl pointer-events-none" />
             )}
 
             <div className="relative mx-auto max-w-[1450px] px-4 md:px-8">
@@ -97,7 +97,7 @@ const GoldSilverRates = ({ metal }) => {
                             }`}
                         >
                             {isSilverMode ? (
-                                <AlankaJewelleryMark className="h-3.5 w-3.5 text-[#C98F96]" />
+                                <AlankaJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
                             ) : (
                                 <Coins className="h-4 w-4" />
                             )}
@@ -141,7 +141,7 @@ const GoldSilverRates = ({ metal }) => {
                                 }}
                                 className={`mt-2 w-full rounded-xl border ${
                                     isSilverMode
-                                        ? 'border-[#E9DEDA] focus:border-[#C98F96]'
+                                        ? 'border-[#EBD3DA] focus:border-[#C77F94]'
                                         : 'border-brand-border focus:border-brand-champagne'
                                 } bg-white px-4 py-3 text-sm font-semibold normal-case tracking-normal text-brand-espresso outline-none disabled:opacity-60 shadow-2xs`}
                             >
@@ -165,7 +165,7 @@ const GoldSilverRates = ({ metal }) => {
                                 onChange={(event) => setSelectedCity(event.target.value)}
                                 className={`mt-2 w-full rounded-xl border ${
                                     isSilverMode
-                                        ? 'border-[#E9DEDA] focus:border-[#C98F96]'
+                                        ? 'border-[#EBD3DA] focus:border-[#C77F94]'
                                         : 'border-brand-border focus:border-brand-champagne'
                                 } bg-white px-4 py-3 text-sm font-semibold normal-case tracking-normal text-brand-espresso outline-none disabled:opacity-60 shadow-2xs`}
                             >
@@ -189,26 +189,26 @@ const GoldSilverRates = ({ metal }) => {
                 {/* ── MODE 1: SILVER ONLY (Single Intentional, Centered Luxury Card) ── */}
                 {isSilverMode ? (
                     <div className="mx-auto max-w-xl">
-                        <article className="relative overflow-hidden rounded-3xl border border-[#E9DEDA] bg-gradient-to-br from-white via-[#FCF8F7] to-[#F7EDED] p-6 sm:p-8 shadow-[0_8px_30px_rgba(107,63,70,0.08)] transition-all duration-300 hover:border-[#C98F96]/60 hover:shadow-[0_12px_35px_rgba(107,63,70,0.12)]">
+                        <article className="relative overflow-hidden rounded-3xl border border-[#EBD3DA] bg-gradient-to-br from-white via-[#FFF9FA] to-[#FCEFF2] p-6 sm:p-8 shadow-[0_8px_30px_rgba(107,63,70,0.08)] transition-all duration-300 hover:border-[#C77F94]/60 hover:shadow-[0_12px_35px_rgba(107,63,70,0.12)]">
                             {/* Decorative ambient background accents */}
-                            <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-[#D9B8B6]/20 blur-2xl pointer-events-none" />
+                            <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-[#D99AAE]/20 blur-2xl pointer-events-none" />
                             <div className="absolute -bottom-10 -left-10 h-28 w-28 rounded-full bg-[#B8956A]/15 blur-2xl pointer-events-none" />
 
                             <div className="relative z-10 flex flex-col items-center text-center">
                                 {/* Badge pill */}
-                                <div className="inline-flex items-center gap-2 rounded-full bg-[#F1DFDE] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-[#6B3F46] border border-[#D9B8B6]/60">
-                                    <AlankaJewelleryMark className="h-3.5 w-3.5 text-[#C98F96]" />
+                                <div className="inline-flex items-center gap-2 rounded-full bg-[#F7DDE5] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-[#6B3F46] border border-[#D99AAE]/60">
+                                    <AlankaJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
                                     <span>999 Fine Silver Reference</span>
                                 </div>
 
                                 {/* Metal Label */}
-                                <span className="mt-4 text-xs font-bold uppercase tracking-[0.3em] text-[#332827]/70">
+                                <span className="mt-4 text-xs font-bold uppercase tracking-[0.3em] text-[#3D2730]/70">
                                     SILVER
                                 </span>
 
                                 {/* Price */}
                                 <div className="mt-2 flex items-baseline justify-center gap-2">
-                                    <span className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#332827] tracking-tight">
+                                    <span className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#3D2730] tracking-tight">
                                         {isLoadingRates
                                             ? 'Loading...'
                                             : silverValue?.rate > 0
@@ -216,19 +216,19 @@ const GoldSilverRates = ({ metal }) => {
                                             : 'Rate unavailable'}
                                     </span>
                                     {silverValue?.rate > 0 && (
-                                        <span className="rounded-md bg-white/90 px-2.5 py-1 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#6B3F46] border border-[#E9DEDA] shadow-2xs">
+                                        <span className="rounded-md bg-white/90 px-2.5 py-1 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#6B3F46] border border-[#EBD3DA] shadow-2xs">
                                             {formatRateUnit(silverValue.unit)}
                                         </span>
                                     )}
                                 </div>
 
                                 {/* Divider */}
-                                <div className="my-5 h-px w-24 bg-gradient-to-r from-transparent via-[#C98F96]/40 to-transparent" />
+                                <div className="my-5 h-px w-24 bg-gradient-to-r from-transparent via-[#C77F94]/40 to-transparent" />
 
                                 {/* Meta information: City, Timestamp, Source */}
                                 <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs text-stone-500 font-medium">
-                                    <span className="inline-flex items-center gap-1.5 font-semibold text-[#332827]">
-                                        <MapPin className="h-3.5 w-3.5 text-[#C98F96]" /> {currentCityName}
+                                    <span className="inline-flex items-center gap-1.5 font-semibold text-[#3D2730]">
+                                        <MapPin className="h-3.5 w-3.5 text-[#C77F94]" /> {currentCityName}
                                     </span>
                                     <span className="text-stone-300">•</span>
                                     <span>Updated: {updatedAt || 'Recently'}</span>

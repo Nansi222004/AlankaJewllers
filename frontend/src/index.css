@@ -36,40 +36,96 @@
     --collection-ribbon-text: #D8C3A5;
 }
 
+/*
+ * Storefront palette: rose-blush luxury.
+ * Kept on the customer shell so operational admin/seller screens retain their
+ * neutral, task-focused colour system.
+ */
+.customer-app {
+    --brand-pearl: #FFF9FA;
+    --brand-porcelain: #FCEFF2;
+    --brand-white: #FFFFFF;
+    --brand-espresso: #3D2730;
+    --brand-plum: #702F46;
+    --brand-taupe: #7F626C;
+    --brand-champagne: #C5A46D;
+    --brand-champagne-light: #E3CFA7;
+    --brand-blush: #D99AAE;
+    --brand-rosewater: #F7DDE5;
+    --brand-border: #EBD3DA;
+    --brand-border-soft: #F3E4E8;
+    --brand-champagne-mist: #FAF0E0;
+
+    --primary-gold: var(--brand-champagne);
+    --champagne-gold: var(--brand-champagne-light);
+    --deep-charcoal: var(--brand-espresso);
+    --warm-ivory: var(--brand-pearl);
+    --text-primary: var(--brand-espresso);
+    --text-secondary: var(--brand-taupe);
+    --border-gold: var(--brand-border);
+
+    color: var(--brand-espresso);
+    background: var(--brand-pearl);
+}
+
+.customer-app ::selection {
+    color: var(--brand-white);
+    background: var(--brand-plum);
+}
+
+.customer-app :where(input, select, textarea) {
+    accent-color: var(--brand-plum);
+}
+
+.customer-app :where(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--brand-blush);
+    outline-offset: 2px;
+}
+
+.customer-app {
+    scrollbar-color: var(--brand-blush) var(--brand-porcelain);
+}
+
+.customer-app ::-webkit-scrollbar-thumb {
+    border: 3px solid var(--brand-porcelain);
+    border-radius: 999px;
+    background: var(--brand-blush);
+}
+
 [data-collection-theme="gold"] {
-    --collection-primary: #B8956A;
-    --collection-secondary: #D8C3A5;
-    --collection-surface: #FAF8F7;
-    --collection-border: #E9DEDA;
-    --collection-ribbon-bg: #4A3638;
-    --collection-ribbon-text: #D8C3A5;
+    --collection-primary: #C5A46D;
+    --collection-secondary: #E3CFA7;
+    --collection-surface: #FFF9FA;
+    --collection-border: #EBD3DA;
+    --collection-ribbon-bg: #702F46;
+    --collection-ribbon-text: #FBE8BE;
 }
 
 [data-collection-theme="silver"] {
-    --collection-primary: #C98F96;
-    --collection-secondary: #D9B8B6;
-    --collection-surface: #FBF8F7;
-    --collection-border: #E9DEDA;
-    --collection-ribbon-bg: #6B3F46;
-    --collection-ribbon-text: #F1DFDE;
+    --collection-primary: #C77F94;
+    --collection-secondary: #E1B5C2;
+    --collection-surface: #FFF9FA;
+    --collection-border: #EBD3DA;
+    --collection-ribbon-bg: #702F46;
+    --collection-ribbon-text: #FCEFF2;
 }
 
 [data-collection-theme="diamond"] {
-    --collection-primary: #0F2038;
-    --collection-secondary: #1E3A5F;
-    --collection-surface: #F2F6FA;
-    --collection-border: #D4E0ED;
-    --collection-ribbon-bg: #0F2038;
-    --collection-ribbon-text: #E0EAFC;
+    --collection-primary: #5C3B55;
+    --collection-secondary: #9B718F;
+    --collection-surface: #FCF8FB;
+    --collection-border: #E8D9E3;
+    --collection-ribbon-bg: #5C3B55;
+    --collection-ribbon-text: #FFF7FC;
 }
 
 [data-collection-theme="gems"] {
-    --collection-primary: #0D3B2E;
-    --collection-secondary: #185A44;
-    --collection-surface: #F0F7F4;
-    --collection-border: #C8DFD5;
-    --collection-ribbon-bg: #0D3B2E;
-    --collection-ribbon-text: #E3F5EC;
+    --collection-primary: #702F46;
+    --collection-secondary: #C86B85;
+    --collection-surface: #FFF7F9;
+    --collection-border: #EBD3DA;
+    --collection-ribbon-bg: #702F46;
+    --collection-ribbon-text: #FFF4F7;
 }
 
 @theme {

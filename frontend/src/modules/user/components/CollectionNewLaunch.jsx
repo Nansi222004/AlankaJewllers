@@ -78,19 +78,19 @@ const CollectionNewLaunch = ({
       viewAllText: "text-brand-plum hover:text-brand-champagne",
     },
     silver: {
-      sectionBg: "border-y border-[#E9DEDA] bg-gradient-to-b from-[#FBF8F7] to-white",
-      ribbonBg: "bg-gradient-to-r from-[#6B3F46] to-[#8E5B63] text-[#F1DFDE]",
-      viewAllText: "text-[#6B3F46] hover:text-[#C98F96]",
+      sectionBg: "border-y border-[#EBD3DA] bg-gradient-to-b from-[#FFF9FA] to-white",
+      ribbonBg: "bg-gradient-to-r from-[#6B3F46] to-[#8E5B63] text-[#F7DDE5]",
+      viewAllText: "text-[#6B3F46] hover:text-[#C77F94]",
     },
     diamond: {
-      sectionBg: "border-y border-[#D4E0ED] bg-gradient-to-b from-[#F2F6FA] to-white",
-      ribbonBg: "bg-[#0F2038] text-[#E0EAFC]",
-      viewAllText: "text-[#1E3A5F] hover:text-[#0F2038]",
+      sectionBg: "border-y border-[#E8D9E3] bg-gradient-to-b from-[#FCF8FB] to-white",
+      ribbonBg: "bg-[#5C3B55] text-[#E0EAFC]",
+      viewAllText: "text-[#805E7A] hover:text-[#5C3B55]",
     },
     gems: {
-      sectionBg: "border-y border-[#C8DFD5] bg-gradient-to-b from-[#F0F7F4] to-white",
-      ribbonBg: "bg-[#0D3B2E] text-[#E3F5EC]",
-      viewAllText: "text-[#185A44] hover:text-[#0D3B2E]",
+      sectionBg: "border-y border-[#EBD3DA] bg-gradient-to-b from-[#FFF7F9] to-white",
+      ribbonBg: "bg-[#702F46] text-[#FFF4F7]",
+      viewAllText: "text-[#9C3F60] hover:text-[#702F46]",
     },
   }[effectiveCollection] || {
     sectionBg: "border-y border-brand-border bg-brand-porcelain",

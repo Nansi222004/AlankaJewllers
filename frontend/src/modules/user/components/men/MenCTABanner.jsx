@@ -6,11 +6,11 @@ const MenCTABanner = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="py-10 md:py-24 bg-gradient-to-r from-[#0A1F44] via-[#0F2A5F] to-[#1C3D8F] relative overflow-hidden">
+        <section className="py-10 md:py-24 bg-gradient-to-r from-[#552237] via-[#702F46] to-[#9C3F60] relative overflow-hidden">
             {/* Background design elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none mix-blend-overlay opacity-30">
                 <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-[#3B82F6] rounded-full blur-[150px] -translate-y-1/2" />
-                <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-[#1C3D8F] rounded-full blur-[150px] -translate-y-1/2" />
+                <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-[#9C3F60] rounded-full blur-[150px] -translate-y-1/2" />
             </div>
 
             <div className="container mx-auto px-6 relative z-10">
@@ -39,7 +39,7 @@ const MenCTABanner = () => {
 
                         <div>
                             <motion.button
-                                whileHover={{ scale: 1.05, backgroundColor: "#fff", color: "#0A1F44" }}
+                                whileHover={{ scale: 1.05, backgroundColor: "#fff", color: "#552237" }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => navigate('/shop?category=men')}
                                 className="px-10 py-4 bg-[#3B82F6] text-white font-bold tracking-widest uppercase rounded flex items-center justify-center gap-3 mx-auto transition-colors"

@@ -248,7 +248,7 @@ const MenFeaturedProducts = ({ sectionData }) => {
                 <div className="mt-8 md:mt-12 text-center">
                     <button
                         onClick={() => navigate(buildMenShopPath())}
-                        className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#3E2723] text-white text-xs md:text-sm font-bold uppercase tracking-[0.16em] hover:bg-[#5a3d36] transition-colors"
+                        className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#702F46] text-white text-xs md:text-sm font-bold uppercase tracking-[0.16em] hover:bg-[#5a3d36] transition-colors"
                         type="button"
                     >
                         {resolvedSettings.ctaLabel}

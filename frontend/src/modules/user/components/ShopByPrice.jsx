@@ -39,14 +39,14 @@ const ShopByPrice = () => {
         ];
 
     return (
-        <section className="pt-3 pb-0 md:pt-8 md:pb-0 bg-white">
+        <section className="pt-5 pb-5 md:pt-9 md:pb-8 bg-[#E7D7DC] border-y border-[#D2BBC3]">
             <div className="container mx-auto px-4 max-w-[1240px]">
                 <div className="flex flex-col items-center mb-4 md:mb-6 text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block bg-gradient-to-r from-brand-champagne to-[#DFB750] text-brand-espresso px-3.5 py-1 text-[9px] md:text-[10px] font-bold tracking-[0.35em] uppercase mb-2 md:mb-2.5 rounded-full shadow-xs"
+                        className="inline-block bg-gradient-to-r from-[#8E5E6D] to-[#B98696] text-white px-3.5 py-1 text-[9px] md:text-[10px] font-bold tracking-[0.35em] uppercase mb-2 md:mb-2.5 rounded-full shadow-xs"
                     >
                         GIFT THE EXCELLENCE
                     </motion.span>
@@ -55,11 +55,11 @@ const ShopByPrice = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-2xl md:text-4xl font-serif text-stone-950 tracking-tight leading-none mb-3 md:mb-4"
+                        className="text-2xl md:text-4xl font-serif text-brand-plum tracking-tight leading-none mb-3 md:mb-4"
                     >
-                        Luxury <span className="italic font-light text-brand-champagne">within Reach</span>
+                        Luxury <span className="italic font-medium text-[#825565]">within Reach</span>
                     </motion.h2>
-                    <div className="w-12 h-[2px] bg-brand-champagne rounded-full" />
+                    <div className="w-12 h-[2px] bg-[#825565] rounded-full" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-[1100px] mx-auto">

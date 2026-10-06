@@ -60,7 +60,7 @@ const DiamondShopByType = ({ sectionData }) => {
     }, [sectionData?.items]);
 
     return (
-        <section className="py-14 md:py-20 bg-gradient-to-b from-white via-[#FAFBFD] to-white border-b border-stone-200/60">
+        <section className="py-14 md:py-20 bg-gradient-to-b from-white via-[#FCF8FB] to-white border-b border-stone-200/60">
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -91,7 +91,7 @@ const DiamondShopByType = ({ sectionData }) => {
                                         <div className="flex items-center justify-between gap-3 mb-4">
                                             <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                                                 isNatural
-                                                    ? 'bg-[#FAF6ED] text-brand-champagne border border-[#E8DFC8]'
+                                                    ? 'bg-[#FFF7F9] text-brand-champagne border border-[#E8DFC8]'
                                                     : 'bg-sky-50 text-sky-800 border border-sky-200/60'
                                             }`}>
                                                 {isNatural ? <Gem className="w-3 h-3" /> : <Leaf className="w-3 h-3" />}
@@ -114,7 +114,7 @@ const DiamondShopByType = ({ sectionData }) => {
                                         <ul className="space-y-2.5 mb-8">
                                             {item.features.map((feat, fIdx) => (
                                                 <li key={fIdx} className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                                                    <div className="w-4 h-4 rounded-full bg-[#FAF6ED] border border-brand-champagne/40 flex items-center justify-center shrink-0">
+                                                    <div className="w-4 h-4 rounded-full bg-[#FFF7F9] border border-brand-champagne/40 flex items-center justify-center shrink-0">
                                                         <ShieldCheck className="w-2.5 h-2.5 text-brand-champagne" />
                                                     </div>
                                                     <span>{feat}</span>

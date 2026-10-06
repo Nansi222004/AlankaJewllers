@@ -96,11 +96,11 @@ const GemsJewelleryPage = () => {
         />
       )}
 
-      <section className="border-b border-[#C8DFD5] bg-gradient-to-b from-[#F0F7F4] via-[#F6FAF8] to-white px-4 py-7 text-center sm:py-9">
-        <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#185A44]">
+      <section className="border-b border-[#EBD3DA] bg-gradient-to-b from-[#FFF7F9] via-[#FFF7F9] to-white px-4 py-7 text-center sm:py-9">
+        <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#9C3F60]">
           Precious Gemstones
         </p>
-        <h1 className="mt-2 font-serif text-3xl font-medium text-[#0D3B2E] sm:text-4xl">
+        <h1 className="mt-2 font-serif text-3xl font-medium text-[#702F46] sm:text-4xl">
           Gems Collection
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#2C4A3E] sm:text-base">
@@ -135,13 +135,13 @@ const GemsJewelleryPage = () => {
       </section>
 
       {isActive(trustSection) && (
-        <section className="border-y border-[#D2E4DC] bg-[#F4F9F6] px-4 py-7 sm:py-12">
+        <section className="border-y border-[#E8D9E3] bg-[#FFF7F9] px-4 py-7 sm:py-12">
           <div className="mx-auto max-w-7xl">
             <div className="mb-5 text-center sm:mb-7">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#185A44]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#9C3F60]">
                 {trustSection?.settings?.eyebrow || "The Alankar Promise"}
               </p>
-              <h2 className="mt-2 font-serif text-2xl text-[#0D3B2E] sm:text-3xl">
+              <h2 className="mt-2 font-serif text-2xl text-[#702F46] sm:text-3xl">
                 {trustSection?.settings?.title || "Gemstone Trust & Service"}
               </h2>
             </div>
@@ -149,12 +149,12 @@ const GemsJewelleryPage = () => {
               {trustItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.id} className="flex items-center gap-3 rounded-xl border border-[#D2E4DC] bg-white p-3 text-left shadow-sm transition-all hover:border-[#185A44] hover:shadow-md sm:block sm:p-6 sm:text-center sm:shadow-none">
+                  <div key={item.id} className="flex items-center gap-3 rounded-xl border border-[#E8D9E3] bg-white p-3 text-left shadow-sm transition-all hover:border-[#9C3F60] hover:shadow-md sm:block sm:p-6 sm:text-center sm:shadow-none">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#E2EFE9] sm:mx-auto">
-                      <Icon className="h-4 w-4 text-[#185A44] sm:h-5 sm:w-5" />
+                      <Icon className="h-4 w-4 text-[#9C3F60] sm:h-5 sm:w-5" />
                     </div>
                     <div>
-                      <h3 className="font-serif text-[14px] leading-tight text-[#0D3B2E] sm:mt-3 sm:text-base">{item.name}</h3>
+                      <h3 className="font-serif text-[14px] leading-tight text-[#702F46] sm:mt-3 sm:text-base">{item.name}</h3>
                       <p className="mt-0.5 text-xs leading-relaxed text-[#4A6357] sm:mt-1">{item.subtitle}</p>
                     </div>
                   </div>
@@ -166,13 +166,13 @@ const GemsJewelleryPage = () => {
       )}
 
       {isActive(bespokeSection) && (
-        <section className="bg-[#EDF5F1] px-4 py-10 sm:py-14">
+        <section className="bg-[#FFF7F9] px-4 py-10 sm:py-14">
           <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-            <MessageCircle className="h-5 w-5 text-[#185A44]" />
-            <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.25em] text-[#185A44]">
+            <MessageCircle className="h-5 w-5 text-[#9C3F60]" />
+            <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.25em] text-[#9C3F60]">
               {bespokeSection?.settings?.eyebrow || "Bespoke Service"}
             </p>
-            <h2 className="mt-2 font-serif text-2xl text-[#0D3B2E] sm:text-3xl">
+            <h2 className="mt-2 font-serif text-2xl text-[#702F46] sm:text-3xl">
               {bespokeSection?.settings?.title || "Create a Personal Gemstone Piece"}
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#3B5448]">
@@ -180,7 +180,7 @@ const GemsJewelleryPage = () => {
             </p>
             <Link
               to={bespokeSection?.settings?.ctaPath || "/contact"}
-              className="mt-6 inline-flex items-center justify-center rounded-sm bg-[#0D3B2E] px-7 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#185A44]"
+              className="mt-6 inline-flex items-center justify-center rounded-sm bg-[#702F46] px-7 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#9C3F60]"
             >
               {bespokeSection?.settings?.ctaLabel || "Custom Gem Inquiries"}
             </Link>

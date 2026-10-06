@@ -55,7 +55,7 @@ const AllJewellery = () => {
     const remainingProducts = displayProducts.slice(5);
 
     return (
-        <section className="py-10 md:py-20 bg-white">
+        <section className="py-10 md:py-20 bg-[#EEE3E6] border-y border-[#D2BBC3]/70">
             <div className="container mx-auto px-4 md:px-8 max-w-[1440px]">
                 {/* Editorial Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between text-left mb-10 md:mb-14">

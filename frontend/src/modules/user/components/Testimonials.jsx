@@ -60,7 +60,7 @@ const Testimonials = () => {
   const supportingItems = displayItems.slice(1);
 
   return (
-    <section className="w-full py-12 md:py-24 bg-white overflow-hidden border-t border-brand-border/60">
+    <section className="w-full py-12 md:py-24 bg-[#F1E7EA] overflow-hidden border-t border-[#D2BBC3]">
       <div className="container mx-auto px-4 md:px-8 max-w-[1440px]">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16">

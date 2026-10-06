@@ -63,7 +63,7 @@ const BrandPromises = () => {
         : FALLBACK_PROMISES;
 
     return (
-        <section className="py-7 md:py-20 bg-brand-pearl relative overflow-hidden border-t border-brand-border/70">
+        <section className="py-7 md:py-20 bg-[#EEE3E6] relative overflow-hidden border-t border-[#D2BBC3]">
             <div className="container mx-auto px-4 md:px-8 max-w-[1400px]">
                 {/* Header */}
                 <div className="text-center mb-5 md:mb-16">

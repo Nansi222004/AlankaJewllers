@@ -38,7 +38,7 @@ const ProductGallery = ({ product, selectedVariant, galleryImages, primaryImage,
                 }}
             />
             {/* Main Display Area */}
-            <div className="flex-1 rounded-[2rem] md:rounded-[2.5rem] bg-[#FAFAFA] flex items-center justify-center p-4 relative group overflow-hidden border border-gray-100 shadow-sm transition-all h-[400px] sm:h-[450px] md:h-full">
+            <div className="flex-1 rounded-[2rem] md:rounded-[2.5rem] bg-[#FFF9FA] flex items-center justify-center p-4 relative group overflow-hidden border border-gray-100 shadow-sm transition-all h-[400px] sm:h-[450px] md:h-full">
                 {selectedImage && isImageMedia(selectedImage) ? (
                     <img
                         src={getProductDetailUrl(selectedImage)}
@@ -67,7 +67,7 @@ const ProductGallery = ({ product, selectedVariant, galleryImages, primaryImage,
 
                 {/* Secondary Image on Hover */}
                 {hoverPaneImage && (
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[#FAFAFA] flex items-center justify-center p-4">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[#FFF9FA] flex items-center justify-center p-4">
                         <img
                             src={getProductDetailUrl(hoverPaneImage)}
                             alt="Secondary View"

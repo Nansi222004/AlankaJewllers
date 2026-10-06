@@ -29,44 +29,44 @@ const AddressesTab = ({
             {showAddressForm && (
                 <div className="md:hidden fixed inset-0 z-[200] bg-brand-pearl flex flex-col animate-in slide-in-from-bottom duration-300">
                     <div className="bg-white p-4 shadow-sm flex items-center gap-4 sticky top-0 z-10">
-                        <button onClick={() => navigate('/profile/addresses')} className="text-[#3E2723]"><ArrowLeft className="w-5 h-5" /></button>
-                        <h2 className="text-lg font-display font-bold text-[#3E2723]">Add New Address</h2>
+                        <button onClick={() => navigate('/profile/addresses')} className="text-[#702F46]"><ArrowLeft className="w-5 h-5" /></button>
+                        <h2 className="text-lg font-display font-bold text-[#702F46]">Add New Address</h2>
                     </div>
                     <form onSubmit={handleAddAddress} className="flex-1 overflow-y-auto p-4 space-y-3">
                         <div className="space-y-3">
                             <div>
-                                <label className="text-[10px] font-bold text-[#8D6E63] uppercase tracking-widest mb-1 block">Full Name</label>
-                                <input value={newAddress.name} onChange={e => setNewAddress({ ...newAddress, name: e.target.value })} className="w-full bg-[#FAFAFA] border border-[#EFEBE9] p-2.5 rounded-lg text-sm font-medium text-[#3E2723] placeholder:text-gray-300 focus:outline-none focus:border-[#3E2723] transition-colors" placeholder="e.g. Aditi Sharma" required />
+                                <label className="text-[10px] font-bold text-[#9A6676] uppercase tracking-widest mb-1 block">Full Name</label>
+                                <input value={newAddress.name} onChange={e => setNewAddress({ ...newAddress, name: e.target.value })} className="w-full bg-[#FFF9FA] border border-[#F0DDE3] p-2.5 rounded-lg text-sm font-medium text-[#702F46] placeholder:text-gray-300 focus:outline-none focus:border-[#702F46] transition-colors" placeholder="e.g. Aditi Sharma" required />
                             </div>
                             <div>
-                                <label className="text-[10px] font-bold text-[#8D6E63] uppercase tracking-widest mb-1 block">Phone Number</label>
-                                <input value={newAddress.phone} onChange={e => setNewAddress({ ...newAddress, phone: e.target.value })} className="w-full bg-[#FAFAFA] border border-[#EFEBE9] p-2.5 rounded-lg text-sm font-medium text-[#3E2723] placeholder:text-gray-300 focus:outline-none focus:border-[#3E2723] transition-colors" placeholder="e.g. 9876543210" required />
+                                <label className="text-[10px] font-bold text-[#9A6676] uppercase tracking-widest mb-1 block">Phone Number</label>
+                                <input value={newAddress.phone} onChange={e => setNewAddress({ ...newAddress, phone: e.target.value })} className="w-full bg-[#FFF9FA] border border-[#F0DDE3] p-2.5 rounded-lg text-sm font-medium text-[#702F46] placeholder:text-gray-300 focus:outline-none focus:border-[#702F46] transition-colors" placeholder="e.g. 9876543210" required />
                             </div>
                             <div>
-                                <label className="text-[10px] font-bold text-[#8D6E63] uppercase tracking-widest mb-1 block">Flat, House no., Building, Company, Apartment</label>
-                                <input value={newAddress.flatNo} onChange={e => setNewAddress({ ...newAddress, flatNo: e.target.value })} className="w-full bg-[#FAFAFA] border border-[#EFEBE9] p-2.5 rounded-lg text-sm font-medium text-[#3E2723] placeholder:text-gray-300 focus:outline-none focus:border-[#3E2723] transition-colors" placeholder="e.g. Flat 4B, Rose Apartments" required />
+                                <label className="text-[10px] font-bold text-[#9A6676] uppercase tracking-widest mb-1 block">Flat, House no., Building, Company, Apartment</label>
+                                <input value={newAddress.flatNo} onChange={e => setNewAddress({ ...newAddress, flatNo: e.target.value })} className="w-full bg-[#FFF9FA] border border-[#F0DDE3] p-2.5 rounded-lg text-sm font-medium text-[#702F46] placeholder:text-gray-300 focus:outline-none focus:border-[#702F46] transition-colors" placeholder="e.g. Flat 4B, Rose Apartments" required />
                             </div>
                             <div>
-                                <label className="text-[10px] font-bold text-[#8D6E63] uppercase tracking-widest mb-1 block">Area, Street, Sector, Village</label>
-                                <input value={newAddress.area} onChange={e => setNewAddress({ ...newAddress, area: e.target.value })} className="w-full bg-[#FAFAFA] border border-[#EFEBE9] p-2.5 rounded-lg text-sm font-medium text-[#3E2723] placeholder:text-gray-300 focus:outline-none focus:border-[#3E2723] transition-colors" placeholder="e.g. Lokhandwala Complex" required />
+                                <label className="text-[10px] font-bold text-[#9A6676] uppercase tracking-widest mb-1 block">Area, Street, Sector, Village</label>
+                                <input value={newAddress.area} onChange={e => setNewAddress({ ...newAddress, area: e.target.value })} className="w-full bg-[#FFF9FA] border border-[#F0DDE3] p-2.5 rounded-lg text-sm font-medium text-[#702F46] placeholder:text-gray-300 focus:outline-none focus:border-[#702F46] transition-colors" placeholder="e.g. Lokhandwala Complex" required />
                             </div>
                             <div className="grid grid-cols-2 gap-2">
                                 <div>
-                                    <label className="text-[10px] font-bold text-[#8D6E63] uppercase tracking-widest mb-1 block">City</label>
-                                    <input value={newAddress.city} onChange={e => setNewAddress({ ...newAddress, city: e.target.value })} className="w-full bg-[#FAFAFA] border border-[#EFEBE9] p-2.5 rounded-lg text-sm font-medium text-[#3E2723] placeholder:text-gray-300 focus:outline-none focus:border-[#3E2723] transition-colors" placeholder="Mumbai" required />
+                                    <label className="text-[10px] font-bold text-[#9A6676] uppercase tracking-widest mb-1 block">City</label>
+                                    <input value={newAddress.city} onChange={e => setNewAddress({ ...newAddress, city: e.target.value })} className="w-full bg-[#FFF9FA] border border-[#F0DDE3] p-2.5 rounded-lg text-sm font-medium text-[#702F46] placeholder:text-gray-300 focus:outline-none focus:border-[#702F46] transition-colors" placeholder="Mumbai" required />
                                 </div>
                                 <div>
-                                    <label className="text-[10px] font-bold text-[#8D6E63] uppercase tracking-widest mb-1 block">State</label>
-                                    <input value={newAddress.state} onChange={e => setNewAddress({ ...newAddress, state: e.target.value })} className="w-full bg-[#FAFAFA] border border-[#EFEBE9] p-2.5 rounded-lg text-sm font-medium text-[#3E2723] placeholder:text-gray-300 focus:outline-none focus:border-[#3E2723] transition-colors" placeholder="Maharashtra" required />
+                                    <label className="text-[10px] font-bold text-[#9A6676] uppercase tracking-widest mb-1 block">State</label>
+                                    <input value={newAddress.state} onChange={e => setNewAddress({ ...newAddress, state: e.target.value })} className="w-full bg-[#FFF9FA] border border-[#F0DDE3] p-2.5 rounded-lg text-sm font-medium text-[#702F46] placeholder:text-gray-300 focus:outline-none focus:border-[#702F46] transition-colors" placeholder="Maharashtra" required />
                                 </div>
                             </div>
                             <div>
-                                <label className="text-[10px] font-bold text-[#8D6E63] uppercase tracking-widest mb-1 block">Pincode</label>
-                                <input value={newAddress.pincode} onChange={e => setNewAddress({ ...newAddress, pincode: e.target.value })} className="w-full bg-[#FAFAFA] border border-[#EFEBE9] p-2.5 rounded-lg text-sm font-medium text-[#3E2723] placeholder:text-gray-300 focus:outline-none focus:border-[#3E2723] transition-colors" placeholder="400001" required />
+                                <label className="text-[10px] font-bold text-[#9A6676] uppercase tracking-widest mb-1 block">Pincode</label>
+                                <input value={newAddress.pincode} onChange={e => setNewAddress({ ...newAddress, pincode: e.target.value })} className="w-full bg-[#FFF9FA] border border-[#F0DDE3] p-2.5 rounded-lg text-sm font-medium text-[#702F46] placeholder:text-gray-300 focus:outline-none focus:border-[#702F46] transition-colors" placeholder="400001" required />
                             </div>
                         </div>
                         <div className="pt-2 pb-8">
-                            <button type="submit" className="w-full bg-[#3E2723] text-white py-3 rounded-lg text-sm font-bold uppercase tracking-widest shadow-lg shadow-[#3E2723]/20 active:scale-95 transition-transform">Save Address</button>
+                            <button type="submit" className="w-full bg-[#702F46] text-white py-3 rounded-lg text-sm font-bold uppercase tracking-widest shadow-lg shadow-[#702F46]/20 active:scale-95 transition-transform">Save Address</button>
                         </div>
                     </form>
                 </div>

@@ -52,7 +52,7 @@ const BestStylesPage = () => {
 
                 <div 
                     className="relative w-[40%] md:w-[35%] h-full flex flex-col items-center justify-center p-6 text-white"
-                    style={{ background: 'linear-gradient(135deg, #4A3638 0%, #332827 100%)' }}
+                    style={{ background: 'linear-gradient(135deg, #702F46 0%, #3D2730 100%)' }}
                 >
                     <div className="absolute top-6 right-6 text-white/5 text-[50px] select-none">✦</div>
                     <div className="text-center">

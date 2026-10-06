@@ -100,7 +100,7 @@ const WomenPriceRange = ({ sectionData }) => {
                                 <div
                                     className="relative flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-700 ease-[0.22, 1, 0.36, 1] group-hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.5)]"
                                     style={{
-                                        background: 'linear-gradient(135deg, #4A3638 0%, #332827 50%, #0A0908 100%)',
+                                        background: 'linear-gradient(135deg, #702F46 0%, #3D2730 50%, #0A0908 100%)',
                                         borderRadius: '16px',
                                         padding: idx === 1 ? 'clamp(12px, 3.8vw, 40px) 18px' : 'clamp(10px, 3.1vw, 30px) 14px',
                                         minHeight: idx === 1 ? 'clamp(72px, 16vw, 170px)' : 'clamp(60px, 12.5vw, 132px)',

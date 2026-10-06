@@ -118,7 +118,7 @@ const GoldLifestyleGrid = ({ sectionData = null }) => {
                     <span className="text-[10.5px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-champagne block mb-2">
                         {eyebrow}
                     </span>
-                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2F0A0F] font-normal tracking-tight mb-3">
+                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#552237] font-normal tracking-tight mb-3">
                         {title}
                     </h2>
                     <div className="h-[2px] w-14 md:w-20 bg-brand-champagne mx-auto rounded-full mb-3" />
@@ -163,9 +163,9 @@ const GoldLifestyleGrid = ({ sectionData = null }) => {
                             </div>
 
                             {/* Card Info Area */}
-                            <div className="p-4 md:p-5 flex items-center justify-between gap-3 bg-[#FCFAF6] group-hover:bg-[#FFFDF9] transition-colors duration-300">
+                            <div className="p-4 md:p-5 flex items-center justify-between gap-3 bg-[#FCFAF6] group-hover:bg-[#FFFBFC] transition-colors duration-300">
                                 <div className="min-w-0 flex-1">
-                                    <h3 className="font-serif text-lg md:text-xl text-[#2F0A0F] group-hover:text-[#8C6B1C] transition-colors duration-300 truncate leading-snug">
+                                    <h3 className="font-serif text-lg md:text-xl text-[#552237] group-hover:text-[#8C6B1C] transition-colors duration-300 truncate leading-snug">
                                         {item.title}
                                     </h3>
                                     <p className="font-sans text-xs md:text-[13px] text-stone-500 font-light tracking-wide mt-0.5 truncate">

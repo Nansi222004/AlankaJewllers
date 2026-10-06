@@ -129,7 +129,7 @@ const GoldCuratedCollections = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                                 onClick={() => navigate(item.link)}
-                                className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[190px] h-[150px] sm:h-[200px] md:h-[240px] relative group cursor-pointer overflow-hidden bg-[#0D1C12] snap-center first:ml-4 last:mr-4 lg:first:ml-0 lg:last:mr-0 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg"
+                                className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[190px] h-[150px] sm:h-[200px] md:h-[240px] relative group cursor-pointer overflow-hidden bg-[#552237] snap-center first:ml-4 last:mr-4 lg:first:ml-0 lg:last:mr-0 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg"
                             >
                                 {item.type === 'video' ? (
                                     <video 

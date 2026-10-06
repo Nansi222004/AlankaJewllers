@@ -2679,7 +2679,7 @@ const ProductDetails = () => {
                     </p>
                   </div>
 
-                  <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-gray-400 hover:border-[#8D6E63] hover:text-[#8D6E63] transition-colors cursor-pointer bg-gray-50">
+                  <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-gray-400 hover:border-[#9A6676] hover:text-[#9A6676] transition-colors cursor-pointer bg-gray-50">
                     <Camera className="w-8 h-8 mb-2" />
                     <span className="text-sm font-medium">
                       Click to upload photos
@@ -2702,7 +2702,7 @@ const ProductDetails = () => {
                   </div>
                   <button
                     onClick={() => setReviewStep(3)}
-                    className="w-full text-center text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] hover:text-[#5D4037] mt-3 transition-colors"
+                    className="w-full text-center text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] hover:text-[#702F46] mt-3 transition-colors"
                   >
                     Skip this step
                   </button>
@@ -2720,7 +2720,7 @@ const ProductDetails = () => {
                       value={reviewTitle}
                       onChange={(e) => setReviewTitle(e.target.value)}
                       placeholder="Summary of your experience"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm md:text-base focus:ring-[#8D6E63] focus:border-[#8D6E63] transition-all bg-gray-50/30"
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm md:text-base focus:ring-[#9A6676] focus:border-[#9A6676] transition-all bg-gray-50/30"
                     />
                   </div>
                   <div>
@@ -2732,7 +2732,7 @@ const ProductDetails = () => {
                       value={reviewComment}
                       onChange={(e) => setReviewComment(e.target.value)}
                       placeholder="Tell us what you liked or disliked..."
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm md:text-base focus:ring-[#8D6E63] focus:border-[#8D6E63] resize-none transition-all bg-gray-50/30"
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm md:text-base focus:ring-[#9A6676] focus:border-[#9A6676] resize-none transition-all bg-gray-50/30"
                     ></textarea>
                     <p className="text-[10px] text-gray-400 mt-2 italic px-1">
                       * At least one field (Rating, Title, or Comment) must be
@@ -2771,7 +2771,7 @@ const ProductDetails = () => {
             {/* Modal Header */}
             <div className="p-6 bg-[#FEF9F0] border-b border-[#F5E6CC] flex items-center justify-between sticky top-0 z-10">
               <div className="flex flex-col">
-                <h3 className="font-display font-black text-xl text-[#5D4037] uppercase tracking-tight">
+                <h3 className="font-display font-black text-xl text-[#702F46] uppercase tracking-tight">
                   All about Lab grown diamonds
                 </h3>
               </div>
@@ -3235,7 +3235,7 @@ const ProductDetails = () => {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#1A1A1A]/95 text-white w-full max-w-sm rounded-[2rem] p-8 relative border border-white/10 shadow-2xl flex flex-col items-center text-center"
+              className="bg-[#3D2730]/95 text-white w-full max-w-sm rounded-[2rem] p-8 relative border border-white/10 shadow-2xl flex flex-col items-center text-center"
             >
               {/* Close Button */}
               <button

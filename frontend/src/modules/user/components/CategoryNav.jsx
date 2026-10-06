@@ -122,7 +122,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
     const currentTheme = getCollectionTheme(activeMetal);
 
     return (
-        <div className="border-b block w-full bg-white relative z-40" style={{ borderColor: '#EBEBEB', fontFamily: "'Inter', 'Lato', sans-serif" }}>
+        <div className="border-b block w-full bg-brand-pearl relative z-40" style={{ borderColor: '#EBD3DA', fontFamily: "'Inter', 'Lato', sans-serif" }}>
             <style>{`
                 .category-nav-scroll::-webkit-scrollbar { display: none; }
                 .category-nav-scroll { -ms-overflow-style: none; scrollbar-width: none; }
@@ -267,7 +267,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('gold');
                                     navigate('/');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? 'text-brand-espresso font-extrabold' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gold' ? currentTheme.activeText : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Gold
                             </button>
@@ -278,7 +278,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('silver');
                                     navigate('/silver-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? 'text-white font-bold' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'silver' ? currentTheme.activeText : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Silver
                             </button>
@@ -289,7 +289,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('diamond');
                                     navigate('/diamond-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? 'text-white font-bold' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'diamond' ? currentTheme.activeText : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Diamond
                             </button>
@@ -300,7 +300,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     updateActiveMetal('gems');
                                     navigate('/gems-collection');
                                 }}
-                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gems' ? 'text-white font-bold' : 'text-brand-taupe hover:text-brand-espresso'}`}
+                                className={`relative flex-1 py-1.5 md:py-2 px-1 sm:px-3 md:px-5 rounded-full text-[10px] sm:text-[11px] md:text-[12.5px] font-bold uppercase tracking-wider md:tracking-widest transition-colors duration-300 z-10 text-center ${activeMetal === 'gems' ? currentTheme.activeText : 'text-brand-taupe hover:text-brand-espresso'}`}
                             >
                                 Gems
                             </button>

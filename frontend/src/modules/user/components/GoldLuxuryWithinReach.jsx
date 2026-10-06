@@ -115,7 +115,7 @@ const GoldLuxuryWithinReach = ({ sectionData = null }) => {
         <section 
             id="gold-luxury-within-reach"
             aria-label="Shop Gold Jewellery by Budget" 
-            className="w-full py-8 sm:py-10 md:py-12 bg-[#FBF8F7] border-y border-[#E9DEDA] overflow-hidden"
+            className="w-full py-8 sm:py-10 md:py-12 bg-[#FFF9FA] border-y border-[#EBD3DA] overflow-hidden"
         >
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
                 {/* Header */}
@@ -123,10 +123,10 @@ const GoldLuxuryWithinReach = ({ sectionData = null }) => {
                     <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-[#B8956A] mb-1.5 block">
                         Accessible Luxury
                     </span>
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-[#332827] font-normal leading-tight tracking-tight">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-[#3D2730] font-normal leading-tight tracking-tight">
                         {sectionTitle}
                     </h2>
-                    <p className="text-xs sm:text-sm text-[#766866] mt-1.5 sm:mt-2 max-w-md sm:max-w-lg mx-auto leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#7F626C] mt-1.5 sm:mt-2 max-w-md sm:max-w-lg mx-auto leading-relaxed">
                         {sectionSubtitle}
                     </p>
                     <div className="h-px w-12 bg-[#B8956A]/40 mt-2.5 sm:mt-3 mx-auto" />
@@ -146,10 +146,10 @@ const GoldLuxuryWithinReach = ({ sectionData = null }) => {
                             <Link
                                 to={item.path}
                                 id={`gold-budget-card-${item.key || idx}`}
-                                className="group flex flex-col h-full bg-white rounded-xl sm:rounded-2xl border border-[#E9DEDA] hover:border-[#B8956A]/60 shadow-[0_2px_12px_-4px_rgba(51,40,39,0.05)] hover:shadow-[0_10px_25px_-8px_rgba(184,149,106,0.18)] transition-all duration-300 overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-[#B8956A]/50"
+                                className="group flex flex-col h-full bg-white rounded-xl sm:rounded-2xl border border-[#EBD3DA] hover:border-[#B8956A]/60 shadow-[0_2px_12px_-4px_rgba(51,40,39,0.05)] hover:shadow-[0_10px_25px_-8px_rgba(184,149,106,0.18)] transition-all duration-300 overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-[#B8956A]/50"
                             >
                                 {/* Image Container: 4:3 ratio, light editorial presentation */}
-                                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F7EFEE]">
+                                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#FCEFF2]">
                                     <img
                                         src={item.image}
                                         alt={item.title}
@@ -157,25 +157,25 @@ const GoldLuxuryWithinReach = ({ sectionData = null }) => {
                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                     />
                                     {/* Budget Badge */}
-                                    <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-white/95 backdrop-blur-xs border border-[#E9DEDA] text-[#332827] text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-2xs tracking-wide">
+                                    <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-white/95 backdrop-blur-xs border border-[#EBD3DA] text-[#3D2730] text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-2xs tracking-wide">
                                         {item.badge}
                                     </span>
                                 </div>
 
                                 {/* Card Details */}
-                                <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-between flex-1 bg-white border-t border-[#E9DEDA]/60">
+                                <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-between flex-1 bg-white border-t border-[#EBD3DA]/60">
                                     <div>
-                                        <span className="text-[9px] sm:text-[10px] font-sans font-medium tracking-[0.16em] uppercase text-[#766866] block mb-1">
+                                        <span className="text-[9px] sm:text-[10px] font-sans font-medium tracking-[0.16em] uppercase text-[#7F626C] block mb-1">
                                             {item.descriptor}
                                         </span>
-                                        <h3 className="text-xs sm:text-sm md:text-[15px] font-serif font-semibold text-[#332827] group-hover:text-[#B8956A] transition-colors uppercase tracking-wider leading-snug">
+                                        <h3 className="text-xs sm:text-sm md:text-[15px] font-serif font-semibold text-[#3D2730] group-hover:text-[#B8956A] transition-colors uppercase tracking-wider leading-snug">
                                             {item.title}
                                         </h3>
                                     </div>
 
                                     {/* CTA link */}
-                                    <div className="mt-3 sm:mt-4 pt-2 sm:pt-2.5 border-t border-[#F7EFEE] flex items-center justify-between">
-                                        <span className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.16em] text-[#B8956A] group-hover:text-[#332827] transition-colors inline-flex items-center gap-1 sm:gap-1.5">
+                                    <div className="mt-3 sm:mt-4 pt-2 sm:pt-2.5 border-t border-[#FCEFF2] flex items-center justify-between">
+                                        <span className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.16em] text-[#B8956A] group-hover:text-[#3D2730] transition-colors inline-flex items-center gap-1 sm:gap-1.5">
                                             EXPLORE COLLECTION <ArrowRight size={11} className="transition-transform group-hover:translate-x-1 shrink-0" />
                                         </span>
                                     </div>

@@ -34,7 +34,7 @@ const WomenPersonalisedBanner = ({ sectionData }) => {
             <div 
                 className="w-full overflow-hidden relative h-[250px] md:h-[350px] group cursor-pointer shadow-none rounded-none" 
                 onClick={() => navigate(banner.path)}
-                style={{ background: 'linear-gradient(to right, #4A0E0E, #2D0505)' }}
+                style={{ background: 'linear-gradient(to right, #702F46, #2D0505)' }}
             >
                 {/* Decorative Background Pattern (Subtle waves/blobs on the left) */}
                 <div className="absolute top-0 left-0 w-1/2 h-full opacity-20 pointer-events-none">
@@ -50,8 +50,8 @@ const WomenPersonalisedBanner = ({ sectionData }) => {
                         className="w-full h-full object-cover transition-transform duration-[8s] group-hover:scale-105"
                     />
                     {/* Seamless Gradient from Wine to Image */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#4A0E0E] via-[#4A0E0E]/60 to-transparent block md:hidden" />
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#4A0E0E] to-transparent hidden md:block" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#702F46] via-[#702F46]/60 to-transparent block md:hidden" />
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#702F46] to-transparent hidden md:block" />
                 </div>
                 
                 {/* Content Section (Left side focused) */}

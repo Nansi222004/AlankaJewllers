@@ -41,7 +41,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                     className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-md w-full overflow-hidden border border-amber-500/30 flex flex-col max-h-[92vh]"
                 >
                     {/* Razorpay Test Mode Header */}
-                    <div className="bg-[#0C2340] text-white p-4 sm:p-5 relative">
+                    <div className="bg-[#5C3B55] text-white p-4 sm:p-5 relative">
                         <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2.5">
                                 <div className="w-8 h-8 bg-[#3395FF] rounded-lg flex items-center justify-center font-black text-sm text-white tracking-wider shadow-inner">
@@ -110,7 +110,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 type="button"
                                 onClick={() => setSelectedMethod('upi')}
                                 className={`p-2.5 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${selectedMethod === 'upi'
-                                        ? 'border-[#0C2340] bg-[#0C2340]/5 text-[#0C2340] font-bold shadow-sm'
+                                        ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
                                         : 'border-stone-200 hover:border-stone-300 text-stone-600'
                                     }`}
                             >
@@ -122,7 +122,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 type="button"
                                 onClick={() => setSelectedMethod('card')}
                                 className={`p-2.5 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${selectedMethod === 'card'
-                                        ? 'border-[#0C2340] bg-[#0C2340]/5 text-[#0C2340] font-bold shadow-sm'
+                                        ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
                                         : 'border-stone-200 hover:border-stone-300 text-stone-600'
                                     }`}
                             >
@@ -134,7 +134,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 type="button"
                                 onClick={() => setSelectedMethod('netbanking')}
                                 className={`p-2.5 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${selectedMethod === 'netbanking'
-                                        ? 'border-[#0C2340] bg-[#0C2340]/5 text-[#0C2340] font-bold shadow-sm'
+                                        ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
                                         : 'border-stone-200 hover:border-stone-300 text-stone-600'
                                     }`}
                             >
@@ -169,7 +169,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                         type="text"
                                         value={upiId}
                                         onChange={(e) => setUpiId(e.target.value)}
-                                        className="w-full text-xs font-mono px-3 py-2 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-[#0C2340]"
+                                        className="w-full text-xs font-mono px-3 py-2 bg-white border border-stone-300 rounded-lg focus:outline-none focus:border-[#5C3B55]"
                                     />
                                 </div>
                             </div>
@@ -208,7 +208,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                             type="button"
                                             onClick={() => setSelectedBank(bank)}
                                             className={`py-2 px-3 rounded-lg border text-xs font-bold text-left transition-all ${selectedBank === bank
-                                                    ? 'border-[#0C2340] bg-[#0C2340] text-white'
+                                                    ? 'border-[#5C3B55] bg-[#5C3B55] text-white'
                                                     : 'border-stone-200 bg-white text-stone-700 hover:border-stone-300'
                                                 }`}
                                         >
@@ -234,7 +234,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                             type="button"
                             onClick={handlePaySuccess}
                             disabled={isSubmitting}
-                            className="w-full py-3.5 px-4 bg-[#0C2340] hover:bg-[#14335c] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#0C2340]/20 flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-75 disabled:pointer-events-none cursor-pointer"
+                            className="w-full py-3.5 px-4 bg-[#5C3B55] hover:bg-[#805E7A] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#5C3B55]/20 flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-75 disabled:pointer-events-none cursor-pointer"
                         >
                             {isSubmitting ? (
                                 <>

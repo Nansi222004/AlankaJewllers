@@ -77,7 +77,7 @@ const MenStyleGuide = ({ sectionData }) => {
                         viewport={{ once: true }}
                         className="flex flex-col items-center"
                     >
-                        <h2 className="text-lg md:text-3xl font-display font-bold text-[#3B2516] tracking-tight mb-1">
+                        <h2 className="text-lg md:text-3xl font-display font-bold text-[#552237] tracking-tight mb-1">
                             {resolvedSettings.title}
                         </h2>
                         <p className="text-[11px] md:text-base text-[#6B4E3D] font-medium tracking-wide">
@@ -132,7 +132,7 @@ const MenStyleGuide = ({ sectionData }) => {
                                 <div className="absolute bottom-2 right-2 md:bottom-3 md:right-3 z-20">
                                     <Link
                                         to={style.path}
-                                        className="flex items-center gap-1 bg-[#D9C4B1]/90 backdrop-blur-md hover:bg-[#C9A24D] text-[#3B2516] px-3 py-1.5 rounded-full font-bold text-[8px] md:text-[9px] uppercase tracking-[0.12em] shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 active:scale-95"
+                                        className="flex items-center gap-1 bg-[#D99AAE]/90 backdrop-blur-md hover:bg-[#C9A24D] text-[#552237] px-3 py-1.5 rounded-full font-bold text-[8px] md:text-[9px] uppercase tracking-[0.12em] shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 active:scale-95"
                                     >
                                         {style.buttonText}
                                         <ChevronRight className="w-3 h-3" />

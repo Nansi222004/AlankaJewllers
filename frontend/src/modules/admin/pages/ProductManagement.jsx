@@ -108,7 +108,7 @@ const ProductManagement = () => {
                     price,
                     stock,
                     categoryName: primaryCat?.name || primaryCat?.category || categoriesById[p.category] || 'Uncategorized',
-                    brand: p.brand || 'Alankar Jewellers',
+                    brand: p.brand || 'ALANKA JEWELLERS',
                     status: p.active === false ? 'INACTIVE' : 'ACTIVE'
                 };
             });

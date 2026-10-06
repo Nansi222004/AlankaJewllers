@@ -68,11 +68,11 @@ const OccasionalSpecial = () => {
     const [item1, item2, item3, item4, item5] = heroItems;
 
     return (
-        <section className="pt-2 pb-6 md:pt-4 md:pb-8 bg-white">
+        <section className="pt-4 pb-7 md:pt-7 md:pb-10 bg-[#E3D3D8] border-y border-[#D2BBC3]">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-5 md:mb-6">
-                    <h2 className="font-display text-2xl md:text-4xl text-[#2F0A0F] mb-1 md:mb-3">
+                    <h2 className="font-display text-2xl md:text-4xl text-[#552237] mb-1 md:mb-3">
                         {sectionData?.label || "Curated For You"}
                     </h2>
                     <div className="h-1 w-14 md:w-20 bg-[#C9A24D] mx-auto rounded-full mb-3 md:mb-4"></div>
@@ -91,7 +91,7 @@ const OccasionalSpecial = () => {
                                 className="relative group overflow-hidden rounded-xl flex-shrink-0 w-full aspect-[4/5] cursor-pointer shadow-sm active:scale-95 transition-transform"
                             >
                                 <img src={resolveLegacyCmsAsset(cat.image, (defaultCategories[index] || defaultCategories[0]).image)} alt={label} className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#2F0A0F]/90 via-transparent to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#552237]/90 via-transparent to-transparent"></div>
                                 <span className="absolute bottom-3 left-0 right-0 text-white font-display text-lg tracking-wide text-center px-1">
                                     {label}
                                 </span>
@@ -107,12 +107,12 @@ const OccasionalSpecial = () => {
                         <div className="flex flex-col gap-4 h-full md:row-span-2">
                             <Link to={item1.path} className="relative group overflow-hidden rounded-2xl flex-1 cursor-pointer shadow-md hover:shadow-xl transition-all duration-300">
                                 <img src={item1.image} alt={item1.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#2F0A0F]/80 via-transparent to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#552237]/80 via-transparent to-transparent"></div>
                                 <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white font-display text-2xl tracking-wide w-full text-center">{item1.name}</span>
                             </Link>
                             <Link to={item2.path} className="relative group overflow-hidden rounded-2xl flex-1 cursor-pointer shadow-md hover:shadow-xl transition-all duration-300">
                                 <img src={item2.image} alt={item2.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#2F0A0F]/80 via-transparent to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#552237]/80 via-transparent to-transparent"></div>
                                 <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white font-display text-2xl tracking-wide w-full text-center">{item2.name}</span>
                             </Link>
                         </div>
@@ -120,7 +120,7 @@ const OccasionalSpecial = () => {
                         {/* Column 2 - Tall Centerpiece */}
                         <Link to={item3.path} className="relative group overflow-hidden rounded-2xl md:row-span-2 shadow-lg hover:shadow-2xl transition-all duration-300">
                             <img src={item3.image} alt={item3.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#2F0A0F]/80 via-transparent to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#552237]/80 via-transparent to-transparent"></div>
                             <span className="absolute bottom-7 left-1/2 -translate-x-1/2 text-white font-display text-3xl tracking-wide w-full text-center drop-shadow-md">{item3.name}</span>
                         </Link>
 
@@ -128,14 +128,14 @@ const OccasionalSpecial = () => {
                         <div className="flex flex-col gap-4 h-full md:row-span-2">
                             <Link to={item4.path} className="relative group overflow-hidden rounded-2xl flex-[1.3] cursor-pointer shadow-md hover:shadow-xl transition-all duration-300">
                                 <img src={item4.image} alt={item4.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#2F0A0F]/80 via-transparent to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#552237]/80 via-transparent to-transparent"></div>
                                 <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white font-display text-2xl tracking-wide whitespace-nowrap drop-shadow-sm w-full text-center">
                                     {item4.name}
                                 </span>
                             </Link>
                             <Link to={item5.path} className="relative group overflow-hidden rounded-2xl flex-[0.7] cursor-pointer shadow-md hover:shadow-xl transition-all duration-300">
                                 <img src={item5.image} alt={item5.name} className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#2F0A0F]/80 via-transparent to-transparent"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#552237]/80 via-transparent to-transparent"></div>
                                 <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white font-display text-2xl tracking-wide whitespace-nowrap drop-shadow-sm w-full text-center">
                                     {item5.name}
                                 </span>
@@ -161,7 +161,7 @@ const OccasionalSpecial = () => {
                                         alt={label}
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#2F0A0F]/80 via-transparent to-transparent"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#552237]/80 via-transparent to-transparent"></div>
                                     <div className="absolute bottom-4 left-0 right-0 text-center">
                                         <h4 className="text-white font-display text-lg tracking-wide uppercase">{label}</h4>
                                         <div className="w-8 h-[1px] bg-[#C9A24D] mx-auto mt-1 group-hover:w-16 transition-all duration-500"></div>

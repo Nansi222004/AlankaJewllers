@@ -140,7 +140,7 @@ const DiamondJewelleryPage = () => {
     return (
       <div className="bg-white min-h-screen flex items-center justify-center px-6 py-14">
         <div className="max-w-xl w-full bg-white border border-stone-200 rounded-3xl p-8 shadow-sm text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-brand-espresso text-[10px] font-bold uppercase tracking-[0.25em] mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stone-200 bg-[#FCF8FB] text-brand-espresso text-[10px] font-bold uppercase tracking-[0.25em] mb-3">
             <Gem className="w-3.5 h-3.5 text-brand-champagne" />
             <span>Diamond Atelier</span>
           </div>
@@ -169,7 +169,7 @@ const DiamondJewelleryPage = () => {
   };
 
   return (
-    <div className="bg-[#FAFBFD] min-h-screen font-body text-stone-900 selection:bg-[#1E3A5F] selection:text-white" data-collection-theme="diamond">
+    <div className="bg-[#FCF8FB] min-h-screen font-body text-stone-900 selection:bg-[#805E7A] selection:text-white" data-collection-theme="diamond">
       {/* 1. Dynamic Hero Banner Slider */}
       {isSectionActive("hero-banners-diamond") && (
         <PromoSlider externalSlides={heroSlides} autoplayInterval={autoplayMs} />
@@ -185,7 +185,7 @@ const DiamondJewelleryPage = () => {
           defaultEyebrow={sectionMap["diamond-category-grid"]?.settings?.badge || "DIAMOND COLLECTION"}
           defaultSubtitle={sectionMap["diamond-category-grid"]?.settings?.subtitle || "Dazzling certified diamond jewellery designed to capture light"}
           defaultItems={diamondCollectionGridDefaults}
-          bgClass="bg-gradient-to-b from-[#F2F6FA] to-white"
+          bgClass="bg-gradient-to-b from-[#FCF8FB] to-white"
         />
       )}
 

@@ -60,13 +60,13 @@ const AutoBannerSection = () => {
     }, [currentIndex, slides.length]);
 
     return (
-        <section className="w-full relative overflow-hidden bg-white pt-4 md:pt-6 pb-0">
+        <section className="w-full relative overflow-hidden bg-[#E3D3D8] pt-5 md:pt-7 pb-0 border-y border-[#D2BBC3]/70">
             <div className="container mx-auto px-4 mb-3 md:mb-5 text-center">
                 <motion.span 
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-brand-champagne text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-1 block"
+                    className="text-[#754655] text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-1 block"
                 >
                     Premium Narrative
                 </motion.span>
@@ -74,11 +74,11 @@ const AutoBannerSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl md:text-4xl font-serif text-stone-900 tracking-tight"
+                    className="text-2xl md:text-4xl font-serif text-brand-plum tracking-tight"
                 >
-                    Signature <span className="italic font-light text-brand-champagne">Curations</span>
+                    Signature <span className="italic font-medium text-[#825565]">Curations</span>
                 </motion.h2>
-                <div className="w-12 h-[2px] bg-brand-champagne mx-auto mt-2 rounded-full" />
+                <div className="w-12 h-[2px] bg-[#825565] mx-auto mt-2 rounded-full" />
             </div>
 
             <div className="w-full aspect-[2.5/1] md:aspect-[5/1] relative">
@@ -136,7 +136,7 @@ const AutoBannerSection = () => {
                                         initial={{ opacity: 0, y: -20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.3 }}
-                                        className="text-[#D9C4B1] text-[9px] md:text-sm font-bold uppercase tracking-[0.4em]"
+                                        className="text-[#D99AAE] text-[9px] md:text-sm font-bold uppercase tracking-[0.4em]"
                                     >
                                         {slides[currentIndex].subtitle}
                                     </motion.p>
@@ -180,8 +180,8 @@ const AutoBannerSection = () => {
                                 onClick={() => setCurrentIndex(index)}
                                 className={`transition-all duration-500 rounded-full ${
                                     isActive 
-                                        ? 'w-8 md:w-10 h-1 bg-gray-800' 
-                                        : 'w-3 md:w-4 h-1 bg-gray-300 hover:bg-gray-400'
+                                        ? 'w-8 md:w-10 h-1 bg-brand-plum' 
+                                        : 'w-3 md:w-4 h-1 bg-[#B88E9B] hover:bg-[#825565]'
                                 }`}
                                 aria-label={`Go to slide ${index + 1}`}
                             />

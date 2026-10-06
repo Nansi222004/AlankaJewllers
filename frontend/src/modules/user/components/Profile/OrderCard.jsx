@@ -152,7 +152,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                             <Link to={`/order-tracking/${order.id}`} className="flex-1 bg-brand-plum text-white border border-brand-plum py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-center shadow-md active:scale-95 transition-all hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne">
                                 Track
                             </Link>
-                            <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="flex-1 bg-white text-[#3E2723] border border-brand-border py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-center shadow-sm active:scale-95 transition-transform flex items-center justify-center gap-1 hover:border-brand-champagne">
+                            <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="flex-1 bg-white text-[#702F46] border border-brand-border py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest text-center shadow-sm active:scale-95 transition-transform flex items-center justify-center gap-1 hover:border-brand-champagne">
                                 <FileText className="w-3 h-3 text-brand-champagne" /> Invoice
                             </Link>
                         </div>
@@ -195,8 +195,8 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
             {/* Desktop View */}
             <div className="hidden md:block">
                 {/* Header Row */}
-                <div className="flex flex-wrap items-center justify-between gap-3 p-3 md:p-4 md:px-6 bg-[#FAFAFA] text-[10px] md:text-sm">
-                    <div className="flex flex-wrap gap-4 md:gap-8 text-[#3E2723]">
+                <div className="flex flex-wrap items-center justify-between gap-3 p-3 md:p-4 md:px-6 bg-[#FFF9FA] text-[10px] md:text-sm">
+                    <div className="flex flex-wrap gap-4 md:gap-8 text-[#702F46]">
                         <div>
                             <span className="font-bold block text-gray-900">{new Date(order.createdAt || order.date || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                         </div>
@@ -210,7 +210,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                         </div>
                     </div>
                     <div
-                        className="flex items-center gap-1.5 cursor-pointer text-[#3E2723] hover:underline font-bold"
+                        className="flex items-center gap-1.5 cursor-pointer text-[#702F46] hover:underline font-bold"
                         onClick={() => setShowDetails(!showDetails)}
                     >
                         <span>{showDetails ? 'Hide' : 'Details'}</span>
@@ -256,7 +256,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                         <Link to={`/order-tracking/${order.id}`} className="bg-brand-plum text-white border border-brand-plum px-6 md:px-8 py-2 text-[10px] md:text-sm font-bold rounded-lg uppercase tracking-wider hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne transition-all shadow-sm flex items-center justify-center">
                             Track Order
                         </Link>
-                        <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="px-4 md:px-5 py-2 text-[10px] md:text-sm font-bold border border-brand-border text-[#3E2723] rounded-lg uppercase tracking-wider hover:border-brand-champagne hover:bg-brand-pearl transition-colors inline-flex items-center gap-1.5 shadow-sm">
+                        <Link to={`/order-invoice/${order.id || order._id}`} target="_blank" rel="noopener noreferrer" className="px-4 md:px-5 py-2 text-[10px] md:text-sm font-bold border border-brand-border text-[#702F46] rounded-lg uppercase tracking-wider hover:border-brand-champagne hover:bg-brand-pearl transition-colors inline-flex items-center gap-1.5 shadow-sm">
                             <FileText className="w-3.5 h-3.5 text-brand-champagne" /> Invoice
                         </Link>
                     </div>
@@ -264,7 +264,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
 
                 {/* Collapsible Section */}
                 {showDetails && (
-                    <div className="bg-[#FAFAFA] border-t border-gray-100 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="bg-[#FFF9FA] border-t border-gray-100 animate-in fade-in slide-in-from-top-2 duration-300">
                         {/* Products Reel */}
                         <div className="flex gap-4 md:gap-8 overflow-x-auto p-4 md:p-6 scrollbar-hide">
                             {items.map((item, idx) => (
@@ -275,16 +275,16 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                                                 src={item.image}
                                                 alt={item.name}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                                fallbackClassName="bg-[#FAFAFA]"
+                                                fallbackClassName="bg-[#FFF9FA]"
                                                 fallbackIconClassName="w-5 h-5"
                                             />
                                         </div>
-                                        <span className="absolute -top-1.5 -right-1.5 bg-[#3E2723] text-white text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
+                                        <span className="absolute -top-1.5 -right-1.5 bg-[#702F46] text-white text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
                                             {item.quantity}
                                         </span>
                                     </div>
-                                    <h4 className="text-[10px] md:text-xs text-[#3E2723] font-medium leading-relaxed line-clamp-2 px-1 h-7 font-serif">{item.name}</h4>
-                                    <p className="text-xs md:text-sm font-bold text-[#5D4037] mt-1">{formatCurrency(item.price, 2)}</p>
+                                    <h4 className="text-[10px] md:text-xs text-[#702F46] font-medium leading-relaxed line-clamp-2 px-1 h-7 font-serif">{item.name}</h4>
+                                    <p className="text-xs md:text-sm font-bold text-[#702F46] mt-1">{formatCurrency(item.price, 2)}</p>
                                 </div>
                             ))}
                         </div>
@@ -292,7 +292,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                         {/* Total Breakdown Table */}
                         <div className="border-t border-gray-200 mx-6">
                             <div className="py-4 space-y-3 text-sm">
-                                <div className="flex justify-between text-[#8D6E63]">
+                                <div className="flex justify-between text-[#9A6676]">
                                     <span>Sub total</span>
                                     <span>{formatCurrency(subtotal, 2)}</span>
                                 </div>
@@ -308,7 +308,7 @@ const OrderCard = ({ order, isExpanded, onToggle }) => {
                                         <span>+ {formatCurrency(giftWrapCharge, 2)}</span>
                                     </div>
                                 )}
-                                <div className="flex justify-between text-[#8D6E63]">
+                                <div className="flex justify-between text-[#9A6676]">
                                     <span>Shipping cost</span>
                                     <span>{shipping === 0 ? 'FREE' : formatCurrency(shipping, 2)}</span>
                                 </div>

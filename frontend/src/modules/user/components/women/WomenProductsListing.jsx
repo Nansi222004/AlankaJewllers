@@ -106,10 +106,10 @@ const matchesCategory = (product = {}, categoryId = '') => {
 };
 
 const GOLD = '#B8956A';
-const OBSIDIAN = '#332827';
-const GOLD_LIGHT = '#FBF8F7';
+const OBSIDIAN = '#3D2730';
+const GOLD_LIGHT = '#FFF9FA';
 const PINK = '#B8956A';
-const PINK_BG = '#FBF8F7';
+const PINK_BG = '#FFF9FA';
 
 const WomenProductsListing = ({ sectionData = null }) => {
     const navigate = useNavigate();
@@ -171,7 +171,7 @@ const WomenProductsListing = ({ sectionData = null }) => {
     const handleAddToCart = (product) => {
         addToCart(product);
         toast.success(`${product.name || 'Product'} added to your bag!`, {
-            style: { background: OBSIDIAN, color: '#FBF8F7', fontSize: '12px' },
+            style: { background: OBSIDIAN, color: '#FFF9FA', fontSize: '12px' },
             icon: '✨'
         });
         setTimeout(() => navigate('/cart'), 800);

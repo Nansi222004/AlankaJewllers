@@ -18,7 +18,7 @@ const ProductThumb = ({ src, alt = '', className, fallbackIconClassName = 'w-4 h
 
     if (!imageSrc) {
         return (
-            <div className={`${className} ${fallbackClassName} bg-[#FAFAFA] text-gray-400 flex items-center justify-center`}>
+            <div className={`${className} ${fallbackClassName} bg-[#FFF9FA] text-gray-400 flex items-center justify-center`}>
                 <Package className={fallbackIconClassName} />
             </div>
         );
@@ -263,7 +263,7 @@ const OrderTracking = () => {
                                 to={`/order-invoice/${order.id || order._id}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-brand-border bg-white text-[#3E2723] hover:border-brand-champagne hover:bg-brand-pearl text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-brand-border bg-white text-[#702F46] hover:border-brand-champagne hover:bg-brand-pearl text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
                             >
                                 <FileText className="w-3.5 h-3.5 text-brand-champagne" />
                                 Tax Invoice

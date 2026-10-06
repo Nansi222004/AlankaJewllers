@@ -159,17 +159,17 @@ const SilverCollectionSection = () => {
     if (sectionData?.isActive === false) return null;
 
     return (
-        <section className="w-full bg-[#FBF8F7] py-10 md:py-20 overflow-hidden font-sans border-t border-[#E9DEDA]">
+        <section className="w-full bg-[#EDE1E5] py-10 md:py-20 overflow-hidden font-sans border-t border-[#D2BBC3]">
             <div className="max-w-[1440px] mx-auto px-4 md:px-8">
                 {/* ── SILVER PRODUCTS SHOWCASE (Replacing static atelier banner) ── */}
                 <div className="mb-12 md:mb-16">
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-8 text-left">
                         <div>
-                            <div className="inline-flex items-center gap-2 mb-2 text-[#C98F96] text-[10px] md:text-[11px] uppercase font-bold tracking-[0.28em]">
-                                <AlankaJewelleryMark className="w-3.5 h-3.5 text-[#C98F96]" />
+                            <div className="inline-flex items-center gap-2 mb-2 text-[#C77F94] text-[10px] md:text-[11px] uppercase font-bold tracking-[0.28em]">
+                                <AlankaJewelleryMark className="w-3.5 h-3.5 text-[#C77F94]" />
                                 <span>{eyebrow}</span>
                             </div>
-                            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#332827] font-normal tracking-tight">
+                            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#3D2730] font-normal tracking-tight">
                                 {title}
                             </h2>
                             <p className="mt-1 text-xs sm:text-sm text-stone-500 font-sans max-w-lg">
@@ -179,7 +179,7 @@ const SilverCollectionSection = () => {
 
                         <Link
                             to="/shop?metal=silver"
-                            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#6B3F46] hover:text-[#C98F96] transition-colors self-start sm:self-end pb-1 border-b border-[#6B3F46]/30 hover:border-[#C98F96]"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#6B3F46] hover:text-[#C77F94] transition-colors self-start sm:self-end pb-1 border-b border-[#6B3F46]/30 hover:border-[#C77F94]"
                         >
                             <span>View All Silver</span>
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -199,11 +199,11 @@ const SilverCollectionSection = () => {
                             ))}
                         </div>
                     ) : (
-                        <div className="relative overflow-hidden rounded-2xl border border-[#E9DEDA] bg-gradient-to-br from-white via-[#FCF8F7] to-[#F7EDED] p-8 md:p-12 text-center shadow-sm">
-                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F1DFDE] text-[#C98F96]">
-                                <AlankaJewelleryMark className="h-7 w-7 text-[#C98F96]" />
+                        <div className="relative overflow-hidden rounded-2xl border border-[#EBD3DA] bg-gradient-to-br from-white via-[#FFF9FA] to-[#FCEFF2] p-8 md:p-12 text-center shadow-sm">
+                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F7DDE5] text-[#C77F94]">
+                                <AlankaJewelleryMark className="h-7 w-7 text-[#C77F94]" />
                             </div>
-                            <h3 className="mt-4 font-serif text-xl sm:text-2xl font-medium text-[#332827]">
+                            <h3 className="mt-4 font-serif text-xl sm:text-2xl font-medium text-[#3D2730]">
                                 Sterling Silver Pieces Coming Soon
                             </h3>
                             <p className="mx-auto mt-2 max-w-lg text-xs sm:text-sm leading-relaxed text-stone-500">
@@ -212,7 +212,7 @@ const SilverCollectionSection = () => {
                             <div className="mt-6 flex justify-center">
                                 <Link
                                     to="/shop?metal=silver"
-                                    className="inline-flex items-center gap-2 bg-[#6B3F46] px-7 py-3 text-xs font-bold uppercase tracking-widest text-[#F1DFDE] transition-all duration-300 hover:bg-[#8E5B63] hover:text-white hover:shadow-md"
+                                    className="inline-flex items-center gap-2 bg-[#6B3F46] px-7 py-3 text-xs font-bold uppercase tracking-widest text-[#F7DDE5] transition-all duration-300 hover:bg-[#8E5B63] hover:text-white hover:shadow-md"
                                 >
                                     <span>EXPLORE SILVER</span>
                                     <ArrowRight className="h-4 w-4" />
@@ -225,7 +225,7 @@ const SilverCollectionSection = () => {
                 {/* ── THEMATIC CARDS SCROLL (Preserved) ── */}
                 <div className="relative">
                     <div className="mb-4 text-left">
-                        <span className="text-[10px] uppercase font-bold tracking-[0.24em] text-[#C98F96]">
+                        <span className="text-[10px] uppercase font-bold tracking-[0.24em] text-[#C77F94]">
                             Explore by Theme
                         </span>
                     </div>
@@ -244,7 +244,7 @@ const SilverCollectionSection = () => {
                                 className="flex flex-col items-center group/item cursor-pointer shrink-0 snap-start"
                                 onClick={() => navigate(cat.path)}
                             >
-                                <div className="relative w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[180px] md:h-[180px] mb-3 overflow-hidden rounded-2xl bg-white border border-[#E9DEDA] group-hover/item:border-[#C98F96] shadow-xs group-hover/item:shadow-[0_12px_28px_rgba(107,63,70,0.12)] transition-all duration-400">
+                                <div className="relative w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[180px] md:h-[180px] mb-3 overflow-hidden rounded-2xl bg-white border border-[#EBD3DA] group-hover/item:border-[#C77F94] shadow-xs group-hover/item:shadow-[0_12px_28px_rgba(107,63,70,0.12)] transition-all duration-400">
                                     <img
                                         src={cat.image}
                                         alt={cat.name}
@@ -252,13 +252,13 @@ const SilverCollectionSection = () => {
                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/item:scale-108"
                                     />
                                     {cat.badgeIcon && (
-                                        <div className="absolute top-2 right-2 w-7 h-7 md:w-8 md:h-8 bg-[#6B3F46]/90 backdrop-blur-xs rounded-full flex items-center justify-center text-[#F1DFDE] z-10 border border-[#D9B8B6]/50 shadow-sm">
+                                        <div className="absolute top-2 right-2 w-7 h-7 md:w-8 md:h-8 bg-[#6B3F46]/90 backdrop-blur-xs rounded-full flex items-center justify-center text-[#F7DDE5] z-10 border border-[#D99AAE]/50 shadow-sm">
                                             {cat.badgeIcon}
                                         </div>
                                     )}
                                 </div>
 
-                                <span className="text-[12px] md:text-[14px] font-serif font-medium text-[#332827] group-hover/item:text-[#C98F96] transition-colors text-center truncate max-w-[120px] sm:max-w-[150px]">
+                                <span className="text-[12px] md:text-[14px] font-serif font-medium text-[#3D2730] group-hover/item:text-[#C77F94] transition-colors text-center truncate max-w-[120px] sm:max-w-[150px]">
                                     {cat.name}
                                 </span>
                             </motion.div>

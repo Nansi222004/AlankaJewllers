@@ -53,7 +53,7 @@ const DiamondCategoryShowcase = ({ sectionData }) => {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-[#FAFBFD] text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-[#FCF8FB] text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
                         <Gem className="w-3.5 h-3.5 text-brand-champagne" />
                         <span>{badge}</span>
                     </div>
@@ -71,7 +71,7 @@ const DiamondCategoryShowcase = ({ sectionData }) => {
                         <Link
                             key={cat.id}
                             to={cat.path}
-                            className="group relative bg-[#FAFBFD] rounded-2xl overflow-hidden border border-stone-200/80 hover:border-brand-champagne shadow-xs hover:shadow-[0_16px_36px_rgba(51,40,39,0.08)] transition-all duration-400 flex flex-col justify-between"
+                            className="group relative bg-[#FCF8FB] rounded-2xl overflow-hidden border border-stone-200/80 hover:border-brand-champagne shadow-xs hover:shadow-[0_16px_36px_rgba(51,40,39,0.08)] transition-all duration-400 flex flex-col justify-between"
                         >
                             {/* Image Box */}
                             <div className="relative aspect-square w-full overflow-hidden bg-white p-6 flex items-center justify-center">

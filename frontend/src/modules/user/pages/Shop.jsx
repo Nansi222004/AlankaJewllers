@@ -1437,7 +1437,7 @@ const Shop = ({
             <button
               type="button"
               onClick={() => refetchServerProducts()}
-              className="shrink-0 rounded-lg bg-[#3E2723] px-4 py-2 text-[11px] font-black uppercase tracking-widest text-white hover:opacity-95"
+              className="shrink-0 rounded-lg bg-[#702F46] px-4 py-2 text-[11px] font-black uppercase tracking-widest text-white hover:opacity-95"
             >
               Retry
             </button>

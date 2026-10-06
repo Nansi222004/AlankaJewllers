@@ -90,7 +90,7 @@ const WomenInteractiveLook = () => {
         };
         addToCart(product);
         toast.success(`${item.productName} added to bag!`, {
-            style: { background: '#332827', color: '#D8C3A5', fontSize: '12px', fontWeight: 'bold' },
+            style: { background: '#3D2730', color: '#D8C3A5', fontSize: '12px', fontWeight: 'bold' },
             icon: '✨'
         });
         setTimeout(() => navigate('/cart'), 800);

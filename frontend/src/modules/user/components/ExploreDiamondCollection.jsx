@@ -134,10 +134,10 @@ const DiamondProductCard = ({ product }) => {
     return (
         <div
             onClick={handleOpen}
-            className="group/card relative w-full flex flex-col bg-white overflow-hidden rounded-2xl sm:rounded-3xl border border-[#EAE3D6] hover:border-brand-champagne transition-all duration-400 hover:shadow-[0_14px_36px_rgba(184,149,106,0.12)] cursor-pointer transform hover:-translate-y-1"
+            className="group/card relative w-full flex flex-col bg-white overflow-hidden rounded-2xl sm:rounded-3xl border border-[#F0DDE3] hover:border-brand-champagne transition-all duration-400 hover:shadow-[0_14px_36px_rgba(184,149,106,0.12)] cursor-pointer transform hover:-translate-y-1"
         >
             {/* Visual Area with smooth 1.05 hover zoom */}
-            <div className="relative aspect-square w-full overflow-hidden bg-brand-pearl border-b border-[#EAE3D6]">
+            <div className="relative aspect-square w-full overflow-hidden bg-brand-pearl border-b border-[#F0DDE3]">
                 <img
                     src={imgSrc}
                     alt={product.name}
@@ -152,7 +152,7 @@ const DiamondProductCard = ({ product }) => {
 
                 {/* Diamond Origin Badge */}
                 <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 z-10 flex flex-col gap-1">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE3D6] text-brand-espresso text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-2xs">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#F0DDE3] text-brand-espresso text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-2xs">
                         <AlankaJewelleryMark className="w-2.5 h-2.5 text-brand-champagne" />
                         <span>{diamondOrigin}</span>
                     </span>
@@ -169,7 +169,7 @@ const DiamondProductCard = ({ product }) => {
                         type="button"
                         onClick={handleOpen}
                         aria-label="View Details"
-                        className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE3D6] text-brand-espresso hover:text-brand-champagne hover:border-brand-champagne flex items-center justify-center shadow-xs cursor-pointer"
+                        className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-md border border-[#F0DDE3] text-brand-espresso hover:text-brand-champagne hover:border-brand-champagne flex items-center justify-center shadow-xs cursor-pointer"
                     >
                         <Eye className="w-3.5 h-3.5" />
                     </button>
@@ -185,7 +185,7 @@ const DiamondProductCard = ({ product }) => {
                             {product.category?.name || product.category || 'Diamond Atelier'}
                         </span>
                         {diamondSpecs && (
-                            <span className="text-[10px] text-[#8C7A68] font-medium tracking-tight truncate ml-2">
+                            <span className="text-[10px] text-[#8B6874] font-medium tracking-tight truncate ml-2">
                                 {diamondSpecs}
                             </span>
                         )}
@@ -320,7 +320,7 @@ const ExploreDiamondCollection = ({
     };
 
     return (
-        <section id="diamond-catalogue" className="py-14 sm:py-18 md:py-24 bg-gradient-to-b from-[#FAF8F4] via-[#FFFDF9] to-[#FAF8F4] border-t border-b border-[#E8DFD1] overflow-hidden">
+        <section id="diamond-catalogue" className="py-14 sm:py-18 md:py-24 bg-gradient-to-b from-[#FFF9FA] via-[#FFFBFC] to-[#FFF9FA] border-t border-b border-[#E8DFD1] overflow-hidden">
             <div className="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* ── Section Header ────────────────────────────────────── */}
                 <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
@@ -334,7 +334,7 @@ const ExploreDiamondCollection = ({
                     </div>
 
                     {/* Eyebrow */}
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#8C7A68] block mb-2 font-sans">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.26em] text-[#8B6874] block mb-2 font-sans">
                         {eyebrow}
                     </span>
 
@@ -344,7 +344,7 @@ const ExploreDiamondCollection = ({
                     </h2>
 
                     {/* Subtitle */}
-                    <p className="text-xs sm:text-sm md:text-[15px] text-[#6B6156] font-light leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-xs sm:text-sm md:text-[15px] text-[#7F626C] font-light leading-relaxed max-w-2xl mx-auto">
                         {subtitle}
                     </p>
                 </div>
@@ -363,7 +363,7 @@ const ExploreDiamondCollection = ({
                                     className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
                                         isActive
                                             ? 'bg-brand-plum text-white shadow-xs scale-[1.02]'
-                                            : 'bg-white text-stone-700 hover:text-brand-espresso hover:border-brand-champagne border border-[#EAE3D6]'
+                                            : 'bg-white text-stone-700 hover:text-brand-espresso hover:border-brand-champagne border border-[#F0DDE3]'
                                     }`}
                                 >
                                     {tab.label}
@@ -376,7 +376,7 @@ const ExploreDiamondCollection = ({
                     <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                         <div className="flex flex-wrap items-center gap-2.5">
                             {/* Origin Filter */}
-                            <div className="flex items-center gap-1.5 bg-white border border-[#EAE3D6] rounded-xl px-3 py-1.5 text-xs shadow-2xs">
+                            <div className="flex items-center gap-1.5 bg-white border border-[#F0DDE3] rounded-xl px-3 py-1.5 text-xs shadow-2xs">
                                 <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Origin:</span>
                                 <select
                                     value={selectedType}
@@ -390,7 +390,7 @@ const ExploreDiamondCollection = ({
                             </div>
 
                             {/* Price Filter */}
-                            <div className="flex items-center gap-1.5 bg-white border border-[#EAE3D6] rounded-xl px-3 py-1.5 text-xs shadow-2xs">
+                            <div className="flex items-center gap-1.5 bg-white border border-[#F0DDE3] rounded-xl px-3 py-1.5 text-xs shadow-2xs">
                                 <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Price:</span>
                                 <select
                                     value={selectedPrice}
@@ -436,7 +436,7 @@ const ExploreDiamondCollection = ({
                             )}
 
                             {/* Sort Dropdown */}
-                            <div className="relative bg-white border border-[#EAE3D6] rounded-xl px-3 py-1.5 text-xs shadow-2xs">
+                            <div className="relative bg-white border border-[#F0DDE3] rounded-xl px-3 py-1.5 text-xs shadow-2xs">
                                 <select
                                     value={sortBy}
                                     onChange={(e) => setSortBy(e.target.value)}
@@ -463,8 +463,8 @@ const ExploreDiamondCollection = ({
                         ))}
                     </div>
                 ) : (
-                    <div className="py-16 sm:py-20 px-6 max-w-xl mx-auto text-center bg-white/80 backdrop-blur-xs rounded-3xl border border-[#EAE3D6] shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
-                        <div className="w-16 h-16 rounded-2xl bg-[#FAF8F4] border border-[#EAE3D6] flex items-center justify-center mx-auto mb-4 text-brand-champagne shadow-2xs">
+                    <div className="py-16 sm:py-20 px-6 max-w-xl mx-auto text-center bg-white/80 backdrop-blur-xs rounded-3xl border border-[#F0DDE3] shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
+                        <div className="w-16 h-16 rounded-2xl bg-[#FFF9FA] border border-[#F0DDE3] flex items-center justify-center mx-auto mb-4 text-brand-champagne shadow-2xs">
                             <Gem className="w-8 h-8" />
                         </div>
                         <h3 className="font-serif text-xl sm:text-2xl text-brand-espresso font-medium mb-2">
@@ -480,7 +480,7 @@ const ExploreDiamondCollection = ({
                                 <button
                                     type="button"
                                     onClick={resetAllFilters}
-                                    className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#EAE3D6] text-brand-espresso hover:border-brand-champagne hover:text-brand-champagne transition-all cursor-pointer shadow-2xs"
+                                    className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#F0DDE3] text-brand-espresso hover:border-brand-champagne hover:text-brand-champagne transition-all cursor-pointer shadow-2xs"
                                 >
                                     Reset Filters
                                 </button>

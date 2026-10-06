@@ -28,11 +28,11 @@ const CookieConsent = () => {
     return (
         <div className="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-[400px] z-[2000] animate-in slide-in-from-bottom-10 duration-700">
             <div className="bg-white rounded-[2rem] p-6 shadow-2xl border border-gray-100 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-[#3E2723]" />
+                <div className="absolute top-0 left-0 w-1 h-full bg-[#702F46]" />
                 
                 <div className="flex gap-4">
                     <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0">
-                        <Shield size={24} className="text-[#3E2723]" />
+                        <Shield size={24} className="text-[#702F46]" />
                     </div>
                     <div className="space-y-4">
                         <div>
@@ -45,7 +45,7 @@ const CookieConsent = () => {
                         <div className="flex gap-2">
                             <button 
                                 onClick={handleAccept}
-                                className="flex-1 py-3 bg-brand-plum text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#3E2723] transition-all flex items-center justify-center gap-2"
+                                className="flex-1 py-3 bg-brand-plum text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#702F46] transition-all flex items-center justify-center gap-2"
                             >
                                 <Check size={12} /> Accept All
                             </button>

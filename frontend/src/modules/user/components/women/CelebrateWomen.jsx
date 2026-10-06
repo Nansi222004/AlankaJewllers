@@ -19,7 +19,7 @@ const CelebrateWomen = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="py-20 md:py-24 bg-[#FAF7F2]">
+        <section className="py-20 md:py-24 bg-[#FFF7F9]">
             <div className="container mx-auto px-4 max-w-[1200px]">
                 
                 {/* Header Section */}

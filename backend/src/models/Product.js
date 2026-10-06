@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
   productCode: { type: String, unique: true, sparse: true },
   sku: { type: String, unique: true, sparse: true },
   huid: { type: String, trim: true, sparse: true },
-  brand: { type: String, default: "Alankar Jewellers" },
+  brand: { type: String, default: "ALANKA JEWELLERS" },
   categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
   category: { type: String },
   categorySlug: { type: String },

@@ -70,7 +70,7 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                 {/* Header */}
                 <div className="p-3 md:p-5 border-b border-gray-100 flex items-center gap-3 bg-white md:bg-white md:rounded-t-[2rem]">
                     {/* Mobile Back Button */}
-                    <button onClick={onClose} className="md:hidden text-[#5D4037]">
+                    <button onClick={onClose} className="md:hidden text-[#702F46]">
                         <ChevronRight className="w-5 h-5 rotate-180" />
                     </button>
 
@@ -80,7 +80,7 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                     </div>
 
                     {/* Desktop Close Button */}
-                    <button onClick={onClose} className="hidden md:block p-2 hover:bg-[#EFEBE9] rounded-full transition-colors text-[#5D4037]">
+                    <button onClick={onClose} className="hidden md:block p-2 hover:bg-[#F0DDE3] rounded-full transition-colors text-[#702F46]">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -179,10 +179,10 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
 
                     {/* Comments */}
                     <div>
-                        <label className="text-[10px] font-bold text-[#5D4037] uppercase tracking-widest mb-1.5 block">Additional Comments</label>
+                        <label className="text-[10px] font-bold text-[#702F46] uppercase tracking-widest mb-1.5 block">Additional Comments</label>
                         <textarea
                             rows="2"
-                            className="w-full p-3 rounded-lg border border-gray-200 text-xs focus:outline-none focus:border-[#3E2723] resize-none"
+                            className="w-full p-3 rounded-lg border border-gray-200 text-xs focus:outline-none focus:border-[#702F46] resize-none"
                             placeholder="Tell us more about the issue..."
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}

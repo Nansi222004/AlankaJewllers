@@ -42,7 +42,7 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
             onWheel={(e) => e.stopPropagation()}
         >
             <div 
-                className="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-6 bg-gradient-to-b from-[#FFFDF9] via-[#FAF7F2] to-white"
+                className="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-6 bg-gradient-to-b from-[#FFFBFC] via-[#FFF7F9] to-white"
                 data-lenis-prevent
                 onWheel={(e) => e.stopPropagation()}
                 style={{
@@ -51,14 +51,14 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                 }}
             >
                 {/* Header label */}
-                <div className="flex items-center justify-between mb-4 sm:mb-5 pb-2.5 border-b border-[#EFE7DC]">
+                <div className="flex items-center justify-between mb-4 sm:mb-5 pb-2.5 border-b border-[#F0DDE3]">
                     <div className="flex items-center gap-2">
                         <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <h3 className="text-brand-plum text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.25em]">
                             Curated Gift Collections
                         </h3>
                     </div>
-                    <span className="text-[10px] text-[#8C827A] tracking-wider uppercase hidden sm:inline">
+                    <span className="text-[10px] text-[#8B6874] tracking-wider uppercase hidden sm:inline">
                         Complimentary Gift Packaging
                     </span>
                 </div>
@@ -76,7 +76,7 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                             >
                                 <div>
                                     {/* Icon badge */}
-                                    <div className="w-10 h-10 rounded-full bg-[#FAF5ED] group-hover:bg-brand-champagne/10 border border-[#EFE7DC] group-hover:border-brand-champagne/30 flex items-center justify-center mb-3 sm:mb-3.5 transition-colors">
+                                    <div className="w-10 h-10 rounded-full bg-[#FFF7F9] group-hover:bg-brand-champagne/10 border border-[#F0DDE3] group-hover:border-brand-champagne/30 flex items-center justify-center mb-3 sm:mb-3.5 transition-colors">
                                         <IconComponent className="w-4 h-4 text-brand-champagne transition-transform duration-300 group-hover:scale-110" />
                                     </div>
 
@@ -92,7 +92,7 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                                 </div>
 
                                 {/* Bottom action */}
-                                <div className="mt-4 pt-3 border-t border-[#F2EDE4] flex items-center justify-between text-[11px] font-semibold text-[#8C827A] group-hover:text-brand-champagne transition-colors">
+                                <div className="mt-4 pt-3 border-t border-[#F3E4E8] flex items-center justify-between text-[11px] font-semibold text-[#8B6874] group-hover:text-brand-champagne transition-colors">
                                     <span className="tracking-wide">Explore Gifts</span>
                                     <ArrowRight className="w-3.5 h-3.5 text-brand-champagne transform transition-transform duration-300 group-hover:translate-x-1" />
                                 </div>

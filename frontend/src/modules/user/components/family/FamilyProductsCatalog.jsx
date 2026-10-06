@@ -245,7 +245,7 @@ const FamilyProductsCatalog = ({
     };
 
     const GOLD = '#B8956A';
-    const OBSIDIAN = '#332827';
+    const OBSIDIAN = '#3D2730';
 
     if (visibleProductCards.length === 0) return null;
 
@@ -430,7 +430,7 @@ const FamilyProductsCatalog_OLD = ({
         navigate(buildFamilyShopPath({ recipient: normalizedRecipient }));
     };
 
-    const GOLD_LIGHT = '#FBF8F7';
+    const GOLD_LIGHT = '#FFF9FA';
     const GOLD = '#B8956A';
 
     if (visibleProductCards.length === 0) return null;
@@ -485,7 +485,7 @@ const FamilyProductsCatalog_OLD = ({
                                     className={`w-full lg:flex-none lg:w-auto px-3 py-1.5 md:px-4 md:py-2 rounded-none text-[8px] md:text-[10px] font-black uppercase tracking-[0.15em] whitespace-nowrap transition-all border leading-none ${isLastOdd ? 'col-span-2 lg:col-span-1' : ''}`}
                                     style={{
                                         background: isActive ? GOLD : '#fff',
-                                        color: isActive ? '#332827' : '#444',
+                                        color: isActive ? '#3D2730' : '#444',
                                         borderColor: isActive ? GOLD : '#eee'
                                     }}
                                 >

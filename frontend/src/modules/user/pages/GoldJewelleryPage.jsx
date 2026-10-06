@@ -181,7 +181,7 @@ const GoldJewelleryPage = () => {
           <button
             type="button"
             onClick={() => refetch()}
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#3E2723] px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white hover:opacity-95"
+            className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#702F46] px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white hover:opacity-95"
           >
             Retry
           </button>

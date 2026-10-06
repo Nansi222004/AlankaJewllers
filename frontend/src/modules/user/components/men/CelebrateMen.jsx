@@ -86,7 +86,7 @@ const CelebrateMen = ({ sectionData }) => {
                             {/* Gold Gradient Label at bottom matching screenshot */}
                             <div className="absolute -bottom-2 md:-bottom-1 left-1/2 -translate-x-1/2 w-[85%] md:w-[82%] z-20">
                                 <div className="bg-gradient-to-b from-[#EFD78B] via-[#E6C673] to-[#D4AF37] py-1.5 md:py-3 rounded-[12px] md:rounded-[18px] shadow-lg border border-white/40 text-center flex items-center justify-center">
-                                    <span className="text-[#1A1A1A] font-bold tracking-[0.1em] md:tracking-[0.14em] uppercase text-[9px] md:text-[13px] leading-none mt-1 md:mt-0">
+                                    <span className="text-[#3D2730] font-bold tracking-[0.1em] md:tracking-[0.14em] uppercase text-[9px] md:text-[13px] leading-none mt-1 md:mt-0">
                                         {guide.title}
                                     </span>
                                 </div>

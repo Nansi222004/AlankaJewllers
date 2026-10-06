@@ -79,7 +79,7 @@ const MenPickYourGlam = ({ sectionData }) => {
     const gap = isMobile ? 8 : 12;
 
     return (
-        <section className="py-2 md:py-8 bg-[#F9FAFB] overflow-hidden select-none">
+        <section className="py-2 md:py-8 bg-[#FFF9FA] overflow-hidden select-none">
             <div className="container mx-auto px-4 max-w-[1200px]">
                 {/* Header */}
                 <div className="text-center mb-4 md:mb-6">

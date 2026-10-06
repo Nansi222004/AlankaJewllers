@@ -123,14 +123,14 @@ const SilverCuratedShowcase = () => {
     };
 
     return (
-        <section className="py-8 md:py-14 bg-[#FBF8F7] select-none overflow-hidden border-t border-[#E9DEDA]/70">
+        <section className="py-8 md:py-14 bg-[#E3D3D8] select-none overflow-hidden border-t border-[#D2BBC3]">
             <div className="w-full">
 
                 <div className="text-center mb-8 md:mb-12 px-4">
-                    <span className="inline-flex items-center rounded-full border border-[#D9B8B6] bg-white px-4 py-1.5 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] text-[#6B3F46] shadow-2xs">
+                    <span className="inline-flex items-center rounded-full border border-[#D99AAE] bg-white px-4 py-1.5 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] text-[#6B3F46] shadow-2xs">
                         {header.title}
                     </span>
-                    <h2 className="mt-4 text-[26px] md:text-[36px] font-serif italic font-medium text-[#332827] tracking-tight">
+                    <h2 className="mt-4 text-[26px] md:text-[36px] font-serif italic font-medium text-[#3D2730] tracking-tight">
                         {header.subtitle}
                     </h2>
                 </div>
@@ -154,7 +154,7 @@ const SilverCuratedShowcase = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: idx * 0.1 }}
                                 onClick={() => navigate(item.link)}
-                                className="flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] aspect-[4/5] relative group cursor-pointer overflow-hidden rounded-2xl bg-white snap-start shadow-sm hover:shadow-md border border-[#E9DEDA] hover:border-[#C98F96]/50 transition-all duration-300"
+                                className="flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] aspect-[4/5] relative group cursor-pointer overflow-hidden rounded-2xl bg-white snap-start shadow-sm hover:shadow-md border border-[#EBD3DA] hover:border-[#C77F94]/50 transition-all duration-300"
                             >
                                 {item.type === 'video' ? (
                                     <video
@@ -198,7 +198,7 @@ const SilverCuratedShowcase = () => {
                                     className={`transition-all duration-300 rounded-full ${
                                         activeIndex === idx 
                                         ? 'w-6 h-1.5 bg-[#6B3F46]' 
-                                        : 'w-1.5 h-1.5 bg-[#D9B8B6] hover:bg-[#C98F96]'
+                                        : 'w-1.5 h-1.5 bg-[#D99AAE] hover:bg-[#C77F94]'
                                     }`}
                                     aria-label={`Go to item ${idx + 1}`}
                                 />
@@ -224,4 +224,3 @@ const SilverCuratedShowcase = () => {
 };
 
 export default SilverCuratedShowcase;
-

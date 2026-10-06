@@ -65,7 +65,7 @@ const TrustMarkers = () => {
     ];
 
     return (
-        <section className="w-full bg-brand-pearl py-4 md:py-5 border-b border-brand-border/80">
+        <section className="w-full bg-[#EDE1E5] py-4 md:py-5 border-b border-[#D2BBC3]">
             <div className="container mx-auto px-4 max-w-[1400px]">
                 <div className="grid grid-cols-2 gap-2.5 md:flex md:flex-wrap md:items-center md:justify-center md:gap-x-10 md:gap-y-2.5">
                     {markers.map((marker, index) => (

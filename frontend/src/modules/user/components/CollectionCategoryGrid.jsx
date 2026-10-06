@@ -236,11 +236,11 @@ const CollectionCategoryGrid = ({
     return (
         <section
             id={sectionKey}
-            className={`w-full ${bgClass} py-8 md:py-16 border-y border-brand-border/60 relative`}
+            className={`w-full ${bgClass} py-8 md:py-10 border-y border-brand-border/60 relative`}
         >
             <div className="container mx-auto px-4 md:px-8 max-w-[1440px]">
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-8">
                     <div>
                         <div className="inline-flex items-center gap-2 mb-2 text-brand-plum text-[10px] uppercase font-bold tracking-[0.3em]">
                             <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
@@ -261,9 +261,9 @@ const CollectionCategoryGrid = ({
                 {/* ── DESKTOP ASYMMETRIC / EDITORIAL COMPOSITION (lg+) ── */}
                 {isSidePanelActive ? (
                     // Gold or Silver Collection Grid + Side Panel layout
-                    <div className="hidden lg:grid lg:grid-cols-12 gap-6 items-stretch">
+                    <div className="hidden lg:grid lg:h-[460px] xl:h-[500px] lg:grid-cols-12 gap-5 xl:gap-6 items-stretch">
                         {sidePanelPosition === 'left' && (
-                            <div className="lg:col-span-3">
+                            <div className="lg:col-span-3 min-h-0">
                                 {isGoldPanelActive && <GoldShopByColourPanel sectionData={goldSectionData} />}
                                 {isSilverPanelActive && <SilverShopByTypePanel sectionData={silverSectionData} />}
                                 {isDiamondPanelActive && <DiamondShopByTypePanel sectionData={diamondSectionData} />}
@@ -271,17 +271,17 @@ const CollectionCategoryGrid = ({
                         )}
 
                         {/* Visual Lead Category (4 columns) */}
-                        <div className="lg:col-span-4">
+                        <div className="lg:col-span-4 min-h-0">
                             {renderLeadCard()}
                         </div>
 
                         {/* Supporting Categories (5 columns, 2x2 grid) */}
-                        <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+                        <div className="lg:col-span-5 min-h-0 grid grid-cols-2 gap-3.5">
                             {supportingCategories.slice(0, 4).map(renderSupportingCard)}
                         </div>
 
                         {sidePanelPosition !== 'left' && (
-                            <div className="lg:col-span-3">
+                            <div className="lg:col-span-3 min-h-0">
                                 {isGoldPanelActive && <GoldShopByColourPanel sectionData={goldSectionData} />}
                                 {isSilverPanelActive && <SilverShopByTypePanel sectionData={silverSectionData} />}
                                 {isDiamondPanelActive && <DiamondShopByTypePanel sectionData={diamondSectionData} />}

@@ -172,32 +172,32 @@ const GoldShopByColourPanel = ({
     // Default: 'panel' for desktop side-by-side layout in Gold Collection Grid
     return (
         <div
-            className={`h-full flex flex-col justify-between bg-brand-pearl rounded-3xl border border-brand-border hover:border-brand-champagne/80 p-6 lg:p-7 shadow-xs hover:shadow-[0_16px_36px_rgba(51,40,39,0.06)] transition-all duration-500 ${className}`}
+            className={`h-full min-h-0 overflow-hidden flex flex-col justify-between bg-brand-pearl rounded-3xl border border-brand-border hover:border-brand-champagne/80 p-4 xl:p-5 shadow-xs hover:shadow-[0_16px_36px_rgba(51,40,39,0.06)] transition-all duration-500 ${className}`}
         >
             {/* Header */}
             <div>
-                <div className="inline-flex items-center gap-1.5 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.25em]">
+                <div className="inline-flex items-center gap-1.5 mb-1.5 text-brand-champagne text-[9px] uppercase font-bold tracking-[0.22em]">
                     <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                     <span>{badge}</span>
                 </div>
-                <h3 className="font-serif text-xl lg:text-2xl text-brand-espresso font-medium tracking-tight mb-1">
+                <h3 className="font-serif text-xl text-brand-espresso font-medium tracking-tight mb-0.5">
                     {title}
                 </h3>
-                <p className="text-stone-500 text-xs font-sans mb-6">
+                <p className="text-stone-500 text-[11px] font-sans mb-3.5">
                     {subtitle}
                 </p>
 
                 {/* Tone Options List — strictly White Gold, Rose Gold, Yellow Gold */}
-                <div className="space-y-3.5">
+                <div className="space-y-2.5">
                     {tones.map((tone) => (
                         <Link
                             key={tone.id || tone.itemId}
                             to={tone.path}
-                            className="group flex items-center justify-between p-3 lg:p-3.5 rounded-2xl bg-white border border-brand-border hover:border-brand-champagne hover:shadow-[0_8px_20px_rgba(51,40,39,0.06)] transition-all duration-300"
+                            className="group flex items-center justify-between p-2.5 rounded-xl bg-white border border-brand-border hover:border-brand-champagne hover:shadow-[0_8px_20px_rgba(51,40,39,0.06)] transition-all duration-300"
                         >
-                            <div className="flex items-center gap-3.5 min-w-0">
+                            <div className="flex items-center gap-3 min-w-0">
                                 {/* Swatch / Thumbnail Circle with metallic tone rim */}
-                                <div className={`relative w-12 h-12 lg:w-13 lg:h-13 rounded-full shrink-0 p-0.5 bg-gradient-to-tr from-white to-stone-100 border-2 ${tone.swatchBorder} group-hover:border-brand-champagne shadow-xs overflow-hidden transition-transform duration-500 group-hover:scale-108`}>
+                                <div className={`relative w-10 h-10 xl:w-11 xl:h-11 rounded-full shrink-0 p-0.5 bg-gradient-to-tr from-white to-stone-100 border-2 ${tone.swatchBorder} group-hover:border-brand-champagne shadow-xs overflow-hidden transition-transform duration-500 group-hover:scale-108`}>
                                     <img
                                         src={tone.image}
                                         alt={tone.name}
@@ -210,17 +210,17 @@ const GoldShopByColourPanel = ({
 
                                 {/* Label & Tagline */}
                                 <div className="min-w-0">
-                                    <h4 className="font-serif text-sm lg:text-[15px] font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors line-clamp-1">
+                                    <h4 className="font-serif text-[13px] xl:text-sm font-medium text-brand-espresso group-hover:text-brand-champagne transition-colors line-clamp-1">
                                         {tone.name}
                                     </h4>
-                                    <span className="text-[10px] uppercase font-sans tracking-[0.14em] text-stone-400 group-hover:text-stone-600 transition-colors line-clamp-1">
+                                    <span className="text-[9px] uppercase font-sans tracking-[0.12em] text-stone-400 group-hover:text-stone-600 transition-colors line-clamp-1">
                                         {tone.tag}
                                     </span>
                                 </div>
                             </div>
 
                             {/* Chevron Action */}
-                            <div className="w-7 h-7 rounded-full bg-stone-50 group-hover:bg-brand-plum flex items-center justify-center shrink-0 ml-2 transition-all duration-300">
+                            <div className="w-6 h-6 rounded-full bg-stone-50 group-hover:bg-brand-plum flex items-center justify-center shrink-0 ml-2 transition-all duration-300">
                                 <ChevronRight className="w-3.5 h-3.5 text-stone-400 group-hover:text-brand-champagne-light transition-transform duration-300 group-hover:translate-x-0.5" />
                             </div>
                         </Link>
@@ -229,10 +229,10 @@ const GoldShopByColourPanel = ({
             </div>
 
             {/* Bottom Atelier Link / Assurance */}
-            <div className="pt-6 mt-6 border-t border-brand-border/70 flex items-center justify-between">
+            <div className="pt-3.5 mt-3.5 border-t border-brand-border/70 flex items-center justify-between">
                 <div className="flex items-center gap-1.5 text-stone-500">
                     <ShieldCheck className="w-3.5 h-3.5 text-brand-champagne" />
-                    <span className="text-[11px] font-serif italic">
+                    <span className="text-[10px] font-serif italic">
                         18K & 22K Certified Artistry
                     </span>
                 </div>

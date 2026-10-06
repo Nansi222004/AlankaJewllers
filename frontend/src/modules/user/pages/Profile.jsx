@@ -104,8 +104,8 @@ const Profile = () => {
     if (!user) {
         return (
             <div className="container mx-auto px-4 py-32 text-center">
-                <h2 className="text-2xl font-serif text-[#3E2723] mb-4">Please Login to View Profile</h2>
-                <Link to="/login" className="inline-block bg-[#3E2723] text-white px-8 py-3 rounded-full hover:bg-[#5D4037] transition-colors">Login Now</Link>
+                <h2 className="text-2xl font-serif text-[#702F46] mb-4">Please Login to View Profile</h2>
+                <Link to="/login" className="inline-block bg-[#702F46] text-white px-8 py-3 rounded-full hover:bg-[#702F46] transition-colors">Login Now</Link>
             </div>
         );
     }
@@ -225,7 +225,7 @@ const Profile = () => {
 
                     {/* Content Area - Hidden on mobile if NO tab is active */}
                     <div className={`${!tabParam ? 'hidden md:block' : 'block'} md:col-span-2`}>
-                        <Suspense fallback={<div className="flex justify-center items-center h-64"><div className="w-8 h-8 border-4 border-[#3E2723] border-t-transparent rounded-full animate-spin"></div></div>}>
+                        <Suspense fallback={<div className="flex justify-center items-center h-64"><div className="w-8 h-8 border-4 border-[#702F46] border-t-transparent rounded-full animate-spin"></div></div>}>
                             {activeTab === 'profile' && (
                                 <ProfileDetailsTab 
                                     user={user}

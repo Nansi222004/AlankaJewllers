@@ -287,7 +287,7 @@ const InfoPage = ({ type }) => {
   const data = contentMap[type] || contentMap.about;
 
   return (
-    <div className="bg-[#fcfcfc] min-h-screen py-8 px-6 lg:px-20">
+    <div className="bg-[#FFF9FA] min-h-screen py-8 px-6 lg:px-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

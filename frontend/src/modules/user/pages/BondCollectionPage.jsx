@@ -20,7 +20,7 @@ const BONDS_CONFIG = {
         subtitle: "Elegance as Timeless as Your Bond",
         banner: bannerWife,
         accent: "#D4AF37", // Gold
-        themeColor: "#0D1C12", // Dark Forest
+        themeColor: "#552237", // Dark Forest
         offer: "Making Charges Starts @ 0%",
         offerDesc: "On All Silver Sets",
     },
@@ -29,7 +29,7 @@ const BONDS_CONFIG = {
         subtitle: "Refined Silver for the Modern Man",
         banner: bannerHusband,
         accent: "#C0C0C0", // Silver
-        themeColor: "#1A1A1A", // Neutral Dark
+        themeColor: "#3D2730", // Neutral Dark
         offer: "Upto 15% OFF",
         offerDesc: "On Luxury Men's Collection",
     },

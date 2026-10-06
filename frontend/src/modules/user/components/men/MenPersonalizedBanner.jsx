@@ -89,7 +89,7 @@ const MenPersonalizedBanner = ({ sectionData }) => {
                     <motion.div 
                         animate={{ width: [40, 120, 40] }}
                         transition={{ duration: 4, repeat: Infinity }}
-                        className="h-[2px] bg-[#D9C4B1]/40 rounded-full"
+                        className="h-[2px] bg-[#D99AAE]/40 rounded-full"
                     />
                 </div>
             </motion.div>

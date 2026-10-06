@@ -12,7 +12,7 @@ const ProductThumb = ({ src, alt = '', className }) => {
 
     if (!imageSrc) {
         return (
-            <div className={`${className} bg-[#FDFDFD] border border-gray-100 flex items-center justify-center text-gray-400`}>
+            <div className={`${className} bg-[#FFF9FA] border border-gray-100 flex items-center justify-center text-gray-400`}>
                 <Package size={18} />
             </div>
         );
@@ -98,7 +98,7 @@ const ReplacementRequestPage = () => {
     };
 
     return (
-        <div className="bg-[#fcfcfc] min-h-screen py-12">
+        <div className="bg-[#FFF9FA] min-h-screen py-12">
             <div className="container mx-auto px-4 md:px-12 max-w-3xl">
                 <div className="flex items-center gap-4 mb-8">
                     <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">

@@ -33,9 +33,9 @@ const UserLayout = () => {
     }, [lastScrollY]);
 
     return (
-        <div className="flex flex-col min-h-screen font-sans bg-background">
+        <div className="customer-app flex flex-col min-h-screen font-sans bg-brand-pearl text-brand-espresso">
             <header 
-                className={`sticky top-0 z-[150] flex flex-col shrink-0 bg-white shadow-md transition-transform duration-300 ${
+                className={`sticky top-0 z-[150] flex flex-col shrink-0 bg-brand-pearl shadow-[0_8px_28px_rgba(112,47,70,0.08)] transition-transform duration-300 ${
                     isVisible ? 'translate-y-0' : '-translate-y-full'
                 }`}
             >
@@ -44,7 +44,7 @@ const UserLayout = () => {
                 <CategoryNav />
                 <OfferStrip />
             </header>
-            <main className="flex-grow pb-16 md:pb-0">
+            <main className="flex-grow bg-brand-pearl pb-16 md:pb-0">
                 <Outlet />
             </main>
             <Footer />

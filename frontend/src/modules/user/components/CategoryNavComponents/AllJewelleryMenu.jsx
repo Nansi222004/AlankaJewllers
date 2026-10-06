@@ -177,7 +177,7 @@ const AllJewelleryMenu = ({ resetMenu, availableHeight, maxWidth }) => {
         >
             {/* ── Left Sidebar: Category list (Compact & Scrollable) ─────────────────────────────── */}
             <div 
-                className="w-[180px] sm:w-[200px] lg:w-[220px] bg-[#F9FAFB] border-r border-gray-100 py-3 sm:py-4 shrink-0 overflow-y-auto custom-scrollbar h-full min-h-0 max-h-full overscroll-contain"
+                className="w-[180px] sm:w-[200px] lg:w-[220px] bg-[#FFF9FA] border-r border-gray-100 py-3 sm:py-4 shrink-0 overflow-y-auto custom-scrollbar h-full min-h-0 max-h-full overscroll-contain"
                 data-lenis-prevent
                 onWheel={(e) => e.stopPropagation()}
                 style={{

@@ -28,7 +28,7 @@ const Newsletter = () => {
     };
 
     return (
-        <section className="w-full bg-brand-pearl py-16 md:py-24 border-t border-brand-border/70 relative overflow-hidden">
+        <section className="w-full bg-[#E3D3D8] py-16 md:py-24 border-t border-[#D2BBC3] relative overflow-hidden">
             {/* Subtle decorative geometric corner motifs */}
             <div className="absolute top-0 left-0 w-32 h-32 border-r border-b border-brand-champagne/15 rounded-br-[60px] pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-32 h-32 border-l border-t border-brand-champagne/15 rounded-tl-[60px] pointer-events-none" />

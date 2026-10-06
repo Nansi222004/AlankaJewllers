@@ -14,7 +14,7 @@ import insta4 from "@assets/men_hero_bold.png";
 
 const AboutUs = () => {
   return (
-    <div className="bg-white min-h-screen text-[#5D4037] font-sans pb-20 relative overflow-hidden">
+    <div className="bg-white min-h-screen text-[#702F46] font-sans pb-20 relative overflow-hidden">
       {/* Hero Section */}
       <section className="container mx-auto px-10 pt-20 pb-0 relative mt-10 mb-12 overflow-hidden">
         <div className="relative z-10 flex flex-col lg:flex-row items-center gap-16">
@@ -101,13 +101,13 @@ const AboutUs = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-center max-w-xs"
           >
-            <div className="w-16 h-16 rounded-full bg-[#8D6E63] text-white flex items-center justify-center mb-6 shadow-lg">
+            <div className="w-16 h-16 rounded-full bg-[#9A6676] text-white flex items-center justify-center mb-6 shadow-lg">
               <Truck className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-xl text-brand-espresso font-bold mb-3">
               Free Shipping
             </h3>
-            <p className="text-[#8D6E63] text-base leading-relaxed">
+            <p className="text-[#9A6676] text-base leading-relaxed">
               Enjoy free and fast delivery on all orders above ₹2000. We ensure
               your precious pieces reach you safely and on time, anywhere in the
               country.
@@ -122,13 +122,13 @@ const AboutUs = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="flex flex-col items-center max-w-xs"
           >
-            <div className="w-16 h-16 rounded-full bg-[#8D6E63] text-white flex items-center justify-center mb-6 shadow-lg">
+            <div className="w-16 h-16 rounded-full bg-[#9A6676] text-white flex items-center justify-center mb-6 shadow-lg">
               <ThumbsUp className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-xl text-brand-espresso font-bold mb-3">
               Premium Quality
             </h3>
-            <p className="text-[#8D6E63] text-base leading-relaxed">
+            <p className="text-[#9A6676] text-base leading-relaxed">
               Our jewellery is crafted with 100% authentic 925 Sterling Silver.
               Each piece undergoes varying quality checks to ensure lasting
               shine and durability.
@@ -143,13 +143,13 @@ const AboutUs = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
             className="flex flex-col items-center max-w-xs"
           >
-            <div className="w-16 h-16 rounded-full bg-[#8D6E63] text-white flex items-center justify-center mb-6 shadow-lg">
+            <div className="w-16 h-16 rounded-full bg-[#9A6676] text-white flex items-center justify-center mb-6 shadow-lg">
               <Lock className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-xl text-brand-espresso font-bold mb-3">
               100% Secure Checkout
             </h3>
-            <p className="text-[#8D6E63] text-base leading-relaxed">
+            <p className="text-[#9A6676] text-base leading-relaxed">
               Shop with confidence using our encrypted payment gateways. Your
               privacy and security are our top priority for a seamless shopping
               experience.
@@ -159,9 +159,9 @@ const AboutUs = () => {
       </section>
 
       {/* Bottom Instagram Section Peek */}
-      <section className="container mx-auto px-4 pt-10 border-t border-[#EFEBE9]">
+      <section className="container mx-auto px-4 pt-10 border-t border-[#F0DDE3]">
         <div className="text-center mb-10">
-          <h2 className="font-serif text-3xl text-[#5D4037]">
+          <h2 className="font-serif text-3xl text-[#702F46]">
             Follow Our Instagram
           </h2>
         </div>
