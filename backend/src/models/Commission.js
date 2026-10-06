@@ -1,5 +1,5 @@
 /**
- * 💰 Commission Model — Alankarrr Jewellers
+ * 💰 Commission Model — Alankarr Jewellers
  *
  * Immutable ledger of platform commission charged to sellers.
  *

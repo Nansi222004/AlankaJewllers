@@ -55,7 +55,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                         </span>
                                     </div>
                                     <p className="text-xs text-stone-300 truncate max-w-[200px]">
-                                        Alankarrr Jewellers Luxury Jewellery
+                                        Alankarr Jewellers Luxury Jewellery
                                     </p>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 <div className="p-3 bg-gradient-to-r from-stone-800 to-stone-900 text-white rounded-xl shadow">
                                     <div className="flex justify-between items-center text-[10px] text-stone-400 mb-2">
                                         <span>TEST VISA CARD</span>
-                                        <span className="font-bold text-amber-300">Alankarrr JEWELLERS</span>
+                                        <span className="font-bold text-amber-300">Alankarr JEWELLERS</span>
                                     </div>
                                     <div className="font-mono text-sm tracking-widest text-stone-100 font-semibold mb-2">
                                         4111 •••• •••• 1111

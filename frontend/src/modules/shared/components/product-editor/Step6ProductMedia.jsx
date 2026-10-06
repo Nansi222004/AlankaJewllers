@@ -4,7 +4,7 @@ import {
     Info, Video, Sparkles, Layers
 } from 'lucide-react';
 import { FormSection } from '../../../admin/components/common/FormControls';
-import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
+import AlankarJewelleryMark from '../AlankarJewelleryMark';
 
 const Step6ProductMedia = ({
     formData,

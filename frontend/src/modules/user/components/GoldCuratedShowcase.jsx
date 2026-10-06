@@ -27,7 +27,7 @@ const fallbackCollections = [
   },
   {
     id: 4,
-    title: "Alankarrr Heritage",
+    title: "Alankarr Heritage",
     image: ringLight,
     path: "/shop?category=Rings&search=vanki",
   },

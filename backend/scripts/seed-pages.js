@@ -13,7 +13,7 @@ const defaultPages = [
     title: "Seller Terms & Conditions",
     content: `
       <h2>Merchant Partnership Agreement</h2>
-      <p>These terms govern the relationship between Alankarrr Jewellers and authorized sellers, artisans, and merchants listing fine jewellery on the Alankarrr Jewellers platform.</p>
+      <p>These terms govern the relationship between Alankarr Jewellers and authorized sellers, artisans, and merchants listing fine jewellery on the Alankarr Jewellers platform.</p>
 
       <h3>1. Quality Standards & Hallmarking</h3>
       <p>Merchants must guarantee that all silver jewellery listed conforms to certified 925 Sterling Silver standards, and gold products meet declared BIS hallmarking standards.</p>
@@ -30,7 +30,7 @@ const defaultPages = [
     title: "Seller Privacy Policy",
     content: `
       <h2>Merchant Privacy Policy</h2>
-      <p>Alankarrr Jewellers is dedicated to safeguarding the privacy, financial records, and proprietary catalog data of all merchant partners. We do not share your confidential business metrics or personal KYC documents with unauthorized third parties.</p>
+      <p>Alankarr Jewellers is dedicated to safeguarding the privacy, financial records, and proprietary catalog data of all merchant partners. We do not share your confidential business metrics or personal KYC documents with unauthorized third parties.</p>
     `
   }
 ];

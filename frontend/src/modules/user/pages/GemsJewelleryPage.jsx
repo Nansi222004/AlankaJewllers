@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Gem, MessageCircle, RefreshCw, ShieldCheck, Star } from "lucide-react";
-import AlankarrJewelleryMark from "../components/AlankarrJewelleryMark";
+import AlankarJewelleryMark from "../components/AlankarJewelleryMark";
 import { useShop } from "../../../context/ShopContext";
 import { usePublicCmsPage } from "../hooks/usePublicCmsPage";
 import PromoSlider from "../components/PromoSlider";
@@ -33,7 +33,7 @@ const GemsJewelleryPage = () => {
   const { data: sections = [] } = usePublicCmsPage("gems-collection");
 
   useEffect(() => {
-    document.title = "Gems Collection | Alankarr Jewellers";
+    document.title = "Gems Collection | Alankar Jewellers";
     updateActiveMetal("gems");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [updateActiveMetal]);
@@ -72,7 +72,7 @@ const GemsJewelleryPage = () => {
   const trustSection = sectionMap["gems-trust-markers"];
   const bespokeSection = sectionMap["gems-bespoke-consultation"];
   const trustItems = useMemo(() => {
-    const iconMap = { ShieldCheck, Gem, RefreshCw, Star, Sparkles: AlankarrJewelleryMark };
+    const iconMap = { ShieldCheck, Gem, RefreshCw, Star, Sparkles: AlankarJewelleryMark };
     const items = trustSection?.items;
     if (!Array.isArray(items) || items.length === 0) return DEFAULT_TRUST_ITEMS;
     return items.map((item, index) => ({
@@ -139,7 +139,7 @@ const GemsJewelleryPage = () => {
           <div className="mx-auto max-w-7xl">
             <div className="mb-5 text-center sm:mb-7">
               <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#9C3F60]">
-                {trustSection?.settings?.eyebrow || "The Alankarrr Promise"}
+                {trustSection?.settings?.eyebrow || "The Alankarr Promise"}
               </p>
               <h2 className="mt-2 font-serif text-2xl text-[#702F46] sm:text-3xl">
                 {trustSection?.settings?.title || "Gemstone Trust & Service"}

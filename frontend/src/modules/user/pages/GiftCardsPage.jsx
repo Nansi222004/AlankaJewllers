@@ -11,7 +11,7 @@ import {
   Lock,
 } from "lucide-react";
 import { useShop } from "../../../context/ShopContext";
-import AlankarrJewelleryMark from "../components/AlankarrJewelleryMark";
+import AlankarJewelleryMark from "../components/AlankarJewelleryMark";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
@@ -93,7 +93,7 @@ const GiftCardsPage = () => {
 
     const giftCardItem = {
       id: `GIFT_CARD_${Date.now()}`,
-      name: `Alankarrr Jewellers E-Gift Card (₹${finalAmount})`,
+      name: `Alankarr Jewellers E-Gift Card (₹${finalAmount})`,
       price: finalAmount,
       image: giftCardMockup,
       isGiftCard: true,
@@ -120,7 +120,7 @@ const GiftCardsPage = () => {
               className="space-y-8"
             >
               <div className="inline-flex items-center gap-2 bg-brand-champagne/10 px-4 py-2 rounded-full border border-brand-champagne/20">
-                <AlankarrJewelleryMark className="w-4 h-4 text-brand-champagne" />
+                <AlankarJewelleryMark className="w-4 h-4 text-brand-champagne" />
                 <span className="text-[10px] font-bold text-brand-champagne uppercase tracking-[0.2em]">
                   The Perfect Surprise
                 </span>
@@ -134,7 +134,7 @@ const GiftCardsPage = () => {
               </h1>
 
               <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
-                Elevate every celebration with the Alankarrr Jewellers E-Gift Card. Whether
+                Elevate every celebration with the Alankarr Jewellers E-Gift Card. Whether
                 it's a birthday, anniversary, or a simple "thank you", let them
                 discover the brilliance of pure silver craftsmanship.
               </p>
@@ -178,7 +178,7 @@ const GiftCardsPage = () => {
               <div className="absolute -inset-4 bg-brand-champagne/10 blur-3xl rounded-full" />
               <img
                 src={giftCardMockup}
-                alt="Alankarrr Jewellers Gift Card"
+                alt="Alankarr Jewellers Gift Card"
                 onError={(e) => handleImageError(e, giftCardMockup)}
                 className="relative z-10 w-full max-w-lg mx-auto rounded-[2rem] shadow-2xl shadow-brand-espresso/10 transform hover:scale-[1.02] transition-transform duration-700 object-cover"
               />
@@ -417,7 +417,7 @@ const GiftCardsPage = () => {
 
                   <p className="text-center text-[10px] text-gray-400 font-medium mt-6 flex items-center justify-center gap-2">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                    Secure payment guaranteed by Alankarrr Jewellers
+                    Secure payment guaranteed by Alankarr Jewellers
                   </p>
                 </div>
               </div>
@@ -471,7 +471,7 @@ const GiftCardsPage = () => {
                   <div className="flex gap-2">
                     <input
                       type="text"
-                      placeholder="Alankarrr-XXXX-XXXX-XXXX"
+                      placeholder="Alankarr-XXXX-XXXX-XXXX"
                       value={balanceCode}
                       onChange={(e) =>
                         setBalanceCode(e.target.value.toUpperCase())
@@ -556,7 +556,7 @@ const GiftCardsPage = () => {
               Simple Steps
             </span>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-espresso">
-              How Alankarrr Jewellers Gift Cards Work
+              How Alankarr Jewellers Gift Cards Work
             </h2>
             <p className="text-gray-500 font-medium">
               Sharing the love with your favorite people has never been easier.
@@ -604,11 +604,11 @@ const GiftCardsPage = () => {
           <div className="space-y-4">
             {[
               {
-                q: "Where can I use my Alankarrr Jewellers Gift Card?",
-                a: "Alankarrr Jewellers Gift Cards can be redeemed on our official website for any product across gold and silver collections.",
+                q: "Where can I use my Alankarr Jewellers Gift Card?",
+                a: "Alankarr Jewellers Gift Cards can be redeemed on our official website for any product across gold and silver collections.",
               },
               {
-                q: "Do Alankarrr Jewellers Gift Cards expire?",
+                q: "Do Alankarr Jewellers Gift Cards expire?",
                 a: "No, our gift cards have lifetime validity. You can use them whenever you're ready to sparkle.",
               },
               {

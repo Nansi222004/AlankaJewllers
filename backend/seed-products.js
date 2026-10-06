@@ -56,7 +56,7 @@ async function seed() {
         product = await Product.create({
           name: `Elegant Silver ${catData.name}`,
           slug: productSlug,
-          description: `A beautiful piece of silver ${catData.name} from Alankarrr Jewellers.`,
+          description: `A beautiful piece of silver ${catData.name} from Alankarr Jewellers.`,
           categories: [category._id],
           category: category.name,
           categorySlug: category.slug,

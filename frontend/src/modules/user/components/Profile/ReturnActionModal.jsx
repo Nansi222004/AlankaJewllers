@@ -148,7 +148,7 @@ const ReturnActionModal = ({ isOpen, onClose, type, order, onSuccess }) => {
                                     <div className="text-[9px] font-normal opacity-70 mt-0.5">5-7 Business Days</div>
                                 </button>
                                 <button type="button" onClick={() => setResolution('credit')} className={`p-3 rounded-lg border text-left text-xs font-bold transition-all ${resolution === 'credit' ? 'border-brand-espresso bg-brand-plum text-white' : 'border-gray-200 text-gray-700'}`}>
-                                    Alankarrr Jewellers Store Credit
+                                    Alankarr Jewellers Store Credit
                                     <div className="text-[9px] font-normal opacity-70 mt-0.5">Instant Credit</div>
                                 </button>
                             </div>

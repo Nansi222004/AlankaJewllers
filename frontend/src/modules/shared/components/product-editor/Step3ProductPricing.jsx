@@ -5,7 +5,7 @@ import {
     ChevronUp, ShieldCheck, Zap
 } from 'lucide-react';
 import { FormSection, Input, Select } from '../../../admin/components/common/FormControls';
-import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
+import AlankarJewelleryMark from '../AlankarJewelleryMark';
 import {
     getPricingForVariant,
     getPricingConfigurationError,
@@ -200,7 +200,7 @@ const Step3ProductPricing = ({
                         <p className="text-xs text-gray-500 leading-relaxed max-w-2xl">
                             Choose who bears the payment gateway processing charge.
                             <br />
-                            • <strong>Store:</strong> Alankarr absorbs the payment gateway fee (0% customer surcharge).
+                            • <strong>Store:</strong> Alankar absorbs the payment gateway fee (0% customer surcharge).
                             <br />
                             • <strong>Customer:</strong> 2% payment gateway surcharge is added to the customer-facing final price.
                         </p>
@@ -208,7 +208,7 @@ const Step3ProductPricing = ({
 
                     <div className="flex items-center gap-2.5 shrink-0">
                         {[
-                            { value: 'store', label: 'Store (Alankarr Absorbs - 0%)' },
+                            { value: 'store', label: 'Store (Alankar Absorbs - 0%)' },
                             { value: 'user', label: 'Customer (2% Surcharge)' }
                         ].map((opt) => (
                             <button
@@ -406,7 +406,7 @@ const Step3ProductPricing = ({
                             <div className="flex items-center justify-between border-b border-pink-200/60 pb-3">
                                 <div className="flex items-center gap-2">
                                     <div className="p-1.5 bg-pink-100 rounded-lg text-pink-700">
-                                        <AlankarrJewelleryMark size={16} />
+                                        <AlankarJewelleryMark size={16} />
                                     </div>
                                     <div>
                                         <h4 className="text-xs font-bold uppercase tracking-wider text-pink-900">Diamond Pricing (Admin Controlled)</h4>
@@ -568,7 +568,7 @@ const Step3ProductPricing = ({
                         /* Subtle Diamond Opt-in for Gold/Silver */
                         <div className="bg-white rounded-2xl p-4 border border-dashed border-pink-200 flex items-center justify-between">
                             <div className="flex items-center gap-2.5">
-                                <AlankarrJewelleryMark size={16} className="text-pink-600" />
+                                <AlankarJewelleryMark size={16} className="text-pink-600" />
                                 <span className="text-xs font-semibold text-gray-700">Does this piece include Diamonds?</span>
                             </div>
                             {!isViewMode && (

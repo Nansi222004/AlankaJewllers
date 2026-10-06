@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 import { formatCurrency } from '../utils/price';
 
 const RecentlyViewed = () => {
@@ -84,7 +84,7 @@ const RecentlyViewed = () => {
                             {/* Quick Action Overlay */}
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-[2px]">
                                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
-                                    <AlankarrJewelleryMark className="w-4 h-4 text-brand-champagne" />
+                                    <AlankarJewelleryMark className="w-4 h-4 text-brand-champagne" />
                                 </div>
                             </div>
                         </div>

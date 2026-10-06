@@ -1,5 +1,5 @@
 const path = require('path');
-const backendDir = 'd:/Appzeto_Projects/AlankarrJewllers/backend';
+const backendDir = 'd:/Appzeto_Projects/AlankarJewllers/backend';
 const mongoose = require(backendDir + '/node_modules/mongoose');
 const dotenv = require(backendDir + '/node_modules/dotenv');
 dotenv.config({ path: backendDir + '/.env' });

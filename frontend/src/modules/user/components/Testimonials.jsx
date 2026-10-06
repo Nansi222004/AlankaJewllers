@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
-import AlankarrJewelleryMark from "./AlankarrJewelleryMark";
+import AlankarJewelleryMark from "./AlankarJewelleryMark";
 import { useHomepageCms } from "../hooks/useHomepageCms";
 import { resolveLegacyCmsAsset } from "../utils/legacyCmsAssets";
 import { handleImageError } from "../../../utils/imageFallbacks";
@@ -30,7 +30,7 @@ const TESTIMONIALS = [
     id: 3,
     name: "Priya Patel",
     image: customer3,
-    text: "Gifted these earrings to my sister on her wedding and she loved them! I am obsessed with buying gifts from Alankarrr Jewellers.",
+    text: "Gifted these earrings to my sister on her wedding and she loved them! I am obsessed with buying gifts from Alankarr Jewellers.",
     location: "Bangalore",
   },
 ];
@@ -65,7 +65,7 @@ const Testimonials = () => {
         {/* Header */}
         <div className="text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
-            <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+            <AlankarJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
             <span>Cherished Words</span>
           </div>
           <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">

@@ -104,7 +104,7 @@ const SECTIONS = [
       badge: "Private Atelier Service",
       whatsappNumber: "919876543210",
       ctaLabel: "Chat on WhatsApp",
-      ctaPath: "https://wa.me/919876543210?text=Hello%20Alankarrr%20Jewellers,%20I'd%20like%20to%20inquire%20about%20a%20bespoke%20gemstone%20jewellery%20design.",
+      ctaPath: "https://wa.me/919876543210?text=Hello%20Alankarr%20Jewellers,%20I'd%20like%20to%20inquire%20about%20a%20bespoke%20gemstone%20jewellery%20design.",
     },
     items: [],
   },

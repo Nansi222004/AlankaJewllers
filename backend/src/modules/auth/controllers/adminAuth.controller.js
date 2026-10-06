@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
     const identifier = String(email).trim();
 
     // 1. Auto-seeding check: Ensure correct credentials exist in DB from .env
-    const envAdminEmail = (process.env.ADMIN_EMAIL || "admin@Alankarrrjewellers.com").trim().toLowerCase();
+    const envAdminEmail = (process.env.ADMIN_EMAIL || "admin@Alankarrjewellers.com").trim().toLowerCase();
     const envAdminPassword = process.env.ADMIN_PASSWORD || "admin123";
     const envAdminName = process.env.ADMIN_NAME || "Super Admin";
 
@@ -140,7 +140,7 @@ exports.sendResetOtp = async (req, res) => {
     try {
       await sendEmail({
         to: email,
-        subject: "Alankarrr Jewellers Admin Password Reset OTP",
+        subject: "Alankarr Jewellers Admin Password Reset OTP",
         html: `<p>Your password reset OTP is <strong>${otp}</strong>. This OTP is valid for 15 minutes.</p>`
       });
     } catch (mailErr) {

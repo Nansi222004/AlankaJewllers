@@ -35,23 +35,23 @@ import {
   Loader2,
 } from "lucide-react";
 import PageHeader from "../components/common/PageHeader";
-import AlankarrJewelleryMark from "../../shared/components/AlankarrJewelleryMark";
+import AlankarJewelleryMark from "../../shared/components/AlankarJewelleryMark";
 import api from "../../../services/api";
 import { adminService } from "../services/adminService";
 import toast from "react-hot-toast";
 
 const DEFAULT_SETTINGS = {
   // Brand & Store Identity
-  storeName: "Alankarrr Jewellers",
-  tagline: "Alankarrr Jewellers – Where Luxury Meets Identity",
+  storeName: "Alankarr Jewellers",
+  tagline: "Alankarr Jewellers – Where Luxury Meets Identity",
   logo: "/logo.webp",
   address:
-    "Alankarrr Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
+    "Alankarr Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
   phone: "+91 8668821446",
   contactPhone: "+91 8668821446",
   email: "swarna.sparsh22@gmail.com",
   contactEmail: "swarna.sparsh22@gmail.com",
-  website: "https://Alankarrr-jewellers.com/",
+  website: "https://Alankarr-jewellers.com/",
   shippingCharges: 0,
   freeShippingThreshold: 0,
 
@@ -70,13 +70,13 @@ const DEFAULT_SETTINGS = {
     { id: 4, icon: "Headset", text: "Dedicated Support Team" },
   ],
   fraudWarning:
-    "BEWARE OF FRAUD: Alankarrr Jewellers never asks for confidential banking details over phone or email.",
+    "BEWARE OF FRAUD: Alankarr Jewellers never asks for confidential banking details over phone or email.",
 
   // Footer Settings
   footerTagline: "Timeless Elegance,",
   footerSubTagline: "Handcrafted for You.",
   footerDescription:
-    "Every piece at Alankarrr Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
+    "Every piece at Alankarr Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
 
   footerColumn1Title: "Experience",
   footerColumn2Title: "Policies",
@@ -147,7 +147,7 @@ const DEFAULT_SETTINGS = {
   },
 
   footerDeliveryText: "Safe & Insured Express Worldwide Delivery",
-  footerCopyrightText: "Alankarrr Jewellers. All Rights Reserved.",
+  footerCopyrightText: "Alankarr Jewellers. All Rights Reserved.",
 };
 
 const GlobalSettings = () => {
@@ -171,10 +171,10 @@ const GlobalSettings = () => {
             logo: (!fetched.logo || /swarna|sands-logo/i.test(fetched.logo)) ? DEFAULT_SETTINGS.logo : fetched.logo,
             phone: fetched.phone || fetched.contactPhone || DEFAULT_SETTINGS.phone,
             email: fetched.email || fetched.contactEmail || DEFAULT_SETTINGS.email,
-            address: (fetched.address && /swarna\s*sparsh/i.test(fetched.address)) ? fetched.address.replace(/swarna\s*sparsh/gi, 'Alankarrr Jewellers') : (fetched.address || DEFAULT_SETTINGS.address),
-            fraudWarning: (fetched.fraudWarning && /swarna\s*sparsh/i.test(fetched.fraudWarning)) ? fetched.fraudWarning.replace(/swarna\s*sparsh/gi, 'Alankarrr Jewellers') : (fetched.fraudWarning || DEFAULT_SETTINGS.fraudWarning),
-            footerDescription: (fetched.footerDescription && /swarna\s*sparsh/i.test(fetched.footerDescription)) ? fetched.footerDescription.replace(/swarna\s*sparsh/gi, 'Alankarrr Jewellers') : (fetched.footerDescription || DEFAULT_SETTINGS.footerDescription),
-            footerCopyrightText: (fetched.footerCopyrightText && /swarna\s*sparsh/i.test(fetched.footerCopyrightText)) ? fetched.footerCopyrightText.replace(/swarna\s*sparsh/gi, 'Alankarrr Jewellers') : (fetched.footerCopyrightText || DEFAULT_SETTINGS.footerCopyrightText),
+            address: (fetched.address && /swarna\s*sparsh/i.test(fetched.address)) ? fetched.address.replace(/swarna\s*sparsh/gi, 'Alankarr Jewellers') : (fetched.address || DEFAULT_SETTINGS.address),
+            fraudWarning: (fetched.fraudWarning && /swarna\s*sparsh/i.test(fetched.fraudWarning)) ? fetched.fraudWarning.replace(/swarna\s*sparsh/gi, 'Alankarr Jewellers') : (fetched.fraudWarning || DEFAULT_SETTINGS.fraudWarning),
+            footerDescription: (fetched.footerDescription && /swarna\s*sparsh/i.test(fetched.footerDescription)) ? fetched.footerDescription.replace(/swarna\s*sparsh/gi, 'Alankarr Jewellers') : (fetched.footerDescription || DEFAULT_SETTINGS.footerDescription),
+            footerCopyrightText: (fetched.footerCopyrightText && /swarna\s*sparsh/i.test(fetched.footerCopyrightText)) ? fetched.footerCopyrightText.replace(/swarna\s*sparsh/gi, 'Alankarr Jewellers') : (fetched.footerCopyrightText || DEFAULT_SETTINGS.footerCopyrightText),
             socialLinks: {
               ...DEFAULT_SETTINGS.socialLinks,
               ...(fetched.socialLinks || {}),
@@ -714,7 +714,7 @@ const GlobalSettings = () => {
             {/* Brand Name */}
             <div>
               <label className="flex items-center gap-2 text-[10px] font-medium text-gray-400 tracking-wide mb-2">
-                <AlankarrJewelleryMark className="w-3 h-3 text-[#C9A24D]" />
+                <AlankarJewelleryMark className="w-3 h-3 text-[#C9A24D]" />
                 <span>Brand / Store Name</span>
               </label>
               <input
@@ -722,7 +722,7 @@ const GlobalSettings = () => {
                 value={settings.storeName || ""}
                 onChange={(e) => handleChange("storeName", e.target.value)}
                 disabled={!isEditing}
-                placeholder="e.g. Alankarrr Jewellers"
+                placeholder="e.g. Alankarr Jewellers"
               />
             </div>
 
@@ -737,7 +737,7 @@ const GlobalSettings = () => {
                 value={settings.tagline || ""}
                 onChange={(e) => handleChange("tagline", e.target.value)}
                 disabled={!isEditing}
-                placeholder="e.g. Alankarrr Jewellers – Where Luxury Meets Identity"
+                placeholder="e.g. Alankarr Jewellers – Where Luxury Meets Identity"
               />
             </div>
 
@@ -788,7 +788,7 @@ const GlobalSettings = () => {
                 value={settings.address || ""}
                 onChange={(e) => handleChange("address", e.target.value)}
                 disabled={!isEditing}
-                placeholder="Alankarrr Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra"
+                placeholder="Alankarr Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra"
               />
             </div>
 
@@ -875,16 +875,16 @@ const GlobalSettings = () => {
               Product USP & Care Guide Configuration
             </h3>
             <p className="text-xs text-gray-500 font-medium tracking-wide mt-1">
-              Customize "The Alankarrr Jewellers Promise" and "Care Guide" blocks shown on product detail pages.
+              Customize "The Alankarr Jewellers Promise" and "Care Guide" blocks shown on product detail pages.
             </p>
           </div>
 
           <div className="space-y-8">
-            {/* The Alankarrr Jewellers Promise Section */}
+            {/* The Alankarr Jewellers Promise Section */}
             <div className="space-y-4">
               <h4 className="text-sm font-medium text-gray-900 tracking-wide border-b border-gray-100 pb-2 flex items-center gap-2">
-                <AlankarrJewelleryMark className="w-4 h-4 text-[#9C5B61]" />
-                The Alankarrr Jewellers Promise (USPs)
+                <AlankarJewelleryMark className="w-4 h-4 text-[#9C5B61]" />
+                The Alankarr Jewellers Promise (USPs)
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[0, 1, 2].map((idx) => {
@@ -940,7 +940,7 @@ const GlobalSettings = () => {
             {/* Care Guide Section */}
             <div className="space-y-4">
               <h4 className="text-sm font-medium text-gray-900 tracking-wide border-b border-gray-100 pb-2 flex items-center gap-2">
-                <AlankarrJewelleryMark className="w-4 h-4 text-[#9C5B61]" />
+                <AlankarJewelleryMark className="w-4 h-4 text-[#9C5B61]" />
                 Care Guide Steps
               </h4>
 

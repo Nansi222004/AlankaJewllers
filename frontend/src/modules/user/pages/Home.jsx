@@ -54,7 +54,7 @@ const Home = () => {
     useResetScroll();
 
     useEffect(() => {
-        document.title = "Alankarr Jewellers | Crafted for Moments That Last";
+        document.title = "Alankar Jewellers | Crafted for Moments That Last";
         updateActiveMetal('silver');
     }, [updateActiveMetal]);
 

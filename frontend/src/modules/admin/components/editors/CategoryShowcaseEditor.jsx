@@ -341,8 +341,8 @@ const CategoryShowcaseEditor = ({ sectionData, onSave, defaultItems = [] }) => {
             },
             {
               id: "gold-curated-showcase-4",
-              name: "Alankarrr Jewellers",
-              label: "Alankarrr Jewellers",
+              name: "Alankarr Jewellers",
+              label: "Alankarr Jewellers",
               image: goldRingsGreen,
               categoryId: "",
               path: "/shop?metal=gold&category=rings",

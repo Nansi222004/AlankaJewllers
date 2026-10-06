@@ -75,14 +75,14 @@ const PromoBannersSection = () => {
                                 <img
                                     src={imgRight}
                                     className="max-w-[75%] max-h-[75%] object-contain drop-shadow-xl"
-                                    alt="Alankarrr Jewellers Jewelry"
+                                    alt="Alankarr Jewellers Jewelry"
                                 />
                             </div>
 
                             {/* Center Branding Overlay - Scaled Down */}
                             <div className="absolute bottom-[28%] left-1/2 -translate-x-1/2 z-20">
                                 <div className="bg-white/95 backdrop-blur-md px-6 py-2 rounded-none shadow-md border border-brand-border">
-                                    <span className="text-brand-espresso font-black text-sm tracking-[0.35em]">Alankarrr JEWELLERS</span>
+                                    <span className="text-brand-espresso font-black text-sm tracking-[0.35em]">Alankarr JEWELLERS</span>
                                 </div>
                             </div>
 

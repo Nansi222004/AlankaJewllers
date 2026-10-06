@@ -527,7 +527,7 @@ const CheckoutPage = () => {
               </button>
 
               <p className="text-[9px] md:text-xs text-center text-gray-400 mt-3 md:mt-4">
-                Secure Checkout with Alankarrr Jewellers
+                Secure Checkout with Alankarr Jewellers
               </p>
             </div>
           </div>

@@ -4,7 +4,7 @@ import {
     FileText, AlertTriangle
 } from 'lucide-react';
 import { FormSection, Input, Select } from '../../../admin/components/common/FormControls';
-import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
+import AlankarJewelleryMark from '../AlankarJewelleryMark';
 
 const Step2ProductMaterial = ({
     formData,

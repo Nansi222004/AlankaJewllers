@@ -1,11 +1,11 @@
 import React from 'react';
 import { Truck, RotateCcw, ShieldCheck, Sun } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 
 const WhyChooseUs = () => {
     const commitments = [
         {
-            icon: AlankarrJewelleryMark,
+            icon: AlankarJewelleryMark,
             title: "Pure 925",
             subtitle: "SILVER",
             text: "Certified Authenticity"
@@ -36,7 +36,7 @@ const WhyChooseUs = () => {
                 {/* Section Header */}
                 <div className="text-center mb-5 md:mb-16 relative">
                     <span className="text-[9px] md:text-[11px] font-bold text-brand-champagne uppercase tracking-[0.3em] md:tracking-[0.4em] mb-1.5 md:mb-3 block">
-                        The Alankarrr Jewellers Touch
+                        The Alankarr Jewellers Touch
                     </span>
                     <h2 className="text-xl sm:text-2xl md:text-5xl font-display text-brand-espresso relative inline-block">
                         Why Choose Us

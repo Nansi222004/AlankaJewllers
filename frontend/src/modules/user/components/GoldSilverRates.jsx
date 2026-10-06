@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Coins, MapPin, RefreshCw } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 import { useShop } from '../../../context/ShopContext';
 import { useMetalRateCities, useMetalRates } from '../hooks/useMetalRates';
 import { formatRateUnit } from '../utils/referenceMetalRate';
@@ -94,7 +94,7 @@ const GoldSilverRates = ({ metal }) => {
                                 }`}
                         >
                             {isSilverMode ? (
-                                <AlankarrJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
+                                <AlankarJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
                             ) : (
                                 <Coins className="h-4 w-4" />
                             )}
@@ -192,7 +192,7 @@ const GoldSilverRates = ({ metal }) => {
                             <div className="relative z-10 flex flex-col items-center text-center">
                                 {/* Badge pill */}
                                 <div className="inline-flex items-center gap-2 rounded-full bg-[#F7DDE5] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-[#6B3F46] border border-[#D99AAE]/60">
-                                    <AlankarrJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
+                                    <AlankarJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
                                     <span>999 Fine Silver Reference</span>
                                 </div>
 

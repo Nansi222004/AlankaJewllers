@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Tag } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 
 import editEverydayImg from '@assets/edits/edit_everyday.png';
 import editSolitaireImg from '@assets/edits/edit_solitaire.png';
@@ -140,7 +140,7 @@ const CuratedEditCard = ({ item, fallbackItem, index }) => {
                         <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
                     </span>
                     <span className="text-[10px] text-stone-400 font-medium tracking-wide">
-                        Alankarrr Fine Jewels
+                        Alankarr Fine Jewels
                     </span>
                 </div>
             </div>
@@ -164,7 +164,7 @@ const DiamondCuratedCollections = ({ sectionData }) => {
                 {/* Header */}
                 <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#E8D9E3] bg-white text-[#5C3B55] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-2.5 shadow-2xs">
-                        <AlankarrJewelleryMark className="w-3.5 h-3.5 text-[#805E7A]" />
+                        <AlankarJewelleryMark className="w-3.5 h-3.5 text-[#805E7A]" />
                         <span>{badge}</span>
                     </div>
                     <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight mb-2.5">

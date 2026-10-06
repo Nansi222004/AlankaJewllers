@@ -1,7 +1,7 @@
 {
-  "name": "Alankarrr-jewellers-backend",
+  "name": "Alankarr-jewellers-backend",
   "version": "1.0.0",
-  "description": "Alankarrr Jewellers - Node.js + Express + MongoDB Backend",
+  "description": "Alankarr Jewellers - Node.js + Express + MongoDB Backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

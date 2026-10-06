@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
       title: "Secure Payments",
       icon: <Lock className="w-6 h-6" />,
       content:
-        "Your payment details are encrypted and processed by Razorpay. Alankarrr Jewellers does not store your credit card or bank credentials on our servers.",
+        "Your payment details are encrypted and processed by Razorpay. Alankarr Jewellers does not store your credit card or bank credentials on our servers.",
     },
     {
       title: "Cookies & Tracking",
@@ -70,7 +70,7 @@ const PrivacyPolicy = () => {
           <div className="flex items-center gap-4 mb-10 md:mb-16 p-6 bg-brand-pearl rounded-2xl border border-brand-champagne/25">
             <Shield className="w-8 h-8 md:w-10 md:h-10 text-brand-champagne flex-shrink-0" />
             <p className="text-sm md:text-base text-stone-600 italic">
-              "Alankarrr Jewellers is committed to ensuring that your privacy is
+              "Alankarr Jewellers is committed to ensuring that your privacy is
               protected and your data is used only to enhance your shopping
               experience."
             </p>

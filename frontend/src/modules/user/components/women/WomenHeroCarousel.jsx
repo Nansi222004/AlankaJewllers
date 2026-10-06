@@ -118,7 +118,7 @@ const WomenHeroCarousel = ({ sectionData }) => {
             className="max-w-xl"
           >
             <span className="inline-block text-[4px] sm:text-[6px] md:text-xs text-white/50 tracking-[0.3em] md:tracking-[0.5em] uppercase mb-0 md:mb-4 font-bold border-r-[1px] md:border-r-2 border-white/30 pr-1 md:pr-4">
-              Alankarrr Jewellers Exclusive
+              Alankarr Jewellers Exclusive
             </span>
 
             <h1 className="text-sm sm:text-2xl md:text-8xl font-serif text-white tracking-tight font-light leading-none md:leading-[1] transition-all">

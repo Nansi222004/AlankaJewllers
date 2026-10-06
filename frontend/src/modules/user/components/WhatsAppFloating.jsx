@@ -7,7 +7,7 @@ const WhatsAppFloating = ({ inline = false }) => {
   const { settings } = useSettings();
   const rawPhone = settings?.phone || settings?.contactPhone || "+91 8668821446";
   const phoneNumber = rawPhone.replace(/\D/g, "") || "918668821446";
-  const brand = settings?.storeName || "Alankarrr Jewellers";
+  const brand = settings?.storeName || "Alankarr Jewellers";
   const message =
     `Hi ${brand}, I'm interested in your jewellery collection.`;
 

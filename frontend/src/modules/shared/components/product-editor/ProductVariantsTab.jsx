@@ -8,7 +8,7 @@ import {
 import Barcode from 'react-barcode';
 import { roundCurrency, getPricingForVariant, getPricingConfigurationError, getAvailableSerialCodes, normalizeSerialCodes } from '../../utils/productEditorUtils';
 import toast from 'react-hot-toast';
-import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
+import AlankarJewelleryMark from '../AlankarJewelleryMark';
 
 const ProductVariantsTab = ({
     formData,
@@ -175,7 +175,7 @@ const ProductVariantsTab = ({
                                             </div>
                                             <div className="space-y-2">
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
-                                                    <AlankarrJewelleryMark size={10} className="text-amber-500" /> Diamond Type
+                                                    <AlankarJewelleryMark size={10} className="text-amber-500" /> Diamond Type
                                                 </label>
                                                 <select
                                                     value={v.diamondType || formData.diamondType || 'none'}
@@ -332,7 +332,7 @@ const ProductVariantsTab = ({
                                             </div>
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
-                                                    <AlankarrJewelleryMark size={10} className="text-amber-500" /> Legacy Diamond / Stones
+                                                    <AlankarJewelleryMark size={10} className="text-amber-500" /> Legacy Diamond / Stones
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -669,7 +669,7 @@ const ProductVariantsTab = ({
                                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
                                                 <div className="flex items-center gap-3">
                                                     <div className="p-2 bg-pink-100 rounded-xl text-pink-600">
-                                                        <AlankarrJewelleryMark size={18} className="text-pink-600" />
+                                                        <AlankarJewelleryMark size={18} className="text-pink-600" />
                                                     </div>
                                                     <div>
                                                         <h4 className="text-[10px] font-black text-pink-800 uppercase tracking-[0.2em]">Diamond Intelligence</h4>
@@ -843,7 +843,7 @@ const ProductVariantsTab = ({
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-3">
                                                     <div className="p-2 bg-purple-100 rounded-xl text-purple-600">
-                                                        <AlankarrJewelleryMark size={18} className="text-purple-600" />
+                                                        <AlankarJewelleryMark size={18} className="text-purple-600" />
                                                     </div>
                                                     <div>
                                                         <h4 className="text-[10px] font-black text-purple-800 uppercase tracking-[0.2em]">Gemstone Pricing</h4>

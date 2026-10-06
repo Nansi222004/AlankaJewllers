@@ -24,7 +24,7 @@ const GOLD_TESTIMONIALS = [
         location: 'Mumbai',
         rating: 5,
         image: customer2,
-        text: 'Most gold rings for men look dated. I wanted to gift him something that matches the wedding ring he got me too. Finally got to know Alankarrr Jewellers\'s gold made-to-order option.'
+        text: 'Most gold rings for men look dated. I wanted to gift him something that matches the wedding ring he got me too. Finally got to know Alankarr Jewellers\'s gold made-to-order option.'
     },
     {
         id: 3,

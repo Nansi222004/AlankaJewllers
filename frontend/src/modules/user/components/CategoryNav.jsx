@@ -28,7 +28,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
         { id: 'gifting', name: 'Gifting', path: '/category/women', hasChevron: true },
         { id: 'under50k', name: 'Under ₹50K', path: '/shop?price_max=50000', hasChevron: false },
         { id: 'exclusive', name: 'Exclusive', fullSuffix: ' Collections', path: '/shop?search=exclusive', hasChevron: false },
-        { id: 'more', name: 'More', fullSuffix: ' at Alankarrr Jewellers', path: '/about', hasChevron: false },
+        { id: 'more', name: 'More', fullSuffix: ' at Alankarr Jewellers', path: '/about', hasChevron: false },
     ];
 
     const resetMenu = () => {

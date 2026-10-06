@@ -149,7 +149,7 @@ exports.issueGiftCard = async (req, res) => {
       balance: cardValue,
       status: "active",
       purchasedByUserId: null,
-      purchasedByName: "Alankarrr Jewellers (Admin)",
+      purchasedByName: "Alankarr Jewellers (Admin)",
       recipientName: recipientName.trim(),
       recipientEmail: recipientEmail.trim().toLowerCase(),
       senderName: senderName.trim(),
@@ -161,7 +161,7 @@ exports.issueGiftCard = async (req, res) => {
     if (doSendEmail) {
       enqueueEmail({
         to: card.recipientEmail,
-        subject: `You've Received an Alankarrr Jewellers Gift Card worth ₹${cardValue.toLocaleString("en-IN")}!`,
+        subject: `You've Received an Alankarr Jewellers Gift Card worth ₹${cardValue.toLocaleString("en-IN")}!`,
         html: emailTemplates.giftCardDelivery({ giftCard: card }),
         type: "general",
       });
@@ -261,7 +261,7 @@ exports.resendEmail = async (req, res) => {
 
     enqueueEmail({
       to: card.recipientEmail,
-      subject: `Your Alankarrr Jewellers Gift Card — ₹${card.value.toLocaleString("en-IN")}`,
+      subject: `Your Alankarr Jewellers Gift Card — ₹${card.value.toLocaleString("en-IN")}`,
       html: emailTemplates.giftCardDelivery({ giftCard: card }),
       type: "general",
     });

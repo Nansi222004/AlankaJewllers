@@ -1,6 +1,6 @@
 /**
  * 📦 Admin Pickup Location Controller
- *    Manages Alankarrr Jewellers store dispatch warehouses and pickup addresses.
+ *    Manages Alankarr Jewellers store dispatch warehouses and pickup addresses.
  *    Supports creating, updating, setting default, and syncing directly with Shiprocket.
  */
 

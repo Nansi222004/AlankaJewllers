@@ -205,7 +205,7 @@ const Step7ProductContent = ({
                                         type="button"
                                         onClick={() => setFormData(prev => ({
                                             ...prev,
-                                            careTips: "<p><strong>Alankarr Jewellers Care Guide:</strong></p><ul><li>Avoid direct contact with perfumes, deodorants, and cosmetic lotions.</li><li>Remove fine jewellery before swimming, exercise, or household cleaning.</li><li>Store individually in an airtight pouch or satin-lined jewellery case.</li><li>Wipe gently with a soft micro-suede polishing cloth after each wear.</li></ul>"
+                                            careTips: "<p><strong>Alankar Jewellers Care Guide:</strong></p><ul><li>Avoid direct contact with perfumes, deodorants, and cosmetic lotions.</li><li>Remove fine jewellery before swimming, exercise, or household cleaning.</li><li>Store individually in an airtight pouch or satin-lined jewellery case.</li><li>Wipe gently with a soft micro-suede polishing cloth after each wear.</li></ul>"
                                         }))}
                                         className="text-xs font-bold text-amber-700 hover:text-amber-800 transition-colors flex items-center gap-1"
                                     >

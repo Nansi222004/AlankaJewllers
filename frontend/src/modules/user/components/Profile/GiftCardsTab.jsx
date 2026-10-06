@@ -128,7 +128,7 @@ const GiftCardsTab = () => {
                     </div>
                     <div className="space-y-2">
                         <h3 className="text-base font-bold text-brand-espresso font-serif">No Gift Cards Purchased Yet</h3>
-                        <p className="text-xs text-stone-500 leading-relaxed">Spread love and sparkles by gifting your loved ones an Alankarrr Jewellers E-Gift Card. Let them pick their favorite jewelry.</p>
+                        <p className="text-xs text-stone-500 leading-relaxed">Spread love and sparkles by gifting your loved ones an Alankarr Jewellers E-Gift Card. Let them pick their favorite jewelry.</p>
                     </div>
                     <a
                         href="/gift-cards"
@@ -153,7 +153,7 @@ const GiftCardsTab = () => {
                                 <div className="flex justify-between items-start">
                                     <div className="flex items-center gap-2">
                                         <Gift className="w-5 h-5 text-brand-champagne-light" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-champagne-light">Alankarrr Jewellers Gift Voucher</span>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-champagne-light">Alankarr Jewellers Gift Voucher</span>
                                     </div>
                                     <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${getStatusColor(card.status)}`}>
                                         {getStatusLabel(card.status)}

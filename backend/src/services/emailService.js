@@ -1,5 +1,5 @@
 /**
- * ✉️  Production Email Service — Alankarrr Jewellers
+ * ✉️  Production Email Service — Alankarr Jewellers
  *
  *  Features:
  *    - Auto-detects provider: Brevo (preferred), generic SMTP, Mailtrap (dev)
@@ -156,7 +156,7 @@ const sendEmail = async ({
   }
 
   const mailOptions = {
-    from: `Alankarrr Jewellers <${process.env.SMTP_FROM || process.env.SUPPORT_EMAIL}>`,
+    from: `Alankarr Jewellers <${process.env.SMTP_FROM || process.env.SUPPORT_EMAIL}>`,
     to,
     subject,
     html,

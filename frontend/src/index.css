@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 :root {
-    /* Alankarrr Jewellers brand palette */
+    /* Alankarr Jewellers brand palette */
     --brand-pearl: #FBF8F7;
     --brand-porcelain: #F7EFEE;
     --brand-white: #FFFFFF;
@@ -168,7 +168,7 @@
     --color-border-subtle: var(--brand-border-soft);
 }
 
-/* Alankarrr Jewellers Luxury UI Utilities */
+/* Alankarr Jewellers Luxury UI Utilities */
 .luxury-card {
     background-color: var(--brand-white);
     border: 1px solid var(--brand-border-soft);

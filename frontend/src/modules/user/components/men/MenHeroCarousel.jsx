@@ -11,7 +11,7 @@ import heroMenElite from '@assets/men_hero_elite.png';
 const slides = [
     {
         id: 1,
-        brandTitle: "Alankarrr JEWELLERS BRINGS TO YOU",
+        brandTitle: "Alankarr JEWELLERS BRINGS TO YOU",
         mainTitle: "MEN",
         scriptTitle: "Silver",
         rightTitle: "Modern Silver for\nthe Bold Man",

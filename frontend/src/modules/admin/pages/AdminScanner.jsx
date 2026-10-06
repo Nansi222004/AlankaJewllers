@@ -175,7 +175,7 @@ const AdminScanner = () => {
             Admin POS Camera Terminal
           </span>
           <h1 className="text-white text-xs font-black uppercase tracking-widest mt-1">
-            Alankarrr Jewellers Store
+            Alankarr Jewellers Store
           </h1>
         </div>
         <button

@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Heart, ShoppingCart, User, Users, Menu, X, ChevronDown, ChevronRight, Bell, Coins, Gem, Droplet, LifeBuoy, Sun, Hexagon, Gift, MoreHorizontal, ShoppingBag, Info, Landmark, Tag } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 import { useShop } from '../../../context/ShopContext';
 import { useNotification } from '../../../context/NotificationContext';
 import defaultLogo from '@/assets/logo-emblem-header.webp';
@@ -29,10 +29,10 @@ const Navbar = () => {
     const currentLogo = (settings?.logo && !settings.logo.includes('logo.webp') && !/swarna|sands/i.test(settings.logo))
         ? settings.logo
         : defaultLogo;
-    const currentStoreName = (!settings?.storeName || /swarna\s*sparsh|Alankarrr/i.test(settings.storeName))
-        ? 'Alankarr Jewellers'
+    const currentStoreName = (!settings?.storeName || /swarna\s*sparsh|Alankarr/i.test(settings.storeName))
+        ? 'Alankar Jewellers'
         : settings.storeName;
-    const brandSubTagline = 'Alankarr JEWELLERS – WHERE LUXURY MEETS IDENTITY';
+    const brandSubTagline = 'Alankar JEWELLERS – WHERE LUXURY MEETS IDENTITY';
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -755,7 +755,7 @@ const Navbar = () => {
                                                 <ShoppingBag className="w-7 h-7 text-brand-espresso absolute -bottom-1 -right-2 bg-white" strokeWidth={1.5} />
                                             </div>
                                             <div className="flex-1">
-                                                <h3 className="text-[17px] font-serif font-bold text-brand-espresso leading-tight mb-2 tracking-wide">Welcome to Alankarr Jewellers</h3>
+                                                <h3 className="text-[17px] font-serif font-bold text-brand-espresso leading-tight mb-2 tracking-wide">Welcome to Alankar Jewellers</h3>
                                                 <div className="flex items-center gap-2">
                                                     <Link to="/login" className="text-[11px] font-bold text-brand-champagne hover:underline uppercase tracking-wider" onClick={() => setIsMenuOpen(false)}>LOGIN</Link>
                                                     <span className="text-gray-300">|</span>
@@ -769,11 +769,11 @@ const Navbar = () => {
                                 {/* Navigation Links */}
                                 <nav className="flex-1 flex flex-col overflow-y-auto no-scrollbar px-3 pb-8">
                                     {[
-                                        { label: 'All Jewellery', path: '/shop', icon: AlankarrJewelleryMark },
+                                        { label: 'All Jewellery', path: '/shop', icon: AlankarJewelleryMark },
                                         { label: 'Gold', path: '/gold-collection', icon: Coins },
                                         { label: 'Silver', path: '/silver-collection', icon: Droplet },
                                         { label: 'Diamond', path: '/diamond-collection', icon: Gem },
-                                        { label: 'Gems', path: '/gems-collection', icon: AlankarrJewelleryMark },
+                                        { label: 'Gems', path: '/gems-collection', icon: AlankarJewelleryMark },
                                         { label: 'Bullions', path: '/shop?metal=gold&karat=24', icon: Landmark },
                                         { label: 'Rings', path: '/shop?category=rings', icon: LifeBuoy },
                                         { label: 'Daily Wear', path: '/shop?category=daily-wear', icon: Sun },

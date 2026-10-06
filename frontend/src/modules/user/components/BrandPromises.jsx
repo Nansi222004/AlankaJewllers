@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { Gem, RotateCcw, Truck, FileText, Shield, Gift, Lock, CreditCard } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 import { useHomepageCms } from '../hooks/useHomepageCms';
 
 const iconMap = {
@@ -12,7 +12,7 @@ const iconMap = {
     'file-text': FileText,
     shield: Shield,
     gift: Gift,
-    sparkles: AlankarrJewelleryMark,
+    sparkles: AlankarJewelleryMark,
     lock: Lock,
     'credit-card': CreditCard
 };
@@ -68,8 +68,8 @@ const BrandPromises = () => {
                 {/* Header */}
                 <div className="text-center mb-5 md:mb-16">
                     <div className="inline-flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2 text-brand-champagne text-[9px] md:text-[10px] uppercase font-bold tracking-[0.25em] md:tracking-[0.3em]">
-                        <AlankarrJewelleryMark className="w-3 h-3 md:w-3.5 md:h-3.5 text-brand-champagne" />
-                        <span>The Alankarrr Jewellers Touch</span>
+                        <AlankarJewelleryMark className="w-3 h-3 md:w-3.5 md:h-3.5 text-brand-champagne" />
+                        <span>The Alankarr Jewellers Touch</span>
                     </div>
                     <h2 className="font-serif text-xl sm:text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
                         {sectionData?.label || 'Why Choose Us'}

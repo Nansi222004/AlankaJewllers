@@ -277,7 +277,7 @@ const createAndProcessPrepaidOrder = async (
   if (paymentRecipient) {
     enqueueEmail({
       to: paymentRecipient,
-      subject: "Payment Successful - " + order.orderId + " | Alankarrr Jewellers",
+      subject: "Payment Successful - " + order.orderId + " | Alankarr Jewellers",
       html: emailTemplates.paymentSuccess({
         order,
         userName: order.customerName,
@@ -295,7 +295,7 @@ const createAndProcessPrepaidOrder = async (
     if (adminEmail) {
       enqueueEmail({
         to: adminEmail,
-        subject: `[Alankarrr Jewellers] Payment Received - Order #${order.orderId}`,
+        subject: `[Alankarr Jewellers] Payment Received - Order #${order.orderId}`,
         html: `<h2>Payment Confirmed</h2><p>Payment of <strong>₹${order.total}</strong> for Order <strong>#${order.orderId}</strong> was confirmed for ${order.customerName} (${order.paymentMethod.toUpperCase()}).</p>`,
         type: "admin_payment_confirmed",
       });

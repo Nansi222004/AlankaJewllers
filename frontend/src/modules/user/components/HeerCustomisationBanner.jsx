@@ -109,7 +109,7 @@ const HeerCustomisationBanner = () => {
                         <div className="mt-6 flex flex-col items-center lg:items-end">
                             <div className="flex items-center gap-2">
                                 <span className="h-px w-5 bg-brand-champagne/40" />
-                                <span className="font-serif italic text-base text-brand-espresso">Alankarrr</span>
+                                <span className="font-serif italic text-base text-brand-espresso">Alankarr</span>
                                 <span className="h-px w-5 bg-brand-champagne/40" />
                             </div>
                             <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-brand-champagne mt-0.5">

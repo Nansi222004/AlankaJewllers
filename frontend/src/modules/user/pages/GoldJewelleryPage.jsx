@@ -56,7 +56,7 @@ const GoldJewelleryPage = () => {
   const { updateActiveMetal } = useShop();
 
   useEffect(() => {
-    document.title = "Shop Gold Jewellery | Alankarr Jewellers";
+    document.title = "Shop Gold Jewellery | Alankar Jewellers";
     updateActiveMetal("gold");
   }, [updateActiveMetal]);
 

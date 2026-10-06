@@ -191,7 +191,7 @@ export const CartProvider = ({ children }) => {
               return {
                 id: item.productId,
                 _id: item.productId,
-                name: item.name || "Alankarr JEWELLERS Gift Card",
+                name: item.name || "Alankar JEWELLERS Gift Card",
                 price: item.price,
                 image: item.image,
                 isGiftCard: true,
@@ -733,7 +733,7 @@ export const CartProvider = ({ children }) => {
             key: import.meta.env.VITE_RAZORPAY_KEY_ID,
             amount: rpOrder.amount,
             currency: rpOrder.currency,
-            name: "Alankarr JEWELLERS",
+            name: "Alankar JEWELLERS",
             description: "Order Payment",
             order_id: rpOrder.id,
             handler: async (response) => {

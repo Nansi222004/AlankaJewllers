@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layers, Scale, Droplets, Zap, Box, ShieldCheck } from 'lucide-react';
-import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
+import AlankarJewelleryMark from '../AlankarJewelleryMark';
 
 const ProductSpecs = ({
     hasDiamonds,
@@ -15,7 +15,7 @@ const ProductSpecs = ({
             {hasDiamonds && (
                 <div className="bg-white rounded-2xl p-4 md:p-6 border border-brand-border shadow-xs flex flex-col items-center text-center">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-plum to-brand-plum border border-brand-champagne/50 flex items-center justify-center mb-4 shadow-md transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-                        <AlankarrJewelleryMark className="w-6 h-6 text-brand-champagne-light" />
+                        <AlankarJewelleryMark className="w-6 h-6 text-brand-champagne-light" />
                     </div>
                     <h4 className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-brand-champagne mb-6 border-b border-brand-border pb-2">Diamond Intelligence</h4>
                     <div className="grid grid-cols-3 gap-y-5 gap-x-1 w-full">
@@ -38,7 +38,7 @@ const ProductSpecs = ({
                         </div>
                         <div className="group transition-all duration-300 flex flex-col items-center justify-start h-full text-center">
                             <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-stone-50 flex items-center justify-center mb-1.5 group-hover:bg-brand-champagne/10 transition-colors shrink-0">
-                                <AlankarrJewelleryMark className="w-3.5 h-3.5 md:w-4 md:h-4 text-stone-400 group-hover:text-brand-champagne" />
+                                <AlankarJewelleryMark className="w-3.5 h-3.5 md:w-4 md:h-4 text-stone-400 group-hover:text-brand-champagne" />
                             </div>
                             <span className="text-[7px] md:text-[8px] font-bold text-stone-400 uppercase tracking-widest block mb-0.5">Clarity</span>
                             <span className="text-[10px] md:text-[11px] font-bold text-stone-900 block leading-tight">{currentVariant?.diamondSpecs?.clarity || product.diamondClarity || currentVariant?.diamondClarity || '---'}</span>

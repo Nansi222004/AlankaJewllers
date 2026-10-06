@@ -57,7 +57,7 @@ const SharedProductEditor = ({
     const navigate = useNavigate();
     const location = useLocation();
     const isAdminMode = true;
-    const storageKey = 'Alankarr_admin_add_product_form';
+    const storageKey = 'Alankar_admin_add_product_form';
 
     const isViewMode = location.pathname.includes('/view/');
     const isEditMode = Boolean(id) && !isViewMode;
@@ -446,7 +446,7 @@ const SharedProductEditor = ({
             </head>
             <body>
                 <h3 style="margin-top: 0; margin-bottom: 20px; text-transform: uppercase; font-size: 12px; font-weight: 800; letter-spacing: 2px; border-bottom: 2px solid #000; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-                    <span>Alankarr JEWELLERS • Barcodes Batch (${variant.name || 'Variant'})</span>
+                    <span>Alankar JEWELLERS • Barcodes Batch (${variant.name || 'Variant'})</span>
                     <span style="color: #666; font-size: 10px;">${codes.length} Units</span>
                 </h3>
                 <div class="grid">
@@ -1155,7 +1155,7 @@ const SharedProductEditor = ({
                                     </span>
                                 </div>
                                 <p className="text-[11px] text-gray-500 mt-0.5">
-                                    Alankarr JEWELLERS • Master Registry Protocol
+                                    Alankar JEWELLERS • Master Registry Protocol
                                 </p>
                             </div>
                         </div>
@@ -1380,7 +1380,7 @@ const SharedProductEditor = ({
                                 <h3 className="text-2xl font-bold leading-tight mb-2">
                                     Product Successfully Committed
                                 </h3>
-                                <p className="text-amber-200/80 text-xs">Synchronized with Alankarr JEWELLERS Central Registry</p>
+                                <p className="text-amber-200/80 text-xs">Synchronized with Alankar JEWELLERS Central Registry</p>
                             </div>
 
                             <div className="mt-8 p-4 bg-white/5 rounded-2xl border border-white/10">

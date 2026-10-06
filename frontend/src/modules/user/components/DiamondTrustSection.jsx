@@ -9,7 +9,7 @@ import {
     Gem,
     Truck
 } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 
 import trustCertifiedImg from '@assets/trust/trust_certified.png';
 import trustExchangeImg from '@assets/trust/trust_exchange.png';
@@ -23,7 +23,7 @@ const ICON_MAP = {
     RotateCcw,
     Star,
     Award,
-    Sparkles: AlankarrJewelleryMark,
+    Sparkles: AlankarJewelleryMark,
     CheckCircle2,
     Gem,
     Truck
@@ -74,7 +74,7 @@ const DEFAULT_TRUST_CARDS = [
 
 const DiamondTrustSection = ({ sectionData }) => {
     const settings = sectionData?.settings || {};
-    const title = settings.title || 'The Alankarrr Assurance';
+    const title = settings.title || 'The Alankarr Assurance';
     const subtitle = settings.subtitle || 'Every diamond comes with verified grading, lifetime care, and absolute purity.';
     const badge = settings.badge || 'Certified Trust';
 

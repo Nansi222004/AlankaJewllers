@@ -7,7 +7,7 @@ const User = require("../models/User");
 const seed = async () => {
   await connectDB();
   let admin = await User.findOne({ role: "admin" });
-  const email = (process.env.ADMIN_EMAIL || "admin@Alankarrrjewellers.com").trim().toLowerCase();
+  const email = (process.env.ADMIN_EMAIL || "admin@Alankarrjewellers.com").trim().toLowerCase();
   const password = process.env.ADMIN_PASSWORD || "admin123";
   const name = process.env.ADMIN_NAME || "Super Admin";
   const hashed = await bcrypt.hash(password, 12);

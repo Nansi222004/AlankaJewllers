@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Gem, Leaf } from 'lucide-react';
-import AlankarrJewelleryMark from './AlankarrJewelleryMark';
+import AlankarJewelleryMark from './AlankarJewelleryMark';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
 import naturalDiamondImg from '@assets/hero/diamond_luxury.png';
@@ -65,7 +65,7 @@ const DiamondShopByType = ({ sectionData }) => {
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-white text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
-                        <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                        <AlankarJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <span>{badge}</span>
                     </div>
                     <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight mb-3">

@@ -69,7 +69,7 @@ const DiamondJewelleryPage = () => {
   const [selectedShape, setSelectedShape] = useState(null);
 
   useEffect(() => {
-    document.title = "Shop Diamond Jewellery | Alankarr Jewellers";
+    document.title = "Shop Diamond Jewellery | Alankar Jewellers";
     updateActiveMetal("diamond");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [updateActiveMetal]);

@@ -467,7 +467,7 @@ exports.updateReturnStatus = async (req, res) => {
           nextStatus +
           " - " +
           (refreshed.returnId || "") +
-          " | Alankarrr Jewellers",
+          " | Alankarr Jewellers",
         html: emailTemplates.returnStatusUpdate({
           returnReq: refreshed,
           userName: returnUser.name,

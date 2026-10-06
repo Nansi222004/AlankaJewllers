@@ -1,5 +1,5 @@
 /**
- * 📧 Email Templates — Alankarrr Jewellers
+ * 📧 Email Templates — Alankarr Jewellers
  * All transactional HTML email templates live here.
  */
 "use strict";
@@ -23,7 +23,7 @@ const layout = (title, bodyHtml) => `<!DOCTYPE html>
         <!-- Header -->
         <tr>
           <td style="background:${BRAND_DARK};padding:28px 40px;text-align:center;">
-            <span style="font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;">Alankarrr Jewellers</span>
+            <span style="font-size:22px;font-weight:700;color:#fff;letter-spacing:2px;">Alankarr Jewellers</span>
             <p style="color:${BRAND_COLOR};margin:4px 0 0;font-size:12px;letter-spacing:3px;">FINE JEWELLERY</p>
           </td>
         </tr>
@@ -36,7 +36,7 @@ const layout = (title, bodyHtml) => `<!DOCTYPE html>
         <!-- Footer -->
         <tr>
           <td style="background:#f9f4ef;padding:24px 40px;text-align:center;border-top:1px solid #ece8e1;">
-            <p style="margin:0;font-size:12px;color:#888;">© ${new Date().getFullYear()} Alankarrr Jewellers. All rights reserved.</p>
+            <p style="margin:0;font-size:12px;color:#888;">© ${new Date().getFullYear()} Alankarr Jewellers. All rights reserved.</p>
             <p style="margin:6px 0 0;font-size:12px;color:#aaa;">
               Questions? Email us at <a href="mailto:${process.env.SUPPORT_EMAIL || 'swarna.sparsh22@gmail.com'}" style="color:${BRAND_COLOR};text-decoration:none;">${process.env.SUPPORT_EMAIL || 'swarna.sparsh22@gmail.com'}</a>
             </p>
@@ -134,7 +134,7 @@ const orderConfirmation = ({ order, userName }) => {
 
     ${divider()}
     <div style="text-align:center;padding:8px 0;">
-      ${btn("Track Your Order", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/order-tracking/${order._id}`)}
+      ${btn("Track Your Order", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/order-tracking/${order._id}`)}
     </div>`;
 
   return layout(`Order Confirmed — ${order.orderId}`, body);
@@ -167,7 +167,7 @@ const paymentSuccess = ({ order, userName, paymentId }) => {
     ${itemsTable(order.items)}
     ${divider()}
     <div style="text-align:center;padding:8px 0;">
-      ${btn("View Order Details", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/order-tracking/${order._id}`)}
+      ${btn("View Order Details", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/order-tracking/${order._id}`)}
     </div>`;
 
   return layout(`Payment Confirmed — ${order.orderId}`, body);
@@ -203,7 +203,7 @@ const orderShipped = ({
 
     ${divider()}
     <div style="text-align:center;padding:8px 0;">
-      ${btn("Track Shipment", trackingUrl || `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/order-tracking/${order._id}`)}
+      ${btn("Track Shipment", trackingUrl || `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/order-tracking/${order._id}`)}
     </div>`;
 
   return layout(`Your Order is Shipped — ${order.orderId}`, body);
@@ -220,7 +220,7 @@ const orderCancelled = ({ order, userName, reason }) => {
     ${order.paymentStatus === "paid" ? `<p style="font-size:14px;color:#2e7d32;font-weight:600;">A refund of ${rupees(order.total)} will be initiated within 5–7 business days.</p>` : ""}
     ${divider()}
     <div style="text-align:center;">
-      ${btn("Continue Shopping", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/shop`)}
+      ${btn("Continue Shopping", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/shop`)}
     </div>`;
 
   return layout(`Order Cancelled — ${order.orderId}`, body);
@@ -244,7 +244,7 @@ const returnRequested = ({ returnReq, userName, order }) => {
     <p style="font-size:13px;color:#666;line-height:1.7;">Our team will review your request within <strong>24–48 hours</strong>. You will receive an email once a decision is made.</p>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Return Status", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/return/${returnReq._id}`)}
+      ${btn("View Return Status", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/return/${returnReq._id}`)}
     </div>`;
 
   return layout(`Return Request — ${returnReq.returnId}`, body);
@@ -288,7 +288,7 @@ const returnStatusUpdate = ({
     </div>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Return Details", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/return/${returnReq._id}`)}
+      ${btn("View Return Details", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/return/${returnReq._id}`)}
     </div>`;
 
   return layout(`Return ${newStatus} — ${returnReq.returnId}`, body);
@@ -301,7 +301,7 @@ const returnStatusUpdate = ({
  */
 const welcomeEmail = ({ userName }) => {
   const body = `
-    <h2 style="margin:0 0 4px;font-size:24px;color:${BRAND_DARK};">Welcome to Alankarrr Jewellers ✨</h2>
+    <h2 style="margin:0 0 4px;font-size:24px;color:${BRAND_DARK};">Welcome to Alankarr Jewellers ✨</h2>
     <p style="color:#666;margin:0 0 24px;font-size:15px;">Hi ${userName || "there"}, we're thrilled to have you join our community of fine jewellery lovers.</p>
 
     <div style="background:${BRAND_LIGHT};border-radius:8px;padding:24px;text-align:center;margin-bottom:24px;">
@@ -311,10 +311,10 @@ const welcomeEmail = ({ userName }) => {
     </div>
 
     <div style="text-align:center;">
-      ${btn("Start Shopping", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/shop`)}
+      ${btn("Start Shopping", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/shop`)}
     </div>`;
 
-  return layout("Welcome to Alankarrr Jewellers!", body);
+  return layout("Welcome to Alankarr Jewellers!", body);
 };
 
 const emailVerificationCode = ({ code, purpose = "registration" }) => {
@@ -324,7 +324,7 @@ const emailVerificationCode = ({ code, purpose = "registration" }) => {
   };
   const body = `
     <h2 style="margin:0 0 8px;font-size:24px;color:${BRAND_DARK};">${headings[purpose] || headings.registration}</h2>
-    <p style="color:#666;margin:0 0 24px;font-size:15px;line-height:1.6;">Use the verification code below to continue with Alankarrr Jewellers.</p>
+    <p style="color:#666;margin:0 0 24px;font-size:15px;line-height:1.6;">Use the verification code below to continue with Alankarr Jewellers.</p>
     <div style="background:${BRAND_LIGHT};border:1px solid #eadfd8;border-radius:10px;padding:26px;text-align:center;margin-bottom:24px;">
       <p style="margin:0 0 10px;font-size:11px;color:#777;text-transform:uppercase;letter-spacing:2px;">Your verification code</p>
       <p style="margin:0;font-family:monospace;font-size:36px;font-weight:700;color:${BRAND_DARK};letter-spacing:8px;">${code}</p>
@@ -332,7 +332,7 @@ const emailVerificationCode = ({ code, purpose = "registration" }) => {
     <p style="font-size:14px;color:#555;line-height:1.7;margin:0 0 12px;">This code expires in 10 minutes and can only be used once.</p>
     <p style="font-size:13px;color:#888;line-height:1.7;margin:0;">If you did not request this verification, you can safely ignore this email.</p>`;
 
-  return layout("Your Alankarrr Jewellers Verification Code", body);
+  return layout("Your Alankarr Jewellers Verification Code", body);
 };
 
 // ── Exports ───────────────────────────────────────────────────────────────────
@@ -341,18 +341,18 @@ const emailVerificationCode = ({ code, purpose = "registration" }) => {
  * 10. Gift Card Delivery — sent to the RECIPIENT
  */
 const giftCardDelivery = ({ giftCard }) => {
-  const shopUrl = process.env.CLIENT_URL || "https://Alankarrr-jewellers.com";
+  const shopUrl = process.env.CLIENT_URL || "https://Alankarr-jewellers.com";
   const rupees = (n) => `₹${Number(n || 0).toLocaleString("en-IN")}`;
 
   const body = `
     <h2 style="margin:0 0 4px;font-size:22px;color:${BRAND_DARK};">You've Received a Gift! 🎁</h2>
     <p style="color:#666;margin:0 0 24px;font-size:15px;">
-      <strong>${giftCard.senderName}</strong> has sent you an Alankarrr Jewellers E-Gift Card.
+      <strong>${giftCard.senderName}</strong> has sent you an Alankarr Jewellers E-Gift Card.
       ${giftCard.personalMessage ? `<br/><em style="color:#888;">"${giftCard.personalMessage}"</em>` : ""}
     </p>
 
     <div style="background:linear-gradient(135deg,#1a1a1a 0%,#3d1a24 100%);border-radius:16px;padding:36px 32px;text-align:center;margin-bottom:28px;">
-      <p style="margin:0;font-size:11px;font-weight:700;color:${BRAND_COLOR};text-transform:uppercase;letter-spacing:3px;">Alankarrr Jewellers</p>
+      <p style="margin:0;font-size:11px;font-weight:700;color:${BRAND_COLOR};text-transform:uppercase;letter-spacing:3px;">Alankarr Jewellers</p>
       <p style="margin:8px 0 24px;font-size:12px;color:#aaa;letter-spacing:1px;">E-Gift Card</p>
       <p style="margin:0;font-size:13px;color:#aaa;text-transform:uppercase;letter-spacing:2px;">Card Value</p>
       <p style="margin:4px 0 28px;font-size:42px;font-weight:700;color:#fff;letter-spacing:-1px;">${rupees(giftCard.value)}</p>
@@ -372,7 +372,7 @@ const giftCardDelivery = ({ giftCard }) => {
     <div style="background:${BRAND_LIGHT};border-radius:8px;padding:18px 20px;margin-bottom:24px;">
       <p style="margin:0;font-size:12px;font-weight:700;color:${BRAND_DARK};text-transform:uppercase;letter-spacing:1px;">How to Redeem</p>
       <ol style="margin:10px 0 0;padding-left:20px;font-size:13px;color:#555;line-height:2;">
-        <li>Visit <a href="${shopUrl}/shop" style="color:${BRAND_COLOR};text-decoration:none;">Alankarrr Jewellers</a> and add items to your bag</li>
+        <li>Visit <a href="${shopUrl}/shop" style="color:${BRAND_COLOR};text-decoration:none;">Alankarr Jewellers</a> and add items to your bag</li>
         <li>At checkout, enter your gift card code in the "Gift Card" field</li>
         <li>The card balance will be deducted from your order total</li>
       </ol>
@@ -382,7 +382,7 @@ const giftCardDelivery = ({ giftCard }) => {
       ${btn("Start Shopping", `${shopUrl}/shop`)}
     </div>`;
 
-  return layout(`Your Alankarrr Jewellers Gift Card — ${rupees(giftCard.value)}`, body);
+  return layout(`Your Alankarr Jewellers Gift Card — ${rupees(giftCard.value)}`, body);
 };
 
 /**
@@ -390,11 +390,11 @@ const giftCardDelivery = ({ giftCard }) => {
  */
 const giftCardPurchaseConfirmation = ({ giftCard, buyerName }) => {
   const rupees = (n) => `₹${Number(n || 0).toLocaleString("en-IN")}`;
-  const shopUrl = process.env.CLIENT_URL || "https://Alankarrr-jewellers.com";
+  const shopUrl = process.env.CLIENT_URL || "https://Alankarr-jewellers.com";
 
   const body = `
     <h2 style="margin:0 0 4px;font-size:22px;color:${BRAND_DARK};">Gift Card Sent Successfully! ✅</h2>
-    <p style="color:#666;margin:0 0 24px;font-size:15px;">Hi ${buyerName || "there"}, your Alankarrr Jewellers E-Gift Card has been delivered to <strong>${giftCard.recipientEmail}</strong>.</p>
+    <p style="color:#666;margin:0 0 24px;font-size:15px;">Hi ${buyerName || "there"}, your Alankarr Jewellers E-Gift Card has been delivered to <strong>${giftCard.recipientEmail}</strong>.</p>
 
     <div style="background:${BRAND_LIGHT};border-radius:8px;padding:20px 24px;margin-bottom:24px;">
       <table width="100%" cellpadding="0" cellspacing="0">
@@ -414,7 +414,7 @@ const giftCardPurchaseConfirmation = ({ giftCard, buyerName }) => {
       ${btn("Send Another Gift", `${shopUrl}/gift-cards`)}
     </div>`;
 
-  return layout("Gift Card Sent — Alankarrr Jewellers", body);
+  return layout("Gift Card Sent — Alankarr Jewellers", body);
 };
 
 module.exports = {
@@ -450,7 +450,7 @@ function replacementRequested({ replacementReq, userName, order }) {
     <p style="font-size:13px;color:#666;line-height:1.7;">Our team will review your replacement request within <strong>24–48 hours</strong>. You will receive an email once a decision is made.</p>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Replacement Status", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/profile/replacements`)}
+      ${btn("View Replacement Status", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/profile/replacements`)}
     </div>`;
 
   return layout(`Replacement Request — ${replacementReq.replacementId}`, body);
@@ -495,7 +495,7 @@ function replacementStatusUpdate({
     </div>
     ${divider()}
     <div style="text-align:center;">
-      ${btn("View Replacement Details", `${process.env.CLIENT_URL || "https://Alankarrr-jewellers.com"}/profile/replacements`)}
+      ${btn("View Replacement Details", `${process.env.CLIENT_URL || "https://Alankarr-jewellers.com"}/profile/replacements`)}
     </div>`;
 
   return layout(`Replacement ${newStatus} — ${replacementReq.replacementId}`, body);
