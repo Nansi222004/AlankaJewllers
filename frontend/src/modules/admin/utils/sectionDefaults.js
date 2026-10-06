@@ -1073,7 +1073,7 @@ const homeSections = [
         image: testimonialCustomer2,
         rating: 5,
         description:
-          "Bought a bracelet for my sister's birthday. She absolutely loved it! The shine is perfect, and the delivery was very fast. Highly recommend Alankar Jewellers for quality silver.",
+          "Bought a bracelet for my sister's birthday. She absolutely loved it! The shine is perfect, and the delivery was very fast. Highly recommend Alankarrr Jewellers for quality silver.",
         location: "Delhi",
       },
       {
@@ -1174,7 +1174,7 @@ const shopMenSections = [
     items: [
       {
         id: "men-hero-1",
-        name: "Alankar JEWELLERS BRINGS TO YOU",
+        name: "Alankarrr JEWELLERS BRINGS TO YOU",
         label: "MEN",
         subtitle: "Modern Silver for\nthe Bold Man",
         image: menHeroBoldDefault,
@@ -2633,7 +2633,7 @@ const goldCollectionSections = [
         image: testimonialCustomer2,
         rating: 5,
         description:
-          "Most gold rings for men look dated. I wanted to gift him something that matches the wedding ring he got me too. Finally got to know Alankar Jewellers's gold made-to-order option.",
+          "Most gold rings for men look dated. I wanted to gift him something that matches the wedding ring he got me too. Finally got to know Alankarrr Jewellers's gold made-to-order option.",
         location: "Mumbai",
       },
       {
@@ -2857,7 +2857,7 @@ const diamondCollectionSections = [
     isActive: true,
     sortOrder: 6,
     settings: {
-      title: "The Alankar Assurance",
+      title: "The Alankarrr Assurance",
       subtitle: "Every diamond comes with verified grading, lifetime care, and absolute purity",
       badge: "Certified Trust",
     },
@@ -2976,7 +2976,7 @@ const diamondCollectionSections = [
       badge: "Private Atelier Service",
       whatsappNumber: "919876543210",
       ctaLabel: "Chat on WhatsApp",
-      ctaPath: "https://wa.me/919876543210?text=Hello%20Alankar%20Jewellers,%20I'd%20like%20to%20inquire%20about%20a%20bespoke%20diamond%20jewellery%20design.",
+      ctaPath: "https://wa.me/919876543210?text=Hello%20Alankarrr%20Jewellers,%20I'd%20like%20to%20inquire%20about%20a%20bespoke%20diamond%20jewellery%20design.",
     },
     items: [],
   },
@@ -3095,7 +3095,7 @@ const gemsCollectionSections = [
       badge: "Private Atelier Service",
       whatsappNumber: "919876543210",
       ctaLabel: "Chat on WhatsApp",
-      ctaPath: "https://wa.me/919876543210?text=Hello%20Alankar%20Jewellers,%20I'd%20like%20to%20inquire%20about%20a%20bespoke%20gemstone%20jewellery%20design.",
+      ctaPath: "https://wa.me/919876543210?text=Hello%20Alankarrr%20Jewellers,%20I'd%20like%20to%20inquire%20about%20a%20bespoke%20gemstone%20jewellery%20design.",
     },
     items: [],
   },

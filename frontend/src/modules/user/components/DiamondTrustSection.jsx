@@ -9,7 +9,7 @@ import {
     Gem,
     Truck
 } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 
 import trustCertifiedImg from '@assets/trust/trust_certified.png';
 import trustExchangeImg from '@assets/trust/trust_exchange.png';
@@ -23,7 +23,7 @@ const ICON_MAP = {
     RotateCcw,
     Star,
     Award,
-    Sparkles: AlankaJewelleryMark,
+    Sparkles: AlankarrJewelleryMark,
     CheckCircle2,
     Gem,
     Truck
@@ -74,7 +74,7 @@ const DEFAULT_TRUST_CARDS = [
 
 const DiamondTrustSection = ({ sectionData }) => {
     const settings = sectionData?.settings || {};
-    const title = settings.title || 'The Alankar Assurance';
+    const title = settings.title || 'The Alankarrr Assurance';
     const subtitle = settings.subtitle || 'Every diamond comes with verified grading, lifetime care, and absolute purity.';
     const badge = settings.badge || 'Certified Trust';
 
@@ -124,7 +124,7 @@ const DiamondTrustSection = ({ sectionData }) => {
     return (
         <section className="overflow-hidden border-b border-[#E8D9E3] bg-gradient-to-b from-[#FCF8FB] to-white py-8 sm:py-16 md:py-20">
             <div className="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
-                
+
                 {/* ── Section Header ────────────────────────────────────── */}
                 <div className="mx-auto mb-6 max-w-3xl text-center sm:mb-12">
                     {/* Top Diamond Emblem */}

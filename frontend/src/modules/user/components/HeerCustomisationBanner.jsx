@@ -10,7 +10,7 @@ const HeerCustomisationBanner = () => {
     return (
         <section className="py-6 md:py-12 bg-white overflow-hidden">
             <div className="container mx-auto px-4 max-w-[1250px]">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -28,7 +28,7 @@ const HeerCustomisationBanner = () => {
                         <p className="text-sm md:text-base text-brand-taupe font-normal mt-3 mb-5 max-w-md mx-auto lg:mx-0">
                             Choose your perfect ring crafted precisely to your personal preferences and style.
                         </p>
-                        
+
                         <div className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-xs border border-brand-border px-4 py-2 rounded-full shadow-2xs">
                             <span className="w-2 h-2 rounded-full bg-brand-champagne animate-pulse"></span>
                             <span className="text-[10px] md:text-[11px] font-medium tracking-wider uppercase text-brand-espresso">
@@ -46,9 +46,9 @@ const HeerCustomisationBanner = () => {
 
                             {/* Circular Pedestal Card */}
                             <div className="relative z-10 w-full h-full rounded-full border border-brand-border bg-white p-3 shadow-md flex items-center justify-center overflow-hidden">
-                                <img 
-                                    src={goldRingsLight} 
-                                    alt="Customisable Ring" 
+                                <img
+                                    src={goldRingsLight}
+                                    alt="Customisable Ring"
                                     className="w-full h-full object-cover rounded-full"
                                 />
                             </div>
@@ -73,15 +73,14 @@ const HeerCustomisationBanner = () => {
                         {/* Purity Toggles */}
                         <div className="mt-5 flex items-center gap-1.5 bg-white p-1 rounded-full border border-brand-border shadow-xs z-30">
                             {['9kt', '14kt', '18kt'].map((k) => (
-                                <button 
+                                <button
                                     key={k}
                                     type="button"
                                     onClick={() => setSelectedPurity(k)}
-                                    className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all duration-300 ${
-                                        selectedPurity === k 
-                                            ? 'bg-brand-champagne text-white shadow-2xs' 
-                                            : 'text-brand-taupe hover:text-brand-espresso hover:bg-brand-pearl'
-                                    }`}
+                                    className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all duration-300 ${selectedPurity === k
+                                        ? 'bg-brand-champagne text-white shadow-2xs'
+                                        : 'text-brand-taupe hover:text-brand-espresso hover:bg-brand-pearl'
+                                        }`}
                                 >
                                     {k}
                                 </button>
@@ -110,7 +109,7 @@ const HeerCustomisationBanner = () => {
                         <div className="mt-6 flex flex-col items-center lg:items-end">
                             <div className="flex items-center gap-2">
                                 <span className="h-px w-5 bg-brand-champagne/40" />
-                                <span className="font-serif italic text-base text-brand-espresso">Alankar</span>
+                                <span className="font-serif italic text-base text-brand-espresso">Alankarrr</span>
                                 <span className="h-px w-5 bg-brand-champagne/40" />
                             </div>
                             <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-brand-champagne mt-0.5">

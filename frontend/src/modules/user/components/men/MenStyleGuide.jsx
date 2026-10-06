@@ -124,7 +124,7 @@ const MenStyleGuide = ({ sectionData }) => {
 
                                     {/* Small Corner Tag - BORDER REMOVED */}
                                     <div className="absolute bottom-[18%] left-[8%] px-2 py-0.5 bg-black/40 backdrop-blur-md rounded text-[7px] text-white font-bold uppercase tracking-widest opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                                        Alankar Jewellers Collection
+                                        Alankarrr Jewellers Collection
                                     </div>
                                 </div>
 

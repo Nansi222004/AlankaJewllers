@@ -9,7 +9,7 @@ import { resolveLegacyCmsAsset } from '../../utils/legacyCmsAssets';
 const defaultSlides = [
     {
         id: 'family-hero-default',
-        tag: 'The Alankar Jewellers Family Boutique',
+        tag: 'The Alankarrr Jewellers Family Boutique',
         title: 'Masterpiece ',
         titleItalic: 'Gifting',
         subtitle: 'Exquisite delicate treasures designed for those who matter most in your life.',
@@ -163,8 +163,8 @@ const FamilyHeroCarousel = ({ sectionData }) => {
                                 key={index}
                                 onClick={() => setCurrentIndex(index)}
                                 className={`transition-all duration-500 rounded-full ${isActive
-                                        ? 'w-8 md:w-10 h-1 bg-white'
-                                        : 'w-3 md:w-4 h-1 bg-white/30 hover:bg-white/60'
+                                    ? 'w-8 md:w-10 h-1 bg-white'
+                                    : 'w-3 md:w-4 h-1 bg-white/30 hover:bg-white/60'
                                     }`}
                                 aria-label={`Go to slide ${index + 1}`}
                             />

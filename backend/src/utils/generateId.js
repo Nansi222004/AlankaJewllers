@@ -35,7 +35,7 @@ const generateTxnId = () => {
 
 /**
  * Generates a cryptographically unique gift card code.
- * Format: Alankar-XXXX-XXXX-XXXX  (alphanumeric, uppercase, no ambiguous chars)
+ * Format: Alankarrr-XXXX-XXXX-XXXX  (alphanumeric, uppercase, no ambiguous chars)
  */
 const SAFE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no 0/O/1/I confusion
 const generateGiftCardCode = () => {
@@ -43,7 +43,7 @@ const generateGiftCardCode = () => {
     Array.from(crypto.randomBytes(len))
       .map((b) => SAFE_CHARS[b % SAFE_CHARS.length])
       .join("");
-  return `Alankar-${segment(4)}-${segment(4)}-${segment(4)}`;
+  return `Alankarrr-${segment(4)}-${segment(4)}-${segment(4)}`;
 };
 
 module.exports = { generateOrderId, generateReturnId, generateReplId, generateTicketId, generateGiftCardCode, generatePayoutId, generateTxnId };

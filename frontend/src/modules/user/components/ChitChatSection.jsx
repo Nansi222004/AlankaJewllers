@@ -72,7 +72,7 @@ const ChitChatSection = () => {
                             <div className="mb-4">
                                 <img
                                     src={logo}
-                                    alt="Alanka Jewellers"
+                                    alt="Alankarr Jewellers"
                                     className="w-14 md:w-16 h-auto mb-4 object-contain"
                                     onError={(e) => {
                                         e.currentTarget.onerror = null;

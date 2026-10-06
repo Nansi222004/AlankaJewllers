@@ -55,7 +55,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                         </span>
                                     </div>
                                     <p className="text-xs text-stone-300 truncate max-w-[200px]">
-                                        Alankar Jewellers Luxury Jewellery
+                                        Alankarrr Jewellers Luxury Jewellery
                                     </p>
                                 </div>
                             </div>
@@ -110,8 +110,8 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 type="button"
                                 onClick={() => setSelectedMethod('upi')}
                                 className={`p-2.5 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${selectedMethod === 'upi'
-                                        ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
-                                        : 'border-stone-200 hover:border-stone-300 text-stone-600'
+                                    ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
+                                    : 'border-stone-200 hover:border-stone-300 text-stone-600'
                                     }`}
                             >
                                 <Smartphone size={18} className={selectedMethod === 'upi' ? 'text-[#3395FF]' : 'text-stone-400'} />
@@ -122,8 +122,8 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 type="button"
                                 onClick={() => setSelectedMethod('card')}
                                 className={`p-2.5 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${selectedMethod === 'card'
-                                        ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
-                                        : 'border-stone-200 hover:border-stone-300 text-stone-600'
+                                    ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
+                                    : 'border-stone-200 hover:border-stone-300 text-stone-600'
                                     }`}
                             >
                                 <CreditCard size={18} className={selectedMethod === 'card' ? 'text-[#3395FF]' : 'text-stone-400'} />
@@ -134,8 +134,8 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 type="button"
                                 onClick={() => setSelectedMethod('netbanking')}
                                 className={`p-2.5 rounded-xl border text-center transition-all flex flex-col items-center gap-1 ${selectedMethod === 'netbanking'
-                                        ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
-                                        : 'border-stone-200 hover:border-stone-300 text-stone-600'
+                                    ? 'border-[#5C3B55] bg-[#5C3B55]/5 text-[#5C3B55] font-bold shadow-sm'
+                                    : 'border-stone-200 hover:border-stone-300 text-stone-600'
                                     }`}
                             >
                                 <Building2 size={18} className={selectedMethod === 'netbanking' ? 'text-[#3395FF]' : 'text-stone-400'} />
@@ -181,7 +181,7 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                 <div className="p-3 bg-gradient-to-r from-stone-800 to-stone-900 text-white rounded-xl shadow">
                                     <div className="flex justify-between items-center text-[10px] text-stone-400 mb-2">
                                         <span>TEST VISA CARD</span>
-                                        <span className="font-bold text-amber-300">Alankar JEWELLERS</span>
+                                        <span className="font-bold text-amber-300">Alankarrr JEWELLERS</span>
                                     </div>
                                     <div className="font-mono text-sm tracking-widest text-stone-100 font-semibold mb-2">
                                         4111 •••• •••• 1111
@@ -208,8 +208,8 @@ const RazorpayTestModal = ({ isOpen, rpOrder, orderData, onSuccess, onCancel }) 
                                             type="button"
                                             onClick={() => setSelectedBank(bank)}
                                             className={`py-2 px-3 rounded-lg border text-xs font-bold text-left transition-all ${selectedBank === bank
-                                                    ? 'border-[#5C3B55] bg-[#5C3B55] text-white'
-                                                    : 'border-stone-200 bg-white text-stone-700 hover:border-stone-300'
+                                                ? 'border-[#5C3B55] bg-[#5C3B55] text-white'
+                                                : 'border-stone-200 bg-white text-stone-700 hover:border-stone-300'
                                                 }`}
                                         >
                                             {bank} Bank

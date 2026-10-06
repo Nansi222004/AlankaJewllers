@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { useShop } from '../../../context/ShopContext';
 import ProductCard from './ProductCard';
 import { matchesRequestedMetal } from '../utils/productMetal';
@@ -61,7 +61,7 @@ const AllJewellery = () => {
                 <div className="flex flex-col md:flex-row md:items-end justify-between text-left mb-10 md:mb-14">
                     <div>
                         <div className="inline-flex items-center gap-2 mb-2 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
-                            <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                            <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                             <span>{eyebrow}</span>
                         </div>
                         <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">

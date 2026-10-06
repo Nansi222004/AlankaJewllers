@@ -77,7 +77,7 @@ exports.requestReplacement = async (req, res) => {
     if (reqUser && reqUser.email) {
       enqueueEmail({
         to: reqUser.email,
-        subject: `Replacement Request Received - ${replacement.replacementId} | Alankar Jewellers`,
+        subject: `Replacement Request Received - ${replacement.replacementId} | Alankarrr Jewellers`,
         html: emailTemplates.replacementRequested({
           replacementReq: replacement,
           userName: reqUser.name,

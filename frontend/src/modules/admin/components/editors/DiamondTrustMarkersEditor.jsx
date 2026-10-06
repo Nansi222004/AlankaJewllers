@@ -24,7 +24,7 @@ const DiamondTrustMarkersEditor = ({ sectionData, onSave }) => {
     const initialSettings = useMemo(() => {
         const s = sectionData?.settings || {};
         return {
-            title: s.title || 'The Alankar Assurance',
+            title: s.title || 'The Alankarrr Assurance',
             subtitle: s.subtitle || 'Every diamond comes with verified grading, lifetime care, and absolute purity',
             badge: s.badge || 'Certified Trust'
         };
@@ -115,7 +115,7 @@ const DiamondTrustMarkersEditor = ({ sectionData, onSave }) => {
                         label="Section Title"
                         value={settings.title || ''}
                         onChange={(e) => handleSettingChange('title', e.target.value)}
-                        placeholder="e.g. The Alankar Assurance"
+                        placeholder="e.g. The Alankarrr Assurance"
                     />
                     <Input
                         label="Section Subtitle"

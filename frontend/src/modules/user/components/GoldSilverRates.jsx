@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Coins, MapPin, RefreshCw } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { useShop } from '../../../context/ShopContext';
 import { useMetalRateCities, useMetalRates } from '../hooks/useMetalRates';
 import { formatRateUnit } from '../utils/referenceMetalRate';
@@ -70,18 +70,16 @@ const GoldSilverRates = ({ metal }) => {
 
     return (
         <section
-            className={`relative overflow-hidden py-12 md:py-16 ${
-                isSilverMode
-                    ? 'bg-gradient-to-b from-[#E3D3D8] via-[#F1E7EA] to-[#E3D3D8] border-y border-[#D2BBC3]'
-                    : 'bg-[#FBF7F1] border-y border-brand-border-soft/60'
-            }`}
+            className={`relative overflow-hidden py-12 md:py-16 ${isSilverMode
+                ? 'bg-gradient-to-b from-[#E3D3D8] via-[#F1E7EA] to-[#E3D3D8] border-y border-[#D2BBC3]'
+                : 'bg-[#FBF7F1] border-y border-brand-border-soft/60'
+                }`}
             aria-labelledby="metal-rates-title"
         >
             {/* Ambient decorative glows */}
             <div
-                className={`absolute -right-24 -top-24 h-64 w-64 rounded-full blur-3xl pointer-events-none ${
-                    isSilverMode ? 'bg-[#D99AAE]/20' : 'bg-brand-champagne/10'
-                }`}
+                className={`absolute -right-24 -top-24 h-64 w-64 rounded-full blur-3xl pointer-events-none ${isSilverMode ? 'bg-[#D99AAE]/20' : 'bg-brand-champagne/10'
+                    }`}
             />
             {isSilverMode && (
                 <div className="absolute -left-20 -bottom-20 h-56 w-56 rounded-full bg-[#C77F94]/15 blur-3xl pointer-events-none" />
@@ -92,20 +90,19 @@ const GoldSilverRates = ({ metal }) => {
                 <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <span
-                            className={`mb-2 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] ${
-                                isSilverMode ? 'text-[#6B3F46]' : 'text-brand-plum'
-                            }`}
+                            className={`mb-2 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] ${isSilverMode ? 'text-[#6B3F46]' : 'text-brand-plum'
+                                }`}
                         >
                             {isSilverMode ? (
-                                <AlankaJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
+                                <AlankarrJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
                             ) : (
                                 <Coins className="h-4 w-4" />
                             )}
                             {isGoldMode
                                 ? "Today's Gold Rates"
                                 : isSilverMode
-                                ? "Today's Silver Rate"
-                                : "Today's reference rates"}
+                                    ? "Today's Silver Rate"
+                                    : "Today's reference rates"}
                         </span>
                         <h2
                             id="metal-rates-title"
@@ -114,15 +111,15 @@ const GoldSilverRates = ({ metal }) => {
                             {isGoldMode
                                 ? "Today's Gold Rates"
                                 : isSilverMode
-                                ? "Today's Silver Rate"
-                                : 'Gold & Silver Rates'}
+                                    ? "Today's Silver Rate"
+                                    : 'Gold & Silver Rates'}
                         </h2>
                         <p className="mt-2 max-w-xl text-sm text-stone-500">
                             {isGoldMode
                                 ? 'City-wise live reference rates for genuine hallmarked gold. Product selling prices remain unchanged.'
                                 : isSilverMode
-                                ? 'City-wise live reference rate for 999 fine silver. Product selling prices remain unchanged.'
-                                : 'City-wise market rates for reference. Product selling prices remain unchanged.'}
+                                    ? 'City-wise live reference rate for 999 fine silver. Product selling prices remain unchanged.'
+                                    : 'City-wise market rates for reference. Product selling prices remain unchanged.'}
                         </p>
                     </div>
 
@@ -139,11 +136,10 @@ const GoldSilverRates = ({ metal }) => {
                                     setSelectedState(state);
                                     setSelectedCity(firstCity?.apiCity || '');
                                 }}
-                                className={`mt-2 w-full rounded-xl border ${
-                                    isSilverMode
-                                        ? 'border-[#EBD3DA] focus:border-[#C77F94]'
-                                        : 'border-brand-border focus:border-brand-champagne'
-                                } bg-white px-4 py-3 text-sm font-semibold normal-case tracking-normal text-brand-espresso outline-none disabled:opacity-60 shadow-2xs`}
+                                className={`mt-2 w-full rounded-xl border ${isSilverMode
+                                    ? 'border-[#EBD3DA] focus:border-[#C77F94]'
+                                    : 'border-brand-border focus:border-brand-champagne'
+                                    } bg-white px-4 py-3 text-sm font-semibold normal-case tracking-normal text-brand-espresso outline-none disabled:opacity-60 shadow-2xs`}
                             >
                                 {!states.length && (
                                     <option>
@@ -163,11 +159,10 @@ const GoldSilverRates = ({ metal }) => {
                                 value={selectedCity}
                                 disabled={!cityOptions.length}
                                 onChange={(event) => setSelectedCity(event.target.value)}
-                                className={`mt-2 w-full rounded-xl border ${
-                                    isSilverMode
-                                        ? 'border-[#EBD3DA] focus:border-[#C77F94]'
-                                        : 'border-brand-border focus:border-brand-champagne'
-                                } bg-white px-4 py-3 text-sm font-semibold normal-case tracking-normal text-brand-espresso outline-none disabled:opacity-60 shadow-2xs`}
+                                className={`mt-2 w-full rounded-xl border ${isSilverMode
+                                    ? 'border-[#EBD3DA] focus:border-[#C77F94]'
+                                    : 'border-brand-border focus:border-brand-champagne'
+                                    } bg-white px-4 py-3 text-sm font-semibold normal-case tracking-normal text-brand-espresso outline-none disabled:opacity-60 shadow-2xs`}
                             >
                                 {!cityOptions.length && (
                                     <option>
@@ -197,7 +192,7 @@ const GoldSilverRates = ({ metal }) => {
                             <div className="relative z-10 flex flex-col items-center text-center">
                                 {/* Badge pill */}
                                 <div className="inline-flex items-center gap-2 rounded-full bg-[#F7DDE5] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-[#6B3F46] border border-[#D99AAE]/60">
-                                    <AlankaJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
+                                    <AlankarrJewelleryMark className="h-3.5 w-3.5 text-[#C77F94]" />
                                     <span>999 Fine Silver Reference</span>
                                 </div>
 
@@ -212,8 +207,8 @@ const GoldSilverRates = ({ metal }) => {
                                         {isLoadingRates
                                             ? 'Loading...'
                                             : silverValue?.rate > 0
-                                            ? currency.format(silverValue.rate)
-                                            : 'Rate unavailable'}
+                                                ? currency.format(silverValue.rate)
+                                                : 'Rate unavailable'}
                                     </span>
                                     {silverValue?.rate > 0 && (
                                         <span className="rounded-md bg-white/90 px-2.5 py-1 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#6B3F46] border border-[#EBD3DA] shadow-2xs">
@@ -258,8 +253,8 @@ const GoldSilverRates = ({ metal }) => {
                                     {isLoadingRates
                                         ? 'Loading...'
                                         : value?.rate > 0
-                                        ? currency.format(value.rate)
-                                        : 'Rate unavailable'}
+                                            ? currency.format(value.rate)
+                                            : 'Rate unavailable'}
                                 </p>
                                 {value?.rate > 0 && (
                                     <p className="mt-1 text-xs font-semibold text-brand-champagne">
@@ -284,8 +279,8 @@ const GoldSilverRates = ({ metal }) => {
                                     {isLoadingRates
                                         ? 'Loading...'
                                         : value?.rate > 0
-                                        ? currency.format(value.rate)
-                                        : 'Rate unavailable'}
+                                            ? currency.format(value.rate)
+                                            : 'Rate unavailable'}
                                 </p>
                                 {value?.rate > 0 && (
                                     <p className="mt-1 text-xs font-semibold text-brand-plum">

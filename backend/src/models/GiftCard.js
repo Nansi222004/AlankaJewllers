@@ -1,5 +1,5 @@
 /**
- * 🎁 GiftCard Model — Alankar Jewellers
+ * 🎁 GiftCard Model — Alankarrr Jewellers
  *
  * Design decisions:
  *  - code is cryptographically unique (SANDS-XXXX-XXXX-XXXX)

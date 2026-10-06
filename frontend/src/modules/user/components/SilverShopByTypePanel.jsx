@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
 import ringsImg from '@assets/categories/rings.png';
@@ -79,7 +79,7 @@ const SilverShopByTypePanel = ({
             <div className={`w-full bg-brand-pearl rounded-2xl border border-brand-border p-4 sm:p-5 ${className}`}>
                 <div className="flex items-center justify-between mb-3.5 pb-2.5 border-b border-brand-border/60">
                     <div className="flex items-center gap-2">
-                        <AlankaJewelleryMark className="w-3.5 h-3.5 text-stone-500" />
+                        <AlankarrJewelleryMark className="w-3.5 h-3.5 text-stone-500" />
                         <span className="font-serif text-sm sm:text-base font-medium text-brand-espresso">
                             {title}
                         </span>
@@ -126,7 +126,7 @@ const SilverShopByTypePanel = ({
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-1.5 mb-2 text-stone-600 text-[10px] uppercase font-bold tracking-[0.25em]">
-                    <AlankaJewelleryMark className="w-3.5 h-3.5 text-stone-500" />
+                    <AlankarrJewelleryMark className="w-3.5 h-3.5 text-stone-500" />
                     <span>{badge}</span>
                 </div>
                 <h3 className="font-serif text-xl lg:text-2xl text-brand-espresso font-medium tracking-tight mb-1">

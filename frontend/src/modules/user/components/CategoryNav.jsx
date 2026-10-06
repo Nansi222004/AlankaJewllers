@@ -28,7 +28,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
         { id: 'gifting', name: 'Gifting', path: '/category/women', hasChevron: true },
         { id: 'under50k', name: 'Under ₹50K', path: '/shop?price_max=50000', hasChevron: false },
         { id: 'exclusive', name: 'Exclusive', fullSuffix: ' Collections', path: '/shop?search=exclusive', hasChevron: false },
-        { id: 'more', name: 'More', fullSuffix: ' at Alankar Jewellers', path: '/about', hasChevron: false },
+        { id: 'more', name: 'More', fullSuffix: ' at Alankarrr Jewellers', path: '/about', hasChevron: false },
     ];
 
     const resetMenu = () => {
@@ -163,17 +163,15 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                                 setHoveredItem(hoveredItem === item.id ? null : item.id);
                                             }
                                         }}
-                                        className={`flex min-h-8 items-center gap-1 whitespace-nowrap font-sans text-[11px] font-bold uppercase tracking-normal transition-all duration-200 sm:text-[11.5px] lg:text-[12px] xl:text-[12.5px] xl:tracking-[0.04em] 2xl:text-[13px] ${
-                                            active || hoveredItem === item.id ? 'text-brand-champagne' : 'text-brand-espresso hover:text-brand-champagne'
-                                        }`}
+                                        className={`flex min-h-8 items-center gap-1 whitespace-nowrap font-sans text-[11px] font-bold uppercase tracking-normal transition-all duration-200 sm:text-[11.5px] lg:text-[12px] xl:text-[12.5px] xl:tracking-[0.04em] 2xl:text-[13px] ${active || hoveredItem === item.id ? 'text-brand-champagne' : 'text-brand-espresso hover:text-brand-champagne'
+                                            }`}
                                     >
                                         <span>{item.name}</span>
                                         {item.fullSuffix && <span className="hidden 2xl:inline">{item.fullSuffix}</span>}
                                         {item.hasChevron && (
                                             <ChevronDown
-                                                className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-300 ${
-                                                    hoveredItem === item.id ? 'rotate-180 text-brand-champagne' : (active ? 'text-brand-champagne' : 'text-brand-taupe')
-                                                }`}
+                                                className={`w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 transition-transform duration-300 ${hoveredItem === item.id ? 'rotate-180 text-brand-champagne' : (active ? 'text-brand-champagne' : 'text-brand-taupe')
+                                                    }`}
                                             />
                                         )}
                                     </Link>
@@ -181,7 +179,7 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                     {/* Dropdowns Mapping */}
                                     <AnimatePresence>
                                         {hoveredItem === item.id && (
-                                            <div 
+                                            <div
                                                 className="absolute top-full pt-2 z-[110]"
                                                 style={{
                                                     left: `${menuPlacement.shiftX || 0}px`
@@ -199,29 +197,29 @@ const CategoryNav = ({ showMetalToggle = true }) => {
                                                     data-lenis-prevent
                                                 >
                                                     {item.id === 'cat' && (
-                                                        <AllJewelleryMenu 
-                                                            resetMenu={resetMenu} 
+                                                        <AllJewelleryMenu
+                                                            resetMenu={resetMenu}
                                                             availableHeight={menuPlacement.availableHeight}
                                                             maxWidth={menuPlacement.maxWidth}
                                                         />
                                                     )}
                                                     {item.id === 'all' && (
-                                                        <AllJewelleryMegaMenu 
-                                                            resetMenu={resetMenu} 
+                                                        <AllJewelleryMegaMenu
+                                                            resetMenu={resetMenu}
                                                             availableHeight={menuPlacement.availableHeight}
                                                             maxWidth={menuPlacement.maxWidth}
                                                         />
                                                     )}
                                                     {item.id === 'bullions' && (
-                                                        <BullionsMenu 
-                                                            resetMenu={resetMenu} 
+                                                        <BullionsMenu
+                                                            resetMenu={resetMenu}
                                                             availableHeight={menuPlacement.availableHeight}
                                                             maxWidth={menuPlacement.maxWidth}
                                                         />
                                                     )}
                                                     {item.id === 'gifting' && (
-                                                        <GiftingMegaMenu 
-                                                            resetMenu={resetMenu} 
+                                                        <GiftingMegaMenu
+                                                            resetMenu={resetMenu}
                                                             availableHeight={menuPlacement.availableHeight}
                                                             maxWidth={menuPlacement.maxWidth}
                                                         />

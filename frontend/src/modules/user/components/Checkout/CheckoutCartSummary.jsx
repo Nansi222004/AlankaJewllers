@@ -125,7 +125,7 @@ const CheckoutCartSummary = ({
                     <div className="flex gap-2">
                         <input
                             type="text"
-                            placeholder="Alankar-XXXX-XXXX-XXXX"
+                            placeholder="Alankarrr-XXXX-XXXX-XXXX"
                             value={giftCardInput}
                             onChange={(e) => setGiftCardInput(e.target.value.toUpperCase())}
                             onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleApplyGiftCard(); } }}

@@ -49,8 +49,8 @@ const Login = () => {
   const currentLogo = settings?.logo && !settings.logo.includes("logo.webp") && !/swarna|sands/i.test(settings.logo)
     ? settings.logo
     : defaultLogo;
-  const currentStoreName = !settings?.storeName || /swarna\s*sparsh|alankar/i.test(settings.storeName)
-    ? "Alanka Jewellers"
+  const currentStoreName = !settings?.storeName || /swarna\s*sparsh|Alankarrr/i.test(settings.storeName)
+    ? "Alankarr Jewellers"
     : settings.storeName;
 
   useEffect(() => {

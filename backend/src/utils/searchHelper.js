@@ -1,5 +1,5 @@
 /**
- * Search Helper for Alankar Jewellers
+ * Search Helper for Alankarrr Jewellers
  * Handles intelligent query parsing, synonym/category expansion,
  * MongoDB query generation, and relevance-based ranking.
  */

@@ -25,22 +25,22 @@ export const normalizeVariantForCart = (
   const normalizedPrice = Number(rawPrice);
   const price = Number.isFinite(normalizedPrice) ? normalizedPrice : null;
   return ({
-  ...variant,
-  id: variant.id || variant._id,
-  _id: variant._id || variant.id,
-  price,
-  mrp: Number(variant.mrp ?? variant.finalPrice ?? variant.price) || 0,
-  finalPrice: Number.isFinite(Number(variant.finalPrice ?? variant.price))
-    ? Number(variant.finalPrice ?? variant.price)
-    : null,
-  image:
-    variant.image ||
-    variant.variantImages?.[0] ||
-    fallbackProduct.image ||
-    fallbackProduct.images?.[0] ||
-    "",
-  weight: variant.weight ?? fallbackProduct.weight ?? 0,
-  weightUnit: variant.weightUnit || fallbackProduct.weightUnit || "Grams",
+    ...variant,
+    id: variant.id || variant._id,
+    _id: variant._id || variant.id,
+    price,
+    mrp: Number(variant.mrp ?? variant.finalPrice ?? variant.price) || 0,
+    finalPrice: Number.isFinite(Number(variant.finalPrice ?? variant.price))
+      ? Number(variant.finalPrice ?? variant.price)
+      : null,
+    image:
+      variant.image ||
+      variant.variantImages?.[0] ||
+      fallbackProduct.image ||
+      fallbackProduct.images?.[0] ||
+      "",
+    weight: variant.weight ?? fallbackProduct.weight ?? 0,
+    weightUnit: variant.weightUnit || fallbackProduct.weightUnit || "Grams",
   });
 };
 
@@ -191,7 +191,7 @@ export const CartProvider = ({ children }) => {
               return {
                 id: item.productId,
                 _id: item.productId,
-                name: item.name || "ALANKA JEWELLERS Gift Card",
+                name: item.name || "Alankarr JEWELLERS Gift Card",
                 price: item.price,
                 image: item.image,
                 isGiftCard: true,
@@ -733,7 +733,7 @@ export const CartProvider = ({ children }) => {
             key: import.meta.env.VITE_RAZORPAY_KEY_ID,
             amount: rpOrder.amount,
             currency: rpOrder.currency,
-            name: "ALANKA JEWELLERS",
+            name: "Alankarr JEWELLERS",
             description: "Order Payment",
             order_id: rpOrder.id,
             handler: async (response) => {
@@ -872,11 +872,11 @@ export const CartProvider = ({ children }) => {
         variantId: isGift
           ? "GIFT_CARD_VAR"
           : item.variantId ||
-            item.packId ||
-            item.selectedVariant?.id ||
-            item.selectedVariant?._id ||
-            item.variants?.[0]?.id ||
-            item.variants?.[0]?._id,
+          item.packId ||
+          item.selectedVariant?.id ||
+          item.selectedVariant?._id ||
+          item.variants?.[0]?.id ||
+          item.variants?.[0]?._id,
         quantity: resolveCartQuantity(item),
         isGiftCard: isGift,
         personalization: item.personalization || null,

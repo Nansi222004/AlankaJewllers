@@ -886,9 +886,9 @@ const Shop = ({
             c.path === category ||
             c.slug === category ||
             String(c.slug || "").toLowerCase() ===
-              String(category || "").toLowerCase() ||
+            String(category || "").toLowerCase() ||
             String(c.name || "").toLowerCase() ===
-              String(category || "").toLowerCase(),
+            String(category || "").toLowerCase(),
         );
       title = currentCat
         ? currentCat.name
@@ -1052,8 +1052,8 @@ const Shop = ({
         const tagsList = Array.isArray(product.tags)
           ? product.tags
           : typeof product.tags === "object" && product.tags !== null
-          ? Object.keys(product.tags).filter((k) => product.tags[k])
-          : [];
+            ? Object.keys(product.tags).filter((k) => product.tags[k])
+            : [];
         const variantNames = Array.isArray(product.variants)
           ? product.variants.map((variant) => variant?.name || "")
           : [];
@@ -1242,7 +1242,7 @@ const Shop = ({
           : metal === "diamond"
             ? "Diamond Jewellery"
             : "Jewellery";
-    document.title = `${pageTitle} | Alankar Jewellers - ${suffix}`;
+    document.title = `${pageTitle} | Alankarrr Jewellers - ${suffix}`;
   }, [pageTitle, collectionTitle]);
 
   // Handle Category Change
@@ -1475,10 +1475,9 @@ const Shop = ({
                 {isServerProductsLoading ? (
                   "Loading designs..."
                 ) : (
-                  `${serverPagination?.total ?? productsToRender.length} ${
-                    (serverPagination?.total ?? productsToRender.length) === 1
-                      ? "Design"
-                      : "Designs"
+                  `${serverPagination?.total ?? productsToRender.length} ${(serverPagination?.total ?? productsToRender.length) === 1
+                    ? "Design"
+                    : "Designs"
                   } Found`
                 )}
               </p>
@@ -1503,7 +1502,7 @@ const Shop = ({
             </div>
           </div>
 
-          {/* Horizontal Desktop Filters - Alankar Jewellers Premium Style */}
+          {/* Horizontal Desktop Filters - Alankarrr Jewellers Premium Style */}
           <HorizontalFilters
             categories={visibleCategories}
             selectedCategory={selectedCategory}
@@ -1559,129 +1558,129 @@ const Shop = ({
             (queryParams.get("tags") && queryParams.get("tags").length > 0) ||
             availabilityQuery
           ) && (
-            <div className="flex md:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-2 px-3 border-t border-stone-100 bg-brand-pearl/90">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 shrink-0">
-                Active:
-              </span>
-
-              {/* Jewellery Type Chip */}
-              {!collectionMetal && queryParams.get("metal") && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
-                  <span>Jewellery Type: <strong className="capitalize">{queryParams.get("metal")}</strong></span>
-                  <button
-                    onClick={() => handleMetalChange("All")}
-                    className="hover:text-brand-champagne p-0.5 rounded-full"
-                    title="Remove Jewellery Type filter"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
+              <div className="flex md:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-2 px-3 border-t border-stone-100 bg-brand-pearl/90">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 shrink-0">
+                  Active:
                 </span>
-              )}
 
-              {/* Gold Colour Chip */}
-              {queryParams.get("metal")?.toLowerCase() === "gold" && toneQuery && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full inline-block shrink-0"
-                    style={{
-                      backgroundColor:
-                        toneQuery === "rose-gold"
-                          ? "#FB7185"
-                          : toneQuery === "white-gold"
-                            ? "#94A3B8"
-                            : "#EAB308",
-                    }}
-                  />
-                  <span>Gold Colour: <strong className="capitalize">{toneQuery.replace("-", " ")}</strong></span>
-                  <button
-                    onClick={() => handleToneChange(null)}
-                    className="hover:text-brand-champagne p-0.5 rounded-full"
-                    title="Remove Gold Colour filter"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
+                {/* Jewellery Type Chip */}
+                {!collectionMetal && queryParams.get("metal") && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
+                    <span>Jewellery Type: <strong className="capitalize">{queryParams.get("metal")}</strong></span>
+                    <button
+                      onClick={() => handleMetalChange("All")}
+                      className="hover:text-brand-champagne p-0.5 rounded-full"
+                      title="Remove Jewellery Type filter"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
 
-              {/* Silver Type Chip */}
-              {queryParams.get("metal")?.toLowerCase() === "silver" && silverTypeQuery && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-stone-300"
-                    style={{
-                      backgroundColor:
-                        SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.swatchColor || "#CBD5E1"
-                    }}
-                  />
-                  <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.label || silverTypeQuery}</strong></span>
-                  <button
-                    onClick={() => handleSilverTypeChange(null)}
-                    className="hover:text-brand-champagne p-0.5 rounded-full"
-                    title="Remove Silver Type filter"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
+                {/* Gold Colour Chip */}
+                {queryParams.get("metal")?.toLowerCase() === "gold" && toneQuery && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
+                    <span
+                      className="w-2.5 h-2.5 rounded-full inline-block shrink-0"
+                      style={{
+                        backgroundColor:
+                          toneQuery === "rose-gold"
+                            ? "#FB7185"
+                            : toneQuery === "white-gold"
+                              ? "#94A3B8"
+                              : "#EAB308",
+                      }}
+                    />
+                    <span>Gold Colour: <strong className="capitalize">{toneQuery.replace("-", " ")}</strong></span>
+                    <button
+                      onClick={() => handleToneChange(null)}
+                      className="hover:text-brand-champagne p-0.5 rounded-full"
+                      title="Remove Gold Colour filter"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
 
-              {/* Diamond Type Chip */}
-              {queryParams.get("metal")?.toLowerCase() === "diamond" && diamondTypeQuery && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-sky-300"
-                    style={{
-                      backgroundColor:
-                        DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondTypeQuery.toLowerCase() || (d.value === 'lab_grown' && (diamondTypeQuery.toLowerCase() === 'lab-grown' || diamondTypeQuery.toLowerCase() === 'labgrown')))?.swatchColor || "#BAE6FD"
-                    }}
-                  />
-                  <span>Diamond Type: <strong>{DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondTypeQuery.toLowerCase() || (d.value === 'lab_grown' && (diamondTypeQuery.toLowerCase() === 'lab-grown' || diamondTypeQuery.toLowerCase() === 'labgrown')))?.label || diamondTypeQuery}</strong></span>
-                  <button
-                    onClick={() => handleDiamondTypeChange(null)}
-                    className="hover:text-brand-champagne p-0.5 rounded-full"
-                    title="Remove Diamond Type filter"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
+                {/* Silver Type Chip */}
+                {queryParams.get("metal")?.toLowerCase() === "silver" && silverTypeQuery && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
+                    <span
+                      className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-stone-300"
+                      style={{
+                        backgroundColor:
+                          SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.swatchColor || "#CBD5E1"
+                      }}
+                    />
+                    <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.label || silverTypeQuery}</strong></span>
+                    <button
+                      onClick={() => handleSilverTypeChange(null)}
+                      className="hover:text-brand-champagne p-0.5 rounded-full"
+                      title="Remove Silver Type filter"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
 
-              {/* Product Type Chip */}
-              {selectedCategory && selectedCategory !== "All" && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
-                  <span>Product Type: <strong>{selectedCategory}</strong></span>
-                  <button
-                    onClick={() => handleCategoryChange("All")}
-                    className="hover:text-brand-champagne p-0.5 rounded-full"
-                    title="Remove Product Type filter"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
+                {/* Diamond Type Chip */}
+                {queryParams.get("metal")?.toLowerCase() === "diamond" && diamondTypeQuery && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
+                    <span
+                      className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-sky-300"
+                      style={{
+                        backgroundColor:
+                          DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondTypeQuery.toLowerCase() || (d.value === 'lab_grown' && (diamondTypeQuery.toLowerCase() === 'lab-grown' || diamondTypeQuery.toLowerCase() === 'labgrown')))?.swatchColor || "#BAE6FD"
+                      }}
+                    />
+                    <span>Diamond Type: <strong>{DIAMOND_TYPE_OPTIONS.find(d => d.value.toLowerCase() === diamondTypeQuery.toLowerCase() || (d.value === 'lab_grown' && (diamondTypeQuery.toLowerCase() === 'lab-grown' || diamondTypeQuery.toLowerCase() === 'labgrown')))?.label || diamondTypeQuery}</strong></span>
+                    <button
+                      onClick={() => handleDiamondTypeChange(null)}
+                      className="hover:text-brand-champagne p-0.5 rounded-full"
+                      title="Remove Diamond Type filter"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
 
-              {/* Purity Chip */}
-              {Boolean(purityQuery && purityQuery !== "All") && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
-                  <span>Purity: <strong>{['24', '22', '18', '14'].includes(String(purityQuery)) ? `${purityQuery} Ct Gold` : purityQuery === '925' ? '925 Silver' : purityQuery === 'fine' ? 'Fine Silver' : purityQuery}</strong></span>
-                  <button
-                    onClick={() => handlePurityChange("All")}
-                    className="hover:text-brand-champagne p-0.5 rounded-full"
-                    title="Remove Purity filter"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              )}
+                {/* Product Type Chip */}
+                {selectedCategory && selectedCategory !== "All" && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
+                    <span>Product Type: <strong>{selectedCategory}</strong></span>
+                    <button
+                      onClick={() => handleCategoryChange("All")}
+                      className="hover:text-brand-champagne p-0.5 rounded-full"
+                      title="Remove Product Type filter"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
 
-              {/* Clear All */}
-              <button
-                onClick={clearAllFilters}
-                className="text-[10px] font-bold text-brand-plum hover:text-brand-champagne hover:underline uppercase tracking-wider shrink-0 ml-1"
-              >
-                Clear All
-              </button>
-            </div>
-          )}
+                {/* Purity Chip */}
+                {Boolean(purityQuery && purityQuery !== "All") && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
+                    <span>Purity: <strong>{['24', '22', '18', '14'].includes(String(purityQuery)) ? `${purityQuery} Ct Gold` : purityQuery === '925' ? '925 Silver' : purityQuery === 'fine' ? 'Fine Silver' : purityQuery}</strong></span>
+                    <button
+                      onClick={() => handlePurityChange("All")}
+                      className="hover:text-brand-champagne p-0.5 rounded-full"
+                      title="Remove Purity filter"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
+
+                {/* Clear All */}
+                <button
+                  onClick={clearAllFilters}
+                  className="text-[10px] font-bold text-brand-plum hover:text-brand-champagne hover:underline uppercase tracking-wider shrink-0 ml-1"
+                >
+                  Clear All
+                </button>
+              </div>
+            )}
         </div>
 
         {/* Product Grid */}
@@ -1832,11 +1831,11 @@ const Shop = ({
 
             return (
               <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <h3 className="text-2xl font-serif text-brand-espresso mb-2">
-                   {emptyTitle}
-                  </h3>
-                  <p className="text-stone-500 text-sm">
-                   {emptyDescription}
+                <h3 className="text-2xl font-serif text-brand-espresso mb-2">
+                  {emptyTitle}
+                </h3>
+                <p className="text-stone-500 text-sm">
+                  {emptyDescription}
                 </p>
                 <button
                   onClick={clearAllFilters}
@@ -1934,11 +1933,10 @@ const Shop = ({
                     <button
                       key={m.id}
                       onClick={() => handleMetalChange(m.id)}
-                      className={`py-2 px-1 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${
-                        isActive
-                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
-                      }`}
+                      className={`py-2 px-1 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${isActive
+                        ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                        : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
+                        }`}
                     >
                       {m.label}
                     </button>
@@ -1972,11 +1970,10 @@ const Shop = ({
                         <button
                           key={t.value}
                           onClick={() => handleToneChange(t.value === "all" ? null : t.value)}
-                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
-                            isToneActive
-                              ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
-                              : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
-                          }`}
+                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${isToneActive
+                            ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
+                            : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
+                            }`}
                         >
                           {t.image ? (
                             <img src={t.image} alt={t.label} className="w-4 h-4 rounded-full object-cover border border-brand-border shrink-0" />
@@ -2017,11 +2014,10 @@ const Shop = ({
                         <button
                           key={s.value}
                           onClick={() => handleSilverTypeChange(s.value === "all" ? null : s.value)}
-                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
-                            isSilverActive
-                              ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
-                              : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
-                          }`}
+                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${isSilverActive
+                            ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
+                            : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
+                            }`}
                         >
                           <span className="w-3.5 h-3.5 rounded-full border border-stone-300 shrink-0" style={{ backgroundColor: s.swatchColor }} />
                           <span className="text-[11px] leading-tight truncate">{s.label}</span>
@@ -2058,11 +2054,10 @@ const Shop = ({
                         <button
                           key={d.value}
                           onClick={() => handleDiamondTypeChange(d.value === "all" ? null : d.value)}
-                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${
-                            isDiamondActive
-                              ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
-                              : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
-                          }`}
+                          className={`flex items-center gap-2 p-2 rounded-lg border text-left transition-all ${isDiamondActive
+                            ? "bg-white border-brand-champagne text-brand-espresso font-bold shadow-2xs"
+                            : "bg-white/60 border-stone-200 text-stone-600 hover:border-stone-300"
+                            }`}
                         >
                           <span className="w-3.5 h-3.5 rounded-full border border-sky-300 shrink-0" style={{ backgroundColor: d.swatchColor }} />
                           <span className="text-[11px] leading-tight truncate">{d.label}</span>
@@ -2164,8 +2159,8 @@ const Shop = ({
                         key={opt.value}
                         onClick={() => handlePurityChange(opt.value)}
                         className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider border rounded-full transition-all ${isActive
-                            ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
-                            : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
+                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                           }`}
                       >
                         {opt.label}
@@ -2197,8 +2192,8 @@ const Shop = ({
                       key={s.value}
                       onClick={() => handleStonesChange(s.value)}
                       className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider border rounded-full transition-all ${isActive
-                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
+                        ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                        : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {s.label}
@@ -2260,8 +2255,8 @@ const Shop = ({
                       key={aud.id}
                       onClick={() => handleAudienceChange(aud.id)}
                       className={`py-2.5 px-2 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${isActive
-                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
+                        ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                        : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {aud.label}
@@ -2290,8 +2285,8 @@ const Shop = ({
                       key={tag.value}
                       onClick={() => handleTagsChange(tag.value)}
                       className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider border rounded-full transition-all ${isActive
-                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
+                        ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                        : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {tag.label}
@@ -2325,8 +2320,8 @@ const Shop = ({
                       key={avail.value}
                       onClick={() => handleAvailabilityChange(avail.value)}
                       className={`py-2.5 px-2 text-[10px] font-bold uppercase tracking-wider border rounded-lg transition-all text-center ${isActive
-                          ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
-                          : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
+                        ? "bg-brand-rosewater text-brand-plum border-brand-champagne shadow-sm font-black"
+                        : "bg-stone-50 text-stone-600 border-stone-200 hover:border-brand-champagne"
                         }`}
                     >
                       {avail.label}

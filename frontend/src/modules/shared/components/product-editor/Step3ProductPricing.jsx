@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { 
-    Calculator, IndianRupee, Scale, Sparkles, CheckCircle2, 
-    AlertTriangle, Plus, Trash2, X, Info, Tag, Layers, ChevronDown, 
+import {
+    Calculator, IndianRupee, Scale, Sparkles, CheckCircle2,
+    AlertTriangle, Plus, Trash2, X, Info, Tag, Layers, ChevronDown,
     ChevronUp, ShieldCheck, Zap
 } from 'lucide-react';
 import { FormSection, Input, Select } from '../../../admin/components/common/FormControls';
-import AlankaJewelleryMark from '../AlankaJewelleryMark';
-import { 
-    getPricingForVariant, 
-    getPricingConfigurationError, 
-    getTenGramRate 
+import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
+import {
+    getPricingForVariant,
+    getPricingConfigurationError,
+    getTenGramRate
 } from '../../utils/productEditorUtils';
 
 const Step3ProductPricing = ({
@@ -48,16 +48,16 @@ const Step3ProductPricing = ({
 
     // Helper to check if gemstone section should be open for variant
     const hasGemstonesConfigured = (v) => {
-        return isGemsMaterial || 
-            (Array.isArray(v.gemstonePricing) && v.gemstonePricing.length > 0) || 
+        return isGemsMaterial ||
+            (Array.isArray(v.gemstonePricing) && v.gemstonePricing.length > 0) ||
             Boolean(includeGemstonesMap[v.id]);
     };
 
     // Helper to check if diamond section should be open for variant
     const hasDiamondsConfigured = (v) => {
-        return isDiamondMaterial || 
-            (v.diamondType && v.diamondType !== 'none') || 
-            Boolean(v.diamondPricing?.enabled) || 
+        return isDiamondMaterial ||
+            (v.diamondType && v.diamondType !== 'none') ||
+            Boolean(v.diamondPricing?.enabled) ||
             Boolean(includeDiamondsMap[v.id]);
     };
 
@@ -154,13 +154,12 @@ const Step3ProductPricing = ({
                                 const rate = metalRates.gold10g?.[`k${k}`] || 0;
                                 const isCurrent = formData.goldCategory === k;
                                 return (
-                                    <div 
-                                        key={k} 
-                                        className={`px-3 py-1.5 rounded-xl border transition-all ${
-                                            isCurrent 
-                                                ? 'bg-amber-400 text-[#2C1810] font-bold border-amber-300 shadow-sm' 
-                                                : 'bg-white/5 text-stone-300 border-white/10'
-                                        }`}
+                                    <div
+                                        key={k}
+                                        className={`px-3 py-1.5 rounded-xl border transition-all ${isCurrent
+                                            ? 'bg-amber-400 text-[#2C1810] font-bold border-amber-300 shadow-sm'
+                                            : 'bg-white/5 text-stone-300 border-white/10'
+                                            }`}
                                     >
                                         <span className="font-semibold">{k}K:</span> ₹{Number(rate).toLocaleString('en-IN')}
                                     </div>
@@ -201,7 +200,7 @@ const Step3ProductPricing = ({
                         <p className="text-xs text-gray-500 leading-relaxed max-w-2xl">
                             Choose who bears the payment gateway processing charge.
                             <br />
-                            • <strong>Store:</strong> Alanka absorbs the payment gateway fee (0% customer surcharge).
+                            • <strong>Store:</strong> Alankarr absorbs the payment gateway fee (0% customer surcharge).
                             <br />
                             • <strong>Customer:</strong> 2% payment gateway surcharge is added to the customer-facing final price.
                         </p>
@@ -209,7 +208,7 @@ const Step3ProductPricing = ({
 
                     <div className="flex items-center gap-2.5 shrink-0">
                         {[
-                            { value: 'store', label: 'Store (Alanka Absorbs - 0%)' },
+                            { value: 'store', label: 'Store (Alankarr Absorbs - 0%)' },
                             { value: 'user', label: 'Customer (2% Surcharge)' }
                         ].map((opt) => (
                             <button
@@ -217,11 +216,10 @@ const Step3ProductPricing = ({
                                 type="button"
                                 disabled={isViewMode}
                                 onClick={() => setFormData({ ...formData, paymentGatewayChargeBearer: opt.value })}
-                                className={`px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide border transition-all ${
-                                    (formData.paymentGatewayChargeBearer || 'store') === opt.value
-                                        ? 'bg-[#3E2723] text-white border-[#3E2723] shadow-sm'
-                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                }`}
+                                className={`px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide border transition-all ${(formData.paymentGatewayChargeBearer || 'store') === opt.value
+                                    ? 'bg-[#3E2723] text-white border-[#3E2723] shadow-sm'
+                                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                    }`}
                             >
                                 {opt.label}
                             </button>
@@ -238,11 +236,10 @@ const Step3ProductPricing = ({
                             key={v.id}
                             type="button"
                             onClick={() => setActiveVariantIndex(idx)}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
-                                activeVariantIndex === idx
-                                    ? 'bg-[#3E2723] text-white shadow-sm'
-                                    : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
-                            }`}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${activeVariantIndex === idx
+                                ? 'bg-[#3E2723] text-white shadow-sm'
+                                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                                }`}
                         >
                             <span>{v.name || `Variant #${idx + 1}`}</span>
                             {v.weight && <span className="opacity-75 text-[10px]">({v.weight}{v.weightUnit?.[0] || 'g'})</span>}
@@ -409,7 +406,7 @@ const Step3ProductPricing = ({
                             <div className="flex items-center justify-between border-b border-pink-200/60 pb-3">
                                 <div className="flex items-center gap-2">
                                     <div className="p-1.5 bg-pink-100 rounded-lg text-pink-700">
-                                        <AlankaJewelleryMark size={16} />
+                                        <AlankarrJewelleryMark size={16} />
                                     </div>
                                     <div>
                                         <h4 className="text-xs font-bold uppercase tracking-wider text-pink-900">Diamond Pricing (Admin Controlled)</h4>
@@ -571,7 +568,7 @@ const Step3ProductPricing = ({
                         /* Subtle Diamond Opt-in for Gold/Silver */
                         <div className="bg-white rounded-2xl p-4 border border-dashed border-pink-200 flex items-center justify-between">
                             <div className="flex items-center gap-2.5">
-                                <AlankaJewelleryMark size={16} className="text-pink-600" />
+                                <AlankarrJewelleryMark size={16} className="text-pink-600" />
                                 <span className="text-xs font-semibold text-gray-700">Does this piece include Diamonds?</span>
                             </div>
                             {!isViewMode && (
@@ -876,8 +873,8 @@ const Step3ProductPricing = ({
                             <div className="flex justify-between items-center py-1 border-b border-gray-50">
                                 <span>Certificate Charges</span>
                                 <span className="font-bold text-gray-900">
-                                    {(pricing.diamondCertificateCharge + pricing.gemstoneCertificateCharge) > 0 
-                                        ? `₹${(pricing.diamondCertificateCharge + pricing.gemstoneCertificateCharge).toFixed(2)}` 
+                                    {(pricing.diamondCertificateCharge + pricing.gemstoneCertificateCharge) > 0
+                                        ? `₹${(pricing.diamondCertificateCharge + pricing.gemstoneCertificateCharge).toFixed(2)}`
                                         : 'Not applicable'}
                                 </span>
                             </div>

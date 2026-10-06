@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Gem, RotateCcw, Eye } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { formatCurrency, getProductPrice, getProductMRP } from '../utils/price';
 import { getProductCardUrl } from '../../../utils/imageUtils';
 
@@ -64,8 +64,8 @@ const DiamondProductCard = ({ product }) => {
     const rawImage = useMemo(() => {
         if (Array.isArray(product?.images) && product.images.length > 0) {
             const first = product.images.find(img => typeof img === 'string' && img.trim().length > 0)
-                       || product.images[0]?.url
-                       || product.images[0];
+                || product.images[0]?.url
+                || product.images[0];
             if (first) return getProductCardUrl(first);
         }
         if (product?.image && typeof product.image === 'string' && product.image.trim().length > 0) {
@@ -153,7 +153,7 @@ const DiamondProductCard = ({ product }) => {
                 {/* Diamond Origin Badge */}
                 <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3 z-10 flex flex-col gap-1">
                     <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#F0DDE3] text-brand-espresso text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-2xs">
-                        <AlankaJewelleryMark className="w-2.5 h-2.5 text-brand-champagne" />
+                        <AlankarrJewelleryMark className="w-2.5 h-2.5 text-brand-champagne" />
                         <span>{diamondOrigin}</span>
                     </span>
                     {hasDiscount && discountPercent > 0 && (
@@ -360,11 +360,10 @@ const ExploreDiamondCollection = ({
                                     key={tab.id}
                                     type="button"
                                     onClick={() => setSelectedCategory(tab.id)}
-                                    className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                                        isActive
-                                            ? 'bg-brand-plum text-white shadow-xs scale-[1.02]'
-                                            : 'bg-white text-stone-700 hover:text-brand-espresso hover:border-brand-champagne border border-[#F0DDE3]'
-                                    }`}
+                                    className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${isActive
+                                        ? 'bg-brand-plum text-white shadow-xs scale-[1.02]'
+                                        : 'bg-white text-stone-700 hover:text-brand-espresso hover:border-brand-champagne border border-[#F0DDE3]'
+                                        }`}
                                 >
                                     {tab.label}
                                 </button>

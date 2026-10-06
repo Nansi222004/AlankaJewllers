@@ -304,7 +304,7 @@ const _calculateOrderData = async (
       orderItems.push({
         productId: item.productId,
         variantId: "GIFT_CARD_VAR",
-        name: item.name || `Alankar Jewellers E-Gift Card (₹${cardValue})`,
+        name: item.name || `Alankarrr Jewellers E-Gift Card (₹${cardValue})`,
         sku: `GIFT-CARD-${cardValue}`,
         image: "",
         price: cardValue,
@@ -606,7 +606,7 @@ exports.placeOrder = async (req, res) => {
       if (adminEmail) {
         enqueueEmail({
           to: adminEmail,
-          subject: `[Alankar Jewellers] New Order Placed: #${order.orderId}`,
+          subject: `[Alankarrr Jewellers] New Order Placed: #${order.orderId}`,
           html: `<h2>New Order Received</h2><p>Order <strong>#${order.orderId}</strong> for <strong>₹${order.total}</strong> placed by ${order.customerName} (${paymentMethod.toUpperCase()}).</p>`,
           type: "admin_new_order",
         });
@@ -689,7 +689,7 @@ exports.placeOrder = async (req, res) => {
       if (recipientEmail) {
         enqueueEmail({
           to: recipientEmail,
-          subject: "Order Confirmed - " + order.orderId + " | Alankar Jewellers",
+          subject: "Order Confirmed - " + order.orderId + " | Alankarrr Jewellers",
           html: emailTemplates.orderConfirmation({
             order,
             userName: order.customerName,

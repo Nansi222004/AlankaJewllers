@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { useParams, useNavigate } from "react-router-dom";
 import { useShop } from "../../../context/ShopContext";
-import AlankaJewelleryMark from "../components/AlankaJewelleryMark";
+import AlankarrJewelleryMark from "../components/AlankarrJewelleryMark";
 import { useAuth } from "../../../context/AuthContext";
 import api from "../../../services/api";
 import toast from "react-hot-toast";
@@ -479,7 +479,7 @@ const ProductDetails = () => {
             : metalType === "silver"
               ? "Silver Jewellery"
               : "Jewellery";
-      document.title = `${product.name} | ALANKA JEWELLERS - ${suffix}`;
+      document.title = `${product.name} | Alankarr JEWELLERS - ${suffix}`;
     }
   }, [product, metalType, track]);
 
@@ -772,7 +772,7 @@ const ProductDetails = () => {
         (Number(pricingBreakdown.gst || 0) / pricingSubtotal) * 10000,
       ) / 100
       : 0;
-  const supplierName = product?.brand || "ALANKA JEWELLERS";
+  const supplierName = product?.brand || "Alankarr JEWELLERS";
 
   // Local currencyText removed
   // Using imported formatCurrency
@@ -935,19 +935,19 @@ const ProductDetails = () => {
   return (
     <div className="bg-brand-pearl text-brand-espresso min-h-screen py-8 pb-24 md:pb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both selection:bg-brand-rosewater selection:text-brand-plum">
       <Helmet>
-        <title>{product.seo?.title || `${product.name} | ALANKA JEWELLERS`}</title>
+        <title>{product.seo?.title || `${product.name} | Alankarr JEWELLERS`}</title>
         <meta
           name="description"
           content={
             product.seo?.description ||
             product.description?.replace(/<[^>]*>?/gm, "").slice(0, 160) ||
-            `Explore ${product.name} at ALANKA JEWELLERS.`
+            `Explore ${product.name} at Alankarr JEWELLERS.`
           }
         />
         {product.seo?.keywords && (
           <meta name="keywords" content={product.seo.keywords} />
         )}
-        <meta property="og:title" content={product.seo?.title || `${product.name} | ALANKA JEWELLERS`} />
+        <meta property="og:title" content={product.seo?.title || `${product.name} | Alankarr JEWELLERS`} />
         <meta
           property="og:description"
           content={
@@ -1076,7 +1076,7 @@ const ProductDetails = () => {
                         />
                         <text className="text-[9px] font-bold tracking-[0.2em] uppercase fill-white/80">
                           <textPath xlinkHref="#circlePathSmall">
-                            The Lookbook • ALANKA JEWELLERS Royal •{" "}
+                            The Lookbook • Alankarr JEWELLERS Royal •{" "}
                           </textPath>
                         </text>
                       </svg>
@@ -1143,7 +1143,7 @@ const ProductDetails = () => {
                         try {
                           await navigator.share({
                             title: product?.name || "Check out this product",
-                            text: `I found this beautiful ${product?.name} on ALANKA JEWELLERS!`,
+                            text: `I found this beautiful ${product?.name} on Alankarr JEWELLERS!`,
                             url: url,
                           });
                         } catch (err) {
@@ -1259,7 +1259,7 @@ const ProductDetails = () => {
                     {hasDiamonds && (
                       <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-8 border border-brand-border shadow-xs flex flex-col items-center text-center">
                         <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br from-brand-plum to-brand-plum border border-brand-champagne/50 flex items-center justify-center mb-4 md:mb-8 shadow-md transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-                          <AlankaJewelleryMark className="w-5 h-5 md:w-7 md:h-7 text-brand-champagne-light" />
+                          <AlankarrJewelleryMark className="w-5 h-5 md:w-7 md:h-7 text-brand-champagne-light" />
                         </div>
                         <h4 className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] text-brand-plum mb-4 md:mb-10 border-b border-brand-border pb-2">
                           Diamond Intelligence
@@ -1296,7 +1296,7 @@ const ProductDetails = () => {
                           </div>
                           <div className="group transition-all duration-300">
                             <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-stone-50 flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:bg-brand-champagne/10 transition-colors">
-                              <AlankaJewelleryMark className="w-3.5 h-3.5 md:w-4 md:h-4 text-stone-400 group-hover:text-brand-champagne" />
+                              <AlankarrJewelleryMark className="w-3.5 h-3.5 md:w-4 md:h-4 text-stone-400 group-hover:text-brand-champagne" />
                             </div>
                             <span className="text-[7px] md:text-[8px] font-bold text-stone-400 uppercase tracking-widest block mb-0.5 md:mb-1">
                               Clarity
@@ -1441,87 +1441,87 @@ const ProductDetails = () => {
                           </button>
                         </div>
                       ) : (
-                      <table className="w-full text-left border-collapse">
-                        <thead>
-                          <tr className="border-b border-gray-100">
-                            <th className="px-3 md:px-6 py-2.5 md:py-4 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-400">
-                              Component
-                            </th>
-                            <th className="px-3 md:px-6 py-2.5 md:py-4 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-400 text-right">
-                              Rate/Qty
-                            </th>
-                            <th className="px-3 md:px-6 py-2.5 md:py-4 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-400 text-right">
-                              Value
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-50">
-                          {[
-                            {
-                              label: "Metal Value",
-                              rate: is925SterlingSilver
-                                ? "-"
-                                : `${selectedVariantWeight || product.weight || "---"} g`,
-                              value: pricingBreakdown.metalPrice,
-                            },
-                            {
-                              label: "Making Charges",
-                              rate: "-",
-                              value: pricingBreakdown.makingCharge,
-                            },
-                            {
-                              label: "Diamond",
-                              rate: (dSpecs?.carat || product?.diamondWeight || currentVariant?.diamondWeight)
-                                ? `${dSpecs?.carat || product?.diamondWeight || currentVariant?.diamondWeight} ct`
-                                : "-",
-                              value: pricingBreakdown.diamondPrice,
-                            },
-                            { label: "Gemstone", rate: "-", value: pricingBreakdown.gemstonePrice },
-                            { label: "Hallmarking", rate: "-", value: pricingBreakdown.hallmarkingCharge },
-                            { label: "Certificate", rate: "-", value: pricingBreakdown.certificateCharge },
-                            { label: "Additional Charges", rate: "-", value: pricingBreakdown.additionalCharge },
-                            { label: "Taxable Subtotal", rate: "-", value: pricingBreakdown.taxableSubtotal },
-                            {
-                              label: `GST (${gstPercent}%)`,
-                              rate: "-",
-                              value: pricingBreakdown.gst,
-                            },
-                            ...(pricingBreakdown.pgCharge > 0 ? [{ label: "Payment Gateway Charge", rate: `${Number(selectedVariant?.pgChargePercent || 0)}%`, value: pricingBreakdown.pgCharge }] : []),
-                          ].map((item, idx) => (
-                            <tr
-                              key={idx}
-                              className="hover:bg-white transition-colors"
-                            >
-                              <td className="px-3 md:px-6 py-2.5 md:py-4 text-[10px] md:text-[11px] font-bold text-gray-700 uppercase tracking-tight">
-                                {item.label}
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="border-b border-gray-100">
+                              <th className="px-3 md:px-6 py-2.5 md:py-4 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-400">
+                                Component
+                              </th>
+                              <th className="px-3 md:px-6 py-2.5 md:py-4 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-400 text-right">
+                                Rate/Qty
+                              </th>
+                              <th className="px-3 md:px-6 py-2.5 md:py-4 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-400 text-right">
+                                Value
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-50">
+                            {[
+                              {
+                                label: "Metal Value",
+                                rate: is925SterlingSilver
+                                  ? "-"
+                                  : `${selectedVariantWeight || product.weight || "---"} g`,
+                                value: pricingBreakdown.metalPrice,
+                              },
+                              {
+                                label: "Making Charges",
+                                rate: "-",
+                                value: pricingBreakdown.makingCharge,
+                              },
+                              {
+                                label: "Diamond",
+                                rate: (dSpecs?.carat || product?.diamondWeight || currentVariant?.diamondWeight)
+                                  ? `${dSpecs?.carat || product?.diamondWeight || currentVariant?.diamondWeight} ct`
+                                  : "-",
+                                value: pricingBreakdown.diamondPrice,
+                              },
+                              { label: "Gemstone", rate: "-", value: pricingBreakdown.gemstonePrice },
+                              { label: "Hallmarking", rate: "-", value: pricingBreakdown.hallmarkingCharge },
+                              { label: "Certificate", rate: "-", value: pricingBreakdown.certificateCharge },
+                              { label: "Additional Charges", rate: "-", value: pricingBreakdown.additionalCharge },
+                              { label: "Taxable Subtotal", rate: "-", value: pricingBreakdown.taxableSubtotal },
+                              {
+                                label: `GST (${gstPercent}%)`,
+                                rate: "-",
+                                value: pricingBreakdown.gst,
+                              },
+                              ...(pricingBreakdown.pgCharge > 0 ? [{ label: "Payment Gateway Charge", rate: `${Number(selectedVariant?.pgChargePercent || 0)}%`, value: pricingBreakdown.pgCharge }] : []),
+                            ].map((item, idx) => (
+                              <tr
+                                key={idx}
+                                className="hover:bg-white transition-colors"
+                              >
+                                <td className="px-3 md:px-6 py-2.5 md:py-4 text-[10px] md:text-[11px] font-bold text-gray-700 uppercase tracking-tight">
+                                  {item.label}
+                                </td>
+                                <td className="px-3 md:px-6 py-2.5 md:py-4 text-[10px] md:text-[11px] font-semibold text-gray-500 text-right">
+                                  {item.rate}
+                                </td>
+                                <td className="px-3 md:px-6 py-2.5 md:py-4 text-[10px] md:text-[11px] font-bold text-gray-900 text-right">
+                                  {formatCurrency(item.value)}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                          <tfoot>
+                            <tr className="bg-brand-pearl border-t-2 border-brand-champagne/40">
+                              <td
+                                colSpan="2"
+                                className="px-3 md:px-6 py-3 md:py-5 text-[10px] md:text-[11px] font-bold text-stone-900 uppercase tracking-[0.2em]"
+                              >
+                                Final Product Price
                               </td>
-                              <td className="px-3 md:px-6 py-2.5 md:py-4 text-[10px] md:text-[11px] font-semibold text-gray-500 text-right">
-                                {item.rate}
-                              </td>
-                              <td className="px-3 md:px-6 py-2.5 md:py-4 text-[10px] md:text-[11px] font-bold text-gray-900 text-right">
-                                {formatCurrency(item.value)}
+                              <td className="px-3 md:px-6 py-3 md:py-5 text-base md:text-lg font-bold text-brand-plum text-right">
+                                {formatCurrency(
+                                  pricingBreakdown.finalPrice ||
+                                  variantPrice ||
+                                  0,
+                                )}
                               </td>
                             </tr>
-                          ))}
-                        </tbody>
-                        <tfoot>
-                          <tr className="bg-brand-pearl border-t-2 border-brand-champagne/40">
-                            <td
-                              colSpan="2"
-                              className="px-3 md:px-6 py-3 md:py-5 text-[10px] md:text-[11px] font-bold text-stone-900 uppercase tracking-[0.2em]"
-                            >
-                              Final Product Price
-                            </td>
-                            <td className="px-3 md:px-6 py-3 md:py-5 text-base md:text-lg font-bold text-brand-plum text-right">
-                              {formatCurrency(
-                                pricingBreakdown.finalPrice ||
-                                variantPrice ||
-                                0,
-                              )}
-                            </td>
-                          </tr>
-                        </tfoot>
-                      </table>
+                          </tfoot>
+                        </table>
                       )}
                     </div>
                     <p className="mt-3 md:mt-4 text-[8px] md:text-[9px] text-gray-400 text-center font-bold uppercase tracking-widest italic">
@@ -1619,8 +1619,8 @@ const ProductDetails = () => {
                         type="button"
                         onClick={() => setSelectedVariantId(variantId)}
                         className={`px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest border transition-all duration-300 ${isSelected
-                            ? "border-brand-champagne bg-brand-blush text-brand-plum shadow-md"
-                            : "border-stone-200 text-stone-600 hover:border-brand-champagne/60 bg-stone-50/50"
+                          ? "border-brand-champagne bg-brand-blush text-brand-plum shadow-md"
+                          : "border-stone-200 text-stone-600 hover:border-brand-champagne/60 bg-stone-50/50"
                           }`}
                       >
                         {variant.name}
@@ -1638,8 +1638,8 @@ const ProductDetails = () => {
                 onClick={handleAddToCart}
                 disabled={!isInStock}
                 className={`w-full max-w-md py-4 rounded-xl font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 relative overflow-hidden group shadow-lg ${isInStock
-                    ? "bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne hover:-translate-y-0.5"
-                    : "bg-stone-100 text-stone-400 cursor-not-allowed border border-stone-200"
+                  ? "bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne hover:-translate-y-0.5"
+                  : "bg-stone-100 text-stone-400 cursor-not-allowed border border-stone-200"
                   }`}
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
@@ -1751,7 +1751,7 @@ const ProductDetails = () => {
             onClick={() => setIsLabGrownModalOpen(true)}
             className="group flex items-center gap-4 bg-emerald-50/30 border border-emerald-100/50 hover:bg-emerald-50 hover:border-emerald-200 transition-all px-8 py-4 rounded-2xl"
           >
-            <AlankaJewelleryMark className="w-5 h-5 text-emerald-600" />
+            <AlankarrJewelleryMark className="w-5 h-5 text-emerald-600" />
             <span className="text-xs font-bold text-emerald-900 uppercase tracking-[0.15em] border-b border-emerald-200 pb-0.5">
               Conscious Luxury: Lab Grown Diamond Guide
             </span>
@@ -1766,8 +1766,8 @@ const ProductDetails = () => {
             onClick={handleAddToCart}
             disabled={!isInStock}
             className={`w-full rounded-xl h-11 font-bold uppercase tracking-[0.15em] text-[11px] flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-md ${isInStock
-                ? "bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne"
-                : "bg-stone-100 text-stone-400 cursor-not-allowed border border-stone-200"
+              ? "bg-brand-plum text-white border border-brand-plum hover:bg-brand-champagne hover:text-brand-espresso hover:border-brand-champagne"
+              : "bg-stone-100 text-stone-400 cursor-not-allowed border border-stone-200"
               }`}
           >
             {!isInStock ? (
@@ -1917,8 +1917,8 @@ const ProductDetails = () => {
             <div className="lg:col-span-4 space-y-10">
               <div>
                 <h3 className="text-2xl font-sans font-bold text-brand-espresso mb-2 flex items-center gap-3">
-                  <AlankaJewelleryMark className="w-6 h-6 text-brand-champagne" />
-                  The ALANKA JEWELLERS Promise
+                  <AlankarrJewelleryMark className="w-6 h-6 text-brand-champagne" />
+                  The Alankarr JEWELLERS Promise
                 </h3>
                 <p className="text-gray-400 text-xs font-bold uppercase tracking-[0.2em]">
                   Our commitment to excellence
@@ -2150,7 +2150,7 @@ const ProductDetails = () => {
                                 View Certificate <ExternalLink size={10} />
                               </a>
                             ) : (
-                              product.certificate || "ALANKA JEWELLERS Authenticated"
+                              product.certificate || "Alankarr JEWELLERS Authenticated"
                             ),
                           },
                           { label: "HUID", value: product.huid || "---" },
@@ -2327,7 +2327,7 @@ const ProductDetails = () => {
                               desc: "Remove before showering or swimming",
                             },
                             {
-                              icon: <AlankaJewelleryMark className="w-4 h-4" />,
+                              icon: <AlankarrJewelleryMark className="w-4 h-4" />,
                               title: "Apply First",
                               desc: "Wear after lotions and perfumes",
                             },
@@ -2450,7 +2450,7 @@ const ProductDetails = () => {
                   {/* Subtle Overlay on Hover */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-[2px]">
                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
-                      <AlankaJewelleryMark className="w-5 h-5 text-brand-champagne" />
+                      <AlankarrJewelleryMark className="w-5 h-5 text-brand-champagne" />
                     </div>
                   </div>
                 </div>
@@ -2509,7 +2509,7 @@ const ProductDetails = () => {
                   },
                 ]
               ).map((card, i) => {
-                const IconComp = (card.icon === "Sparkles" || card.icon === "AlankaJewelleryMark") ? AlankaJewelleryMark : (LucideIcons[card.icon] || LucideIcons.Droplets);
+                const IconComp = (card.icon === "Sparkles" || card.icon === "AlankarrJewelleryMark") ? AlankarrJewelleryMark : (LucideIcons[card.icon] || LucideIcons.Droplets);
                 return (
                   <div
                     key={i}
@@ -2812,7 +2812,7 @@ const ProductDetails = () => {
               {/* Why Choose Section */}
               <div className="space-y-6">
                 <h4 className="text-2xl font-bold text-gray-900 leading-tight">
-                  Why Choose ALANKA JEWELLERS Lab-Grown Diamonds?
+                  Why Choose Alankarr JEWELLERS Lab-Grown Diamonds?
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
@@ -2864,7 +2864,7 @@ const ProductDetails = () => {
               {/* Final Assurance */}
               <div className="bg-brand-pearl rounded-2xl p-6 border border-brand-border/30 flex flex-col md:flex-row items-center gap-6">
                 <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm shrink-0 border border-brand-border/20">
-                  <AlankaJewelleryMark className="w-10 h-10 text-brand-champagne" />
+                  <AlankarrJewelleryMark className="w-10 h-10 text-brand-champagne" />
                 </div>
                 <div className="space-y-2">
                   <h5 className="font-bold text-gray-900">
@@ -3102,7 +3102,7 @@ const ProductDetails = () => {
                 </h2>
               </div>
               <p className="text-[10px] font-bold text-brand-champagne-light uppercase tracking-[0.2em]">
-                Find your perfect fit with ALANKA JEWELLERS
+                Find your perfect fit with Alankarr JEWELLERS
               </p>
               <button
                 onClick={() => setIsSizeGuideOpen(false)}
@@ -3200,7 +3200,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="bg-amber-50 border border-amber-100 rounded-2xl p-6 flex gap-4 shadow-sm">
                   <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-inner">
-                    <AlankaJewelleryMark className="w-5 h-5 text-amber-500" />
+                    <AlankarrJewelleryMark className="w-5 h-5 text-amber-500" />
                   </div>
                   <p className="text-[10px] font-black text-amber-800 uppercase leading-relaxed tracking-[0.05em]">
                     Pro Tip: Always measure your fingers at the end of the day

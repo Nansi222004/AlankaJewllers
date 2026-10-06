@@ -14,7 +14,7 @@ import {
     Compass,
     SlidersHorizontal
 } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 
 import roundDiamondImg from '@assets/diamonds/round.png';
 
@@ -138,7 +138,7 @@ const CS_CONFIG = {
         badge: 'Structural Purity',
         tagline: 'Under 10x gemological magnification, diamonds are graded for internal inclusions and external blemishes.',
         icon: Eye,
-        proTip: 'Every single diamond in the Alankar collection is verified 100% eye-clean, ensuring no inclusions ever impede outer sparkle.',
+        proTip: 'Every single diamond in the Alankarrr collection is verified 100% eye-clean, ensuring no inclusions ever impede outer sparkle.',
         details: [
             { title: 'FL / IF', desc: 'Flawless / Internally Flawless. 0 inclusions visible under 10x magnification.' },
             { title: 'VVS1 - VVS2', desc: 'Very, Very Slightly Included. Microscopic pinpoints extremely difficult to detect.' },
@@ -175,7 +175,7 @@ const CS_CONFIG = {
                 title: 'Very Slightly Included (100% Eye-Clean)',
                 loupeDesc: 'Minor crystals visible under 10x magnification, completely invisible to the naked eye.',
                 inclusionsCount: 2,
-                rarity: 'Alankar Gold Standard',
+                rarity: 'Alankarrr Gold Standard',
                 inclusions: [
                     { x: 35, y: 48, size: 'w-1.5 h-1.5', label: 'Small Crystal' },
                     { x: 65, y: 55, size: 'w-1 h-1', label: 'Faint Feather' }
@@ -245,7 +245,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
     return (
         <section className="py-14 sm:py-18 md:py-24 bg-gradient-to-b from-[#FCF8FB] to-[#F4EAF1] border-b border-[#E8D9E3] overflow-hidden">
             <div className="max-w-[1460px] mx-auto px-4 sm:px-6 lg:px-8">
-                
+
                 {/* ── Section Header ────────────────────────────────────── */}
                 <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
                     {/* Top Diamond Emblem */}
@@ -283,15 +283,13 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                 key={c.key}
                                 type="button"
                                 onClick={() => setActiveTab(c.key)}
-                                className={`group relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 cursor-pointer select-none shrink-0 border ${
-                                    isCurrent
-                                        ? 'bg-[#5C3B55] text-white border-[#41283C] shadow-[0_8px_24px_rgba(15,32,56,0.25)] scale-[1.02]'
-                                        : 'bg-white text-[#475569] border-[#E8D9E3] hover:border-[#805E7A]/70 hover:text-[#5C3B55] hover:bg-white shadow-2xs'
-                                }`}
+                                className={`group relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 cursor-pointer select-none shrink-0 border ${isCurrent
+                                    ? 'bg-[#5C3B55] text-white border-[#41283C] shadow-[0_8px_24px_rgba(15,32,56,0.25)] scale-[1.02]'
+                                    : 'bg-white text-[#475569] border-[#E8D9E3] hover:border-[#805E7A]/70 hover:text-[#5C3B55] hover:bg-white shadow-2xs'
+                                    }`}
                             >
-                                <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-xl flex items-center justify-center transition-colors ${
-                                    isCurrent ? 'bg-white/15 text-white' : 'bg-[#EDF2F7] text-[#64748B] group-hover:text-[#805E7A]'
-                                }`}>
+                                <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-xl flex items-center justify-center transition-colors ${isCurrent ? 'bg-white/15 text-white' : 'bg-[#EDF2F7] text-[#64748B] group-hover:text-[#805E7A]'
+                                    }`}>
                                     <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                 </div>
                                 <span className="font-sans uppercase text-[11px] sm:text-xs tracking-wider">{c.tabLabel}</span>
@@ -306,10 +304,10 @@ const Diamond4CsGuide = ({ sectionData }) => {
                 {/* ── Dynamic Educational Content Panel ─────────────────── */}
                 <div className="bg-white rounded-3xl border border-[#DFE4EA] p-5 sm:p-8 md:p-10 lg:p-12 shadow-[0_12px_40px_rgba(15,23,42,0.06)] transition-all duration-400">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-                        
+
                         {/* ── LEFT COLUMN: Interactive Visual Experience ─────── */}
                         <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-                            
+
                             {/* Tab 1: Cut Ray-Tracing & Light Performance */}
                             {activeTab === 'cut' && (
                                 <div className="space-y-5">
@@ -318,7 +316,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                             Light Reflection & Refraction Simulator
                                         </span>
                                         <span className="text-[11px] text-brand-champagne font-semibold flex items-center gap-1 font-sans">
-                                            <AlankaJewelleryMark className="w-3.5 h-3.5" /> Interactive
+                                            <AlankarrJewelleryMark className="w-3.5 h-3.5" /> Interactive
                                         </span>
                                     </div>
 
@@ -363,11 +361,11 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                         <line x1="60" y1="60" x2="160" y2="185" stroke="rgba(184,149,106,0.3)" strokeWidth="1" />
                                                         <line x1="260" y1="60" x2="160" y2="185" stroke="rgba(184,149,106,0.3)" strokeWidth="1" />
                                                         <line x1="20" y1="90" x2="300" y2="90" stroke="rgba(184,149,106,0.4)" strokeWidth="1" />
-                                                        
+
                                                         {/* Incoming Light Rays (Top -> Pavilion -> Internal Reflection -> Out Top) */}
                                                         <path d="M 100,10 L 110,60 L 225,140 L 95,140 L 205,60 L 215,10" fill="none" stroke="url(#rayGold)" strokeWidth="2.4" strokeLinecap="round" strokeDasharray="300" strokeDashoffset="0" className="animate-pulse" />
                                                         <path d="M 220,10 L 210,60 L 95,140 L 225,140 L 115,60 L 105,10" fill="none" stroke="url(#rayGold)" strokeWidth="2.4" strokeLinecap="round" strokeDasharray="300" strokeDashoffset="0" className="animate-pulse" />
-                                                        
+
                                                         {/* Sparkle Stars at Light Exit */}
                                                         <circle cx="215" cy="10" r="3" fill="#FFFFFF" />
                                                         <circle cx="105" cy="10" r="3" fill="#FFFFFF" />
@@ -379,7 +377,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                         {/* Shallow Outline */}
                                                         <polygon points="40,75 280,75 310,95 160,140 10,95" fill="rgba(255,255,255,0.05)" stroke="#9CA3AF" strokeWidth="1.8" />
                                                         <line x1="10" y1="95" x2="310" y2="95" stroke="rgba(156,163,175,0.3)" strokeWidth="1" />
-                                                        
+
                                                         {/* Light Rays leaking through bottom */}
                                                         <path d="M 120,20 L 130,75 L 180,140 L 200,195" fill="none" stroke="url(#leakRed)" strokeWidth="2.2" strokeLinecap="round" />
                                                         <path d="M 200,20 L 190,75 L 140,140 L 120,195" fill="none" stroke="url(#leakRed)" strokeWidth="2.2" strokeLinecap="round" />
@@ -391,7 +389,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                         {/* Deep Cut Outline */}
                                                         <polygon points="80,50 240,50 270,75 160,195 50,75" fill="rgba(255,255,255,0.05)" stroke="#6B7280" strokeWidth="1.8" />
                                                         <line x1="50" y1="75" x2="270" y2="75" stroke="rgba(107,114,128,0.3)" strokeWidth="1" />
-                                                        
+
                                                         {/* Light Rays leaking through opposite side */}
                                                         <path d="M 120,10 L 130,50 L 210,135 L 290,145" fill="none" stroke="url(#leakRed)" strokeWidth="2.2" strokeLinecap="round" />
                                                         <path d="M 200,10 L 190,50 L 110,135 L 30,145" fill="none" stroke="url(#leakRed)" strokeWidth="2.2" strokeLinecap="round" />
@@ -413,11 +411,10 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                 key={mode.id}
                                                 type="button"
                                                 onClick={() => setSelectedCutMode(mode.id)}
-                                                className={`p-2.5 sm:p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
-                                                    selectedCutMode === mode.id
-                                                        ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30'
-                                                        : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
-                                                }`}
+                                                className={`p-2.5 sm:p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer ${selectedCutMode === mode.id
+                                                    ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30'
+                                                    : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
+                                                    }`}
                                             >
                                                 <div className="text-[11px] sm:text-xs font-serif font-bold text-brand-espresso truncate">
                                                     {mode.name.split(' ')[0]} Cut
@@ -439,7 +436,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                             Diamond Body Tint Comparison
                                         </span>
                                         <span className="text-[11px] text-brand-champagne font-semibold flex items-center gap-1 font-sans">
-                                            <AlankaJewelleryMark className="w-3.5 h-3.5" /> GIA Standard
+                                            <AlankarrJewelleryMark className="w-3.5 h-3.5" /> GIA Standard
                                         </span>
                                     </div>
 
@@ -488,11 +485,10 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                 key={grade.id}
                                                 type="button"
                                                 onClick={() => setSelectedColourGrade(grade.id)}
-                                                className={`p-2 sm:p-2.5 rounded-xl border text-center transition-all duration-200 cursor-pointer ${
-                                                    selectedColourGrade === grade.id
-                                                        ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30'
-                                                        : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
-                                                }`}
+                                                className={`p-2 sm:p-2.5 rounded-xl border text-center transition-all duration-200 cursor-pointer ${selectedColourGrade === grade.id
+                                                    ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30'
+                                                    : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
+                                                    }`}
                                             >
                                                 <div className="text-xs font-serif font-bold text-brand-espresso">
                                                     {grade.name.split(' ')[0]}
@@ -584,11 +580,10 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                 key={tier.id}
                                                 type="button"
                                                 onClick={() => setSelectedClarityTier(tier.id)}
-                                                className={`p-2 sm:p-2.5 rounded-xl border text-center transition-all duration-200 cursor-pointer ${
-                                                    selectedClarityTier === tier.id
-                                                        ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30'
-                                                        : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
-                                                }`}
+                                                className={`p-2 sm:p-2.5 rounded-xl border text-center transition-all duration-200 cursor-pointer ${selectedClarityTier === tier.id
+                                                    ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30'
+                                                    : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
+                                                    }`}
                                             >
                                                 <div className="text-xs font-serif font-bold text-brand-espresso">
                                                     {tier.grade}
@@ -633,7 +628,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                 <div className="relative my-auto flex flex-col items-center justify-center">
                                                     {/* Diamond Ring Band Silhouette Background */}
                                                     <div className="w-48 sm:w-56 h-2 rounded-full bg-gradient-to-r from-transparent via-brand-champagne/40 to-transparent mb-1" />
-                                                    
+
                                                     {/* Scaled Diamond Image */}
                                                     <div
                                                         className="transition-all duration-400 ease-out flex items-center justify-center"
@@ -674,11 +669,10 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                                 key={weight.ct}
                                                 type="button"
                                                 onClick={() => setSelectedCarat(weight.ct)}
-                                                className={`p-2 rounded-xl border text-center transition-all duration-200 cursor-pointer ${
-                                                    selectedCarat === weight.ct
-                                                        ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30 scale-102'
-                                                        : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
-                                                }`}
+                                                className={`p-2 rounded-xl border text-center transition-all duration-200 cursor-pointer ${selectedCarat === weight.ct
+                                                    ? 'bg-[#FFF7F9] border-brand-champagne shadow-sm ring-1 ring-brand-champagne/30 scale-102'
+                                                    : 'bg-white border-[#F0DDE3] hover:bg-brand-pearl'
+                                                    }`}
                                             >
                                                 <div className="text-xs font-serif font-bold text-brand-espresso">
                                                     {weight.ct}
@@ -696,7 +690,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
 
                         {/* ── RIGHT COLUMN: Educational Insights & Benchmarks ── */}
                         <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-                            
+
                             {/* Headline & Overview */}
                             <div className="space-y-3">
                                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FFF7F9] border border-brand-champagne/40 text-brand-champagne font-sans">
@@ -734,7 +728,7 @@ const Diamond4CsGuide = ({ sectionData }) => {
                             <div className="bg-brand-pearl rounded-2xl p-5 border border-[#F0DDE3]">
                                 <div className="flex items-center justify-between mb-3.5">
                                     <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#8B6874] font-sans">
-                                        Quality Tiers & Alankar Standard
+                                        Quality Tiers & Alankarrr Standard
                                     </h4>
                                     <span className="text-[10px] text-brand-champagne font-semibold flex items-center gap-1 font-sans">
                                         <ShieldCheck className="w-3.5 h-3.5 text-brand-champagne" /> Certified Selection
@@ -745,15 +739,13 @@ const Diamond4CsGuide = ({ sectionData }) => {
                                     {activeConfig.benchmarks.map((bench, bIdx) => (
                                         <div
                                             key={bIdx}
-                                            className={`flex items-start gap-3 p-3 rounded-xl border transition-all duration-200 ${
-                                                bench.active
-                                                    ? 'bg-white border-brand-champagne/70 shadow-2xs ring-1 ring-brand-champagne/20'
-                                                    : 'bg-white/60 border-[#F0DDE3]/80 hover:bg-white'
-                                            }`}
+                                            className={`flex items-start gap-3 p-3 rounded-xl border transition-all duration-200 ${bench.active
+                                                ? 'bg-white border-brand-champagne/70 shadow-2xs ring-1 ring-brand-champagne/20'
+                                                : 'bg-white/60 border-[#F0DDE3]/80 hover:bg-white'
+                                                }`}
                                         >
-                                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${
-                                                bench.active ? 'text-brand-champagne' : 'text-[#8B6874]'
-                                            }`} />
+                                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${bench.active ? 'text-brand-champagne' : 'text-[#8B6874]'
+                                                }`} />
                                             <div>
                                                 <span className="text-xs font-bold text-brand-espresso block">
                                                     {bench.grade}

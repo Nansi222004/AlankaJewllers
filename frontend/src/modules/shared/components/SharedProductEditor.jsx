@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { 
-    Download, CheckCircle2 as SuccessIcon, Copy, QrCode, Barcode as BarcodeIcon, 
-    Loader2, Plus, Upload, X, Trash2, ImagePlus, ExternalLink, 
-    FileText, CheckCircle2, IndianRupee, Scale, Tag, Box, Zap, Coins, 
+import {
+    Download, CheckCircle2 as SuccessIcon, Copy, QrCode, Barcode as BarcodeIcon,
+    Loader2, Plus, Upload, X, Trash2, ImagePlus, ExternalLink,
+    FileText, CheckCircle2, IndianRupee, Scale, Tag, Box, Zap, Coins,
     Calculator, Layers, Search, Truck, Info, ChevronRight, LayoutDashboard,
     ArrowLeft, Eye, ShieldCheck, Sparkles, Send, ArrowRight
 } from 'lucide-react';
@@ -24,9 +24,9 @@ import Step7ProductContent from './product-editor/Step7ProductContent';
 import Step8ProductReview from './product-editor/Step8ProductReview';
 
 // Utilities
-import { 
-    roundCurrency, 
-    IMAGE_PREVIEW_RE, 
+import {
+    roundCurrency,
+    IMAGE_PREVIEW_RE,
     ENHANCEMENT_PROMPT,
     normalizeSerialCodes,
     getAvailableSerialCodes,
@@ -57,7 +57,7 @@ const SharedProductEditor = ({
     const navigate = useNavigate();
     const location = useLocation();
     const isAdminMode = true;
-    const storageKey = 'alanka_admin_add_product_form';
+    const storageKey = 'Alankarr_admin_add_product_form';
 
     const isViewMode = location.pathname.includes('/view/');
     const isEditMode = Boolean(id) && !isViewMode;
@@ -93,9 +93,9 @@ const SharedProductEditor = ({
         city: 'Mumbai',
         updatedAt: null
     });
-    
+
     const serialBarcodeRefs = useRef({});
-    
+
     // AI Enhancement States
     const [enhancingIndex, setEnhancingIndex] = useState(null);
     const [showEnhanceModal, setShowEnhanceModal] = useState(false);
@@ -121,20 +121,20 @@ const SharedProductEditor = ({
             careTips: '',
             diamondType: 'none',
             categories: [],
-            variants: [{ 
-                id: Date.now(), 
-                name: 'Standard', 
-                size: '', 
-                weight: '', 
+            variants: [{
+                id: Date.now(),
+                name: 'Standard',
+                size: '',
+                weight: '',
                 weightUnit: 'Grams',
-                makingCharge: '0', 
+                makingCharge: '0',
                 hallmarkingCharge: '0',
                 diamondCertificateCharge: '0',
                 additionalCharge: '0',
-                diamondPrice: '0', 
+                diamondPrice: '0',
                 diamondType: 'none',
-                mrp: '0', 
-                price: '', 
+                mrp: '0',
+                price: '',
                 stock: 0,
                 serialCodes: [],
                 hiddenCharge: 0,
@@ -161,12 +161,12 @@ const SharedProductEditor = ({
             seo: { title: '', description: '', keywords: '' },
             logistics: { estimatedShippingDays: 3, certificateUrl: '' },
             deletedImages: [],
-            tags: { 
-                isNewArrival: false, 
-                isMostGifted: false, 
-                isNewLaunch: false, 
-                isTrending: false, 
-                isPremium: false 
+            tags: {
+                isNewArrival: false,
+                isMostGifted: false,
+                isNewLaunch: false,
+                isTrending: false,
+                isPremium: false
             },
             relatedProducts: [],
             weight: '',
@@ -208,7 +208,7 @@ const SharedProductEditor = ({
 
     useEffect(() => {
         const newErrors = {};
-        
+
         // 1. Name
         if (!formData.name) {
             newErrors.name = "Product Name is required";
@@ -266,7 +266,7 @@ const SharedProductEditor = ({
                     newErrors[`variant_${v.id}_name`] = "Variant name required";
                     newErrors[`variant_${i}_name`] = "Variant name required";
                 }
-                
+
                 if (v.weight === undefined || v.weight === '') {
                     newErrors[`variant_${v.id}_weight`] = "Weight required";
                     newErrors[`variant_${i}_weight`] = "Weight required";
@@ -446,7 +446,7 @@ const SharedProductEditor = ({
             </head>
             <body>
                 <h3 style="margin-top: 0; margin-bottom: 20px; text-transform: uppercase; font-size: 12px; font-weight: 800; letter-spacing: 2px; border-bottom: 2px solid #000; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-                    <span>ALANKA JEWELLERS • Barcodes Batch (${variant.name || 'Variant'})</span>
+                    <span>Alankarr JEWELLERS • Barcodes Batch (${variant.name || 'Variant'})</span>
                     <span style="color: #666; font-size: 10px;">${codes.length} Units</span>
                 </h3>
                 <div class="grid">
@@ -469,7 +469,7 @@ const SharedProductEditor = ({
         : '';
     const resolvedVideoPreview = videoPreview || formData.videoUrl || familyVideoFramePreview;
     const isImageVideoPreview = Boolean(resolvedVideoPreview) && (
-        IMAGE_PREVIEW_RE.test(resolvedVideoPreview) || 
+        IMAGE_PREVIEW_RE.test(resolvedVideoPreview) ||
         /\.(png|jpe?g|webp|gif|avif|svg)(\?.*)?$/i.test(String(resolvedVideoPreview))
     );
 
@@ -541,7 +541,7 @@ const SharedProductEditor = ({
                     const normalizedCategories = (data.categories || []).map(c => ({
                         category: typeof c === 'object' ? (c._id || c.name || '') : c
                     }));
-                    
+
                     const {
                         _id, id: legacyId, image, sellerId, sku, rating, reviewCount,
                         createdAt, updatedAt, __v, slug, brand, status, active,
@@ -557,8 +557,8 @@ const SharedProductEditor = ({
                             ? { serialCodes, stock: availableCount }
                             : syncVariantSerialQuantity({ serialCodes: [] }, index, desiredCount, prefix);
 
-                        return { 
-                            ...v, 
+                        return {
+                            ...v,
                             id: v._id || Math.random(),
                             weight: v.weight ?? data.weight ?? '',
                             weightUnit: v.weightUnit || data.weightUnit || 'Grams',
@@ -693,7 +693,7 @@ const SharedProductEditor = ({
             variants: prev.variants.map(v => {
                 if (v.id === vid) {
                     const updated = { ...v, [field]: value };
-                    
+
                     if (['makingCharge', 'hallmarkingCharge', 'diamondCertificateCharge', 'additionalCharge', 'diamondPrice', 'diamondPricing', 'gemstonePricing', 'weight', 'weightUnit'].includes(field)) {
                         const pricing = getPricingForVariant(updated, prev, metalRates, gstRate);
                         updated.mrp = pricing.finalPrice.toString();
@@ -741,20 +741,20 @@ const SharedProductEditor = ({
     const addVariant = () => {
         setFormData(prev => ({
             ...prev,
-            variants: [...prev.variants, { 
-                id: Date.now(), 
-                name: `Variant #${prev.variants.length + 1}`, 
-                size: '', 
+            variants: [...prev.variants, {
+                id: Date.now(),
+                name: `Variant #${prev.variants.length + 1}`,
+                size: '',
                 weight: prev.weight || '',
                 weightUnit: prev.weightUnit || 'Grams',
-                makingCharge: '0', 
+                makingCharge: '0',
                 hallmarkingCharge: '0',
                 diamondCertificateCharge: '0',
                 additionalCharge: '0',
-                diamondPrice: '0', 
+                diamondPrice: '0',
                 diamondType: prev.diamondType || 'none',
-                mrp: '0', 
-                price: '', 
+                mrp: '0',
+                price: '',
                 stock: 0,
                 serialCodes: [],
                 hiddenCharge: 0,
@@ -920,7 +920,7 @@ const SharedProductEditor = ({
             newErrors.name = "Product Name must contain only alphanumeric characters and spaces";
         }
         if (!formData.categories?.[0]?.category) newErrors.categories = "Category is required";
-        
+
         const strippedDesc = (formData.description || '').replace(/<[^>]*>/g, '').trim();
         if (!strippedDesc) newErrors.description = "Product Description is required";
 
@@ -952,7 +952,7 @@ const SharedProductEditor = ({
             ? getPricingConfigurationError(formData, metalRates)
             : '';
         if (pricingConfigurationError) newErrors.pricingConfiguration = pricingConfigurationError;
-        
+
         formData.variants.forEach((v, i) => {
             const varLabel = v.name ? `Variant "${v.name}"` : `Variant #${i + 1}`;
             if (!v.name) newErrors[`variant_${i}_name`] = `${varLabel}: Name is required`;
@@ -979,7 +979,7 @@ const SharedProductEditor = ({
         setHasTriedSubmit(true);
         const newErrors = validateForm();
         const errorList = Object.values(newErrors);
-        
+
         if (errorList.length > 0) {
             toast.error(
                 <div className="text-left font-sans">
@@ -1138,7 +1138,7 @@ const SharedProductEditor = ({
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-3.5">
                     <div className="flex items-center justify-between gap-4">
                         <div className="flex items-center gap-3.5">
-                            <button 
+                            <button
                                 onClick={() => navigate(backPath)}
                                 className="w-9 h-9 flex items-center justify-center rounded-xl bg-gray-50 border border-gray-200 text-gray-500 hover:text-[#3E2723] hover:bg-white transition-all shadow-xs"
                                 title="Back to Products"
@@ -1155,7 +1155,7 @@ const SharedProductEditor = ({
                                     </span>
                                 </div>
                                 <p className="text-[11px] text-gray-500 mt-0.5">
-                                    ALANKA JEWELLERS • Master Registry Protocol
+                                    Alankarr JEWELLERS • Master Registry Protocol
                                 </p>
                             </div>
                         </div>
@@ -1187,15 +1187,13 @@ const SharedProductEditor = ({
                                     <button
                                         key={step.id}
                                         onClick={() => setActiveTab(step.id)}
-                                        className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                                            isActive
-                                                ? 'bg-white text-gray-900 shadow-xs border border-gray-200/80 font-bold'
-                                                : 'text-gray-500 hover:text-gray-800 hover:bg-gray-100/60'
-                                        }`}
+                                        className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${isActive
+                                            ? 'bg-white text-gray-900 shadow-xs border border-gray-200/80 font-bold'
+                                            : 'text-gray-500 hover:text-gray-800 hover:bg-gray-100/60'
+                                            }`}
                                     >
-                                        <div className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
-                                            isActive ? 'bg-[#3E2723] text-white' : 'bg-gray-200/70 text-gray-600'
-                                        }`}>
+                                        <div className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${isActive ? 'bg-[#3E2723] text-white' : 'bg-gray-200/70 text-gray-600'
+                                            }`}>
                                             {step.stepNumber}
                                         </div>
                                         <StepIcon size={13} className={isActive ? 'text-amber-800' : 'text-gray-400'} />
@@ -1382,9 +1380,9 @@ const SharedProductEditor = ({
                                 <h3 className="text-2xl font-bold leading-tight mb-2">
                                     Product Successfully Committed
                                 </h3>
-                                <p className="text-amber-200/80 text-xs">Synchronized with ALANKA JEWELLERS Central Registry</p>
+                                <p className="text-amber-200/80 text-xs">Synchronized with Alankarr JEWELLERS Central Registry</p>
                             </div>
-                            
+
                             <div className="mt-8 p-4 bg-white/5 rounded-2xl border border-white/10">
                                 <p className="text-[10px] text-white/50 uppercase tracking-widest font-semibold mb-1">Master Product Code</p>
                                 <span className="text-2xl font-mono font-bold text-amber-400">
@@ -1403,10 +1401,10 @@ const SharedProductEditor = ({
                                 <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col items-center">
                                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Visual Barcode Signature</p>
                                     <div className="bg-white p-3 rounded-xl border border-gray-200">
-                                        <Barcode 
-                                            value={createdProductData?.productCode || formData.productCode || 'COMMITTED'} 
-                                            width={1.2} 
-                                            height={40} 
+                                        <Barcode
+                                            value={createdProductData?.productCode || formData.productCode || 'COMMITTED'}
+                                            width={1.2}
+                                            height={40}
                                             fontSize={10}
                                             background="#ffffff"
                                         />
@@ -1415,7 +1413,7 @@ const SharedProductEditor = ({
                             </div>
 
                             <div className="space-y-2.5 mt-8">
-                                <button 
+                                <button
                                     onClick={() => {
                                         setShowSuccessModal(false);
                                         if (isAdminMode) navigate('/admin/products/new');
@@ -1425,7 +1423,7 @@ const SharedProductEditor = ({
                                 >
                                     <Plus size={14} /> Add Another Product
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => navigate(backPath)}
                                     className="w-full py-2.5 text-gray-500 rounded-xl text-xs font-semibold hover:text-[#3E2723] transition-all"
                                 >

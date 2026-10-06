@@ -2,7 +2,7 @@ import React, { useRef, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import ProductCard from './ProductCard';
 import ProductSkeleton from './ProductSkeleton';
 import { useHomepageCms } from '../hooks/useHomepageCms';
@@ -166,7 +166,7 @@ const SilverCollectionSection = () => {
                     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-8 text-left">
                         <div>
                             <div className="inline-flex items-center gap-2 mb-2 text-[#C77F94] text-[10px] md:text-[11px] uppercase font-bold tracking-[0.28em]">
-                                <AlankaJewelleryMark className="w-3.5 h-3.5 text-[#C77F94]" />
+                                <AlankarrJewelleryMark className="w-3.5 h-3.5 text-[#C77F94]" />
                                 <span>{eyebrow}</span>
                             </div>
                             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#3D2730] font-normal tracking-tight">
@@ -201,7 +201,7 @@ const SilverCollectionSection = () => {
                     ) : (
                         <div className="relative overflow-hidden rounded-2xl border border-[#EBD3DA] bg-gradient-to-br from-white via-[#FFF9FA] to-[#FCEFF2] p-8 md:p-12 text-center shadow-sm">
                             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F7DDE5] text-[#C77F94]">
-                                <AlankaJewelleryMark className="h-7 w-7 text-[#C77F94]" />
+                                <AlankarrJewelleryMark className="h-7 w-7 text-[#C77F94]" />
                             </div>
                             <h3 className="mt-4 font-serif text-xl sm:text-2xl font-medium text-[#3D2730]">
                                 Sterling Silver Pieces Coming Soon

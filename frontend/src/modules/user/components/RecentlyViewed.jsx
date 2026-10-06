@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { formatCurrency } from '../utils/price';
 
 const RecentlyViewed = () => {
@@ -59,7 +59,7 @@ const RecentlyViewed = () => {
                 </button>
             </div>
 
-            <div 
+            <div
                 ref={scrollContainerRef}
                 onScroll={handleScroll}
                 className="flex overflow-x-auto gap-4 md:gap-8 pb-4 no-scrollbar snap-x scroll-smooth"
@@ -84,7 +84,7 @@ const RecentlyViewed = () => {
                             {/* Quick Action Overlay */}
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-[2px]">
                                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
-                                    <AlankaJewelleryMark className="w-4 h-4 text-brand-champagne" />
+                                    <AlankarrJewelleryMark className="w-4 h-4 text-brand-champagne" />
                                 </div>
                             </div>
                         </div>
@@ -108,11 +108,10 @@ const RecentlyViewed = () => {
                         <button
                             key={idx}
                             onClick={() => scrollToDot(idx)}
-                            className={`transition-all duration-300 rounded-full ${
-                                activeIndex === idx 
-                                ? 'w-6 h-1.5 bg-brand-champagne' 
+                            className={`transition-all duration-300 rounded-full ${activeIndex === idx
+                                ? 'w-6 h-1.5 bg-brand-champagne'
                                 : 'w-1.5 h-1.5 bg-stone-200 hover:bg-stone-400'
-                            }`}
+                                }`}
                             aria-label={`Go to item ${idx + 1}`}
                         />
                     ))}

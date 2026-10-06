@@ -281,14 +281,14 @@ const AdminLayout = ({ children }) => {
                 <div className="h-16 flex items-center justify-center px-4 border-b border-white/10 shrink-0 relative bg-[#3E2723]">
                     {isSidebarOpen ? (
                         <div className="flex items-center gap-3">
-                            <img src={logo} alt="ALANKA JEWELLERS" className="h-10 w-auto object-contain" />
+                            <img src={logo} alt="Alankarr JEWELLERS" className="h-10 w-auto object-contain" />
                             <div className="flex flex-col text-left">
-                                <span className="text-sm font-bold tracking-wider text-amber-300 font-serif leading-tight">ALANKA JEWELLERS</span>
+                                <span className="text-sm font-bold tracking-wider text-amber-300 font-serif leading-tight">Alankarr JEWELLERS</span>
                                 <span className="text-[9px] font-medium tracking-widest text-amber-100/70 uppercase">Admin Portal</span>
                             </div>
                         </div>
                     ) : (
-                        <img src={logo} alt="ALANKA JEWELLERS" className="h-10 w-auto mx-auto object-contain" />
+                        <img src={logo} alt="Alankarr JEWELLERS" className="h-10 w-auto mx-auto object-contain" />
                     )}
                     {/* Mobile Close Button */}
                     <button

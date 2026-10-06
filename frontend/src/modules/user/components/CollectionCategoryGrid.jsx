@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { useHomepageCms } from '../hooks/useHomepageCms';
 import { useShop } from '../../../context/ShopContext';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
@@ -244,7 +244,7 @@ const CollectionCategoryGrid = ({
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-8">
                     <div>
                         <div className="inline-flex items-center gap-2 mb-2 text-brand-plum text-[10px] uppercase font-bold tracking-[0.3em]">
-                            <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                            <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                             <span>{sectionEyebrow}</span>
                         </div>
                         <h2 className="font-serif text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
@@ -320,9 +320,8 @@ const CollectionCategoryGrid = ({
                             <Link
                                 key={category.id}
                                 to={category.path}
-                                className={`group/item flex flex-col shrink-0 snap-start bg-white rounded-2xl border border-brand-border hover:border-brand-champagne overflow-hidden transition-all duration-300 ${
-                                    isLead ? 'w-[170px] sm:w-[200px] border-brand-champagne/60 shadow-sm' : 'w-[130px] sm:w-[150px]'
-                                }`}
+                                className={`group/item flex flex-col shrink-0 snap-start bg-white rounded-2xl border border-brand-border hover:border-brand-champagne overflow-hidden transition-all duration-300 ${isLead ? 'w-[170px] sm:w-[200px] border-brand-champagne/60 shadow-sm' : 'w-[130px] sm:w-[150px]'
+                                    }`}
                             >
                                 <div className="relative aspect-square overflow-hidden bg-stone-100">
                                     <img

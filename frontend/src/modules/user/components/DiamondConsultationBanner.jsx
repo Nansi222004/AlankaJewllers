@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageCircle, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 
 const DiamondConsultationBanner = ({ sectionData }) => {
     const settings = sectionData?.settings || {};
@@ -8,7 +8,7 @@ const DiamondConsultationBanner = ({ sectionData }) => {
     const subtitle = settings.subtitle || 'Speak with our dedicated jewellery consultants to curate custom settings, solitaire rings, and personalised anniversary gifts crafted to your exact preferences.';
     const badge = settings.badge || 'Private Atelier Consultation';
     const rawNumber = String(settings.whatsappNumber || '919876543210').replace(/[^0-9]/g, '');
-    const whatsappUrl = settings.ctaPath || `https://wa.me/${rawNumber}?text=${encodeURIComponent("Hello Alankar Jewellers, I'm interested in curating a bespoke diamond design.")}`;
+    const whatsappUrl = settings.ctaPath || `https://wa.me/${rawNumber}?text=${encodeURIComponent("Hello Alankarrr Jewellers, I'm interested in curating a bespoke diamond design.")}`;
     const ctaLabel = settings.ctaLabel || 'Consult on WhatsApp';
 
     return (
@@ -19,7 +19,7 @@ const DiamondConsultationBanner = ({ sectionData }) => {
             <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-champagne/30 bg-[#552237] text-brand-champagne text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-6 shadow-sm">
-                    <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                    <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                     <span>{badge}</span>
                 </div>
 

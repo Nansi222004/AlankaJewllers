@@ -3,7 +3,7 @@ import { useLocation, useNavigationType } from "react-router-dom";
 import { scrollToTop, getLenis } from "./lib/lenis";
 
 /**
- * Bulletproof Scroll Restoration for Alankar Jewellers
+ * Bulletproof Scroll Restoration for Alankarrr Jewellers
  * Uses useRef to remember viewport positions across navigations.
  * Optimized for Lenis Smooth Scroll.
  */

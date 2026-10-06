@@ -1,5 +1,5 @@
 /**
- * 📧 Email Log Model — Alankar Jewellers
+ * 📧 Email Log Model — Alankarrr Jewellers
  *    Provides an audit trail for every email attempted by the system.
  *    Admin can query logs at /api/admin/email-logs (future route).
  */

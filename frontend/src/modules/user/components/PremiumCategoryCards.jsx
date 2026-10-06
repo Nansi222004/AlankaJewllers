@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import womenImg from '@assets/cat_women_portrait_new.jpg';
 import menImg from '@assets/cat_men_premium.png';
 import giftingImg from '@assets/gifting_still_life.jpg';
@@ -85,7 +85,7 @@ const PremiumCategoryCards = () => {
 
                 {/* 2. Asymmetrical Editorial Composition */}
                 <div className="flex flex-col lg:flex-row gap-5 lg:gap-6 items-stretch">
-                    
+
                     {/* 3. For Her Feature Card (60–65% width on Desktop) */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -162,7 +162,7 @@ const PremiumCategoryCards = () => {
 
                     {/* 4. Right Stacked Area (35–40% width on Desktop) */}
                     <div className="w-full lg:w-[38%] flex flex-col justify-between gap-4 lg:gap-5">
-                        
+
                         {/* For Him Card */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -262,7 +262,7 @@ const PremiumCategoryCards = () => {
                             {/* Top Badge */}
                             <div className="relative z-10 flex items-center justify-between">
                                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-brand-champagne text-[8.5px] md:text-[9px] font-semibold tracking-[0.2em] uppercase">
-                                    <AlankaJewelleryMark className="w-2.5 h-2.5 text-brand-champagne" />
+                                    <AlankarrJewelleryMark className="w-2.5 h-2.5 text-brand-champagne" />
                                     <span>{GIFTING_DATA.badge}</span>
                                 </div>
                             </div>

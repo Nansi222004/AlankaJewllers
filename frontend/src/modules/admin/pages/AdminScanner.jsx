@@ -175,14 +175,14 @@ const AdminScanner = () => {
             Admin POS Camera Terminal
           </span>
           <h1 className="text-white text-xs font-black uppercase tracking-widest mt-1">
-            Alankar Jewellers Store
+            Alankarrr Jewellers Store
           </h1>
         </div>
         <button
           onClick={toggleFlash}
           className={`p-3 backdrop-blur-xl border rounded-2xl transition-all ${isFlashOn
-              ? "bg-amber-500 border-amber-400 text-white shadow-lg shadow-amber-500/40"
-              : "bg-white/10 border-white/20 text-white"
+            ? "bg-amber-500 border-amber-400 text-white shadow-lg shadow-amber-500/40"
+            : "bg-white/10 border-white/20 text-white"
             }`}
           title="Toggle Torch / Flashlight"
         >
@@ -224,8 +224,8 @@ const AdminScanner = () => {
           <div className="bg-white rounded-[2.3rem] p-8 flex flex-col items-center gap-6">
             <div
               className={`w-20 h-20 rounded-full flex items-center justify-center border shadow-inner ${scannedProduct.available
-                  ? "bg-emerald-50 border-emerald-100 text-emerald-500"
-                  : "bg-rose-50 border-rose-100 text-rose-500"
+                ? "bg-emerald-50 border-emerald-100 text-emerald-500"
+                : "bg-rose-50 border-rose-100 text-rose-500"
                 }`}
             >
               {scannedProduct.available ? (

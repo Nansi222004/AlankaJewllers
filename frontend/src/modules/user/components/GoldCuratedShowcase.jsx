@@ -27,7 +27,7 @@ const fallbackCollections = [
   },
   {
     id: 4,
-    title: "Alankar Heritage",
+    title: "Alankarrr Heritage",
     image: ringLight,
     path: "/shop?category=Rings&search=vanki",
   },
@@ -182,8 +182,8 @@ const GoldCuratedShowcase = ({ sectionData = null }) => {
                   key={idx}
                   onClick={() => scrollToDot(idx)}
                   className={`transition-all duration-300 rounded-full ${activeIndex === idx
-                      ? "w-6 h-1.5 bg-brand-champagne"
-                      : "w-1.5 h-1.5 bg-brand-border hover:bg-brand-taupe"
+                    ? "w-6 h-1.5 bg-brand-champagne"
+                    : "w-1.5 h-1.5 bg-brand-border hover:bg-brand-taupe"
                     }`}
                   aria-label={`Go to item ${idx + 1}`}
                 />

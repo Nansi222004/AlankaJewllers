@@ -1,5 +1,5 @@
 
-> Alankar-jewellers@0.0.0 build
+> Alankarrr-jewellers@0.0.0 build
 > vite build
 
 [36mvite v7.3.2 [32mbuilding client environment for production...[36m[39m
@@ -252,7 +252,7 @@ computing gzip size...
 [2mdist/[22m[32massets/home_reception_editorial-B1j6U6Ys.jpg               [39m[1m[2m  936.36 kB[22m[1m[22m
 [2mdist/[22m[32massets/home_haldi_editorial-9Z4hnOiy.jpg                   [39m[1m[2m  942.27 kB[22m[1m[22m
 [2mdist/[22m[32massets/videoframe_23898-Esgeu6PZ.png                       [39m[1m[2m1,159.42 kB[22m[1m[22m
-[2mdist/[22m[32massets/Alankar jewllers-D1JNTNSo.png                       [39m[1m[2m1,181.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/Alankarrr jewllers-D1JNTNSo.png                       [39m[1m[2m1,181.61 kB[22m[1m[22m
 [2mdist/[22m[35massets/editor-vendor-Bf4bJ6eu.css                          [39m[1m[2m   24.23 kB[22m[1m[22m[2m Γöé gzip:   3.61 kB[22m
 [2mdist/[22m[35massets/index-vmiHLl16.css                                  [39m[1m[2m  351.20 kB[22m[1m[22m[2m Γöé gzip:  45.27 kB[22m
 [2mdist/[22m[36massets/banner_party-C41HG-cE.js                            [39m[1m[2m    0.06 kB[22m[1m[22m[2m Γöé gzip:   0.08 kB[22m

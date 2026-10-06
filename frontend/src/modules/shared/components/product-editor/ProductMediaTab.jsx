@@ -3,7 +3,7 @@ import { Upload, X, Trash2, ImagePlus, FileText, CheckCircle2, Info, Copy } from
 import { FormSection } from '../../../admin/components/common/FormControls';
 import { ENHANCEMENT_PROMPT } from '../../utils/productEditorUtils';
 import toast from 'react-hot-toast';
-import AlankaJewelleryMark from '../AlankaJewelleryMark';
+import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
 
 const ProductMediaTab = ({
     formData,
@@ -174,7 +174,7 @@ const ProductMediaTab = ({
                         <div className="bg-[#3E2723] p-10 text-white relative">
                             <div className="flex items-center gap-4 mb-3">
                                 <div className="p-2 bg-amber-400 rounded-xl text-[#3E2723]">
-                                    <AlankaJewelleryMark size={24} className="text-[#3E2723]" />
+                                    <AlankarrJewelleryMark size={24} className="text-[#3E2723]" />
                                 </div>
                                 <h2 className="text-3xl font-black uppercase tracking-tight">Visual Studio</h2>
                             </div>

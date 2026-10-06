@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Gem, Leaf } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 
 import naturalDiamondImg from '@assets/hero/diamond_luxury.png';
@@ -65,7 +65,7 @@ const DiamondShopByType = ({ sectionData }) => {
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
                     <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-200 bg-white text-brand-espresso text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 shadow-2xs">
-                        <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                        <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <span>{badge}</span>
                     </div>
                     <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-espresso font-normal tracking-tight mb-3">
@@ -89,11 +89,10 @@ const DiamondShopByType = ({ sectionData }) => {
                                     <div>
                                         {/* Badge & Tag */}
                                         <div className="flex items-center justify-between gap-3 mb-4">
-                                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                                                isNatural
-                                                    ? 'bg-[#FFF7F9] text-brand-champagne border border-[#E8DFC8]'
-                                                    : 'bg-sky-50 text-sky-800 border border-sky-200/60'
-                                            }`}>
+                                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${isNatural
+                                                ? 'bg-[#FFF7F9] text-brand-champagne border border-[#E8DFC8]'
+                                                : 'bg-sky-50 text-sky-800 border border-sky-200/60'
+                                                }`}>
                                                 {isNatural ? <Gem className="w-3 h-3" /> : <Leaf className="w-3 h-3" />}
                                                 <span>{item.badge}</span>
                                             </span>
@@ -137,11 +136,10 @@ const DiamondShopByType = ({ sectionData }) => {
                                     {/* CTA Action */}
                                     <Link
                                         to={item.path}
-                                        className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-xs ${
-                                            isNatural
-                                                ? 'bg-brand-plum text-white hover:bg-brand-champagne hover:text-brand-espresso'
-                                                : 'bg-stone-900 text-white hover:bg-sky-900'
-                                        }`}
+                                        className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-xs ${isNatural
+                                            ? 'bg-brand-plum text-white hover:bg-brand-champagne hover:text-brand-espresso'
+                                            : 'bg-stone-900 text-white hover:bg-sky-900'
+                                            }`}
                                     >
                                         <span>Shop {item.name}</span>
                                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

@@ -1,21 +1,21 @@
 import React from 'react';
-import { 
-    Tag, Scale, Zap, IndianRupee, CheckCircle2 as SuccessIcon, 
-    Layers, Calculator, Box, Barcode as BarcodeIcon, Copy, Download, 
+import {
+    Tag, Scale, Zap, IndianRupee, CheckCircle2 as SuccessIcon,
+    Layers, Calculator, Box, Barcode as BarcodeIcon, Copy, Download,
     Plus, Trash2, ImagePlus, FileText, ChevronDown, ChevronUp, X, Info,
     CheckCircle2
 } from 'lucide-react';
 import Barcode from 'react-barcode';
 import { roundCurrency, getPricingForVariant, getPricingConfigurationError, getAvailableSerialCodes, normalizeSerialCodes } from '../../utils/productEditorUtils';
 import toast from 'react-hot-toast';
-import AlankaJewelleryMark from '../AlankaJewelleryMark';
+import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
 
-const ProductVariantsTab = ({ 
-    formData, 
-    setFormData, 
-    errors, 
-    isViewMode, 
-    metalRates, 
+const ProductVariantsTab = ({
+    formData,
+    setFormData,
+    errors,
+    isViewMode,
+    metalRates,
     gstRate,
     handleVariantChange,
     handleDiamondSpecChange,
@@ -59,8 +59,8 @@ const ProductVariantsTab = ({
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Manage multiple sizes, weights, and specifications</p>
                 </div>
                 {!isViewMode && (
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         onClick={addVariant}
                         className="flex items-center gap-2 px-5 py-2.5 bg-[#3E2723] text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all shadow-md active:scale-95"
                     >
@@ -87,7 +87,7 @@ const ProductVariantsTab = ({
                     return (
                         <div key={v.id} className={`bg-white rounded-[2rem] border transition-all overflow-hidden ${isExpanded ? 'border-amber-200 shadow-xl ring-1 ring-amber-100' : 'border-gray-100 shadow-sm hover:shadow-md'}`}>
                             {/* Variant Header/Summary */}
-                            <div 
+                            <div
                                 className={`p-4 sm:p-6 flex items-center justify-between cursor-pointer transition-colors ${isExpanded ? 'bg-amber-50/30' : 'hover:bg-gray-50'}`}
                                 onClick={() => toggleExpand(v.id)}
                             >
@@ -115,15 +115,15 @@ const ProductVariantsTab = ({
                                 </div>
                                 <div className="flex items-center gap-3">
                                     {!isViewMode && formData.variants.length > 1 && (
-                                        <button 
-                                            type="button" 
+                                        <button
+                                            type="button"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 removeVariant(v.id);
-                                            }} 
+                                            }}
                                             className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"
                                         >
-                                            <Trash2 size={16}/>
+                                            <Trash2 size={16} />
                                         </button>
                                     )}
                                     <div className={`p-2 rounded-full border ${isExpanded ? 'border-amber-200 text-amber-600 bg-white' : 'border-gray-200 text-gray-400'}`}>
@@ -152,12 +152,12 @@ const ProductVariantsTab = ({
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
                                                     <Tag size={10} className="text-amber-500" /> Variant Name <span className="text-red-500">*</span>
                                                 </label>
-                                                <input 
-                                                    value={v.name} 
-                                                    onChange={(e) => handleVariantChange(v.id, 'name', e.target.value)} 
-                                                    disabled={isViewMode} 
-                                                    className={`w-full bg-white border rounded-xl py-3.5 px-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${nameError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`} 
-                                                    placeholder="e.g. Standard, Small, Large" 
+                                                <input
+                                                    value={v.name}
+                                                    onChange={(e) => handleVariantChange(v.id, 'name', e.target.value)}
+                                                    disabled={isViewMode}
+                                                    className={`w-full bg-white border rounded-xl py-3.5 px-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${nameError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`}
+                                                    placeholder="e.g. Standard, Small, Large"
                                                 />
                                                 {nameError && <div className="text-[10px] text-red-500 mt-1 ml-1">{nameError}</div>}
                                             </div>
@@ -165,17 +165,17 @@ const ProductVariantsTab = ({
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
                                                     <Tag size={10} className="text-amber-500" /> Size <span className="text-gray-300 font-normal">(Optional)</span>
                                                 </label>
-                                                <input 
-                                                    value={v.size || ''} 
-                                                    onChange={(e) => handleVariantChange(v.id, 'size', e.target.value)} 
-                                                    disabled={isViewMode} 
+                                                <input
+                                                    value={v.size || ''}
+                                                    onChange={(e) => handleVariantChange(v.id, 'size', e.target.value)}
+                                                    disabled={isViewMode}
                                                     className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-5 text-sm font-bold text-gray-800 outline-none focus:border-[#3E2723] focus:ring-4 focus:ring-[#3E2723]/5 transition-all shadow-sm"
-                                                    placeholder="e.g. 12, 2.4, 18 inches" 
+                                                    placeholder="e.g. 12, 2.4, 18 inches"
                                                 />
                                             </div>
                                             <div className="space-y-2">
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
-                                                    <AlankaJewelleryMark size={10} className="text-amber-500" /> Diamond Type
+                                                    <AlankarrJewelleryMark size={10} className="text-amber-500" /> Diamond Type
                                                 </label>
                                                 <select
                                                     value={v.diamondType || formData.diamondType || 'none'}
@@ -234,14 +234,14 @@ const ProductVariantsTab = ({
                                                     <Zap size={10} className="text-amber-500" /> Unit Stock
                                                 </label>
                                                 <div className="relative">
-                                                    <input 
-                                                        type="number" 
-                                                        value={availableCount} 
+                                                    <input
+                                                        type="number"
+                                                        value={availableCount}
                                                         onChange={(e) => {
                                                             const val = e.target.value;
                                                             if (val !== '' && Number(val) < 0) return;
                                                             updateVariantSerialQuantity(v.id, val);
-                                                        }} 
+                                                        }}
                                                         onFocus={(e) => {
                                                             if (e.target.value === '0' || Number(e.target.value) === 0) {
                                                                 updateVariantSerialQuantity(v.id, '');
@@ -252,9 +252,9 @@ const ProductVariantsTab = ({
                                                                 updateVariantSerialQuantity(v.id, 0);
                                                             }
                                                         }}
-                                                        disabled={isViewMode} 
-                                                        className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-5 text-sm font-bold text-gray-800 outline-none focus:border-[#3E2723] focus:ring-4 focus:ring-[#3E2723]/5 transition-all shadow-sm" 
-                                                        placeholder="0" 
+                                                        disabled={isViewMode}
+                                                        className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-5 text-sm font-bold text-gray-800 outline-none focus:border-[#3E2723] focus:ring-4 focus:ring-[#3E2723]/5 transition-all shadow-sm"
+                                                        placeholder="0"
                                                         min={0}
                                                     />
                                                     <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1">
@@ -271,14 +271,14 @@ const ProductVariantsTab = ({
                                                     <IndianRupee size={10} className="text-amber-500" /> Making Charge
                                                 </label>
                                                 <div className="relative group">
-                                                    <input 
-                                                        type="number" 
-                                                        value={v.makingCharge} 
+                                                    <input
+                                                        type="number"
+                                                        value={v.makingCharge}
                                                         onChange={(e) => {
                                                             const val = e.target.value;
                                                             if (val !== '' && Number(val) < 0) return;
                                                             handleVariantChange(v.id, 'makingCharge', val);
-                                                        }} 
+                                                        }}
                                                         onFocus={(e) => {
                                                             if (e.target.value === '0' || Number(e.target.value) === 0) {
                                                                 handleVariantChange(v.id, 'makingCharge', '');
@@ -289,9 +289,9 @@ const ProductVariantsTab = ({
                                                                 handleVariantChange(v.id, 'makingCharge', '0');
                                                             }
                                                         }}
-                                                        disabled={isViewMode} 
-                                                        className={`w-full bg-white border rounded-xl py-3.5 pl-12 pr-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${makingError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`} 
-                                                        placeholder="0" 
+                                                        disabled={isViewMode}
+                                                        className={`w-full bg-white border rounded-xl py-3.5 pl-12 pr-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${makingError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`}
+                                                        placeholder="0"
                                                         min={0}
                                                     />
                                                     <span className="absolute left-5 top-1/2 -translate-y-1/2 text-[10px] font-black text-gray-400 uppercase tracking-widest">Rs</span>
@@ -303,14 +303,14 @@ const ProductVariantsTab = ({
                                                     <CheckCircle2 size={10} className="text-amber-500" /> Hallmarking Charge
                                                 </label>
                                                 <div className="relative">
-                                                    <input 
-                                                        type="number" 
-                                                        value={v.hallmarkingCharge ?? '0'} 
+                                                    <input
+                                                        type="number"
+                                                        value={v.hallmarkingCharge ?? '0'}
                                                         onChange={(e) => {
                                                             const val = e.target.value;
                                                             if (val !== '' && Number(val) < 0) return;
                                                             handleVariantChange(v.id, 'hallmarkingCharge', val);
-                                                        }} 
+                                                        }}
                                                         onFocus={(e) => {
                                                             if (e.target.value === '0' || Number(e.target.value) === 0) {
                                                                 handleVariantChange(v.id, 'hallmarkingCharge', '');
@@ -321,8 +321,8 @@ const ProductVariantsTab = ({
                                                                 handleVariantChange(v.id, 'hallmarkingCharge', '0');
                                                             }
                                                         }}
-                                                        disabled={isViewMode} 
-                                                        className={`w-full bg-white border rounded-xl py-3.5 pl-12 pr-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${hallmarkingError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`} 
+                                                        disabled={isViewMode}
+                                                        className={`w-full bg-white border rounded-xl py-3.5 pl-12 pr-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${hallmarkingError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`}
                                                         placeholder="0"
                                                         min={0}
                                                     />
@@ -332,7 +332,7 @@ const ProductVariantsTab = ({
                                             </div>
                                             <div className="space-y-3">
                                                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 flex items-center gap-1.5">
-                                                    <AlankaJewelleryMark size={10} className="text-amber-500" /> Legacy Diamond / Stones
+                                                    <AlankarrJewelleryMark size={10} className="text-amber-500" /> Legacy Diamond / Stones
                                                 </label>
                                                 <div className="relative">
                                                     <input
@@ -367,14 +367,14 @@ const ProductVariantsTab = ({
                                                     <FileText size={10} className="text-amber-500" /> Certificate Charge
                                                 </label>
                                                 <div className="relative">
-                                                    <input 
-                                                        type="number" 
-                                                        value={v.diamondCertificateCharge ?? '0'} 
+                                                    <input
+                                                        type="number"
+                                                        value={v.diamondCertificateCharge ?? '0'}
                                                         onChange={(e) => {
                                                             const val = e.target.value;
                                                             if (val !== '' && Number(val) < 0) return;
                                                             handleVariantChange(v.id, 'diamondCertificateCharge', val);
-                                                        }} 
+                                                        }}
                                                         onFocus={(e) => {
                                                             if (e.target.value === '0' || Number(e.target.value) === 0) {
                                                                 handleVariantChange(v.id, 'diamondCertificateCharge', '');
@@ -385,8 +385,8 @@ const ProductVariantsTab = ({
                                                                 handleVariantChange(v.id, 'diamondCertificateCharge', '0');
                                                             }
                                                         }}
-                                                        disabled={isViewMode} 
-                                                        className={`w-full bg-white border rounded-xl py-3.5 pl-12 pr-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${certError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`} 
+                                                        disabled={isViewMode}
+                                                        className={`w-full bg-white border rounded-xl py-3.5 pl-12 pr-5 text-sm font-bold text-gray-800 outline-none focus:ring-4 transition-all shadow-sm ${certError ? 'border-red-400 focus:border-red-500 focus:ring-red-200/40' : 'border-gray-200 focus:border-[#3E2723] focus:ring-[#3E2723]/5'}`}
                                                         placeholder="0"
                                                         min={0}
                                                     />
@@ -587,7 +587,7 @@ const ProductVariantsTab = ({
                                                 <div className="flex items-center justify-between">
                                                     <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Visual Identifier</label>
                                                     {v.variantCode && v.serialCodes && v.serialCodes.length > 0 && (
-                                                        <button 
+                                                        <button
                                                             type="button"
                                                             onClick={() => handleDownloadAllSerialBarcodes(v)}
                                                             className="text-[8px] font-black text-[#8E2B45] uppercase tracking-widest hover:underline flex items-center gap-1 cursor-pointer"
@@ -669,7 +669,7 @@ const ProductVariantsTab = ({
                                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
                                                 <div className="flex items-center gap-3">
                                                     <div className="p-2 bg-pink-100 rounded-xl text-pink-600">
-                                                        <AlankaJewelleryMark size={18} className="text-pink-600" />
+                                                        <AlankarrJewelleryMark size={18} className="text-pink-600" />
                                                     </div>
                                                     <div>
                                                         <h4 className="text-[10px] font-black text-pink-800 uppercase tracking-[0.2em]">Diamond Intelligence</h4>
@@ -843,7 +843,7 @@ const ProductVariantsTab = ({
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-3">
                                                     <div className="p-2 bg-purple-100 rounded-xl text-purple-600">
-                                                        <AlankaJewelleryMark size={18} className="text-purple-600" />
+                                                        <AlankarrJewelleryMark size={18} className="text-purple-600" />
                                                     </div>
                                                     <div>
                                                         <h4 className="text-[10px] font-black text-purple-800 uppercase tracking-[0.2em]">Gemstone Pricing</h4>
@@ -1010,7 +1010,7 @@ const ProductVariantsTab = ({
                                                         ✨ Recommended Size: 1080x1080px (1:1 Ratio)
                                                     </p>
                                                 </div>
-                                                
+
                                                 <div className="grid grid-cols-3 gap-3">
                                                     {/* Upload Previews */}
                                                     {(variantImagePreviews[v.id] || []).map((img, previewIdx) => (
@@ -1047,7 +1047,7 @@ const ProductVariantsTab = ({
                                                 {(!v.variantImages || v.variantImages.length === 0) && (!variantImagePreviews[v.id] || variantImagePreviews[v.id].length === 0) && (
                                                     <div className="text-center py-4">
                                                         <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
-                                                            Using product-level gallery<br/>(Fallback Active)
+                                                            Using product-level gallery<br />(Fallback Active)
                                                         </p>
                                                     </div>
                                                 )}

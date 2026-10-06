@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-    Upload, X, Trash2, ImagePlus, FileText, CheckCircle2, 
-    Info, Video, Sparkles, Layers 
+import {
+    Upload, X, Trash2, ImagePlus, FileText, CheckCircle2,
+    Info, Video, Sparkles, Layers
 } from 'lucide-react';
 import { FormSection } from '../../../admin/components/common/FormControls';
-import AlankaJewelleryMark from '../AlankaJewelleryMark';
+import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
 
 const Step6ProductMedia = ({
     formData,
@@ -68,8 +68,8 @@ const Step6ProductMedia = ({
                             {/* Images Grid */}
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
                                 {previewImages.map((img, idx) => (
-                                    <div 
-                                        key={idx} 
+                                    <div
+                                        key={idx}
                                         className="group relative aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-xs ring-1 ring-black/5 hover:ring-amber-300 transition-all"
                                     >
                                         <img src={img} alt={`Preview ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />

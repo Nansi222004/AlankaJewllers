@@ -167,11 +167,11 @@ const AdminLogin = () => {
           <div className="flex flex-col items-center gap-3">
             <img
               src={logo}
-              alt="Alanka Jewellers"
+              alt="Alankarr Jewellers"
               className="h-20 md:h-24 w-auto object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]"
             />
             <h1 className="text-2xl md:text-3xl font-serif font-bold text-white tracking-wider">
-              Alanka Jewellers
+              Alankarr Jewellers
             </h1>
           </div>
           <div className="mt-4 flex items-center gap-4 w-full px-6">
@@ -412,7 +412,7 @@ const AdminLogin = () => {
 
         {/* Footer Info */}
         <p className="text-center mt-10 text-[10px] text-white/40 font-bold tracking-[0.3em] uppercase">
-          &copy; 2026 Alankar Jewellers &middot; Highly Secure Access
+          &copy; 2026 Alankarrr Jewellers &middot; Highly Secure Access
         </p>
       </div>
 

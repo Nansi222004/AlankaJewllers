@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import toast from 'react-hot-toast';
 import { useSettings } from '../../../context/SettingsContext';
 
@@ -9,7 +9,7 @@ const Newsletter = () => {
     const [email, setEmail] = useState('');
 
     const storeEmail = settings?.email || 'swarna.sparsh22@gmail.com';
-    const storeName = settings?.storeName || 'Alankar Jewellers';
+    const storeName = settings?.storeName || 'Alankarrr Jewellers';
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,7 +35,7 @@ const Newsletter = () => {
 
             <div className="container mx-auto px-4 md:px-8 max-w-[860px] relative z-10 text-center">
                 <div className="inline-flex items-center gap-2 mb-3 text-brand-champagne text-[10px] uppercase font-bold tracking-[0.3em]">
-                    <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                    <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                     <span>The Atelier Circle</span>
                 </div>
 

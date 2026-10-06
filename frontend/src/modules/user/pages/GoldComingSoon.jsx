@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, Heart } from 'lucide-react';
-import AlankaJewelleryMark from '../components/AlankaJewelleryMark';
+import AlankarrJewelleryMark from '../components/AlankarrJewelleryMark';
 import { Link } from 'react-router-dom';
 
 const GoldComingSoon = () => {
@@ -28,7 +28,7 @@ const GoldComingSoon = () => {
                                 transition={{ duration: 4, repeat: Infinity }}
                                 className="absolute -top-4 -right-4 text-[#D4AF37]"
                             >
-                                <AlankaJewelleryMark size={32} className="text-[#D4AF37]" />
+                                <AlankarrJewelleryMark size={32} className="text-[#D4AF37]" />
                             </motion.div>
                         </div>
                     </motion.div>
@@ -42,7 +42,7 @@ const GoldComingSoon = () => {
                         >
                             <h4 className="text-[#AA8C2C] font-black uppercase tracking-[0.4em] text-xs mb-4">The Grand Unveil</h4>
                             <h1 className="text-5xl md:text-7xl font-display font-bold text-brand-espresso leading-tight">
-                                Alankar JEWELLERS <span className="text-[#D4AF37]">GOLD</span> <br />COLLECTION
+                                Alankarrr JEWELLERS <span className="text-[#D4AF37]">GOLD</span> <br />COLLECTION
                             </h1>
                         </motion.div>
 
@@ -66,7 +66,7 @@ const GoldComingSoon = () => {
                         {[
                             { icon: Star, text: "Bespoke Craftsmanship" },
                             { icon: Heart, text: "Hallmarked Purity" },
-                            { icon: AlankaJewelleryMark, text: "Exclusive Designs" }
+                            { icon: AlankarrJewelleryMark, text: "Exclusive Designs" }
                         ].map((item, idx) => (
                             <div key={idx} className="bg-white/50 backdrop-blur-sm border border-[#D4AF37]/20 p-6 rounded-2xl flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
                                 <item.icon className="text-[#D4AF37] w-6 h-6" />

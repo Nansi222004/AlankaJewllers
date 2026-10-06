@@ -33,7 +33,7 @@ const AboutUs = () => {
               About Us
             </h1>
             <p className="text-brand-espresso text-xl leading-relaxed max-w-xl font-serif">
-              Welcome to <strong>Alankar Jewellers</strong>, where elegance meets
+              Welcome to <strong>Alankarrr Jewellers</strong>, where elegance meets
               timeless tradition. We are more than just a jewellery brand; we
               are curators of silver artistry designed to adorn your soul.
             </p>
@@ -46,7 +46,7 @@ const AboutUs = () => {
               occasions.
             </p>
             <p className="text-brand-espresso text-xl leading-relaxed max-w-xl font-serif">
-              At Alankar Jewellers, we are committed to sustainability and ethical
+              At Alankarrr Jewellers, we are committed to sustainability and ethical
               sourcing, ensuring that beauty does not come at a cost to our
               planet. Join us in celebrating your unique style with ornaments
               that shine as bright as you do.

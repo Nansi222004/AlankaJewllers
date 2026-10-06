@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, User, Heart, Users } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 
 const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
     const giftOptions = [
@@ -32,7 +32,7 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
     ];
 
     return (
-        <div 
+        <div
             className="bg-white w-[680px] max-w-[calc(100vw-2rem)] min-w-0 shadow-2xl border border-brand-border overflow-hidden relative rounded-b-2xl flex flex-col"
             style={{
                 maxHeight: availableHeight ? `${availableHeight}px` : 'min(440px, calc(100vh - 140px))',
@@ -41,7 +41,7 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
             data-lenis-prevent
             onWheel={(e) => e.stopPropagation()}
         >
-            <div 
+            <div
                 className="flex-1 overflow-y-auto custom-scrollbar p-5 sm:p-6 bg-gradient-to-b from-[#FFFBFC] via-[#FFF7F9] to-white"
                 data-lenis-prevent
                 onWheel={(e) => e.stopPropagation()}
@@ -53,7 +53,7 @@ const GiftingMegaMenu = ({ resetMenu, availableHeight, maxWidth }) => {
                 {/* Header label */}
                 <div className="flex items-center justify-between mb-4 sm:mb-5 pb-2.5 border-b border-[#F0DDE3]">
                     <div className="flex items-center gap-2">
-                        <AlankaJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
+                        <AlankarrJewelleryMark className="w-3.5 h-3.5 text-brand-champagne" />
                         <h3 className="text-brand-plum text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.25em]">
                             Curated Gift Collections
                         </h3>

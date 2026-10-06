@@ -453,7 +453,7 @@ exports.updateReplacementStatus = async (req, res) => {
 
       enqueueEmail({
         to: replUser.email,
-        subject: `Replacement Update - ${refreshed.replacementId} | Alankar Jewellers`,
+        subject: `Replacement Update - ${refreshed.replacementId} | Alankarrr Jewellers`,
         html: emailTemplates.replacementStatusUpdate({
           replacementReq: refreshed,
           userName: replUser.name,

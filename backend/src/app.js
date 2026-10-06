@@ -19,8 +19,8 @@ const defaultAllowedOrigins = [
   "http://localhost:5175",
   "https://sands-ornaments-ten.vercel.app",
   "https://sandsjewels.com",
-  "https://alankar-jewellers.com",
-  "https://www.alankar-jewellers.com",
+  "https://Alankarrr-jewellers.com",
+  "https://www.Alankarrr-jewellers.com",
 ];
 
 const configuredAllowedOrigins = process.env.CLIENT_URL
@@ -84,7 +84,7 @@ app.use("/api/", limiter);
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Alankar Jewellers API is running smoothly",
+    message: "Alankarrr Jewellers API is running smoothly",
     timestamp: new Date().toISOString(),
   });
 });

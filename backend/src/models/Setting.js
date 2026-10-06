@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 
 const settingSchema = new mongoose.Schema(
   {
-    storeName: { type: String, default: "Alankar Jewellers" },
-    tagline: { type: String, default: "Alankar Jewellers – Where Luxury Meets Identity" },
+    storeName: { type: String, default: "Alankarr Jewellers" },
+    tagline: { type: String, default: "Alankarr Jewellers – Where Luxury Meets Identity" },
     contactEmail: { type: String, default: "swarna.sparsh22@gmail.com" },
     contactPhone: { type: String, default: "+91 8668821446" },
     address: {
       type: String,
-      default: "Alankar Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
+      default: "Alankarr Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
     },
     email: { type: String, default: "swarna.sparsh22@gmail.com" },
     phone: { type: String, default: "+91 8668821446" },
-    website: { type: String, default: "https://alankar-jewellers.com/" },
+    website: { type: String, default: "https://Alankarr-jewellers.com/" },
     socialLinks: {
       facebook: { type: String, default: "#" },
       instagram: { type: String, default: "#" },
@@ -115,7 +115,7 @@ const settingSchema = new mongoose.Schema(
     fraudWarning: {
       type: String,
       default:
-        "BEWARE OF FRAUD: Alankar Jewellers never asks for confidential banking details over phone or email.",
+        "BEWARE OF FRAUD: Alankarr Jewellers never asks for confidential banking details over phone or email.",
     },
 
     // Footer Taglines and Texts
@@ -124,7 +124,7 @@ const settingSchema = new mongoose.Schema(
     footerDescription: {
       type: String,
       default:
-        "Every piece at Alankar Jewellers tells a story of heritage and modern grace. Join our community of silver lovers and celebrate life's most precious moments.",
+        "Every piece at Alankarr Jewellers tells a story of heritage and modern grace. Join our community of silver lovers and celebrate life's most precious moments.",
     },
 
     footerColumn1Title: { type: String, default: "Experience" },
@@ -180,7 +180,7 @@ const settingSchema = new mongoose.Schema(
     },
     footerCopyrightText: {
       type: String,
-      default: "Alankar Jewellers. All Rights Reserved.",
+      default: "Alankarr Jewellers. All Rights Reserved.",
     },
     logo: { type: String, default: "/logo.webp" },
     favicon: { type: String, default: "/favicon.png" },

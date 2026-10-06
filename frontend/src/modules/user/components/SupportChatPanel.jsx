@@ -235,7 +235,7 @@ const SupportChatPanel = () => {
               </div>
               <div>
                 <h3 className="font-display text-xs font-bold uppercase tracking-wide text-brand-pearl md:text-sm md:normal-case">
-                  Alankar Jewellers Support
+                  Alankarrr Jewellers Support
                 </h3>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -317,8 +317,8 @@ const SupportChatPanel = () => {
                         >
                           <div
                             className={`px-4 py-2.5 rounded-2xl text-xs font-medium shadow-sm border ${isAdmin
-                                ? "bg-white text-gray-800 rounded-tl-none border-gray-200/50"
-                                : "bg-brand-plum text-brand-pearl rounded-tr-none border-brand-champagne/30"
+                              ? "bg-white text-gray-800 rounded-tl-none border-gray-200/50"
+                              : "bg-brand-plum text-brand-pearl rounded-tr-none border-brand-champagne/30"
                               }`}
                           >
                             {reply.text}

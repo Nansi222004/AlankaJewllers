@@ -209,7 +209,7 @@ const FamilyCollectionProductsPage = () => {
   } = usePublicCmsPage("shop-family");
 
   useEffect(() => {
-    document.title = `${meta.title} | Alankar Jewellers`;
+    document.title = `${meta.title} | Alankarrr Jewellers`;
   }, [meta.title]);
 
   const sectionMap = useMemo(

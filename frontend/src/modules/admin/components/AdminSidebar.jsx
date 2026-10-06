@@ -171,12 +171,12 @@ const AdminSidebar = () => {
       <div className="p-6 border-b border-white/10 flex items-center gap-3 shrink-0">
         <img
           src={logo}
-          alt="ALANKA JEWELLERS"
+          alt="Alankarr JEWELLERS"
           className="h-11 w-auto object-contain"
         />
         <div className="flex flex-col">
           <span className="font-serif text-sm font-bold tracking-wider text-amber-300 leading-tight uppercase">
-            ALANKA JEWELLERS
+            Alankarr JEWELLERS
           </span>
           <span className="text-[9px] font-medium tracking-widest text-amber-100/70 uppercase">
             Admin
@@ -199,8 +199,8 @@ const AdminSidebar = () => {
             key={item.path}
             to={item.path}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${isActive(item.path)
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <item.icon size={20} strokeWidth={isActive(item.path) ? 2.5 : 2} />
@@ -213,8 +213,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setProductsExpanded(!productsExpanded)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isProductsActive
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <Package size={20} strokeWidth={isProductsActive ? 2.5 : 2} />
@@ -231,8 +231,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/products/new"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/products/new"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <Plus size={16} />
@@ -241,8 +241,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/products"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/products"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <List size={16} />
@@ -257,8 +257,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setCombosExpanded(!combosExpanded)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isCombosActive
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <Boxes size={20} strokeWidth={isCombosActive ? 2.5 : 2} />
@@ -275,8 +275,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/combo-categories"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/combo-categories"
-                    ? "bg-primary/20 text-white"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <List size={16} />
@@ -288,8 +288,8 @@ const AdminSidebar = () => {
                     setComboProductsExpanded(!comboProductsExpanded)
                   }
                   className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname.startsWith("/admin/combo-products")
-                      ? "bg-primary/20 text-white"
-                      : "text-gray-400 hover:bg-white/5 hover:text-white"
+                    ? "bg-primary/20 text-white"
+                    : "text-gray-400 hover:bg-white/5 hover:text-white"
                     }`}
                 >
                   <Package size={16} />
@@ -307,8 +307,8 @@ const AdminSidebar = () => {
                     <Link
                       to="/admin/combo-products"
                       className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all text-xs ${location.pathname === "/admin/combo-products"
-                          ? "bg-primary/10 text-white"
-                          : "text-gray-400 hover:bg-white/5 hover:text-white"
+                        ? "bg-primary/10 text-white"
+                        : "text-gray-400 hover:bg-white/5 hover:text-white"
                         }`}
                     >
                       <List size={14} />
@@ -326,8 +326,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setNotificationsExpanded(!notificationsExpanded)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isNotificationsActive
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <Bell size={20} strokeWidth={isNotificationsActive ? 2.5 : 2} />
@@ -346,8 +346,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/notifications/add"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/notifications/add"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <Plus size={16} />
@@ -356,8 +356,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/notifications"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/notifications"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <List size={16} />
@@ -372,8 +372,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setSupportExpanded(!supportExpanded)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isSupportActive
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <Headphones size={20} strokeWidth={isSupportActive ? 2.5 : 2} />
@@ -395,8 +395,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/support"
                 className={`flex items-center justify-between w-full px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/support"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <div className="flex items-center gap-3">
@@ -412,8 +412,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/support/inquiries"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/support/inquiries"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <MessageSquare size={16} />
@@ -432,8 +432,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setOrdersExpanded(!ordersExpanded)}
             className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${isOrdersActive
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <div className="flex items-center gap-3">
@@ -453,9 +453,9 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=all"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=all" ||
-                    (location.pathname === "/admin/orders" && !location.search)
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  (location.pathname === "/admin/orders" && !location.search)
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -473,8 +473,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=pending"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=pending"
-                    ? "bg-amber-500/20 text-amber-200"
-                    : "text-gray-400 hover:bg-white/5 hover:text-amber-200"
+                  ? "bg-amber-500/20 text-amber-200"
+                  : "text-gray-400 hover:bg-white/5 hover:text-amber-200"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -492,8 +492,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=received"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=received"
-                    ? "bg-blue-400/20 text-blue-200"
-                    : "text-gray-400 hover:bg-white/5 hover:text-blue-200"
+                  ? "bg-blue-400/20 text-blue-200"
+                  : "text-gray-400 hover:bg-white/5 hover:text-blue-200"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -509,8 +509,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=processed"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=processed"
-                    ? "bg-indigo-500/20 text-indigo-200"
-                    : "text-gray-400 hover:bg-white/5 hover:text-indigo-200"
+                  ? "bg-indigo-500/20 text-indigo-200"
+                  : "text-gray-400 hover:bg-white/5 hover:text-indigo-200"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -526,8 +526,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=shipped"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=shipped"
-                    ? "bg-blue-600/20 text-blue-200"
-                    : "text-gray-400 hover:bg-white/5 hover:text-blue-200"
+                  ? "bg-blue-600/20 text-blue-200"
+                  : "text-gray-400 hover:bg-white/5 hover:text-blue-200"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -543,8 +543,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=out-for-delivery"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=out-for-delivery"
-                    ? "bg-purple-500/20 text-purple-200"
-                    : "text-gray-400 hover:bg-white/5 hover:text-purple-200"
+                  ? "bg-purple-500/20 text-purple-200"
+                  : "text-gray-400 hover:bg-white/5 hover:text-purple-200"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -560,8 +560,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=delivered"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=delivered"
-                    ? "bg-green-500/20 text-green-200"
-                    : "text-gray-400 hover:bg-white/5 hover:text-green-200"
+                  ? "bg-green-500/20 text-green-200"
+                  : "text-gray-400 hover:bg-white/5 hover:text-green-200"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -577,8 +577,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/orders?status=cancelled"
                 className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all text-xs group ${location.search === "?status=cancelled"
-                    ? "bg-red-500/20 text-red-200"
-                    : "text-gray-400 hover:bg-white/5 hover:text-red-200"
+                  ? "bg-red-500/20 text-red-200"
+                  : "text-gray-400 hover:bg-white/5 hover:text-red-200"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -597,8 +597,8 @@ const AdminSidebar = () => {
         <Link
           to="/admin/returns"
           className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${location.pathname === "/admin/returns"
-              ? "bg-primary text-white shadow-lg shadow-primary/20"
-              : "text-gray-400 hover:bg-white/5 hover:text-white"
+            ? "bg-primary text-white shadow-lg shadow-primary/20"
+            : "text-gray-400 hover:bg-white/5 hover:text-white"
             }`}
         >
           <RotateCcw
@@ -612,8 +612,8 @@ const AdminSidebar = () => {
         <Link
           to="/admin/replacements"
           className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${location.pathname === "/admin/replacements"
-              ? "bg-primary text-white shadow-lg shadow-primary/20"
-              : "text-gray-400 hover:bg-white/5 hover:text-white"
+            ? "bg-primary text-white shadow-lg shadow-primary/20"
+            : "text-gray-400 hover:bg-white/5 hover:text-white"
             }`}
         >
           <RefreshCw
@@ -628,8 +628,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setShippingExpanded(!shippingExpanded)}
             className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${location.pathname.startsWith("/admin/shipping")
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <div className="flex items-center gap-3">
@@ -646,8 +646,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/shipping"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/shipping"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <Package size={14} />
@@ -656,8 +656,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/shipping/locations"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/shipping/locations"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <MapPin size={14} />
@@ -671,8 +671,8 @@ const AdminSidebar = () => {
         <Link
           to="/admin/direct-sales"
           className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${location.pathname === "/admin/direct-sales"
-              ? "bg-primary text-white shadow-lg shadow-primary/20"
-              : "text-gray-400 hover:bg-white/5 hover:text-white"
+            ? "bg-primary text-white shadow-lg shadow-primary/20"
+            : "text-gray-400 hover:bg-white/5 hover:text-white"
             }`}
         >
           <ShoppingBag
@@ -686,8 +686,8 @@ const AdminSidebar = () => {
         <Link
           to="/admin/scanner"
           className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${location.pathname === "/admin/scanner"
-              ? "bg-primary text-white shadow-lg shadow-primary/20"
-              : "text-gray-400 hover:bg-white/5 hover:text-white"
+            ? "bg-primary text-white shadow-lg shadow-primary/20"
+            : "text-gray-400 hover:bg-white/5 hover:text-white"
             }`}
         >
           <ScanLine
@@ -703,8 +703,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setInventoryExpanded(!inventoryExpanded)}
             className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all ${isInventoryActive
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <div className="flex items-center gap-3">
@@ -723,8 +723,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/inventory"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/inventory"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <LayoutDashboard size={14} />
@@ -733,8 +733,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/inventory/adjust"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/inventory/adjust"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <RefreshCcw size={14} />
@@ -743,8 +743,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/inventory/history"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/inventory/history"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <Clock size={14} />
@@ -753,8 +753,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/inventory/alerts"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/inventory/alerts"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <AlertTriangle size={14} />
@@ -763,8 +763,8 @@ const AdminSidebar = () => {
               <Link
                 to="/admin/inventory/reports"
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${location.pathname === "/admin/inventory/reports"
-                    ? "bg-primary/20 text-white shadow-sm"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "bg-primary/20 text-white shadow-sm"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
                   }`}
               >
                 <FileBarChart size={14} />
@@ -782,8 +782,8 @@ const AdminSidebar = () => {
             key={item.path}
             to={item.path}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${isActive(item.path)
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <item.icon size={20} strokeWidth={isActive(item.path) ? 2.5 : 2} />
@@ -795,8 +795,8 @@ const AdminSidebar = () => {
           <button
             onClick={() => setSectionsExpanded(!sectionsExpanded)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${isSectionsActive
-                ? "bg-primary text-white shadow-lg shadow-primary/20"
-                : "text-gray-400 hover:bg-white/5 hover:text-white"
+              ? "bg-primary text-white shadow-lg shadow-primary/20"
+              : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}
           >
             <Layers size={20} strokeWidth={isSectionsActive ? 2.5 : 2} />
@@ -828,8 +828,8 @@ const AdminSidebar = () => {
                     key={item.pageKey}
                     to={href}
                     className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${isActiveItem
-                        ? "bg-primary/20 text-white shadow-sm"
-                        : "text-gray-400 hover:bg-white/5 hover:text-white"
+                      ? "bg-primary/20 text-white shadow-sm"
+                      : "text-gray-400 hover:bg-white/5 hover:text-white"
                       }`}
                   >
                     <List size={16} />

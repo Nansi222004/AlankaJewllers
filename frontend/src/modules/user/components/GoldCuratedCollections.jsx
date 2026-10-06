@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// Import local gold assets for the display - Light Alankar theme
+// Import local gold assets for the display - Light Alankarrr theme
 import goldRings from '@assets/categories/gold_rings_light.png';
 import goldEarrings from '@assets/categories/gold_earrings_light.png';
 import goldPendants from '@assets/categories/gold_pendants_light.png';
@@ -13,62 +13,62 @@ import goldBracelets from '@assets/categories/gold_bracelet.png';
 import goldNewArrivals from '@assets/categories/newlaunch.png';
 
 const collections = [
-    { 
-        id: 1, 
-        title: "Regal Gold Rings", 
-        image: goldRings, 
-        link: "/shop?category=rings&metal=gold", 
-        type: 'image' 
+    {
+        id: 1,
+        title: "Regal Gold Rings",
+        image: goldRings,
+        link: "/shop?category=rings&metal=gold",
+        type: 'image'
     },
-    { 
-        id: 2, 
-        title: "24KT Gold Essence", 
-        video: "/Screen Recording 2026-04-11 150529.mp4", 
+    {
+        id: 2,
+        title: "24KT Gold Essence",
+        video: "/Screen Recording 2026-04-11 150529.mp4",
         // Ensure gold-only filtering: backend applies karat only when metal=gold.
-        link: "/shop?metal=gold&karat=24", 
-        type: 'video' 
+        link: "/shop?metal=gold&karat=24",
+        type: 'video'
     },
-    { 
-        id: 3, 
-        title: "Eternal Pendants", 
-        image: goldPendants, 
-        link: "/shop?category=pendants&metal=gold", 
-        type: 'image' 
+    {
+        id: 3,
+        title: "Eternal Pendants",
+        image: goldPendants,
+        link: "/shop?category=pendants&metal=gold",
+        type: 'image'
     },
-    { 
-        id: 4, 
-        title: "Boutique Craft", 
-        video: "/Screen Recording 2026-04-11 150441.mp4", 
-        link: "/shop?metal=gold", 
-        type: 'video' 
+    {
+        id: 4,
+        title: "Boutique Craft",
+        video: "/Screen Recording 2026-04-11 150441.mp4",
+        link: "/shop?metal=gold",
+        type: 'video'
     },
-    { 
-        id: 5, 
-        title: "Bangles & Kada", 
-        image: goldBangles, 
-        link: "/shop?category=bangles&metal=gold", 
-        type: 'image' 
+    {
+        id: 5,
+        title: "Bangles & Kada",
+        image: goldBangles,
+        link: "/shop?category=bangles&metal=gold",
+        type: 'image'
     },
-    { 
-        id: 6, 
-        title: "Pure Brilliance", 
-        video: "/Screen Recording 2026-04-11 150529.mp4", 
-        link: "/shop?metal=gold", 
-        type: 'video' 
+    {
+        id: 6,
+        title: "Pure Brilliance",
+        video: "/Screen Recording 2026-04-11 150529.mp4",
+        link: "/shop?metal=gold",
+        type: 'video'
     },
-    { 
-        id: 7, 
-        title: "Royal Mangalsutra", 
-        image: goldMangalsutra, 
-        link: "/shop?category=mangalsutra&metal=gold", 
-        type: 'image' 
+    {
+        id: 7,
+        title: "Royal Mangalsutra",
+        image: goldMangalsutra,
+        link: "/shop?category=mangalsutra&metal=gold",
+        type: 'image'
     },
-    { 
-        id: 8, 
-        title: "Design Showcase", 
-        video: "/Screen Recording 2026-04-11 150441.mp4", 
-        link: "/shop?metal=gold", 
-        type: 'video' 
+    {
+        id: 8,
+        title: "Design Showcase",
+        video: "/Screen Recording 2026-04-11 150441.mp4",
+        link: "/shop?metal=gold",
+        type: 'video'
     }
 ];
 
@@ -132,7 +132,7 @@ const GoldCuratedCollections = () => {
                                 className="flex-shrink-0 w-[120px] sm:w-[150px] md:w-[190px] h-[150px] sm:h-[200px] md:h-[240px] relative group cursor-pointer overflow-hidden bg-[#552237] snap-center first:ml-4 last:mr-4 lg:first:ml-0 lg:last:mr-0 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg"
                             >
                                 {item.type === 'video' ? (
-                                    <video 
+                                    <video
                                         src={item.video}
                                         autoPlay
                                         muted
@@ -141,13 +141,13 @@ const GoldCuratedCollections = () => {
                                         className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-100"
                                     />
                                 ) : (
-                                    <img 
-                                        src={item.image} 
+                                    <img
+                                        src={item.image}
                                         alt={item.title}
                                         className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-110"
                                     />
                                 )}
-                                
+
                                 {/* Bottom Gradient for Readability */}
                                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
 

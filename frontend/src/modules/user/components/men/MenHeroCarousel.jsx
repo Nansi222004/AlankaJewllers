@@ -11,7 +11,7 @@ import heroMenElite from '@assets/men_hero_elite.png';
 const slides = [
     {
         id: 1,
-        brandTitle: "Alankar JEWELLERS BRINGS TO YOU",
+        brandTitle: "Alankarrr JEWELLERS BRINGS TO YOU",
         mainTitle: "MEN",
         scriptTitle: "Silver",
         rightTitle: "Modern Silver for\nthe Bold Man",
@@ -206,8 +206,8 @@ const MenHeroCarousel = ({ sectionData }) => {
                         key={idx}
                         onClick={() => setCurrent(idx)}
                         className={`transition-all duration-500 rounded-full ${current === idx
-                                ? 'w-8 md:w-10 h-1 bg-white'
-                                : 'w-3 md:w-4 h-1 bg-white/30 hover:bg-white/60'
+                            ? 'w-8 md:w-10 h-1 bg-white'
+                            : 'w-3 md:w-4 h-1 bg-white/30 hover:bg-white/60'
                             }`}
                         aria-label={`Go to slide ${idx + 1}`}
                     />

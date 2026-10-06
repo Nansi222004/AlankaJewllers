@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Heart, ShoppingCart, User, Users, Menu, X, ChevronDown, ChevronRight, Bell, Coins, Gem, Droplet, LifeBuoy, Sun, Hexagon, Gift, MoreHorizontal, ShoppingBag, Info, Landmark, Tag } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 import { useShop } from '../../../context/ShopContext';
 import { useNotification } from '../../../context/NotificationContext';
 import defaultLogo from '@/assets/logo-emblem-header.webp';
@@ -29,10 +29,10 @@ const Navbar = () => {
     const currentLogo = (settings?.logo && !settings.logo.includes('logo.webp') && !/swarna|sands/i.test(settings.logo))
         ? settings.logo
         : defaultLogo;
-    const currentStoreName = (!settings?.storeName || /swarna\s*sparsh|alankar/i.test(settings.storeName))
-        ? 'Alanka Jewellers'
+    const currentStoreName = (!settings?.storeName || /swarna\s*sparsh|Alankarrr/i.test(settings.storeName))
+        ? 'Alankarr Jewellers'
         : settings.storeName;
-    const brandSubTagline = 'ALANKA JEWELLERS – WHERE LUXURY MEETS IDENTITY';
+    const brandSubTagline = 'Alankarr JEWELLERS – WHERE LUXURY MEETS IDENTITY';
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -755,7 +755,7 @@ const Navbar = () => {
                                                 <ShoppingBag className="w-7 h-7 text-brand-espresso absolute -bottom-1 -right-2 bg-white" strokeWidth={1.5} />
                                             </div>
                                             <div className="flex-1">
-                                                <h3 className="text-[17px] font-serif font-bold text-brand-espresso leading-tight mb-2 tracking-wide">Welcome to Alanka Jewellers</h3>
+                                                <h3 className="text-[17px] font-serif font-bold text-brand-espresso leading-tight mb-2 tracking-wide">Welcome to Alankarr Jewellers</h3>
                                                 <div className="flex items-center gap-2">
                                                     <Link to="/login" className="text-[11px] font-bold text-brand-champagne hover:underline uppercase tracking-wider" onClick={() => setIsMenuOpen(false)}>LOGIN</Link>
                                                     <span className="text-gray-300">|</span>
@@ -769,11 +769,11 @@ const Navbar = () => {
                                 {/* Navigation Links */}
                                 <nav className="flex-1 flex flex-col overflow-y-auto no-scrollbar px-3 pb-8">
                                     {[
-                                        { label: 'All Jewellery', path: '/shop', icon: AlankaJewelleryMark },
+                                        { label: 'All Jewellery', path: '/shop', icon: AlankarrJewelleryMark },
                                         { label: 'Gold', path: '/gold-collection', icon: Coins },
                                         { label: 'Silver', path: '/silver-collection', icon: Droplet },
                                         { label: 'Diamond', path: '/diamond-collection', icon: Gem },
-                                        { label: 'Gems', path: '/gems-collection', icon: AlankaJewelleryMark },
+                                        { label: 'Gems', path: '/gems-collection', icon: AlankarrJewelleryMark },
                                         { label: 'Bullions', path: '/shop?metal=gold&karat=24', icon: Landmark },
                                         { label: 'Rings', path: '/shop?category=rings', icon: LifeBuoy },
                                         { label: 'Daily Wear', path: '/shop?category=daily-wear', icon: Sun },
@@ -807,26 +807,22 @@ const Navbar = () => {
                                                     <button
                                                         type="button"
                                                         onClick={() => setIsMobileGiftingOpen((prev) => !prev)}
-                                                        className={`w-full flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group relative overflow-hidden ${
-                                                            isGiftingActive
-                                                                ? 'bg-gradient-to-r from-amber-50 to-white text-brand-champagne border border-amber-200'
-                                                                : 'text-gray-800 hover:bg-white hover:text-brand-champagne'
-                                                        }`}
+                                                        className={`w-full flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group relative overflow-hidden ${isGiftingActive
+                                                            ? 'bg-gradient-to-r from-amber-50 to-white text-brand-champagne border border-amber-200'
+                                                            : 'text-gray-800 hover:bg-white hover:text-brand-champagne'
+                                                            }`}
                                                     >
                                                         <div className="flex items-center gap-5 relative z-10">
-                                                            <item.icon className={`w-5 h-5 transition-colors ${
-                                                                isGiftingActive ? 'text-brand-champagne' : 'text-gray-600 group-hover:text-brand-champagne'
-                                                            }`} strokeWidth={1.5} />
-                                                            <span className={`text-[15px] tracking-wide ${
-                                                                isGiftingActive ? 'text-brand-champagne font-bold' : 'font-medium text-gray-800 group-hover:font-semibold group-hover:text-brand-champagne'
-                                                            }`}>
+                                                            <item.icon className={`w-5 h-5 transition-colors ${isGiftingActive ? 'text-brand-champagne' : 'text-gray-600 group-hover:text-brand-champagne'
+                                                                }`} strokeWidth={1.5} />
+                                                            <span className={`text-[15px] tracking-wide ${isGiftingActive ? 'text-brand-champagne font-bold' : 'font-medium text-gray-800 group-hover:font-semibold group-hover:text-brand-champagne'
+                                                                }`}>
                                                                 {item.label}
                                                             </span>
                                                         </div>
                                                         <ChevronDown
-                                                            className={`w-4 h-4 text-gray-900 group-hover:text-brand-champagne transition-transform duration-300 relative z-10 ${
-                                                                isMobileGiftingOpen ? 'rotate-180 text-brand-champagne' : ''
-                                                            }`}
+                                                            className={`w-4 h-4 text-gray-900 group-hover:text-brand-champagne transition-transform duration-300 relative z-10 ${isMobileGiftingOpen ? 'rotate-180 text-brand-champagne' : ''
+                                                                }`}
                                                             strokeWidth={2.5}
                                                         />
                                                     </button>
@@ -846,9 +842,8 @@ const Navbar = () => {
                                                                             key={cIdx}
                                                                             to={child.path}
                                                                             onClick={() => setIsMenuOpen(false)}
-                                                                            className={`block p-2.5 rounded-lg transition-colors ${
-                                                                                isChildActive ? 'bg-[#FFF7F9] text-brand-champagne' : 'hover:bg-gray-50 text-gray-700'
-                                                                            }`}
+                                                                            className={`block p-2.5 rounded-lg transition-colors ${isChildActive ? 'bg-[#FFF7F9] text-brand-champagne' : 'hover:bg-gray-50 text-gray-700'
+                                                                                }`}
                                                                         >
                                                                             <div className="text-[13.5px] font-semibold flex items-center justify-between">
                                                                                 <span>{child.label}</span>
@@ -880,41 +875,37 @@ const Navbar = () => {
                                                     if (item.label === 'Diamond') updateActiveMetal('diamond');
                                                     if (item.label === 'Gems') updateActiveMetal('gems');
                                                 }}
-                                                className={`flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group border-b border-brand-border last:border-0 relative overflow-hidden ${
-                                                    item.label === 'Gold' ? 'bg-gradient-to-r from-amber-50 to-white hover:from-amber-100 border-amber-200' :
+                                                className={`flex items-center justify-between py-4 px-4 hover:shadow-sm rounded-xl transition-all group border-b border-brand-border last:border-0 relative overflow-hidden ${item.label === 'Gold' ? 'bg-gradient-to-r from-amber-50 to-white hover:from-amber-100 border-amber-200' :
                                                     item.label === 'Silver' ? 'bg-gradient-to-r from-slate-50 to-white hover:from-slate-100 border-slate-200' :
-                                                    item.label === 'Diamond' ? 'bg-gradient-to-r from-[#5C3B55]/10 via-[#FCF8FB] to-white hover:from-[#5C3B55]/15 border-[#805E7A]/20' :
-                                                    item.label === 'Gems' ? 'bg-gradient-to-r from-[#702F46]/10 via-[#FFF7F9] to-white hover:from-[#702F46]/15 border-[#C86B85]/25' :
-                                                    item.label === 'Bullions' ? 'bg-gradient-to-r from-brand-pearl via-white to-amber-50/50 hover:from-amber-100/60 border-amber-200/80' :
-                                                    isItemActiveUnder50k ? 'bg-gradient-to-r from-amber-50 to-white text-brand-champagne border border-amber-200' :
-                                                        'text-gray-800 hover:bg-white hover:text-brand-champagne'
-                                                }`}
+                                                        item.label === 'Diamond' ? 'bg-gradient-to-r from-[#5C3B55]/10 via-[#FCF8FB] to-white hover:from-[#5C3B55]/15 border-[#805E7A]/20' :
+                                                            item.label === 'Gems' ? 'bg-gradient-to-r from-[#702F46]/10 via-[#FFF7F9] to-white hover:from-[#702F46]/15 border-[#C86B85]/25' :
+                                                                item.label === 'Bullions' ? 'bg-gradient-to-r from-brand-pearl via-white to-amber-50/50 hover:from-amber-100/60 border-amber-200/80' :
+                                                                    isItemActiveUnder50k ? 'bg-gradient-to-r from-amber-50 to-white text-brand-champagne border border-amber-200' :
+                                                                        'text-gray-800 hover:bg-white hover:text-brand-champagne'
+                                                    }`}
                                             >
                                                 <div className="flex items-center gap-5 relative z-10">
-                                                    <item.icon className={`w-5 h-5 transition-colors ${
-                                                        item.label === 'Gold' ? 'text-amber-500 group-hover:text-amber-600 animate-pulse' :
+                                                    <item.icon className={`w-5 h-5 transition-colors ${item.label === 'Gold' ? 'text-amber-500 group-hover:text-amber-600 animate-pulse' :
                                                         item.label === 'Silver' ? 'text-slate-400 group-hover:text-slate-600 animate-pulse' :
-                                                        item.label === 'Diamond' ? 'text-[#805E7A] group-hover:text-[#5C3B55] animate-pulse' :
-                                                        item.label === 'Gems' ? 'text-[#9C3F60] group-hover:text-[#702F46] animate-pulse' :
-                                                        item.label === 'Bullions' ? 'text-brand-champagne group-hover:text-brand-espresso' :
-                                                        isItemActiveUnder50k ? 'text-brand-champagne' :
-                                                            'text-gray-600 group-hover:text-brand-champagne'
-                                                    }`} strokeWidth={1.5} />
-                                                    <span className={`text-[15px] tracking-wide ${
-                                                        item.label === 'Gold' ? 'text-amber-700 font-bold group-hover:text-amber-800' :
+                                                            item.label === 'Diamond' ? 'text-[#805E7A] group-hover:text-[#5C3B55] animate-pulse' :
+                                                                item.label === 'Gems' ? 'text-[#9C3F60] group-hover:text-[#702F46] animate-pulse' :
+                                                                    item.label === 'Bullions' ? 'text-brand-champagne group-hover:text-brand-espresso' :
+                                                                        isItemActiveUnder50k ? 'text-brand-champagne' :
+                                                                            'text-gray-600 group-hover:text-brand-champagne'
+                                                        }`} strokeWidth={1.5} />
+                                                    <span className={`text-[15px] tracking-wide ${item.label === 'Gold' ? 'text-amber-700 font-bold group-hover:text-amber-800' :
                                                         item.label === 'Silver' ? 'text-slate-600 font-bold group-hover:text-slate-800' :
-                                                        item.label === 'Diamond' ? 'text-[#5C3B55] font-bold group-hover:text-[#805E7A]' :
-                                                        item.label === 'Gems' ? 'text-[#702F46] font-bold group-hover:text-[#9C3F60]' :
-                                                        item.label === 'Bullions' ? 'text-brand-espresso font-bold group-hover:text-brand-champagne' :
-                                                        isItemActiveUnder50k ? 'text-brand-champagne font-bold' :
-                                                            'font-medium text-gray-800 group-hover:font-semibold group-hover:text-brand-champagne'
-                                                    }`}>
+                                                            item.label === 'Diamond' ? 'text-[#5C3B55] font-bold group-hover:text-[#805E7A]' :
+                                                                item.label === 'Gems' ? 'text-[#702F46] font-bold group-hover:text-[#9C3F60]' :
+                                                                    item.label === 'Bullions' ? 'text-brand-espresso font-bold group-hover:text-brand-champagne' :
+                                                                        isItemActiveUnder50k ? 'text-brand-champagne font-bold' :
+                                                                            'font-medium text-gray-800 group-hover:font-semibold group-hover:text-brand-champagne'
+                                                        }`}>
                                                         {item.isUnder50k ? 'JEWELLERY UNDER ₹50K' : item.label}
                                                     </span>
                                                 </div>
-                                                <ChevronRight className={`w-4 h-4 transition-colors relative z-10 ${
-                                                    isItemActiveUnder50k ? 'text-brand-champagne' : 'text-gray-900 group-hover:text-brand-champagne'
-                                                }`} strokeWidth={2.5} />
+                                                <ChevronRight className={`w-4 h-4 transition-colors relative z-10 ${isItemActiveUnder50k ? 'text-brand-champagne' : 'text-gray-900 group-hover:text-brand-champagne'
+                                                    }`} strokeWidth={2.5} />
                                             </Link>
                                         );
                                     })}

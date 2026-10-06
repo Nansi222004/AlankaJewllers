@@ -27,7 +27,7 @@ const FamilyRecipientProductsPage = () => {
   } = usePublicCmsPage("shop-family");
 
   useEffect(() => {
-    document.title = `${recipientLabels[selectedRecipient] || "Family Collections"} | Alankar Jewellers`;
+    document.title = `${recipientLabels[selectedRecipient] || "Family Collections"} | Alankarrr Jewellers`;
   }, [selectedRecipient]);
 
   const sectionMap = useMemo(

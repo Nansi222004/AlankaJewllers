@@ -55,7 +55,7 @@ const PromoSlider = ({ externalSlides, autoplayInterval, compact = false }) => {
                 id: item.itemId || item.id || `hero-slide-${index + 1}`,
                 image: resolveLegacyCmsAsset(item.image, item.image),
                 mobileImage: item.mobileImage ? resolveLegacyCmsAsset(item.mobileImage, item.mobileImage) : null,
-                title: item.label || item.title || 'Alankar Jewellers Atelier',
+                title: item.label || item.title || 'Alankarrr Jewellers Atelier',
                 subtitle: item.subtitle || '',
                 tag: item.tag || item.name || 'Signature Collection',
                 link: item.path || '/shop',
@@ -158,7 +158,7 @@ const PromoSlider = ({ externalSlides, autoplayInterval, compact = false }) => {
                             {/* Subtle Brand Watermark */}
                             <div className="absolute top-1 left-2 md:top-8 md:left-12 z-20">
                                 <span className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[4px] sm:text-[6px] md:text-[10px] font-bold uppercase tracking-[0.3em] px-1 py-0.5 md:px-3 md:py-1.5 rounded-sm">
-                                    AN Alankar JEWELLERS PRODUCT
+                                    AN Alankarrr JEWELLERS PRODUCT
                                 </span>
                             </div>
 

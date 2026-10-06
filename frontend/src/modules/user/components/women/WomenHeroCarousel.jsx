@@ -118,7 +118,7 @@ const WomenHeroCarousel = ({ sectionData }) => {
             className="max-w-xl"
           >
             <span className="inline-block text-[4px] sm:text-[6px] md:text-xs text-white/50 tracking-[0.3em] md:tracking-[0.5em] uppercase mb-0 md:mb-4 font-bold border-r-[1px] md:border-r-2 border-white/30 pr-1 md:pr-4">
-              Alankar Jewellers Exclusive
+              Alankarrr Jewellers Exclusive
             </span>
 
             <h1 className="text-sm sm:text-2xl md:text-8xl font-serif text-white tracking-tight font-light leading-none md:leading-[1] transition-all">
@@ -159,8 +159,8 @@ const WomenHeroCarousel = ({ sectionData }) => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`transition-all duration-500 rounded-full ${isActive
-                    ? "w-8 md:w-10 h-1 bg-white"
-                    : "w-3 md:w-4 h-1 bg-white/30 hover:bg-white/60"
+                  ? "w-8 md:w-10 h-1 bg-white"
+                  : "w-3 md:w-4 h-1 bg-white/30 hover:bg-white/60"
                   }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

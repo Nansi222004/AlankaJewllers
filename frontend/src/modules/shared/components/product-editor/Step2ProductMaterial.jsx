@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-    Coins, Sparkles, ShieldCheck, Info, CheckCircle2, 
-    FileText, AlertTriangle 
+import {
+    Coins, Sparkles, ShieldCheck, Info, CheckCircle2,
+    FileText, AlertTriangle
 } from 'lucide-react';
 import { FormSection, Input, Select } from '../../../admin/components/common/FormControls';
-import AlankaJewelleryMark from '../AlankaJewelleryMark';
+import AlankarrJewelleryMark from '../AlankarrJewelleryMark';
 
 const Step2ProductMaterial = ({
     formData,
@@ -126,7 +126,7 @@ const Step2ProductMaterial = ({
                             <Input
                                 label={
                                     <span>
-                                        HUID (Hallmark Unique ID) 
+                                        HUID (Hallmark Unique ID)
                                         <span className="text-gray-400 text-xs font-normal ml-1.5">(BIS Alphanumeric Code)</span>
                                     </span>
                                 }
@@ -227,12 +227,12 @@ const Step2ProductMaterial = ({
                                     <Select
                                         label={<span>Setting Metal <span className="text-red-500">*</span></span>}
                                         value={formData.settingMetal || ''}
-                                        onChange={(e) => setFormData({ 
-                                            ...formData, 
-                                            settingMetal: e.target.value, 
-                                            settingPurity: '', 
-                                            goldCategory: '', 
-                                            sourceDocumentationConfirmed: false 
+                                        onChange={(e) => setFormData({
+                                            ...formData,
+                                            settingMetal: e.target.value,
+                                            settingPurity: '',
+                                            goldCategory: '',
+                                            sourceDocumentationConfirmed: false
                                         })}
                                         options={[
                                             { label: 'Select Setting Metal', value: '' },
@@ -252,11 +252,11 @@ const Step2ProductMaterial = ({
                                         onChange={(e) => {
                                             const settingPurity = e.target.value;
                                             const goldCategory = settingPurity.includes('14') ? '14' : settingPurity.includes('18') ? '18' : settingPurity.includes('22') ? '22' : '';
-                                            setFormData({ 
-                                                ...formData, 
-                                                settingPurity, 
-                                                goldCategory, 
-                                                sourceDocumentationConfirmed: false 
+                                            setFormData({
+                                                ...formData,
+                                                settingPurity,
+                                                goldCategory,
+                                                sourceDocumentationConfirmed: false
                                             });
                                         }}
                                         options={

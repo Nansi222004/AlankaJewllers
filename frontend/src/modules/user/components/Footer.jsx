@@ -28,15 +28,15 @@ const Footer = () => {
   const { settings: globalSettings } = useSettings();
 
   const [settings, setSettings] = useState({
-    storeName: "Alanka Jewellers",
-    tagline: "Alanka Jewellers – Where Luxury Meets Identity",
+    storeName: "Alankar Jewellers",
+    tagline: "Alankar Jewellers – Where Luxury Meets Identity",
     logo: "/logo.webp",
     footerTagline: "Timeless Elegance,",
     footerSubTagline: "Handcrafted for You.",
     footerDescription:
-      "Every piece at Alanka Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
+      "Every piece at Alankar Jewellers tells a story of heritage and modern grace. Join our community of jewellery lovers and celebrate life's most precious moments.",
     address:
-      "Alanka Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
+      "Alankar Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Dist - Yavatmal, Maharashtra",
     phone: "+91 8668821446",
     email: "swarna.sparsh22@gmail.com",
     footerColumn1Title: "Experience",
@@ -65,7 +65,7 @@ const Footer = () => {
       instagram: "#",
     },
     footerDeliveryText: "Safe & Insured Express Worldwide Delivery",
-    footerCopyrightText: "Alanka Jewellers. All Rights Reserved.",
+    footerCopyrightText: "Alankar Jewellers. All Rights Reserved.",
   });
 
   const [openSections, setOpenSections] = useState({
@@ -126,13 +126,13 @@ const Footer = () => {
 
   const activeLogo =
     globalSettings?.logo &&
-    !globalSettings.logo.includes("logo.webp") &&
-    !/swarna|sands/i.test(globalSettings.logo)
+      !globalSettings.logo.includes("logo.webp") &&
+      !/swarna|sands/i.test(globalSettings.logo)
       ? globalSettings.logo
       : defaultLogo;
   const activeStoreName =
-    !globalSettings?.storeName || /swarna\s*sparsh|alankar/i.test(globalSettings.storeName)
-      ? "Alanka Jewellers"
+    !globalSettings?.storeName || /swarna\s*sparsh|Alankarr/i.test(globalSettings.storeName)
+      ? "Alankar Jewellers"
       : globalSettings.storeName;
   const activeTagline = globalSettings?.footerTagline || settings.footerTagline;
   const activeSubTagline =
@@ -222,9 +222,8 @@ const Footer = () => {
                 </span>
                 <span className="flex h-5 w-5 items-center justify-center text-brand-champagne-light">
                   <Plus
-                    className={`h-3 w-3 transition-transform duration-300 ${
-                      openSections.shop ? "rotate-45 text-white" : ""
-                    }`}
+                    className={`h-3 w-3 transition-transform duration-300 ${openSections.shop ? "rotate-45 text-white" : ""
+                      }`}
                     aria-hidden="true"
                   />
                 </span>
@@ -233,11 +232,10 @@ const Footer = () => {
                 id="mobile-footer-panel-shop"
                 role="region"
                 aria-labelledby="mobile-footer-btn-shop"
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openSections.shop
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${openSections.shop
                     ? "max-h-96 opacity-100 pb-2.5"
                     : "max-h-0 opacity-0"
-                }`}
+                  }`}
               >
                 <ul className="space-y-0.5 pl-1">
                   {mobileShopLinks.map((link, idx) => (
@@ -269,9 +267,8 @@ const Footer = () => {
                 </span>
                 <span className="flex h-5 w-5 items-center justify-center text-brand-champagne-light">
                   <Plus
-                    className={`h-3 w-3 transition-transform duration-300 ${
-                      openSections.help ? "rotate-45 text-white" : ""
-                    }`}
+                    className={`h-3 w-3 transition-transform duration-300 ${openSections.help ? "rotate-45 text-white" : ""
+                      }`}
                     aria-hidden="true"
                   />
                 </span>
@@ -280,11 +277,10 @@ const Footer = () => {
                 id="mobile-footer-panel-help"
                 role="region"
                 aria-labelledby="mobile-footer-btn-help"
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openSections.help
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${openSections.help
                     ? "max-h-96 opacity-100 pb-2.5"
                     : "max-h-0 opacity-0"
-                }`}
+                  }`}
               >
                 <ul className="space-y-0.5 pl-1">
                   {mobileHelpLinks.map((link, idx) => (
@@ -316,9 +312,8 @@ const Footer = () => {
                 </span>
                 <span className="flex h-5 w-5 items-center justify-center text-brand-champagne-light">
                   <Plus
-                    className={`h-3 w-3 transition-transform duration-300 ${
-                      openSections.about ? "rotate-45 text-white" : ""
-                    }`}
+                    className={`h-3 w-3 transition-transform duration-300 ${openSections.about ? "rotate-45 text-white" : ""
+                      }`}
                     aria-hidden="true"
                   />
                 </span>
@@ -327,11 +322,10 @@ const Footer = () => {
                 id="mobile-footer-panel-about"
                 role="region"
                 aria-labelledby="mobile-footer-btn-about"
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openSections.about
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${openSections.about
                     ? "max-h-96 opacity-100 pb-2.5"
                     : "max-h-0 opacity-0"
-                }`}
+                  }`}
               >
                 <ul className="space-y-0.5 pl-1">
                   {mobileAboutLinks.map((link, idx) => (
@@ -406,7 +400,7 @@ const Footer = () => {
                 </span>
                 {globalSettings?.fraudWarning ||
                   settings.fraudWarning ||
-                  "Alanka Jewellers never asks for confidential banking details, OTPs, or passwords over phone or email."}
+                  "Alankar Jewellers never asks for confidential banking details, OTPs, or passwords over phone or email."}
               </p>
             </div>
           </div>
@@ -608,7 +602,7 @@ const Footer = () => {
                 </span>
                 {globalSettings?.fraudWarning ||
                   settings.fraudWarning ||
-                  "Alanka Jewellers will NEVER ask for OTPs, passwords, or sensitive financial information via unsolicited calls, WhatsApp, or emails."}
+                  "Alankar Jewellers will NEVER ask for OTPs, passwords, or sensitive financial information via unsolicited calls, WhatsApp, or emails."}
               </p>
             </div>
           </div>
@@ -626,7 +620,7 @@ const Footer = () => {
                 &copy; {new Date().getFullYear()}{" "}
                 {globalSettings?.footerCopyrightText ||
                   settings.footerCopyrightText ||
-                  "Alanka Jewellers. All Rights Reserved."}
+                  "Alankar Jewellers. All Rights Reserved."}
               </p>
             </div>
           </div>

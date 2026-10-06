@@ -1,32 +1,32 @@
 import React from 'react';
 import { Truck, RotateCcw, ShieldCheck, Sun } from 'lucide-react';
-import AlankaJewelleryMark from './AlankaJewelleryMark';
+import AlankarrJewelleryMark from './AlankarrJewelleryMark';
 
 const WhyChooseUs = () => {
     const commitments = [
-        { 
-            icon: AlankaJewelleryMark, 
-            title: "Pure 925", 
-            subtitle: "SILVER", 
-            text: "Certified Authenticity" 
+        {
+            icon: AlankarrJewelleryMark,
+            title: "Pure 925",
+            subtitle: "SILVER",
+            text: "Certified Authenticity"
         },
-        { 
-            icon: RotateCcw, 
-            title: "30-Day Easy", 
-            subtitle: "RETURN", 
-            text: "Hassle-free Refund" 
+        {
+            icon: RotateCcw,
+            title: "30-Day Easy",
+            subtitle: "RETURN",
+            text: "Hassle-free Refund"
         },
-        { 
-            icon: Truck, 
-            title: "Free Delivery", 
-            subtitle: "ABOVE ₹999", 
-            text: "Reliable Shipping" 
+        {
+            icon: Truck,
+            title: "Free Delivery",
+            subtitle: "ABOVE ₹999",
+            text: "Reliable Shipping"
         },
-        { 
-            icon: ShieldCheck, 
-            title: "T&C Apply", 
-            subtitle: "SECURE SHOP", 
-            text: "Safe & Protected" 
+        {
+            icon: ShieldCheck,
+            title: "T&C Apply",
+            subtitle: "SECURE SHOP",
+            text: "Safe & Protected"
         }
     ];
 
@@ -36,7 +36,7 @@ const WhyChooseUs = () => {
                 {/* Section Header */}
                 <div className="text-center mb-5 md:mb-16 relative">
                     <span className="text-[9px] md:text-[11px] font-bold text-brand-champagne uppercase tracking-[0.3em] md:tracking-[0.4em] mb-1.5 md:mb-3 block">
-                        The Alankar Jewellers Touch
+                        The Alankarrr Jewellers Touch
                     </span>
                     <h2 className="text-xl sm:text-2xl md:text-5xl font-display text-brand-espresso relative inline-block">
                         Why Choose Us
@@ -77,10 +77,10 @@ const WhyChooseUs = () => {
                 <div className="hidden md:grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
                     {commitments.map((item, index) => (
                         <div key={index} className="flex flex-col items-center group relative pt-12 pb-8 px-6 animate-in fade-in slide-in-from-bottom-12 duration-700" style={{ animationDelay: `${index * 150}ms` }}>
-                            
+
                             {/* Decorative Arch Border */}
                             <div className="absolute inset-x-0 inset-y-0 border border-brand-champagne/25 rounded-t-full rounded-b-2xl group-hover:border-brand-champagne/60 transition-colors duration-500 shadow-sm" />
-                            
+
                             {/* Corner Sunburst Accents */}
                             <div className="absolute top-8 left-6 text-brand-champagne/40 group-hover:text-brand-champagne/80 transition-all group-hover:rotate-45 duration-700">
                                 <Sun className="w-4 h-4" />

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
-import { 
-    HelpCircle, Plus, Trash2, X, MessageSquare, Info, 
-    Sparkles, Zap, TrendingUp, Heart, Star, Gem, Search 
+import {
+    HelpCircle, Plus, Trash2, X, MessageSquare, Info,
+    Sparkles, Zap, TrendingUp, Heart, Star, Gem, Search
 } from 'lucide-react';
 import { FormSection, Input } from '../../../admin/components/common/FormControls';
 import { quillModules, quillFormats } from '../../utils/productEditorUtils';
@@ -205,7 +205,7 @@ const Step7ProductContent = ({
                                         type="button"
                                         onClick={() => setFormData(prev => ({
                                             ...prev,
-                                            careTips: "<p><strong>Alanka Jewellers Care Guide:</strong></p><ul><li>Avoid direct contact with perfumes, deodorants, and cosmetic lotions.</li><li>Remove fine jewellery before swimming, exercise, or household cleaning.</li><li>Store individually in an airtight pouch or satin-lined jewellery case.</li><li>Wipe gently with a soft micro-suede polishing cloth after each wear.</li></ul>"
+                                            careTips: "<p><strong>Alankarr Jewellers Care Guide:</strong></p><ul><li>Avoid direct contact with perfumes, deodorants, and cosmetic lotions.</li><li>Remove fine jewellery before swimming, exercise, or household cleaning.</li><li>Store individually in an airtight pouch or satin-lined jewellery case.</li><li>Wipe gently with a soft micro-suede polishing cloth after each wear.</li></ul>"
                                         }))}
                                         className="text-xs font-bold text-amber-700 hover:text-amber-800 transition-colors flex items-center gap-1"
                                     >
@@ -385,9 +385,8 @@ const Step7ProductContent = ({
                             return (
                                 <label
                                     key={tag.key}
-                                    className={`flex items-center justify-between p-3.5 rounded-xl border transition-all cursor-pointer ${
-                                        isChecked ? 'bg-amber-50 border-amber-300 shadow-xs' : 'bg-white border-gray-200 hover:bg-gray-50'
-                                    }`}
+                                    className={`flex items-center justify-between p-3.5 rounded-xl border transition-all cursor-pointer ${isChecked ? 'bg-amber-50 border-amber-300 shadow-xs' : 'bg-white border-gray-200 hover:bg-gray-50'
+                                        }`}
                                 >
                                     <div className="flex items-center gap-2.5">
                                         <div className={`p-1.5 rounded-lg ${isChecked ? 'bg-amber-100' : 'bg-gray-100'}`}>
