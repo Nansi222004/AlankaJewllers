@@ -162,7 +162,7 @@ const LocationFormModal = ({ location, onClose, onSaved }) => {
               name="warehouseName"
               value={form.warehouseName}
               onChange={handleChange}
-              placeholder="e.g. Alankarr Jewellers Main Vault / Wani Dispatch"
+              placeholder="e.g. AlankarJewellers Main Vault / Wani Dispatch"
               disabled={isEdit}
               className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#8D6E63] disabled:bg-gray-100"
             />

@@ -74,7 +74,7 @@ const DEFAULT_TRUST_CARDS = [
 
 const DiamondTrustSection = ({ sectionData }) => {
     const settings = sectionData?.settings || {};
-    const title = settings.title || 'The Alankarr Assurance';
+    const title = settings.title || 'The AlankarAssurance';
     const subtitle = settings.subtitle || 'Every diamond comes with verified grading, lifetime care, and absolute purity.';
     const badge = settings.badge || 'Certified Trust';
 

@@ -235,7 +235,7 @@ const SupportChatPanel = () => {
               </div>
               <div>
                 <h3 className="font-display text-xs font-bold uppercase tracking-wide text-brand-pearl md:text-sm md:normal-case">
-                  Alankarr Jewellers Support
+                  AlankarJewellers Support
                 </h3>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>

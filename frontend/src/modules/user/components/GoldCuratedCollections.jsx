@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// Import local gold assets for the display - Light Alankarr theme
+// Import local gold assets for the display - Light Alankartheme
 import goldRings from '@assets/categories/gold_rings_light.png';
 import goldEarrings from '@assets/categories/gold_earrings_light.png';
 import goldPendants from '@assets/categories/gold_pendants_light.png';

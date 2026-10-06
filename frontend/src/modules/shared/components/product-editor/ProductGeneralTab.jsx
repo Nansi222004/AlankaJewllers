@@ -391,7 +391,7 @@ const ProductGeneralTab = ({
                             value={formData.paymentGatewayChargeBearer || 'store'}
                             onChange={(e) => setFormData({ ...formData, paymentGatewayChargeBearer: e.target.value })}
                             options={[
-                                { label: 'Store (Alankarr Jewellers Absorbed - 0%)', value: 'store' },
+                                { label: 'Store (AlankarJewellers Absorbed - 0%)', value: 'store' },
                                 { label: 'Customer / User (2% Surcharge)', value: 'user' }
                             ]}
                             disabled={isViewMode}

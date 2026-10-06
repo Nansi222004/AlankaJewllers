@@ -122,7 +122,7 @@ exports.requestReturn = async (req, res) => {
         subject:
           "Return Request Received - " +
           returnRequest.returnId +
-          " | Alankarr Jewellers",
+          " | AlankarJewellers",
         html: emailTemplates.returnRequested({
           returnReq: returnRequest,
           userName: reqUser.name,

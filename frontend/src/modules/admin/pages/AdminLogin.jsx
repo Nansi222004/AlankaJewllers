@@ -129,7 +129,7 @@ const AdminLogin = () => {
 
         {/* Footer */}
         <p className="text-center text-gray-400 text-sm mt-6">
-          © 2026 Alankarr Jewellers. Admin Access Only.
+          © 2026 AlankarJewellers. Admin Access Only.
         </p>
       </div>
     </div>

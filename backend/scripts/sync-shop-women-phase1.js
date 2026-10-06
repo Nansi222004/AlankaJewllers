@@ -20,7 +20,7 @@ const phase1Sections = [
       {
         itemId: "women-hero-1",
         type: "manual",
-        name: "Alankarr Jewellers Exclusive",
+        name: "AlankarJewellers Exclusive",
         label: "Eternal Radiance",
         subtitle: "Diamonds that capture the light and her heart.",
         image: "women_hero_radiance.png",

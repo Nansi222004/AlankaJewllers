@@ -78,7 +78,7 @@ const Wishlist = () => {
                 <div className="container mx-auto px-4 pb-20">
                     <div className="text-center pt-12 border-t border-stone-100">
                         <p className="text-brand-champagne text-xs font-semibold uppercase tracking-widest opacity-80">
-                            Alankarr Jewellers • Handcrafted Elegance
+                            AlankarJewellers • Handcrafted Elegance
                         </p>
                     </div>
                 </div>

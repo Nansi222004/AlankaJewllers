@@ -69,7 +69,7 @@ const BrandPromises = () => {
                 <div className="text-center mb-5 md:mb-16">
                     <div className="inline-flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2 text-brand-champagne text-[9px] md:text-[10px] uppercase font-bold tracking-[0.25em] md:tracking-[0.3em]">
                         <AlankarJewelleryMark className="w-3 h-3 md:w-3.5 md:h-3.5 text-brand-champagne" />
-                        <span>The Alankarr Jewellers Touch</span>
+                        <span>The AlankarJewellers Touch</span>
                     </div>
                     <h2 className="font-serif text-xl sm:text-2xl md:text-4xl text-brand-espresso font-normal tracking-tight">
                         {sectionData?.label || 'Why Choose Us'}

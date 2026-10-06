@@ -8,7 +8,7 @@ const Page = require("../src/models/Page");
 const sellerPrivacyContent = `
 <h2>Merchant Privacy Policy</h2>
 <p>Last updated: June 17, 2026</p>
-<p>Alankarr Jewellers ("we", "us", or "our") operates the Alankarr Jewellers Merchant platform. We are committed to protecting the privacy of our sellers and merchants. This Privacy Policy describes how we collect, use, and share information about you when you register and use our seller services.</p>
+<p>AlankarJewellers ("we", "us", or "our") operates the AlankarJewellers Merchant platform. We are committed to protecting the privacy of our sellers and merchants. This Privacy Policy describes how we collect, use, and share information about you when you register and use our seller services.</p>
 
 <h3>1. Information We Collect</h3>
 <p>When you register as a merchant on our platform, we collect information necessary to establish and manage your business profile, process commissions, and handle payouts:</p>

@@ -168,7 +168,7 @@ const SECTIONS = [
     isActive: true,
     sortOrder: 6,
     settings: {
-      title: "The Alankarr Assurance",
+      title: "The AlankarAssurance",
       subtitle: "Every diamond comes with verified grading, lifetime care, and absolute purity",
       badge: "Certified Trust",
     },

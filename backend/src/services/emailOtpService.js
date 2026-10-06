@@ -25,7 +25,7 @@ const safeEqual = (left, right) => {
 const sendChallengeEmail = async ({ email, otp, purpose }) =>
   sendEmail({
     to: email,
-    subject: "Your Alankarr Jewellers Verification Code",
+    subject: "Your AlankarJewellers Verification Code",
     html: emailTemplates.emailVerificationCode({
       code: otp,
       purpose: purpose === "user_password_reset" ? "password_reset" : "registration",

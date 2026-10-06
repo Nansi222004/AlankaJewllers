@@ -1,6 +1,6 @@
 /**
  * 🧾 Admin Tax Invoice Controller
- *    Generates official, GST-compliant Alankarr Jewellers Tax Invoices.
+ *    Generates official, GST-compliant AlankarJewellers Tax Invoices.
  *    Reads tax configuration, store GSTIN, state code, and HSN dynamically from Setting model.
  */
 
@@ -167,9 +167,9 @@ exports.getOrderInvoice = async (req, res) => {
       paymentStatus: (order.paymentStatus || "Paid").toUpperCase(),
 
       store: {
-        name: settings?.storeName || "Alankarr Jewellers",
+        name: settings?.storeName || "AlankarJewellers",
         tagline: settings?.tagline || "Where Luxury Meets Identity",
-        address: settings?.address || "Alankarr Jewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Maharashtra",
+        address: settings?.address || "AlankarJewellers, Sarafa Lane Gandhi Chowk Wani, 445304, Maharashtra",
         email: settings?.email || "swarna.sparsh22@gmail.com",
         phone: settings?.phone || "+91 8668821446",
         website: settings?.website || "https://Alankarr-jewellers.com/",

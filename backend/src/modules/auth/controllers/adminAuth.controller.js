@@ -140,7 +140,7 @@ exports.sendResetOtp = async (req, res) => {
     try {
       await sendEmail({
         to: email,
-        subject: "Alankarr Jewellers Admin Password Reset OTP",
+        subject: "AlankarJewellers Admin Password Reset OTP",
         html: `<p>Your password reset OTP is <strong>${otp}</strong>. This OTP is valid for 15 minutes.</p>`
       });
     } catch (mailErr) {

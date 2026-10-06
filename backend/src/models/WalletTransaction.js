@@ -1,5 +1,5 @@
 /**
- * WalletTransaction — Alankarr Jewellers Wallet Ledger
+ * WalletTransaction — AlankarJewellers Wallet Ledger
  *
  * Immutable, append-only record of every balance change on a seller wallet.
  * The wallet balance on the Seller document is the running total; this

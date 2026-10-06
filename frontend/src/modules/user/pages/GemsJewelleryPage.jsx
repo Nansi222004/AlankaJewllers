@@ -92,7 +92,6 @@ const GemsJewelleryPage = () => {
         <PromoSlider
           externalSlides={heroSlides}
           autoplayInterval={Number(sectionMap["hero-banners-gems"]?.settings?.autoplayMs) || 4000}
-          compact
         />
       )}
 
@@ -139,7 +138,7 @@ const GemsJewelleryPage = () => {
           <div className="mx-auto max-w-7xl">
             <div className="mb-5 text-center sm:mb-7">
               <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#9C3F60]">
-                {trustSection?.settings?.eyebrow || "The Alankarr Promise"}
+                {trustSection?.settings?.eyebrow || "The AlankarPromise"}
               </p>
               <h2 className="mt-2 font-serif text-2xl text-[#702F46] sm:text-3xl">
                 {trustSection?.settings?.title || "Gemstone Trust & Service"}

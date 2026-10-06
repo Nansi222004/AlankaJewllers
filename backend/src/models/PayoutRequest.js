@@ -1,5 +1,5 @@
 /**
- * PayoutRequest — Alankarr Jewellers Wallet System
+ * PayoutRequest — AlankarJewellers Wallet System
  *
  * Tracks seller withdrawal requests and their lifecycle.
  *

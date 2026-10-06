@@ -36,7 +36,7 @@ const WhyChooseUs = () => {
                 {/* Section Header */}
                 <div className="text-center mb-5 md:mb-16 relative">
                     <span className="text-[9px] md:text-[11px] font-bold text-brand-champagne uppercase tracking-[0.3em] md:tracking-[0.4em] mb-1.5 md:mb-3 block">
-                        The Alankarr Jewellers Touch
+                        The AlankarJewellers Touch
                     </span>
                     <h2 className="text-xl sm:text-2xl md:text-5xl font-display text-brand-espresso relative inline-block">
                         Why Choose Us
