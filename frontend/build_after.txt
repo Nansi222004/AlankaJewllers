@@ -1,0 +1,403 @@
+
+> Alankar-jewellers@0.0.0 build
+> vite build
+
+[36mvite v7.3.2 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 4345 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                                                 [39m[1m[2m    3.07 kB[22m[1m[22m[2m Γöé gzip:   1.16 kB[22m
+[2mdist/[22m[32massets/family_price_4999_clean-HaJiz-cO.jpg                [39m[1m[2m   26.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/PremiumGifts-C1wpU-tX.png                           [39m[1m[2m   72.98 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_price_2999_clean-DRalzk9j.jpg                [39m[1m[2m   94.15 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_price_premium_clean-CoIxsg7a.jpg             [39m[1m[2m  102.54 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_hero_banner_4k-BdPzNaNQ.jpg                  [39m[1m[2m  105.49 kB[22m[1m[22m
+[2mdist/[22m[32massets/silver_earrings_product-7FxyUGio.png                [39m[1m[2m  109.10 kB[22m[1m[22m
+[2mdist/[22m[32massets/CoupleRings-Dp-eFr1A.png                            [39m[1m[2m  143.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/silver_bracelet_product-DMVKGyDg.png                [39m[1m[2m  147.28 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_daughter-wgvGoVOY.png                     [39m[1m[2m  153.10 kB[22m[1m[22m
+[2mdist/[22m[32massets/cufflinks-DON6T6gD.png                              [39m[1m[2m  200.47 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_earrings_wine-CH-Hj4kH.png                      [39m[1m[2m  211.89 kB[22m[1m[22m
+[2mdist/[22m[32massets/thumb_ring-4v7Kgxbs.png                             [39m[1m[2m  215.14 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_trend_5-CEo8vVZP.png                         [39m[1m[2m  239.07 kB[22m[1m[22m
+[2mdist/[22m[32massets/marquise-DdQ9R4sb.png                               [39m[1m[2m  239.94 kB[22m[1m[22m
+[2mdist/[22m[32massets/proposal_banner-BhGEX-UI.png                        [39m[1m[2m  249.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/silver_chain_product-RgWl8jS0.png                   [39m[1m[2m  250.46 kB[22m[1m[22m
+[2mdist/[22m[32massets/SilverClassics-D8FwfURj.png                         [39m[1m[2m  251.14 kB[22m[1m[22m
+[2mdist/[22m[32massets/emerald-DJKn9571.png                                [39m[1m[2m  253.56 kB[22m[1m[22m
+[2mdist/[22m[32massets/thumb_pendant-CKtm_dcK.png                          [39m[1m[2m  260.12 kB[22m[1m[22m
+[2mdist/[22m[32massets/pear-BLCmntvX.png                                   [39m[1m[2m  269.57 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_anklet_wine-oWBjLOVa.png                        [39m[1m[2m  271.34 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_bracelet_wine-orT4Lv-e.png                      [39m[1m[2m  275.87 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_ring_wine-B8LBZo2n.png                          [39m[1m[2m  283.71 kB[22m[1m[22m
+[2mdist/[22m[32massets/heart-HfXZGwvs.png                                  [39m[1m[2m  286.47 kB[22m[1m[22m
+[2mdist/[22m[32massets/DarkPremiumGifts-teMv3hsL.png                       [39m[1m[2m  289.44 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_chain_wine-EIAhmQCa.png                         [39m[1m[2m  290.11 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_color_dual-DrjTsXGw.png                        [39m[1m[2m  293.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_wedding_bangles-jt-GqF5T.png                    [39m[1m[2m  294.90 kB[22m[1m[22m
+[2mdist/[22m[32massets/luxury_ring_men-BBDTHMwE.png                        [39m[1m[2m  300.48 kB[22m[1m[22m
+[2mdist/[22m[32massets/gift_husband_silver-Ds-up-A9.png                    [39m[1m[2m  308.55 kB[22m[1m[22m
+[2mdist/[22m[32massets/new_launch_earrings-BZvxHm7x.png                    [39m[1m[2m  312.89 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_wedding_diamond-CEBSAbaW.png                    [39m[1m[2m  327.01 kB[22m[1m[22m
+[2mdist/[22m[32massets/diamond_ring-DdgiYj-A.png                           [39m[1m[2m  331.39 kB[22m[1m[22m
+[2mdist/[22m[32massets/image-BQlI39YX.png                                  [39m[1m[2m  332.17 kB[22m[1m[22m
+[2mdist/[22m[32massets/ritual_range-ZFVc4cTm.png                           [39m[1m[2m  335.56 kB[22m[1m[22m
+[2mdist/[22m[32massets/trust_certified-BuSr8xV_.png                        [39m[1m[2m  336.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_pendant_wine-Dz6iA8Z5.png                       [39m[1m[2m  336.86 kB[22m[1m[22m
+[2mdist/[22m[32massets/cushion-BQ6Uh72b.png                                [39m[1m[2m  338.62 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_color_white-CeK5wbRf.png                       [39m[1m[2m  338.73 kB[22m[1m[22m
+[2mdist/[22m[32massets/luxury_pendant_men-CxTQ2JO7.png                     [39m[1m[2m  342.27 kB[22m[1m[22m
+[2mdist/[22m[32massets/eternal_diamond_brilliance-DUZXYs3u.png             [39m[1m[2m  343.51 kB[22m[1m[22m
+[2mdist/[22m[32massets/DarkCoupleRings-_AD2MxJX.png                        [39m[1m[2m  346.96 kB[22m[1m[22m
+[2mdist/[22m[32massets/admin-login-bg-BSQwLA2G.png                         [39m[1m[2m  349.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_wedding_mangalsutra-BDUD76ss.png                [39m[1m[2m  353.58 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_father-CNWvDbal.png                       [39m[1m[2m  353.66 kB[22m[1m[22m
+[2mdist/[22m[32massets/thumb_chain-BJQqrFUG.png                            [39m[1m[2m  358.06 kB[22m[1m[22m
+[2mdist/[22m[32massets/login_hero_silver-Bc6GowgO.png                      [39m[1m[2m  358.49 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_wedding_choker-CrRHWKM2.png                     [39m[1m[2m  363.73 kB[22m[1m[22m
+[2mdist/[22m[32massets/round-B51k6_cZ.png                                  [39m[1m[2m  364.62 kB[22m[1m[22m
+[2mdist/[22m[32massets/PersonalisedBannerWine-Cv0-_8SF.png                 [39m[1m[2m  365.45 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_rings_green-BG9zqKg3.png                       [39m[1m[2m  370.71 kB[22m[1m[22m
+[2mdist/[22m[32massets/gift_boyfriends-BS0hmHGq.png                        [39m[1m[2m  370.86 kB[22m[1m[22m
+[2mdist/[22m[32massets/oval-BxeMmyIf.png                                   [39m[1m[2m  371.37 kB[22m[1m[22m
+[2mdist/[22m[32massets/bond_brothers-BGwJNdfH.png                          [39m[1m[2m  371.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/theme_drops--51OCume.png                            [39m[1m[2m  373.46 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_minimalistic-CGws4EM1.png                      [39m[1m[2m  374.87 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_trend_6-DRHmHjsg.png                         [39m[1m[2m  377.75 kB[22m[1m[22m
+[2mdist/[22m[32massets/princess-C90PdQrE.png                               [39m[1m[2m  378.41 kB[22m[1m[22m
+[2mdist/[22m[32massets/office_wear-gNyfCTBs.png                            [39m[1m[2m  380.21 kB[22m[1m[22m
+[2mdist/[22m[32massets/proposal_banner_premium-Dy2hrsRb.png                [39m[1m[2m  384.00 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_gift_couple-DoYDZ-7o.png                        [39m[1m[2m  389.57 kB[22m[1m[22m
+[2mdist/[22m[32massets/theme_bubbles-CUWH2WSL.png                          [39m[1m[2m  392.48 kB[22m[1m[22m
+[2mdist/[22m[32massets/edit_bridal-BsphOGrA.png                            [39m[1m[2m  393.85 kB[22m[1m[22m
+[2mdist/[22m[32massets/bond_husband-ChfnGIRw.png                           [39m[1m[2m  394.08 kB[22m[1m[22m
+[2mdist/[22m[32massets/chains-BxVa0Ksi.png                                 [39m[1m[2m  395.29 kB[22m[1m[22m
+[2mdist/[22m[32massets/personalized_full_banner-Bcf0M0sE.png               [39m[1m[2m  397.66 kB[22m[1m[22m
+[2mdist/[22m[32massets/men-interactive-DIJLzl0X.png                        [39m[1m[2m  398.92 kB[22m[1m[22m
+[2mdist/[22m[32massets/luxury_range_15k-DiDw3SAs.png                       [39m[1m[2m  399.29 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_occasion_anniversary-CldzUx0a.png               [39m[1m[2m  401.06 kB[22m[1m[22m
+[2mdist/[22m[32massets/rings-D_k3mH66.png                                  [39m[1m[2m  402.68 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_bond_husband-CEamhUwK.png                    [39m[1m[2m  403.18 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_daily-F5R_l6mi.png                           [39m[1m[2m  403.25 kB[22m[1m[22m
+[2mdist/[22m[32massets/gift_couples-qslBvaLM.png                           [39m[1m[2m  403.67 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_earrings_green-BZy0Hz_n.png                    [39m[1m[2m  403.91 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_occasion_valentine-DE4i-iLV.png                 [39m[1m[2m  404.48 kB[22m[1m[22m
+[2mdist/[22m[32massets/GiftsForHer-BAapx_mD.png                            [39m[1m[2m  408.76 kB[22m[1m[22m
+[2mdist/[22m[32massets/theme_infinity-B9ae7GQj.png                         [39m[1m[2m  409.31 kB[22m[1m[22m
+[2mdist/[22m[32massets/luxury_gifts_men-CBFgcFeY.png                       [39m[1m[2m  409.90 kB[22m[1m[22m
+[2mdist/[22m[32massets/OfficeChic-ClfDQVFt.png                             [39m[1m[2m  414.18 kB[22m[1m[22m
+[2mdist/[22m[32massets/theme_knots-Dh8rWWRh.png                            [39m[1m[2m  414.34 kB[22m[1m[22m
+[2mdist/[22m[32massets/ChainLayering-iUYc-XNT.png                          [39m[1m[2m  418.02 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_gift_kids-DJXv4xG_.png                          [39m[1m[2m  420.47 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_nosepins_green-DnZXnyLh.png                    [39m[1m[2m  424.30 kB[22m[1m[22m
+[2mdist/[22m[32massets/gift_husbands-ZpaD0LuZ.png                          [39m[1m[2m  424.64 kB[22m[1m[22m
+[2mdist/[22m[32massets/testimonial_customer_3-CJkP1cpY.png                 [39m[1m[2m  425.42 kB[22m[1m[22m
+[2mdist/[22m[32massets/price_under_3999-yqHIauWs.png                       [39m[1m[2m  427.58 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_gift_mens-DSmi3xOR.png                          [39m[1m[2m  430.87 kB[22m[1m[22m
+[2mdist/[22m[32massets/RingsStacking-C2Ajk6ff.png                          [39m[1m[2m  431.39 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_occasion_mothers-57j11W8s.png                   [39m[1m[2m  431.46 kB[22m[1m[22m
+[2mdist/[22m[32massets/hero_masterpiece-CeKA1y3g.png                       [39m[1m[2m  432.58 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_spouse-BPEXZeYk.png                       [39m[1m[2m  437.40 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_trend_3-CloMdP0W.png                         [39m[1m[2m  438.51 kB[22m[1m[22m
+[2mdist/[22m[32massets/party_spark-CsoWbPPG.png                            [39m[1m[2m  442.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_bond_mother-JBL6le1P.png                     [39m[1m[2m  444.16 kB[22m[1m[22m
+[2mdist/[22m[32massets/men_hero_style-BIq8buz7.png                         [39m[1m[2m  444.26 kB[22m[1m[22m
+[2mdist/[22m[32massets/trust_returns-Dc2jjP5-.png                          [39m[1m[2m  445.15 kB[22m[1m[22m
+[2mdist/[22m[32massets/gift_gf_silver-BBcU_3Iw.png                         [39m[1m[2m  446.41 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_luxury_banner_new-Bot99JAn.png               [39m[1m[2m  446.51 kB[22m[1m[22m
+[2mdist/[22m[32massets/bond_wife-BdCa6ozC.png                              [39m[1m[2m  447.41 kB[22m[1m[22m
+[2mdist/[22m[32massets/new_launch_studs-4uYmNBNJ.png                       [39m[1m[2m  451.20 kB[22m[1m[22m
+[2mdist/[22m[32massets/theme_moon-DXTw6teE.png                             [39m[1m[2m  452.85 kB[22m[1m[22m
+[2mdist/[22m[32massets/testimonial_customer_1-Cr_fhrbD.png                 [39m[1m[2m  454.97 kB[22m[1m[22m
+[2mdist/[22m[32massets/men_hero_elite-CNMPaKDK.png                         [39m[1m[2m  455.06 kB[22m[1m[22m
+[2mdist/[22m[32massets/Earrings-Cqv52_cm.png                               [39m[1m[2m  457.58 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_pendants_green-CNtjSR-0.png                    [39m[1m[2m  460.45 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_gift_card-CHseLfJR.png                         [39m[1m[2m  463.26 kB[22m[1m[22m
+[2mdist/[22m[32massets/theme_leaves-DNpRsT8p.png                           [39m[1m[2m  467.46 kB[22m[1m[22m
+[2mdist/[22m[32massets/price_under_1999-6OKVqRbc.png                       [39m[1m[2m  468.49 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_bond_brothers-DVvPHF5W.png                   [39m[1m[2m  469.64 kB[22m[1m[22m
+[2mdist/[22m[32massets/Bracelets-CQvTXGBJ.png                              [39m[1m[2m  469.70 kB[22m[1m[22m
+[2mdist/[22m[32massets/PartyGlam-BoydRFyP.png                              [39m[1m[2m  469.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_trend_10-CUUObOq9.png                        [39m[1m[2m  471.45 kB[22m[1m[22m
+[2mdist/[22m[32massets/Bangles-BMx-2L_v.png                                [39m[1m[2m  474.08 kB[22m[1m[22m
+[2mdist/[22m[32massets/diamond_luxury-x_8YxrQU.png                         [39m[1m[2m  474.53 kB[22m[1m[22m
+[2mdist/[22m[32massets/new_launch_bracelets-BaX3amWM.png                   [39m[1m[2m  475.47 kB[22m[1m[22m
+[2mdist/[22m[32massets/trust_hallmark-DIGCYXhf.png                         [39m[1m[2m  477.65 kB[22m[1m[22m
+[2mdist/[22m[32massets/Chains-CS81OgJ7.png                                 [39m[1m[2m  478.63 kB[22m[1m[22m
+[2mdist/[22m[32massets/trending_heritage-BikGFRZg.png                      [39m[1m[2m  479.74 kB[22m[1m[22m
+[2mdist/[22m[32massets/heer_custom_ring-gNwiA-m4.png                       [39m[1m[2m  480.17 kB[22m[1m[22m
+[2mdist/[22m[32massets/edge_banner-BCv0N75r.png                            [39m[1m[2m  480.53 kB[22m[1m[22m
+[2mdist/[22m[32massets/Sets-nGdQUk8v.png                                   [39m[1m[2m  481.58 kB[22m[1m[22m
+[2mdist/[22m[32massets/SpiritualPicks-Ck9S-yLV.png                         [39m[1m[2m  481.82 kB[22m[1m[22m
+[2mdist/[22m[32massets/lifestyle_date_night-DPXC-UlG.png                   [39m[1m[2m  482.32 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_astra-vuPvs2on.png                           [39m[1m[2m  482.73 kB[22m[1m[22m
+[2mdist/[22m[32massets/custom-E9N7Ddk2.png                                 [39m[1m[2m  483.51 kB[22m[1m[22m
+[2mdist/[22m[32massets/wedding_jewels-qPWtQXQ1.png                         [39m[1m[2m  483.52 kB[22m[1m[22m
+[2mdist/[22m[32massets/daily_wear-BOIciQz1.png                             [39m[1m[2m  483.98 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_rings-BEnM7_3h.png                              [39m[1m[2m  484.26 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_color_rose-CT7CMrNQ.png                        [39m[1m[2m  485.76 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_mother-CI7eLTl0.png                       [39m[1m[2m  486.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/DazzlingRings-CeVBKoAe.png                          [39m[1m[2m  487.17 kB[22m[1m[22m
+[2mdist/[22m[32massets/price_under_999-Bo5uoDkD.png                        [39m[1m[2m  488.28 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_woman-itl4U3KX.png                             [39m[1m[2m  489.11 kB[22m[1m[22m
+[2mdist/[22m[32massets/trending_modern-fM9m_Rna.png                        [39m[1m[2m  492.43 kB[22m[1m[22m
+[2mdist/[22m[32massets/toerings-TP43wu_4.png                               [39m[1m[2m  493.08 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_office_wear_banner_1775911038204-CV-ARGke.png  [39m[1m[2m  494.37 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_bond_sister-CA_uVTRz.png                     [39m[1m[2m  496.35 kB[22m[1m[22m
+[2mdist/[22m[32massets/bond_mother-CSuTJjAx.png                            [39m[1m[2m  496.48 kB[22m[1m[22m
+[2mdist/[22m[32massets/Rings-De5YCxi7.png                                  [39m[1m[2m  496.76 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_color_yellow-BVpj0fCz.png                      [39m[1m[2m  496.97 kB[22m[1m[22m
+[2mdist/[22m[32massets/anklets-pNUvVkNf.png                                [39m[1m[2m  497.23 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_gift_girls-MxDob4zg.png                         [39m[1m[2m  498.24 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_pendant-C2iUzy-M.png                            [39m[1m[2m  501.78 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_bond_wife-MskIvHvZ.png                       [39m[1m[2m  502.87 kB[22m[1m[22m
+[2mdist/[22m[32massets/diamond_elegance_campaign-BK2dvHDq.png              [39m[1m[2m  502.93 kB[22m[1m[22m
+[2mdist/[22m[32massets/testimonial_customer_2-DDUsKYQy.png                 [39m[1m[2m  503.66 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_sets_green-D_g5CMjt.png                        [39m[1m[2m  504.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/gift_brothers-DPEHiN6a.png                          [39m[1m[2m  504.14 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_gift_women-D4iBP7fp.png                         [39m[1m[2m  504.46 kB[22m[1m[22m
+[2mdist/[22m[32massets/BohoAnklets--FoLOOsU.png                            [39m[1m[2m  504.50 kB[22m[1m[22m
+[2mdist/[22m[32massets/sets-97Sq8DlX.png                                   [39m[1m[2m  505.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/latest_drop_ring-BWFA5enu.png                       [39m[1m[2m  505.39 kB[22m[1m[22m
+[2mdist/[22m[32massets/bond_sister-DwfJSF-L.png                            [39m[1m[2m  505.45 kB[22m[1m[22m
+[2mdist/[22m[32massets/silverchains-ZtRyWzBS.png                           [39m[1m[2m  505.58 kB[22m[1m[22m
+[2mdist/[22m[32massets/price_under_2999-RGJijW-l.png                       [39m[1m[2m  506.00 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_office-COEE5gqA.png                          [39m[1m[2m  506.77 kB[22m[1m[22m
+[2mdist/[22m[32massets/new_launch_chains-D-kgmlYt.png                      [39m[1m[2m  508.15 kB[22m[1m[22m
+[2mdist/[22m[32massets/GotHitched-KlJov6UM.png                             [39m[1m[2m  508.91 kB[22m[1m[22m
+[2mdist/[22m[32massets/bridal-DrUFW0MB.png                                 [39m[1m[2m  509.54 kB[22m[1m[22m
+[2mdist/[22m[32massets/sterling_silver_heritage-Bafqi2b8.png               [39m[1m[2m  510.05 kB[22m[1m[22m
+[2mdist/[22m[32massets/CuratedCombos-aSrxUiAn.png                          [39m[1m[2m  510.28 kB[22m[1m[22m
+[2mdist/[22m[32massets/BridalBliss-CsR6T3yU.png                            [39m[1m[2m  514.00 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_bracelets-a59WtVr_.png                          [39m[1m[2m  515.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/earrings-q6EixO5A.png                               [39m[1m[2m  515.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/edit_solitaire-Dsyjm125.png                         [39m[1m[2m  516.15 kB[22m[1m[22m
+[2mdist/[22m[32massets/TempleDate-CWcowbbw.png                             [39m[1m[2m  518.40 kB[22m[1m[22m
+[2mdist/[22m[32massets/pendants-BVwbGwID.png                               [39m[1m[2m  518.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/pink_chains_1767775516641-CgtNRgVr.png              [39m[1m[2m  519.55 kB[22m[1m[22m
+[2mdist/[22m[32massets/mangalsutra-B_P-z0Qn.png                            [39m[1m[2m  519.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/rings-BGnoXEiY.png                                  [39m[1m[2m  521.71 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_anklets-9sUuTwpS.png                            [39m[1m[2m  521.86 kB[22m[1m[22m
+[2mdist/[22m[32massets/rosegold_woman-D01s8RnB.png                         [39m[1m[2m  522.29 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_women_premium-BmRIZknb.png                      [39m[1m[2m  523.92 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_bond_friends-D9q33JmT.png                    [39m[1m[2m  525.65 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_occasion_birthday-BZGqLL-b.png                  [39m[1m[2m  526.28 kB[22m[1m[22m
+[2mdist/[22m[32massets/silver_woman-pelB3NXr.png                           [39m[1m[2m  527.45 kB[22m[1m[22m
+[2mdist/[22m[32massets/personalised-ZLDVt7GF.png                           [39m[1m[2m  529.87 kB[22m[1m[22m
+[2mdist/[22m[32massets/bracelets-BmfNa6Q2.png                              [39m[1m[2m  532.59 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_men_premium-BbsfnMNA.png                        [39m[1m[2m  533.14 kB[22m[1m[22m
+[2mdist/[22m[32massets/newlaunch-f2zCXhM3.png                              [39m[1m[2m  537.13 kB[22m[1m[22m
+[2mdist/[22m[32massets/mensilver-BjjkfGro.png                              [39m[1m[2m  537.31 kB[22m[1m[22m
+[2mdist/[22m[32massets/women_hero_radiance-DPQtdZ-T.png                    [39m[1m[2m  537.82 kB[22m[1m[22m
+[2mdist/[22m[32massets/lifestyle_twinning-D_PHyDBO.png                     [39m[1m[2m  539.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_earrings-B6bQw-cQ.png                           [39m[1m[2m  539.83 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_brother-hJgamnDW.png                      [39m[1m[2m  540.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_mangalsutra_green-BHrvns68.png                 [39m[1m[2m  541.64 kB[22m[1m[22m
+[2mdist/[22m[32massets/bangle-1zpxbDw7.png                                 [39m[1m[2m  542.15 kB[22m[1m[22m
+[2mdist/[22m[32massets/pendants-BSY_AlCQ.png                               [39m[1m[2m  542.36 kB[22m[1m[22m
+[2mdist/[22m[32massets/20260414-1037-04.7611184-Do_BH5xg.mp4               [39m[1m[2m  542.55 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_traditional-BvU9hs_T.png                       [39m[1m[2m  543.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_sister-CG8m2Gq2.png                       [39m[1m[2m  544.12 kB[22m[1m[22m
+[2mdist/[22m[32massets/spiritual-Cx22-FJT.png                              [39m[1m[2m  544.29 kB[22m[1m[22m
+[2mdist/[22m[32massets/gift_friends_silver-BYQWJGbw.png                    [39m[1m[2m  547.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/men_hero_bold-BuKmR1GF.png                          [39m[1m[2m  548.50 kB[22m[1m[22m
+[2mdist/[22m[32massets/GirlOuting-CspBRv3s.png                             [39m[1m[2m  552.37 kB[22m[1m[22m
+[2mdist/[22m[32massets/Pendants-Bxx0Tqq9.png                               [39m[1m[2m  552.66 kB[22m[1m[22m
+[2mdist/[22m[32massets/DateNight-Af_hEuZi.png                              [39m[1m[2m  552.89 kB[22m[1m[22m
+[2mdist/[22m[32massets/lifestyle_minimalistic-aE79IJJQ.png                 [39m[1m[2m  553.42 kB[22m[1m[22m
+[2mdist/[22m[32massets/lifestyle_casual-BhNCUya9.png                       [39m[1m[2m  555.28 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_grandmother-BbNkeiKp.png                  [39m[1m[2m  555.90 kB[22m[1m[22m
+[2mdist/[22m[32massets/nosepin-BS-M9T4B.png                                [39m[1m[2m  558.65 kB[22m[1m[22m
+[2mdist/[22m[32massets/banner_party-Cx7ScILZ.png                           [39m[1m[2m  560.47 kB[22m[1m[22m
+[2mdist/[22m[32massets/lifestyle_gift_card-DRtxG_y5.png                    [39m[1m[2m  567.23 kB[22m[1m[22m
+[2mdist/[22m[32massets/about_craft_2-b51rk-Po.png                          [39m[1m[2m  567.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/premium_necklace_product-9XTaTAhr.png               [39m[1m[2m  569.07 kB[22m[1m[22m
+[2mdist/[22m[32massets/latest_drop_earrings-ClKVxPSk.png                   [39m[1m[2m  570.97 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_boho-BNuAcPnl.png                            [39m[1m[2m  574.92 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_new_arrivals_green-B1bsU9ba.png                [39m[1m[2m  578.97 kB[22m[1m[22m
+[2mdist/[22m[32massets/Personalised-BoSfzwRP.png                           [39m[1m[2m  580.11 kB[22m[1m[22m
+[2mdist/[22m[32massets/family_3d_baby-DWNntNyM.png                         [39m[1m[2m  583.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_twinning-BI001mnK.png                          [39m[1m[2m  586.40 kB[22m[1m[22m
+[2mdist/[22m[32massets/bond_friends-Bw1V5Hfy.png                           [39m[1m[2m  587.95 kB[22m[1m[22m
+[2mdist/[22m[32massets/lifestyle_traditional-DP3n8qJ7.png                  [39m[1m[2m  589.36 kB[22m[1m[22m
+[2mdist/[22m[32massets/lifestyle_party-CZqRExGN.png                        [39m[1m[2m  591.22 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_daily_wear_banner_1775911015640-Cv6mKp7h.png   [39m[1m[2m  594.46 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_bracelets_green-CIYh_xbs.png                   [39m[1m[2m  595.55 kB[22m[1m[22m
+[2mdist/[22m[32massets/bracelets-OaxA5Dbz.png                              [39m[1m[2m  601.82 kB[22m[1m[22m
+[2mdist/[22m[32massets/nav_occasion_wedding-NMaPQQtj.png                   [39m[1m[2m  605.68 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_statement_50k-D4x_Xq2i.jpg                     [39m[1m[2m  608.18 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_rings_light-CH5J-s1k.png                       [39m[1m[2m  610.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/bridal_royal-CgLw-UFF.png                           [39m[1m[2m  613.81 kB[22m[1m[22m
+[2mdist/[22m[32massets/edit_everyday-CIMMtlOB.png                          [39m[1m[2m  615.73 kB[22m[1m[22m
+[2mdist/[22m[32massets/sets-CjEG1t37.png                                   [39m[1m[2m  619.50 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_pendants_light-DtsLZ1ge.png                    [39m[1m[2m  624.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_all_premium-C2SIWh0Z.png                        [39m[1m[2m  637.50 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_earrings_light-CiZdUdJF.png                    [39m[1m[2m  641.67 kB[22m[1m[22m
+[2mdist/[22m[32massets/trust_exchange-GBxpDBO6.png                         [39m[1m[2m  649.04 kB[22m[1m[22m
+[2mdist/[22m[32massets/edit_atelier-z4oYYprM.png                           [39m[1m[2m  650.72 kB[22m[1m[22m
+[2mdist/[22m[32massets/beyond_bold_emerald_set-DYjxZ7Zw.png                [39m[1m[2m  664.43 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_casual_wear-DgGjyPt5.jpg                       [39m[1m[2m  678.05 kB[22m[1m[22m
+[2mdist/[22m[32massets/budget_2000-DyL_TtKM.png                            [39m[1m[2m  693.81 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_mangalsutra_light-DUtqjCv3.png                 [39m[1m[2m  702.42 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_bridesmaid-BIznewLr.jpg                        [39m[1m[2m  705.14 kB[22m[1m[22m
+[2mdist/[22m[32massets/gold_bangles_green-DyuTzpG_.png                     [39m[1m[2m  707.44 kB[22m[1m[22m
+[2mdist/[22m[32massets/precious_gemstones_art_of_colour-Pg-Hn-yd.jpg       [39m[1m[2m  722.75 kB[22m[1m[22m
+[2mdist/[22m[32massets/budget_1000-D1buRxcA.png                            [39m[1m[2m  730.74 kB[22m[1m[22m
+[2mdist/[22m[32massets/gifting_still_life-BTQ0-ewy.jpg                     [39m[1m[2m  743.44 kB[22m[1m[22m
+[2mdist/[22m[32massets/home_gift_for_bride_editorial-BrvZHHJs.jpg          [39m[1m[2m  744.67 kB[22m[1m[22m
+[2mdist/[22m[32massets/cat_women_portrait_new-CFH3NaPo.jpg                 [39m[1m[2m  764.39 kB[22m[1m[22m
+[2mdist/[22m[32massets/pure_silver_atelier_hero-tg8pc0uC.jpg               [39m[1m[2m  819.29 kB[22m[1m[22m
+[2mdist/[22m[32massets/home_sangeet_editorial-De58qCSY.jpg                 [39m[1m[2m  927.98 kB[22m[1m[22m
+[2mdist/[22m[32massets/home_reception_editorial-B1j6U6Ys.jpg               [39m[1m[2m  936.36 kB[22m[1m[22m
+[2mdist/[22m[32massets/home_haldi_editorial-9Z4hnOiy.jpg                   [39m[1m[2m  942.27 kB[22m[1m[22m
+[2mdist/[22m[32massets/videoframe_23898-Esgeu6PZ.png                       [39m[1m[2m1,159.42 kB[22m[1m[22m
+[2mdist/[22m[32massets/Alankar jewllers-D1JNTNSo.png                       [39m[1m[2m1,181.61 kB[22m[1m[22m
+[2mdist/[22m[35massets/editor-vendor-Bf4bJ6eu.css                          [39m[1m[2m   24.23 kB[22m[1m[22m[2m Γöé gzip:   3.61 kB[22m
+[2mdist/[22m[35massets/index-vmiHLl16.css                                  [39m[1m[2m  351.20 kB[22m[1m[22m[2m Γöé gzip:  45.27 kB[22m
+[2mdist/[22m[36massets/banner_party-C41HG-cE.js                            [39m[1m[2m    0.06 kB[22m[1m[22m[2m Γöé gzip:   0.08 kB[22m
+[2mdist/[22m[36massets/family_astra-DmwwdtnX.js                            [39m[1m[2m    0.06 kB[22m[1m[22m[2m Γöé gzip:   0.08 kB[22m
+[2mdist/[22m[36massets/lifestyle_gift_card-rHtDNkqo.js                     [39m[1m[2m    0.07 kB[22m[1m[22m[2m Γöé gzip:   0.09 kB[22m
+[2mdist/[22m[36massets/women_hero_radiance-DkyNyMB2.js                     [39m[1m[2m    0.07 kB[22m[1m[22m[2m Γöé gzip:   0.09 kB[22m
+[2mdist/[22m[36massets/latest_drop_bracelet-BdgeCAfv.js                    [39m[1m[2m    0.15 kB[22m[1m[22m[2m Γöé gzip:   0.14 kB[22m
+[2mdist/[22m[36massets/gold_color_yellow-DvA0-LDx.js                       [39m[1m[2m    0.16 kB[22m[1m[22m[2m Γöé gzip:   0.13 kB[22m
+[2mdist/[22m[36massets/testimonial_customer_3-CLiAX-wz.js                  [39m[1m[2m    0.18 kB[22m[1m[22m[2m Γöé gzip:   0.13 kB[22m
+[2mdist/[22m[36massets/gift_gf_silver-Do035Xpl.js                          [39m[1m[2m    0.20 kB[22m[1m[22m[2m Γöé gzip:   0.17 kB[22m
+[2mdist/[22m[36massets/useResetScroll-BIgPLGJ7.js                          [39m[1m[2m    0.21 kB[22m[1m[22m[2m Γöé gzip:   0.18 kB[22m
+[2mdist/[22m[36massets/men_hero_style-PcMUcQfk.js                          [39m[1m[2m    0.26 kB[22m[1m[22m[2m Γöé gzip:   0.18 kB[22m
+[2mdist/[22m[36massets/20260414-1037-04.7611184-B_zOTxOb.js                [39m[1m[2m    0.34 kB[22m[1m[22m[2m Γöé gzip:   0.23 kB[22m
+[2mdist/[22m[36massets/office_wear-CF6s0ZpR.js                             [39m[1m[2m    0.38 kB[22m[1m[22m[2m Γöé gzip:   0.23 kB[22m
+[2mdist/[22m[36massets/usePublicCmsPage-Bmm0bNLd.js                        [39m[1m[2m    0.38 kB[22m[1m[22m[2m Γöé gzip:   0.30 kB[22m
+[2mdist/[22m[36massets/family_price_4999_clean-ByoAfIrW.js                 [39m[1m[2m    0.42 kB[22m[1m[22m[2m Γöé gzip:   0.26 kB[22m
+[2mdist/[22m[36massets/AdminProtectedRoute-BE8SQN_i.js                     [39m[1m[2m    0.53 kB[22m[1m[22m[2m Γöé gzip:   0.33 kB[22m
+[2mdist/[22m[36massets/menNavigation-DQRuJvZ-.js                           [39m[1m[2m    0.55 kB[22m[1m[22m[2m Γöé gzip:   0.34 kB[22m
+[2mdist/[22m[36massets/exportUtils-D1qiUzj8.js                             [39m[1m[2m    0.66 kB[22m[1m[22m[2m Γöé gzip:   0.44 kB[22m
+[2mdist/[22m[36massets/usePublicProductsQuery-zGTFLA6C.js                  [39m[1m[2m    0.68 kB[22m[1m[22m[2m Γöé gzip:   0.45 kB[22m
+[2mdist/[22m[36massets/womenNavigation-CjNmYNtv.js                         [39m[1m[2m    0.68 kB[22m[1m[22m[2m Γöé gzip:   0.40 kB[22m
+[2mdist/[22m[36massets/edit_atelier-BCFpMD5T.js                            [39m[1m[2m    0.70 kB[22m[1m[22m[2m Γöé gzip:   0.39 kB[22m
+[2mdist/[22m[36massets/adminDirectSaleService-CT-k_0j8.js                  [39m[1m[2m    0.71 kB[22m[1m[22m[2m Γöé gzip:   0.28 kB[22m
+[2mdist/[22m[36massets/useHomepageCms-DJ72niDc.js                          [39m[1m[2m    0.90 kB[22m[1m[22m[2m Γöé gzip:   0.52 kB[22m
+[2mdist/[22m[36massets/DarkPremiumGifts-D-dZP_eD.js                        [39m[1m[2m    0.97 kB[22m[1m[22m[2m Γöé gzip:   0.53 kB[22m
+[2mdist/[22m[36massets/homeCategoryGridDefaults-Byvnxz7y.js                [39m[1m[2m    1.16 kB[22m[1m[22m[2m Γöé gzip:   0.46 kB[22m
+[2mdist/[22m[36massets/CategoryGrid-CMu7_zuC.js                            [39m[1m[2m    1.17 kB[22m[1m[22m[2m Γöé gzip:   0.53 kB[22m
+[2mdist/[22m[36massets/AdminStatsCard-DGcPWk1g.js                          [39m[1m[2m    1.28 kB[22m[1m[22m[2m Γöé gzip:   0.66 kB[22m
+[2mdist/[22m[36massets/PaymentsTab-BaFOsZQ0.js                             [39m[1m[2m    1.30 kB[22m[1m[22m[2m Γöé gzip:   0.59 kB[22m
+[2mdist/[22m[36massets/referenceMetalRate-BaYKbulj.js                      [39m[1m[2m    1.47 kB[22m[1m[22m[2m Γöé gzip:   0.75 kB[22m
+[2mdist/[22m[36massets/Pagination-PtAJUMc3.js                              [39m[1m[2m    1.55 kB[22m[1m[22m[2m Γöé gzip:   0.64 kB[22m
+[2mdist/[22m[36massets/upload-DsziH8V8.js                                  [39m[1m[2m    1.65 kB[22m[1m[22m[2m Γöé gzip:   0.96 kB[22m
+[2mdist/[22m[36massets/PageHeader-955wrQPA.js                              [39m[1m[2m    1.86 kB[22m[1m[22m[2m Γöé gzip:   0.74 kB[22m
+[2mdist/[22m[36massets/query-vendor-BQ4CXXyb.js                            [39m[1m[2m    2.32 kB[22m[1m[22m[2m Γöé gzip:   1.13 kB[22m
+[2mdist/[22m[36massets/ConfirmModal-Cx2c50jr.js                            [39m[1m[2m    2.37 kB[22m[1m[22m[2m Γöé gzip:   1.06 kB[22m
+[2mdist/[22m[36massets/OrderSuccess-mKRyzcb8.js                            [39m[1m[2m    2.38 kB[22m[1m[22m[2m Γöé gzip:   0.99 kB[22m
+[2mdist/[22m[36massets/FormControls-CWZ_uzjL.js                            [39m[1m[2m    2.85 kB[22m[1m[22m[2m Γöé gzip:   0.89 kB[22m
+[2mdist/[22m[36massets/FamilyRecipientProductsPage-BfzVWBQi.js             [39m[1m[2m    2.92 kB[22m[1m[22m[2m Γöé gzip:   1.24 kB[22m
+[2mdist/[22m[36massets/ShipmentTimeline-Cz3WzCFv.js                        [39m[1m[2m    2.94 kB[22m[1m[22m[2m Γöé gzip:   1.18 kB[22m
+[2mdist/[22m[36massets/Wishlist-GQeU7-0V.js                                [39m[1m[2m    3.11 kB[22m[1m[22m[2m Γöé gzip:   1.35 kB[22m
+[2mdist/[22m[36massets/CouponsTab-B8BsEMoD.js                              [39m[1m[2m    3.19 kB[22m[1m[22m[2m Γöé gzip:   1.17 kB[22m
+[2mdist/[22m[36massets/FAQSection-Dk9UdcC3.js                              [39m[1m[2m    3.26 kB[22m[1m[22m[2m Γöé gzip:   1.53 kB[22m
+[2mdist/[22m[36massets/JewelleryCollectionsPage-MDKyDYfL.js                [39m[1m[2m    3.69 kB[22m[1m[22m[2m Γöé gzip:   1.62 kB[22m
+[2mdist/[22m[36massets/collectionGridDefaults-CngALVYk.js                  [39m[1m[2m    3.75 kB[22m[1m[22m[2m Γöé gzip:   0.96 kB[22m
+[2mdist/[22m[36massets/TaxSettings-DzTC-gsy.js                             [39m[1m[2m    4.17 kB[22m[1m[22m[2m Γöé gzip:   1.73 kB[22m
+[2mdist/[22m[36massets/family_3d_couple-C2iRQhYR.js                        [39m[1m[2m    4.20 kB[22m[1m[22m[2m Γöé gzip:   1.73 kB[22m
+[2mdist/[22m[36massets/DataTable-zRNxkpZZ.js                               [39m[1m[2m    4.45 kB[22m[1m[22m[2m Γöé gzip:   1.63 kB[22m
+[2mdist/[22m[36massets/BestStylesPage-BgMvsQwi.js                          [39m[1m[2m    4.47 kB[22m[1m[22m[2m Γöé gzip:   1.87 kB[22m
+[2mdist/[22m[36massets/ReturnsPage-DrTcAlbp.js                             [39m[1m[2m    4.61 kB[22m[1m[22m[2m Γöé gzip:   1.66 kB[22m
+[2mdist/[22m[36massets/ReplacementsPage-Jlbq36pu.js                        [39m[1m[2m    4.74 kB[22m[1m[22m[2m Γöé gzip:   1.71 kB[22m
+[2mdist/[22m[36massets/BondCollectionPage-DnUVOtJN.js                      [39m[1m[2m    5.29 kB[22m[1m[22m[2m Γöé gzip:   2.30 kB[22m
+[2mdist/[22m[36massets/DynamicPageEditor-BrC1aVWQ.js                       [39m[1m[2m    5.38 kB[22m[1m[22m[2m Γöé gzip:   2.02 kB[22m
+[2mdist/[22m[36massets/productMetal-lqSauHNa.js                            [39m[1m[2m    5.47 kB[22m[1m[22m[2m Γöé gzip:   1.39 kB[22m
+[2mdist/[22m[36massets/PageManagement-Ci-BOA5R.js                          [39m[1m[2m    5.55 kB[22m[1m[22m[2m Γöé gzip:   2.07 kB[22m
+[2mdist/[22m[36massets/LowStockAlertsPage-BtlRAjD4.js                      [39m[1m[2m    5.83 kB[22m[1m[22m[2m Γöé gzip:   1.87 kB[22m
+[2mdist/[22m[36massets/CategoryPage-8FEAiKUx.js                            [39m[1m[2m    6.11 kB[22m[1m[22m[2m Γöé gzip:   2.34 kB[22m
+[2mdist/[22m[36massets/Notifications-zC9c9tS7.js                           [39m[1m[2m    6.15 kB[22m[1m[22m[2m Γöé gzip:   2.07 kB[22m
+[2mdist/[22m[36massets/ProductCard-BaoB5oOr.js                             [39m[1m[2m    6.26 kB[22m[1m[22m[2m Γöé gzip:   2.40 kB[22m
+[2mdist/[22m[36massets/DiamondShopByTypePanel-CuKUL6Qu.js                  [39m[1m[2m    6.29 kB[22m[1m[22m[2m Γöé gzip:   2.02 kB[22m
+[2mdist/[22m[36massets/AboutUs-Dk98-T0W.js                                 [39m[1m[2m    6.47 kB[22m[1m[22m[2m Γöé gzip:   2.02 kB[22m
+[2mdist/[22m[36massets/SilverShopByTypePanel-CZDb6nTB.js                   [39m[1m[2m    6.49 kB[22m[1m[22m[2m Γöé gzip:   2.04 kB[22m
+[2mdist/[22m[36massets/FamilyProductsCatalog-USN388wy.js                   [39m[1m[2m    6.66 kB[22m[1m[22m[2m Γöé gzip:   2.82 kB[22m
+[2mdist/[22m[36massets/ReplacementDetailPage-CT-mDijF.js                   [39m[1m[2m    6.75 kB[22m[1m[22m[2m Γöé gzip:   2.25 kB[22m
+[2mdist/[22m[36massets/CouponListPage-DwE8kCAA.js                          [39m[1m[2m    6.80 kB[22m[1m[22m[2m Γöé gzip:   2.52 kB[22m
+[2mdist/[22m[36massets/GemsJewelleryPage-oZA2usA2.js                       [39m[1m[2m    6.81 kB[22m[1m[22m[2m Γöé gzip:   2.78 kB[22m
+[2mdist/[22m[36massets/ReturnDetailPage-BUR0jpLE.js                        [39m[1m[2m    6.96 kB[22m[1m[22m[2m Γöé gzip:   2.31 kB[22m
+[2mdist/[22m[36massets/ReplacementsPage-DzR-b8nF.js                        [39m[1m[2m    7.10 kB[22m[1m[22m[2m Γöé gzip:   2.19 kB[22m
+[2mdist/[22m[36massets/ProfileDetailsTab-BIuFD6Lj.js                       [39m[1m[2m    7.30 kB[22m[1m[22m[2m Γöé gzip:   1.46 kB[22m
+[2mdist/[22m[36massets/FamilyCollectionProductsPage-BfEAHyBz.js            [39m[1m[2m    7.34 kB[22m[1m[22m[2m Γöé gzip:   2.47 kB[22m
+[2mdist/[22m[36massets/legacyCmsAssets-CqcqRkdm.js                         [39m[1m[2m    7.37 kB[22m[1m[22m[2m Γöé gzip:   2.75 kB[22m
+[2mdist/[22m[36massets/ReturnsPage-xLo9NGND.js                             [39m[1m[2m    7.38 kB[22m[1m[22m[2m Γöé gzip:   2.24 kB[22m
+[2mdist/[22m[36massets/ReplacementRequestPage-DHKOqVIW.js                  [39m[1m[2m    7.63 kB[22m[1m[22m[2m Γöé gzip:   2.83 kB[22m
+[2mdist/[22m[36massets/SectionManagement-B2jrcDEm.js                       [39m[1m[2m    7.67 kB[22m[1m[22m[2m Γöé gzip:   2.97 kB[22m
+[2mdist/[22m[36massets/GoldShopByColourPanel-DlIdbup6.js                   [39m[1m[2m    7.81 kB[22m[1m[22m[2m Γöé gzip:   2.45 kB[22m
+[2mdist/[22m[36massets/UserView-BxHIwqOP.js                                [39m[1m[2m    7.83 kB[22m[1m[22m[2m Γöé gzip:   2.29 kB[22m
+[2mdist/[22m[36massets/StockHistoryPage-DlrqFYIJ.js                        [39m[1m[2m    7.91 kB[22m[1m[22m[2m Γöé gzip:   2.65 kB[22m
+[2mdist/[22m[36massets/AdminScanner-CnE8nYPu.js                            [39m[1m[2m    8.05 kB[22m[1m[22m[2m Γöé gzip:   2.89 kB[22m
+[2mdist/[22m[36massets/AdminNotifications-f38rpYxu.js                      [39m[1m[2m    8.10 kB[22m[1m[22m[2m Γöé gzip:   2.41 kB[22m
+[2mdist/[22m[36massets/UserManagement-CmX8pj7T.js                          [39m[1m[2m    8.40 kB[22m[1m[22m[2m Γöé gzip:   2.74 kB[22m
+[2mdist/[22m[36massets/AdminProductBarcodes-UbaSZPXB.js                    [39m[1m[2m    8.55 kB[22m[1m[22m[2m Γöé gzip:   2.72 kB[22m
+[2mdist/[22m[36massets/MetalPricing-BybxXhH2.js                            [39m[1m[2m    8.67 kB[22m[1m[22m[2m Γöé gzip:   2.16 kB[22m
+[2mdist/[22m[36massets/StockAdjustmentPage-BoFfUrH6.js                     [39m[1m[2m    8.87 kB[22m[1m[22m[2m Γöé gzip:   2.81 kB[22m
+[2mdist/[22m[36massets/ReviewModeration-qYVTDu-L.js                        [39m[1m[2m    8.93 kB[22m[1m[22m[2m Γöé gzip:   2.78 kB[22m
+[2mdist/[22m[36massets/Dashboard-SBYZJnJz.js                               [39m[1m[2m    9.24 kB[22m[1m[22m[2m Γöé gzip:   3.39 kB[22m
+[2mdist/[22m[36massets/ContactInquiries-G59yo5Uk.js                        [39m[1m[2m    9.57 kB[22m[1m[22m[2m Γöé gzip:   2.71 kB[22m
+[2mdist/[22m[36massets/OrderTracking-Bp2xuOOk.js                           [39m[1m[2m    9.62 kB[22m[1m[22m[2m Γöé gzip:   3.05 kB[22m
+[2mdist/[22m[36massets/OrderListPage-Bn80VlJQ.js                           [39m[1m[2m    9.76 kB[22m[1m[22m[2m Γöé gzip:   3.04 kB[22m
+[2mdist/[22m[36massets/ReturnRequestPage-DaLOzyov.js                       [39m[1m[2m   10.09 kB[22m[1m[22m[2m Γöé gzip:   3.46 kB[22m
+[2mdist/[22m[36massets/CategoryEditor-C23HqRpA.js                          [39m[1m[2m   10.11 kB[22m[1m[22m[2m Γöé gzip:   3.08 kB[22m
+[2mdist/[22m[36massets/GlobalNotificationManager-DNRalSmX.js               [39m[1m[2m   10.26 kB[22m[1m[22m[2m Γöé gzip:   2.78 kB[22m
+[2mdist/[22m[36massets/AddNotification-CG-5gSD8.js                         [39m[1m[2m   10.33 kB[22m[1m[22m[2m Γöé gzip:   2.71 kB[22m
+[2mdist/[22m[36massets/Login-DFxRxGPn.js                                   [39m[1m[2m   10.51 kB[22m[1m[22m[2m Γöé gzip:   3.71 kB[22m
+[2mdist/[22m[36massets/InventoryPage-CwJY9aAJ.js                           [39m[1m[2m   11.17 kB[22m[1m[22m[2m Γöé gzip:   2.60 kB[22m
+[2mdist/[22m[36massets/FAQManagement-sn3MWE_I.js                           [39m[1m[2m   11.23 kB[22m[1m[22m[2m Γöé gzip:   3.29 kB[22m
+[2mdist/[22m[36massets/Login-BvXyrs_W.js                                   [39m[1m[2m   12.12 kB[22m[1m[22m[2m Γöé gzip:   2.92 kB[22m
+[2mdist/[22m[36massets/AddressesTab-BfyOYLi2.js                            [39m[1m[2m   12.46 kB[22m[1m[22m[2m Γöé gzip:   2.34 kB[22m
+[2mdist/[22m[36massets/CouponFormPage-uQl4Thwl.js                          [39m[1m[2m   13.25 kB[22m[1m[22m[2m Γöé gzip:   4.16 kB[22m
+[2mdist/[22m[36massets/AdminDirectSales-CxgJ391k.js                        [39m[1m[2m   13.31 kB[22m[1m[22m[2m Γöé gzip:   3.84 kB[22m
+[2mdist/[22m[36massets/ContentManagement-DOHkz1C9.js                       [39m[1m[2m   13.65 kB[22m[1m[22m[2m Γöé gzip:   3.79 kB[22m
+[2mdist/[22m[36massets/AnalyticsDashboard-COod3FBP.js                      [39m[1m[2m   13.66 kB[22m[1m[22m[2m Γöé gzip:   3.84 kB[22m
+[2mdist/[22m[36massets/SupportManagement-DcEFtOXi.js                       [39m[1m[2m   13.73 kB[22m[1m[22m[2m Γöé gzip:   4.40 kB[22m
+[2mdist/[22m[36massets/AuditLogPage-Rps2vkpy.js                            [39m[1m[2m   13.74 kB[22m[1m[22m[2m Γöé gzip:   4.08 kB[22m
+[2mdist/[22m[36massets/BestStylesSection-CtYed3kw.js                       [39m[1m[2m   13.91 kB[22m[1m[22m[2m Γöé gzip:   4.37 kB[22m
+[2mdist/[22m[36massets/InventoryReportsPage-C87kvfWO.js                    [39m[1m[2m   14.09 kB[22m[1m[22m[2m Γöé gzip:   3.18 kB[22m
+[2mdist/[22m[36massets/AdminOrderInvoice-Cwz-vmVd.js                       [39m[1m[2m   14.83 kB[22m[1m[22m[2m Γöé gzip:   3.76 kB[22m
+[2mdist/[22m[36massets/HelpCenter-DokhHtfn.js                              [39m[1m[2m   14.96 kB[22m[1m[22m[2m Γöé gzip:   4.30 kB[22m
+[2mdist/[22m[36massets/AdminPickupLocations-dAetxYx6.js                    [39m[1m[2m   15.10 kB[22m[1m[22m[2m Γöé gzip:   4.01 kB[22m
+[2mdist/[22m[36massets/AdminLayout-Dda1jrpz.js                             [39m[1m[2m   15.23 kB[22m[1m[22m[2m Γöé gzip:   4.61 kB[22m
+[2mdist/[22m[36massets/AdminShipments-DtWlIyql.js                          [39m[1m[2m   15.65 kB[22m[1m[22m[2m Γöé gzip:   4.18 kB[22m
+[2mdist/[22m[36massets/Profile-DF4GPYIz.js                                 [39m[1m[2m   17.79 kB[22m[1m[22m[2m Γöé gzip:   4.56 kB[22m
+[2mdist/[22m[36massets/GiftCardsPage-Bf9VOuzM.js                           [39m[1m[2m   19.33 kB[22m[1m[22m[2m Γöé gzip:   4.72 kB[22m
+[2mdist/[22m[36massets/ReplacementDetailPage-wE45XfNc.js                   [39m[1m[2m   19.55 kB[22m[1m[22m[2m Γöé gzip:   4.32 kB[22m
+[2mdist/[22m[36massets/Cart-B4XgJVZf.js                                    [39m[1m[2m   20.05 kB[22m[1m[22m[2m Γöé gzip:   5.76 kB[22m
+[2mdist/[22m[36massets/ReturnDetailPage-_ct8d15A.js                        [39m[1m[2m   20.47 kB[22m[1m[22m[2m Γöé gzip:   4.67 kB[22m
+[2mdist/[22m[36massets/DynamicPage-Bjsbs552.js                             [39m[1m[2m   20.74 kB[22m[1m[22m[2m Γöé gzip:   8.13 kB[22m
+[2mdist/[22m[36massets/ProductManagement-4LCbe1Op.js                       [39m[1m[2m   21.79 kB[22m[1m[22m[2m Γöé gzip:   6.82 kB[22m
+[2mdist/[22m[36massets/adminService-BJwTcuYF.js                            [39m[1m[2m   21.83 kB[22m[1m[22m[2m Γöé gzip:   4.34 kB[22m
+[2mdist/[22m[36massets/CollectionCategoryGrid-C2fLrYl-.js                  [39m[1m[2m   22.12 kB[22m[1m[22m[2m Γöé gzip:   6.99 kB[22m
+[2mdist/[22m[36massets/OrdersTab-CAu1W1wp.js                               [39m[1m[2m   22.57 kB[22m[1m[22m[2m Γöé gzip:   5.37 kB[22m
+[2mdist/[22m[36massets/Checkout-DrlPzWWk.js                                [39m[1m[2m   27.35 kB[22m[1m[22m[2m Γöé gzip:   7.11 kB[22m
+[2mdist/[22m[36massets/sanitize-vendor-Bp9_lNcF.js                         [39m[1m[2m   27.88 kB[22m[1m[22m[2m Γöé gzip:  10.54 kB[22m
+[2mdist/[22m[36massets/Diamond4CsGuide-DrviR2PG.js                         [39m[1m[2m   28.98 kB[22m[1m[22m[2m Γöé gzip:   7.88 kB[22m
+[2mdist/[22m[36massets/ShopForFamily-DzngfZhG.js                           [39m[1m[2m   32.33 kB[22m[1m[22m[2m Γöé gzip:   8.57 kB[22m
+[2mdist/[22m[36massets/socket-vendor-CcZeKQqT.js                           [39m[1m[2m   36.67 kB[22m[1m[22m[2m Γöé gzip:  11.40 kB[22m
+[2mdist/[22m[36massets/GlobalSettings-uIaDdA3D.js                          [39m[1m[2m   37.27 kB[22m[1m[22m[2m Γöé gzip:   7.21 kB[22m
+[2mdist/[22m[36massets/router-vendor-vVFraCp_.js                           [39m[1m[2m   37.52 kB[22m[1m[22m[2m Γöé gzip:  13.52 kB[22m
+[2mdist/[22m[36massets/OrderDetailPage-DBJPF7jQ.js                         [39m[1m[2m   40.80 kB[22m[1m[22m[2m Γöé gzip:   8.97 kB[22m
+[2mdist/[22m[36massets/ShopForWomen-jVO7obQz.js                            [39m[1m[2m   40.83 kB[22m[1m[22m[2m Γöé gzip:  11.52 kB[22m
+[2mdist/[22m[36massets/DiamondJewelleryPage-D4SKxTtK.js                    [39m[1m[2m   42.11 kB[22m[1m[22m[2m Γöé gzip:  11.56 kB[22m
+[2mdist/[22m[36massets/motion-vendor-DXWMOnb3.js                           [39m[1m[2m   44.36 kB[22m[1m[22m[2m Γöé gzip:  14.46 kB[22m
+[2mdist/[22m[36massets/ShopForMen-CfDSxZoZ.js                              [39m[1m[2m   48.14 kB[22m[1m[22m[2m Γöé gzip:  13.62 kB[22m
+[2mdist/[22m[36massets/firebase-vendor-DuMms_ra.js                         [39m[1m[2m   50.50 kB[22m[1m[22m[2m Γöé gzip:  15.82 kB[22m
+[2mdist/[22m[36massets/GoldJewelleryPage-DrvoFSgb.js                       [39m[1m[2m   52.94 kB[22m[1m[22m[2m Γöé gzip:  13.51 kB[22m
+[2mdist/[22m[36massets/sectionDefaults-BsfTz03u.js                         [39m[1m[2m   54.78 kB[22m[1m[22m[2m Γöé gzip:  13.43 kB[22m
+[2mdist/[22m[36massets/Shop-D21A5Vfs.js                                    [39m[1m[2m   69.18 kB[22m[1m[22m[2m Γöé gzip:  16.39 kB[22m
+[2mdist/[22m[36massets/barcode-vendor-D7qHqRQ9.js                          [39m[1m[2m   71.58 kB[22m[1m[22m[2m Γöé gzip:  15.46 kB[22m
+[2mdist/[22m[36massets/Home-N7GzWeb7.js                                    [39m[1m[2m   86.28 kB[22m[1m[22m[2m Γöé gzip:  21.43 kB[22m
+[2mdist/[22m[36massets/ProductDetails-CZ9RO_Nw.js                          [39m[1m[2m   95.50 kB[22m[1m[22m[2m Γöé gzip:  22.73 kB[22m
+[2mdist/[22m[36massets/AdminProductEditor-3dqv1Ql_.js                      [39m[1m[2m  137.93 kB[22m[1m[22m[2m Γöé gzip:  30.92 kB[22m
+[2mdist/[22m[36massets/editor-vendor-C0l4f_zb.js                           [39m[1m[2m  139.12 kB[22m[1m[22m[2m Γöé gzip:  40.32 kB[22m
+[2mdist/[22m[36massets/react-vendor-H6Z-dfwj.js                            [39m[1m[2m  193.04 kB[22m[1m[22m[2m Γöé gzip:  60.56 kB[22m
+[2mdist/[22m[36massets/index-CSWGNDj5.js                                   [39m[1m[2m  215.94 kB[22m[1m[22m[2m Γöé gzip:  55.97 kB[22m
+[2mdist/[22m[36massets/SectionEditor-lyNVviO8.js                           [39m[1m[2m  256.69 kB[22m[1m[22m[2m Γöé gzip:  45.89 kB[22m
+[2mdist/[22m[36massets/admin-charts-BA_JTQnK.js                            [39m[1m[2m  302.48 kB[22m[1m[22m[2m Γöé gzip:  83.41 kB[22m
+[2mdist/[22m[36massets/scanner-vendor-BcCGVuLt.js                          [39m[1m[2m  334.55 kB[22m[1m[22m[2m Γöé gzip:  99.90 kB[22m
+[2mdist/[22m[36massets/vendor-KrPI-9V_.js                                  [39m[1m[2m  345.43 kB[22m[1m[22m[2m Γöé gzip: 115.70 kB[22m
+[2mdist/[22m[36massets/ui-vendor-tm920b9Y.js                               [39m[1m[2m  596.99 kB[22m[1m[22m[2m Γöé gzip: 160.24 kB[22m
+[32mΓ£ô built in 27.25s[39m

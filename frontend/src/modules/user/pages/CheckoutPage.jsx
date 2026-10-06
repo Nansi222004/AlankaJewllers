@@ -12,7 +12,6 @@ import {
   Percent,
 } from "lucide-react";
 import CouponsModal from "../components/CouponsModal";
-import logo from "@assets/logo.png";
 import api from "../../../services/api";
 
 const CheckoutPage = () => {

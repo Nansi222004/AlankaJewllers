@@ -2,7 +2,7 @@ import React from "react";
 import { Truck, ThumbsUp, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import logoIcon from "@/assets/Alankar jewllers.png";
+import logoIcon from "@/assets/logo-emblem.webp";
 import aboutHero1 from "@assets/cat_wedding_choker.png";
 import aboutHero2 from "@assets/cat_wedding_bangles.png";
 import aboutHero3 from "@assets/cat_wedding_diamond.png";
@@ -27,7 +27,7 @@ const AboutUs = () => {
           >
             {/* Background Watermark Logo - Positioned specifically behind text */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] opacity-[0.18] pointer-events-none select-none -z-10">
-              <img src={logoIcon} alt="" className="w-full h-auto" />
+              <img src={logoIcon} alt="" className="w-full h-auto object-contain" />
             </div>
             <h1 className="text-5xl md:text-6xl font-serif text-brand-espresso mb-4">
               About Us

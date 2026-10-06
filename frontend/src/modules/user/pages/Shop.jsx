@@ -468,6 +468,10 @@ const Shop = ({
     }
 
     const qp = new URLSearchParams(location.search);
+    const targetMetal = collectionMetal || qp.get("metal");
+    if (targetMetal && Array.isArray(list)) {
+      list = list.filter((p) => matchesRequestedMetal(p, targetMetal));
+    }
     const hasSearch = Boolean(qp.get("search")?.trim());
     const isExplicitMala = Boolean(
       hasSearch ||
@@ -500,6 +504,7 @@ const Shop = ({
     category,
     activeCategory,
     selectedCategory,
+    collectionMetal,
   ]);
 
   const trendingRecommendations = useMemo(() => {

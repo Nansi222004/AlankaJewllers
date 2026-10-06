@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { Gem } from "lucide-react";
 import { useShop } from "../../../context/ShopContext";
@@ -19,7 +19,8 @@ import { diamondCollectionGridDefaults } from "../utils/collectionGridDefaults";
 import DiamondShopByType from "../components/DiamondShopByType";
 import DiamondCategoryShowcase from "../components/DiamondCategoryShowcase";
 import DiamondShapeSelector from "../components/DiamondShapeSelector";
-import Diamond4CsGuide from "../components/Diamond4CsGuide";
+// Diamond4CsGuide is a large below-the-fold educational section — lazy load it
+const Diamond4CsGuide = lazy(() => import('../components/Diamond4CsGuide'));
 import DiamondTrustSection from "../components/DiamondTrustSection";
 import DiamondCuratedCollections from "../components/DiamondCuratedCollections";
 import ExploreDiamondCollection from "../components/ExploreDiamondCollection";
@@ -132,9 +133,8 @@ const DiamondJewelleryPage = () => {
   }, [products]);
 
 
-  if ((isCmsLoading || isShopLoading) && diamondProducts.length === 0) {
-    return <Loader />;
-  }
+  // Do NOT block render on CMS/shop load \u2014 default slides render immediately.
+  // CMS content fills in progressively as it loads (staleTime: 5 min).
 
   if (isCmsError && diamondProducts.length === 0) {
     return (
@@ -203,9 +203,11 @@ const DiamondJewelleryPage = () => {
         />
       )}
 
-      {/* 5. The 4Cs Educational Masterclass */}
+      {/* 5. The 4Cs Educational Masterclass — lazy loaded (below fold) */}
       {isSectionActive("diamond-4cs-guide") && (
-        <Diamond4CsGuide sectionData={sectionMap["diamond-4cs-guide"]} />
+        <Suspense fallback={<div className="h-40 bg-[#FCF8FB]" />}>
+          <Diamond4CsGuide sectionData={sectionMap["diamond-4cs-guide"]} />
+        </Suspense>
       )}
 
       {/* 6. Diamond Trust & Certification Strip */}

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import AlankaJewelleryMark from './AlankaJewelleryMark';
@@ -6,9 +6,10 @@ import { useHomepageCms } from '../hooks/useHomepageCms';
 import { useShop } from '../../../context/ShopContext';
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 import { getCategoryFallback, handleImageError } from '../../../utils/imageFallbacks';
-import GoldShopByColourPanel from './GoldShopByColourPanel';
-import SilverShopByTypePanel from './SilverShopByTypePanel';
-import DiamondShopByTypePanel from './DiamondShopByTypePanel';
+// Side panels are per-collection — lazy load so each page only downloads the one it needs
+const GoldShopByColourPanel = lazy(() => import('./GoldShopByColourPanel'));
+const SilverShopByTypePanel = lazy(() => import('./SilverShopByTypePanel'));
+const DiamondShopByTypePanel = lazy(() => import('./DiamondShopByTypePanel'));
 
 const resolveItemImage = (item, liveCategories = []) => {
     const rawImage = String(item?.image || '').trim();
@@ -264,9 +265,11 @@ const CollectionCategoryGrid = ({
                     <div className="hidden lg:grid lg:h-[460px] xl:h-[500px] lg:grid-cols-12 gap-5 xl:gap-6 items-stretch">
                         {sidePanelPosition === 'left' && (
                             <div className="lg:col-span-3 min-h-0">
-                                {isGoldPanelActive && <GoldShopByColourPanel sectionData={goldSectionData} />}
-                                {isSilverPanelActive && <SilverShopByTypePanel sectionData={silverSectionData} />}
-                                {isDiamondPanelActive && <DiamondShopByTypePanel sectionData={diamondSectionData} />}
+                                <Suspense fallback={<div className="h-full bg-stone-100 rounded-2xl animate-pulse" />}>
+                                    {isGoldPanelActive && <GoldShopByColourPanel sectionData={goldSectionData} />}
+                                    {isSilverPanelActive && <SilverShopByTypePanel sectionData={silverSectionData} />}
+                                    {isDiamondPanelActive && <DiamondShopByTypePanel sectionData={diamondSectionData} />}
+                                </Suspense>
                             </div>
                         )}
 
@@ -282,9 +285,11 @@ const CollectionCategoryGrid = ({
 
                         {sidePanelPosition !== 'left' && (
                             <div className="lg:col-span-3 min-h-0">
-                                {isGoldPanelActive && <GoldShopByColourPanel sectionData={goldSectionData} />}
-                                {isSilverPanelActive && <SilverShopByTypePanel sectionData={silverSectionData} />}
-                                {isDiamondPanelActive && <DiamondShopByTypePanel sectionData={diamondSectionData} />}
+                                <Suspense fallback={<div className="h-full bg-stone-100 rounded-2xl animate-pulse" />}>
+                                    {isGoldPanelActive && <GoldShopByColourPanel sectionData={goldSectionData} />}
+                                    {isSilverPanelActive && <SilverShopByTypePanel sectionData={silverSectionData} />}
+                                    {isDiamondPanelActive && <DiamondShopByTypePanel sectionData={diamondSectionData} />}
+                                </Suspense>
                             </div>
                         )}
                     </div>

@@ -141,25 +141,39 @@ export const isGemProduct = (product = {}) => {
     }
 
     // 1. Explicit verified gemstone field at product level
-    const directGemstone = String(
-        product?.gemstone ||
-        product?.gemstones ||
-        product?.gemstoneType ||
-        product?.stoneType ||
-        product?.attributes?.gemstone ||
-        product?.attributes?.stone ||
-        ''
-    ).trim().toLowerCase();
+    const hasArrayGem = Array.isArray(product?.gemstones) && product.gemstones.some((g) => {
+        const str = String(g || '').trim().toLowerCase();
+        return str && str !== 'none' && str !== 'no' && !/artificial|synthetic/i.test(str);
+    });
+    if (hasArrayGem) return true;
 
-    if (directGemstone && directGemstone !== 'none' && directGemstone !== 'no' && !/artificial|synthetic/i.test(directGemstone)) {
-        return true;
+    const directGemStr = [
+        product?.gemstone,
+        product?.gemstoneType,
+        product?.stoneType,
+        product?.attributes?.gemstone,
+        product?.attributes?.stone
+    ].find((val) => typeof val === 'string' && val.trim() !== '');
+
+    if (directGemStr) {
+        const norm = directGemStr.trim().toLowerCase();
+        if (norm !== 'none' && norm !== 'no' && !/artificial|synthetic/i.test(norm)) {
+            return true;
+        }
     }
 
     // 2. Explicit verified gemstone at variant level
     const variants = Array.isArray(product?.variants) ? product.variants : [];
     const hasVariantGem = variants.some((v) => {
-        const vGem = String(v?.gemstone || v?.gemstones || v?.gemstoneType || v?.stoneType || v?.diamondSpecs?.gemstone || '').trim().toLowerCase();
-        return vGem && vGem !== 'none' && !/artificial|synthetic/i.test(vGem);
+        if (Array.isArray(v?.gemstonePricing) && v.gemstonePricing.length > 0) return true;
+        if (Number(v?.gemstonePrice || 0) > 0) return true;
+        if (Array.isArray(v?.gemstones) && v.gemstones.some((g) => {
+            const str = String(g || '').trim().toLowerCase();
+            return str && str !== 'none' && str !== 'no' && !/artificial|synthetic/i.test(str);
+        })) return true;
+
+        const vGem = String(v?.gemstone || v?.gemstoneType || v?.stoneType || v?.diamondSpecs?.gemstone || '').trim().toLowerCase();
+        return vGem && vGem !== 'none' && vGem !== 'no' && !/artificial|synthetic/i.test(vGem);
     });
     if (hasVariantGem) return true;
 

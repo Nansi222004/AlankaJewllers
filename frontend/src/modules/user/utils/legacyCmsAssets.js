@@ -30,7 +30,7 @@ import bannerDaily from '@assets/banner_daily.png';
 import bannerOffice from '@assets/banner_office.png';
 import bannerParty from '@assets/banner_party.png';
 import trendingHeritage from '@assets/trending_heritage.png';
-import AlankarLogo from '@/assets/Alankar jewllers.png';
+import AlankarLogo from '@/assets/logo-emblem.webp';
 import catPendant from '@assets/cat_pendant.png';
 import silverEarringsProduct from '@assets/silver_earrings_product.png';
 import silverBraceletProduct from '@assets/silver_bracelet_product.png';
@@ -226,6 +226,7 @@ const legacyAssetMap = {
   'sands-logo.png': AlankarLogo,
   'logo.webp': AlankarLogo,
   'Alankar jewllers.png': AlankarLogo,
+  'logo.jpeg': AlankarLogo,
   'cat_pendant.png': catPendant,
   'silver_earrings_product.png': silverEarringsProduct,
   'silver_bracelet_product.png': silverBraceletProduct,

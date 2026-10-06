@@ -26,7 +26,10 @@ export const usePublicProductsQuery = (params, options = {}) => {
     enabled: options?.enabled !== false,
     queryFn: async () => api.get('public/products', { params }),
     select: toProductPayload,
-    staleTime: 30 * 1000,
+    // Product listings are semi-static during a browsing session.
+    // 3 minutes avoids redundant refetches while navigating between pages.
+    staleTime: 3 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
     retry: 1,
   });
 };

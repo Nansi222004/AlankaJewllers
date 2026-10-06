@@ -4,7 +4,7 @@ import { ArrowLeft, Printer, FileText, Loader2, ShieldCheck } from 'lucide-react
 import toast from 'react-hot-toast';
 import { adminService } from '../services/adminService';
 import api from '../../../services/api';
-import logo from '@/assets/Alankar jewllers.png';
+import logo from '@/assets/logo-emblem.png';
 
 const formatMoney = (val) =>
   `₹${Number(val || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -125,7 +125,7 @@ const AdminOrderInvoice = () => {
         {/* Document Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 pb-6 border-b border-gray-200">
           <div className="space-y-2">
-            <img src={logo} alt="Alankar Jewellers" className="h-12 w-auto object-contain" />
+            <img src={logo} alt="Alanka Jewellers" className="h-14 w-auto object-contain" />
             <h1 className="text-lg font-black text-[#3E2723] uppercase tracking-tight">{store?.name}</h1>
             <p className="text-[11px] text-[#8D6E63] font-serif italic">{store?.tagline}</p>
             <p className="text-[11px] text-gray-600 max-w-sm leading-relaxed">{store?.address}</p>

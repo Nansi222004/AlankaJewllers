@@ -157,21 +157,22 @@ const AppContent = () => {
 
 
   const [isHeaderVisible, setIsHeaderVisible] = React.useState(true);
-  const [lastScrollY, setLastScrollY] = React.useState(0);
+  const lastScrollYRef = React.useRef(0);
 
   React.useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 150) {
+      const last = lastScrollYRef.current;
+      if (currentScrollY > last && currentScrollY > 150) {
         setIsHeaderVisible(false);
-      } else if (currentScrollY < lastScrollY) {
+      } else if (currentScrollY < last) {
         setIsHeaderVisible(true);
       }
-      setLastScrollY(currentScrollY);
+      lastScrollYRef.current = currentScrollY;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []); // No dependencies — uses ref, not state
 
   const isAdminPath = location.pathname.startsWith('/admin');
   const isLoginPath = location.pathname === '/login' || location.pathname === '/signup';

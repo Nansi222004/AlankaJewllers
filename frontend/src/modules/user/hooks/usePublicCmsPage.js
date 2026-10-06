@@ -15,8 +15,10 @@ export const usePublicCmsPage = (pageKey) => {
     enabled: Boolean(normalizedKey),
     queryFn: async () => api.get(`public/cms/pages/${normalizedKey}`),
     select: toSectionsArray,
-    // Keep content reasonably fresh without spamming.
-    staleTime: 30 * 1000,
+    // CMS content is managed by admins — changes infrequently.
+    // 5 minutes avoids repeated refetches on collection page navigations.
+    staleTime: 5 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
     retry: 1,
   });
 };

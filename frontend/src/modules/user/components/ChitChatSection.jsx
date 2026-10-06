@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../../../services/api';
-import defaultLogo from '@/assets/Alankar jewllers.png';
+import defaultLogo from '@/assets/logo-emblem.webp';
 import { useSettings } from '../../../context/SettingsContext';
 
 const ChitChatSection = () => {
@@ -72,8 +72,8 @@ const ChitChatSection = () => {
                             <div className="mb-4">
                                 <img
                                     src={logo}
-                                    alt="Alankar Jewellers"
-                                    className="w-12 md:w-14 h-auto mb-4 object-contain drop-shadow-md"
+                                    alt="Alanka Jewellers"
+                                    className="w-14 md:w-16 h-auto mb-4 object-contain"
                                     onError={(e) => {
                                         e.currentTarget.onerror = null;
                                         e.currentTarget.src = defaultLogo;

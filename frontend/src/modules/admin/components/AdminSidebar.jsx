@@ -43,7 +43,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { useShop } from "../../../context/ShopContext";
-import logo from "@/assets/Alankar jewllers.png";
+import logo from "@/assets/logo-emblem.webp";
 import { useSocket } from "../../../context/SocketContext";
 import api from "../../../services/api";
 
@@ -172,7 +172,7 @@ const AdminSidebar = () => {
         <img
           src={logo}
           alt="ALANKA JEWELLERS"
-          className="h-10 w-10 object-contain"
+          className="h-11 w-auto object-contain"
         />
         <div className="flex flex-col">
           <span className="font-serif text-sm font-bold tracking-wider text-amber-300 leading-tight uppercase">

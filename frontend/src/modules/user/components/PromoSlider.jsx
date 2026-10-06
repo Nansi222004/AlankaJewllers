@@ -43,7 +43,10 @@ const SLIDES = [
 ];
 
 const PromoSlider = ({ externalSlides, autoplayInterval, compact = false }) => {
-    const { data: homepageSections = {} } = useHomepageCms();
+    // Only fetch homepage CMS when externalSlides are NOT provided
+    // (i.e., when used directly on the Home/Silver page without CMS data passed in)
+    const hasExternalSlides = Array.isArray(externalSlides) && externalSlides.length > 0;
+    const { data: homepageSections = {} } = useHomepageCms({ enabled: !hasExternalSlides });
     const sectionData = homepageSections?.['hero-banners'] || homepageSections?.['dynamic-promo-banner'];
     const dynamicSlides = Array.isArray(sectionData?.items)
         ? sectionData.items
@@ -59,7 +62,7 @@ const PromoSlider = ({ externalSlides, autoplayInterval, compact = false }) => {
                 ctaLabel: item.ctaLabel || 'Shop Collection'
             }))
         : [];
-    const slides = (externalSlides && externalSlides.length > 0) ? externalSlides : (dynamicSlides.length > 0 ? dynamicSlides : SLIDES);
+    const slides = hasExternalSlides ? externalSlides : (dynamicSlides.length > 0 ? dynamicSlides : SLIDES);
     const autoplayMs = autoplayInterval || Number(sectionData?.settings?.autoplayMs) || 4000;
     const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]];
     const [currentIndex, setCurrentIndex] = useState(1);

@@ -25,7 +25,6 @@ import GoldDirectProducts from "../components/GoldDirectProducts";
 import GoldTrustStrip from "../components/GoldTrustStrip";
 import GoldSilverRates from "../components/GoldSilverRates";
 import HeerCustomisationBanner from "../components/HeerCustomisationBanner";
-import Loader from "../../shared/components/Loader";
 import { resolveLegacyCmsAsset } from "../utils/legacyCmsAssets";
 import { usePublicCmsPage } from "../hooks/usePublicCmsPage";
 import { useShop } from "../../../context/ShopContext";
@@ -162,7 +161,9 @@ const GoldJewelleryPage = () => {
     }));
   }, [sectionMap]);
 
-  if (isCmsLoading) return <Loader />;
+  // NOTE: Do NOT block render on CMS load.
+  // The page renders immediately with default hero slides and progressive
+  // placeholders. CMS content fills in as it loads.
   if (isError) {
     return (
       <div className="bg-white min-h-screen flex items-center justify-center px-6 py-14">

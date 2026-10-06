@@ -40,7 +40,8 @@ const ShopForWomen = () => {
     [sections],
   );
 
-  if (isCmsLoading) return <Loader />;
+  // Render immediately — CMS content loads progressively
+
   if (isError) {
     return (
       <div className="bg-brand-pearl min-h-screen flex items-center justify-center px-6 py-14">

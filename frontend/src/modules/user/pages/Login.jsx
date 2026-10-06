@@ -3,7 +3,7 @@ import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import loginHero from "@assets/login_hero_silver.png";
-import defaultLogo from "@/assets/Alankar jewllers.png";
+import defaultLogo from "@/assets/logo-emblem.webp";
 import { useAuth } from "../../../context/AuthContext";
 import { useShop } from "../../../context/ShopContext";
 import { useSettings } from "../../../context/SettingsContext";
@@ -49,8 +49,8 @@ const Login = () => {
   const currentLogo = settings?.logo && !settings.logo.includes("logo.webp") && !/swarna|sands/i.test(settings.logo)
     ? settings.logo
     : defaultLogo;
-  const currentStoreName = !settings?.storeName || /swarna\s*sparsh/i.test(settings.storeName)
-    ? "Alankar Jewellers"
+  const currentStoreName = !settings?.storeName || /swarna\s*sparsh|alankar/i.test(settings.storeName)
+    ? "Alanka Jewellers"
     : settings.storeName;
 
   useEffect(() => {
@@ -226,8 +226,13 @@ const Login = () => {
 
       <div className="relative z-50 my-auto w-full max-w-sm rounded-[2rem] border border-brand-border bg-white/95 px-5 py-7 shadow-[0_16px_50px_rgba(51,40,39,0.15)] backdrop-blur-xl sm:px-7">
         <div className="mb-6 flex flex-col items-center text-center">
-          <img src={currentLogo} alt={currentStoreName} className="h-16 w-16 object-contain" onError={(event) => { event.currentTarget.src = defaultLogo; }} />
-          <span className="font-serif text-lg font-bold uppercase tracking-wider">{currentStoreName}</span>
+          <img
+            src={currentLogo}
+            alt={currentStoreName}
+            className="h-16 sm:h-20 w-auto object-contain"
+            onError={(event) => { event.currentTarget.src = defaultLogo; }}
+          />
+          <span className="font-serif text-lg font-bold uppercase tracking-wider mt-2">{currentStoreName}</span>
         </div>
 
         <div className="mb-6 text-center">

@@ -5,7 +5,7 @@ import { Search, Heart, ShoppingCart, User, Users, Menu, X, ChevronDown, Chevron
 import AlankaJewelleryMark from './AlankaJewelleryMark';
 import { useShop } from '../../../context/ShopContext';
 import { useNotification } from '../../../context/NotificationContext';
-import defaultLogo from '@/assets/Alankar jewllers.png';
+import defaultLogo from '@/assets/logo-emblem-header.webp';
 import { useSettings } from '../../../context/SettingsContext';
 import api from '../../../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -29,12 +29,10 @@ const Navbar = () => {
     const currentLogo = (settings?.logo && !settings.logo.includes('logo.webp') && !/swarna|sands/i.test(settings.logo))
         ? settings.logo
         : defaultLogo;
-    const currentStoreName = (!settings?.storeName || /swarna\s*sparsh/i.test(settings.storeName))
-        ? 'Alankar Jewellers'
+    const currentStoreName = (!settings?.storeName || /swarna\s*sparsh|alankar/i.test(settings.storeName))
+        ? 'Alanka Jewellers'
         : settings.storeName;
-    const currentTagline = (settings?.tagline && !/swarna\s*sparsh/i.test(settings.tagline))
-        ? settings.tagline.replace(/^Alankar Jewellers\s*[–—-]\s*/i, '')
-        : 'Where Luxury Meets Identity';
+    const brandSubTagline = 'ALANKA JEWELLERS – WHERE LUXURY MEETS IDENTITY';
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -279,22 +277,22 @@ const Navbar = () => {
 
                     {/* Left Section: Logo & Delivery Box */}
                     <div className="flex items-center gap-6 flex-shrink-0">
-                        <Link to="/" className="flex items-center gap-3 group">
+                        <Link to="/" className="flex items-center gap-3.5 group">
                             <img
                                 src={currentLogo}
                                 alt={currentStoreName}
-                                className="h-[52px] w-auto object-contain transition-transform group-hover:scale-105 duration-300"
+                                className="h-13 lg:h-15 w-auto object-contain transition-transform group-hover:scale-105 duration-300"
                                 onError={(e) => {
                                     e.currentTarget.onerror = null;
                                     e.currentTarget.src = defaultLogo;
                                 }}
                             />
                             <div className="flex flex-col">
-                                <span className="font-serif text-2xl font-black tracking-wider text-brand-espresso leading-none">
+                                <span className="font-serif text-2xl lg:text-[25px] font-black tracking-wider text-brand-espresso leading-none">
                                     {currentStoreName}
                                 </span>
-                                <span className="text-[10px] tracking-widest text-brand-taupe uppercase font-semibold mt-1">
-                                    {currentTagline}
+                                <span className="text-[9.5px] lg:text-[10px] tracking-wider text-brand-taupe uppercase font-bold mt-1.5 whitespace-nowrap">
+                                    {brandSubTagline}
                                 </span>
                             </div>
                         </Link>
@@ -570,19 +568,24 @@ const Navbar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.45, ease: 'easeOut' }}
                     >
-                        <Link to="/" className="flex min-w-0 items-center gap-2">
+                        <Link to="/" className="flex min-w-0 items-center gap-2 sm:gap-2.5">
                             <img
                                 src={currentLogo}
                                 alt={currentStoreName}
-                                className="h-9 w-auto max-w-[88px] shrink-0 object-contain sm:h-10 sm:max-w-[110px]"
+                                className="h-10 sm:h-12 w-auto shrink-0 object-contain"
                                 onError={(e) => {
                                     e.currentTarget.onerror = null;
                                     e.currentTarget.src = defaultLogo;
                                 }}
                             />
-                            <span className="hidden font-serif text-base font-bold uppercase tracking-wider text-brand-espresso sm:block">
-                                {currentStoreName}
-                            </span>
+                            <div className="flex flex-col min-w-0">
+                                <span className="font-serif text-sm sm:text-base font-bold uppercase tracking-wider text-brand-espresso leading-tight truncate">
+                                    {currentStoreName}
+                                </span>
+                                <span className="text-[8px] sm:text-[9px] tracking-wider text-brand-taupe uppercase font-semibold leading-none truncate hidden xs:block sm:block mt-0.5">
+                                    Where Luxury Meets Identity
+                                </span>
+                            </div>
                         </Link>
                     </motion.div>
 

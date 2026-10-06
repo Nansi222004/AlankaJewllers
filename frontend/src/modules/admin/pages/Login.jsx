@@ -5,7 +5,7 @@ import { Mail, Lock, ArrowRight, AlertCircle, Eye, EyeOff, Info } from "lucide-r
 import api from "../../../services/api";
 import toast from "react-hot-toast";
 import loginBg from "@assets/admin-login-bg.png";
-import logo from "@/assets/Alankar jewllers.png";
+import logo from "@/assets/logo-emblem.webp";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -167,11 +167,11 @@ const AdminLogin = () => {
           <div className="flex flex-col items-center gap-3">
             <img
               src={logo}
-              alt="Alankar Jewellers"
-              className="h-20 md:h-24 w-auto object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.6)]"
+              alt="Alanka Jewellers"
+              className="h-20 md:h-24 w-auto object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]"
             />
             <h1 className="text-2xl md:text-3xl font-serif font-bold text-white tracking-wider">
-              Alankar Jewellers
+              Alanka Jewellers
             </h1>
           </div>
           <div className="mt-4 flex items-center gap-4 w-full px-6">

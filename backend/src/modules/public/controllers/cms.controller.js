@@ -69,6 +69,8 @@ exports.getHomepageData = async (req, res) => {
       return { ...raw, items };
     });
 
+    // CMS data changes infrequently — cache at CDN/proxy for 5 minutes
+    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
     return success(res, { banners, sections: normalized });
   } catch (err) { return error(res, err.message); }
 };
@@ -117,6 +119,8 @@ exports.getPageData = async (req, res) => {
       return { ...raw, items };
     });
 
+    // CMS data changes infrequently — cache at CDN/proxy for 5 minutes
+    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
     return success(res, { pageKey: requestedPageKey, sections: normalized });
   } catch (err) {
     return error(res, err.message);

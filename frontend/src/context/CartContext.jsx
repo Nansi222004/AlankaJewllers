@@ -9,7 +9,6 @@ import api from "../services/api";
 import toast from "react-hot-toast";
 import { useAuth } from "./AuthContext";
 import { analytics } from "../services/analytics";
-import { adminService } from "../modules/admin/services/adminService";
 import RazorpayTestModal from "../modules/user/components/RazorpayTestModal";
 import {
   isPurchasablePrice,
@@ -621,9 +620,10 @@ export const CartProvider = ({ children }) => {
   }, [coupons]);
 
   const addCoupon = useCallback(async (couponData) => {
-    const res = await adminService.createCoupon(couponData);
+    const svc = await getAdminService();
+    const res = await svc.createCoupon(couponData);
     if (res.success) {
-      const allCoupons = await adminService.getCoupons();
+      const allCoupons = await svc.getCoupons();
       setCoupons(allCoupons);
       toast.success("Coupon created successfully");
     } else {
@@ -632,9 +632,10 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const updateCoupon = useCallback(async (id, updatedData) => {
-    const res = await adminService.updateCoupon(id, updatedData);
+    const svc = await getAdminService();
+    const res = await svc.updateCoupon(id, updatedData);
     if (res.success) {
-      const allCoupons = await adminService.getCoupons();
+      const allCoupons = await svc.getCoupons();
       setCoupons(allCoupons);
       toast.success("Coupon updated successfully");
     } else {
@@ -643,9 +644,10 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const deleteCoupon = useCallback(async (id) => {
-    const ok = await adminService.deleteCoupon(id);
+    const svc = await getAdminService();
+    const ok = await svc.deleteCoupon(id);
     if (ok) {
-      const allCoupons = await adminService.getCoupons();
+      const allCoupons = await svc.getCoupons();
       setCoupons(allCoupons);
       toast.success("Coupon deleted successfully");
     } else {
@@ -654,9 +656,10 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const toggleCoupon = useCallback(async (id) => {
-    const res = await adminService.toggleCoupon(id);
+    const svc = await getAdminService();
+    const res = await svc.toggleCoupon(id);
     if (res.success) {
-      const allCoupons = await adminService.getCoupons();
+      const allCoupons = await svc.getCoupons();
       setCoupons(allCoupons);
       toast.success(res.message);
     } else {

@@ -35,9 +35,10 @@ const getCachedHomepageCms = () => {
   return undefined;
 };
 
-export const useHomepageCms = () => {
+export const useHomepageCms = (options = {}) => {
   return useQuery({
     queryKey: ['public-cms', 'homepage'],
+    enabled: options?.enabled !== false,
     queryFn: async () => {
       const res = await api.get('public/cms/pages/home');
       try {

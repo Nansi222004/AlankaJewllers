@@ -118,9 +118,9 @@ export const ShopProvider = ({ children }) => {
     // ── Catalogue ────────────────────────────────────────────────────────────
     const { products, categories, coupons: apiCoupons, siteSettings, isLoading: isCatalogueLoading } = useCatalogue();
 
-    useEffect(() => {
-        localStorage.setItem('sands_products', JSON.stringify(products));
-    }, [products]);
+    // NOTE: Products are cached by React Query (10min staleTime, 30min gcTime).
+    // Serializing them to localStorage on every change is extremely expensive.
+
 
     // ── Sub-context delegates ────────────────────────────────────────────────
     const cartCtx = useCart();

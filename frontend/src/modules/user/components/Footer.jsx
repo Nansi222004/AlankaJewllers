@@ -14,7 +14,7 @@ import {
   Plus,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import defaultLogo from "@/assets/Alankar jewllers.png";
+import defaultLogo from "@/assets/logo-emblem.webp";
 import { useSettings, sanitizeSettings } from "../../../context/SettingsContext";
 import {
   normalizeExternalLink,
@@ -131,7 +131,7 @@ const Footer = () => {
       ? globalSettings.logo
       : defaultLogo;
   const activeStoreName =
-    !globalSettings?.storeName || /swarna\s*sparsh/i.test(globalSettings.storeName)
+    !globalSettings?.storeName || /swarna\s*sparsh|alankar/i.test(globalSettings.storeName)
       ? "Alanka Jewellers"
       : globalSettings.storeName;
   const activeTagline = globalSettings?.footerTagline || settings.footerTagline;
@@ -190,7 +190,7 @@ const Footer = () => {
               <img
                 src={activeLogo}
                 alt={activeStoreName}
-                className="h-7.5 w-auto object-contain"
+                className="h-10 sm:h-12 w-auto object-contain"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = defaultLogo;
@@ -445,7 +445,7 @@ const Footer = () => {
                   <img
                     src={activeLogo}
                     alt={activeStoreName}
-                    className="h-12 w-auto object-contain md:h-16"
+                    className="h-14 sm:h-16 lg:h-18 w-auto object-contain"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
                       e.currentTarget.src = defaultLogo;

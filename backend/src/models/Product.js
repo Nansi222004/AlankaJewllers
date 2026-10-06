@@ -207,4 +207,24 @@ const productSchema = new mongoose.Schema({
   isSerialized: { type: Boolean, default: true }
 }, { timestamps: true });
 
+// ── Performance Indexes ───────────────────────────────────────────────────────
+// All storefront queries filter on status='Active' AND active!=false first.
+// These compound indexes dramatically reduce MongoDB's scan cost.
+
+// 1. Primary catalogue browse sorted by newest
+productSchema.index({ status: 1, active: 1, material: 1, createdAt: -1 });
+// 2. Gold karat filter
+productSchema.index({ status: 1, active: 1, goldCategory: 1, createdAt: -1 });
+// 3. Silver tier filter
+productSchema.index({ status: 1, active: 1, silverCategory: 1, createdAt: -1 });
+// 4. Diamond origin filter
+productSchema.index({ status: 1, active: 1, diamondType: 1, createdAt: -1 });
+// 5. Category slug filter
+productSchema.index({ status: 1, active: 1, categorySlug: 1, createdAt: -1 });
+// 6. Tags: trending, new arrivals
+productSchema.index({ status: 1, active: 1, 'tags.isTrending': 1 });
+productSchema.index({ status: 1, active: 1, 'tags.isNewArrival': 1 });
+// 7. Most-sold sort
+productSchema.index({ status: 1, active: 1, sold: -1 });
+
 module.exports = mongoose.model("Product", productSchema);

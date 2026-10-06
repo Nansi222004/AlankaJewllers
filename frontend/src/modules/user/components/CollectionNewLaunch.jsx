@@ -4,6 +4,7 @@ import { ChevronRight, Gem } from "lucide-react";
 import ProductCard from "./ProductCard";
 import ProductSkeleton from "./ProductSkeleton";
 import { usePublicProductsQuery } from "../hooks/usePublicProductsQuery";
+import { matchesRequestedMetal } from "../utils/productMetal";
 
 const COLLECTION_LABELS = {
   gold: "Gold",
@@ -43,12 +44,9 @@ const CollectionNewLaunch = ({
 
   // Defensive validation: Gems collection must strictly exclude Mala or Kundan alloy items
   const products = useMemo(() => {
-    if (effectiveCollection === "gems") {
-      return rawProducts.filter((product) => {
-        const text = `${product?.name || ""} ${product?.material || ""} ${product?.category || ""}`.toLowerCase();
-        if (/mala|kundan|plated|alloy|imitation/.test(text)) return false;
-        return true;
-      });
+    if (!Array.isArray(rawProducts) || rawProducts.length === 0) return [];
+    if (effectiveCollection) {
+      return rawProducts.filter((product) => matchesRequestedMetal(product, effectiveCollection));
     }
     return rawProducts;
   }, [rawProducts, effectiveCollection]);

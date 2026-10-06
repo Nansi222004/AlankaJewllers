@@ -334,13 +334,15 @@ exports.getProducts = async (req, res) => {
           $and: [
             {
               $or: [
-            { gemstone: { $exists: true, $nin: [null, "", "none"] } },
-            { gemstones: { $exists: true, $nin: [null, "", "none"] } },
-            { gemstoneType: { $exists: true, $nin: [null, "", "none"] } },
-            { material: { $in: ["Gems", "Gemstone", "Gemstones"] } },
+            { gemstone: { $type: "string", $nin: [null, "", "none", "no"] } },
+            { gemstones: { $elemMatch: { $type: "string", $nin: [null, "", "none", "no"] } } },
+            { gemstoneType: { $type: "string", $nin: [null, "", "none", "no"] } },
+            { "variants.gemstonePricing": { $elemMatch: { gemstoneType: { $exists: true, $nin: [null, "", "none", "no"] } } } },
+            { "variants.gemstonePrice": { $gt: 0 } },
+            { material: { $in: ["Gems", "Gemstone", "Gemstones", "Precious Gemstones"] } },
             { material: { $regex: "^(gem|gemstone)s?$", $options: "i" } },
-            { categorySlug: { $regex: "gem", $options: "i" } },
-            { category: { $regex: "gem", $options: "i" } }
+            { categorySlug: { $regex: "\\bgem(stone)?s?\\b", $options: "i" } },
+            { category: { $regex: "\\bgem(stone)?s?\\b", $options: "i" } }
               ]
             },
             { material: { $not: { $regex: "plated|alloy|imitation|antique finish|kundan|pearls?", $options: "i" } } },
@@ -458,10 +460,11 @@ exports.getProducts = async (req, res) => {
     let total = 0;
 
     if (cleanSearch) {
-      // 6a. Search Mode: Retrieve candidates matching Mongo filter, score them for relevance, and sort
+      // 6a. Search Mode: Retrieve candidates for scoring — apply a cap to avoid full collection scan.
       const candidates = await Product.find(query)
         .select(selectFields)
         .populate("categories", "name slug")
+        .limit(200)
         .lean();
 
       // Score candidates and remove non-relevant (score === 0)
@@ -554,6 +557,8 @@ exports.getProducts = async (req, res) => {
       return normalized;
     });
 
+    // Product data is semi-static — allow CDN/proxy caching for 3 minutes
+    res.setHeader('Cache-Control', 'public, max-age=180, stale-while-revalidate=30');
     return success(res, {
       products: normalizedProducts,
       pagination: {
