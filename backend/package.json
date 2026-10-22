@@ -4,8 +4,8 @@
   "description": "AlankarJewellers - Node.js + Express + MongoDB Backend",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node api.js && node server.js",
+    "dev": "node api.js && nodemon server.js",
     "test:metal-rates": "node --test spec/metalRate.service.spec.js",
     "test:stone-pricing": "node --test spec/diamondGemstonePricing.spec.js",
     "test:checkout-pricing": "node --test spec/checkoutPricingIntegrity.spec.js",
