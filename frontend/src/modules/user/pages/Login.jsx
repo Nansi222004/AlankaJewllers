@@ -38,7 +38,6 @@ const Login = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState(emptyOtp);
   const [challengeId, setChallengeId] = useState("");
   const [resetToken, setResetToken] = useState("");
@@ -107,7 +106,7 @@ const Login = () => {
   const handleCredentials = async (event) => {
     event.preventDefault();
     const result = await run(() => isSignup
-      ? startRegistration({ name: fullName.trim(), phone, email: email.trim(), password })
+      ? startRegistration({ name: fullName.trim(), email: email.trim(), password })
       : startLogin(email.trim(), password));
     if (result?.success) {
       if (!isSignup) {
@@ -253,10 +252,7 @@ const Login = () => {
         {step === "credentials" && (
           <form onSubmit={handleCredentials} className="space-y-4">
             {isSignup && (
-              <>
-                <Field label="Full Name" type="text" value={fullName} onChange={setFullName} placeholder="Enter your name" autoComplete="name" />
-                <Field label="Mobile Number" type="tel" value={phone} onChange={(value) => setPhone(value.replace(/\D/g, "").slice(0, 10))} placeholder="98765 43210" autoComplete="tel" inputMode="numeric" pattern="[6-9][0-9]{9}" />
-              </>
+              <Field label="Full Name" type="text" value={fullName} onChange={setFullName} placeholder="Enter your name" autoComplete="name" />
             )}
             <Field label="Email Address" type="email" value={email} onChange={setEmail} placeholder="you@example.com" autoComplete="email" />
             <PasswordField label="Password" value={password} onChange={setPassword} show={showPassword} setShow={setShowPassword} autoComplete={isSignup ? "new-password" : "current-password"} />

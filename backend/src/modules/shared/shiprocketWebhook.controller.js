@@ -165,7 +165,7 @@ exports.handleShiprocketWebhook = async (req, res) => {
 
   } catch (err) {
     console.error("[ShiprocketWebhook] Error:", err.message);
-    // Always return 200 to prevent Shiprocket from retrying
-    return res.status(200).json({ success: false, message: "Internal error, acknowledged" });
+    // A non-2xx response allows Shiprocket to retry a transient processing failure.
+    return res.status(500).json({ success: false, message: "Webhook processing failed" });
   }
 };

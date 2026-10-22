@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Truck, ShieldCheck, RefreshCw, Headset, Tag, Gift, Star, Bell, Zap, Shield } from 'lucide-react';
-import api from '../../../services/api';
+import { useSettings } from '../../../context/SettingsContext';
 
 const iconMap = {
     'Truck': Truck,
@@ -16,38 +16,14 @@ const iconMap = {
 };
 
 const AnnouncementBar = () => {
-    const [announcements, setAnnouncements] = useState([
+    const { settings } = useSettings();
+    const defaults = [
         { icon: 'RefreshCw', text: "Easy Returns & Refunds" },
         { icon: 'Headset', text: "Dedicated Support Team" },
         { icon: 'Truck', text: "Free Shipping" },
         { icon: 'Shield', text: "Secure Payments" }
-    ]);
-
-    useEffect(() => {
-        const loadSettings = async () => {
-            try {
-                const res = await api.get('public/settings');
-                if (res.data.success && res.data.data?.settings?.announcementItems?.length > 0) {
-                    setAnnouncements(res.data.data.settings.announcementItems);
-                    return;
-                }
-            } catch (err) {
-                console.warn("Failed to fetch public settings from API, falling back to localStorage/defaults:", err.message);
-            }
-
-            const saved = localStorage.getItem('siteSettings');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                if (parsed.announcementItems && parsed.announcementItems.length > 0) {
-                    setAnnouncements(parsed.announcementItems);
-                }
-            }
-        };
-
-        loadSettings();
-        window.addEventListener('storage', loadSettings);
-        return () => window.removeEventListener('storage', loadSettings);
-    }, []);
+    ];
+    const announcements = settings?.announcementItems?.length ? settings.announcementItems : defaults;
 
     return (
         <div className="bg-brand-plum text-brand-white border-b border-brand-champagne/25 overflow-hidden py-1 relative z-[60]">

@@ -46,6 +46,13 @@ exports.preview = async (req, res) => {
 
     const status = String(codeEntry.status || "AVAILABLE");
     const available = status === "AVAILABLE";
+    const statusReason = !available
+      ? (status === "SOLD_ONLINE"
+          ? "This unit was already sold online"
+          : status === "SOLD_DIRECT"
+          ? "This unit was already sold via direct sale"
+          : `Unit status is ${status}`)
+      : "Unit is available for sale";
 
     return success(
       res,
@@ -53,6 +60,7 @@ exports.preview = async (req, res) => {
         available,
         serialCode,
         status,
+        statusReason,
         product: {
           productId: product._id,
           name: product.name,

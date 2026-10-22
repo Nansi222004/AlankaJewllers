@@ -20,12 +20,24 @@ exports.requestReplacement = async (req, res) => {
 
     const item = order.items.id(itemId);
     if (!item) return error(res, "Item not found in order", 404);
+    if (!String(reason || "").trim()) return error(res, "Replacement reason is required", 400);
 
-    const existing = await Replacement.findOne({ orderId, "originalItems.variantId": item.variantId });
+    const itemMatch = { productId: item.productId };
+    if (item.variantId) itemMatch.variantId = item.variantId;
+
+    const existing = await Replacement.findOne({
+      orderId,
+      status: { $ne: "Rejected" },
+      originalItems: { $elemMatch: itemMatch },
+    });
     if (existing) return error(res, "Replacement already requested", 409);
 
     // Prevent parallel replacement + return for the same variant
-    const returnExists = await Return.findOne({ orderId, "items.variantId": item.variantId });
+    const returnExists = await Return.findOne({
+      orderId,
+      status: { $ne: "Rejected" },
+      items: { $elemMatch: itemMatch },
+    });
     if (returnExists) return error(res, "Return already requested for this item. Please complete that flow first.", 409);
 
     const images = req.files ? req.files.map(f => f.path) : [];
@@ -41,9 +53,9 @@ exports.requestReplacement = async (req, res) => {
         sku: item.sku,
         qty: item.quantity,
         price: item.price,
-        reason
+        reason: String(reason).trim()
       }],
-      evidence: { reason, comment: description, images },
+      evidence: { reason: String(reason).trim(), comment: description, images },
       status: "Pending",
       timeline: [{ status: "Requested", note: "Replacement request submitted" }]
     });

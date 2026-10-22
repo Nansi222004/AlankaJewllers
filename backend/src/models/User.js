@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    phone: { type: String, required: true, unique: true, index: true, trim: true },
+    phone: { type: String, default: "", trim: true },
     email: { type: String, default: "", trim: true, lowercase: true, index: true },
     emailVerified: { type: Boolean, default: false },
     role: { type: String, enum: ["user", "admin"], default: "user" },
@@ -30,6 +30,14 @@ const userSchema = new mongoose.Schema(
     }],
   },
   { timestamps: true }
+);
+
+userSchema.index(
+  { phone: 1 },
+  {
+    unique: true,
+    partialFilterExpression: { phone: { $type: "string", $gt: "" } },
+  }
 );
 
 module.exports = mongoose.model("User", userSchema);

@@ -23,6 +23,7 @@ import { useCart } from './CartContext';
 import { useWishlist } from './WishlistContext';
 import { useOrder } from './OrderContext';
 import { useNotification } from './NotificationContext';
+import { useSettings } from './SettingsContext';
 import api from '../services/api';
 
 export const ShopContext = createContext();
@@ -30,6 +31,7 @@ export const ShopContext = createContext();
 export const ShopProvider = ({ children }) => {
     const { user, loading: authLoading, logout: authLogout, deleteAccount: authDeleteAccount, updateProfile } = useAuth();
     const isUserRole = user?.role === 'user';
+    const { settings: siteSettings } = useSettings();
 
     // ── Global UI State ──────────────────────────────────────────────────────
     const [notification, setNotification] = useState(null);
@@ -116,7 +118,7 @@ export const ShopProvider = ({ children }) => {
     }, [notification]);
 
     // ── Catalogue ────────────────────────────────────────────────────────────
-    const { products, categories, coupons: apiCoupons, siteSettings, isLoading: isCatalogueLoading } = useCatalogue();
+    const { products, categories, coupons: apiCoupons, isLoading: isCatalogueLoading } = useCatalogue();
 
     // NOTE: Products are cached by React Query (10min staleTime, 30min gcTime).
     // Serializing them to localStorage on every change is extremely expensive.

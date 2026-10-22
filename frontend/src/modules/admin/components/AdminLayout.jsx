@@ -5,7 +5,7 @@ import {
     Bell, ChevronRight, ChevronDown, Star, HelpCircle, LogOut, Menu, X, ListTree,
     FileText, MessageSquare, Ticket, Settings, Plus, List,
     Clock, RefreshCw, RefreshCcw, RotateCcw, Boxes, ClipboardList, MapPin, Truck, CheckCircle2, XCircle, Percent,
-    AlertTriangle, FileBarChart, Store, ShieldCheck, User, Wallet, CreditCard, ScanLine
+    AlertTriangle, FileBarChart, Store, ShieldCheck, User, Wallet, CreditCard
 } from 'lucide-react';
 import { adminService } from '../services/adminService';
 import logo from '@/assets/logo-emblem.webp';
@@ -63,7 +63,6 @@ const AdminLayout = ({ children }) => {
             ]
         },
         { name: 'Users', icon: Users, path: '/admin/users' },
-        { name: 'Camera Scanner', icon: ScanLine, path: '/admin/scanner' },
         { name: 'Pickup Locations', icon: MapPin, path: '/admin/pickup-locations' },
         { name: 'Reviews', icon: Star, path: '/admin/reviews' },
         {

@@ -222,7 +222,12 @@ exports.cancelShipment = async (req, res) => {
     const cancelResult = await provider.cancelShipment({
       awbNumber: shipment.awbNumber,
       waybill: shipment.waybill,
+      shiprocketOrderId: shipment.shiprocketOrderId,
     });
+
+    if (cancelResult?.cancelled === false) {
+      return error(res, cancelResult.message || "Courier cancellation failed", 502);
+    }
 
     shipment.status = "CANCELLED";
     shipment.timeline.push({
@@ -579,6 +584,10 @@ exports.createShipment = async (req, res) => {
       shiprocketPickupName,
     });
 
+    if (!courierResult?.awbNumber) {
+      throw new Error(`${courier} did not return an AWB number; local shipment was not created`);
+    }
+
     let labelUrl = courierResult.labelUrl || "";
     if (!labelUrl && courierResult.awbNumber && courier !== "shiprocket") {
       try {
@@ -651,12 +660,28 @@ exports.requestPickup = async (req, res) => {
       return error(res, "Cannot request pickup for a cancelled shipment", 400);
     }
 
+    if (shipment.status !== "CREATED") {
+      return error(res, `Pickup cannot be requested while shipment is ${shipment.status}`, 400);
+    }
+
+    const provider = getCourierProvider(shipment.courier);
+    const pickupResult = await provider.schedulePickup({
+      awbNumber: shipment.awbNumber,
+      shiprocketOrderId: shipment.shiprocketOrderId,
+      shiprocketShipmentId: shipment.shiprocketShipmentId,
+      pickupDate: req.body?.pickupDate,
+      pickupAddress: shipment.pickupAddress,
+    });
+
     shipment.status = "PICKUP_SCHEDULED";
     shipment.timeline.push({
       status: "PICKUP_SCHEDULED",
-      message: "Pickup scheduled by admin",
+      message: pickupResult?.pickupId
+        ? `Pickup scheduled by courier. Reference: ${pickupResult.pickupId}`
+        : "Pickup scheduled by courier",
       date: new Date(),
     });
+    shipment.courierResponse = pickupResult?.courierResponse || shipment.courierResponse;
     await shipment.save();
 
     await updateOrderShippingStatus(shipment.orderId);

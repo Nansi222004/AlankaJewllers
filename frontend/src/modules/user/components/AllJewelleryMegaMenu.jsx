@@ -12,7 +12,8 @@ import purity22k from '@assets/categories/bangle.png';
 import purity18k from '@assets/categories/rings.png';
 import purity14k from '@assets/categories/earrings.png';
 import puritySterling from '@assets/categories/pendants.png';
-import purityFine from '@assets/categories/anklets.png';
+import puritySilver from '@assets/categories/anklets.png';
+import purityArticles from '@assets/categories/silverchains.png';
 
 const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight, maxWidth }) => {
     const [view, setView] = useState(initialView); // 'main', 'gold', 'silver'
@@ -26,9 +27,10 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
     ];
 
     const silverPurities = [
-        // Shop.jsx expects `metal=silver` + `silver_type=fine|sterling`
+        // 925 Silver, Silver, and Silver Articles
         { id: '925', name: '925 SILVER', sub: '925 HALLMARKED', image: puritySterling, path: '/shop?metal=silver&silver_type=sterling' },
-        { id: 'fine', name: 'SILVER', sub: 'PURE & SIMPLE', image: purityFine, path: '/shop?metal=silver&silver_type=fine' },
+        { id: 'silver', name: 'SILVER', sub: 'AUTHENTIC SILVER', image: puritySilver, path: '/shop?metal=silver' },
+        { id: 'articles', name: 'SILVER ARTICLES', sub: 'MURTI, UTENSILS & MORE', image: purityArticles, path: '/shop?metal=silver&silver_type=articles' },
     ];
 
     return (
@@ -89,7 +91,7 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
                                     <div className="absolute inset-y-0 left-5 sm:left-8 flex flex-col justify-center text-white">
                                         <h2 className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight mb-0.5 sm:mb-1">SILVER COLLECTION</h2>
-                                        <p className="text-[10px] sm:text-[11px] font-medium opacity-80 tracking-widest uppercase">925 Silver • Silver</p>
+                                        <p className="text-[10px] sm:text-[11px] font-medium opacity-80 tracking-widest uppercase">925 Silver • Silver • Silver Articles</p>
                                     </div>
                                     <div className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:bg-white/40 transition-all">
                                         <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
@@ -174,7 +176,7 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
                                 Silver Purities
                             </button>
 
-                            <div className="grid grid-cols-2 gap-3 sm:gap-5 max-w-[440px] mx-auto">
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-[660px] mx-auto">
                                 {silverPurities.map((item) => (
                                     <Link 
                                         key={item.id} 
@@ -185,8 +187,8 @@ const AllJewelleryMegaMenu = ({ resetMenu, initialView = 'main', availableHeight
                                         <div className="w-full aspect-square overflow-hidden bg-[#F3F4F6]">
                                             <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                         </div>
-                                        <div className="p-2.5 sm:p-3 mt-auto">
-                                            <div className="w-full bg-[#64748B] text-white py-2 sm:py-2.5 text-center text-[10px] sm:text-[11px] font-bold uppercase tracking-widest transition-colors group-hover:bg-[#475569] rounded">
+                                        <div className="p-2 sm:p-2.5 mt-auto">
+                                            <div className="w-full bg-[#64748B] text-white py-1.5 sm:py-2 text-center text-[8.5px] sm:text-[9.5px] font-bold uppercase tracking-widest transition-colors group-hover:bg-[#475569] rounded whitespace-nowrap">
                                                 {item.name}
                                             </div>
                                         </div>

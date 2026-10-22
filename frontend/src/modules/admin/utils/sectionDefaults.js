@@ -21,6 +21,11 @@ import newChains from "@assets/new_launch_chains.png";
 import newStuds from "@assets/new_launch_studs.png";
 import newBracelets from "@assets/new_launch_bracelets.png";
 import newAnklets from "@assets/new_launch_anklets.png";
+import goldLaunchEarrings from "@assets/gold_launch_earrings.jpg";
+import goldLaunchChains from "@assets/gold_launch_chains.jpg";
+import goldLaunchRings from "@assets/gold_launch_rings.jpg";
+import goldLaunchBangles from "@assets/gold_launch_bangles.png";
+import goldLaunchMangalsutra from "@assets/gold_launch_mangalsutra.png";
 
 import latestRing from "@assets/latest_drop_ring.png";
 import latestNecklace from "@assets/latest_drop_necklace.png";
@@ -325,7 +330,7 @@ const homeSections = [
     isActive: true,
     sortOrder: 2.5,
     settings: {
-      instruction: "Please use exact image ratios to avoid cropping: Web (Desktop) must be 4:1, and Phone (Mobile) must be 16:9."
+      instruction: "Please use the required image ratios to avoid cropping: Web (Desktop) must be 4:1, and Phone (Mobile) should be 2:1."
     },
     items: [],
   },
@@ -2521,12 +2526,67 @@ const goldCollectionSections = [
   {
     pageKey: "gold-collection",
     sectionKey: "gold-new-launch-banner",
-    sectionType: "banner",
-    label: "Gold New Launch Banner",
+    sectionType: "product-collection",
+    label: "Limited Edition",
     isActive: true,
-    sortOrder: 6,
-    settings: {},
-    items: [],
+    sortOrder: 2.2,
+    settings: {
+      title: "Limited Edition",
+      subtitle: "New Launch",
+      badge: "New Launch",
+    },
+    items: [
+      {
+        id: "gold-earrings",
+        name: "Earrings",
+        label: "Earrings",
+        image: goldLaunchEarrings,
+        path: "/shop?metal=gold&category=earrings",
+        tag: "",
+        productIds: [],
+        ctaLabel: "EXPLORE",
+      },
+      {
+        id: "gold-chains",
+        name: "Chains",
+        label: "Chains",
+        image: goldLaunchChains,
+        path: "/shop?metal=gold&category=chains",
+        tag: "",
+        productIds: [],
+        ctaLabel: "EXPLORE",
+      },
+      {
+        id: "gold-rings",
+        name: "Rings",
+        label: "Rings",
+        image: goldLaunchRings,
+        path: "/shop?metal=gold&category=rings",
+        tag: "",
+        productIds: [],
+        ctaLabel: "EXPLORE",
+      },
+      {
+        id: "gold-bangles",
+        name: "Bangles",
+        label: "Bangles",
+        image: goldLaunchBangles,
+        path: "/shop?metal=gold&category=bangles",
+        tag: "",
+        productIds: [],
+        ctaLabel: "EXPLORE",
+      },
+      {
+        id: "gold-mangalsutra",
+        name: "Mangalsutra",
+        label: "Mangalsutra",
+        image: goldLaunchMangalsutra,
+        path: "/shop?metal=gold&category=mangalsutra",
+        tag: "",
+        productIds: [],
+        ctaLabel: "EXPLORE",
+      },
+    ],
   },
   {
     pageKey: "gold-collection",

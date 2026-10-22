@@ -26,11 +26,16 @@ exports.requestReturn = async (req, res) => {
 
     const item = order.items.id(itemId);
     if (!item) return error(res, "Item not found in order", 404);
+    if (!String(reason || "").trim()) return error(res, "Return reason is required", 400);
+
+    const itemMatch = { productId: item.productId };
+    if (item.variantId) itemMatch.variantId = item.variantId;
 
     // Check if already requested for return flow
     const existing = await Return.findOne({
       orderId,
-      "items.variantId": item.variantId,
+      status: { $ne: "Rejected" },
+      items: { $elemMatch: itemMatch },
     });
     if (existing)
       return error(res, "Return already requested for this item", 409);
@@ -38,7 +43,8 @@ exports.requestReturn = async (req, res) => {
     // Prevent parallel replacement + return for the same variant
     const replacementExists = await Replacement.findOne({
       orderId,
-      "originalItems.variantId": item.variantId,
+      status: { $ne: "Rejected" },
+      originalItems: { $elemMatch: itemMatch },
     });
     if (replacementExists) {
       return error(
@@ -77,10 +83,10 @@ exports.requestReturn = async (req, res) => {
           voidTagId: itemVoidTagId,
           qty: item.quantity,
           price: item.price,
-          reason,
+          reason: String(reason).trim(),
         },
       ],
-      evidence: { reason, comment: description, images, voidTagImages },
+      evidence: { reason: String(reason).trim(), comment: description, images, voidTagImages },
       status: "Pending",
       voidTagVerification: itemVoidTagId
         ? { status: "Pending", notes: "" }

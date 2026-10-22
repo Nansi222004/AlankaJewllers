@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import api from '../services/api';
 import toast from 'react-hot-toast';
-import { registerFCMToken } from '../services/pushNotificationService';
 
 const AuthContext = createContext();
 
@@ -72,7 +71,6 @@ export const AuthProvider = ({ children }) => {
         setUser(userData);
         localStorage.setItem('sands_token', token);
         localStorage.setItem('sands_current_user', JSON.stringify(userData));
-        registerFCMToken(true).catch(err => console.error("FCM registration error:", err));
         return result;
     };
 
@@ -124,8 +122,6 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('sands_admin_token', token);
                 localStorage.setItem('sands_admin_user', JSON.stringify(userData));
                 toast.success("Admin login successful!");
-                // Register FCM token
-                registerFCMToken(true).catch(err => console.error("FCM registration error:", err));
             }
             return res.data;
         } catch (err) {

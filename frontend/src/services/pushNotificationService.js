@@ -62,7 +62,7 @@ async function getFCMToken() {
     });
     
     if (token) {
-      console.log('✅ FCM Token obtained:', token);
+      console.log('✅ FCM token obtained');
       return token;
     } else {
       console.log('❌ No FCM token available');
@@ -136,15 +136,15 @@ async function setupForegroundNotificationHandler(handler) {
       return;
     }
     
-    onMessage(messaging, (payload) => {
+    return onMessage(messaging, (payload) => {
       console.log('📬 Foreground message received:', payload);
       
       // Show browser notification if permission granted
       if ('Notification' in window && Notification.permission === 'granted') {
-        const notificationTitle = payload.notification.title;
+        const notificationTitle = payload.notification?.title || 'New notification';
         const notificationOptions = {
-          body: payload.notification.body,
-          icon: payload.notification.icon || '/favicon.png',
+          body: payload.notification?.body || '',
+          icon: payload.notification?.icon || '/favicon.png',
           data: payload.data
         };
         
@@ -158,6 +158,7 @@ async function setupForegroundNotificationHandler(handler) {
     });
   } catch (error) {
     console.error('Error setting up foreground notification handler:', error);
+    return undefined;
   }
 }
 

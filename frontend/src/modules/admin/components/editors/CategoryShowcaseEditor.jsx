@@ -2516,11 +2516,12 @@ const CategoryShowcaseEditor = ({ sectionData, onSave, defaultItems = [] }) => {
       await onSave({ items: normalizedItems });
       return;
     }
-    if (sectionId === "new-launch") {
+    if (sectionId === "new-launch" || sectionId === "gold-new-launch-banner") {
+      const isGold = sectionId === "gold-new-launch-banner";
       const normalizedItems = nextItems.map((item) => {
         const cat = getCategoryFromItem(item);
         const name = item.name || item.label || cat?.name || "Limited Edition";
-        const path = item.path || (cat ? `/shop?category=${cat._id}` : "/shop");
+        const path = item.path || (cat ? (isGold ? `/shop?metal=gold&category=${cat._id}` : `/shop?category=${cat._id}`) : (isGold ? "/shop?metal=gold" : "/shop"));
         return {
           ...item,
           categoryId: cat?._id || item.categoryId || null,
@@ -2699,6 +2700,7 @@ const CategoryShowcaseEditor = ({ sectionData, onSave, defaultItems = [] }) => {
       {(sectionId === "silver-collection" ||
         sectionId === "silver-curated" ||
         sectionId === "new-launch" ||
+        sectionId === "gold-new-launch-banner" ||
         isHomeCategoryGrid ||
         isDiamondCollectionSection ||
         String(sectionId).startsWith("diamond-")) && (
@@ -2727,14 +2729,14 @@ const CategoryShowcaseEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                           ? "Diamond Collection"
                           : sectionId === "category-grid"
                             ? "Shop by Category"
-                            : sectionId === "new-launch"
+                            : (sectionId === "new-launch" || sectionId === "gold-new-launch-banner")
                               ? "Limited Edition"
                               : "e.g., Curated Highlights"
                   }
                 />
                 <Input
-                  label={sectionId === "new-launch" || isHomeCategoryGrid ? "Badge / Eyebrow Text" : "Section Subtitle"}
-                  value={settings.badge !== undefined ? settings.badge : (settings.subtitle !== undefined ? settings.subtitle : (sectionId === "new-launch" ? "New Launch" : ""))}
+                  label={(sectionId === "new-launch" || sectionId === "gold-new-launch-banner") || isHomeCategoryGrid ? "Badge / Eyebrow Text" : "Section Subtitle"}
+                  value={settings.badge !== undefined ? settings.badge : (settings.subtitle !== undefined ? settings.subtitle : ((sectionId === "new-launch" || sectionId === "gold-new-launch-banner") ? "New Launch" : ""))}
                   onChange={(e) => {
                     handleSettingChange("subtitle", e.target.value);
                     handleSettingChange("badge", e.target.value);

@@ -3,64 +3,94 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useHomepageCms } from '../hooks/useHomepageCms';
 
-// Import images
+// Import images (Silver)
 import newEarrings from '@assets/new_launch_earrings.png';
 import newChains from '@assets/new_launch_chains.png';
 import newStuds from '@assets/new_launch_studs.png';
 import newBracelets from '@assets/new_launch_bracelets.png';
 import newAnklets from '@assets/new_launch_anklets.png';
+
+// Import images (Gold)
+import goldLaunchEarrings from '@assets/gold_launch_earrings.jpg';
+import goldLaunchChains from '@assets/gold_launch_chains.jpg';
+import goldLaunchRings from '@assets/gold_launch_rings.jpg';
+import goldLaunchBangles from '@assets/gold_launch_bangles.png';
+import goldLaunchMangalsutra from '@assets/gold_launch_mangalsutra.png';
+
 import { resolveLegacyCmsAsset } from '../utils/legacyCmsAssets';
 import { ensureSilverHomePath } from '../utils/silverHomePaths';
 
 const newLaunches = [
-    { id: 'earrings', name: "Earrings", image: newEarrings, path: "/shop" },
-    { id: 'chains', name: "Chains", image: newChains, path: "/shop" },
-    { id: 'studs', name: "Studs", image: newStuds, path: "/shop" },
-    { id: 'bracelets', name: "Bracelets", image: newBracelets, path: "/shop" },
-    { id: 'anklets', name: "Anklets", image: newAnklets, path: "/shop" }
+    { id: 'earrings', name: "Earrings", image: newEarrings, path: "/shop?metal=silver&category=earrings" },
+    { id: 'chains', name: "Chains", image: newChains, path: "/shop?metal=silver&category=chains" },
+    { id: 'studs', name: "Studs", image: newStuds, path: "/shop?metal=silver&category=studs" },
+    { id: 'bracelets', name: "Bracelets", image: newBracelets, path: "/shop?metal=silver&category=bracelets" },
+    { id: 'anklets', name: "Anklets", image: newAnklets, path: "/shop?metal=silver&category=anklets" }
 ];
 
-const resolveLaunchPath = (item, fallbackPath = '/shop') => {
-    const categoryId = item?.categoryId;
-    if (categoryId) {
-        return ensureSilverHomePath(`/shop?category=${categoryId}`);
-    }
-    if (item?.path) return ensureSilverHomePath(item.path);
-    return ensureSilverHomePath(fallbackPath);
+const goldLaunches = [
+    { id: 'gold-earrings', name: "Earrings", image: goldLaunchEarrings, path: "/shop?metal=gold&category=earrings" },
+    { id: 'gold-chains', name: "Chains", image: goldLaunchChains, path: "/shop?metal=gold&category=chains" },
+    { id: 'gold-rings', name: "Rings", image: goldLaunchRings, path: "/shop?metal=gold&category=rings" },
+    { id: 'gold-bangles', name: "Bangles", image: goldLaunchBangles, path: "/shop?metal=gold&category=bangles" },
+    { id: 'gold-mangalsutra', name: "Mangalsutra", image: goldLaunchMangalsutra, path: "/shop?metal=gold&category=mangalsutra" }
+];
+
+const ensureGoldLaunchPath = (rawPath = '/shop?metal=gold', categoryId = '') => {
+    if (categoryId) return `/shop?metal=gold&category=${encodeURIComponent(categoryId)}`;
+    const source = String(rawPath || '').trim();
+    if (!source) return '/shop?metal=gold';
+    if (!source.startsWith('/shop')) return source;
+    if (/([?&])metal=gold(&|$)/i.test(source)) return source;
+    return `${source}${source.includes('?') ? '&' : '?'}metal=gold`;
 };
 
-const NewLaunchSection = () => {
+const resolveLaunchPath = (item, fallbackPath = '/shop', metal = 'silver') => {
+    const isGold = metal === 'gold';
+    const pathFn = isGold ? ensureGoldLaunchPath : ensureSilverHomePath;
+    const categoryId = item?.categoryId;
+    if (categoryId) {
+        return pathFn(`/shop?category=${categoryId}`, categoryId);
+    }
+    if (item?.path) return pathFn(item.path);
+    return pathFn(fallbackPath);
+};
+
+const NewLaunchSection = ({ metal = 'silver', sectionData: propSectionData = null }) => {
+    const isGold = metal === 'gold';
     const { data: homepageSections = {}, isSuccess } = useHomepageCms();
 
-    const sectionData = homepageSections?.['new-launch'];
+    const sectionData = propSectionData || (!isGold ? homepageSections?.['new-launch'] : null);
 
     // Section visibility: respect isActive toggle from Admin CMS
     if (sectionData && sectionData.isActive === false) {
         return null;
     }
-    // If CMS data loaded successfully and new-launch is absent from active sections, it is disabled
-    if (isSuccess && Object.keys(homepageSections).length > 0 && !sectionData) {
+    // If silver home and CMS data loaded successfully and new-launch is absent from active sections, it is disabled
+    if (!isGold && !propSectionData && isSuccess && Object.keys(homepageSections).length > 0 && !sectionData) {
         return null;
     }
 
+    const defaultList = isGold ? goldLaunches : newLaunches;
     const configuredItems = Array.isArray(sectionData?.items) ? sectionData.items : [];
     const normalizedConfiguredItems = configuredItems.map((item, index) => {
+        const fallbackItem = defaultList[index % defaultList.length];
         return {
             ...item,
             id: item.itemId || item._id || item.id || `launch-${index}`,
-            name: item.name || item.label || newLaunches[index]?.name || 'Limited Edition',
-            image: resolveLegacyCmsAsset(item.image, newLaunches[index]?.image || newEarrings),
-            path: resolveLaunchPath(item, newLaunches[index]?.path || '/shop'),
+            name: item.name || item.label || fallbackItem?.name || 'Limited Edition',
+            image: resolveLegacyCmsAsset(item.image, fallbackItem?.image || (isGold ? goldLaunchEarrings : newEarrings)),
+            path: resolveLaunchPath(item, fallbackItem?.path || (isGold ? '/shop?metal=gold' : '/shop'), metal),
             categoryId: item.categoryId || null,
             ctaLabel: item.ctaLabel || item.buttonText || 'EXPLORE'
         };
     });
-    const baseItems = normalizedConfiguredItems.length > 0 ? normalizedConfiguredItems : newLaunches;
+    const baseItems = normalizedConfiguredItems.length > 0 ? normalizedConfiguredItems : defaultList;
 
     // We want exactly 20 items for a smooth curved 3D arc with large radius
     const cylinderItems = useMemo(() => {
         const items = [];
-        while(items.length < 20) {
+        while (items.length < 20) {
             items.push(...baseItems);
         }
         return items.slice(0, 20);
@@ -98,6 +128,7 @@ const NewLaunchSection = () => {
 
     return (
         <section 
+            id={isGold ? "gold-limited-edition" : "new-launch"}
             className="pt-6 pb-2 md:pt-8 md:pb-3 bg-brand-plum border-y border-brand-champagne/20 relative overflow-hidden"
             style={{
                 '--radius': `${radius}px`,
@@ -165,7 +196,7 @@ const NewLaunchSection = () => {
                     <div className="rotator">
                         {cylinderItems.map((item, index) => {
                             const itemLabel = item.name || item.label;
-                            const itemPath = item.path || '/shop';
+                            const itemPath = item.path || (isGold ? '/shop?metal=gold' : '/shop');
                             // Calculate proper angle for 20 items (360 / 20 = 18)
                             const angle = index * 18;
 
@@ -183,7 +214,7 @@ const NewLaunchSection = () => {
                                             <img
                                                 src={item.image}
                                                 alt={itemLabel}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
                                         </div>
 
@@ -221,4 +252,3 @@ const NewLaunchSection = () => {
 };
 
 export default NewLaunchSection;
-

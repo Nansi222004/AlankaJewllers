@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import api from '../../../services/api';
+import { useSettings } from '../../../context/SettingsContext';
 
 const parseMarkerText = (text, defaultBold, defaultNormal) => {
     if (!text) return { bold: defaultBold, normal: defaultNormal };
@@ -14,41 +14,15 @@ const parseMarkerText = (text, defaultBold, defaultNormal) => {
 };
 
 const TrustMarkers = () => {
-    const [settings, setSettings] = useState({
+    const { settings: globalSettings } = useSettings();
+    const settings = {
         purityText: '925 Fine Silver',
         warrantyText: '6-Month Warranty',
         safetyText: 'Skin Safe Jewellery',
         platingText: 'Lifetime Plating',
-        returnPolicy: 'Easy Returns'
-    });
-
-    useEffect(() => {
-        const loadSettings = async () => {
-            try {
-                const res = await api.get('public/settings');
-                if (res.data.success && res.data.data?.settings) {
-                    setSettings(res.data.data.settings);
-                    return;
-                }
-            } catch (err) {
-                console.warn("Failed to fetch public settings from API, falling back to localStorage/defaults:", err.message);
-            }
-
-            const saved = localStorage.getItem('siteSettings');
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    setSettings(prev => ({ ...prev, ...parsed }));
-                } catch (e) {
-                    console.error("Failed to parse siteSettings from localStorage", e);
-                }
-            }
-        };
-
-        loadSettings();
-        window.addEventListener('storage', loadSettings);
-        return () => window.removeEventListener('storage', loadSettings);
-    }, []);
+        returnPolicy: 'Easy Returns',
+        ...globalSettings,
+    };
 
     const purity = parseMarkerText(settings.purityText, '925', 'Fine Silver');
     const warranty = parseMarkerText(settings.warrantyText, '6-Month', 'Warranty');

@@ -184,7 +184,7 @@ const AdminDirectSales = () => {
                                         value={scannedCode}
                                         onChange={(e) => setScannedCode(e.target.value)}
                                         placeholder="ENTER SERIAL CODE"
-                                        className="w-full bg-[#1E293B]/50 border border-white/10 rounded-xl py-4 px-10 text-white text-base font-mono focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all text-center tracking-widest shadow-inner placeholder:text-gray-600"
+                                        className="w-full bg-[#1E293B]/50 border border-white/10 rounded-xl py-4 px-8 text-white text-base font-mono focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all text-center tracking-wider shadow-inner placeholder:text-gray-600"
                                     />
                                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-blue-500 transition-colors" />
                                 </div>
@@ -219,9 +219,12 @@ const AdminDirectSales = () => {
                                             <Box className="w-8 h-8 text-blue-300 flex-shrink-0" />
                                         )}
                                         <div className="min-w-0 flex-1">
-                                            <p className="text-[8px] font-black uppercase tracking-[0.2em] text-emerald-400">
-                                                {preview.available ? 'AVAILABLE' : 'NOT SERVICEABLE'}
-                                            </p>
+                                            <div className="flex items-center gap-1.5 mb-0.5">
+                                                <span className={`w-1.5 h-1.5 rounded-full ${preview.available ? 'bg-emerald-400 animate-pulse' : 'bg-rose-400'}`} />
+                                                <p className={`text-[8px] font-black uppercase tracking-[0.2em] ${preview.available ? 'text-emerald-400' : 'text-rose-400'}`}>
+                                                    {preview.available ? 'AVAILABLE' : `NOT SERVICEABLE • ${preview.status?.replace('_', ' ') || 'SOLD'}`}
+                                                </p>
+                                            </div>
                                             <p className="text-xs font-bold truncate">
                                                 {preview.product?.name}
                                             </p>
@@ -230,12 +233,23 @@ const AdminDirectSales = () => {
                                             </p>
                                         </div>
                                     </div>
+
+                                    {!preview.available && (
+                                        <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-2.5 text-[10px] text-rose-300 leading-relaxed">
+                                            <strong className="text-rose-200">Cannot sell offline:</strong> {preview.statusReason || `This unit is already marked as ${preview.status || 'SOLD'}`}. To record an offline sale, enter an <span className="text-emerald-300 font-bold">AVAILABLE</span> serial code.
+                                        </div>
+                                    )}
+
                                     <button
                                         onClick={handleConfirmSale}
                                         disabled={confirming || !preview.available}
-                                        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg text-[9px] font-black uppercase tracking-widest disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                                        className={`w-full py-3 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${
+                                            preview.available
+                                                ? 'bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer active:scale-[0.98]'
+                                                : 'bg-rose-950/40 text-rose-300/70 border border-rose-500/20 cursor-not-allowed opacity-70'
+                                        }`}
                                     >
-                                        {confirming ? 'Saving...' : 'Confirm Sale'}
+                                        {confirming ? 'Saving...' : preview.available ? 'Confirm Sale' : `Cannot Sell (${preview.status?.replace('_', ' ') || 'Sold'})`}
                                     </button>
                                 </div>
                             )}

@@ -10,7 +10,7 @@ exports.userLoginSchema = Joi.object({
 exports.userRegisterSchema = Joi.object({
   name: Joi.string().trim().min(2).max(80).required(),
   email: Joi.string().trim().lowercase().email().required(),
-  phone: Joi.string().length(10).pattern(/^[6-9][0-9]{9}$/).required(),
+  phone: Joi.string().length(10).pattern(/^[6-9][0-9]{9}$/).optional().allow("", null),
   password: customerPassword,
 });
 

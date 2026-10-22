@@ -1609,10 +1609,10 @@ const Shop = ({
                       className="w-2.5 h-2.5 rounded-full inline-block shrink-0 border border-stone-300"
                       style={{
                         backgroundColor:
-                          SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.swatchColor || "#CBD5E1"
+                          SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')) || (s.value === 'articles' && (silverTypeQuery.toLowerCase() === 'silver-articles' || silverTypeQuery.toLowerCase() === 'article')))?.swatchColor || "#CBD5E1"
                       }}
                     />
-                    <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')))?.label || silverTypeQuery}</strong></span>
+                    <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverTypeQuery.toLowerCase() || (s.value === '925' && (silverTypeQuery.toLowerCase() === 'sterling' || silverTypeQuery.toLowerCase() === '925-silver')) || (s.value === 'articles' && (silverTypeQuery.toLowerCase() === 'silver-articles' || silverTypeQuery.toLowerCase() === 'article')))?.label || silverTypeQuery}</strong></span>
                     <button
                       onClick={() => handleSilverTypeChange(null)}
                       className="hover:text-brand-champagne p-0.5 rounded-full"
@@ -1661,7 +1661,7 @@ const Shop = ({
                 {/* Purity Chip */}
                 {Boolean(purityQuery && purityQuery !== "All") && (
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-brand-champagne/40 text-brand-espresso text-[11px] font-semibold shrink-0 shadow-2xs">
-                    <span>Purity: <strong>{['24', '22', '18', '14'].includes(String(purityQuery)) ? `${purityQuery} Ct Gold` : purityQuery === '925' ? '925 Silver' : purityQuery === 'fine' ? 'Fine Silver' : purityQuery}</strong></span>
+                    <span>Purity: <strong>{['24', '22', '18', '14'].includes(String(purityQuery)) ? `${purityQuery} Ct Gold` : purityQuery === '925' ? '925 Silver' : purityQuery}</strong></span>
                     <button
                       onClick={() => handlePurityChange("All")}
                       className="hover:text-brand-champagne p-0.5 rounded-full"
@@ -2008,7 +2008,7 @@ const Shop = ({
                     {SILVER_TYPE_OPTIONS.map((s) => {
                       const isSilverActive = s.value === "all"
                         ? !silverTypeQuery || silverTypeQuery === "All"
-                        : silverTypeQuery?.toLowerCase() === s.value || (s.value === "925" && (silverTypeQuery?.toLowerCase() === "sterling" || silverTypeQuery?.toLowerCase() === "925-silver"));
+                        : silverTypeQuery?.toLowerCase() === s.value || (s.value === "925" && (silverTypeQuery?.toLowerCase() === "sterling" || silverTypeQuery?.toLowerCase() === "925-silver")) || (s.value === "articles" && (silverTypeQuery?.toLowerCase() === "silver-articles" || silverTypeQuery?.toLowerCase() === "article"));
 
                       return (
                         <button
@@ -2133,7 +2133,6 @@ const Shop = ({
                     options = [
                       { label: "All", value: "All" },
                       { label: "925 Silver", value: "925" },
-                      { label: "Fine Silver", value: "fine" },
                     ];
                   } else if (activeMetal === "gold") {
                     options = [

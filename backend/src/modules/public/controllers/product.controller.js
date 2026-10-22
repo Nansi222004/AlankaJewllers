@@ -29,6 +29,7 @@ const normalizeSilverTier = (value) => {
   const normalized = String(value || "").trim().toLowerCase();
   if (!normalized) return "";
   if (normalized === "sterling" || normalized === "925" || normalized.includes("sterling") || normalized.includes("925")) return "sterling";
+  if (normalized === "articles" || normalized.includes("article")) return "articles";
   if (normalized === "fine" || normalized.includes("fine") || normalized === "999") return "fine";
   if (normalized === "800" || normalized.includes("800")) return "800";
   return "";
@@ -98,9 +99,14 @@ exports.getProducts = async (req, res) => {
           $or: [{ slug: category }, { name: new RegExp(`^${category}$`, "i") }],
           isActive: true
         }).select("_id");
-        categoryId = resolved?._id || new mongoose.Types.ObjectId("000000000000000000000000");
+        if (resolved?._id) {
+          query.categories = resolved._id;
+        } else if (!/^silver[-_]?articles?$/i.test(String(category).trim())) {
+          query.categories = new mongoose.Types.ObjectId("000000000000000000000000");
+        }
+      } else {
+        query.categories = categoryId;
       }
-      query.categories = categoryId;
     }
 
     // 3. Price Range Filter (matches any variant price)
@@ -306,7 +312,53 @@ exports.getProducts = async (req, res) => {
         });
 
         const tier = normalizeSilverTier(effectivePurity);
-        if (tier === "sterling" || effectivePurity === "925") {
+        const isSilverArticles =
+          tier === "articles" ||
+          effectivePurity === "articles" ||
+          effectivePurity === "silver-articles" ||
+          effectivePurity === "silver_articles" ||
+          rawSilverType === "articles" ||
+          rawSilverType === "silver-articles" ||
+          rawSilverType === "silver_articles" ||
+          rawSilverType === "article" ||
+          /^silver[-_]?articles?$/i.test(String(category || ""));
+
+        if (isSilverArticles) {
+          andFilters.push({
+            $and: [
+              // Strict exclusion of Gold
+              { material: { $not: { $regex: "\\bgold\\b", $options: "i" } } },
+              { name: { $not: { $regex: "\\bgold\\b", $options: "i" } } },
+              { goldCategory: { $nin: ["14", "18", "22", "24"] } },
+              { goldTone: { $not: { $in: ["Yellow Gold", "Rose Gold", "White Gold"] } } },
+              { settingMetal: { $not: { $regex: "\\bgold\\b", $options: "i" } } },
+
+              // Strict exclusion of Diamond
+              { diamondType: { $nin: ["lab_grown", "natural"] } },
+              { "variants.diamondType": { $nin: ["lab_grown", "natural"] } },
+              { "variants.diamondPrice": { $not: { $gt: 0 } } },
+              { material: { $not: { $regex: "\\bdiamond\\b", $options: "i" } } },
+              { name: { $not: { $regex: "\\bdiamond\\b", $options: "i" } } },
+
+              // Strict exclusion of Gems
+              { gemstoneType: { $nin: ["diamond", "ruby", "emerald", "sapphire", "gems", "gemstone"] } },
+              { "variants.gemstonePrice": { $not: { $gt: 0 } } },
+              { material: { $not: { $regex: "\\b(gem|gemstone)s?\\b", $options: "i" } } },
+              { name: { $not: { $regex: "\\b(gem|gemstone)s?\\b", $options: "i" } } },
+
+              // Silver Article criteria: category/categorySlug/tags/name matches Murti, Utensils, Pooja Articles, Silver Articles, Decorative, etc.
+              {
+                $or: [
+                  { categorySlug: { $regex: "article|murti|idol|utensil|pooja|puja|thali|diya|kalash|decorative", $options: "i" } },
+                  { category: { $regex: "article|murti|idol|utensil|pooja|puja|thali|diya|kalash|decorative", $options: "i" } },
+                  { tags: { $in: ["silver-articles", "silver_articles", "silver-article", "article", "articles", "murti", "utensil", "utensils", "pooja", "puja", "decorative"] } },
+                  { tags: { $regex: "article|murti|idol|utensil|pooja|puja|decorative", $options: "i" } },
+                  { name: { $regex: "\\b(murti|murtis|idol|idols|utensil|utensils|pooja|puja|thali|diya|diyas|kalash|article|articles|decorative)\\b", $options: "i" } }
+                ]
+              }
+            ]
+          });
+        } else if (tier === "sterling" || effectivePurity === "925") {
           andFilters.push({
             $or: [
               { silverCategory: { $in: ["925", "925 sterling silver", "sterling", "Sterling", "925 Sterling Silver"] } },

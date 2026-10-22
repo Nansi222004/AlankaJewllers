@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
     Calculator, IndianRupee, Scale, Sparkles, CheckCircle2,
     AlertTriangle, Plus, Trash2, X, Info, Tag, Layers, ChevronDown,
-    ChevronUp, ShieldCheck, Zap
+    ChevronUp, ShieldCheck, Zap, Coins
 } from 'lucide-react';
 import { FormSection, Input, Select } from '../../../admin/components/common/FormControls';
 import AlankarJewelleryMark from '../AlankarJewelleryMark';

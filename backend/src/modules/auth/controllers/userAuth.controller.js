@@ -71,8 +71,10 @@ exports.login = async (req, res) => {
 exports.register = async (req, res) => {
   try {
     const email = normalizeEmail(req.body.email);
-    const phone = String(req.body.phone || "").replace(/\D/g, "").slice(-10);
-    const existing = await User.findOne({ $or: [{ email }, { phone }] });
+    const phone = req.body.phone ? String(req.body.phone).replace(/\D/g, "").slice(-10) : "";
+    const filter = [{ email }];
+    if (phone) filter.push({ phone });
+    const existing = await User.findOne({ $or: filter });
     if (existing) {
       return error(
         res,
@@ -122,14 +124,16 @@ exports.verifyEmailOtp = async (req, res) => {
     }
 
     const { name, phone, passwordHash } = result.record.metadata || {};
-    const conflict = await User.findOne({ $or: [{ email: result.record.email }, { phone }] });
+    const conflictFilter = [{ email: result.record.email }];
+    if (phone) conflictFilter.push({ phone });
+    const conflict = await User.findOne({ $or: conflictFilter });
     if (conflict) {
       await EmailOTP.deleteOne({ _id: result.record._id });
       return error(res, "An account with these details already exists.", 409, "ACCOUNT_EXISTS");
     }
     const user = await User.create({
       name,
-      phone,
+      phone: phone || "",
       email: result.record.email,
       password: passwordHash,
       emailVerified: true,

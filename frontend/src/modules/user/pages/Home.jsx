@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useShop } from '../../../context/ShopContext';
 import { useHomepageCms } from '../hooks/useHomepageCms';
-import Loader from '../../shared/components/Loader';
 import { useResetScroll } from '../../../hooks/useResetScroll';
 import LazySection from '../../../components/LazySection';
 
@@ -44,7 +43,7 @@ import Newsletter from '../components/Newsletter';
 const Home = () => {
     const location = useLocation();
     const isSilverCollection = location.pathname === '/silver-collection';
-    const { isLoading: isShopLoading, updateActiveMetal } = useShop();
+    const { updateActiveMetal } = useShop();
     const {
         isError: isHomepageCmsError,
         error: homepageCmsError,
@@ -57,15 +56,6 @@ const Home = () => {
         document.title = "Alankar Jewellers | Crafted for Moments That Last";
         updateActiveMetal('silver');
     }, [updateActiveMetal]);
-
-    // ONLY block on shop data (products/categories) — CMS is enhancement-only.
-    // Previously we also blocked on isHomepageCmsLoading which meant the entire
-    // page showed a blank loader until TWO separate APIs finished. On mobile
-    // with a slow connection, CMS fetch could take 1-2s extra. Now the page
-    // renders immediately once products are ready, and CMS slots fill in async.
-    if (isShopLoading) {
-        return <Loader />;
-    }
 
     return (
         <div data-collection-theme="silver" className="bg-[#E9DDE1] font-body text-[#3D2730] relative selection:bg-[#DBC8CE] selection:text-[#6B3F46]">

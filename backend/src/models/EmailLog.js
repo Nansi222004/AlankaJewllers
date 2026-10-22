@@ -28,6 +28,8 @@ const emailLogSchema = new mongoose.Schema(
         "seller_return_requested",
         "welcome",
         "otp",
+        "user_registration",
+        "user_password_reset",
         "support_ticket",
         "general",
       ],

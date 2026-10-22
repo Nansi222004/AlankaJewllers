@@ -306,6 +306,46 @@ const sanitizeSectionPayload = (identity, payload = {}) => {
     })) : []
   };
 
+  if (sectionKey === "dynamic-promo-banner") {
+    const rawItems = Array.isArray(payload.items) ? payload.items : [];
+    cleaned.items = rawItems.map((item, idx) => {
+      const image = String(item.image || "").trim();
+      const mobileImage = String(item.mobileImage || "").trim();
+
+      if (!image) {
+        const err = new Error(`Banner ${idx + 1}: Desktop image is required.`);
+        err.statusCode = 400;
+        throw err;
+      }
+      if (!mobileImage) {
+        const err = new Error(`Banner ${idx + 1}: Mobile image is required.`);
+        err.statusCode = 400;
+        throw err;
+      }
+
+      const name = item.name && String(item.name).trim() ? String(item.name).trim() : undefined;
+      const tag = item.tag && String(item.tag).trim() ? String(item.tag).trim() : undefined;
+      const label = item.label && String(item.label).trim() ? String(item.label).trim() : undefined;
+      const subtitle = item.subtitle && String(item.subtitle).trim() ? String(item.subtitle).trim() : undefined;
+      const ctaLabel = item.ctaLabel && String(item.ctaLabel).trim() ? String(item.ctaLabel).trim() : undefined;
+      const path = item.path && String(item.path).trim() ? String(item.path).trim() : undefined;
+
+      return {
+        itemId: item.itemId || item.id || item._id || `${Date.now()}_${idx}`,
+        type: "manual",
+        image,
+        mobileImage,
+        ...(name ? { name } : {}),
+        ...(tag ? { tag } : {}),
+        ...(label ? { label } : {}),
+        ...(subtitle ? { subtitle } : {}),
+        ...(ctaLabel ? { ctaLabel } : {}),
+        ...(path ? { path } : {}),
+        sortOrder: item.sortOrder ?? idx
+      };
+    });
+  }
+
   if (sectionKey === "category-showcase") {
     cleaned.items = cleaned.items
       .map((item, idx) => {
@@ -1369,7 +1409,7 @@ exports.upsertSection = async (req, res) => {
     );
 
     return success(res, { section }, "Homepage section saved");
-  } catch (err) { return error(res, err.message); }
+  } catch (err) { return error(res, err.message, err.statusCode || 500); }
 };
 
 exports.bulkUpsertSections = async (req, res) => {
@@ -1403,7 +1443,7 @@ exports.bulkUpsertSections = async (req, res) => {
       .sort({ sortOrder: 1, createdAt: 1 });
 
     return success(res, { sections: savedSections }, "Homepage sections saved");
-  } catch (err) { return error(res, err.message); }
+  } catch (err) { return error(res, err.message, err.statusCode || 500); }
 };
 
 exports.uploadSectionImage = async (req, res) => {

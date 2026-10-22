@@ -32,11 +32,11 @@ const STATUS_STYLES = {
 
 const ALLOWED_TRANSITIONS = {
     Pending: ['Approved', 'Rejected'],
-    Approved: ['Pickup Scheduled', 'Refund Initiated', 'Refunded', 'Closed'],
+    Approved: ['Pickup Scheduled'],
     Rejected: [],
     'Pickup Scheduled': ['Pickup Completed'],
-    'Pickup Completed': ['Refund Initiated', 'Refunded', 'Closed'],
-    'Refund Initiated': ['Refunded', 'Closed'],
+    'Pickup Completed': ['Refund Initiated'],
+    'Refund Initiated': ['Refunded'],
     Refunded: ['Closed'],
     Closed: []
 };

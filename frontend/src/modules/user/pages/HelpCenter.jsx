@@ -151,10 +151,7 @@ const HelpCenter = () => {
         let isMounted = true;
         const fetchData = async () => {
             try {
-                const [faqRes, settingsRes] = await Promise.all([
-                    api.get('public/faqs').catch(() => null),
-                    api.get('public/settings').catch(() => null)
-                ]);
+                const faqRes = await api.get('public/faqs').catch(() => null);
 
                 if (isMounted && faqRes?.data) {
                     const fetchedFaqs = faqRes.data?.data?.faqs || faqRes.data?.faqs;
@@ -163,12 +160,6 @@ const HelpCenter = () => {
                     }
                 }
 
-                if (isMounted && settingsRes?.data) {
-                    const s = settingsRes.data?.data?.settings || settingsRes.data?.settings || settingsRes.data;
-                    const phone = s?.contactPhone || s?.phone || settings?.phone || '+91 8668821446';
-                    const email = s?.contactEmail || s?.email || settings?.email || 'swarna.sparsh22@gmail.com';
-                    setContactDetails({ phone, email });
-                }
             } catch (err) {
                 console.error("Failed to fetch public help center data:", err);
             } finally {

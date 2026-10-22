@@ -13,6 +13,7 @@ import {
 import GoldExploreCollections from "../components/GoldExploreCollections";
 import BestStylesSection from "../components/BestStylesSection";
 import GoldCategoryGrid from "../components/GoldCategoryGrid";
+import NewLaunchSection from "../components/NewLaunchSection";
 import { GoldCollectionGrid } from "../components/CategoryGrid";
 import CollectionNewLaunch from "../components/CollectionNewLaunch";
 import PromoSlider from "../components/PromoSlider";
@@ -196,13 +197,17 @@ const GoldJewelleryPage = () => {
       <PromoSlider externalSlides={heroSlides} autoplayInterval={autoplayMs} />
 
       <GoldCategoryGrid sectionData={sectionMap["gold-category-grid"]} />
+      <NewLaunchSection
+        metal="gold"
+        sectionData={sectionMap["gold-new-launch-banner"] || sectionMap["gold-new-launch"]}
+      />
       <GoldCollectionGrid
         sectionData={sectionMap["gold-collection-grid"]}
         sidePanelData={sectionMap["gold-shop-by-colour"]}
       />
       <CollectionNewLaunch
         metal="gold"
-        sectionData={sectionMap["gold-new-launch-banner"]}
+        sectionData={sectionMap["gold-products-new-launch"]}
       />
       <GoldSilverRates metal="gold" />
       <GoldExploreCollections

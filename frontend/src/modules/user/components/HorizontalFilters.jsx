@@ -119,7 +119,6 @@ const HorizontalFilters = ({
             return [
                 { label: 'All', value: 'All' },
                 { label: '925 Silver', value: '925' },
-                { label: 'Fine Silver', value: 'fine' }
             ];
         }
         if (normalizedMetal === 'gold') {
@@ -173,7 +172,7 @@ const HorizontalFilters = ({
             return toneObj && toneObj.value !== 'all' ? `Gold (${toneObj.label})` : 'Gold';
         }
         if (mLow === 'silver' && silverType && silverType !== 'All' && silverType !== 'all') {
-            const sObj = SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverType.toLowerCase() || (s.value === '925' && (silverType.toLowerCase() === 'sterling' || silverType.toLowerCase() === '925-silver')));
+            const sObj = SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverType.toLowerCase() || (s.value === '925' && (silverType.toLowerCase() === 'sterling' || silverType.toLowerCase() === '925-silver')) || (s.value === 'articles' && (silverType.toLowerCase() === 'silver-articles' || silverType.toLowerCase() === 'article')));
             return sObj && sObj.value !== 'all' ? `Silver (${sObj.label})` : 'Silver';
         }
         if (mLow === 'diamond' && diamondType && diamondType !== 'All' && diamondType !== 'all') {
@@ -437,7 +436,7 @@ const HorizontalFilters = ({
                                                                                 : activeSecondary === 'gold'
                                                                                     ? currentVal.toLowerCase() === opt.value.toLowerCase() || (opt.value === 'gold' && currentVal.toLowerCase() === 'yellow-gold')
                                                                                     : activeSecondary === 'silver'
-                                                                                        ? currentVal.toLowerCase() === opt.value.toLowerCase() || (opt.value === '925' && (currentVal.toLowerCase() === 'sterling' || currentVal.toLowerCase() === '925-silver'))
+                                                                                        ? currentVal.toLowerCase() === opt.value.toLowerCase() || (opt.value === '925' && (currentVal.toLowerCase() === 'sterling' || currentVal.toLowerCase() === '925-silver')) || (opt.value === 'articles' && (currentVal.toLowerCase() === 'silver-articles' || currentVal.toLowerCase() === 'article'))
                                                                                         : currentVal.toLowerCase() === opt.value.toLowerCase() || (opt.value === 'lab_grown' && (currentVal.toLowerCase() === 'lab-grown' || currentVal.toLowerCase() === 'labgrown'));
 
                                                                             return (
@@ -587,10 +586,10 @@ const HorizontalFilters = ({
                             <span 
                                 className="w-2.5 h-2.5 rounded-full inline-block shrink-0 shadow-2xs border border-stone-300"
                                 style={{
-                                    backgroundColor: SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverType.toLowerCase() || (s.value === '925' && (silverType.toLowerCase() === 'sterling' || silverType.toLowerCase() === '925-silver')))?.swatchColor || '#CBD5E1'
+                                    backgroundColor: SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverType.toLowerCase() || (s.value === '925' && (silverType.toLowerCase() === 'sterling' || silverType.toLowerCase() === '925-silver')) || (s.value === 'articles' && (silverType.toLowerCase() === 'silver-articles' || silverType.toLowerCase() === 'article')))?.swatchColor || '#CBD5E1'
                                 }}
                             />
-                            <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverType.toLowerCase() || (s.value === '925' && (silverType.toLowerCase() === 'sterling' || silverType.toLowerCase() === '925-silver')))?.label || silverType}</strong></span>
+                            <span>Silver Type: <strong>{SILVER_TYPE_OPTIONS.find(s => s.value.toLowerCase() === silverType.toLowerCase() || (s.value === '925' && (silverType.toLowerCase() === 'sterling' || silverType.toLowerCase() === '925-silver')) || (s.value === 'articles' && (silverType.toLowerCase() === 'silver-articles' || silverType.toLowerCase() === 'article')))?.label || silverType}</strong></span>
                             <button
                                 onClick={() => onSilverTypeChange && onSilverTypeChange(null)}
                                 className="hover:text-brand-champagne p-0.5 rounded-full"

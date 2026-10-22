@@ -17,6 +17,11 @@ import newChains from '@assets/new_launch_chains.png';
 import newStuds from '@assets/new_launch_studs.png';
 import newBracelets from '@assets/new_launch_bracelets.png';
 import newAnklets from '@assets/new_launch_anklets.png';
+import goldLaunchEarrings from '@assets/gold_launch_earrings.jpg';
+import goldLaunchChains from '@assets/gold_launch_chains.jpg';
+import goldLaunchRings from '@assets/gold_launch_rings.jpg';
+import goldLaunchBangles from '@assets/gold_launch_bangles.png';
+import goldLaunchMangalsutra from '@assets/gold_launch_mangalsutra.png';
 import latestRing from '@assets/latest_drop_ring.png';
 import latestNecklace from '@assets/latest_drop_necklace.png';
 import latestEarrings from '@assets/latest_drop_earrings.png';
@@ -205,6 +210,11 @@ const legacyAssetMap = {
   'new_launch_studs.png': newStuds,
   'new_launch_bracelets.png': newBracelets,
   'new_launch_anklets.png': newAnklets,
+  'gold_launch_earrings.jpg': goldLaunchEarrings,
+  'gold_launch_chains.jpg': goldLaunchChains,
+  'gold_launch_rings.jpg': goldLaunchRings,
+  'gold_launch_bangles.png': goldLaunchBangles,
+  'gold_launch_mangalsutra.png': goldLaunchMangalsutra,
   'latest_drop_ring.png': latestRing,
   'latest_drop_necklace.png': latestNecklace,
   'latest_drop_earrings.png': latestEarrings,
@@ -214,10 +224,6 @@ const legacyAssetMap = {
   'pink_chains_1767775516641.png': pinkChains,
   'pink_anklets_1767775536388.png': pinkAnklets,
   'proposal_banner.png': proposalBanner,
-  'haldi.png': haldiEditorial,
-  'sangeet.png': sangeetEditorial,
-  'reception.png': receptionEditorial,
-  'bridal.png': bridalEditorial,
   'hero_slide_3.png': bridesmaidEditorial,
   'banner_daily.png': bannerDaily,
   'banner_office.png': bannerOffice,

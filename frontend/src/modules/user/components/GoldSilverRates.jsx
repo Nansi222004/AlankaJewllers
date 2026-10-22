@@ -228,7 +228,7 @@ const GoldSilverRates = ({ metal }) => {
                                     <span className="text-stone-300">•</span>
                                     <span>Updated: {updatedAt || 'Recently'}</span>
                                     <span className="text-stone-300">•</span>
-                                    <span className="font-semibold text-[#6B3F46]">Source: API Mitra</span>
+                                    <span className="font-semibold text-[#6B3F46]">Source: {rates?.source || 'Unavailable'}</span>
                                 </div>
                             </div>
                         </article>
@@ -300,7 +300,7 @@ const GoldSilverRates = ({ metal }) => {
                                 <MapPin className="h-3.5 w-3.5" /> {currentCityName}
                             </span>
                             <span>Updated at: {updatedAt || 'Rate unavailable'}</span>
-                            <span>Source: API Mitra</span>
+                            <span>Source: {rates?.source || 'Unavailable'}</span>
                         </div>
                         {(rates?.isStale || ratesQuery.isError) && (
                             <span className="inline-flex items-center gap-1.5 text-amber-700">

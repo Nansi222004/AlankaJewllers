@@ -38,7 +38,6 @@ import {
   SlidersHorizontal,
   ShieldCheck,
   HelpCircle,
-  ScanLine,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
@@ -682,20 +681,6 @@ const AdminSidebar = () => {
           <span className="font-bold text-sm">POS / Direct Sales</span>
         </Link>
 
-        {/* Camera Barcode / QR Scanner */}
-        <Link
-          to="/admin/scanner"
-          className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${location.pathname === "/admin/scanner"
-            ? "bg-primary text-white shadow-lg shadow-primary/20"
-            : "text-gray-400 hover:bg-white/5 hover:text-white"
-            }`}
-        >
-          <ScanLine
-            size={20}
-            strokeWidth={location.pathname === "/admin/scanner" ? 2.5 : 2}
-          />
-          <span className="font-bold text-sm">Camera Scanner</span>
-        </Link>
 
         {/* Inventory Management */}
         {/* Inventory Management Section - Expandable */}

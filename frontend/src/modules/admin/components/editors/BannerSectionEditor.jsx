@@ -6,16 +6,16 @@ import { FormSection, Input } from '../common/FormControls';
 import { resolveLegacyCmsAsset } from '../../../user/utils/legacyCmsAssets';
 import { useDraftState } from '../../hooks/useDraftState';
 
-const createBannerItem = () => ({
+const createBannerItem = (isDynamicPromo = false) => ({
     id: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     name: '',
     label: '',
     subtitle: '',
     image: '',
     mobileImage: '',
-    path: '/shop',
+    path: isDynamicPromo ? '' : '/shop',
     tag: '',
-    ctaLabel: 'Shop Collection',
+    ctaLabel: isDynamicPromo ? '' : 'Shop Collection',
     sortOrder: 0
 });
 
@@ -46,7 +46,8 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                 ...item,
                 sortOrder: item.sortOrder ?? index,
                 subtitle: item.subtitle || item.price || '',
-                ctaLabel: item.ctaLabel || 'Shop Collection'
+                ctaLabel: isDynamicPromoBanner ? (item.ctaLabel || '') : (item.ctaLabel || 'Shop Collection'),
+                path: item.path || ''
             }));
         }
 
@@ -57,12 +58,13 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                 ...item,
                 sortOrder: item.sortOrder ?? index,
                 subtitle: item.subtitle || item.price || '',
-                ctaLabel: item.ctaLabel || 'Shop Collection'
+                ctaLabel: isDynamicPromoBanner ? (item.ctaLabel || '') : (item.ctaLabel || 'Shop Collection'),
+                path: item.path || ''
             }));
         }
 
-        return [createBannerItem()];
-    }, [defaultItems, isSingleBannerSection, sectionData?.items]);
+        return [createBannerItem(isDynamicPromoBanner)];
+    }, [defaultItems, isDynamicPromoBanner, isSingleBannerSection, sectionData?.items]);
 
     const [items, setItems] = useDraftState(`draft_items_${sectionData?.sectionKey || sectionData?.id || ''}_${sectionData?.pageKey || ''}`, initialItems);
     const [settings, setSettings] = useState({
@@ -148,7 +150,7 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
         setItems((prev) => ([
             ...prev,
             {
-                ...createBannerItem(),
+                ...createBannerItem(isDynamicPromoBanner),
                 sortOrder: prev.length
             }
         ]));
@@ -159,15 +161,29 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
         const nextItems = items
             .filter((item) => item.id !== id)
             .map((item, index) => ({ ...item, sortOrder: index }));
-        setItems(nextItems.length > 0 ? nextItems : [createBannerItem()]);
+        setItems(nextItems.length > 0 ? nextItems : [createBannerItem(isDynamicPromoBanner)]);
     };
 
     const handleSave = async () => {
-        const invalid = items.find((item) => !item.label?.trim() || !item.image?.trim() || !item.mobileImage?.trim());
-        if (invalid) {
-            toast.error('Each banner requires a title, a desktop image, and a mobile image before saving.');
-            return;
+        if (isDynamicPromoBanner) {
+            const missingDesktop = items.find((item) => !item.image?.trim());
+            if (missingDesktop) {
+                toast.error('Desktop image is required for each banner.');
+                return;
+            }
+            const missingMobile = items.find((item) => !item.mobileImage?.trim());
+            if (missingMobile) {
+                toast.error('Mobile image is required for each banner.');
+                return;
+            }
+        } else {
+            const invalid = items.find((item) => !item.label?.trim() || !item.image?.trim() || !item.mobileImage?.trim());
+            if (invalid) {
+                toast.error('Each banner requires a title, a desktop image, and a mobile image before saving.');
+                return;
+            }
         }
+
         if (isFamilyPromoBanner) {
             const missingSubtitle = items.find((item) => !item.subtitle?.trim());
             if (missingSubtitle) {
@@ -191,14 +207,18 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                     ...item,
                     itemId: item.itemId || item.id,
                     sortOrder: index,
-                    subtitle: item.subtitle || '',
-                    mobileImage: item.mobileImage || '',
-                    ctaLabel: item.ctaLabel || 'Shop Collection',
+                    name: item.name ? item.name.trim() : '',
+                    tag: item.tag ? item.tag.trim() : '',
+                    label: item.label ? item.label.trim() : '',
+                    subtitle: item.subtitle ? item.subtitle.trim() : '',
+                    mobileImage: item.mobileImage ? item.mobileImage.trim() : '',
+                    image: item.image ? item.image.trim() : '',
+                    ctaLabel: isDynamicPromoBanner ? (item.ctaLabel ? item.ctaLabel.trim() : '') : (item.ctaLabel ? item.ctaLabel.trim() : 'Shop Collection'),
                     price: item.price || '',
                     categoryId: isFamilyPromoBanner ? (item.categoryId || null) : item.categoryId,
                     path: isFamilyPromoBanner
                         ? buildFamilyCategoryPath(item.categoryId, item.path)
-                        : (isGoldPageBanner ? ensureGoldPath(item.path) : (item.path || '/shop'))
+                        : (isGoldPageBanner ? ensureGoldPath(item.path) : (item.path ? item.path.trim() : (isDynamicPromoBanner ? '' : '/shop')))
                 }))
             });
         } finally {
@@ -234,7 +254,10 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-3">
                                     <label className="block text-xs font-semibold text-gray-700 tracking-wide">
-                                        Desktop Image
+                                        Desktop Image <span className="text-red-500 font-bold">*</span>
+                                        <span className="ml-2 text-[10px] font-bold uppercase tracking-[0.2em] text-red-500">
+                                            REQUIRED
+                                        </span>
                                         <span className="ml-2 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
                                             {recommendedBannerSize}
                                         </span>
@@ -275,12 +298,12 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                                 </div>
                                 <div className="space-y-3">
                                     <label className="block text-xs font-semibold text-gray-700 tracking-wide">
-                                        Mobile Image
+                                        Mobile Image <span className="text-red-500 font-bold">*</span>
                                         <span className="ml-2 text-[10px] font-bold uppercase tracking-[0.2em] text-red-500">
-                                            * REQUIRED
+                                            REQUIRED
                                         </span>
                                     </label>
-                                    <div className={`relative aspect-[4/5] rounded-2xl border border-dashed border-gray-300 bg-[#F8F5F2] overflow-hidden`}>
+                                    <div className={`relative ${isDynamicPromoBanner ? 'aspect-[2/1]' : 'aspect-[4/5]'} rounded-2xl border border-dashed border-gray-300 bg-[#F8F5F2] overflow-hidden`}>
                                         {item.mobileImage ? (
                                             <img
                                                 src={resolveLegacyCmsAsset(item.mobileImage, item.mobileImage)}
@@ -318,20 +341,20 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Input
-                                    label="Eyebrow Label"
+                                    label={isDynamicPromoBanner ? "Eyebrow Label (Optional)" : "Eyebrow Label"}
                                     value={item.name || ''}
                                     onChange={(e) => updateItem(item.id, 'name', e.target.value)}
                                     placeholder="Luxury Collection"
                                 />
                                 <Input
-                                    label="Tag"
+                                    label={isDynamicPromoBanner ? "Tag (Optional)" : "Tag"}
                                     value={item.tag || ''}
                                     onChange={(e) => updateItem(item.id, 'tag', e.target.value)}
                                     placeholder="Luxury Collection"
                                 />
                                 <div className="md:col-span-2">
                                     <Input
-                                        label="Banner Title"
+                                        label={isDynamicPromoBanner ? "Banner Title (Optional)" : "Banner Title"}
                                         value={item.label || ''}
                                         onChange={(e) => updateItem(item.id, 'label', e.target.value)}
                                         placeholder="Eternal Diamond Brilliance"
@@ -339,7 +362,7 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                                 </div>
                                 <div className="md:col-span-2">
                                     <label className="block text-xs font-semibold text-gray-700 tracking-wide mb-1.5">
-                                        Banner Subtitle
+                                        {isDynamicPromoBanner ? "Banner Subtitle (Optional)" : "Banner Subtitle"}
                                     </label>
                                     <textarea
                                         rows={4}
@@ -350,11 +373,19 @@ const BannerSectionEditor = ({ sectionData, onSave, defaultItems = [] }) => {
                                     />
                                 </div>
                                 <Input
-                                    label="CTA Label"
+                                    label={isDynamicPromoBanner ? "CTA Label (Optional)" : "CTA Label"}
                                     value={item.ctaLabel || ''}
                                     onChange={(e) => updateItem(item.id, 'ctaLabel', e.target.value)}
                                     placeholder="Shop Collection"
                                 />
+                                {isDynamicPromoBanner && (
+                                    <Input
+                                        label="CTA Link / Action (Optional)"
+                                        value={item.path || ''}
+                                        onChange={(e) => updateItem(item.id, 'path', e.target.value)}
+                                        placeholder="/shop"
+                                    />
+                                )}
                                 {isFamilyPromoBanner && (
                                     <div className="md:col-span-2">
                                         <label className="block text-xs font-semibold text-gray-700 tracking-wide mb-1.5">

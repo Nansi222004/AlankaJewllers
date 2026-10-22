@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { useParams, useNavigate } from "react-router-dom";
 import { useShop } from "../../../context/ShopContext";
+import { useSettings } from "../../../context/SettingsContext";
 import AlankarJewelleryMark from "../components/AlankarJewelleryMark";
 import { useAuth } from "../../../context/AuthContext";
 import api from "../../../services/api";
@@ -368,7 +369,8 @@ const ProductDetails = () => {
   );
   const [detailProduct, setDetailProduct] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
-  const [settings, setSettings] = useState({
+  const { settings: globalSettings } = useSettings();
+  const settings = {
     productHeader: "ESTIMATED DELIVERY DATE",
     returnPolicy: "7-Day Returns",
     exchangePolicy: "10 Days Exchange",
@@ -376,38 +378,8 @@ const ProductDetails = () => {
     warrantyText: "Lifetime Warranty",
     safetyText: "Skin Safe Jewellery",
     platingText: "18k Gold Tone Plated",
-  });
-
-  useEffect(() => {
-    const loadSettings = async () => {
-      try {
-        const res = await api.get("public/settings");
-        if (res.data.success && res.data.data?.settings) {
-          setSettings(res.data.data.settings);
-          return;
-        }
-      } catch (err) {
-        console.warn(
-          "Failed to fetch public settings from API, falling back to localStorage/defaults:",
-          err.message,
-        );
-      }
-
-      const saved = localStorage.getItem("siteSettings");
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          setSettings((prev) => ({ ...prev, ...parsed }));
-        } catch (e) {
-          console.error("Failed to parse siteSettings from localStorage", e);
-        }
-      }
-    };
-
-    loadSettings();
-    window.addEventListener("storage", loadSettings);
-    return () => window.removeEventListener("storage", loadSettings);
-  }, []);
+    ...globalSettings,
+  };
 
   // Production-safe priority: API detail -> catalogue.
   const product = useMemo(() => {

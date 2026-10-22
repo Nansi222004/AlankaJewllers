@@ -206,6 +206,10 @@ class ShiprocketProvider extends ShippingProvider {
       const awbNumber = awbData?.response?.data?.awb_code || awbData?.awb_code || "";
       const courierName = awbData?.response?.data?.courier_name || "";
 
+      if (!awbNumber) {
+        throw new Error("Shiprocket AWB assignment did not return an AWB number");
+      }
+
       // ── Step 3: Generate Label ───────────────────────────────────────────────
       let labelUrl = "";
       try {
@@ -251,16 +255,20 @@ class ShiprocketProvider extends ShippingProvider {
   /**
    * Request pickup for an existing Shiprocket shipment.
    */
-  async schedulePickup({ awbNumber, shiprocketOrderId, pickupDate }) {
+  async schedulePickup({ shiprocketShipmentId, pickupDate }) {
     try {
       const client = await this._getClient();
+
+      if (!shiprocketShipmentId) {
+        throw new Error("shiprocketShipmentId is required to schedule a Shiprocket pickup");
+      }
 
       const date = pickupDate
         ? new Date(pickupDate).toISOString().split("T")[0]
         : new Date().toISOString().split("T")[0];
 
       const response = await client.post("/courier/generate/pickup", {
-        shipment_id: [awbNumber], // Shiprocket accepts AWB or shipment ID here
+        shipment_id: [Number(shiprocketShipmentId)],
         pickup_date: [date],
       });
 
@@ -273,7 +281,7 @@ class ShiprocketProvider extends ShippingProvider {
     } catch (err) {
       const msg = err.response?.data?.message || err.message;
       console.error("[Shiprocket] Schedule pickup failed:", msg);
-      return { pickupId: "", message: msg };
+      throw new Error(`Shiprocket pickup scheduling failed: ${msg}`);
     }
   }
 
@@ -300,7 +308,7 @@ class ShiprocketProvider extends ShippingProvider {
     } catch (err) {
       const msg = err.response?.data?.message || err.message;
       console.error("[Shiprocket] Cancel shipment failed:", msg);
-      return { cancelled: false, message: msg };
+      throw new Error(`Shiprocket cancellation failed: ${msg}`);
     }
   }
 

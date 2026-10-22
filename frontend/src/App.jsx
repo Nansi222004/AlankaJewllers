@@ -62,7 +62,6 @@ const SectionEditor = lazy(() => import('./modules/admin/pages/SectionEditor'));
 const DynamicPageEditor = lazy(() => import('./modules/admin/pages/DynamicPageEditor'));
 const PageManagement = lazy(() => import('./modules/admin/pages/PageManagement'));
 const AdminNotifications = lazy(() => import('./modules/admin/pages/AdminNotifications'));
-const AdminScanner = lazy(() => import('./modules/admin/pages/AdminScanner'));
 const MetalPricing = lazy(() => import('./modules/admin/pages/MetalPricing'));
 const TaxSettings = lazy(() => import('./modules/admin/pages/TaxSettings'));
 const AdminShipments = lazy(() => import('./modules/admin/pages/AdminShipments'));
@@ -111,7 +110,6 @@ import Loader from './modules/shared/components/Loader';
 
 const LoadingFallback = () => <Loader fullPage={false} />;
 
-import { initializePushNotifications, registerFCMToken, setupForegroundNotificationHandler } from './services/pushNotificationService';
 import toast from 'react-hot-toast';
 
 const AppContent = () => {
@@ -123,36 +121,48 @@ const AppContent = () => {
 
 
   React.useEffect(() => {
-    // Initialize push notification service worker.
-    initializePushNotifications({ registerToken: false });
+    if (loading || !user) return undefined;
 
-    // Setup foreground handler
-    setupForegroundNotificationHandler((payload) => {
-      console.log('Notification received in foreground:', payload);
-      const title = payload.notification?.title || '';
-      const body = payload.notification?.body || '';
+    let cancelled = false;
+    let foregroundUnsubscribe;
 
-      // Skip duplicate toasts for order confirmation
-      if (
-        title.toLowerCase().includes('order placed') ||
-        body.toLowerCase().includes('order placed') ||
-        title.toLowerCase().includes('order confirmed') ||
-        body.toLowerCase().includes('order confirmed')
-      ) {
-        return;
-      }
+    // Push is optional storefront functionality. Load Firebase only for an
+    // authenticated user so it cannot slow or break anonymous page rendering.
+    import('./services/pushNotificationService').then(async ({
+      initializePushNotifications,
+      registerFCMToken,
+      setupForegroundNotificationHandler,
+    }) => {
+      if (cancelled) return;
+      await initializePushNotifications({ registerToken: false });
+      if (cancelled) return;
 
-      // Show a toast for foreground notifications
-      toast.success(payload.notification.body, {
-        icon: '🔔',
-        duration: 5000,
+      foregroundUnsubscribe = await setupForegroundNotificationHandler((payload) => {
+        console.log('Notification received in foreground:', payload);
+        const title = payload.notification?.title || '';
+        const body = payload.notification?.body || '';
+
+        if (
+          title.toLowerCase().includes('order placed') ||
+          body.toLowerCase().includes('order placed') ||
+          title.toLowerCase().includes('order confirmed') ||
+          body.toLowerCase().includes('order confirmed')
+        ) {
+          return;
+        }
+
+        toast.success(body || title || 'New notification', {
+          icon: '🔔',
+          duration: 5000,
+        });
       });
-    });
-  }, []);
+      await registerFCMToken();
+    }).catch(err => console.error('Push notification initialization error:', err));
 
-  React.useEffect(() => {
-    if (loading || !user) return;
-    registerFCMToken().catch(err => console.error("FCM registration error:", err));
+    return () => {
+      cancelled = true;
+      if (typeof foregroundUnsubscribe === 'function') foregroundUnsubscribe();
+    };
   }, [loading, user]);
 
 
@@ -302,7 +312,6 @@ const AppContent = () => {
                   <Route path="/pickup-locations" element={<AdminPickupLocations />} />
                   <Route path="/audit-logs" element={<AuditLogPage />} />
                   <Route path="/direct-sales" element={<AdminDirectSales />} />
-                  <Route path="/scanner" element={<AdminScanner />} />
                 </Routes>
               </AdminLayout>
             </AdminProtectedRoute>

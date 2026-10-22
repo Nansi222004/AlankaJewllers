@@ -15,12 +15,11 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import defaultLogo from "@/assets/logo-emblem.webp";
-import { useSettings, sanitizeSettings } from "../../../context/SettingsContext";
+import { useSettings } from "../../../context/SettingsContext";
 import {
   normalizeExternalLink,
   normalizeFooterLink,
 } from "../utils/navigation";
-import api from "../../../services/api";
 
 const Footer = () => {
   const location = useLocation();
@@ -82,47 +81,12 @@ const Footer = () => {
   };
 
   useEffect(() => {
-    const loadSettings = async () => {
-      try {
-        const res = await api.get("public/settings");
-        if (res.data.success && res.data.data?.settings) {
-          const fetched = sanitizeSettings(res.data.data.settings);
-          setSettings((prev) => ({
-            ...prev,
-            ...fetched,
-            socialLinks: {
-              ...prev.socialLinks,
-              ...(fetched.socialLinks || {}),
-            },
-          }));
-          return;
-        }
-      } catch (err) {
-        console.warn(
-          "Failed to fetch public footer settings, falling back to localStorage/defaults:",
-          err.message,
-        );
-      }
-
-      const saved = localStorage.getItem("siteSettings");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        const cleaned = sanitizeSettings(parsed);
-        setSettings((prev) => ({
-          ...prev,
-          ...cleaned,
-          socialLinks: {
-            ...prev.socialLinks,
-            ...(cleaned.socialLinks || {}),
-          },
-        }));
-      }
-    };
-
-    loadSettings();
-    window.addEventListener("storage", loadSettings);
-    return () => window.removeEventListener("storage", loadSettings);
-  }, []);
+    setSettings((prev) => ({
+      ...prev,
+      ...globalSettings,
+      socialLinks: { ...prev.socialLinks, ...(globalSettings?.socialLinks || {}) },
+    }));
+  }, [globalSettings]);
 
   const activeLogo =
     globalSettings?.logo &&

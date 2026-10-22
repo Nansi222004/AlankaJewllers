@@ -18,7 +18,7 @@ export const GOLD_TONE_OPTIONS = [
 export const SILVER_TYPE_OPTIONS = [
   { label: 'All Silver', value: 'all', swatchColor: '#94A3B8' },
   { label: '925 Silver', value: '925', swatchColor: '#CBD5E1' },
-  { label: 'Fine Silver', value: 'fine', swatchColor: '#F8FAFC' }
+  { label: 'Silver Articles', value: 'articles', swatchColor: '#E2E8F0' }
 ];
 
 export const DIAMOND_TYPE_OPTIONS = [
